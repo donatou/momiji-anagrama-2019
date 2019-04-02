@@ -10,6 +10,164 @@
   Theme Store optional settings
   - Home page only: only shows on the home page
 {%- endcomment -%}
+
+<div class="header">
+  <div class="header__sitebanner d-none d-md-flex">
+    <div class="header__currency d-flex align-items-center">
+      <img src="img/svg/header/currency.svg" alt="Currency">
+      <select name="price" id="">
+        <option value="MXN">MXN</option>
+      </select>
+    </div>
+    <div class="header__banner">
+      <p>{{ section.settings.announcement_bar_text }}</p>
+    </div>
+  
+    <div class="header__cuenta">
+      {%- comment -%}
+      <p><a href="mi-cuenta.html">Mi cuenta</a></p>
+      {%- endcomment -%}
+      {% if shop.customer_accounts_enabled %}
+        <ul>
+          {% if customer %}
+            <li>
+              {% if customer.first_name != blank %}
+                {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
+                {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
+              {% else %}
+                <a href="/account">{{ 'layout.customer.account' | t }}</a>
+              {% endif %}
+            </li>
+            <li>
+              {{ 'layout.customer.log_out' | t | customer_logout_link }}
+            </li>
+          {% else %}
+            <li>
+              {{ 'layout.customer.log_in' | t | customer_login_link }}
+            </li>
+            <li>
+              {{ 'layout.customer.create_account' | t | customer_register_link }}
+            </li>
+          {% endif %}
+        </ul>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="header__nav d-flex justify-content-between">
+    <nav class="d-flex align-items-baseline">
+
+      <div class="mobile-btn d-lg-none">
+        <div class="nav-btn"></div>
+      </div>
+
+      <div class="header__nav--logo">
+        <a href="index.html"><img src="img/logo.png" alt="Momiji"></a>
+      </div>
+      <ul class="header__nav--menu list-unstyled">
+        <li class="nav-item nav-item--cat"><a>Skincare</a>
+          <div class="header__nav--level-2">
+              <div class="container">
+                <div class="row">
+                  <div class="offset-lg-1 col-lg-3">
+                    <div class="menu-drawer">
+                      <p class="h3">Rutina</p>
+                      <ul class="sub-nav list-unstyled">
+                        <li><a href="products.html">Limpiadores</a></li>
+                        <li><a href="products.html">Exfoliadores</a></li>
+                        <li><a href="products.html">Toners</a></li>
+                        <li><a href="products.html">Esencias</a></li>
+                        <li><a href="products.html">Tratamientos</a></li>
+                        <li><a href="products.html">Mascarillas</a></li>
+                        <li><a href="products.html">Crema para ojos</a></li>
+                        <li><a href="products.html">Protector solar</a></li>
+                      </ul>
+                    </div>
+
+                    <div class="menu-drawer">
+                      <p class="h3">Destacado</p>
+                      <ul class="sub-nav list-unstyled">
+                        <li><a href="products.html">All fixes</a></li>
+                        <li><a href="products.html">Prevent</a></li>
+                        <li><a href="products.html">Treat</a></li>
+                        <li><a href="products.html">Clean</a></li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-3">
+                    <div class="menu-drawer">
+                      <p class="h3">Tipo de piel</p>
+                      <ul class="sub-nav list-unstyled">
+                        <li><a href="products.html">All products</a></li>
+                        <li><a href="products.html">Face</a></li>
+                        <li><a href="products.html">Body</a></li>
+                        <li><a href="products.html">Hair</a></li>
+                      </ul>
+                    </div>
+
+                     <div class="menu-drawer">
+                      <p class="h3">Soluciones</p>
+                      <ul class="sub-nav list-unstyled">
+                        <li><a href="products.html">All products</a></li>
+                        <li><a href="products.html">Face</a></li>
+                        <li><a href="products.html">Body</a></li>
+                        <li><a href="products.html">Hair</a></li>
+                      </ul>
+                    </div>
+                    <a href="products.html" class="a__all mt-30">ir a productos</a>
+                  </div>
+
+                  <div class="col-lg-4 br">
+                    <div class="row">
+                      <div class="col-md-8 mx-auto">
+                          <a href="detalle-producto.html" class="product">
+                          <div class="product__container">
+                            <div class="product__container--main"><img src="img/product--img.png" alt="Milk"></div>
+                            <div class="product__container--hover"><img src="img/product--img--hover.png" alt="Milk"></div> 
+                          </div>
+                          <div class="product__info">
+                            <div class="product__info--brand">
+                              <p>Benton</p>
+                              <button class="btn__wishlist"></button>
+                            </div>
+                            <div class="product__info--name">
+                              <p>Ginseng Berry Eye Mask</p>
+                              <span>$60.00</span>
+                            </div>
+                          </div>
+                          </a>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item"><a>Maquillaje</a></li>
+        <li class="nav-item"><a>Kits Momiji</a></li>
+        <li class="nav-item"><a>Novedades</a></li>
+        <li class="nav-item"><a>Oferta</a></li>
+        <li class="nav-item"><a>Momiji shop</a></li>
+      </ul>
+    </nav>
+
+    <div class="header__nav--icons d-flex">
+      <div class="header__icons--search d-none d-md-block">
+        <a data-modal="search"><img src="img/svg/header/search.svg" alt="Search"></a>
+      </div>
+      <div class="header__icons--love d-none d-md-block">
+        <a href="mi-cuenta.html"><img src="img/svg/header/wishlist.svg" alt="Wishlist"></a>
+      </div>
+      <div class="header__icons--shop">
+        <a href="cart"><img src="img/svg/header/cart.svg" alt="Cart"><span class="cart-quantity">0</span></a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{%- comment -%}
 <section data-section-id="{{ section.id }}" data-section-type="header">
   {%- if section.settings.announcement_bar_enabled -%}
     <div>
@@ -127,6 +285,8 @@
   </nav>
 </section>
 
+{%- endcomment -%}
+
 {% if section.settings.logo != blank %}
   <style>
     .logo-image {
@@ -145,28 +305,10 @@
         "content": "Announcement bar"
       },
       {
-        "type": "checkbox",
-        "id": "announcement_bar_enabled",
-        "label": "Show announcement",
-        "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "announcement_bar_home_page_only",
-        "label": "Show on home page only",
-        "default": true
-      },
-      {
         "type": "text",
         "id": "announcement_bar_text",
-        "label": "Announcement text",
-        "default": "Announce something here"
-      },
-      {
-        "type": "url",
-        "id": "announcement_bar_link",
-        "label": "Announcement link",
-        "info": "Optional"
+        "label": "Texto de anuncios y promos",
+        "default": "Escribe aquí la promoción"
       },
       {
         "type": "header",
@@ -181,11 +323,11 @@
         "type": "range",
         "id": "logo_max_width",
         "min": 50,
-        "max": 450,
+        "max": 250,
         "step": 10,
         "unit": "px",
-        "label": "Custom logo width",
-        "default": 250
+        "label": "Ancho de logo",
+        "default": 190
       },
       {
         "type": "link_list",
