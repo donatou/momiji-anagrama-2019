@@ -55,14 +55,25 @@
 
   {% include 'script-tags', layout: 'theme' %}
 
-  {{ content_for_header }}
+{{ content_for_header }}
 </head>
 
 <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
 
+  <div class="loader-component">
+  </div>
+
   {% include 'ask' %}
 
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+
+  <!-- _search.html -->
+  <div class="modal" id="modal-search" aria-hidden="true"></div>
+  
+  <!-- _resena.html -->
+  <div id="modal-resena" aria-hidden="true"></div>
+
+  <div id="mb-menu" class="mobile-menu"></div>
 
   {% section 'header' %}
 
