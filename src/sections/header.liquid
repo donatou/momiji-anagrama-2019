@@ -14,7 +14,7 @@
 <div class="header">
   <div class="header__sitebanner d-none d-md-flex">
     <div class="header__currency d-flex align-items-center">
-      <img src="img/svg/header/currency.svg" alt="Currency">
+      <img src="{{ 'currency.svg' | asset_url }}" alt="Currency">
       <select name="price" id="">
         <option value="MXN">MXN</option>
       </select>
@@ -62,7 +62,7 @@
       </div>
 
       <div class="header__nav--logo">
-        <a href="index.html"><img src="img/logo.png" alt="Momiji"></a>
+        <a href="index.html"><img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo"></a>
       </div>
       <ul class="header__nav--menu list-unstyled">
         <li class="nav-item nav-item--cat"><a>Skincare</a>
@@ -123,8 +123,8 @@
                       <div class="col-md-8 mx-auto">
                           <a href="detalle-producto.html" class="product">
                           <div class="product__container">
-                            <div class="product__container--main"><img src="img/product--img.png" alt="Milk"></div>
-                            <div class="product__container--hover"><img src="img/product--img--hover.png" alt="Milk"></div> 
+                            <div class="product__container--main"><img src="{{ 'product--img.png' | asset_url }}" alt="Milk"></div>
+                            <div class="product__container--hover"><img src="{{ 'product--img--hover.png' | asset_url }}" alt="Milk"></div> 
                           </div>
                           <div class="product__info">
                             <div class="product__info--brand">
@@ -154,13 +154,13 @@
 
     <div class="header__nav--icons d-flex">
       <div class="header__icons--search d-none d-md-block">
-        <a data-modal="search"><img src="img/svg/header/search.svg" alt="Search"></a>
+        <a data-modal="search"><img src="{{ 'search.svg' | asset_url }}" alt="Search"></a>
       </div>
       <div class="header__icons--love d-none d-md-block">
-        <a href="mi-cuenta.html"><img src="img/svg/header/wishlist.svg" alt="Wishlist"></a>
+        <a href="mi-cuenta.html"><img src="{{ 'wishlist.svg' | asset_url }}" alt="Wishlist"></a>
       </div>
       <div class="header__icons--shop">
-        <a href="cart"><img src="img/svg/header/cart.svg" alt="Cart"><span class="cart-quantity">0</span></a>
+        <a href="cart"><img src="{{ 'cart.svg' | asset_url }}" alt="Cart"><span class="cart-quantity">0</span></a>
       </div>
     </div>
   </div>
