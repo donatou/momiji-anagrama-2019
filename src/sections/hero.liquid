@@ -1,0 +1,60 @@
+<section class="hero">
+<div class="hero__slider slider">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide" style="background: url({{ 'hero--img.jpg' | asset_url }});background-repeat: no-repeat;background-position: bottom right;background-size: cover;">
+                <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12 col-md-7 col-lg-6 col-xl-5">
+                        <h1>Piel suave y saludable en un paso.</h1>
+                        <p>Neogen Naturals Honey Serum contiene Ácido Super Hialurónico y Vitamina C.</p>
+                        <a href="products.html" class="btn__main">Ver producto</a>
+                    </div> 
+                </div>
+                </div>
+            </div>
+
+            <div class="swiper-slide" style="background: url({{ 'hero--img.jpg' | asset_url }});background-repeat: no-repeat;background-position: bottom right;background-size: cover;">
+                <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12 col-md-7 col-lg-6 col-xl-5">
+                        <h1>Piel suave y saludable en un paso.</h1>
+                        <p>Neogen Naturals Honey Serum contiene Ácido Super Hialurónico y Vitamina C.</p>
+                        <a href="products.html" class="btn__main">Ver producto</a>
+                    </div> 
+                </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Carrusel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "hero",
+      "label": "Hero",
+      "default": "Talk about your brand"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

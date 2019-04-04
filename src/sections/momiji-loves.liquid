@@ -1,0 +1,123 @@
+<section class="section__spacers">
+    <div class="container">
+        <div class="row row-mobile no-gutters">
+        <div class="section__title col-12">
+            <h2>Momiji Loves</h2>
+            <a href="/" class="btn__main">Explora lo nuevo</a>
+        </div>
+        </div>
+        <div class="row">
+        <div class="products__slider slider col-12">
+            <div class="swiper-container">
+                <div class="swiper-wrapper row row-mobile">
+                <!-- Slides -->
+                <div class="swiper-slide col-12 col-md-5 col-lg-4 col-xl-3">
+                    <a href="detalle-producto.html" class="product new">
+                    <div class="product__container">
+                    <div class="product__container--main img-container"><img src="{{ 'product--img.png' | asset_url }}" alt="Milk"></div>
+                    <div class="product__container--hover"><img src="{{ 'product--img--hover.png' | asset_url }}" alt="Milk"></div> 
+                    </div>
+                    <div class="product__info">
+                    <div class="product__info--brand">
+                        <p>Benton</p>
+                        <button class="btn__wishlist"></button>
+                    </div>
+                    <div class="product__info--name">
+                        <p>Ginseng Berry Eye Mask</p>
+                        <span>$60.00</span>
+                    </div>
+                    </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide col-12 col-md-5 col-lg-4 col-xl-3">
+                    <a href="detalle-producto.html" class="product">
+                    <div class="product__container">
+                    <div class="product__container--main img-container"><img src="{{ 'product--img.png' | asset_url }}" alt="Milk"></div>
+                    <div class="product__container--hover"><img src="{{ 'product--img--hover.png' | asset_url }}" alt="Milk"></div> 
+                    </div>
+                    <div class="product__info">
+                    <div class="product__info--brand">
+                        <p>Benton</p>
+                        <button class="btn__wishlist"></button>
+                    </div>
+                    <div class="product__info--name">
+                        <p>Ginseng Berry Eye Mask</p>
+                        <span>$60.00</span>
+                    </div>
+                    </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide col-12 col-md-5 col-lg-4 col-xl-3">
+                    <a href="detalle-producto.html" class="product soon">
+                    <div class="product__container">
+                    <div class="product__container--main img-container"><img src="{{ 'product--img.png' | asset_url }}" alt="Milk"></div>
+                    <div class="product__container--hover"><img src="{{ 'product--img--hover.png' | asset_url }}" alt="Milk"></div> 
+                    </div>
+                    <div class="product__info">
+                    <div class="product__info--brand">
+                        <p>Benton</p>
+                        <button class="btn__wishlist"></button>
+                    </div>
+                    <div class="product__info--name">
+                        <p>Ginseng Berry Eye Mask</p>
+                        <span>$60.00</span>
+                    </div>
+                    </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide col-12 col-md-5 col-lg-4 col-xl-3">
+                    <a href="detalle-producto.html" class="product momi">
+                    <div class="product__container">
+                    <div class="product__container--main img-container"><img src="{{ 'product--img.png' | asset_url }}" alt="Milk"></div>
+                    <div class="product__container--hover"><img src="{{ 'product--img--hover.png' | asset_url }}" alt="Milk"></div> 
+                    </div>
+                    <div class="product__info">
+                    <div class="product__info--brand">
+                        <p>Benton</p>
+                        <button class="btn__wishlist"></button>
+                    </div>
+                    <div class="product__info--name">
+                        <p>Ginseng Berry Eye Mask</p>
+                        <span>$60.00</span>
+                    </div>
+                    </div>
+                    </a>
+                </div>
+                
+                </div>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Momiji Loves",
+  "settings": [
+    {
+      "type": "text",
+      "id": "hero",
+      "label": "Hero",
+      "default": "Talk about your brand"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Momiji Loves",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

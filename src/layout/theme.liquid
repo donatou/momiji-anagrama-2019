@@ -77,8 +77,15 @@
 <header>
   {% section 'header' %}
 </header>
-  <main role="main" id="MainContent">
+  <main class="home" role="main" id="MainContent" style="opacity: 1;">
+    <!-- Agregada temporalmente para revisar estilos -->
+      {% section 'hero' %}
+      {% section 'momiji-loves' %}
+    <!-- Agregada temporalmente para revisar estilos -->
+
     {{ content_for_layout }}
+
+      {% section 'footer' %}
   </main>
 
   {% section 'footer' %}

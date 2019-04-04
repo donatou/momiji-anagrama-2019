@@ -5092,7 +5092,7 @@ footer {
   position: absolute; }
 
 .new:before {
-  background: url("../img/svg/tags/new.svg") no-repeat;
+  background: url({{ 'new.svg' | asset_url }}) no-repeat;
   background-size: contain;
   bottom: 20px;
   left: 0;
@@ -5102,7 +5102,7 @@ footer {
   margin: 0 auto; }
 
 .soon:before {
-  background: url("../img/svg/tags/soon.svg") no-repeat;
+  background: url({{ 'soon.svg' | asset_url }}) no-repeat;
   background-size: contain;
   bottom: 20px;
   left: 0;
@@ -5112,7 +5112,7 @@ footer {
   margin: 0 auto; }
 
 .momi:before {
-  background: url("../img/svg/tags/momi.svg") no-repeat;
+  background: url({{ 'momi.svg' | asset_url }}) no-repeat;
   background-size: contain;
   top: 20px;
   height: 65px;
@@ -5166,7 +5166,7 @@ footer {
       background-color: #f0ddf0; } }
 
 .btn__wishlist {
-  background: url("../img/svg/wishlist.svg") no-repeat;
+  background: url({{ 'wishlist.svg' | asset_url }}) no-repeat;
   height: 15px;
   float: right;
   border: 0; }
@@ -5224,7 +5224,7 @@ footer {
 .a__link--about {
   position: relative;
   display: inline-block;
-  background: url("../img/svg/arrow.svg") no-repeat;
+  background: url({{ 'arrow.svg' | asset_url }}) no-repeat;
   background-size: contain;
   background-position: bottom;
   width: 20px;
@@ -5403,7 +5403,7 @@ footer {
 
 .swiper-button-next,
 .swiper-button-prev {
-  background-image: url("../img/svg/arrow.svg");
+  background-image: url({{ 'arrow.svg' | asset_url }});
   background-size: 18px auto;
   background-color: #F3E4F3;
   height: 50px;
@@ -6058,7 +6058,7 @@ html, footer .footer__item li a, .a__more, .modal__resena .resena__container .st
   left: 0;
   top: 0; }
   .loader-component .bubble {
-    background: url(../img/svg/miffy.svg) no-repeat center;
+    background: url({{ 'miffy.svg' | asset_url }}) no-repeat center;
     background-size: 21px auto;
     height: 37px;
     width: 37px;
@@ -7014,7 +7014,7 @@ input + input {
     .home__skin .skin--type.mix:before {
       background: url("../img/svg/tags/mix.svg") no-repeat; }
     .home__skin .skin--type.dry:before {
-      background: url("../img/svg/tags/dry.svg") no-repeat; }
+      background: url({{ 'dry.svg' | asset_url }})  no-repeat; }
     .home__skin .skin--type-container {
       background-color: #F06C4E;
       height: 100%;
