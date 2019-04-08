@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'GT Momiji Medium';
+    font-weight: 500;
+    font-style: normal;
+    src: url('{{ "GT-Momiji-Medium.eot" | asset_url }}');
+    src: 
+         url('{{ "GT-Momiji-Medium.woff" | asset_url }}') format('woff'),
+         url('{{ "GT-Momiji-Medium.woff2" | asset_url }}') format('woff2');
+}
+
+
+@font-face {
+    font-family: 'GT Momiji Regular';
+    font-weight: 400;
+    font-style: normal;
+    src: url('../fonts/momiji/GT-Momiji-Regular.eot');
+    src: 
+         url('../fonts/momiji/GT-Momiji-Regular.woff') format('woff'),
+         url('../fonts/momiji/GT-Momiji-Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'GT Walsheim';
+    src: url('../fonts/GTWalsheim.woff2') format('woff2'),
+        url('../fonts/GTWalsheim.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT Super Display';
+    src: url('../fonts/GTSuperDisplay-Light.woff2') format('woff2'),
+        url('../fonts/GTSuperDisplay-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT Super Text Book';
+    src: url('../fonts/GTSuperText-Book.woff2') format('woff2'),
+        url('../fonts/GTSuperText-Book.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT Super Display';
+    src: url('../fonts/GTSuperDisplay-Regular.woff2') format('woff2'),
+        url('../fonts/GTSuperDisplay-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

@@ -36,15 +36,15 @@
     "settings": [
       {
         "type": "font_picker",
-        "id": "font_heading",
-        "default": "helvetica_n4",
-        "label": "Headings"
+        "id": "font-serif",
+        "default": "GT Super Text Book",
+        "label": "Serif"
       },
       {
         "type": "font_picker",
-        "id": "font_body",
-        "default": "helvetica_n4",
-        "label": "Body text"
+        "id": "font-title",
+        "default": "GT Momiji Medium",
+        "label": "Title"
       }
     ]
   },

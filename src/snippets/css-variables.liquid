@@ -1,3 +1,4 @@
+{%- comment -%}
 <style>
   {{ settings.font_heading | font_face }}
   {{ settings.font_body | font_face }}
@@ -19,5 +20,29 @@
     --font-body-weight: {{ settings.font_body.weight }};
     --font-body-style: {{ settings.font_body.style }};
     --font-body-bold-weight: {{ font_body_bold.weight | default: 'bold' }};
+  }
+</style>
+{%- endcomment -%}
+
+<style>
+  {{ settings.font-serif | font_face }}
+  {{ settings.font-title | font_face }}
+  {{ settings.font-subtitle | font_face }}
+  {{ settings.font-subtitle--light | font_face }}
+  {{ settings.font-caption | font_face }}
+  {{ settings.font-icons | font_face }}
+
+  :root {
+    --color-accent: {{ settings.color_accent }};
+    --color-body-text: {{ settings.color_body_text }};
+    --color-main-background: {{ settings.color_main_bg }};
+    --color-border: {{ settings.color_body_text | color_lighten: 50 }};
+
+    --font-serif: {{ settings.font-serif.family }}, {{ settings.font_heading.fallback_families }};
+    --font-title: {{ settings.font-title.family }}, {{ settings.font_body.fallback_families }};
+    --font-subtitle: {{ settings.font-subtitle.family }};
+    --font-subtitle--light: {{ settings.font-subtitle--light.family }};
+    --font-caption: {{ settings.font-caption.family }};
+    --font-icons: {{ settings.font-icons.family }};
   }
 </style>
