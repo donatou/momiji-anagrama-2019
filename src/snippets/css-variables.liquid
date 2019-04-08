@@ -1,4 +1,4 @@
-{%- comment -%}
+
 <style>
   {{ settings.font_heading | font_face }}
   {{ settings.font_body | font_face }}
@@ -22,8 +22,8 @@
     --font-body-bold-weight: {{ font_body_bold.weight | default: 'bold' }};
   }
 </style>
-{%- endcomment -%}
 
+{%- comment -%}
 <style>
   {{ settings.font-serif | font_face }}
   {{ settings.font-title | font_face }}
@@ -46,3 +46,5 @@
     --font-icons: {{ settings.font-icons.family }};
   }
 </style>
+
+{%- endcomment -%}

@@ -37,13 +37,13 @@
       {
         "type": "font_picker",
         "id": "font-serif",
-        "default": "GT Super Text Book",
+        "default": "helvetica_n4",
         "label": "Serif"
       },
       {
         "type": "font_picker",
         "id": "font-title",
-        "default": "GT Momiji Medium",
+        "default": "helvetica_n4",
         "label": "Title"
       }
     ]
