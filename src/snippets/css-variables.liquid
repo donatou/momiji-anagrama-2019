@@ -1,4 +1,4 @@
-
+{%- comment -%}
 <style>
   {{ settings.font_heading | font_face }}
   {{ settings.font_body | font_face }}
@@ -22,8 +22,79 @@
     --font-body-bold-weight: {{ font_body_bold.weight | default: 'bold' }};
   }
 </style>
+{%- endcomment -%}
 
 {%- comment -%}
+Modificado por mi, es el ultimo que intente modificar y no queda. Las variables que cre[e no coinciden con las del CSS de "normalize 7.0.0"
+
+<style>
+  {{ settings.font_serif | font_face }}
+  {{ settings.font_title | font_face }}
+  {{ settings.font_subtitle | font_face }}
+  {{ settings.font_subtitle--light | font_face }}
+  {{ settings.font_caption | font_face }}
+  {{ settings.font_icons | font_face }}
+
+  {%- assign font_body_bold = settings.font_body -%}
+  {%- assign font_body_bold_italic = font_body_bold -%}
+
+  {{ font_body_bold | font_face }}
+  {{ font_body_bold_italic | font_face }}
+
+  :root {
+    --main-color-orange: {{ settings.color_accent }};
+    --main-color-pink: {{ settings.color_body_text }};
+    --main-color-white: {{ settings.color_main_bg }};
+
+    --black: {{ settings.color_body_text | color_lighten: 50 }};
+    --gray: {{}};
+    --pink:{{}};
+    --purple:{{}};
+    --pink-sky:{{}};
+    --yellow:{{}};
+    --blue-sky:{{}};
+    
+    --border:{{}};
+    --bezier:{{}};
+
+    --font-serif: {{ settings.font_serif.family }}, {{ settings.font_serif.fallback_families }};
+    --font-title: {{ settings.font_title.family }}, {{ settings.font_title.fallback_families }};
+    --font-subtitle: {{ settings.font_subtitle.family }};
+    --font-subtitle--light: {{ settings.font_subtitle--light.family }};
+    --font-caption: {{ settings.font_caption.family }};
+    --font-icons: {{ settings.font_icons.family }};
+  }
+</style>
+{%- endcomment -%}
+
+{%- comment -%} Este es el set de variables original
+<style>
+  {{ settings.font_heading | font_face }}
+  {{ settings.font_body | font_face }}
+
+  {%- assign font_body_bold = settings.font_body | font_modify: 'weight', 'bolder' -%}
+  {%- assign font_body_bold_italic = font_body_bold | font_modify: 'style', 'italic' -%}
+
+  {{ font_body_bold | font_face }}
+  {{ font_body_bold_italic | font_face }}
+
+  :root {
+    --color-accent: {{ settings.color_accent }};
+    --color-body-text: {{ settings.color_body_text }};
+    --color-main-background: {{ settings.color_main_bg }};
+    --color-border: {{ settings.color_body_text | color_lighten: 50 }};
+
+    --font-heading: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
+    --font-body: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
+    --font-body-weight: {{ settings.font_body.weight }};
+    --font-body-style: {{ settings.font_body.style }};
+    --font-body-bold-weight: {{ font_body_bold.weight | default: 'bold' }};
+  }
+</style>
+{%- endcomment -%}
+
+{%- comment -%}
+Este es el primer set de variables que yo modifique y no sirvepara nada
 <style>
   {{ settings.font-serif | font_face }}
   {{ settings.font-title | font_face }}

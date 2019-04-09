@@ -37,38 +37,14 @@
       {
         "type": "font_picker",
         "id": "font-serif",
-        "default": "GT Super Text Book",
+        "default": "helvetica_n4",
         "label": "Serif"
       },
       {
         "type": "font_picker",
         "id": "font-title",
-        "default": "GT Momiji Medium",
+        "default": "helvetica_n4",
         "label": "Title"
-      },
-      {
-        "type": "font_picker",
-        "id": "font-subtitle",
-        "default": "GT Super Display",
-        "label": "Subtitle"
-      },
-      {
-        "type": "font_picker",
-        "id": "font-subtitle--light",
-        "default": "GT Super Display-light",
-        "label": "Subtitle Light"
-      },
-      {
-        "type": "font_picker",
-        "id": "font-caption",
-        "default": "GT Walsheim",
-        "label": "Captions"
-      },
-      {
-        "type": "font_picker",
-        "id": "font-icons",
-        "default": "GT Momiji Regular",
-        "label": "Icons"
       }
     ]
   },
