@@ -33,8 +33,11 @@
     <meta name="description" content="{{ page_description | escape }}">
   {%- endif -%}
 
+{%- comment -%}  {% layout none %} {%- endcomment -%}
+
   {% include 'social-meta-tags' %}
-  {% include 'style-tags', layout: 'theme' %}
+  {% include 'style-tags' %}
+{%- comment -%}{% include 'style-tags', layout: 'theme' %} {%- endcomment -%}
   {% include 'css-variables' %}
 
 
@@ -55,7 +58,8 @@
     {% endif %}
   </script>
 
-  {% include 'script-tags', layout: 'theme' %}
+  {% include 'script-tags' %}
+  {%- comment -%}  {% include 'script-tags', layout: 'theme' %}  {%- endcomment -%}
 
   {{ content_for_header }}
 </head>
