@@ -1,20 +1,23 @@
-<section class="hero">
+<section class="hero" data-section-type="hero">
 <div class="hero__slider slider">
     <div class="swiper-container">
         <div class="swiper-wrapper">
             <!-- Slides -->
-            <div class="swiper-slide" style="background: url({{ 'hero--img.jpg' | asset_url }});background-repeat: no-repeat;background-position: bottom right;background-size: cover;">
+            {% for block in section.blocks %}
+            <div class="swiper-slide" {{ block.shopify_attributes }} data-swiper-autoplay="{{ section.settings.duracion }}" style="background: url({{ block.settings.imagen | img_url: '1800x' }});background-repeat: no-repeat;background-position: bottom right;background-size: cover;">
                 <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-12 col-md-7 col-lg-6 col-xl-5">
-                        <h1>Piel suave y saludable en un paso.</h1>
-                        <p>Neogen Naturals Honey Serum contiene Ácido Super Hialurónico y Vitamina C.</p>
-                        <a href="products.html" class="btn__main">Ver producto</a>
+                        <h1>{{ block.settings.titulo }}</h1>
+                        <p>{{ block.settings.subtitulo }}</p>
+                        <a href="{{ block.settings.link_boton }}" class="btn__main">{{ block.settings.texto_boton }}</a>
                     </div> 
                 </div>
                 </div>
             </div>
+            {% endfor %}
 
+{%- comment -%} comento esta area para ver si funciona el for de bloques para triggerear cada slide
             <div class="swiper-slide" style="background: url({{ 'hero--img.jpg' | asset_url }});background-repeat: no-repeat;background-position: bottom right;background-size: cover;">
                 <div class="container-fluid">
                 <div class="row">
@@ -26,6 +29,7 @@
                 </div>
                 </div>
             </div>
+{%- endcomment -%}
 
         </div>
         <div class="swiper-pagination"></div>
@@ -35,25 +39,75 @@
 
 {% schema %}
 {
-  "name": "Carrusel",
+  "name": "Slideshow hero",
+  "max_blocks": 3,
+  "class": "hero",
   "settings": [
     {
-      "type": "text",
-      "id": "hero",
-      "label": "Hero",
-      "default": "Talk about your brand"
-    },
+      "id": "duracion",
+      "type": "range",
+      "min": 500,
+      "max": 10000,
+      "step": 100,
+      "unit": "ms",
+      "label": "Duración entre slides",
+      "default": 3000
+}
+  ],
+  "blocks": [
     {
-      "type": "richtext",
-      "id": "text",
-      "label": "Text",
-      "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+      "type": "image",
+      "name": "Imagen de slider",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "imagen",
+          "label": "Imagen de fondo",
+          "info": "1800px * 1000px .jpg recomendado"
+        },
+        {
+          "type": "text",
+          "id": "titulo",
+          "label": "Título",
+          "default": "Aquí ingresa el título de la slide."
+        },
+        {
+          "type": "textarea",
+          "id": "subtitulo",
+          "label": "Subtítulo",
+          "default": "Este es el espacio para poner el subtítulo de la slide."
+        },
+        {
+          "type": "text",
+          "id": "texto_boton",
+          "label": "Texto del botón",
+          "default": "Texto del Botón"
+        },
+        {
+          "type": "url",
+          "id": "link_boton",
+          "label": "Link del botón"
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Hero",
-      "category": "Text"
+      "name": "Slideshow hero",
+      "category": "Image",
+      "settings": {
+      },
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
     }
   ]
 }
