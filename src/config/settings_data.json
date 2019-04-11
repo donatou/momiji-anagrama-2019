@@ -22,6 +22,25 @@
             "collection-list-2"
           ]
         },
+        "hero": {
+          "type": "hero",
+          "blocks": {
+            "hero-0": {
+              "type": "hero"
+            },
+            "hero-1": {
+              "type": "hero"
+            },
+            "hero-2": {
+              "type": "hero"
+            }
+          },
+          "block_order": [
+            "hero-0",
+            "hero-1",
+            "hero-2"
+          ]
+        },
         "featured-collection": {
           "type": "featured-collection",
           "settings": {

@@ -70,7 +70,7 @@
 
   {% include 'ask' %}
 
-  <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+  {%- comment -%}<a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a> {%- endcomment -%}
 
   <!-- _search.html -->
   <div class="modal" id="modal-search" aria-hidden="true"></div>
@@ -84,8 +84,7 @@
 </header>
   <main class="home" role="main" id="MainContent" style="opacity: 1;">
     <!-- Agregada temporalmente para revisar estilos -->
-      {% section 'hero' %}
-      {% section 'momiji-loves' %}
+     {%- comment -%} {% section 'momiji-loves' %} {%- endcomment -%}
     <!-- Agregada temporalmente para revisar estilos -->
 
     {{ content_for_layout }}
