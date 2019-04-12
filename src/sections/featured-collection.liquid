@@ -8,6 +8,8 @@
   Theme Store optional settings
   - Heading: title of the featured collection section
 {%- endcomment -%}
+
+{%- comment -%}
 <section class="featured-collection">
   {% if section.settings.title != blank %}
     <h2 class="featured-collection__title">{{ section.settings.title | escape }}</h2>
@@ -59,26 +61,139 @@
     {% endfor %}
   {% endfor %}
 </section>
+{%- endcomment -%}
+
+<section class="section__spacers">
+  <div class="container">
+    <div class="row row-mobile no-gutters">
+      <div class="section__title col-12">
+        <h2>{{ section.settings.title }}</h2>
+        <a href="{{ section.settings.boton_link }}" class="btn__main">{{ section.settings.boton_texto }}</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="products__slider slider col-12">
+        <div class="swiper-container">
+            <div class="swiper-wrapper row row-mobile">
+              <!-- Slides -->
+              <div class="swiper-slide col-12 col-md-5 col-lg-4 col-xl-3">
+                <a href="detalle-producto.html" class="product new">
+                <div class="product__container">
+                  <div class="product__container--main img-container"><img src="img/product--img.png" alt="Milk"></div>
+                  <div class="product__container--hover"><img src="img/product--img--hover.png" alt="Milk"></div> 
+                </div>
+                <div class="product__info">
+                  <div class="product__info--brand">
+                    <p>Benton</p>
+                    <button class="btn__wishlist"></button>
+                  </div>
+                  <div class="product__info--name">
+                    <p>Ginseng Berry Eye Mask</p>
+                    <span>$60.00</span>
+                  </div>
+                </div>
+                </a>
+              </div>
+
+              {%- comment -%} Deshabilité éstas para revisar el for que se hará para desplegar los elementos de la colección.
+              <div class="swiper-slide col-12 col-md-5 col-lg-4 col-xl-3">
+                <a href="detalle-producto.html" class="product">
+                <div class="product__container">
+                  <div class="product__container--main img-container"><img src="img/product--img.png" alt="Milk"></div>
+                  <div class="product__container--hover"><img src="img/product--img--hover.png" alt="Milk"></div> 
+                </div>
+                <div class="product__info">
+                  <div class="product__info--brand">
+                    <p>Benton</p>
+                    <button class="btn__wishlist"></button>
+                  </div>
+                  <div class="product__info--name">
+                    <p>Ginseng Berry Eye Mask</p>
+                    <span>$60.00</span>
+                  </div>
+                </div>
+                </a>
+              </div>
+
+              <div class="swiper-slide col-12 col-md-5 col-lg-4 col-xl-3">
+                <a href="detalle-producto.html" class="product soon">
+                <div class="product__container">
+                  <div class="product__container--main img-container"><img src="img/product--img.png" alt="Milk"></div>
+                  <div class="product__container--hover"><img src="img/product--img--hover.png" alt="Milk"></div> 
+                </div>
+                <div class="product__info">
+                  <div class="product__info--brand">
+                    <p>Benton</p>
+                    <button class="btn__wishlist"></button>
+                  </div>
+                  <div class="product__info--name">
+                    <p>Ginseng Berry Eye Mask</p>
+                    <span>$60.00</span>
+                  </div>
+                </div>
+                </a>
+              </div>
+
+              <div class="swiper-slide col-12 col-md-5 col-lg-4 col-xl-3">
+                <a href="detalle-producto.html" class="product momi">
+                <div class="product__container">
+                  <div class="product__container--main img-container"><img src="img/product--img.png" alt="Milk"></div>
+                  <div class="product__container--hover"><img src="img/product--img--hover.png" alt="Milk"></div> 
+                </div>
+                <div class="product__info">
+                  <div class="product__info--brand">
+                    <p>Benton</p>
+                    <button class="btn__wishlist"></button>
+                  </div>
+                  <div class="product__info--name">
+                    <p>Ginseng Berry Eye Mask</p>
+                    <span>$60.00</span>
+                  </div>
+                </div>
+                </a>
+              </div>
+              {%- endcomment -%}
+              <!-- Slides END -->
+            </div>
+          </div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 {% schema %}
   {
-    "name": "Featured collection",
+    "name": "Colección de Productos",
     "settings": [
       {
         "type": "text",
         "id": "title",
         "label": "Heading",
-        "default": "Featured collection"
+        "default": "Título de la Colección"
       },
       {
         "id": "collection",
         "type": "collection",
-        "label": "Collection"
-      }
+        "label": "Colección de Productos"
+      },
+    {
+      "type": "text",
+      "id": "boton_texto",
+      "label": "Button label",
+      "default": "Texto del botón"
+    },
+    {
+      "type": "url",
+      "id": "boton_link",
+      "label": "Button link"
+    }
     ],
     "presets": [
       {
-        "name": "Featured collection",
+        "name": "Colección de Productos",
         "category": "Collection"
       }
     ]
