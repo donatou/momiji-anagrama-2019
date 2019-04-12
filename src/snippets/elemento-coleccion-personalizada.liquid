@@ -1,0 +1,135 @@
+{% comment %}
+  Revisa si hay stock del producto (para poner etiqueta de MUY PRONTO) y define una variable para usar abajo.
+{% endcomment %}
+{% assign soon = true %}
+{% if product.available %}
+  {% assign soon = false %}
+{% endif %}
+
+{% comment %}
+  Revisa si el producto tiene el tag de "Momi's Pick" y define una variable para usar abajo.
+{% endcomment %}
+{% assign momi = false %}
+{% if product.tags contains "momis_pick" %}
+  {% assign momi = true %}
+{% endif %}
+
+{% comment %}
+  Revisa si el producto es nuevo en tienda y define una variable para usar abajo.
+{% endcomment %}
+{% assign new = false %}
+{% if product.tags contains "nuevo" %}
+  {% assign new = true %}
+{% endif %}
+
+
+<div class="swiper-slide col-12 col-md-5 col-lg-4 col-xl-3">
+    <a href="{{ product.url | within: collection }}" {% if soon %} class="product soon" {% elsif new %} class="product new" {% elsif momi %} class="product momi" {% else %} class="product" {% endif %} > {%- comment -%} se tiene que hacer cuatro clases diferentes: product, product new, product momi, product soon sacado de variables asignadas arriba. {%- endcomment -%}
+        <div class="product__container">
+            <div class="product__container--main img-container">
+                <img src="img/product--img.png" alt="Milk">
+            </div>
+            <div class="product__container--hover">
+                <img src="img/product--img--hover.png" alt="Milk">
+            </div> 
+        </div>
+        <div class="product__info">
+            <div class="product__info--brand">
+                <p>Benton</p>
+                <button class="btn__wishlist"></button>
+            </div>
+            <div class="product__info--name">
+                <p>Ginseng Berry Eye Mask</p>
+                <span>$60.00</span>
+            </div>
+        </div>
+    </a>
+</div>
+
+
+HOLA DONATO DEL LUNES 15 DE ABRIL:
+Terminaste de hacer los if statements de la class del producto para que aparezcan las etiquetas
+que anagrama diseñó para los status de producto. Te falta agregar las liquid tags de image_url,
+y el resto de cosas que tienes en la lista de Google Keep.
+Revisar el for loop para que el producto se repita en la colección.
+Agregar también algunos productos con las etiquetas manualmente a los productos actuales de shopify
+para ver si comienza a funcionar.
+Hay que hacer tmb un range slider para poner el mínimo de productos que aparecen en el carrusel/colección.
+
+
+------------------------
+
+{%- comment -%}
+
+<div class="box product">
+{%- endcomment -%}
+  {% comment %}
+    Link to your product with the 'within: collection' filter for the link to be aware of the collection.
+    This allows you to create collection-based navigation on the product page.
+
+    Results of using 'within: collection':
+    - Instead of a URL with /products/product-handle
+      you would get /collections/collection-handle/products/product-handle
+
+    For more info on navigation within a collection
+      - http://docs.shopify.com/support/your-store/collections/how-to-navigate-within-a-collection
+
+  {% endcomment %}
+{%- comment -%}
+  <figure>
+    <div class="image-table">
+      <div class="image-cell">
+        <a href="{{ product.url | within: collection }}"{% if product.images.size > 1 %}{% if settings.variant_rollover %} class="product-image view-alt lazyload" data-bgset="{% include 'bgset', image: product.images[1] %}" {% else %}  class="product-image" {% endif %}{% else %} class="product-image" {% endif %}>
+          {%- assign image = product.featured_image -%}
+          <div class="card__image-wrapper" style="padding-top:{{ 1 | divided_by: image.aspect_ratio | times: 100}}%">
+            {% assign image_widths = '295,394,590,700,800,1000,1200,1500,1800,2000,2400' %}
+            {% include 'theme-rias' %}
+            <img class="card__image lazyload lazypreload fade-in"
+              data-src="{{ image_url_pattern }}"
+              data-widths="[{{ image_widths }}]"
+              data-aspectratio="{{ image.aspect_ratio }}"
+              data-sizes="auto"
+              data-expand="600"
+              alt="{{ product.featured_image.alt | escape }}">
+            <noscript>
+              <img class="card__image" src="{{ image | img_url: '394x' }}" alt="{{ product.featured_image.alt | escape }}">
+            </noscript>
+          </div>
+          {% if sold_out %}
+          <span class="label sold-out">{{ 'products.product.sold_out' | t }}</span>
+          {% else %}
+            {% if on_sale %}
+            <span class="label sale">{{ 'products.product.on_sale' | t }}</span>
+            {% endif %}
+          {% endif %}
+        </a>
+      </div>
+    </div>
+    <figcaption>
+      <div class="product-title">
+        <a href="{{ product.url | within: collection }}" class="title">{{ product.title }}</a>
+        {% if settings.show_vendors %}
+          <span class="vendor">{{ product.vendor | link_to_vendor }}</span>
+        {% endif %}
+      </div>
+      <span class="price">
+      {% if on_sale %}
+        {% if product.price_varies %}
+          <span class="from">{{ 'products.general.from' | t }}</span>
+          <span class="original-price money">{{ product.compare_at_price | money }}</span>
+          <span class="money">{{ product.price | money }}</span>
+        {% else %}
+          <span class="original-price money">{{ product.compare_at_price | money }}</span>
+          <span class="money">{{ product.price | money }}</span>
+        {% endif %}
+      {% else %}
+        {% if product.price_varies %}<span class="from">{{ 'products.general.from' | t }}</span>{% endif %}
+        <span class="money">{{ product.price | money }}</span>
+      {% endif %}
+           <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+      </span>
+    </figcaption>
+  </figure>
+</div>
+
+{%- endcomment -%}

@@ -76,6 +76,16 @@
         <div class="swiper-container">
             <div class="swiper-wrapper row row-mobile">
               <!-- Slides -->
+
+              {% for product in collection.products limit: product_limit  %}
+                {% include 'elemento-coleccion-personalizada' %}
+              {% else %}
+                {% for i in (1..product_limit) %}
+                  {% include 'placeholder-product-grid-item' %}
+                {% endfor %}
+              {% endfor %}
+
+              {%- comment -%} Deshabilité éstas para revisar el for que se hará para desplegar los elementos de la colección.
               <div class="swiper-slide col-12 col-md-5 col-lg-4 col-xl-3">
                 <a href="detalle-producto.html" class="product new">
                 <div class="product__container">
@@ -95,7 +105,6 @@
                 </a>
               </div>
 
-              {%- comment -%} Deshabilité éstas para revisar el for que se hará para desplegar los elementos de la colección.
               <div class="swiper-slide col-12 col-md-5 col-lg-4 col-xl-3">
                 <a href="detalle-producto.html" class="product">
                 <div class="product__container">
