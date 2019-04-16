@@ -24,6 +24,7 @@
 
 
 <div class="swiper-slide col-12 col-md-5 col-lg-4 col-xl-3">
+
     <a href="{{ product.url | within: collection }}" {% if soon %} class="product soon" {% elsif new %} class="product new" {% elsif momi %} class="product momi" {% else %} class="product" {% endif %} > {%- comment -%} se tiene que hacer cuatro clases diferentes: product, product new, product momi, product soon sacado de variables asignadas arriba. {%- endcomment -%}
         <div class="product__container">
             <div class="product__container--main img-container">
@@ -45,19 +46,6 @@
         </div>
     </a>
 </div>
-
-
-HOLA DONATO DEL LUNES 15 DE ABRIL:
-Terminaste de hacer los if statements de la class del producto para que aparezcan las etiquetas
-que anagrama diseñó para los status de producto. Te falta agregar las liquid tags de image_url,
-y el resto de cosas que tienes en la lista de Google Keep.
-Revisar el for loop para que el producto se repita en la colección.
-Agregar también algunos productos con las etiquetas manualmente a los productos actuales de shopify
-para ver si comienza a funcionar.
-Hay que hacer tmb un range slider para poner el mínimo de productos que aparecen en el carrusel/colección.
-
-
-------------------------
 
 {%- comment -%}
 

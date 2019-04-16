@@ -66,10 +66,18 @@
 <section class="section__spacers">
   <div class="container">
     <div class="row row-mobile no-gutters">
+
+{%- comment -%} Se asignan variables {%- endcomment -%}
+      {%- assign collection = collections[section.settings.collection] -%}
+      {%- assign product_limit = section.settings.conteo_productos -%}
+
+{%- comment -%} Sección de Header {%- endcomment -%}
       <div class="section__title col-12">
         <h2>{{ section.settings.title }}</h2>
         <a href="{{ section.settings.boton_link }}" class="btn__main">{{ section.settings.boton_texto }}</a>
       </div>
+{%- comment -%} Termina sección de header {%- endcomment -%}
+
     </div>
     <div class="row">
       <div class="products__slider slider col-12">
@@ -79,10 +87,10 @@
 
               {% for product in collection.products limit: product_limit  %}
                 {% include 'elemento-coleccion-personalizada' %}
-              {% else %}
+        {%- comment -%}      {% else %}
                 {% for i in (1..product_limit) %}
                   {% include 'placeholder-product-grid-item' %}
-                {% endfor %}
+                {% endfor %} {%- endcomment -%}
               {% endfor %}
 
               {%- comment -%} Deshabilité éstas para revisar el for que se hará para desplegar los elementos de la colección.
@@ -198,6 +206,15 @@
       "type": "url",
       "id": "boton_link",
       "label": "Button link"
+    },
+    {
+      "type": "range",
+      "id": "conteo_productos",
+      "label": "Cantidad de productos",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "default": 6
     }
     ],
     "presets": [
