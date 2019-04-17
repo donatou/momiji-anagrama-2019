@@ -1,178 +1,25 @@
-{%- comment -%}
-  This is a required section for the Shopify Theme Store.
-  It is available in the "Featured Collection" section in the theme editor.
-
-  Theme Store required settings
-  - Collection
-
-  Theme Store optional settings
-  - Heading: title of the featured collection section
-{%- endcomment -%}
-
-{%- comment -%}
-<section class="featured-collection">
-  {% if section.settings.title != blank %}
-    <h2 class="featured-collection__title">{{ section.settings.title | escape }}</h2>
-  {% endif %}
-
-  {%- assign collection = collections[section.settings.collection] -%}
-
-  {% for product in collection.products limit: 6 %}
-    <a href="{{ product.url | within: collection }}" class="featured-collection-item">
-      {% if product.featured_image != blank %}
-        <div class="featured-collection__image">
-          {% include 'responsive-image' with
-            image: product.featured_image,
-            max_width: 480,
-            max_height: 480
-          %}
-        </div>
-      {% endif %}
-
-      <p>{{ product.title | escape }}</p>
-      <span>
-        {% if product.compare_at_price > product.price %}
-          {% if product.price_varies %}
-            {%- assign sale_price = product.price | money -%}
-            {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
-          {% else %}
-            {{ 'products.product.on_sale' | t }}
-            {{ product.price | money }}
-          {% endif %}
-        {% else %}
-          {% if product.price_varies %}
-            {%- assign price = product.price | money -%}
-            {{ 'products.product.from_text_html' | t: price: price }}
-          {% else %}
-            {{ product.price | money }}
-          {% endif %}
-        {% endif %}
-      </span>
-    </a>
-  {% else %}
-    {% for i in (1..6) %}
-      <a href="#" class="featured-collection-item">
-        {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-        {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
-
-        <p>{{ 'homepage.onboarding.product_title' | t }}</p>
-        <p>{{ 1999 | money }}</p>
-      </a>
-    {% endfor %}
-  {% endfor %}
-</section>
-{%- endcomment -%}
-
 <section class="section__spacers">
   <div class="container">
     <div class="row row-mobile no-gutters">
 
-{%- comment -%} Se asignan variables {%- endcomment -%}
       {%- assign collection = collections[section.settings.collection] -%}
       {%- assign product_limit = section.settings.conteo_productos -%}
 
-{%- comment -%} Sección de Header {%- endcomment -%}
       <div class="section__title col-12">
         <h2>{{ section.settings.title }}</h2>
         <a href="{{ section.settings.boton_link }}" class="btn__main">{{ section.settings.boton_texto }}</a>
       </div>
-{%- comment -%} Termina sección de header {%- endcomment -%}
 
     </div>
     <div class="row">
       <div class="products__slider slider col-12">
         <div class="swiper-container">
             <div class="swiper-wrapper row row-mobile">
-              <!-- Slides -->
-
-{%- comment -%} REVISAR QUE EL SCHEMA ESTÉ FUNCIONANDO BIEN CON PRODUCT LIMIT Y DEMÁS, HICE ALGUNAS TRADUCCIONES QUE NO SE RESPETARON ABAJO {%- endcomment -%}
 
               {% for product in collection.products limit: product_limit  %}
                 {% include 'elemento-coleccion-personalizada' %}
-        {%- comment -%}      {% else %}
-                {% for i in (1..product_limit) %}
-                  {% include 'placeholder-product-grid-item' %}
-                {% endfor %} {%- endcomment -%}
               {% endfor %}
-
-              {%- comment -%} Deshabilité éstas para revisar el for que se hará para desplegar los elementos de la colección.
-              <div class="swiper-slide col-12 col-md-5 col-lg-4 col-xl-3">
-                <a href="detalle-producto.html" class="product new">
-                <div class="product__container">
-                  <div class="product__container--main img-container"><img src="img/product--img.png" alt="Milk"></div>
-                  <div class="product__container--hover"><img src="img/product--img--hover.png" alt="Milk"></div> 
-                </div>
-                <div class="product__info">
-                  <div class="product__info--brand">
-                    <p>Benton</p>
-                    <button class="btn__wishlist"></button>
-                  </div>
-                  <div class="product__info--name">
-                    <p>Ginseng Berry Eye Mask</p>
-                    <span>$60.00</span>
-                  </div>
-                </div>
-                </a>
-              </div>
-
-              <div class="swiper-slide col-12 col-md-5 col-lg-4 col-xl-3">
-                <a href="detalle-producto.html" class="product">
-                <div class="product__container">
-                  <div class="product__container--main img-container"><img src="img/product--img.png" alt="Milk"></div>
-                  <div class="product__container--hover"><img src="img/product--img--hover.png" alt="Milk"></div> 
-                </div>
-                <div class="product__info">
-                  <div class="product__info--brand">
-                    <p>Benton</p>
-                    <button class="btn__wishlist"></button>
-                  </div>
-                  <div class="product__info--name">
-                    <p>Ginseng Berry Eye Mask</p>
-                    <span>$60.00</span>
-                  </div>
-                </div>
-                </a>
-              </div>
-
-              <div class="swiper-slide col-12 col-md-5 col-lg-4 col-xl-3">
-                <a href="detalle-producto.html" class="product soon">
-                <div class="product__container">
-                  <div class="product__container--main img-container"><img src="img/product--img.png" alt="Milk"></div>
-                  <div class="product__container--hover"><img src="img/product--img--hover.png" alt="Milk"></div> 
-                </div>
-                <div class="product__info">
-                  <div class="product__info--brand">
-                    <p>Benton</p>
-                    <button class="btn__wishlist"></button>
-                  </div>
-                  <div class="product__info--name">
-                    <p>Ginseng Berry Eye Mask</p>
-                    <span>$60.00</span>
-                  </div>
-                </div>
-                </a>
-              </div>
-
-              <div class="swiper-slide col-12 col-md-5 col-lg-4 col-xl-3">
-                <a href="detalle-producto.html" class="product momi">
-                <div class="product__container">
-                  <div class="product__container--main img-container"><img src="img/product--img.png" alt="Milk"></div>
-                  <div class="product__container--hover"><img src="img/product--img--hover.png" alt="Milk"></div> 
-                </div>
-                <div class="product__info">
-                  <div class="product__info--brand">
-                    <p>Benton</p>
-                    <button class="btn__wishlist"></button>
-                  </div>
-                  <div class="product__info--name">
-                    <p>Ginseng Berry Eye Mask</p>
-                    <span>$60.00</span>
-                  </div>
-                </div>
-                </a>
-              </div>
-              {%- endcomment -%}
-              <!-- Slides END -->
+              
             </div>
           </div>
           <div class="swiper-button-prev"></div>
@@ -181,7 +28,6 @@
     </div>
   </div>
 </section>
-
 
 {% schema %}
   {
