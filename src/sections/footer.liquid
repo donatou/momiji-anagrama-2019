@@ -1,4 +1,69 @@
 <footer>
+  <div class="container section__spacers">
+    <div class="row row-mobile">
+      <div class="col-12 footer__logo">
+        <img src="{{ 'logo.png' | asset_url }}" alt="Momiji">
+        <div class="footer__redes">
+          <b>Conecta con nosotros</b>
+          <a href="https://www.facebook.com/momijiproducts/" target="_blank"><i class="ico--fb"></i></a>
+          <a href="https://twitter.com/momijibeautymx" target="_blank"><i class="ico--tw"></i></a>
+          <a href="https://www.instagram.com/momijibeauty/?hl=es-la" target="_blank"><i class="ico--ig"></i></a>
+          <a href="https://www.youtube.com/channel/UCz6pAEEa3ve1uBIilUAKjMw/" target="_blank"><i class="ico--yt"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-7">
+        <div class="row">
+          <div class="footer__item col-12 col-md-7 col-lg-5">
+            <b>Servicio al cliente</b>
+            <p>Envíanos un correo a
+              <a class="a__more" href="mailto:servicioalcliente@momiji.com">servicioalcliente@momiji.com</a>
+            <p>Lunes a Sábado: 10am—5pm</p>
+            </p>
+          </div>
+          <div class="footer__item col-6 col-md-5 col-lg-3">
+            <b>Momiji Beauty</b>
+            <ul class="list-sitemap list-unstyled">
+              <li><a href="about.html">¿Quiénes somos?</a></li>
+              <li><a href="work.html">Trabaja con nosotros</a></li>
+              <li><a href="legal.html">Aviso de Privacidad</a></li>
+              <li><a href="contacto.html">Contacto </a></li>
+            </ul>
+          </div>
+          <div class="footer__item col-6 col-md-7 col-lg-3">
+            <b>Para clientes</b>
+            <ul class="list-sitemap list-unstyled">
+              <li><a href="legal.html">FAQ</a></li>
+              <li><a href="legal.html">Pagos y envíos</a></li>
+              <li><a href="legal.html">Políticas de Compra</a></li>
+            </ul>
+          </div>
+
+          <div class="col-md-5 col-lg-12 footer__derechos d-none d-md-block">
+            <p>© 2018 Momiji Beauty. Todos los Derechos reservados.</p>
+          </div>
+        </div>
+      </div>
+        
+
+      <div class="col-md-5 bl">
+        <form action="" class="col-12 col-lg-10 mx-auto footer__newsletter">
+          <label for="newsletter"><b>Unete al club Momiji para recibir noticias, novedades y descuentos para subscriptores.</b></label>
+          <div class="field-container"><input type="text" placeholder="Tu correo aquí"><button class="btn__tri">▾</button></div>
+        </form>
+
+        <div class="col-12 col-lg-10 mx-auto footer__quiz"><img src="{{ 'quiz.svg' | asset_url }}" alt="Take Quiz"><a href="/">toma nuestro skin quiz</a></div>
+      </div>
+      <div class="col-md-5 col-lg-12 footer__derechos d-block d-md-none mt-50">
+        <p>© 2018 Momiji Beauty. Todos los Derechos reservados.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{%- comment -%}
+<footer>
 
   {%- assign social_accounts = 'Facebook, Twitter, Pinterest, Instagram, Snapchat, Tumblr, YouTube, Vimeo,' | split: ', ' -%}
   <ul>
@@ -45,6 +110,7 @@
     <small>{{ 'layout.footer.copyright' | t }} &copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }}. {{ powered_by_link }}</small>
   </div>
 </footer>
+{%- endcomment -%}
 
 {% schema %}
   {
