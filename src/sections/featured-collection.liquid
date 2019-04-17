@@ -85,6 +85,8 @@
             <div class="swiper-wrapper row row-mobile">
               <!-- Slides -->
 
+{%- comment -%} REVISAR QUE EL SCHEMA ESTÉ FUNCIONANDO BIEN CON PRODUCT LIMIT Y DEMÁS, HICE ALGUNAS TRADUCCIONES QUE NO SE RESPETARON ABAJO {%- endcomment -%}
+
               {% for product in collection.products limit: product_limit  %}
                 {% include 'elemento-coleccion-personalizada' %}
         {%- comment -%}      {% else %}
