@@ -1,0 +1,199 @@
+<section class="home__skin section__st bg-purple">
+    <div class="container">
+        <div class="row row-mobile no-gutters">
+        <div class="section__title col-12 sticker">
+            <h2>{{ section.settings.titulo_seccion }}</h2>
+            <a href="{{ section.settings.boton_link }}" class="btn__main">{{ section.settings.boton_texto }}</a>
+        </div>
+        </div>
+    </div>
+    <div class="container-fluid p-0">
+        <div class="row no-gutters">
+            <div class="col-md-4 skin--type oily">
+            <div class="img-container">
+                <img src="{{ section.settings.pielgrasa_imagen | img_url: 'x1960'  }}" alt="Piel grasa">
+            </div>
+            <div class="btn__more"></div>
+            <div class="skin--type-container">
+                <h4>{{ section.settings.pielgrasa_titulo }}</h4>
+                <div class="container--between">
+                <p>{{ section.settings.pielgrasa_desc }}</p>
+                <a href="{{ section.settings.pielgrasa_link }}" class="a__link">{{ section.settings.pielgrasa_textlink }}</a>
+                </div>
+            </div>
+            </div>
+
+            <div class="col-md-4 skin--type mix">
+            <div class="img-container">
+                <img src="{{ section.settings.pielmixta_imagen | img_url: 'x1960'  }}" alt="Piel mixta">
+            </div>
+            <div class="btn__more"></div>
+            <div class="skin--type-container">
+                <h4>{{ section.settings.pielmixta_titulo }}</h4>
+                <div class="container--between">
+                <p>{{ section.settings.pielmixta_desc }}</p>
+                <a href="{{ section.settings.pielmixta_link }}" class="a__link">{{ section.settings.pielmixta_textlink }}</a>
+                </div>
+            </div>
+            </div>
+
+            <div class="col-md-4 skin--type dry">
+            <div class="img-container">
+                <img src="{{ section.settings.pielmixta_imagen | img_url: 'x1960'  }}" alt="Piel seca">
+            </div>
+            <div class="btn__more"></div>
+            <div class="skin--type-container">
+                <h4>{{ section.settings.pielseca_titulo }}</h4>
+                <div class="container--between">
+                <p>{{ section.settings.pielseca_desc }}</p>
+                <a href="{{ section.settings.pielseca_link }}" class="a__link">{{ section.settings.pielseca_textlink }}</a>
+                </div>
+            </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Tipo de Piel",
+    "settings": [
+        {
+        "type": "text",
+        "id": "titulo_seccion",
+        "label": "Título",
+        "default": "Conoce tu tipo de piel."
+        },
+        {
+        "type": "text",
+        "id": "boton_texto",
+        "label": "Texto del botón",
+        "default": "Texto del botón"
+        },
+        {
+        "type": "url",
+        "id": "boton_link",
+        "label": "Link del botón"
+        },
+        {
+        "type": "text",
+        "id": "pielgrasa_titulo",
+        "label": "Título Piel Grasa",
+        "default": "Piel grasa."
+        },
+        {
+        "type": "textarea",
+        "id": "pielgrasa_desc",
+        "label": "Descripción Piel Grasa",
+        "default": "Piel grasa."
+        },
+        {
+        "type": "text",
+        "id": "pielgrasa_textlink",
+        "label": "Texto del link piel grasa",
+        "default": "Productos para piel grasa"
+        },
+        {
+        "type": "collection",
+        "id": "pielgrasa_link",
+        "label": "Link de piel grasa"
+        },
+        {
+        "type": "image_picker",
+        "id": "pielgrasa_imagen",
+        "label": "Imagen de piel grasa"
+        },
+        {
+        "type": "text",
+        "id": "pielmixta_titulo",
+        "label": "Título Piel mixta",
+        "default": "Piel mixta."
+        },
+        {
+        "type": "textarea",
+        "id": "pielmixta_desc",
+        "label": "Descripción Piel mixta",
+        "default": "Piel mixta."
+        },
+        {
+        "type": "text",
+        "id": "pielmixta_textlink",
+        "label": "Texto del link piel mixta",
+        "default": "Productos para piel mixta"
+        },
+        {
+        "type": "collection",
+        "id": "pielmixta_link",
+        "label": "Link de piel mixta"
+        },
+        {
+        "type": "image_picker",
+        "id": "pielmixta_imagen",
+        "label": "Imagen de piel mixta"
+        },
+        {
+        "type": "text",
+        "id": "pielseca_titulo",
+        "label": "Título Piel seca",
+        "default": "Piel seca."
+        },
+        {
+        "type": "textarea",
+        "id": "pielseca_desc",
+        "label": "Descripción Piel seca",
+        "default": "Piel seca."
+        },
+        {
+        "type": "text",
+        "id": "pielseca_textlink",
+        "label": "Texto del link piel seca",
+        "default": "Productos para piel seca"
+        },
+        {
+        "type": "collection",
+        "id": "pielseca_link",
+        "label": "Link de piel seca"
+        },
+        {
+        "type": "image_picker",
+        "id": "pielseca_imagen",
+        "label": "Imagen de piel seca"
+        },
+        {
+        "type": "text",
+        "id": "pielnormal_titulo",
+        "label": "Título Piel normal",
+        "default": "Piel normal."
+        },
+        {
+        "type": "textarea",
+        "id": "pielnormal_desc",
+        "label": "Descripción Piel normal",
+        "default": "Piel normal."
+        },
+        {
+        "type": "text",
+        "id": "pielnormal_textlink",
+        "label": "Texto del link piel normal",
+        "default": "Productos para piel normal"
+        },
+        {
+        "type": "collection",
+        "id": "pielnormal_link",
+        "label": "Link de piel normal"
+        },
+        {
+        "type": "image_picker",
+        "id": "pielnormal_imagen",
+        "label": "Imagen de piel normal"
+        }
+    ],
+    "presets": [
+        {
+        "name": "Tipo de Piel",
+        "category": "Collection"
+        }
+    ]
+  }
+{% endschema %}
