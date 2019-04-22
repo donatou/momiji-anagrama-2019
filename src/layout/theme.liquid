@@ -72,9 +72,36 @@
 
   {%- comment -%}<a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a> {%- endcomment -%}
 
-  <!-- _search.html -->
-  <div class="modal" id="modal-search" aria-hidden="true"></div>
-  
+<!-- _search.html -->
+  <div class="modal" id="modal-search" aria-hidden="true">
+    <div class="modal--overlay"  data-micromodal-close>
+    <div class="drawer-module search-module">
+        <div class="close-btn" id="close" data-micromodal-close></div>
+        <div class="container">
+        <div class="row">
+            <div class="col-md-10 mx-auto">
+            <form class="search-input search" action="/search">
+                <input type="text" name="q" placeholder="Busca por producto, tipo de piel, marca o ingrediente." value="{{ search.terms | escape }}" />
+                <button type="submit" class="search-btn" name="button"><img src="{{ 'search.svg' | asset_url }}" alt="Search"></button>
+            </form>
+            </div>
+            <div class="col-md-7 mx-auto">
+            <div class="search-suggestions text-center">
+                <b>Búsquedas más populares</b>
+                <ul class="suggestion-items list-unstyled">
+                {% for product in collections.best-sellers.products | limit: 3 %}
+                <li>{{ product.title }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            </div>
+
+        </div>
+        </div>
+    </div>
+    </div>
+  </div>
+
   <!-- _resena.html -->
   <div id="modal-resena" aria-hidden="true"></div>
 
