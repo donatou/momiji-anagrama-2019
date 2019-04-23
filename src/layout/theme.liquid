@@ -68,9 +68,9 @@
 
 <div class="loader-component"></div>
 
-  {% include 'ask' %}
+{% include 'ask' %}
 
-  {%- comment -%}<a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a> {%- endcomment -%}
+{%- comment -%}<a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a> {%- endcomment -%}
 
 <!-- _search.html -->
   <div class="modal" id="modal-search" aria-hidden="true">
@@ -89,7 +89,7 @@
             <div class="search-suggestions text-center">
                 <b>Búsquedas más populares</b>
                 <ul class="suggestion-items list-unstyled">
-                {% for product in collections.best-sellers.products | limit: 3 %}
+                {% for product in collections.bestsellers.products | limit: 3 %}
                 <li>{{ product.title }}</li>
                 {% endfor %}
                 </ul>
@@ -106,9 +106,9 @@
   <div id="modal-resena" aria-hidden="true"></div>
 
   <div id="mb-menu" class="mobile-menu"></div>
-<header>
+
   {% section 'header' %}
-</header>
+
   <main class="home" role="main" id="MainContent" style="opacity: 1;">
     {{ content_for_layout }}
   </main>
@@ -124,6 +124,7 @@
 {{ 'micromodal.js' | asset_url | script_tag }} 
 {{ 'jquery.selectric.js' | asset_url | script_tag }} 
 {{ 'app.js' | asset_url | script_tag }} 
+<!-- {{ 'instafeed.min.js' | asset_url | script_tag }}  -->
 
 </body>
 </html>
