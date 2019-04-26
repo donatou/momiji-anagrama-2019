@@ -2,13 +2,13 @@
   <div class="container section__spacers">
     <div class="row row-mobile">
       <div class="col-12 footer__logo">
-        <img src="{{ 'logo.png' | asset_url }}" alt="Momiji">
+        <img src="{{ 'momiji-logo-rgb.svg' | asset_url }}" alt="Momiji">
         <div class="footer__redes">
-          <b>Conecta con nosotros</b>
-          <a href="https://www.facebook.com/momijiproducts/" target="_blank"><i class="ico--fb"></i></a>
-          <a href="https://twitter.com/momijibeautymx" target="_blank"><i class="ico--tw"></i></a>
-          <a href="https://www.instagram.com/momijibeauty/?hl=es-la" target="_blank"><i class="ico--ig"></i></a>
-          <a href="https://www.youtube.com/channel/UCz6pAEEa3ve1uBIilUAKjMw/" target="_blank"><i class="ico--yt"></i></a>
+          <b>{{ section.settings.texto_redes }}</b>
+          <a href="{{ section.settings.facebook_url }}" target="_blank"><i class="ico--fb"></i></a>
+          <a href="{{ section.settings.twitter_url }}" target="_blank"><i class="ico--tw"></i></a>
+          <a href="{{ section.settings.instagram_url }}" target="_blank"><i class="ico--ig"></i></a>
+          <a href="{{ section.settings.youtube_url }}" target="_blank"><i class="ico--yt"></i></a>
         </div>
       </div>
     </div>
@@ -16,14 +16,14 @@
       <div class="col-md-7">
         <div class="row">
           <div class="footer__item col-12 col-md-7 col-lg-5">
-            <b>Servicio al cliente</b>
+            <b>{{ section.settings.servicioalcliente_title }}</b>
             <p>Envíanos un correo a
-              <a class="a__more" href="mailto:servicioalcliente@momiji.com">servicioalcliente@momiji.com</a>
-            <p>Lunes a Sábado: 10am—5pm</p>
+              <a class="a__more" href="mailto:{{ section.settings.email_sc }}">{{ section.settings.email_sc }}</a>
+            <p>{{ section.settings.horario_atencion }}</p>
             </p>
           </div>
           <div class="footer__item col-6 col-md-5 col-lg-3">
-            <b>Momiji Beauty</b>
+            <b>{{ shop.name }}</b>
             <ul class="list-sitemap list-unstyled">
               <li><a href="about.html">¿Quiénes somos?</a></li>
               <li><a href="work.html">Trabaja con nosotros</a></li>
@@ -49,11 +49,11 @@
 
       <div class="col-md-5 bl">
         <form action="" class="col-12 col-lg-10 mx-auto footer__newsletter">
-          <label for="newsletter"><b>Unete al club Momiji para recibir noticias, novedades y descuentos para subscriptores.</b></label>
+          <label for="newsletter"><b>{{ section.settings.newsletter_title }}</b></label>
           <div class="field-container"><input type="text" placeholder="Tu correo aquí"><button class="btn__tri">▾</button></div>
         </form>
 
-        <div class="col-12 col-lg-10 mx-auto footer__quiz"><img src="{{ 'quiz.svg' | asset_url }}" alt="Take Quiz"><a href="/">toma nuestro skin quiz</a></div>
+        <div class="col-12 col-lg-10 mx-auto footer__quiz"><img src="{{ 'quiz.svg' | asset_url }}" alt="Take Quiz"><a href="/">{{ section.settings.quiz_title }}</a></div>
       </div>
       <div class="col-md-5 col-lg-12 footer__derechos d-block d-md-none mt-50">
         <p>© {{ "now" | date: "%Y" }} {{ shop.name }}. Todos los Derechos reservados.</p>
@@ -123,10 +123,40 @@
         "default": "footer"
       },
       {
-        "type": "checkbox",
-        "id": "show_payment_icons",
-        "label": "Show payment icons",
-        "default": false
+        "type": "text",
+        "id": "texto_redes",
+        "label": "Texto de redes sociales",
+        "default": "Conecta con nosotros"
+      },
+      {
+        "type": "text",
+        "id": "servicioalcliente_title",
+        "label": "Título servicio al cliente",
+        "default": "Servicio al cliente"
+      },
+      {
+        "type": "text",
+        "id": "email_sc",
+        "label": "Email servicio a clientes",
+        "default": "clientes@momijibeauty.com"
+      },
+      {
+        "type": "text",
+        "id": "horario_atencion",
+        "label": "Horario de atención",
+        "default": "Lunes a Sábado: 10am—5pm"
+      },
+      {
+        "type": "textarea",
+        "id": "newsletter_title",
+        "label": "Título newsletter",
+        "default": "Únete al club momiji..."
+      },
+      {
+        "type": "text",
+        "id": "quiz_title",
+        "label": "Título quiz",
+        "default": "Toma nuestro skin quiz"
       }
     ]
   }

@@ -1,0 +1,211 @@
+
+{%- comment -%}
+
+https://github.com/zzarcon/nodegram
+https://www.cssscript.com/javascript-library-fetch-display-instagram-feeds-webpage-instafetch-js/
+
+{%- endcomment -%}
+
+{%- comment -%} codigo de anagrama
+<section class="home__instagram bg-purple">
+    <div class="container-fluid p-0">
+        <div class="row no-gutters">
+        <div class="col-md-12 col-lg-6 order-lg-1 order-2">
+            <div class="row no-gutters">
+            <figure class="col-6 col-md-4 col-lg-6 img-container">
+                <img src="img/instagram.png" alt="Ig">
+                <figcaption><div class="btn__wishlist"></div><p>3,400 likes</p><span>Sept 22</span></figcaption>
+            </figure>
+            <figure class="col-6 col-md-4 col-lg-6 img-container">
+                <img src="img/instagram.png" alt="Ig">
+                <figcaption><div class="btn__wishlist"></div><p>3,400 likes</p><span>Sept 22</span></figcaption>
+            </figure>
+            <figure class="col-6 col-md-4 col-lg-6 img-container">
+                <img src="img/instagram.png" alt="Ig">
+                <figcaption><div class="btn__wishlist"></div><p>3,400 likes</p><span>Sept 22</span></figcaption>
+            </figure>
+            <figure class="col-6 col-md-4 col-lg-6 img-container d-md-none d-lg-block">
+                <img src="img/instagram.png" alt="Ig">
+                <figcaption><div class="btn__wishlist"></div><p>3,400 likes</p><span>Sept 22</span></figcaption>
+            </figure>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-lg-6 instagram--container order-lg-2  order-1">
+            <div class="sticker2"></div>
+            <h1>Tu piel primero.</h1>
+            <div class="container--info">
+            <h2 class="text-link">Skincare</h2>
+            <h3>Tips para que tu piel este saludable</h3>
+            <p>A todas nos ha pasado que después de un largo día solo queremos un momento de tranquilidad y paz en la comodidad de nuestra cama, con una…. <a class="a__more" href="/">Leer más</a></p>
+            <a href="/" class="btn__main">Visita momiji talks</a>
+            </div>
+        </div>
+        </div>
+        
+    </div>
+</section>
+{%- endcomment -%}
+
+{%- comment -%} Codigo de district
+<div class="instagram-collection {% if section.settings.full_width %}full-width{% endif %}" data-section-id="{{ section.id }}" data-instagram-access-token="{{ section.settings.access_token }}" data-image-count="{{ section.settings.image_count_range }}" data-section-type="instagram-section" style="display:none;">
+  <div class="wrapper">
+    <header>
+      {% if section.settings.title != blank %}
+        <h4>{{ section.settings.title | escape }}</h4>
+      {% else %}
+        {% if section.settings.show_button %}
+          <a href="#" class="button outline">{{ section.settings.button_label | escape }}</a>
+        {% endif %}
+      {% endif %}
+    </header>
+    <div class="instagram-container">
+      {% assign count = section.settings.image_count_range | minus: 1 %}
+      {% for i in (0..count) %}
+      <div class="box box-{{ i }} photo" tabindex="0">
+        <figure>
+          <a href="#" target="_blank" tabindex="-1" class="card__image-wrapper" style="padding-top: 100%;">
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg card__image' }}
+          </a>
+          <figcaption>
+            <p></p>
+            <ul class="social-stats">
+              <li>
+                <a href="#" target="_blank" class="likes" tabindex="-1">
+                  <span class="icon-fallback-text">
+                    <span class="icon icon-like" aria-hidden="true"></span>
+                    <span class="fallback-text">{{ 'homepage.instagram.likes' | t }}</span>
+                    <span class="label">0</span>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="#" target="_blank" class="comments" tabindex="-1">
+                  <span class="icon-fallback-text">
+                    <span class="icon icon-comment" aria-hidden="true"></span>
+                    <span class="fallback-text">{{ 'homepage.instagram.comments' | t }}</span>
+                    <span class="label">0</span>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </figcaption>
+        </figure>
+      </div>
+      {% endfor %}
+
+    </div>
+    {% if section.settings.title != blank %}
+    <footer>
+      {% if section.settings.show_button %}
+        <a href="#" class="button outline">{{ section.settings.button_label | escape }}</a>
+      {% endif %}
+    </footer>
+    {% endif %}
+  </div>
+</div>
+{%- endcomment -%}
+
+{% if section.settings.instagram_access_token == blank or section.settings.instagram_access_token == "" %}
+  <div>
+    <p>For instagram feed to appear, you must set up an access token</p>
+    <p>First navigate to <a href="http://instagram.pixelunion.net/">http://instagram.pixelunion.net/</a> to obtain your access_token</p>
+    <p>Then, in this section's settings, find 'Instagram access token' setting and paste the token into it.</p>
+  </div>
+  {% endif %}
+  <div>
+    <div class="instagram-carousel owl-carousel owl-theme"></div>
+  </div>
+
+<script type="text/javascript">
+  (function(){
+    var instafeedToken = '{{section.settings.instagram_access_token}}', 
+        userid = 'self',
+        num_photos = '{{section.settings.instagram_photos_amount}}'; // how much photos do you want to get    
+    $.ajax({
+      url: 'https://api.instagram.com/v1/users/' + userid + '/media/recent', // or /users/self/media/recent for Sandbox
+      dataType: 'jsonp',
+      type: 'GET',
+      data: {access_token: instafeedToken, count: num_photos},
+      success: function(data){
+        for( x in data.data ){
+          $('.instagram-carousel')
+              .append('<div class="item"><a href="'+data.data[x].link+'"><img src="'+data.data[x].images.low_resolution.url+'"></a></div>'); 
+          // data.data[x].images.low_resolution.url - URL of image, 306х306
+          // data.data[x].images.thumbnail.url - URL of image 150х150
+          // data.data[x].images.standard_resolution.url - URL of image 612х612
+          // data.data[x].link - Instagram post URL 
+        }
+        $('.instagram-carousel').owlCarousel({
+          loop: false,
+          margin: 5,
+          items: 4,
+          nav: false,
+          dots: true,{% if section.settings.instagram_autoplay %}
+          autoplay: true,
+          autoplayTimeout: '{{ section.settings.instagram_autoplay_speed }}',
+          autoplayHoverPause: '{{ section.settings.instagram_hover_pause }}'
+        {% endif %}
+      })
+      },
+      error: function(data){
+        console.log(data); // send the error notifications to console
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+  {
+    "name": "Instagram (index)",
+    "settings": [
+      {
+        "id": "show_instagram",
+        "type": "checkbox",
+        "label": "Show instagram feed",
+        "default": true
+      },
+      {
+        "id": "instagram_divider",
+        "type": "checkbox",
+        "label": "Show divider",
+        "default": true
+      }, 
+      {
+        "id": "instagram_access_token",
+        "type": "text",
+        "label": "Instagram access token"
+      },
+      {
+        "id": "instagram_autoplay",
+        "type": "checkbox",
+        "label": "Autoplay",
+        "default": true
+      },
+      {
+        "id": "instagram_autoplay_speed",
+        "type": "text",
+        "label": "Autoplay timeout (ms)",
+        "default": "1500"
+      },
+      {
+        "id": "instagram_hover_pause",
+        "type": "checkbox",
+        "label": "Pause autoplay on mouse hover",
+        "default": true
+      },
+      {
+        "id": "instagram_photos_amount",
+        "type": "text",
+        "label": "Amount of Instagram photos to get",
+        "default": "7"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Instagram gallery",
+        "category": "Gallery"
+      }
+    ]
+  }
+{% endschema %}
