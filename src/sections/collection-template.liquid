@@ -1,0 +1,362 @@
+<section class="products__category--header section__header">
+  <div class="container-fluid p0" style="background: url({{ section.settings.imagen | img_url: '1200x' }})no-repeat;background-size: cover; background-position: right;">
+    <div class="row">
+      <div class="col-md-6 offset-md-0 col-lg-8 offset-lg-1 col-xl-8 offset-xl-1 header--title">
+        {%- comment -%}
+        Breadcrumbs
+        {%- endcomment -%}
+        <div class="breadcrumb">
+        {%- unless template == 'index' or template == 'cart' or template == 'list-collections' or template == '404' -%}
+        {%- assign t = template | split: '.' | first -%}
+          <p><a href="/">Inicio</a>
+          {%- case t -%}
+            {%- when 'page' -%}
+              &nbsp;/ <a href="{{ page.url }}" aria-current="page">{{ page.title }}</a>
+              {%- when 'product' -%}
+                {%- if collection.url -%}
+                <a>
+                  {{ collection.title | link_to: collection.url }}
+                </a>
+                {%- endif -%}
+                &nbsp;/ <a href="{{ product.url }}" aria-current="page">{{ product.title }}</a>
+              {%- when 'collection' and collection.handle -%}
+                &nbsp;/ <a href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>
+              {%- when 'blog' -%}
+                &nbsp;/ <a href="{{ blog.url }}" aria-current="page">{{ blog.title }}</a>
+              {%- when 'article' -%}
+                &nbsp;/ <a href="{{ request.path }}" aria-current="page">{{ page_title }}</a>
+          {%- endcase -%}
+          </p>
+        {%- endunless -%}
+        </div>
+        {%- comment -%}
+        Breadcrumbs END
+        {%- endcomment -%}
+        <h2>{{ collection.title }}</h2>
+        <p>{{ collection.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="products__category--items">
+  <div class="container">
+      <div class="row">
+
+        <div class="col-md-12 d-lg-none">
+          <!-- TITULO NOMBRE MOBILE Y TABLETA -->
+            <div class="row products__category--name row-mobile">
+                <div class="col-md-8">
+                  <h2>Crema para ojos <span class="text-link d-none d-md-inline-flex"> 8 productos</span></h2>
+                </div>
+                
+                <!-- FILTROS Y ORDENAR -->
+                <div class="col-6 col-md-4">
+                    <select name="ordenar" id="">
+                      <option value="">Ordenar Por</option>
+                      <option value="">Destacados</option>
+                      <option value="">Más Vendidos</option>
+                      <option value="">Orden alfabético A-Z</option>
+                      <option value="">Precio, bajo a alto</option>
+                      <option value="">Precio, alto a bajo</option>
+                      <option value="">Fecha, nuevo a antiguo</option>
+                      <option value="">Fecha, antiguo a nuevo</option>
+                    </select>
+                </div>
+
+                <div class="d-block d-md-none filter__categoria col-6">
+                  <div class="trigger">
+                    <a>categorías</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-3 d-none d-md-block">
+            <!-- FILTROS TABLETA , DESKTOP -->
+            <div class="filter accordions__container">
+                <a class="accordion">Rutina</a>
+
+                <ul class="list-unstyled panel">
+                    <li><a href="products.html">Limpiadores</a></li>
+                    <li><a href="products.html">Exfoliadores</a></li>
+                    <li><a href="products.html">Toners</a></li>
+                    <li><a href="products.html">Esencias</a></li>
+                    <li><a href="products.html">Tratamientos</a></li>
+                    <li><a href="products.html">Mascarillas</a></li>
+                    <li><a href="products.html">Crema para ojos</a></li>
+                    <li><a href="products.html">Humectantes </a></li>
+                    <li><a href="products.html">Protector solar</a></li>
+                </ul>
+
+                <a class="accordion">Tipo de piel</a>
+
+                <ul class="list-unstyled panel">
+                    <li><a href="products.html">Limpiadores</a></li>
+                    <li><a href="products.html">Exfoliadores</a></li>
+                    <li><a href="products.html">Toners</a></li>
+                </ul>
+
+                <a class="accordion">Soluciones</a>
+
+                <ul class="list-unstyled panel">
+                    <li><a href="products.html">Limpiadores</a></li>
+                    <li><a href="products.html">Exfoliadores</a></li>
+                    <li><a href="products.html">Toners</a></li>
+                </ul>
+
+
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="d-md-none">
+              <span class="text-link">8 productos</span>
+            </div>
+
+            <!-- TITULO PARA DESKTOP -->
+            <div class="row products__category--name row-mobile d-none d-lg-flex ">
+                <div class="col-md-8">
+                  <h2>Crema para ojos <span class="text-link"> 8 productos</span></h2>
+                </div>
+                
+                <!-- FILTROS Y ORDENAR -->
+                <div class="col-md-4">
+                    <select name="ordenar" id="">
+                      <option value="">Ordenar Por</option>
+                      <option value="">Destacados</option>
+                      <option value="">Más Vendidos</option>
+                      <option value="">Orden alfabético A-Z</option>
+                      <option value="">Precio, bajo a alto</option>
+                      <option value="">Precio, alto a bajo</option>
+                      <option value="">Fecha, nuevo a antiguo</option>
+                      <option value="">Fecha, antiguo a nuevo</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="row thumbs">
+              <div class="col-md-4">
+                <a href="detalle-producto.html" class="product new">
+                <div class="product__container">
+                  <div class="product__container--main img-container"><img src="img/product--img.png" alt="Milk"></div>
+                  <div class="product__container--hover"><img src="img/product--img--hover.png" alt="Milk"></div> 
+                </div>
+                <div class="product__info">
+                  <div class="product__info--brand">
+                    <p>Benton</p>
+                    <button class="btn__wishlist"></button>
+                  </div>
+                  <div class="product__info--name">
+                    <p>Ginseng Berry Eye Mask</p>
+                    <span>$60.00</span>
+                  </div>
+                </div>
+                </a>
+              </div>
+
+              <div class="col-md-4">
+                <a href="detalle-producto.html" class="product soon">
+                <div class="product__container">
+                  <div class="product__container--main img-container"><img src="img/product--img.png" alt="Milk"></div>
+                  <div class="product__container--hover"><img src="img/product--img--hover.png" alt="Milk"></div> 
+                </div>
+                <div class="product__info">
+                  <div class="product__info--brand">
+                    <p>Benton</p>
+                    <button class="btn__wishlist"></button>
+                  </div>
+                  <div class="product__info--name">
+                    <p>Ginseng Berry Eye Mask</p>
+                    <span>$60.00</span>
+                  </div>
+                </div>
+                </a>
+              </div>
+
+              <div class="col-md-4">
+                <a href="detalle-producto.html" class="product momi">
+                <div class="product__container">
+                  <div class="product__container--main img-container"><img src="img/product--img.png" alt="Milk"></div>
+                  <div class="product__container--hover"><img src="img/product--img--hover.png" alt="Milk"></div> 
+                </div>
+                <div class="product__info">
+                  <div class="product__info--brand">
+                    <p>Benton</p>
+                    <button class="btn__wishlist"></button>
+                  </div>
+                  <div class="product__info--name">
+                    <p>Ginseng Berry Eye Mask</p>
+                    <span>$60.00</span>
+                  </div>
+                </div>
+                </a>
+              </div>
+
+              <div class="col-md-4">
+                <a href="detalle-producto.html" class="product momi">
+                <div class="product__container">
+                  <div class="product__container--main img-container"><img src="img/product--img.png" alt="Milk"></div>
+                  <div class="product__container--hover"><img src="img/product--img--hover.png" alt="Milk"></div> 
+                </div>
+                <div class="product__info">
+                  <div class="product__info--brand">
+                    <p>Benton</p>
+                    <button class="btn__wishlist"></button>
+                  </div>
+                  <div class="product__info--name">
+                    <p>Ginseng Berry Eye Mask</p>
+                    <span>$60.00</span>
+                  </div>
+                </div>
+                </a>
+              </div>
+
+              <div class="col-md-4">
+                <a href="detalle-producto.html" class="product momi">
+                <div class="product__container">
+                  <div class="product__container--main img-container"><img src="img/product--img.png" alt="Milk"></div>
+                  <div class="product__container--hover"><img src="img/product--img--hover.png" alt="Milk"></div> 
+                </div>
+                <div class="product__info">
+                  <div class="product__info--brand">
+                    <p>Benton</p>
+                    <button class="btn__wishlist"></button>
+                  </div>
+                  <div class="product__info--name">
+                    <p>Ginseng Berry Eye Mask</p>
+                    <span>$60.00</span>
+                  </div>
+                </div>
+                </a>
+              </div>
+
+              <div class="loader mb-90"></div>
+
+            </div>
+        </div>
+      </div>
+  </div>
+</section>
+        
+
+
+{%- comment -%}
+{% paginate collection.products by 12 %}
+  <header role="banner">
+    <h1>{{ collection.title }}</h1>
+    {% if collection.description != blank %}
+      <div class="rte">
+        {{ collection.description }}
+      </div>
+    {% endif %}
+
+    {% if collection.all_tags.size > 0 %}
+      <ul>
+        {% for tag in collection.all_tags %}
+          {% if current_tags contains tag %}
+            <li class="active">
+              {{ tag | link_to_remove_tag: tag }}
+            </li>
+          {% else %}
+            <li>
+              {{ tag | link_to_tag: tag }}
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </header>
+
+  <div>
+    {% for product in collection.products %}
+      <div>
+        {% if product.featured_image != blank %}
+          <a href="{{ product.url | within: collection }}">
+            {% include 'responsive-image' with
+              image: product.featured_image,
+              max_width: 700,
+              max_height: 800
+            %}
+          </a>
+        {% endif %}
+
+        <p>
+          <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+        </p>
+        <p>
+          {% if product.compare_at_price > product.price %}
+
+            {% if product.price_varies %}
+              {%- assign sale_price = product.price | money -%}
+              {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+            {% else %}
+              {{ 'products.product.on_sale' | t }}
+              {{ product.price | money }}
+            {% endif %}
+
+          {% else %}
+
+            {% if product.price_varies %}
+              {%- assign price = product.price | money -%}
+              {{ 'products.product.from_text_html' | t: price: price }}
+            {% else %}
+              {{ product.price | money }}
+            {% endif %}
+
+          {% endif %}
+
+          {% if product.compare_at_price > product.price %}
+            <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+            <s>{{ product.compare_at_price | money }}</s>
+          {% endif %}
+
+          {% unless product.available %}
+            {{ 'products.product.sold_out' | t }}
+          {% endunless %}
+        </p>
+      </div>
+
+    {% else %}
+      {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
+        {% for i in (1..8) %}
+          <a href="#">
+            {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+            {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
+          </a>
+
+          <p>
+            <a href="#">{{ 'homepage.onboarding.product_title' | t }}</a>
+          </p>
+
+          <p>
+            {{ 1999 | money }}
+          </p>
+        {% endfor %}
+      {% else %}
+        <p>{{ 'collections.general.no_matches' | t }}</p>
+      {% endif %}
+
+    {% endfor %}
+  </div>
+
+  {% if paginate.pages > 1 %}
+    {% include 'pagination' %}
+  {% endif %}
+{% endpaginate %}
+{%- endcomment -%}
+
+{% schema %}
+  {
+    "name": "Imagen de fondo",
+    "settings": [
+      {
+      "type": "image_picker",
+      "id": "imagen",
+      "label": "Selecciona la imagen de fondo",
+      "info": "1200 x 400px .jpg 96dpi"
+      }
+    ]
+  }
+{% endschema %}
