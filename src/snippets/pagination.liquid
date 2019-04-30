@@ -1,3 +1,7 @@
+{%- comment -%}
 <div class="pagination">
   {{ paginate | default_pagination }}
 </div>
+{%- endcomment -%}
+
+<div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets">{{ paginate | default_pagination }}</div>

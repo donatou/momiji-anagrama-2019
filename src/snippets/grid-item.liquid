@@ -1,0 +1,50 @@
+{% comment %}
+  Revisa si hay stock del producto (para poner etiqueta de MUY PRONTO) y define una variable para usar abajo.
+{% endcomment %}
+{% assign soon = true %}
+{% if product.available %}
+  {% assign soon = false %}
+{% endif %}
+
+{% comment %}
+  Revisa si el producto tiene el tag de "momis_pick" y define una variable para usar abajo.
+{% endcomment %}
+{% assign momi = false %}
+{% if product.tags contains "momis_pick" %}
+  {% assign momi = true %}
+{% endif %}
+
+{% comment %}
+  Revisa si el producto tiene tag de nuevo y define una variable para usar abajo.
+{% endcomment %}
+{% assign new = false %}
+{% if product.tags contains "nuevo" %}
+  {% assign new = true %}
+{% endif %}
+
+{%- comment -%}
+Grid item sin container div de estilo
+{%- endcomment -%}
+<a href="{{ product.url | within: collection }}" {% if soon %} class="product soon" {% elsif new %} class="product new" {% elsif momi %} class="product momi" {% else %} class="product" {% endif %} > {%- comment -%} se tiene que hacer cuatro clases diferentes: product, product new, product momi, product soon sacado de variables asignadas arriba. {%- endcomment -%}
+    <div class="product__container">
+        <div class="product__container--main img-container">
+            <img src="{{ product | img_url: 'x2000' }}" alt="{{ product.title | escape }}">
+        </div>
+        <div class="product__container--hover">
+            <img src="{{ product.images.last | img_url: 'x2000' }}" alt="{{ product.title | escape }}">
+        </div> 
+    </div>
+    <div class="product__info">
+        <div class="product__info--brand">
+            <p>{{ product.vendor }}</p>
+            <button class="btn__wishlist"></button>
+        </div>
+        <div class="product__info--name">
+            <p>{{ product.title }}</p>
+            <span>{{ product.price | money }}</span>
+        </div>
+    </div>
+</a>
+{%- comment -%}
+Grid item sin container div de estilo - END
+{%- endcomment -%}
