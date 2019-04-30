@@ -1,0 +1,19 @@
+{%- comment -%}
+Collection sorting - Le falta el container div dependiendo de donde se agregue.
+{%- endcomment -%}
+{%- assign ordenar = collection.ordenar | default: collection.default_sort_by -%}
+<select name="ordenar" id="ordenar">
+    <option value="">{{ 'collections.sorting.title' | t }}</option>
+    <option value="manual"{% if ordenar == "manual" %} selected="selected"{% endif %}>{{ 'collections.sorting.featured' | t }}</option>
+    <option value="best-selling"{% if ordenar == "best-selling" %} selected="selected"{% endif %}>{{ 'collections.sorting.best_selling' | t }}</option>
+    <option value="title-ascending"{% if ordenar == "title-ascending" %} selected="selected"{% endif %}>{{ 'collections.sorting.az' | t }}</option>
+    <option value="title-descending"{% if ordenar == "title-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.za' | t }}</option>
+    <option value="price-ascending"{% if ordenar == "price-ascending" %} selected="selected"{% endif %}>{{ 'collections.sorting.price_ascending' | t }}</option>
+    <option value="price-descending"{% if ordenar == "price-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.price_descending' | t }}</option>
+    <option value="created-descending"{% if ordenar == "created-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.date_descending' | t }}</option>
+    <option value="created-ascending"{% if ordenar == "created-ascending" %} selected="selected"{% endif %}>{{ 'collections.sorting.date_ascending' | t }}</option>
+</select>
+<input class="sort-by__default-sort" type="hidden" value="{{ collection.default_sort_by }}">
+{%- comment -%}
+Collection sorting END
+{%- endcomment -%}
