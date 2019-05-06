@@ -1,4 +1,16 @@
-{% section 'product' %}
+<main class="main__product">
+  {% section 'product' %}
+  {%- comment -%}
+  Aquí agregamos cada sección que lleva el template de producto.
+  1. la sección del producto, que ya está
+  2. Info del producto
+  3. Reseñas de la comunidad
+  4. Completa tu rutina (basado en el carrusel de productos, pero con prod relacionados)
+  {%- endcomment -%}
+  {% section 'info-producto' %}
+  {% section 'resenas-producto' %}
+  {% section 'recomendados-producto' %}
+</main>
 
 <script type="application/ld+json">
 {

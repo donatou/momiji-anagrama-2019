@@ -1,0 +1,12 @@
+{%- comment -%}
+Tipos de producto definen cosas en template.
+Por ejemplo: bloqueador muestra textos de "Info de producto", pero el libro no muestra esas opciones.
+{%- endcomment -%}
+
+{% assign coninfo = coninfo %}
+{% assign sininfo = sininfo %}
+{% if product.type == "limpiadoraceite" or product.type == "limpiadoragua" or product.type == "exfoliante" or product.type == "tonico" or product.type == "esencia" or product.type == "suero" or product.type == "mascarilla" or product.type == "cremadeojos" or product.type == "cremahidratante" or product.type == "protectorsolar" or product.type == "bloqueador" %}
+    {% assign coninfo = true %}
+{% else %}
+    {% assign sininfo = false %}
+{% endif %}

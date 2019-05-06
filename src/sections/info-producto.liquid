@@ -1,0 +1,96 @@
+      <section class="main__product--info bg-purple section__spacers">
+         <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <div class=" product__title">
+                <h2>Info de producto.</h2>
+              </div>
+
+              {% include 'benefits-logic' %}
+
+              <div class="accordions__container mt-30"> 
+                <a class="accordion h3 active">Beneficios</a>
+                <div class="panel active" style="max-height: 100%">
+                  {% if hidrata %}
+                    {{ product.metafields['beneficios']['hidrata'] }}
+                  {% endif %}
+                  {% if spf %}
+                    {{ product.metafields['beneficios']['SPF'] }}
+                  {% endif %}
+                  {% if luminiza %}
+                    {{ product.metafields['beneficios']['luminiza'] }}
+                  {% endif %}
+                  {% if repara %}
+                    {{ product.metafields['beneficios']['repara'] }}
+                  {% endif %}
+                  {% if calma %}
+                    {{ product.metafields['beneficios']['calma'] }}
+                  {% endif %}
+                  {% if tonifica %}
+                    {{ product.metafields['beneficios']['tonifica'] }}
+                  {% endif %}
+                  {% if empareja %}
+                    {{ product.metafields['beneficios']['empareja'] }}
+                  {% endif %}
+                  {% if anti-age %}
+                    {{ product.metafields['beneficios']['anti-age'] }}
+                  {% endif %}
+                  {% if exfolia %}
+                    {{ product.metafields['beneficios']['exfolia'] }}
+                  {% endif %}
+
+                  {%- comment -%}
+                  <div class="benefits--icon"><p class="icon">☼</p><b>SPF</b></div>
+                  <div class="benefits--icon"><p class="icon">★</p><b>Luminiza</b></div>
+                  <div class="benefits--icon"><p class="icon">▢</p><b>Repara</b></div>
+                  <div class="benefits--icon"><p class="icon">✧</p><b>Limpia</b></div>
+                  <div class="benefits--icon"><p class="icon">♥</p><b>Calma</b></div>
+                  <div class="benefits--icon"><p class="icon">☯</p><b>Tonifica</b></div>
+                  <div class="benefits--icon"><p class="icon">▥</p><b>Empareja Tono</b></div>
+                  <div class="benefits--icon"><p class="icon">ᛟ</p><b>Anti-age</b></div>
+                  <div class="benefits--icon"><p class="icon">✦</p><b>Exfolia</b></div>
+                  {%- endcomment -%}
+                  
+                  <p>Elimina las impurezas del rostro con sus micro burbujas de oxigeno y carbón dejando la piel limpia y fresca. Con su polvo de cascara de nuez limpia tus poros y deja tu piel  libre de sebo para una piel brillante.</p>
+                </div>
+
+                {% if product.type == "limpiadoraceite" or product.type == "limpiadoragua" or product.type == "exfoliante" or product.type == "tonico" or product.type == "esencia" or product.type == "suero" or product.type == "mascarilla" or product.type == "cremadeojos" or product.type == "cremahidratante" or product.type == "protectorsolar" or product.type == "bloqueador" %}
+                <a class="accordion h3">¿Qué paso de mi rutina es este?</a>
+                <div class="panel panel--step">
+                  {% include 'pasoderutina-logic' %}
+                  {% include 'pasoderutina' %}
+                </div>
+                {% endif %}
+
+                <a class="accordion h3">Consejos de Momiji Experts</a>
+                <div class="panel">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat make a talent database that leverages.</p>
+                </div>
+
+                <a class="accordion h3">Instrucciones de uso</a>
+                <div class="panel">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat make a talent database that leverages.</p>
+                </div>
+
+                {% if product.type == "limpiadoraceite" or product.type == "limpiadoragua" or product.type == "exfoliante" or product.type == "tonico" or product.type == "esencia" or product.type == "suero" or product.type == "mascarilla" or product.type == "cremadeojos" or product.type == "cremahidratante" or product.type == "protectorsolar" or product.type == "bloqueador" %}
+                <a class="accordion h3">Lista de ingredientes</a>
+                <div class="panel">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat make a talent database that leverages.</p>
+                </div>
+                {% endif %}
+
+              </div>
+
+              <a href="/" class="link--orange">Visita nuestra sección de FAQ</a>
+            </div>
+            <div class="col-md-6 sticker4">
+              <!-- SERÁ IMAGEN O VIDEO -->
+              <!-- SERÁ IMAGEN O VIDEO -->
+              <!-- SERÁ IMAGEN O VIDEO -->
+              <div class="img-container"><img src="{{ product.images.last | img_url: 'x680' }}" alt="{{ product.title | escape }}"></div>
+              <iframe frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" title="Player for Milk Makeup" width="100%" height="100%" src="https://www.youtube.com/embed/dW3b4tjPto4?autoplay=1&amp;controls=0&amp;rel=0&amp;showinfo=0&amp;iv_load_policy=3&amp;cc_load_policy=0&amp;cc_lang_pref=en&amp;wmode=transparent&amp;modestbranding=1&amp;disablekb=1&amp;origin=https%3A%2F%2Fwww.milkmakeup.com&amp;enablejsapi=1&amp;widgetid=1" tabindex="-1" hidden></iframe>
+            </div>
+          </div>
+        </div>
+        
+      </section>

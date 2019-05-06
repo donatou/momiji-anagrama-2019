@@ -1,0 +1,23 @@
+{% comment %}
+  Revisa si hay stock del producto (para poner etiqueta de MUY PRONTO) y define una variable para usar abajo.
+{% endcomment %}
+{% assign soon = true %}
+{% if product.available %}
+  {% assign soon = false %}
+{% endif %}
+
+{% comment %}
+  Revisa si el producto tiene el tag de "momis_pick" y define una variable para usar abajo.
+{% endcomment %}
+{% assign momi = false %}
+{% if product.tags contains "momis_pick" %}
+  {% assign momi = true %}
+{% endif %}
+
+{% comment %}
+  Revisa si el producto tiene tag de nuevo y define una variable para usar abajo.
+{% endcomment %}
+{% assign new = false %}
+{% if product.tags contains "nuevo" %}
+  {% assign new = true %}
+{% endif %}

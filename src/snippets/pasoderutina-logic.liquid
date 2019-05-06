@@ -1,0 +1,50 @@
+{% assign limpiadoraceite = false %}
+{% if product.type == "Limpiador Aceite" %}
+  {% assign limpiadoraceite = true %}
+{% endif %}
+
+{% assign limpiadoragua = false %}
+{% if product.type == "Limpiador" %}
+  {% assign limpiadoragua = true %}
+{% endif %}
+
+{% assign exfoliante = false %}
+{% if product.type == "Exfoliante" %}
+  {% assign exfoliante = true %}
+{% endif %}
+
+{% assign tonico = false %}
+{% if product.type == "toner" %}
+  {% assign tonico = true %}
+{% endif %}
+
+{% assign esencia = false %}
+{% if product.type == "Esencia" %}
+  {% assign esencia = true %}
+{% endif %}
+
+{% assign suero = false %}
+{% if product.type == "serum" %}
+  {% assign suero = true %}
+{% endif %}
+
+{% assign mascarilla = false %}
+{% if product.type == "Mascarilla" %}
+  {% assign mascarilla = true %}
+{% endif %}
+
+{% assign cremadeojos = false %}
+{% if product.type == "ojos" %}
+  {% assign cremadeojos = true %}
+{% endif %}
+
+{% assign cremahidratante = false %}
+{% if product.type == "CREMA" %}
+  {% assign cremahidratante = true %}
+{% endif %}
+
+{% assign protectorsolar = false %}
+{% if product.type == "bloqueador" %}
+  {% assign protectorsolar = true %}
+{% endif %}
+
