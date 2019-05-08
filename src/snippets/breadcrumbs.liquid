@@ -6,20 +6,20 @@ Breadcrumbs snippet, le falta agregar el container div con su class correspondie
     <p><a href="/">Inicio</a>
     {%- case t -%}
     {%- when 'page' -%}
-        &nbsp;/ <a href="{{ page.url }}" aria-current="page">{{ page.title }}</a>
+        &nbsp;/ <a href="{{ page.url }}" aria-current="page">{{- page.title -}}</a>
         {%- when 'product' -%}
         {%- if collection.url -%}
-        <a>
-            {{ collection.title | link_to: collection.url }}
+        &nbsp;/ <a>
+            {{- collection.title | link_to: collection.url -}}
         </a>
         {%- endif -%}
-        &nbsp;/ <a href="{{ product.url }}" aria-current="page">{{ product.title }}</a>
+        &nbsp;/ <a href="{{ product.url }}" aria-current="page">{{- product.title -}}</a>
         {%- when 'collection' and collection.handle -%}
-        &nbsp;/ <a href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>
+        &nbsp;/ <a href="{{ collection.url }}" aria-current="page">{{- collection.title -}}</a>
         {%- when 'blog' -%}
-        &nbsp;/ <a href="{{ blog.url }}" aria-current="page">{{ blog.title }}</a>
+        &nbsp;/ <a href="{{ blog.url }}" aria-current="page">{{- blog.title -}}</a>
         {%- when 'article' -%}
-        &nbsp;/ <a href="{{ request.path }}" aria-current="page">{{ page_title }}</a>
+        &nbsp;/ <a href="{{ request.path }}" aria-current="page">{{- page_title -}}</a>
     {%- endcase -%}
     </p>
 {%- endunless -%}

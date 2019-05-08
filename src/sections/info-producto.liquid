@@ -1,98 +1,111 @@
-      <section class="main__product--info bg-purple section__spacers">
-         <div class="container">
-          <div class="row">
-            <div class="col-md-6">
-              <div class=" product__title">
-                <h2>Info de producto.</h2>
-              </div>
+<section class="main__product--info bg-purple section__spacers">
+    <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class=" product__title">
+          <h2>Info de producto.</h2>
+        </div>
 
-              {% include 'benefits-logic' %}
+        {% include 'benefits-logic' %}
 
-              <div class="accordions__container mt-30">
+        <div class="accordions__container mt-30">
 
-                {% if product.type == "limpiadoraceite" or product.type == "limpiadoragua" or product.type == "exfoliante" or product.type == "tonico" or product.type == "esencia" or product.type == "suero" or product.type == "mascarilla" or product.type == "cremadeojos" or product.type == "cremahidratante" or product.type == "protectorsolar" or product.type == "bloqueador" %}
-                <a class="accordion h3 active">Beneficios</a>
-                <div class="panel active" style="max-height: 100%">
-                  {% if hidrata %}
-                    {{ product.metafields['beneficios']['hidrata'] }}
-                  {% endif %}
-                  {% if spf %}
-                    {{ product.metafields['beneficios']['SPF'] }}
-                  {% endif %}
-                  {% if luminiza %}
-                    {{ product.metafields['beneficios']['luminiza'] }}
-                  {% endif %}
-                  {% if repara %}
-                    {{ product.metafields['beneficios']['repara'] }}
-                  {% endif %}
-                  {% if calma %}
-                    {{ product.metafields['beneficios']['calma'] }}
-                  {% endif %}
-                  {% if tonifica %}
-                    {{ product.metafields['beneficios']['tonifica'] }}
-                  {% endif %}
-                  {% if empareja %}
-                    {{ product.metafields['beneficios']['empareja'] }}
-                  {% endif %}
-                  {% if anti-age %}
-                    {{ product.metafields['beneficios']['anti-age'] }}
-                  {% endif %}
-                  {% if exfolia %}
-                    {{ product.metafields['beneficios']['exfolia'] }}
-                  {% endif %}
-                  <p>{{ product.metafields['beneficios']['texto'] }}</p>
-                </div>
-                {% endif %}
+          {% if product.type == "limpiadoraceite" or product.type == "limpiadoragua" or product.type == "exfoliante" or product.type == "tonico" or product.type == "esencia" or product.type == "suero" or product.type == "mascarilla" or product.type == "cremadeojos" or product.type == "cremahidratante" or product.type == "protectorsolar" or product.type == "bloqueador" %}
+          <a class="accordion h3 active">Beneficios</a>
+          <div class="panel active" style="max-height: 100%">
+            {% if hidrata %}
+              {{ product.metafields['beneficios']['hidrata'] }}
+            {% endif %}
+            {% if spf %}
+              {{ product.metafields['beneficios']['SPF'] }}
+            {% endif %}
+            {% if luminiza %}
+              {{ product.metafields['beneficios']['luminiza'] }}
+            {% endif %}
+            {% if repara %}
+              {{ product.metafields['beneficios']['repara'] }}
+            {% endif %}
+            {% if calma %}
+              {{ product.metafields['beneficios']['calma'] }}
+            {% endif %}
+            {% if tonifica %}
+              {{ product.metafields['beneficios']['tonifica'] }}
+            {% endif %}
+            {% if empareja %}
+              {{ product.metafields['beneficios']['empareja'] }}
+            {% endif %}
+            {% if anti-age %}
+              {{ product.metafields['beneficios']['anti-age'] }}
+            {% endif %}
+            {% if exfolia %}
+              {{ product.metafields['beneficios']['exfolia'] }}
+            {% endif %}
+            <p>{{ product.metafields['beneficios']['texto'] }}</p>
+          </div>
+          {% endif %}
 
-                {% if product.type == "limpiadoraceite" or product.type == "limpiadoragua" or product.type == "exfoliante" or product.type == "tonico" or product.type == "esencia" or product.type == "suero" or product.type == "mascarilla" or product.type == "cremadeojos" or product.type == "cremahidratante" or product.type == "protectorsolar" or product.type == "bloqueador" %}
-                <a class="accordion h3">¿Qué paso de mi rutina es este?</a>
-                <div class="panel panel--step">
-                  {% include 'pasoderutina-logic' %}
-                  {% include 'pasoderutina' %}
-                </div>
-                {% endif %}
+          {% if product.type == "limpiadoraceite" or product.type == "limpiadoragua" or product.type == "exfoliante" or product.type == "tonico" or product.type == "esencia" or product.type == "suero" or product.type == "mascarilla" or product.type == "cremadeojos" or product.type == "cremahidratante" or product.type == "protectorsolar" or product.type == "bloqueador" %}
+          <a class="accordion h3">¿Qué paso de mi rutina es este?</a>
+          <div class="panel panel--step">
+            {% include 'pasoderutina-logic' %}
+            {% include 'pasoderutina' %}
+          </div>
+          {% endif %}
 
-                <a class="accordion h3">Consejos de Momiji Experts</a>
-                <div class="panel">
-                  <p>{{ product.metafields['producto']['consejos'] }}</p>
-                </div>
+          <a class="accordion h3">Consejos de Momiji Experts</a>
+          <div class="panel">
+            <p>{{ product.metafields['producto']['consejos'] }}</p>
+          </div>
 
-                <a class="accordion h3">Instrucciones de uso</a>
-                <div class="panel">
-                  <p>{{ product.metafields['producto']['instrucciones'] }}</p>
-                </div>
+          <a class="accordion h3">Instrucciones de uso</a>
+          <div class="panel">
+            <p>{{ product.metafields['producto']['instrucciones'] }}</p>
+          </div>
 
-                {% if product.type == "limpiadoraceite" or product.type == "limpiadoragua" or product.type == "exfoliante" or product.type == "tonico" or product.type == "esencia" or product.type == "suero" or product.type == "mascarilla" or product.type == "cremadeojos" or product.type == "cremahidratante" or product.type == "protectorsolar" or product.type == "bloqueador" %}
-                <a class="accordion h3">Lista de ingredientes</a>
-                <div class="panel">
-                  <p>{{ product.metafields['producto']['ingredientes'] }}</p>
-                </div>
-                {% endif %}
+          {% if product.type == "limpiadoraceite" or product.type == "limpiadoragua" or product.type == "exfoliante" or product.type == "tonico" or product.type == "esencia" or product.type == "suero" or product.type == "mascarilla" or product.type == "cremadeojos" or product.type == "cremahidratante" or product.type == "protectorsolar" or product.type == "bloqueador" %}
+          <a class="accordion h3">Lista de ingredientes</a>
+          <div class="panel">
+            <p>{{ product.metafields['producto']['ingredientes'] }}</p>
+          </div>
+          {% endif %}
 
-              </div>
+        </div>
 
-              <a href="/preguntas-frecuentes" class="link--orange">Visita nuestra sección de FAQ</a>
-            </div>
-            <div class="col-md-6 sticker4">
-              <!-- SERÁ IMAGEN O VIDEO -->
-              <!-- SERÁ IMAGEN O VIDEO -->
-              <!-- SERÁ IMAGEN O VIDEO -->
+        <a href="/preguntas-frecuentes" class="link--orange">Visita nuestra sección de FAQ</a>
+      </div>
+      <div class="col-md-6 sticker4">
+        <!-- SERÁ IMAGEN O VIDEO -->
+        <!-- SERÁ IMAGEN O VIDEO -->
+        <!-- SERÁ IMAGEN O VIDEO -->
 
 
 {%- comment -%}
 USAR UNA SECCI[ON DE BLOQUES PARA SELECCIONAR
- SI SE DESPLIEGA EL V[IDEO ASOCIADO, SE REQUERE 
- QUYE TODOS LOS PRODUDTOS TENGAN VIDEO ASOCIADO O 
- REVISAR C[OMO HACERLE PARA QUE APAREZCAN EN CASO
-  DE QUE S[I HAYA. CHANCE CON METAS O CON UN S[I 
-  O NO DE OPCION BUTTON EN PANEL DE CONTROL DEL USUARIO]]]]]
+SI SE DESPLIEGA EL V[IDEO ASOCIADO, SE REQUERE 
+QUYE TODOS LOS PRODUDTOS TENGAN VIDEO ASOCIADO O 
+REVISAR C[OMO HACERLE PARA QUE APAREZCAN EN CASO
+DE QUE S[I HAYA. CHANCE CON METAS O CON UN S[I 
+O NO DE OPCION BUTTON EN PANEL DE CONTROL DEL USUARIO]]]]]
 {%- endcomment -%}
-              <div class="img-container"><img src="{{ product.images.last | img_url: 'x680' }}" alt="{{ product.title | escape }}"></div>
-              <iframe frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" title="Player for Milk Makeup" width="100%" height="100%" src="https://www.youtube.com/embed/dW3b4tjPto4?autoplay=1&amp;controls=0&amp;rel=0&amp;showinfo=0&amp;iv_load_policy=3&amp;cc_load_policy=0&amp;cc_lang_pref=en&amp;wmode=transparent&amp;modestbranding=1&amp;disablekb=1&amp;origin=https%3A%2F%2Fwww.milkmakeup.com&amp;enablejsapi=1&amp;widgetid=1" tabindex="-1" hidden></iframe>
-
-
-            </div>
+        {% if product.metafields.producto.video == blank %}
+          <div class="img-container">
+            <img src="{{ product.images.last | img_url: 'x680' }}" alt="{{ product.title | escape }}">
           </div>
-        </div>
-        
-      </section>
+        {% elsif product.metafields.producto.video != blank %}
+          {%- comment -%}<iframe frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" title="{{ product.title | escape }}" width="100%" height="100%" src="{{ product.metafields['producto']['video'] }}?autoplay=1&amp;controls=0&amp;rel=0&amp;showinfo=0&amp;iv_load_policy=3&amp;cc_load_policy=0&amp;cc_lang_pref=en&amp;wmode=transparent&amp;modestbranding=1&amp;disablekb=1&amp;origin=https%3A%2F%2Fwww.milkmakeup.com&amp;enablejsapi=1&amp;widgetid=1" tabindex="-1" ></iframe>{%- endcomment -%}
+          <iframe src="{{ product.metafields['producto']['video'] }}?autoplay=1" title="{{ product.title | escape }}" tabindex="-1" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        {% endif %}
+
+        {%- comment -%}el video se deshabilita con un "hidden" al final del string de url{%- endcomment -%}
+
+      </div>
+    </div>
+  </div>
+  
+</section>
+
+{% schema %}
+  {
+    
+  }
+{% endschema %}

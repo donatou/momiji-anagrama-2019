@@ -21,7 +21,7 @@
               <div class="swiper-container gallery-top col-md-12 col-lg-10 order-1 order-lg-2">
                 <div class="swiper-wrapper">
                 {% for image in product.images %}
-                  <div class="swiper-slide img-container" style="background-image:url({{ image.src | product_img_url: 'x1140' }}); background-size: cover;"><button class="btn__wishlist"></button></div>
+                  <div class="swiper-slide img-container" style="background-image:url({{ image.src | product_img_url: 'x1140' }}); background-size: cover;"><button class="btn__wishlist">save for later</button></div>
                 {% endfor %} 
                 </div>
               </div>
@@ -58,6 +58,7 @@
             {{ 'products.product.sold_out' | t }}
           {%- endif -%}
         </button>
+        <button class="btn__main btn__main--big" id="BIS_trigger" {% if product.available %} style="display: none;" {% endif %}>Notificarme cuando esté disponible</button>
       </div>
     </div>
   </div>
