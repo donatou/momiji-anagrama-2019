@@ -75,18 +75,6 @@
       </div>
       <div class="col-md-6 sticker4">
         <!-- SERÁ IMAGEN O VIDEO -->
-        <!-- SERÁ IMAGEN O VIDEO -->
-        <!-- SERÁ IMAGEN O VIDEO -->
-
-
-{%- comment -%}
-USAR UNA SECCI[ON DE BLOQUES PARA SELECCIONAR
-SI SE DESPLIEGA EL V[IDEO ASOCIADO, SE REQUERE 
-QUYE TODOS LOS PRODUDTOS TENGAN VIDEO ASOCIADO O 
-REVISAR C[OMO HACERLE PARA QUE APAREZCAN EN CASO
-DE QUE S[I HAYA. CHANCE CON METAS O CON UN S[I 
-O NO DE OPCION BUTTON EN PANEL DE CONTROL DEL USUARIO]]]]]
-{%- endcomment -%}
         {% if product.metafields.producto.video == blank %}
           <div class="img-container">
             <img src="{{ product.images.last | img_url: 'x680' }}" alt="{{ product.title | escape }}">

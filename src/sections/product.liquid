@@ -44,12 +44,19 @@
         <p class="comments">✦ ✦ ✦ ✦ ✦ ✦<a href="#comments" class="link--orange">Ver 10 reseñas</a></p>
         <b>Descripción.</b>
         <p>{{ product.description }}</p>
+
+
         <div class="recomendado mb-30 mt-30">
+        {% if product.metafields.recomendado.nombre_1 != blank %}
           <b>Recomendado por</b>
-          <div class="tag"><a href="http://www.instagram.com" target="_blank">Anna Sarelly</a></div>
-          <div class="tag"><a href="http://www.instagram.com"  target="_blank">Sofy Des Cortes</a></div>
+          <div class="tag"><a href="{{ product.metafields['recomendado']['link_1'] }}" target="_blank">{{ product.metafields['recomendado']['nombre_1'] }}</a></div>
+          {% if product.metafields.recomendado.nombre_2 != blank %}   
+          <div class="tag"><a href="{{ product.metafields['recomendado']['link_2'] }}" target="_blank">{{ product.metafields['recomendado']['nombre_2'] }}</a></div>
+          {% endif %}
+        {% endif %}
         </div>
-        
+
+
         <div class="input-quantity"><span class="input-number-decrement">–</span><input class="input-number" type="text" value="1" min="0" max="10"><span class="input-number-increment">+</span></div>
         <button class="btn__main btn__main--big" type="submit" {% unless product.available %} disabled="disabled"{% endunless %}>
           {%- if product.available -%}
