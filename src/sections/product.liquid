@@ -1,4 +1,7 @@
 <section class="section__principal" itemscope itemtype="http://schema.org/Product">
+
+{%- assign unico = product.has_only_default_variant -%}
+
   <meta itemprop="name" content="{{ product.title }}{% unless product.has_only_default_variant %} - {{ current_variant.title }}{% endunless %}">
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
   <meta itemprop="image" content="{{ product.featured_image.src | img_url: '1024x1024' }}">
@@ -35,7 +38,7 @@
 
       <div class="col-md-6 col-lg-5 section__container {% if soon %} product soon {% elsif new %} product new {% elsif momi %} product momi {% else %} product {% endif %}">
         <h1 class="text-link">{{ product.vendor }}</h1>
-        <h2>{{ product.title }}</h2>
+        <h2>{{ product.title }}, {{ product.id }}</h2>
         <div class="product__detail--name">
           <h3>{{ product.metafields['producto']['presentacion'] }}</h3>
           <p class="h3">{{ product.price | money }}</p>
@@ -54,121 +57,49 @@
         {% endif %}
         </div>
 
-{%- comment -%}botón del template DISTRICT{%- endcomment -%}
-            {% comment %}
-              ID addToCartForm is a selector for the ajax cart plugin
-            {% endcomment %}
-            <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" class="form-vertical product-form product-form-{{ section.id }}" data-section="{{ section.id }}">
-
-              <div class="product-title">
-                <h1 itemprop="name">{{ product.title }}</h1>
-                {% if section.settings.show_vendors %}
-                  <span class="vendor">{{ product.vendor | link_to_vendor }}</span>
-                {% endif %}
-              </div>
-
-              <div class="selection-wrapper price product-single__price-{{ section.id }}">
-                <span class="money" id="ProductPrice-{{ section.id }}" itemprop="price" content="{{ current_variant.price | money_without_currency | remove: ',' }}">{{ current_variant.price | money }}</span>
-                {% if current_variant.compare_at_price > current_variant.price %}
-                  <p id="ComparePrice-{{ section.id }}" style="display:block;">
-                    {{ 'products.product.compare_at' | t }} <span class="money">{{ current_variant.compare_at_price | money }}</span>
-                  </p>
-                {% else %}
-                  <p id="ComparePrice-{{ section.id }}" style="display:none;">
-                    {{ 'products.product.compare_at' | t }} <span class="money">{{ current_variant.compare_at_price | money }}</span>
-                  </p>
-                {% endif %}
-              </div>
-
-              {% comment %}
-                Collection of variant options
-              {% endcomment %}
-              {% unless product.has_only_default_variant %}
-                <div class="selection-wrapper variant js">
-                  <div class="variant-grid">
-                    {% for option in product.options_with_values %}
-                      <div class="selector-wrapper">
-                        <label for="SingleOptionSelector-{{ forloop.index0 }}">
-                          {{ option.name }}
-                        </label>
-
-                        <select class="single-option-selector single-option-selector-{{ section.id }}" id="SingleOptionSelector-{{ forloop.index0 }}" data-name="{{ option.name }}" data-index="option{{ forloop.index }}">
-                          {% for value in option.values %}
-                            <option value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %}>
-                              {{ value }}
-                            </option>
-                          {% endfor %}
-                        </select>
-                      </div>
-                    {% endfor %}
-                  </div>
-                </div>
-              {% endunless %}
-
-              {% comment %}
-                Primary variant select controlled JS
-              {% endcomment %}
-              <div class="selection-wrapper variant no-js">
-                <div class="selector-wrapper full-width">
-                  <select name="id" id="ProductSelect-{{ section.id }}" data-section="{{ section.id }}" class="product-form__variants no-js">
-                    {% for variant in product.variants %}
-                      {% if variant.available %}
-                        <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}" data-sku="{{ variant.sku }}">
-                          {{ variant.title }} - {{ variant.price | money_with_currency }}
-                        </option>
-                      {% else %}
-                        <option disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
-                      {% endif %}
-                    {% endfor %}
-                  </select>
-                </div>
-              </div>
+      {% form "product", product %}
 
 
-              <div class="error cart-error cart-error-{{ section.id }}"></div>
-              <div class="selection-wrapper cart">
-                {% if section.settings.product_quantity_enable %}
-                  <div class="selector-wrapper quantity quantity-{{ section.id }}" {% unless current_variant.available %}style="display:none;"{% endunless %}>
-                    <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
-                    <div class="quantity-select quantity-select-{{ section.id }}">
-                      <div class="button-wrapper">
-                        <button class="adjust adjust-minus">-</button>
-                      </div>
-                      <div class="input-wrapper">
-                        <input type="text" class="quantity" value="1" min="1" pattern="[0-9]*" name="quantity" id="Quantity">
-                      </div>
-                      <div class="button-wrapper">
-                        <button class="adjust adjust-plus">+</button>
-                      </div>
-                    </div>
-                  </div>
-                {% endif %}
-                <div class="button-wrapper">
-                  <button type="submit" name="add" id="AddToCart-{{ section.id }}" class="button solid {% unless current_variant.available %}disabled{% endunless %}" {% unless current_variant.available %}disabled{% endunless %}>
-                    <span id="AddToCartText-{{ section.id }}">
-                      {% unless current_variant.available %}
-                        {{ 'products.product.sold_out' | t }}
-                      {% else %}
-                        {{ 'products.product.add_to_cart' | t }}
-                      {% endunless %}
-                    </span>
-                  </button>
-                </div>
-              </div>
+{%- comment -%}
+        <select name="id">
+          {% for variant in product.variants %}
+            <option
+              {% if variant == current_variant %} selected="selected" {% endif %}
+              {% unless variant.available %} disabled="disabled" {% endunless %}
+              value="{{ variant.id }}">
+               {{ variant.title }}
+           </option>
+         {% endfor %}
+        </select>
+{%- endcomment -%}
 
-            </form>
-{%- comment -%}botón del template DISTRICT{%- endcomment -%}
 
-{%- comment -%}bot[on original del template de anagrama... {%- endcomment -%}
-{%- comment -%}<div class="input-quantity"><span class="input-number-decrement">–</span><input class="input-number" type="text" value="1" min="0" max="10"><span class="input-number-increment">+</span></div>
-        <button class="btn__main btn__main--big" type="submit" {% unless product.available %} disabled="disabled"{% endunless %}>
-          {%- if product.available -%}
-            {{ 'products.product.add_to_cart' | t }}
-          {%- else -%}
-            {{ 'products.product.sold_out' | t }}
-          {%- endif -%}
-        </button>{%- endcomment -%}
-{%- comment -%} botón original del template de anagrama... {%- endcomment -%}
+      <div class="input-quantity">
+        <span class="input-number-decrement">–</span>
+        <input class="input-number" type="text" value="1" min="1" max="10" name="quantity">
+        <span class="input-number-increment">+</span>
+      </div>
+        
+        {% for variant in product.variants %}
+          {% if variant == product.selected_or_first_available_variant %}
+      <button 
+        class="btn__main btn__main--big" 
+        name="id"
+        type="submit" {% unless product.available %} 
+        disabled="disabled"{% endunless %} 
+        value="{{ variant.id }}">
+        {%- if product.available -%}
+          {{ 'products.product.add_to_cart' | t }}
+        {%- else -%}
+          {{ 'products.product.sold_out' | t }}
+        {%- endif -%}
+      </button>            
+          {% endif %}
+        {% endfor %}
+
+
+        
+      {% endform %}
         
         <button class="btn__main btn__main--big" id="BIS_trigger" {% if product.available %} style="display: none;" {% endif %}>Notificarme cuando esté disponible</button>
       </div>
@@ -305,17 +236,3 @@
   {% endif %}
 </section>
 {%- endcomment -%}
-
-{% schema %}
-  {
-    "name": "Product pages",
-    "settings": [
-      {
-        "type": "checkbox",
-        "id": "show_share_buttons",
-        "label": "Show social sharing buttons",
-        "default": true
-      }
-    ]
-  }
-{% endschema %}
