@@ -1,6 +1,7 @@
 <section class="section__principal" itemscope itemtype="http://schema.org/Product">
 
 {%- assign unico = product.has_only_default_variant -%}
+{% assign inventario-actual = variant.inventory_quantity %}
 
   <meta itemprop="name" content="{{ product.title }}{% unless product.has_only_default_variant %} - {{ current_variant.title }}{% endunless %}">
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
@@ -38,7 +39,7 @@
 
       <div class="col-md-6 col-lg-5 section__container {% if soon %} product soon {% elsif new %} product new {% elsif momi %} product momi {% else %} product {% endif %}">
         <h1 class="text-link">{{ product.vendor }}</h1>
-        <h2>{{ product.title }}, {{ product.id }}</h2>
+        <h2>{{ product.title }}</h2>
         <div class="product__detail--name">
           <h3>{{ product.metafields['producto']['presentacion'] }}</h3>
           <p class="h3">{{ product.price | money }}</p>
@@ -59,7 +60,6 @@
 
       {% form "product", product %}
 
-
 {%- comment -%}
         <select name="id">
           {% for variant in product.variants %}
@@ -73,31 +73,35 @@
         </select>
 {%- endcomment -%}
 
-
       <div class="input-quantity">
         <span class="input-number-decrement">–</span>
-        <input class="input-number" type="text" value="1" min="1" max="10" name="quantity">
+        <input class="input-number" type="text" value="1" min="1" max="{{ variant.inventory_quantity }}" name="quantity">
         <span class="input-number-increment">+</span>
       </div>
         
         {% for variant in product.variants %}
           {% if variant == product.selected_or_first_available_variant %}
-      <button 
-        class="btn__main btn__main--big" 
-        name="id"
-        type="submit" {% unless product.available %} 
-        disabled="disabled"{% endunless %} 
-        value="{{ variant.id }}">
-        {%- if product.available -%}
-          {{ 'products.product.add_to_cart' | t }}
-        {%- else -%}
-          {{ 'products.product.sold_out' | t }}
-        {%- endif -%}
-      </button>            
+            <button 
+              class="btn__main btn__main--big" 
+              name="id"
+              type="submit" {% unless product.available %} 
+              disabled="disabled"{% endunless %} 
+              value="{{ variant.id }}">
+              {%- if product.available -%}
+                {{ 'products.product.add_to_cart' | t }}
+              {%- else -%}
+                {{ 'products.product.sold_out' | t }}
+              {%- endif -%}
+            </button>            
           {% endif %}
         {% endfor %}
 
+{%- comment -%}
+AÚN PERMITE AGREGAR PRODUCTOS AL CARRITO CUANDO AGREGAS MÁS DEL STOCK. EN PRODUCTOS SIN STOCK DESDE EL PRINCIPIO EL BOTÓN APARECE COMO NO DISPONIBLE.
 
+PISTA: si el cliente selecciona más de las existencias, hacer un javascrpit que anuncie "no se puede porque se excede del inventario"
+
+{%- endcomment -%}
         
       {% endform %}
         
@@ -236,3 +240,10 @@
   {% endif %}
 </section>
 {%- endcomment -%}
+
+<script>
+ var inv_qty = {};
+ {% for var in product.variants %}
+   inv_qty[{{- var.id -}}] = {{ var.inventory_quantity | default: 0 }};
+ {% endfor %}
+</script>

@@ -1,0 +1,11 @@
+  // create selector for variant inventory quantity, non-relevant selectors omitted
+  var selectors = {
+    SKU: '.variant-sku',
+    variantInventory: '.variant-inventory'
+  };
+
+  // Show SKU
+  $(selectors.SKU, this.$container).html(variant.sku);  
+
+  // Show variant inventory quantity using similar code snippet to SKU, placed just below     
+  $(selectors.variantInventory, this.$container).html(inv_qty[ variant.id ]);

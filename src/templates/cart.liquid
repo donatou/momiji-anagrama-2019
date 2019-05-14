@@ -78,9 +78,9 @@
               <input type="number"
                      name="updates[]"
                      id="updates_{{ item.key }}"
-                     value="{{ item.quantity }}"
                      min="0"
-                     aria-label="{{ 'cart.general.item_quantity' | t }}">
+                     aria-label="{{ 'cart.general.item_quantity' | t }}"
+                     value="{{ item.quantity }}" {% unless item.variant.inventory_management == blank or item.variant.inventory_policy == 'continue' %} max="{{ item.variant.inventory_quantity }}" {% endunless %} />
             </td>
             <td data-label="{{ 'cart.label.total' | t }}">
               {{ item.line_price | money }}
@@ -126,3 +126,11 @@
     <p>{{ 'cart.general.cookies_required' | t }}</p>
   </div>
 {% endif %}
+
+<script>
+jQuery('[max]').change(function() {
+  var max = parseInt(jQuery(this).attr('max'), 10) || 10000;
+  var value = parseInt(jQuery(this).val(), 10) || 0;
+  if (value > max) { jQuery(this).val(max); }
+});
+</script>
