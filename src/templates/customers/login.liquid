@@ -1,4 +1,106 @@
 <main class="cuenta">
+
+<script language="JavaScript">
+    function toggle(id) {
+        var state = document.getElementById(id).style.display;
+            if (state == 'block') {
+                document.getElementById(id).style.display = 'none';
+            } else {
+                document.getElementById(id).style.display = 'block';
+            }
+        } 
+</script>
+  
+  <section class="cuenta__crear section__principal">
+    <div class="container">
+
+      <div class="row">
+          <div class="col-md-6 mx-auto text-center">
+              <h2>{{ 'customer.login.title' | t }}</h2>
+          </div>
+      </div>
+
+      {%- form 'customer_login' -%}
+        {{ form.errors | default_errors }}
+
+            <div class="row">
+              <div class="col-md-6 col-lg-5 mx-auto mt-30">
+                <form action="">
+                  <input type="email"
+                    name="customer[email]"
+                    id="customerEmail"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    autocomplete="email"
+                    placeholder="{{ 'customer.login.email' | t }}">
+                  <div class="input-error"><p>Por favor, agrega un correo electrónico</p></div>
+                  <input type="password"
+                    name="customer[password]"
+                    id="customerPassword"
+                    placeholder="Contraseña">
+                  <div class="input-error"><p>Por favor, agrega tu contraseña</p></div>
+
+                  <p><a href="#" onclick="toggle('hidden');">¿Olvidaste tu contraseña?</a></p>
+
+                  <button type="submit" class="btn__main">{{ 'customer.login.sign_in' | t }}</button>
+                </form>
+
+                <p class="text-link">¿No tienes una cuenta? {{ 'Crea una' | customer_register_link }}</p>
+              </div>      
+            </div>
+      {%- endform -%}
+
+      <!-- If accounts are set as optional, the following will be shown as an option when coming from checkout, not on the default /login page. -->
+      {%- if shop.checkout.guest_login -%}
+        {%- form 'guest_login' -%}
+          <input type="submit" value="Continue as Guest" />
+        {%- endform -%}
+      {%- endif -%}
+
+      <!-- Use JavaScript to show/hide this form -->
+      
+<div class="row">
+    <div class="col-md-6 col-lg-5 mx-auto mt-30">
+      {%- form 'recover_customer_password' -%}
+
+        {%- if form.posted_successfully? -%}
+          <div role="status">
+            <p class="text-link">{{ 'customer.recover_password.success' | t }}}</p>
+          </div>
+        {%- endif -%}
+
+        <div id="hidden"{% unless form.errors %} style="display: none;"{% endunless %}>
+          <p class="text-link">{{ 'customer.recover_password.subtext' | t }}</p>
+
+          {{ form.errors | default_errors }}
+
+
+          <input type="email"
+            name="email"
+            id="customerEmail"
+            autocorrect="off"
+            autocapitalize="off"
+            autocomplete="email"
+            placeholder="Correo electrónico">
+          <div class="input-error"><p>Por favor, agrega un correo electrónico</p></div
+
+
+
+        </div>
+          <button type="submit" class="btn__main">Enviar</button>
+      {%- endform -%}
+  </div>
+</div>
+      
+        
+    </div>
+  </section>
+
+</main>
+
+
+{%- comment -%}
+<main class="cuenta">
   <section class="cuenta__crear section__principal">
     <div class="container">
       <div class="row">
@@ -45,7 +147,7 @@
 </div>
 </div>
 
-<div class="hide" data-recover-form>
+<div id="recover" class="hide" data-recover-form >
   <h2>{{ 'customer.recover_password.title' | t }}</h2>
   <p>{{ 'customer.recover_password.subtext' | t }}</p>
 
@@ -86,6 +188,8 @@
 </div>
 </section>
 </main>
+
+{%- endcomment -%}
 
 
 {%- comment -%}
