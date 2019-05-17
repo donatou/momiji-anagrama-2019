@@ -4,13 +4,13 @@
 {% endif %}
 
 {% assign spf = false %}
-{% if product.tags contains "SPF" %}
+{% if product.tags contains "bloqueador solar" %}
   {% assign spf = true %}
 {% endif %}
 
-{% assign luminiza = false %}
-{% if product.tags contains "luminiza" %}
-  {% assign luminiza = true %}
+{% assign ilumina = false %}
+{% if product.tags contains "ilumina" %}
+  {% assign ilumina = true %}
 {% endif %}
 
 {% assign repara = false %}
@@ -34,7 +34,7 @@
 {% endif %}
 
 {% assign empareja = false %}
-{% if product.tags contains "empareja" %}
+{% if product.tags contains "empareja tono" %}
   {% assign empareja = true %}
 {% endif %}
 

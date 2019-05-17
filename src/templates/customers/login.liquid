@@ -1,50 +1,48 @@
+<main class="cuenta">
+  <section class="cuenta__crear section__principal">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto text-center">
+          <h2>{{ 'customer.login.title' | t }}</h2>
+        </div>
+      </div>
 <div class="form-success hide" data-reset-success>
   {{ 'customer.recover_password.success' | t }}
 </div>
 
-<div data-login-form>
+<div class="row">
+<div class="col-md-6 col-lg-5 mx-auto mt-30" data-login-form>
   {% form 'customer_login' %}
-    <h1>{{ 'customer.login.title' | t }}</h1>
 
     {{ form.errors | default_errors }}
 
-    <label for="CustomerEmail" class="label-hidden">
-      {{ 'customer.login.email' | t }}
-    </label>
     <input type="email"
            name="customer[email]"
            id="CustomerEmail"
-           class="{% if form.errors contains 'email' %}input-error{% endif %}"
            placeholder="{{ 'customer.login.email' | t }}"
            spellcheck="false"
            autocomplete="off"
            autocapitalize="off"
            autofocus>
+           <div class="input-error"><p>Por favor, agrega un correo electrónico</p></div>
 
     {% if form.password_needed %}
-      <label for="CustomerPassword" class="label-hidden">
-        {{ 'customer.login.password' | t }}
-      </label>
       <input type="password"
              name="customer[password]"
              id="CustomerPassword"
-             class="{% if form.errors contains 'password' %}input-error{% endif %}"
              placeholder="{{ 'customer.login.password' | t }}">
+             <div class="input-error"><p>Por favor, agrega tu contraseña</p></div>
+    {% endif %}
+{% if form.password_needed %}
+    <p><a href="#recover" data-recover-toggle>{{ 'customer.login.forgot_password' | t }}</a></p>
     {% endif %}
 
-    <input type="submit" class="button" value="{{ 'customer.login.sign_in' | t }}">
+    <button type="submit" class="btn__main">{{ 'customer.login.sign_in' | t }}</button>
 
-    <a href="/">{{ 'customer.login.cancel' | t }}</a>
-
-    <a href="/account/register">
-      {{ 'layout.customer.create_account' | t }}
-    </a>
-
-    {% if form.password_needed %}
-      <a href="#recover" data-recover-toggle>{{ 'customer.login.forgot_password' | t }}</a>
-    {% endif %}
+    <p class="text-link">No tienes una cuenta? <a href="/account/register">{{ 'layout.customer.create_account' | t }}</a></p>
   {% endform %}
 
+</div>
 </div>
 
 <div class="hide" data-recover-form>
@@ -85,3 +83,43 @@
     <input type="submit" class="button" value="{{ 'customer.login.guest_continue' | t }}">
   {% endform %}
 {% endif %}
+</div>
+</section>
+</main>
+
+
+{%- comment -%}
+
+    <main class="cuenta">
+      
+      <section class="cuenta__crear section__principal">
+        <div class="container">
+          <div class="row">
+              <div class="col-md-6 mx-auto text-center">
+                  <h2>Ingresar</h2>
+              </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 col-lg-5 mx-auto mt-30">
+             <form action="">
+                <input type="text" placeholder="Correo electrónico">
+                <div class="input-error"><p>Por favor, agrega un correo electrónico</p></div>
+                <input type="password" placeholder="Contraseña">
+                <div class="input-error"><p>Por favor, agrega tu contraseña</p></div>
+
+                <p><a href="/">¿Olvidaste tu contraseña?</a></p>
+
+                <button class="btn__main">Ingresar cuenta</button>
+              </form>
+
+              <p class="text-link">No tienes una cuenta? <a href="crear-cuenta.html">Crea una</a></p>
+            </div>      
+          </div>
+            
+        </div>
+      </section>
+
+    </main>
+
+    {%- endcomment -%}

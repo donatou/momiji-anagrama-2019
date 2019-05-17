@@ -2,7 +2,7 @@
 {%- assign productos_por_pagina = section.settings.productos_por_pagina_rango -%}
 
 <section class="products__category--header section__header">
-  <div class="container-fluid p0" style="background: url({{ section.settings.imagen | img_url: '1200x' }})no-repeat;background-size: cover; background-position: right;">
+  <div class="container-fluid p0" style="background: url({% if collection.image %}{{ collection.image | img_url: '1200x' }}{% else %}{{ section.settings.imagen | img_url: '1200x' }}{% endif %})no-repeat;background-size: cover; background-position: right;">
     <div class="row">
       <div class="col-md-6 offset-md-0 col-lg-8 offset-lg-1 col-xl-8 offset-xl-1 header--title">
         {%- comment -%}
@@ -14,8 +14,20 @@
         {%- comment -%}
         Breadcrumbs END
         {%- endcomment -%}
-        <h2>{{ section.settings.titulo }}</h2>
-        <p>{{ section.settings.descripcion }}</p>
+        <h2>
+        {% if collection.metafields.coleccion.copy == blank %}
+          {{ section.settings.titulo }}
+        {% else %}
+          {{ collection.metafields['coleccion']['copy'] }}
+        {% endif %}
+        </h2>
+        <p>
+        {% if collection.metafields.coleccion.parrafo == blank %}
+          {{ section.settings.descripcion }}
+        {% else %}
+          {{ collection.metafields['coleccion']['parrafo'] }}    
+        {% endif %}
+        </p>
       </div>
     </div>
   </div>
