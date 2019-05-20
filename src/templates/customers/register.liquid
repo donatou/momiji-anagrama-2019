@@ -1,51 +1,95 @@
-<h1>{{ 'customer.register.title' | t }}</h1>
+<main class="cuenta">
+  
+  <section class="cuenta__crear section__principal">
+    <div class="container">
+      <div class="row">
+          <div class="col-md-6 mx-auto text-center">
+              <h2>Crear cuenta</h2>
+          </div>
+      </div>
 
 {% form 'create_customer' %}
   {{ form.errors | default_errors }}
+      <div class="row">
+        <div class="col-md-6 col-lg-5 mx-auto mt-30">
+          <form action="">
+            <input type="text"
+              name="customer[first_name]"
+              id="FirstName"
+              placeholder="{{ 'customer.register.first_name' | t }}"
+              autofocus
+              {% if form.first_name %}value="{{ form.first_name }}"{% endif %}>
+            <div class="input-error"><p>Por favor, agrega un nombre</p></div> 
+            <input type="text"
+              name="customer[last_name]"
+              id="LastName"
+              placeholder="{{ 'customer.register.last_name' | t }}"
+              {% if form.last_name %}value="{{ form.last_name }}"{% endif %}>
+            <div class="input-error"><p>Por favor, agrega un apellido</p></div> 
+            <input type="email"
+              name="customer[email]"
+              id="Email"
+              class="{% if form.errors contains 'email' %}input-error{% endif %}"
+              placeholder="{{ 'customer.register.email' | t }}"
+              value="{% if form.email %}{{ form.email }}{% endif %}"
+              spellcheck="false"
+              autocomplete="off"
+              autocapitalize="off">
+            <div class="input-error"><p>Por favor, agrega un correo electrónico</p></div> 
+            <input type="password"
+              name="customer[password]"
+              id="CreatePassword"
+              class="{% if form.errors contains 'password' %}input-error{% endif %}"
+              placeholder="{{ 'customer.register.password' | t }}">
+            <div class="input-error"><p>Por favor, agrega una contraseña</p></div> 
+            <input type="password"
+              name="customer[password_confirmation]"
+              id="PasswordConfirm"
+              class="{% if form.errors contains 'password' %}input-error{% endif %}"
+              placeholder="Confirmar contraseña">
+            <div class="input-error"><p>Tus contraseñas deben coincidir</p></div>
 
-  <label for="FirstName" class="label-hidden">
-    {{ 'customer.register.first_name' | t }}
-  </label>
-  <input type="text"
-    name="customer[first_name]"
-    id="FirstName"
-    placeholder="{{ 'customer.register.first_name' | t }}"
-    autofocus
-    {% if form.first_name %}value="{{ form.first_name }}"{% endif %}>
+            <div class="checkbox">
+                  <input type="checkbox" id="terminos">
+                  <label for="terminos"></label>
+            </div><!----><span class="text-link">Acepto <a href="/pages/terms-and-conditions">Términos y Condiciones</a></span>
 
-  <label for="LastName" class="label-hidden">
-    {{ 'customer.register.last_name' | t }}
-  </label>
-  <input type="text"
-    name="customer[last_name]"
-    id="LastName"
-    placeholder="{{ 'customer.register.last_name' | t }}"
-    {% if form.last_name %}value="{{ form.last_name }}"{% endif %}>
+            <button class="btn__main" type="submit" name="tyc" >{{ 'customer.register.submit' | t }}</button>
+          </form>
 
-  <label for="Email" class="label-hidden">
-    {{ 'customer.register.email' | t }}
-  </label>
-  <input type="email"
-    name="customer[email]"
-    id="Email"
-    class="{% if form.errors contains 'email' %}input-error{% endif %}"
-    placeholder="{{ 'customer.register.email' | t }}"
-    value="{% if form.email %}{{ form.email }}{% endif %}"
-    spellcheck="false"
-    autocomplete="off"
-    autocapitalize="off">
-
-  <label for="CreatePassword" class="label-hidden">
-    {{ 'customer.register.password' | t }}
-  </label>
-  <input type="password"
-    name="customer[password]"
-    id="CreatePassword"
-    class="{% if form.errors contains 'password' %}input-error{% endif %}"
-    placeholder="{{ 'customer.register.password' | t }}">
-
-  <p>
-    <input type="submit" value="{{ 'customer.register.submit' | t }}" class="button">
-  </p>
-  <a href="{{ shop.url }}">{{ 'customer.register.cancel' | t }}</a>
+          <p class="text-link">¿Ya tienes una cuenta? <a href="/customers/login"> ingresa a tu  cuenta</a></p>
+        </div>      
+      </div>
 {% endform %}
+        
+    </div>
+  </section>
+    
+</main>
+
+<script>
+$(document).ready(function() {
+  $('body').on('click', '[name="tyc"], [name="goto_pp"], [name="goto_gc"]', function() {
+    if ($('#terminos').is(':checked')) {
+      $(this).submit();
+    }
+    else {
+      alert("Debes aceptar los Términos y Condiciones para crear tu cuenta.");
+      return false;
+    }
+  });
+});
+</script>
+<script>
+    $('form#create_customer').submit(function(e) { 
+
+    if ( $('#CreatePassword').val() === $('#PasswordConfirm').val()) {
+      //alert('Password Good!!');
+
+    } else {
+      alert('Las contraseñas deben coincidir.');
+      //$('.input-error').fadeIn("slow");
+      e.preventDefault(); // stops our form from submitting
+    }
+});
+</script>
