@@ -87,31 +87,32 @@
                 <div class="col-12 section__title">
                   <h3>{{ 'customer.account.details' | t }}</h3>
                 </div>
+
+              {% for address in customer.addresses %}
                 <div class="col-md-6 col-lg-12 cuenta__direccion">
+                {% if address == customer.default_address %}
                   <p class="text-link">Dirección principal</p>
-                  <b>Carolina Ortiz</b>
-                  <p>carolina@anagrama.com</p>
-                  <p>11 de Abril de 1989</p>
-                  <address>Guillermo Prieto N. 400, Colonia Palo Blanco, San Pedro Garza Garcia, Monterrey Nuevo León, México. Código Postal 66220 </address>
-                  <p>81 1176 3931</p>
-                  {{ customer.default_address | format_address }}
+                  <b>{{ customer.name }}</b>
+                  <p>{{ customer.email }}</p>
+                 <!-- <p>{{ customer.metafields.customer.birthday }}</p> -->
+                  <address>{{ customer.default_address | format_address }}</address>
+                  <p>Teléfono: {{ customer.default_address.phone }}</p>
                   <div class="btn--100">
-                    <a class="btn__main" href="cuenta-direccion.html">Editar dirección</a>
-                    <a class="btn__main btn__main--lighter" href="/">Borrar dirección</a>
+                    <a class="btn__main" href="{{ edit_customer_address_link: address.id }}">{{ 'customer.addresses.edit' | t }}</a>
+                    <a class="btn__main btn__main--lighter" href="{{delete_customer_address_link: address.id }}">{{ 'customer.addresses.delete' | t }}</a>
                   </div>
-                </div>
-                <div class="col-md-6 col-lg-12 cuenta__direccion">
-                  <p class="text-link">Dirección principal</p>
-                  <b>Carolina Ortiz</b>
-                  <p>carolina@anagrama.com</p>
-                  <p>11 de Abril de 1989</p>
-                  <address>Guillermo Prieto N. 400, Colonia Palo Blanco, San Pedro Garza Garcia, Monterrey Nuevo León, México. Código Postal 66220 </address>
-                  <p>81 1176 3931</p>
+                  {% else %}
+                  <p class="text-link">Dirección</p>
+                  <address>{{ address | format_address }}</address>
+                  <p>Teléfono: {{ address.phone }}</p>
                   <div class="btn--100">
-                    <a class="btn__main" href="cuenta-direccion.html">Editar dirección</a>
-                    <a class="btn__main btn__main--lighter" href="/">Borrar dirección</a>
+                    <a class="btn__main" href="{{ edit_customer_address_link: address.id }}">{{ 'customer.addresses.edit' | t }}</a>
+                    <a class="btn__main btn__main--lighter" href="{{delete_customer_address_link: address.id }}">{{ 'customer.addresses.delete' | t }}</a>
                   </div>
+                  {% endif %} 
                 </div>
+              {% endfor %}
+
                 <div class="col-12 cuenta__agregar">
                   <p class="text-link">AGREGAR NUEVA DIRECCIÓN<a href="cuenta-direccion.html" class="btn__more"></a></p>
                 </div>
