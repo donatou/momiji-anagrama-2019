@@ -29,7 +29,7 @@
           {% if customer %}
               {% if customer.first_name != blank %}
                 {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
-                {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
+               {%- comment -%}{{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}{%- endcomment -%} <a href="/account">Hola, {{ customer.first_name | truncatewords: 1, "" }} /</a>
               {% else %}
                 <a href="/account">{{ 'layout.customer.account' | t }}</a>
               {% endif %}
@@ -275,7 +275,7 @@
           {% if customer %}
               {% if customer.first_name != blank %}
                 {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
-                {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
+                <a>Hola, {{ customer.first_name | truncatewords: 1, "" }} /</a>
               {% else %}
                 <a href="/account">{{ 'layout.customer.account' | t }}</a>
               {% endif %}
