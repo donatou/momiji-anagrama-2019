@@ -1,9 +1,10 @@
 <section class="home__instagram bg-purple">
-        <div class="container-fluid p-0">
+        <div class="container-fluid p-0">        
           <div class="row no-gutters">
-            <div id="instafetch" class="col-md-12 col-lg-6 order-lg-1 order-2">
-              <div class="row no-gutters">
-                <figure class="col-6 col-md-4 col-lg-6 img-container">
+            <div class="col-md-12 col-lg-6 order-lg-1 order-2">
+              <div class="row no-gutters app-instagram-feed">
+              {% include 'instagram' %} 
+                <!-- <figure class="col-6 col-md-4 col-lg-6 img-container">
                   <img src="img/instagram.png" alt="Ig">
                   <figcaption><div class="btn__wishlist"></div><p>3,400 likes</p><span>Sept 22</span></figcaption>
                 </figure>
@@ -18,7 +19,7 @@
                 <figure class="col-6 col-md-4 col-lg-6 img-container d-md-none d-lg-block">
                   <img src="img/instagram.png" alt="Ig">
                   <figcaption><div class="btn__wishlist"></div><p>3,400 likes</p><span>Sept 22</span></figcaption>
-                </figure>
+                </figure> -->
               </div>
             </div>
 
@@ -41,16 +42,6 @@
 
         </div>
       </section>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  instafetch.init({
-    accessToken: '2463871447.6a7999e.b44a929bc2cd4dd0bd25fbfa6320e2f2',
-    numOfPics: 4,
-    target: 'instafetch'
-  });
-});
-</script>
 
 {% schema %}
   {
