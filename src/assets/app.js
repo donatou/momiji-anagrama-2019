@@ -340,7 +340,7 @@ $(window).on('load', function() {
   });
 
   // LOADER
-  $('.loader-component').delay(700).fadeOut(700);
+  $('.loader-component').delay(500).fadeOut(900);
   $('main').css({
     opacity: 1
   });
