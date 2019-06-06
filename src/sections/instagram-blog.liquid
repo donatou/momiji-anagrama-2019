@@ -1,0 +1,41 @@
+<section class="home__instagram bg-purple">
+        <div class="container-fluid p-0">        
+          <div class="row no-gutters">
+            <div class="col-md-12 col-lg-6 order-lg-1 order-2">
+              <div class="row no-gutters app-instagram-feed">
+              <!-- Aquí se inyecta la app de Instagram -->
+              </div>
+            </div>
+
+            <div class="col-md-12 col-lg-6 instagram--container order-lg-2  order-1">
+              <div class="sticker2"></div>
+              <h1>Tu piel primero.</h1>
+              <div class="container--info">
+                <h2 class="text-link">Skincare</h2>
+                <h3>Tips para que tu piel este saludable</h3>
+                <p>A todas nos ha pasado que después de un largo día solo queremos un momento de tranquilidad y paz en la comodidad de nuestra cama, con una…. <a class="a__more" href="/">Leer más</a></p>
+                <a href="/" class="btn__main">Visita momiji talks</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+{% schema %}
+  {
+    "name": "Instagram y Blog",
+    "settings": [
+      {
+        "type": "url",
+        "id": "insta",
+        "label": "Address"
+    }
+    ],
+    "presets": [
+      {
+        "name": "Instagram y Blog",
+        "category": "Social"
+      }
+    ]
+  }
+{% endschema %}
