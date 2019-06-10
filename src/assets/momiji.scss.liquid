@@ -795,23 +795,23 @@ pre {
   max-height: 340px;
   overflow-y: scroll; }
 
-.container {
+.container, .spr-container {
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto; }
   @media (min-width: 576px) {
-    .container {
+    .container, .spr-container {
       max-width: 540px; } }
   @media (min-width: 768px) {
-    .container {
+    .container, .spr-container {
       max-width: 720px; } }
   @media (min-width: 992px) {
-    .container {
+    .container, .spr-container {
       max-width: 960px; } }
   @media (min-width: 1200px) {
-    .container {
+    .container, .spr-container {
       max-width: 1140px; } }
 
 .container-fluid {
@@ -5149,7 +5149,7 @@ footer {
       .benefits--icon {
         margin-right: 20px; } }
 
-.btn__main {
+.btn__main, .spr-summary-actions-newreview{
   background: #F3E4F3;
   display: inline-block;
   width: 150px;
@@ -5163,7 +5163,7 @@ footer {
   .btn__main--lighter {
     background-color: #FAF2FA; }
   @media (min-width: 992px) {
-    .btn__main:hover {
+    .btn__main:hover, .spr-summary-actions-newreview:hover {
       background-color: #f0ddf0; } }
 
 .btn__wishlist {
@@ -5461,7 +5461,7 @@ h1 {
       line-height: 40px; } }
 
 .h3,
-h3, .search-input input, .search-input ::-webkit-input-placeholder, .search-input:focus-within ::-webkit-input-placeholder, .legal__glosario ol > li {
+h3, .search-input input, .search-input ::-webkit-input-placeholder, .search-input:focus-within ::-webkit-input-placeholder, .legal__glosario ol > li, .spr-review-header-title {
   font-family: "GT Super Display", sans-serif;
   text-transform: none;
   font-size: 18px;
@@ -5469,7 +5469,7 @@ h3, .search-input input, .search-input ::-webkit-input-placeholder, .search-inpu
   line-height: 28px; }
 
 .h3,
-h3, .search-input input, .search-input ::-moz-placeholder, .search-input:focus-within ::-moz-placeholder, .legal__glosario ol > li {
+h3, .search-input input, .search-input ::-moz-placeholder, .search-input:focus-within ::-moz-placeholder, .legal__glosario ol > li, .spr-review-header-title {
   font-family: "GT Super Display", sans-serif;
   text-transform: none;
   font-size: 18px;
@@ -5477,7 +5477,7 @@ h3, .search-input input, .search-input ::-moz-placeholder, .search-input:focus-w
   line-height: 28px; }
 
 .h3,
-h3, .search-input input, .search-input :-ms-input-placeholder, .search-input:focus-within :-ms-input-placeholder, .legal__glosario ol > li {
+h3, .search-input input, .search-input :-ms-input-placeholder, .search-input:focus-within :-ms-input-placeholder, .legal__glosario ol > li, .spr-review-header-title {
   font-family: "GT Super Display", sans-serif;
   text-transform: none;
   font-size: 18px;
@@ -5485,7 +5485,7 @@ h3, .search-input input, .search-input :-ms-input-placeholder, .search-input:foc
   line-height: 28px; }
 
 .h3,
-h3, .search-input input, .search-input ::placeholder, .search-input:focus-within ::placeholder, .legal__glosario ol > li {
+h3, .search-input input, .search-input ::placeholder, .search-input:focus-within ::placeholder, .legal__glosario ol > li, .spr-review-header-title {
   font-family: "GT Super Display", sans-serif;
   text-transform: none;
   font-size: 18px;
@@ -5588,13 +5588,21 @@ a, .text-link, .ask a, .header__nav--level-2 .a__all, .btn__main, .selectric .la
   line-height: 20px; }
 
 b, header .header__nav--menu a, .product__info--name p, .filter__applied,
-.text-sans {
+.text-sans, .spr-review-header-byline, .spr-summary-actions-togglereviews {
   font-family: "GT Momiji Medium", sans-serif;
   font-size: 14px;
   letter-spacing: 0;
   line-height: 20px;
   font-weight: 500;
   text-transform: unset; }
+
+.spr-review-header-byline {
+  color:#0A0A0A !important;
+  font-size: 14px !important;
+  font-style: normal !important;
+  opacity: 1 !important;
+  font-weight: normal !important;
+}
 
 body,
 html, footer .footer__item li a, .a__more, .modal__resena .resena__container .stars a, .modal__newsletter .resena__container .stars a, .contacto__items > div a, .legal__glosario ul.columns li {
@@ -5603,6 +5611,10 @@ html, footer .footer__item li a, .a__more, .modal__resena .resena__container .st
   letter-spacing: 0;
   line-height: 20px;
   text-transform: none; }
+
+.spr-review-content-body {
+  font-size: 14px !important;
+}
 
 .border-text {
   border: 1px solid #0A0A0A; }

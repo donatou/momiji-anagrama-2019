@@ -44,7 +44,8 @@
           <h3>{{ product.metafields['producto']['presentacion'] }}</h3>
           <p class="h3">{{ product.price | money }}</p>
         </div>
-        <p class="comments">✦ ✦ ✦ ✦ ✦ ✦<a href="#comments" class="link--orange">Ver 10 reseñas</a></p>
+        {%- comment -%}<p class="comments">✦ ✦ ✦ ✦ ✦ ✦<a href="#comments" class="link--orange">Ver 10 reseñas</a></p>{%- endcomment -%}
+        <p><a class="link--orange"><span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span></a></p>
         <b>Descripción.</b>
         <p>{{ product.description }}</p>
 
@@ -109,6 +110,7 @@ PISTA: si el cliente selecciona más de las existencias, hacer un javascrpit que
       </div>
     </div>
   </div>
+
 </section>
 
 {%- comment -%}

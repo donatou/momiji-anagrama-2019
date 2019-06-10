@@ -1,5 +1,10 @@
       <section class="main__product--comments bg-blue section__spacers">
         <div class="container">
+
+
+<div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+
+{%- comment -%}
           <div class="row row-mobile no-gutters">
             <div class="section__title col-12">
               <h2>Reseñas de la comunidad.</h2>
@@ -34,6 +39,8 @@
               </div>
             </div>
           </div>
+{%- endcomment -%}
+    
         </div>
         
       </section>

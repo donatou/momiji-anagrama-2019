@@ -1,0 +1,71 @@
+<style>
+
+[class^="spr-icon-"]:before, [class*=" spr-icon-"]:before {
+  font-family: "GT Super Text Book", serif;
+  color: #F06C4E;
+}
+.spr-review:first-child {
+  border-top: 1px solid #0a0a0a;
+}
+.spr-review {
+  border-color: #cecece !important;
+}
+.spr-container {
+  border: none !important;
+}
+.spr-summary-actions-togglereviews {
+  color: #F06C4E;
+}
+.spr-header-title {
+  font-family: "GT Momiji Medium", sans-serif;
+  text-transform: none;
+  font-size: 36px !important;
+  letter-spacing: -0.63px;
+  line-height: 36px;
+}
+.spr-review-header-byline strong {
+  font-weight: normal;
+}
+
+  /* All stars */
+  .spr-icon {
+    background-image: url(https://cdn.shopify.com/s/files/1/1099/2810/files/star-full.svg?87265);
+    background-position: 0 0;
+    display: inline-block;
+    position: static;
+    top: 3px !important;
+    width: 16px !important;
+    height: 16px !important;
+    text-indent: -30000px;
+  }
+
+  /* Empty star */
+  /* Shown in New Review form as unselected */
+  .spr-icon.spr-icon-star-empty,
+  .spr-icon.spr-icon.spr-icon-star-empty {
+    background-position: 0 0;
+    background-image: url(https://cdn.shopify.com/s/files/1/1099/2810/files/star-empty.svg?87265);
+    opacity: 1;
+  }
+
+  /* Empty star on hover */
+  /* Displayed when user hovers mouse over an empty star in the review form */
+  .spr-icon.spr-icon-star-empty.spr-icon-star-hover {
+    background-position: 0 0;
+    background-image: url(https://cdn.shopify.com/s/files/1/1099/2810/files/star-empty-hover.svg?87265);
+  }
+
+  /* Full star */
+  .spr-icon.spr-icon-star {
+    background-image: url(https://cdn.shopify.com/s/files/1/1099/2810/files/star-full.svg?87265);
+    background-position: 0 0;
+  }
+
+  /* Half star */
+  /* Displayed when a rating is a half value (3.5 stars) */
+  .spr-icon.spr-icon-star-half {
+    background-position: 0 0;
+    background-image: url(https://cdn.shopify.com/s/files/1/1099/2810/files/star-half.svg?87265);
+    opacity: 1;
+  }
+ </style>
