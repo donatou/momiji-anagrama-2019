@@ -29,7 +29,7 @@
           {% if customer %}
               {% if customer.first_name != blank %}
                 {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
-               {%- comment -%}{{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}{%- endcomment -%} <a href="/account">Hola, {{ customer.first_name | truncatewords: 1, "" }} /</a>
+                <a href="/account">Hola, {{ customer.first_name | truncatewords: 1, "" }} /</a>
               {% else %}
                 <a href="/account">{{ 'layout.customer.account' | t }}</a>
               {% endif %}
@@ -102,38 +102,18 @@
                       </ul>
                     </div>
 
-                    {%- comment -%}
-                     <div class="menu-drawer">
-                      <p class="h3">Soluciones</p>
-                      <ul class="sub-nav list-unstyled">
-                        <li><a href="products.html">All products</a></li>
-                        <li><a href="products.html">Face</a></li>
-                        <li><a href="products.html">Body</a></li>
-                        <li><a href="products.html">Hair</a></li>
-                      </ul>
-                    </div> {%- endcomment -%}
                     <a href="/collections/all" class="a__all mt-30">ir a productos</a>
                   </div>
 
                   <div class="col-lg-4 br">
                     <div class="row">
                       <div class="col-md-8 mx-auto">
-                          <a href="detalle-producto.html" class="product">
-                          <div class="product__container">
-                            <div class="product__container--main"><img src="{{ 'product--img.png' | asset_url }}" alt="Milk"></div>
-                            <div class="product__container--hover"><img src="{{ 'product--img--hover.png' | asset_url }}" alt="Milk"></div> 
-                          </div>
-                          <div class="product__info">
-                            <div class="product__info--brand">
-                              <p>Benton</p>
-                              <button class="btn__wishlist"></button>
-                            </div>
-                            <div class="product__info--name">
-                              <p>Ginseng Berry Eye Mask</p>
-                              <span>$60.00</span>
-                            </div>
-                          </div>
-                          </a>
+                          {% if section.settings.producto_menu == blank %}
+                              {% assign product = all_products.first %}
+                          {% else %}
+                              {% assign product = all_products[ section.settings.producto_menu ] %}
+                          {% endif %}
+                          {% include 'grid-item' %}
                       </div>
                     </div>
                   </div>
@@ -154,7 +134,7 @@
         <a data-modal="search"><img src="{{ 'search.svg' | asset_url }}" alt="Search"></a>
       </div>
       <div class="header__icons--love d-none d-md-block">
-        <a href="mi-cuenta.html"><img src="{{ 'wishlist.svg' | asset_url }}" alt="Wishlist"></a>
+        <a href="#swym-wishlist" class="swym-wishlist"><img src="{{ 'wishlist-header.svg' | asset_url }}" alt="Wishlist"></a>
       </div>
       <div class="header__icons--shop">
         <a href="/cart"><img src="{{ 'cart.svg' | asset_url }}" alt="Cart"><span class="cart-quantity">{{ cart.item_count }}</span></a>
@@ -292,7 +272,7 @@
         <a data-modal="search"><img src="{{ 'search.svg' | asset_url }}" alt="Search"></a>
       </div>
       <div class="header__icons--love d-none d-md-block">
-        <a><img src="{{ 'wishlist.svg' | asset_url }}" alt="Wishlist"></a>
+        <a href="#swym-wishlist" class="swym-wishlist"><img src="{{ 'wishlist-header.svg' | asset_url }}" alt="Wishlist"></a>
       </div>
       <div class="header__icons--shop">
         <a href="/cart"><img src="{{ 'cart.svg' | asset_url }}" alt="Cart"><span class="cart-quantity">{{ cart.item_count }}</span></a>
@@ -456,6 +436,12 @@
         "id": "menu",
         "label": "Menu",
         "default": "main-menu"
+      },
+      {
+        "type": "product",
+        "id": "producto_menu",
+        "label": "Featured Product",
+        "info": "Selecciona el producto que estará en el menú"
       }
     ]
   }

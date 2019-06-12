@@ -1,22 +1,22 @@
-{% assign blog_handle = 'momiji-talks' %}
+{%- assign blog_handle = 'momiji-talks' -%}
 
-{% unless blogs[blog_handle].empty? or blogs[blog_handle].articles.size == 0 %}
+{%- unless blogs[blog_handle].empty? or blogs[blog_handle].articles.size == 0 -%}
 
               <h1>Momiji Talks.</h1>
               <div class="container--info">
 
-               {% for article in blogs[blog_handle].articles limit: 1 %}
+               {%- for article in blogs[blog_handle].articles limit: 1 -%}
                
-                <h2 class="text-link">{{ article.tags }}</h2>
+                <h2 class="text-link">{{ article.tags | join: " - " }}</h2>
                 <h3>{{ article.title }}</h3>
 
-                {% assign content = article.content %}
+                {%- assign content = article.content -%}
 
                 <p>{{ content | strip_html | truncatewords: 30 }} <a class="a__more" href="https://momijitalks.com/" target="_blank" rel="noopener noreferrer">Leer más</a></p>
                 <a href="https://momijitalks.com/" class="btn__main" target="_blank" rel="noopener noreferrer">Visita momiji talks</a>
 
-               {% endfor %}
+               {%- endfor -%}
                
               </div>
 
-{% endunless %}
+{%- endunless -%}
