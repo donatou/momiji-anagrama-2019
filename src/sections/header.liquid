@@ -1,16 +1,4 @@
-{%- comment -%}
-  This is a required section for the Shopify Theme Store.
-  It is available in the "Header" section in the theme editor.
-
-  Theme Store required settings
-  - Show announcement
-  - Text: message to announce
-  - Link: link of the announcement bar
-
-  Theme Store optional settings
-  - Home page only: only shows on the home page
-{%- endcomment -%}
-<header>
+<header data-section-type="header">
 <div class="header">
   <div class="header__sitebanner d-none d-md-flex">
     <div class="header__currency d-flex align-items-center">
@@ -51,6 +39,12 @@
         <div class="nav-btn"></div>
       </div>
 
+{% assign top = linklists.header-principal-sin-skincare %}
+{% assign rutina = linklists.header-skincare-rutina %}
+{% assign tipoDePiel = linklists.header-skincare-tipo-de-piel %}
+{% assign soluciones = linklists.header-skincare-soluciones %}
+
+
       <div class="header__nav--logo">
         <a href="index.html"><img src="{{ 'momiji-logo-rgb.svg' | asset_url }}" alt="{{ shop.name }}" itemprop="logo"></a>
       </div>
@@ -61,44 +55,31 @@
                 <div class="row">
                   <div class="offset-lg-1 col-lg-3">
                     <div class="menu-drawer">
-                      <p class="h3">Rutina</p>
+                      <p class="h3">{{ rutina.title }}</p>
                       <ul class="sub-nav list-unstyled">
-                        <li><a href="products.html">Limpiadores</a></li>
-                        <li><a href="products.html">Exfoliadores</a></li>
-                        <li><a href="products.html">Tónicos</a></li>
-                        <li><a href="products.html">Esencias</a></li>
-                        <li><a href="products.html">Sueros</a></li>
-                        <li><a href="products.html">Mascarillas</a></li>
-                        <li><a href="products.html">Hidratantes</a></li>
-                        <li><a href="products.html">Ojos</a></li>
-                        <li><a href="products.html">Protector solar</a></li>
-                        <li><a href="products.html">Mascarillas de noche</a></li>
+                        {% for link in rutina.links %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                        {% endfor %}
                       </ul>
                     </div>
 
                     <div class="menu-drawer">
-                      <p class="h3">Tipo de piel</p>
+                      <p class="h3">{{ tipoDePiel.title }}</p>
                       <ul class="sub-nav list-unstyled">
-                        <li><a href="products.html">Seca</a></li>
-                        <li><a href="products.html">Mixta</a></li>
-                        <li><a href="products.html">Grasa</a></li>
-                        <li><a href="products.html">Sensible</a></li>
+                        {% for link in tipoDePiel.links %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                        {% endfor %}
                       </ul>
                     </div>
                   </div>
 
                   <div class="col-lg-3">
                     <div class="menu-drawer">
-                      <p class="h3">Soluciones</p>
+                      <p class="h3">{{ soluciones.title }}</p>
                       <ul class="sub-nav list-unstyled">
-                        <li><a href="products.html">Anti-edad</a></li>
-                        <li><a href="products.html">Acné</a></li>
-                        <li><a href="products.html">Poros</a></li>
-                        <li><a href="products.html">Manchas y cicatrices</a></li>
-                        <li><a href="products.html">Contaminación</a></li>
-                        <li><a href="products.html">Piel opaca</a></li>
-                        <li><a href="products.html">Deshidratación</a></li>
-                        <li><a href="products.html">Rojez y rosácea</a></li>
+                        {% for link in soluciones.links %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                        {% endfor %}
                       </ul>
                     </div>
 
@@ -121,11 +102,9 @@
             </div>
           </div>
         </li>
-        <li class="nav-item"><a>Maquillaje</a></li>
-        <li class="nav-item"><a>Kits Momiji</a></li>
-        <li class="nav-item"><a>Novedades</a></li>
-        <li class="nav-item"><a>Oferta</a></li>
-        <li class="nav-item"><a>Momiji shop</a></li>
+        {% for link in top.links %}
+        <li class="nav-item"><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
       </ul>
     </nav>
 
@@ -143,8 +122,6 @@
   </div>
 
 </div>
-
-
 
 <!-- HEADER FIXED -->
 <!-- HEADER FIXED -->
@@ -167,72 +144,46 @@
                 <div class="row">
                   <div class="offset-lg-1 col-lg-3">
                     <div class="menu-drawer">
-                      <p class="h3">Rutina</p>
+                      <p class="h3">{{ rutina.title }}</p>
                       <ul class="sub-nav list-unstyled">
-                        <li><a href="products.html">Limpiadores</a></li>
-                        <li><a href="products.html">Exfoliadores</a></li>
-                        <li><a href="products.html">Toners</a></li>
-                        <li><a href="products.html">Esencias</a></li>
-                        <li><a href="products.html">Tratamientos</a></li>
-                        <li><a href="products.html">Mascarillas</a></li>
-                        <li><a href="products.html">Crema para ojos</a></li>
-                        <li><a href="products.html">Protector solar</a></li>
+                        {% for link in rutina.links %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                        {% endfor %}
                       </ul>
                     </div>
 
                     <div class="menu-drawer">
-                      <p class="h3">Destacado</p>
+                      <p class="h3">{{ tipoDePiel.title }}</p>
                       <ul class="sub-nav list-unstyled">
-                        <li><a href="products.html">All fixes</a></li>
-                        <li><a href="products.html">Prevent</a></li>
-                        <li><a href="products.html">Treat</a></li>
-                        <li><a href="products.html">Clean</a></li>
+                        {% for link in tipoDePiel.links %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                        {% endfor %}
                       </ul>
                     </div>
                   </div>
 
                   <div class="col-lg-3">
                     <div class="menu-drawer">
-                      <p class="h3">Tipo de piel</p>
+                      <p class="h3">{{ soluciones.title }}</p>
                       <ul class="sub-nav list-unstyled">
-                        <li><a href="products.html">All products</a></li>
-                        <li><a href="products.html">Face</a></li>
-                        <li><a href="products.html">Body</a></li>
-                        <li><a href="products.html">Hair</a></li>
+                        {% for link in soluciones.links %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                        {% endfor %}
                       </ul>
                     </div>
 
-                     <div class="menu-drawer">
-                      <p class="h3">Soluciones</p>
-                      <ul class="sub-nav list-unstyled">
-                        <li><a href="products.html">All products</a></li>
-                        <li><a href="products.html">Face</a></li>
-                        <li><a href="products.html">Body</a></li>
-                        <li><a href="products.html">Hair</a></li>
-                      </ul>
-                    </div>
                     <a href="/collections/all" class="a__all mt-30">ir a productos</a>
                   </div>
 
                   <div class="col-lg-4 br">
                     <div class="row">
                       <div class="col-md-8 mx-auto">
-                          <a href="detalle-producto.html" class="product">
-                          <div class="product__container">
-                            <div class="product__container--main"><img src="img/product--img.png" alt="Milk"></div>
-                            <div class="product__container--hover"><img src="img/product--img--hover.png" alt="Milk"></div> 
-                          </div>
-                          <div class="product__info">
-                            <div class="product__info--brand">
-                              <p>Benton</p>
-                              <button class="btn__wishlist"></button>
-                            </div>
-                            <div class="product__info--name">
-                              <p>Ginseng Berry Eye Mask</p>
-                              <span>$60.00</span>
-                            </div>
-                          </div>
-                          </a>
+                          {% if section.settings.producto_menu == blank %}
+                              {% assign product = all_products.first %}
+                          {% else %}
+                              {% assign product = all_products[ section.settings.producto_menu ] %}
+                          {% endif %}
+                          {% include 'grid-item' %}
                       </div>
                     </div>
                   </div>
@@ -240,11 +191,9 @@
             </div>
           </div>
         </li>
-        <li class="nav-item"><a>Maquillaje</a></li>
-        <li class="nav-item"><a>Kits Momiji</a></li>
-        <li class="nav-item"><a>Novedades</a></li>
-        <li class="nav-item"><a>Oferta</a></li>
-        <li class="nav-item"><a>Momiji shop</a></li>
+        {% for link in top.links %}
+        <li class="nav-item"><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
       </ul>
     </nav>
 
@@ -282,136 +231,6 @@
 
 </div>
 </header>
-{%- comment -%}
-<section data-section-id="{{ section.id }}" data-section-type="header">
-  {%- if section.settings.announcement_bar_enabled -%}
-    <div>
-      {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
-        {%- if section.settings.announcement_bar_link != blank -%}
-          <a href="{{ section.settings.announcement_bar_link }}">
-            {{ section.settings.announcement_bar_text | escape }}
-          </a>
-        {%- else -%}
-          <p>{{ section.settings.announcement_bar_text | escape }}</p>
-        {%- endif -%}
-      {%- endif -%}
-    </div>
-  {%- endif -%}
-
-  <header role="banner">
-    {% if template.name == 'index' %}
-      <h1>
-    {% else %}
-      <div class="h1">
-    {% endif %}
-        <a href="/" class="logo-image">
-          {% if section.settings.logo != blank %}
-            {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
-            <img src="{{ section.settings.logo | img_url: image_size }}"
-                srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
-                alt="{{ section.settings.logo.alt | default: shop.name }}">
-          {% else %}
-            {{ shop.name }}
-          {% endif %}
-        </a>
-    {% if template.name == 'index' %}
-      </h1>
-    {% else %}
-      </div>
-    {% endif %}
-
-    <a href="/cart">
-      {% include 'icon-cart' %}
-      {{ 'layout.cart.title' | t }}
-      ({{ cart.item_count }} {{ 'layout.cart.items_count' | t: count: cart.item_count }})
-    </a>
-
-    {% if shop.customer_accounts_enabled %}
-      <ul>
-        {% if customer %}
-          <li>
-            {% if customer.first_name != blank %}
-              {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
-              {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
-            {% else %}
-              <a href="/account">{{ 'layout.customer.account' | t }}</a>
-            {% endif %}
-          </li>
-          <li>
-            {{ 'layout.customer.log_out' | t | customer_logout_link }}
-          </li>
-        {% else %}
-          <li>
-            {{ 'layout.customer.log_in' | t | customer_login_link }}
-          </li>
-          <li>
-            {{ 'layout.customer.create_account' | t | customer_register_link }}
-          </li>
-        {% endif %}
-      </ul>
-    {% endif %}
-
-    <form action="/search" method="get" role="search">
-      <label for="Search-{{ section.id }}" class="label-hidden">
-        {{ 'general.search.placeholder' | t }}
-      </label>
-
-      <input type="search"
-        name="q"
-        id="Search-{{ section.id }}"
-        value="{{ search.terms | escape }}"
-        placeholder="{{ 'general.search.placeholder' | t }}">
-
-      <button type="submit" class="button">
-        {% include 'icon-search' %}
-        <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
-      </button>
-    </form>
-  </header>
-
-  <nav role="navigation">
-    <ul>
-      {% for link in linklists[section.settings.menu].links %}
-        {% if link.links != blank %}
-          <li>
-            <a href="{{ link.url }}">
-              {{ link.title }}
-              {% include 'icon-arrow-down' %}
-            </a>
-            <ul>
-              {% for childlink in link.links %}
-                <li>
-                  <a href="{{ childlink.url }}">
-                    {{ childlink.title }}
-                  </a>
-                </li>
-              {% endfor %}
-            </ul>
-          </li>
-        {% else %}
-          <li>
-            <a href="{{ link.url }}">
-              {{ link.title }}
-            </a>
-          </li>
-        {% endif %}
-      {% endfor %}
-    </ul>
-  </nav>
-</section>
-
-{%- endcomment -%}
-
-{%- comment -%}
-{% if section.settings.logo != blank %}
-  <style>
-    .logo-image {
-      display: block;
-      max-width: {{ section.settings.logo_max_width }}px;
-    }
-  </style>
-{% endif %}
-{%- endcomment -%}
 
 {% schema %}
   {
