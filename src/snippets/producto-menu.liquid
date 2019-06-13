@@ -1,0 +1,6 @@
+{% if section.settings.producto_menu == blank %}
+    {% assign product = all_products.first %}
+{% else %}
+    {% assign product = all_products[ section.settings.producto_menu ] %}
+{% endif %}
+{% include 'grid-item' %}

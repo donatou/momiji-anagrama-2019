@@ -44,7 +44,6 @@
 {% assign tipoDePiel = linklists.header-skincare-tipo-de-piel %}
 {% assign soluciones = linklists.header-skincare-soluciones %}
 
-
       <div class="header__nav--logo">
         <a href="index.html"><img src="{{ 'momiji-logo-rgb.svg' | asset_url }}" alt="{{ shop.name }}" itemprop="logo"></a>
       </div>
@@ -89,12 +88,7 @@
                   <div class="col-lg-4 br">
                     <div class="row">
                       <div class="col-md-8 mx-auto">
-                          {% if section.settings.producto_menu == blank %}
-                              {% assign product = all_products.first %}
-                          {% else %}
-                              {% assign product = all_products[ section.settings.producto_menu ] %}
-                          {% endif %}
-                          {% include 'grid-item' %}
+                        {% include 'producto-menu' %}
                       </div>
                     </div>
                   </div>
@@ -178,12 +172,7 @@
                   <div class="col-lg-4 br">
                     <div class="row">
                       <div class="col-md-8 mx-auto">
-                          {% if section.settings.producto_menu == blank %}
-                              {% assign product = all_products.first %}
-                          {% else %}
-                              {% assign product = all_products[ section.settings.producto_menu ] %}
-                          {% endif %}
-                          {% include 'grid-item' %}
+                        {% include 'producto-menu' %}
                       </div>
                     </div>
                   </div>
@@ -251,15 +240,9 @@
         "content": "Header"
       },
       {
-        "type": "link_list",
-        "id": "menu",
-        "label": "Menu",
-        "default": "main-menu"
-      },
-      {
         "type": "product",
         "id": "producto_menu",
-        "label": "Featured Product",
+        "label": "Producto de menú",
         "info": "Selecciona el producto que estará en el menú"
       }
     ]
