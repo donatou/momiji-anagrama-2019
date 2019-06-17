@@ -1,7 +1,3 @@
-{% section 'search-template' %}
-
-
-{%- comment -%}
 {% paginate search.results by 10 %}
 
   <h1>
@@ -44,22 +40,29 @@
               <h3>{{ item.title }}</h3>
             </a>
             {% if item.object_type == 'product' %}
-          <section class="main__product--related section__spacers ">
-            <div class="container"> 
-                <div class="row row-mobile no-gutters">
-                    <div class="section__title col-12">
-                        <h2>{{ section.settings.titulo_seccion }}</h2>
-                    </div>
-                </div>
-                <div class="row thumbs">
-                {%- for product in recommendations.products -%}
-                    <div class="col-md-3">
-                        {% include 'grid-item' %}
-                    </div>
-                {%- endfor -%}
-                </div>
-            </div>
-          </section>
+              <p>
+                {% if item.compare_at_price > item.price %}
+                  {% if item.price_varies %}
+                    {% assign sale_price = item.price | money %}
+                    {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+                  {% else %}
+                    {{ 'products.product.on_sale' | t }}
+                    <span>{{ item.price | money }}</span>
+                  {% endif %}
+                  <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+                  <s>{{ item.compare_at_price | money }}</s>
+                {% else %}
+                  {% if item.price_varies %}
+                    {% assign price = item.price | money %}
+                    <span>{{ 'products.product.from_text_html' | t: price: price }}</span>
+                  {% else %}
+                    <span>{{ item.price | money }}</span>
+                  {% endif %}
+                {% endif %}
+                {% unless item.available %}
+                {{ 'products.product.sold_out' | t }}
+                {% endunless %}
+              </p>
             {% else %}
               <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
             {% endif %}
@@ -75,4 +78,3 @@
   {% endif %}
 
 {% endpaginate %}
-{%- endcomment -%}
