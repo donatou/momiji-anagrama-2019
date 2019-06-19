@@ -1,0 +1,172 @@
+    {%- assign grid_results = true -%}
+    {%- assign results_count = 18 -%}
+
+<section class="products__category--header section__header">
+  <div class="container-fluid p0" style="background: url({% if collection.image %}{{ collection.image | img_url: '1200x' }}{% else %}{{ section.settings.imagen | img_url: '1200x' }}{% endif %})no-repeat;background-size: cover; background-position: right;">
+    <div class="row">
+      <div class="col-md-6 offset-md-0 col-lg-8 offset-lg-1 col-xl-8 offset-xl-1 header--title">
+        {%- comment -%}
+        Breadcrumbs 
+        {%- endcomment -%}
+        <div class="breadcrumb">
+        <a>{{ 'general.search.heading' | t: count: search.results_count }}</a>
+        </div>
+        {%- comment -%}
+        Breadcrumbs END
+        {%- endcomment -%}
+        {% if search.performed %}
+            {% if search.results_count == 0 %}
+              <h2>{{ 'general.search.no_results_html' | t: terms: search.terms }}</h2>
+            {% else %}
+              <h1>{{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}</h1>
+            {% endif %}
+          {% else %}
+            <h2>{{ 'general.search.title' | t }}</h2>
+        {% endif %}
+        <p>
+        {% if collection.metafields.coleccion.parrafo == blank %}
+          {{ section.settings.descripcion }}
+        {% else %}
+          {{ collection.metafields['coleccion']['parrafo'] }}    
+        {% endif %}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="products__category--items">
+  <div class="container">
+      <div class="row">
+
+        <div class="col-md-12 d-lg-none">
+          <!-- TITULO NOMBRE MOBILE Y TABLETA -->
+            <div class="row products__category--name row-mobile">
+                <div class="col-md-8">
+                  <h2>{{ collection.title }}&nbsp;<span class="text-link d-none d-md-inline-flex">&nbsp;{{ collection.all_products_count}}&nbsp;productos</span></h2>
+                </div>
+                
+                <!-- FILTROS Y ORDENAR -->
+                <div class="col-6 col-md-4">
+                </div>
+
+                <div class="d-block d-md-none filter__categoria col-6">
+                  <div class="trigger">
+                    <a>categorías</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-3 d-none d-md-block">
+        </div>
+
+        <div class="col-md-9">
+            <div class="d-md-none">
+              <span class="text-link">{{ collection.all_products_count}}&nbsp;productos</span>
+            </div>
+
+            <!-- TITULO PARA DESKTOP -->
+            <div class="row products__category--name row-mobile d-none d-lg-flex ">
+                <div class="col-md-8">
+                  <h2>{{ collection.title }}&nbsp;<span class="text-link">&nbsp;{{ collection.all_products_count}}&nbsp;productos</span></h2>
+                </div>
+                
+                <!-- FILTROS Y ORDENAR -->
+                <div class="col-md-4">
+                </div>
+            </div>
+
+              
+            <div class="row thumbs">
+            {% paginate search.results by results_count %}
+            {%- comment -%}{% for product in collection.products limit: productos_por_pagina  %}
+              <div class="col-md-4">
+                {% include 'grid-item' %}
+              </div>
+            {% endfor %}{%- endcomment -%}
+
+
+            {% for product in search.results %}
+
+            {% if product.price %}
+              {% unless grid_results %}
+                {% include 'product-list-item' %}
+              {% else %}
+                {% include 'grid-item' %}
+              {% endunless %}
+
+            {% elsif grid_results == false %}
+              {% comment %}
+                Search results for blog posts
+                Since the loop references 'product' for the product-list-item the articles also use 'product'
+              {% endcomment %}
+              <div class="box product article">
+                <figure>
+                  {% if product.image %}
+                    <div class="article-image product-thumbnail">
+                      <a href="{{ product.url }}"><img src="{{ product.image.src | img_url: '240x' }}" alt="{{ product.title }}"></a>
+                    </div>
+                  {% endif %}
+                  <figcaption>
+                    <header>
+                      <a href="{{ product.url }}" class="product-title">{{ product.title }}</a>
+                    </header>
+                    <div class="description rte">
+                      <p>{{ product.content | strip_html | truncatewords: 50 }} <a href="{{ product.url }}" class="button simple">{{ 'blogs.article.read_more' | t }}</a></p>
+                    </div>
+                  </figcaption>
+                </figure>
+              </div>
+            {% endif %}
+
+          {% endfor %}
+          
+          
+            
+              <div class="loader mb-90">
+                {% include 'pagination' %}
+              </div>
+            {% endpaginate %}
+
+            </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Colección",
+    "settings": [
+      {
+      "type": "range",
+      "id": "productos_por_pagina_rango",
+      "label": "Productos por página",
+      "min": 3,
+      "max": 48,
+      "step": 3,
+      "default": 12
+      },
+      {
+      "type": "image_picker",
+      "id": "imagen",
+      "label": "Selecciona la imagen de fondo",
+      "info": "1200 x 400px .jpg 96dpi"
+      },
+      {
+        "type": "text",
+        "id": "titulo",
+        "label": "Título",
+        "default": "Our top-selling, holy grail products."
+      },
+      {
+        "type": "textarea",
+        "id": "descripcion",
+        "label": "Descripción",
+        "default": "No es un concurso de popularidad, pero si lo fuera, estos serían los ganadores de Momiji."
+      }
+    ]
+  }
+{% endschema %}

@@ -1,11 +1,11 @@
 <section class="collection search-results" data-section-id="{{ section.id }}" data-section-type="search-template">
-  {% if section.settings.search_layout == 'grid' %}
+<!--{% if section.settings.search_layout == 'grid' %}-->
     {%- assign grid_results = true -%}
     {%- assign results_count = 18 -%}
-  {% else %}
+<!--  {% else %}
     {%- assign grid_results = false -%}
     {%- assign results_count = 50 -%}
-  {% endif %}
+  {% endif %}-->
 
   {% comment %}
     Check to enforce respond.js
@@ -20,23 +20,19 @@
   {% paginate search.results by results_count %}
   <div class="wrapper">
 
-<!--    <header class="content-util">
-    {% include 'breadcrumb' %}
-    {% include 'social-icons' %}
-    </header> -->
 
     <div class="collection-container">
       <!-- <div class="search-wrapper">
         {% include 'search-bar' %}
       </div> -->
-
+ 
       <header class="collection-header">
         <div class="container">
           {% if search.performed %}
             {% if search.results_count == 0 %}
               <h1>{{ 'general.search.no_results_html' | t: terms: search.terms }}</h1>
             {% else %}
-              <h1>{{ 'general.search.results_for_html' | t: terms: search.terms }}</h1>
+              <h1>{{ 'general.search.title' | t: terms: search.terms }}</h1>
             {% endif %}
           {% else %}
             <h1>{{ 'general.search.title' | t }}</h1>

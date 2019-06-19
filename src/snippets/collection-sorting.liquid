@@ -1,7 +1,7 @@
 {%- comment -%}
 Collection sorting - Le falta el container div dependiendo de donde se agregue.
 {%- endcomment -%}
-{%- assign ordenar = collection.ordenar | default: collection.default_sort_by -%}
+<!--{%- assign ordenar = collection.ordenar | default: collection.default_sort_by -%}
 <select name="ordenar" id="ordenar">
     <option value="">{{ 'collections.sorting.title' | t }}</option>
     <option value="manual"{% if ordenar == "manual" %} selected="selected"{% endif %}>{{ 'collections.sorting.featured' | t }}</option>
@@ -13,7 +13,50 @@ Collection sorting - Le falta el container div dependiendo de donde se agregue.
     <option value="created-descending"{% if ordenar == "created-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.date_descending' | t }}</option>
     <option value="created-ascending"{% if ordenar == "created-ascending" %} selected="selected"{% endif %}>{{ 'collections.sorting.date_ascending' | t }}</option>
 </select>
-<input class="sort-by__default-sort" type="hidden" value="{{ collection.default_sort_by }}">
+<input class="sort-by__default-sort" type="hidden" value="{{ collection.default_sort_by }}">-->
 {%- comment -%}
 Collection sorting END
 {%- endcomment -%}
+
+<div>
+  <select id="sort-by">
+    <option value="manual">Featured</option>
+    <option value="price-ascending">Price: Low to High</option>
+    <option value="price-descending">Price: High to Low</option>
+    <option value="title-ascending">A-Z</option>
+    <option value="title-descending">Z-A</option>
+    <option value="created-ascending">Oldest to Newest</option>
+    <option value="created-descending">Newest to Oldest</option>
+    <option value="best-selling">Best Selling</option>
+  </select>
+</div>
+<script>
+Shopify.queryParams = {};
+{% comment %} console.log("location", location); {% endcomment %}
+if (location.search.length) {
+  for (var aKeyValue, i = 0, aCouples = location.search.substr(1).split('&'); i < aCouples.length; i++) {
+    aKeyValue = aCouples[i].split('=');
+    if (aKeyValue.length > 1) {
+      Shopify.queryParams[decodeURIComponent(aKeyValue[0])] = decodeURIComponent(aKeyValue[1]);
+    }
+  }
+}
+
+if (Shopify.queryParams.sort_by) {
+  document.querySelector('#sort-by').value = Shopify.queryParams.sort_by;
+} else {
+  document.querySelector('#sort-by').value = "manual";
+}
+
+document.querySelector('#sort-by').addEventListener('change', function() {
+  const urlSearchParams = new URLSearchParams(
+    window.location.search.indexOf("sort_by") > -1
+    ? window.location.search.replace(/sort_by/gi,"")
+    : window.location.search
+  );
+
+  urlSearchParams.set(this.name, this.value);
+
+  window.location = `?sort_by${urlSearchParams}`;
+});
+</script>
