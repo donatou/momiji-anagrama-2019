@@ -1,4 +1,4 @@
-    {%- assign grid_results = true -%}
+
     {%- assign results_count = 18 -%}
 
 <section class="products__category--header section__header">
@@ -18,7 +18,7 @@
             {% if search.results_count == 0 %}
               <h2>{{ 'general.search.no_results_html' | t: terms: search.terms }}</h2>
             {% else %}
-              <h1>{{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}</h1>
+              <h2>{{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}</h2>
             {% endif %}
           {% else %}
             <h2>{{ 'general.search.title' | t }}</h2>
@@ -35,7 +35,6 @@
   </div>
 </section>
 
-
 <section class="products__category--items">
   <div class="container">
       <div class="row">
@@ -49,6 +48,7 @@
                 
                 <!-- FILTROS Y ORDENAR -->
                 <div class="col-6 col-md-4">
+                  {% include 'collection-sorting' %}
                 </div>
 
                 <div class="d-block d-md-none filter__categoria col-6">
@@ -60,6 +60,8 @@
         </div>
 
         <div class="col-3 d-none d-md-block">
+                    <!-- FILTROS TABLETA , DESKTOP -->
+            {% include 'sidebar-filters' %}
         </div>
 
         <div class="col-md-9">
@@ -75,62 +77,29 @@
                 
                 <!-- FILTROS Y ORDENAR -->
                 <div class="col-md-4">
+                 {% include 'collection-sorting' %}
                 </div>
             </div>
 
               
             <div class="row thumbs">
             {% paginate search.results by results_count %}
-            {%- comment -%}{% for product in collection.products limit: productos_por_pagina  %}
+              
+              {% for product in search.results %}
+              
               <div class="col-md-4">
                 {% include 'grid-item' %}
-              </div>
-            {% endfor %}{%- endcomment -%}
+              </div>                 
+              
+              {% endfor %}
 
-
-            {% for product in search.results %}
-
-            {% if product.price %}
-              {% unless grid_results %}
-                {% include 'product-list-item' %}
-              {% else %}
-                {% include 'grid-item' %}
-              {% endunless %}
-
-            {% elsif grid_results == false %}
-              {% comment %}
-                Search results for blog posts
-                Since the loop references 'product' for the product-list-item the articles also use 'product'
-              {% endcomment %}
-              <div class="box product article">
-                <figure>
-                  {% if product.image %}
-                    <div class="article-image product-thumbnail">
-                      <a href="{{ product.url }}"><img src="{{ product.image.src | img_url: '240x' }}" alt="{{ product.title }}"></a>
-                    </div>
-                  {% endif %}
-                  <figcaption>
-                    <header>
-                      <a href="{{ product.url }}" class="product-title">{{ product.title }}</a>
-                    </header>
-                    <div class="description rte">
-                      <p>{{ product.content | strip_html | truncatewords: 50 }} <a href="{{ product.url }}" class="button simple">{{ 'blogs.article.read_more' | t }}</a></p>
-                    </div>
-                  </figcaption>
-                </figure>
-              </div>
-            {% endif %}
-
-          {% endfor %}
-          
-          
-            
               <div class="loader mb-90">
                 {% include 'pagination' %}
               </div>
+              
             {% endpaginate %}
-
             </div>
+
         </div>
       </div>
   </div>
