@@ -1,0 +1,192 @@
+{%- assign results_count = section.settings.resultados -%}
+{%- assign respond_js_secret_key = shop.domain | md5 -%}
+{% unless search.terms == respond_js_secret_key %}
+
+<section class="products__category--header section__header">
+  <div class="container-fluid p0" style="background: url({{ section.settings.imagen | img_url: '1200x' }})no-repeat;background-size: cover; background-position: right;">
+    <div class="row">
+      <div class="col-md-6 offset-md-0 col-lg-8 offset-lg-1 col-xl-8 offset-xl-1 header--title">
+        {%- comment -%}
+        Breadcrumbs 
+        {%- endcomment -%}
+        <div class="breadcrumb">
+        <a>{{ 'general.search.heading' | t: count: search.results_count }}</a>
+        </div>
+        {%- comment -%}
+        Breadcrumbs END
+        {%- endcomment -%}
+        {% if search.performed %}
+            {% if search.results_count == 0 %}
+              <h2>{{ 'general.search.no_results_html' | t: terms: search.terms }} "{{ search.terms }}"</h2>
+            {% else %}
+              <h2>Buscaste lo siguiente: "{{ search.terms }}" {%- comment -%}{{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}{%- endcomment -%}</h2>
+            {% endif %}
+          {% else %}
+            <h2>{{ 'general.search.title' | t }}</h2>
+        {% endif %}
+        <p>
+        {% if search.results_count == 0 %}
+          {{ section.settings.texto }}
+        {% else %}
+          Encontramos {{ search.results_count }} resultados con "{{ search.terms }}" {%- comment -%}{{ section.settings.texto }}{%- endcomment -%}    
+        {% endif %}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="products__category--items">
+  <div class="container">
+      <div class="row">
+
+        <div class="col-md-12 d-lg-none">
+          <!-- TITULO NOMBRE MOBILE Y TABLETA -->
+            <div class="row products__category--name row-mobile">
+                <div class="col-md-8">
+                {% if search.performed %}
+                  {% if search.results_count == 0 %}
+                    <h2>{{ section.settings.coleccion }}&nbsp;{%- comment -%}<span class="text-link">&nbsp;{{ collection.all_products_count }}&nbsp;te mostramos: {{ section.settings.coleccion }}</span>{%- endcomment -%}</h2>
+                  {% else %}
+                    <h2>{{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}</h2>
+                  {% endif %}
+                {% else %}
+                  <h2>{{ 'general.search.title' | t }}</h2>
+                {% endif %}
+                </div>
+                
+                <!-- FILTROS Y ORDENAR -->
+                <div class="col-6 col-md-4">
+                  {% include 'collection-sorting' %}
+                </div>
+
+                {%- comment -%}
+                <div class="d-block d-md-none filter__categoria col-6">
+                  <div class="trigger">
+                    <a>categorías</a>
+                  </div>
+                </div>
+                {%- endcomment -%}
+            </div>
+        </div>
+
+        <div class="col-3 d-none d-md-block">
+        <!-- FILTROS TABLETA , DESKTOP -->
+            {%- comment -%}{% include 'sidebar-filters' %}{%- endcomment -%}
+        </div>
+
+        <div class="col-md-9">
+            <div class="d-md-none">
+            {% if search.results_count == 0 %}
+              <span class="text-link">{{ section.settings.coleccion }}</span>
+            {% else %}
+              <span class="text-link">{{ search.results_count }}&nbsp;productos encontrados</span>
+            {% endif %}
+            </div>
+
+            <!-- TITULO PARA DESKTOP -->
+            <div class="row products__category--name row-mobile d-none d-lg-flex ">
+                <div class="col-md-8">
+                {% if search.performed %}
+                  {% if search.results_count == 0 %}
+                    <h2>{{ section.settings.coleccion }}&nbsp;{%- comment -%}<span class="text-link">&nbsp;{{ collection.all_products_count }}&nbsp;te mostramos: {{ section.settings.coleccion }}</span>{%- endcomment -%}</h2>
+                  {% else %}
+                    <h2>{{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}</h2>
+                  {% endif %}
+                {% else %}
+                  <h2>{{ 'general.search.title' | t }}</h2>
+                {% endif %}
+                </div>
+                
+                <!-- FILTROS Y ORDENAR -->
+                <div class="col-md-4">
+                 {% include 'collection-sorting' %}
+                </div>
+            </div>
+
+              
+            <div class="row thumbs">
+            {% paginate search.results by results_count %}
+              
+              {% if search.results_count == 0 %}
+              {% assign collection_limit = 6 | plus:0 %}
+                {% for product in collections[section.settings.coleccion].products limit:collection_limit %}
+                  <div class="col-md-4">
+                    {% include 'grid-item' %}
+                  </div>
+                {% endfor %}
+              {% else %}
+                {% for product in search.results %}
+                <div class="col-md-4">
+                  {% include 'grid-item' %}
+                </div>                 
+                {% endfor %}
+              {% endif %}
+
+              <div class="loader mb-90">
+                {% include 'pagination' %}
+              </div>
+              
+            {% endpaginate %}
+            </div>
+
+        </div>
+      </div>
+  </div>
+</section>
+
+{% else %}
+  {% include 'respond' %}
+  {% layout none %}
+{% endunless %}
+
+{% schema %}
+{
+  "name": "Resultados de búsqueda",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Personaliza los resultados"
+    },
+    {
+      "type": "radio",
+      "id": "search_layout",
+      "label": "Layout de productos",
+      "options": [
+        { "value": "grid", "label": "Grid" }
+      ],
+      "default": "grid"
+    },
+    {
+      "type": "range",
+      "id": "resultados",
+      "label": "Resultados por página",
+      "min": 3,
+      "max": 18,
+      "step": 3,
+      "default": 6
+    },
+    {
+    "type": "image_picker",
+    "id": "imagen",
+    "label": "Selecciona la imagen de fondo",
+    "info": "1200 x 400px .jpg 96dpi"
+    },
+    {
+      "type": "header",
+      "content": "Búsqueda vacía"
+    },
+    {
+      "type": "collection",
+      "id": "coleccion",
+      "label": "Búsqueda vacía muestra la sig. colección:"
+    },
+    {
+      "type": "text",
+      "id": "texto",
+      "label": "Te mostramos algunos productos...", 
+      "default": "Te mostramos algunos productos que te pueden interesar"
+    }
+  ]
+}
+{% endschema %}
