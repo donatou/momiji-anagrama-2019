@@ -438,3 +438,22 @@ $(window).on('load', function() {
     });
 });
 
+// SORT BY de /snippets/collection-sorting.liquid
+  const $sorter = $('.js-collection-sort')
+  let sortBy = false
+
+  if (window.location.search.length) {
+    sortBy = new URLSearchParams(window.location.search).get('sort_by')
+  }
+
+  //preserve current selection
+  // set sort value to present query
+  if(sortBy) {
+    $sorter.val(sortBy)
+  }
+
+  $sorter.on('change', (e) => {
+    const { value } = e.currentTarget
+    
+    window.location = `?sort_by=${value}`
+  })
