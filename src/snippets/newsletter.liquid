@@ -1,0 +1,11 @@
+<!-- snippets/newsletter.liquid -->
+{% form 'customer', class: "col-12 col-lg-10 mx-auto footer__newsletter" %}
+    {{ form.errors | default_errors }}
+    {% if form.posted_successfully? %}
+    <p>{{ 'password.general.thanks_title' | t }}</p>
+    {% else %}
+    <input type="hidden" name="contact[tags]" value="prospect, email subscribe{% if subscribe_source %}, {{ subscribe_source }}{% endif %}">
+    <label for="newsletter"><b>{{ section.settings.newsletter_title }}</b></label>
+    <div class="field-container"><input type="email" name="contact[email]" id="email" placeholder="Tu correo aquí" class="input-group-field" required><button type="submit" id="subscribe" class="btn__tri">▾</button></div>
+    {% endif %}
+{% endform %}

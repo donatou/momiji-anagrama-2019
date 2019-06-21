@@ -3,7 +3,7 @@
 {% unless search.terms == respond_js_secret_key %}
 
 <section class="products__category--header section__header">
-  <div class="container-fluid p0" style="background: url({{ section.settings.imagen | img_url: '1200x' }})no-repeat;background-size: cover; background-position: right;">
+  <div class="container-fluid p0" style="background: url({{ section.settings.imagen | img_url: '1920x' }})no-repeat;background-size: cover; background-position: right;">
     <div class="row">
       <div class="col-md-6 offset-md-0 col-lg-8 offset-lg-1 col-xl-8 offset-xl-1 header--title">
         {%- comment -%}
@@ -169,8 +169,8 @@
     {
     "type": "image_picker",
     "id": "imagen",
-    "label": "Selecciona la imagen de fondo",
-    "info": "1200 x 400px .jpg 96dpi"
+    "label": "Select default background image for search",
+    "info": "1920 x 640px .jpg 72dpi menos de XX kB"
     },
     {
       "type": "header",

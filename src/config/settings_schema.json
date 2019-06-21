@@ -1,9 +1,9 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Starter theme",
-    "theme_version": "1.0.0",
-    "theme_author": "Shopify",
+    "theme_name": "Momiji Beauty",
+    "theme_version": "0.8.0",
+    "theme_author": "Anagrama",
     "theme_documentation_url": "https://github.com/Shopify/starter-theme",
     "theme_support_url": "https://github.com/Shopify/starter-theme/issues"
   },
@@ -153,7 +153,7 @@
         "type": "image_picker",
         "id": "favicon",
         "label": "Favicon image",
-        "info": "Will be scaled down to 32 x 32px"
+        "info": "Will be scaled down to 320 x 320px"
       }
     ]
   }
