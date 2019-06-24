@@ -3,12 +3,12 @@
 $(document).ready(function() {
 
   //CARGAR MODULOS
-  $("header").load("_header.html");
-  $("#mb-menu").load("_mobile.html");
-  $("footer").load("_footer.html");
-  $("#modal-search").load("_search.html");
-  $("#categorias").load("_categorias.html");
-  $("#modal-resena").load("_resena.html");
+ // $("header").load("_header.html");
+ // $("#mb-menu").load("_mobile.html");
+ // $("footer").load("_footer.html");
+ // $("#modal-search").load("_search.html");
+ // $("#categorias").load("_categorias.html");
+ // $("#modal-resena").load("_resena.html");
 
   // ACCORDION
   var i, acc = document.getElementsByClassName("accordion");
@@ -197,7 +197,7 @@ $(document).ready(function() {
   inputNumber($('.input-number'));
 
 
-  // PRODUCTS MOBILE FILTERS
+  // PRODUCTS MOBILE FILTERS 
 
   $(".filter__categoria").click(function(){
     $(".filter__modal.filtr").fadeIn();
@@ -438,7 +438,7 @@ $(window).on('load', function() {
     });
 });
 
-// SORT BY de /snippets/collection-sorting.liquid
+// SORT-BY de /snippets/collection-sorting.liquid
   const $sorter = $('.js-collection-sort')
   let sortBy = false
 

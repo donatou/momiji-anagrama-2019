@@ -56,9 +56,11 @@
                 </div>
                 
                 <!-- FILTROS Y ORDENAR -->
+                {%- comment -%}
                 <div class="col-6 col-md-4">
                   {% include 'collection-sorting' %}
                 </div>
+                {%- endcomment -%}
 
                 {%- comment -%}
                 <div class="d-block d-md-none filter__categoria col-6">
@@ -99,9 +101,11 @@
                 </div>
                 
                 <!-- FILTROS Y ORDENAR -->
+                {%- comment -%}
                 <div class="col-md-4">
                  {% include 'collection-sorting' %}
                 </div>
+                {%- endcomment -%}
             </div>
 
               
@@ -162,9 +166,9 @@
       "id": "resultados",
       "label": "Resultados por página",
       "min": 3,
-      "max": 18,
+      "max": 42,
       "step": 3,
-      "default": 6
+      "default": 42
     },
     {
     "type": "image_picker",

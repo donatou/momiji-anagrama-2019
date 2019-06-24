@@ -1,53 +1,4 @@
-{%- comment -%}
-Filtros laterales para desktop y tablet
-{%- endcomment -%}
-
-{% assign rutina = linklists.header-skincare-rutina %}
-{% assign tipoDePiel = linklists.header-skincare-tipo-de-piel %}
-{% assign soluciones = linklists.header-skincare-soluciones %}
-
-<div class="filter accordions__container">
-    
-    <a class="accordion">{{ rutina.title }}</a>
-
-    <ul class="list-unstyled panel">
-    {% for link in rutina.links %}
-        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-    {% endfor %}
-    </ul>
-
-    <a class="accordion">{{ tipoDePiel.title }}</a>
-
-    <ul class="list-unstyled panel">
-    {% for link in tipoDePiel.links %}
-        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-    {% endfor %}
-    </ul>
-
-    <a class="accordion">{{ soluciones.title }}</a>
-
-    <ul class="list-unstyled panel">
-    {% for link in soluciones.links %}
-        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-    {% endfor %}
-    </ul>
-
-    <!-- POR MARCA
-    <a class="accordion">Marcas</a>
-
-    <ul class="list-unstyled panel">
-    {% for product_vendor in shop.vendors %}
-        <li>{{ product_vendor | link_to_vendor }}</li>
-    {% endfor %}
-    </ul>
-    -->
-
-</div>
-
-
-
-                    <!-- Filtros: Mobile 2 - Filtros -->
-  <div class="filter__modal filtr">
+<div class="filter__modal filtr" style="display: block;">
 
     <div class="close-btn" id="close"></div>
 
@@ -61,12 +12,7 @@ Filtros laterales para desktop y tablet
       <div class="col-12">
         <div class="filters__item" data-info="skincare">
           <a class="h3 nav-item" data-info="skincare">Skincare</a>
-          <div class="filter__applied">
-            <p>Filtro aplicado</p>
-            <p>Filtro aplicado</p>
-            <p>Filtro aplicado</p>
-            <p>Filtro aplicado</p>
-          </div>
+          <div class="filter__applied"></div>
         </div>
         <div class="filters__item">
           <a class="h3 nav-item" data-info="marcas">Marcas</a>
@@ -85,7 +31,7 @@ Filtros laterales para desktop y tablet
 
 
     <div class="subFiltros">
-      <div class="modulo--sub" data-id="skincare">
+      <div class="modulo--sub" data-id="skincare" style="display: none;">
 
         <div class="row">
           <div class="col-12 breadcrumb">
@@ -141,7 +87,3 @@ Filtros laterales para desktop y tablet
       </div>
     </div>
   </div>
-
-{%- comment -%}
-Filtros laterales para desktop y tablet - END
-{%- endcomment -%}
