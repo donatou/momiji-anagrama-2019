@@ -457,3 +457,4 @@ $(window).on('load', function() {
     
     window.location = `?sort_by=${value}`
   })
+  

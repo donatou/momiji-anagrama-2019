@@ -57,7 +57,7 @@
             <button class="btn__main" type="submit" name="tyc" >{{ 'customer.register.submit' | t }}</button>
           </form>
 
-          <p class="text-link">¿Ya tienes una cuenta? <a href="/customers/login"> ingresa a tu  cuenta</a></p>
+          <p class="text-link">¿Ya tienes una cuenta? {{ ' ingresa a tu cuenta' | customer_login_link }}</p>
         </div>      
       </div>
 {% endform %}

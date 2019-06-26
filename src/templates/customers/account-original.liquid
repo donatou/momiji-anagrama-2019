@@ -1,0 +1,315 @@
+
+<main class="cuenta">
+  
+  <section class="cuenta__detalle section__principal">
+    <div class="container">
+      <div class="row">
+          <div class="col-12 cuenta__title">
+              <h2>{{ 'customer.account.title' | t }}</h2>
+              <a class="btn__main" href="borrar-cuenta.html">Borrar cuenta</a>
+          </div>
+      </div>
+
+      <div class="row mt-50 row-mobile">
+        <div class="col-md-12 col-lg-6 p-0">
+          <div class="col-12 section__title">
+            <h3>{{ 'customer.orders.title' | t }}</h3>
+          </div>
+        {% paginate customer.orders by 20 %}
+          <div class="col-12 d-none d-md-block">
+            {% if customer.orders.size != 0 %}
+            <table>
+              <tr>
+                <th>{{ 'customer.orders.order_number' | t }}</th>
+                <th>{{ 'customer.orders.date' | t }}</th>
+                <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                <th>{{ 'customer.orders.total' | t }}</th>
+              </tr>
+            {% for order in customer.orders %}
+              <tr>
+                <td data-label="{{ 'customer.orders.order_number' | t }}">{{ order.name | link_to: order.customer_url }}</td>
+                <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: format: 'month_day_year' }}</td>
+                <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
+                <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+              </tr>
+            {% endfor %}
+            </table>
+            {% else %}
+            <p>{{ 'customer.orders.none' | t }}</p>
+            {% endif %}
+          </div>
+          {% if paginate.pages > 1 %}
+            {% include 'pagination' %}
+          {% endif %}
+        {% endpaginate %}
+
+          <div class="col-12 d-md-none">
+        {% paginate customer.orders by 20 %}
+        {% if customer.orders.size != 0 %}
+          {% for order in customer.orders %}
+            <div class="card__order">
+              <table>
+                <tr>
+                  <th>{{ 'customer.orders.order_number' | t }}</th>
+                  <td data-label="{{ 'customer.orders.order_number' | t }}">{{ order.name | link_to: order.customer_url }}</td>
+                </tr>
+                <tr>
+                  <th>{{ 'customer.orders.date' | t }}</th>
+                  <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: format: 'month_day_year' }}</td>
+                </tr>
+                <tr>
+                  <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                  <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
+                </tr>
+                <tr>
+                  <th>{{ 'customer.orders.total' | t }}</th> 
+                  <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+                </tr>
+              </table>
+            </div>
+          {% endfor %}
+        {% else %}
+            <p>{{ 'customer.orders.none' | t }}</p>
+        {% endif %}
+          </div>
+          <br>
+          {% if paginate.pages > 1 %}
+            {% include 'pagination' %}
+          {% endif %}
+        {% endpaginate %}
+        </div>
+
+
+        <div class="col-md-12 col-lg-6 br">
+          <div class="row">
+            <div class="col-md-12 col-lg-9 mx-auto">
+              <div class="row">
+                <div class="col-12 section__title">
+                  <h3>{{ 'customer.account.details' | t }}</h3>
+                </div>
+                <div class="col-md-6 col-lg-12 cuenta__direccion">
+                  <b>{{ customer.name }}</b>
+                  <p>{{ customer.email }}</p>
+                  <p>Teléfono: {{customer.phone }}</p>
+                </div>
+              {% for address in customer.addresses %}
+                <div class="col-md-6 col-lg-12 cuenta__direccion">
+                {% if address == customer.default_address %}
+                  <p class="text-link">Dirección principal</p>
+                {% else %}
+                  <p class="text-link">Dirección</p>
+                {% endif %}
+                 <!-- <p>{{ customer.metafields.customer.birthday }}</p> -->
+                 <!-- <address>{{ customer.address | format_address }}</address> -->
+                  <p>
+                    {{ address.first_name }} {{ address.last_name }}<br>
+                    {% if address.company != '' %}
+                      {{ address.company }}<br>
+                    {% endif %}
+                    {{ address.street }}<br>
+                    {{ address.city }}, 
+                    {% if address.province_code %}
+                      {{ address.province_code | upcase }}<br>
+                    {% endif %}
+                    {{ address.country }}, C.P. {{ address.zip | upcase }}<br>
+                    Teléfono: {{ address.phone }}<br>
+                    Address ID {{ address.id }}
+                  </p>
+                  <div class="btn--100">
+                    <a class="btn__main" href="{{ edit_customer_address_link: address.id }}">{{ 'customer.addresses.edit' | t }}</a>
+                    <a class="btn__main btn__main--lighter" href="{{ delete_customer_address_link: address.id }}">{{ 'customer.addresses.delete' | t }}</a>
+                  </div>
+
+<!-- form escondida que se habilita con JS para editar -->
+                  {% form 'customer_address', address %}
+                    <form action="" class="row">
+                      <div class="col-12">
+                        <p class="text-link">Dirección principal</p>
+                        <input type="text" placeholder="Correo electrónico">
+                        <div class="input-error"><p>Por favor, agrega un correo electrónico</p></div>
+                        <input type="text" placeholder="Nombre Completo">
+                        <div class="input-error"><p>Por favor, agrega un nombre completo</p></div>
+                        <input type="text" placeholder="Direccion">
+                        <div class="input-error"><p>Por favor, agrega una dirección</p></div>
+                      </div>
+                      
+                      <div class="col-4">
+                        <select  name="date-number" id="">
+                        <option value="">1</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+                        <option value="">4</option>
+                        <option value="">1</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+                        <option value="">4</option>
+                        <option value="">1</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+                        <option value="">4</option>
+                      </select>
+                      </div>
+
+                      <div class="col-4">
+                        <select name="date-mes" id="">
+                          <option value="">Septiembre</option>
+                          <option value="">Agosto</option>
+                          <option value="">Noviembre</option>
+                          <option value="">Diciembre</option>
+                        </select>
+                      </div>
+
+                      <div class="col-4" >
+                        <select name="date-año" id="">
+                          <option value="">1999</option>
+                          <option value="">2000</option>
+                          <option value="">2001</option>
+                          <option value="">2002</option>
+                        </select>
+                      </div>
+
+                      <div class="col-12">
+                        <input type="numbers" placeholder="Teléfono">
+                        <div class="input-error"><p>Por favor, agrega un teléfono</p></div>
+                      </div>
+                      
+                      <div class="col-4">
+                        <select  name="ciudad" id="">
+                          <option value="">Guadalupe</option>
+                          <option value="">San Nicolas de los Garza</option>
+                          <option value="">San Pedro Garza</option>
+                          <option value="">Escobedo</option>
+                        </select>
+                      </div>
+                      <div class="col-4">
+                        <select  name="estado" id="">
+                          <option value="">Nuevo Léon</option>
+                          <option value="">CDMX</option>
+                          <option value="">Guanajuato</option>
+                          <option value="">Guadalajara</option>
+                        </select>
+                      </div>
+                      <div class="col-4">
+                        <select name="país" id="">
+                          <option value="">México</option>
+                          <option value="">EUA</option>
+                          <option value="">Canadá</option>
+                          <option value="">Chile</option>
+                        </select>
+                      </div>
+                      
+                      <div class="col-12">
+                        <input type="text" placeholder="Código Postal">
+                        <div class="input-error"><p>Por favor, agrega tu código postal</p></div>
+                      </div>
+
+
+                      <button class="btn__main">Guardar Cambios</button>
+                    </form>
+                  {% endform %}
+      <!-- form escondida que se habilita con JS para editar -->
+
+
+                </div>
+              {% endfor %}
+
+                <div class="col-12 cuenta__agregar">
+                  <p class="text-link">AGREGAR NUEVA DIRECCIÓN<a href="cuenta-direccion.html" class="btn__more"></a></p>
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+        </div>
+      </div>
+        
+    </div>
+
+<script>
+                // Initialize observers on address selectors
+                new Shopify.CountryProvinceSelector('AddressCountryNew', 'AddressProvinceNew', {
+                  hideElement: 'AddressProvinceContainerNew'
+                });
+
+                // Setup province selector on each customer address
+                {% for address in customer.addresses %}
+                  new Shopify.CountryProvinceSelector('AddressCountry_{{ address.id }}', 'AddressProvince_{{ address.id }}', {
+                    hideElement: 'AddressProvinceContainer_{{ address.id }}'}
+                  );
+                {% endfor %}
+
+                // Modified contents of customer_area.js (global asset)
+                Shopify.CustomerAddress = {
+                  toggleForm: function(id) {
+                    var editEl = document.getElementById('EditAddress_'+id);
+                    editEl.style.display = editEl.style.display == 'none' ? '' : 'none';
+                    return false;
+                  },
+
+                  toggleNewForm: function() {
+                    var el = document.getElementById('AddAddress');
+                    el.style.display = el.style.display == 'none' ? '' : 'none';
+                    return false;
+                  },
+
+                  destroy: function(id, confirm_msg) {
+                    if (confirm(confirm_msg || "Are you sure you wish to delete this address?")) {
+                      Shopify.postLink('/account/addresses/'+id, {'parameters': {'_method': 'delete'}});
+                    }
+                  }
+                }
+              </script>
+
+  </section>
+    
+</main>
+
+
+
+{%- comment -%}
+
+<h1>{{ 'customer.account.title' | t }}</h1>
+
+<h2>{{ 'customer.orders.title' | t }}</h2>
+
+{% paginate customer.orders by 20 %}
+  {% if customer.orders.size != 0 %}
+    <table class="responsive-table">
+      <thead>
+        <tr>
+          <th>{{ 'customer.orders.order_number' | t }}</th>
+          <th>{{ 'customer.orders.date' | t }}</th>
+          <th>{{ 'customer.orders.payment_status' | t }}</th>
+          <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+          <th>{{ 'customer.orders.total' | t }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in customer.orders %}
+          <tr class="responsive-table-row">
+            <td data-label="{{ 'customer.orders.order_number' | t }}">{{ order.name | link_to: order.customer_url }}</td>
+            <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: format: 'month_day_year' }}</td>
+            <td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
+            <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
+            <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>{{ 'customer.orders.none' | t }}</p>
+  {% endif %}
+
+  {% if paginate.pages > 1 %}
+    {% include 'pagination' %}
+  {% endif %}
+
+{% endpaginate %}
+
+<h2>{{ 'customer.account.details' | t }}</h2>
+
+{{ customer.default_address | format_address }}
+
+<a href="/account/addresses">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a>
+{%- endcomment -%}
