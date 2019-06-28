@@ -41,7 +41,6 @@ function initializeAddressForm(countryProvinceSelector, container) {
   if (deleteForm) {
     deleteForm.addEventListener('submit', (event) => {
       const confirmMessage = deleteForm.getAttribute('data-confirm-message');
-
       if (!window.confirm(confirmMessage || 'Are you sure you wish to delete this address?')) {
         event.preventDefault();
       }
