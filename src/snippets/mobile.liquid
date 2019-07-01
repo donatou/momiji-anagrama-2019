@@ -1,0 +1,75 @@
+<div class="mobile__header">
+  <div class="mobile-btn link__mobile" id="close">
+    <div class="nav-btn"></div>
+  </div>
+</div>
+
+<ul class="mobile-nav list-unstyled">
+  <li class="nav-item">
+    <form class="search-input d-block d-md-none search" action="/search">
+        <input type="hidden" name="type" value="product">
+        <input type="text" name="q" placeholder="Buscar" value="{{ search.terms | escape }}">
+        <button type="submit" class="search-btn" name="button">
+            <img src="{{ 'search.svg' | asset_url }}" alt="Search">
+        </button>
+    </form>
+  </li>
+  <li class="main-item nav-item accordion">
+    <a class="h3" href="products.html">Skincare</a>
+  </li>
+  <li class="main-item nav-item accordion">
+    <a class="h3">Maquillaje</a>
+    <ul id="accordion-items" class="list-unstyled accordion-items">
+      <li class="accordion-item" data-id="rutina">
+        <a class="h3">Rutina</a>
+      </li>
+      <li class="accordion-item">
+        <a class="h3">Tipo de Piel</a>
+      </li>
+      <li class="accordion-item">
+        <a class="h3">Soluciones</a>
+      </li>
+      <li class="accordion-item">
+        <a class="h3">Destacados</a>
+      </li>
+      <li class="accordion-item">
+        <a href="products.html">ir a todos</a>
+      </li>
+    </ul>
+  </li>
+  <li class="main-item nav-item accordion"><a class="h3">Marcas</a> </li>
+  <li class="main-item nav-item accordion"><a class="h3">Kits Momiji</a> </li>
+  <li class="main-item nav-item accordion"><a class="h3">Novedades</a> </li>
+  <li class="main-item nav-item accordion"><a class="h3">Oferta</a> </li>
+  <li class="main-item nav-item accordion"><a class="h3">Momiji shop</a> </li>
+</ul>
+
+<div class="mobile__footer d-block d-md-none">
+  <div class="header__currency nav-item">
+      <img src="img/svg/header/currency.svg" alt="Currency">
+      <select name="price" id="">
+        <option value="MXN">MXN</option>
+        <option value="DLLRS">DLLRS</option>
+        <option value="CL">CL</option>
+      </select>
+  </div>
+  <a class="nav-item" href="mi-cuenta.html">Mi cuenta</a>
+  <a class="nav-item" href="">Mi Wishlist</a>
+</div>
+
+
+<div class="accordion-items--second" style="display: none" data-info="rutina">
+  <a class="link__regresar"> <img src="img/svg/arrow.svg" alt="Regresar">regresar</a>
+  <h3><a href="products.html" class="h3">Rutina </a></h3>
+  <ul class="list-unstyled">
+    <li><a href="products.html">Limpiadores</a></li>
+    <li><a href="products.html">Exfoliadores</a></li>
+    <li><a href="products.html">Toners</a></li>
+    <li><a href="products.html">Esencias</a></li>
+    <li><a href="products.html">Tratamientos</a></li>
+    <li><a href="products.html">Mascarillas</a></li>
+    <li><a href="products.html">Crema para ojos</a></li>
+    <li><a href="products.html">Humectantes </a></li>
+    <li><a href="products.html">Protector solar</a></li>
+  </ul>
+</div>
