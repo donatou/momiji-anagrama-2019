@@ -1,3 +1,8 @@
+{% assign top = linklists.header-principal-sin-skincare %}
+{% assign rutina = linklists.header-skincare-rutina %}
+{% assign tipoDePiel = linklists.header-skincare-tipo-de-piel %}
+{% assign soluciones = linklists.header-skincare-soluciones %}
+
 <div class="mobile__header">
   <div class="mobile-btn link__mobile" id="close">
     <div class="nav-btn"></div>
@@ -16,60 +21,93 @@
   </li>
   <li class="main-item nav-item accordion">
     <a class="h3" href="products.html">Skincare</a>
-  </li>
-  <li class="main-item nav-item accordion">
-    <a class="h3">Maquillaje</a>
     <ul id="accordion-items" class="list-unstyled accordion-items">
       <li class="accordion-item" data-id="rutina">
-        <a class="h3">Rutina</a>
+        <a class="h3">{{ rutina.title }}</a>
+      </li>
+      <li class="accordion-item" data-id="tipoDePiel">
+        <a class="h3">{{ tipoDePiel.title }}</a>
+      </li>
+      <li class="accordion-item" data-id="soluciones">
+        <a class="h3">{{ soluciones.title }}</a>
+      </li>
+      <li class="accordion-item" data-id="marcas">
+        <a class="h3">Marcas</a>
       </li>
       <li class="accordion-item">
-        <a class="h3">Tipo de Piel</a>
-      </li>
-      <li class="accordion-item">
-        <a class="h3">Soluciones</a>
-      </li>
-      <li class="accordion-item">
-        <a class="h3">Destacados</a>
-      </li>
-      <li class="accordion-item">
-        <a href="products.html">ir a todos</a>
+        <a href="/collections/all">ir a todos</a>
       </li>
     </ul>
   </li>
-  <li class="main-item nav-item accordion"><a class="h3">Marcas</a> </li>
-  <li class="main-item nav-item accordion"><a class="h3">Kits Momiji</a> </li>
-  <li class="main-item nav-item accordion"><a class="h3">Novedades</a> </li>
-  <li class="main-item nav-item accordion"><a class="h3">Oferta</a> </li>
-  <li class="main-item nav-item accordion"><a class="h3">Momiji shop</a> </li>
+  {% for link in top.links %}
+  <li class="main-item nav-item accordion"><a class="h3" href="{{ link.url }}">{{ link.title }}</a> </li>
+  {% endfor %}
 </ul>
 
 <div class="mobile__footer d-block d-md-none">
   <div class="header__currency nav-item">
-      <img src="img/svg/header/currency.svg" alt="Currency">
+      <img src="{{ 'currency.svg' | asset_url }}" alt="Currency">
       <select name="price" id="">
         <option value="MXN">MXN</option>
-        <option value="DLLRS">DLLRS</option>
-        <option value="CL">CL</option>
       </select>
   </div>
-  <a class="nav-item" href="mi-cuenta.html">Mi cuenta</a>
-  <a class="nav-item" href="">Mi Wishlist</a>
+  {% if shop.customer_accounts_enabled %}
+      {% if customer %}
+        {% if customer.first_name != blank %}
+          {% capture first_name %}
+            <a class="nav-item" href="/account">{{ customer.first_name }}</a>
+            {% endcapture %}
+          <a class="nav-item">Hola, {{ customer.first_name | truncatewords: 1, "" }} /</a>
+        {% else %}
+          <a class="nav-item" href="/account">{{ 'layout.customer.account' | t }}</a>
+        {% endif %}
+        {{ 'layout.customer.log_out' | t | customer_logout_link }}
+      {% else %}
+        {{ 'layout.customer.log_in' | t | customer_login_link }}
+        <span> / </span>
+        {{ 'layout.customer.create_account' | t | customer_register_link }}
+      {% endif %}
+  {% endif %}
+  <a class="nav-item swym-wishlist" href="#swym-wishlist" id="close">Mi Wishlist</a>
 </div>
 
 
 <div class="accordion-items--second" style="display: none" data-info="rutina">
-  <a class="link__regresar"> <img src="img/svg/arrow.svg" alt="Regresar">regresar</a>
-  <h3><a href="products.html" class="h3">Rutina </a></h3>
+  <a class="link__regresar"> <img src="{{ 'arrow.svg' | asset_url }}" alt="Regresar">regresar</a>
+  <h3><a class="h3">{{ rutina.title }}</a></h3>
   <ul class="list-unstyled">
-    <li><a href="products.html">Limpiadores</a></li>
-    <li><a href="products.html">Exfoliadores</a></li>
-    <li><a href="products.html">Toners</a></li>
-    <li><a href="products.html">Esencias</a></li>
-    <li><a href="products.html">Tratamientos</a></li>
-    <li><a href="products.html">Mascarillas</a></li>
-    <li><a href="products.html">Crema para ojos</a></li>
-    <li><a href="products.html">Humectantes </a></li>
-    <li><a href="products.html">Protector solar</a></li>
+    {% for link in rutina.links %}
+    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="accordion-items--second" style="display: none" data-info="tipoDePiel">
+  <a class="link__regresar"> <img src="{{ 'arrow.svg' | asset_url }}" alt="Regresar">regresar</a>
+  <h3><a class="h3">{{ tipoDePiel.title }}</a></h3>
+  <ul class="list-unstyled">
+    {% for link in tipoDePiel.links %}
+    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="accordion-items--second" style="display: none" data-info="soluciones">
+  <a class="link__regresar"> <img src="{{ 'arrow.svg' | asset_url }}" alt="Regresar">regresar</a>
+  <h3><a class="h3">{{ soluciones.title }}</a></h3>
+  <ul class="list-unstyled">
+    {% for link in soluciones.links %}
+    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="accordion-items--second" style="display: none" data-info="marcas">
+  <a class="link__regresar"> <img src="{{ 'arrow.svg' | asset_url }}" alt="Regresar">regresar</a>
+  <h3><a class="h3">Marcas</a></h3>
+  <ul class="list-unstyled">
+    {% for product_vendor in shop.vendors %}
+    <li>{{ product_vendor | link_to_vendor }}</li>
+    {% endfor %}
   </ul>
 </div>
