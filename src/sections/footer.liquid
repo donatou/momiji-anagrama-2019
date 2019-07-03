@@ -51,7 +51,12 @@
 
       <div class="col-md-5 bl">
         {% include 'newsletter', subscribe_source: 'footer' %}
-        <div class="col-12 col-lg-10 mx-auto footer__quiz"><img src="{{ 'quiz.svg' | asset_url }}" alt="Take Quiz"><a href="/">{{ section.settings.quiz_title }}</a></div>
+        <div class="col-12 col-lg-10 mx-auto footer__quiz">
+          {%- comment -%} QUIZ AUN NO ACTIVO
+          <img src="{{ 'quiz.svg' | asset_url }}" alt="Take Quiz">
+          <a href="/">{{ section.settings.quiz_title }}</a>
+          {%- endcomment -%}
+        </div>
       </div>
       <div class="col-md-5 col-lg-12 footer__derechos d-block d-md-none mt-50">
         <p>© {{ "now" | date: "%Y" }} {{ shop.name }}. Todos los Derechos reservados.</p>

@@ -20,7 +20,7 @@
     </form>
   </li>
   <li class="main-item nav-item accordion">
-    <a class="h3" href="products.html">Skincare</a>
+    <a class="h3">Skincare</a>
     <ul id="accordion-items" class="list-unstyled accordion-items">
       <li class="accordion-item" data-id="rutina">
         <a class="h3">{{ rutina.title }}</a>
@@ -30,9 +30,6 @@
       </li>
       <li class="accordion-item" data-id="soluciones">
         <a class="h3">{{ soluciones.title }}</a>
-      </li>
-      <li class="accordion-item" data-id="marcas">
-        <a class="h3">Marcas</a>
       </li>
       <li class="accordion-item">
         <a href="/collections/all">ir a todos</a>
@@ -98,16 +95,6 @@
   <ul class="list-unstyled">
     {% for link in soluciones.links %}
     <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-    {% endfor %}
-  </ul>
-</div>
-
-<div class="accordion-items--second" style="display: none" data-info="marcas">
-  <a class="link__regresar"> <img src="{{ 'arrow.svg' | asset_url }}" alt="Regresar">regresar</a>
-  <h3><a class="h3">Marcas</a></h3>
-  <ul class="list-unstyled">
-    {% for product_vendor in shop.vendors %}
-    <li>{{ product_vendor | link_to_vendor }}</li>
     {% endfor %}
   </ul>
 </div>
