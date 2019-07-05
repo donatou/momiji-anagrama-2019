@@ -20,13 +20,13 @@ $(document).ready(function() {
   });
 
   //PRIVACIDAD
-  $(".legal aside li").click(function() {
-      var buttonId = Number($(this).attr("id"));
-      $('.legal aside li').removeClass("active");
-      $(this).addClass("active");
-      $(".legal__item").hide();
-      $(".legal__item[data-id="+buttonId+"]").fadeIn(); 
-  });
+  //$(".legal aside li").click(function() {
+  //    var buttonId = Number($(this).attr("id"));
+  //    $('.legal aside li').removeClass("active");
+  //    $(this).addClass("active");
+  //    $(".legal__item").hide();
+  //    $(".legal__item[data-id="+buttonId+"]").fadeIn(); 
+  //});
 
   //MODAL GLOSARIO
   $(".legal ul.columns li").click(function() {
@@ -59,6 +59,7 @@ $(document).ready(function() {
   $('body').on('click', '.mobile-menu #close', function() {
     $(".mobile-btn").removeClass('is-open');
     $(".mobile-menu").removeClass('is-open');
+    $("body").css('overflow', 'auto' );
   });
 
   $('body').on('click', '.mobile-menu li.accordion', function() {
