@@ -1,54 +1,40 @@
-<h1>{{ page.title }}</h1>
+<main class="contacto bg-purple">
 
-<div class="rte">
-  {{ page.content }}
-</div>
-
-{% form 'contact' %}
-
-  {% if form.posted_successfully? %}
-    <p class="form-success">
-      {{ 'contact.form.post_success' | t }}
-    </p>
-  {% endif %}
-
-  {{ form.errors | default_errors }}
-
-  <label for="ContactFormName">{{ 'contact.form.name' | t }}</label>
-  <input type="text"
-    name="contact[name]"
-    id="ContactFormName"
-    placeholder="{{ 'contact.form.name' | t }}"
-    value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
-
-  <label for="ContactFormEmail">{{ 'contact.form.email' | t }}</label>
-  <input type="email"
-    name="contact[email]"
-    id="ContactFormEmail"
-    placeholder="{{ 'contact.form.email' | t }}"
-    value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-    spellcheck="false"
-    autocomplete="off"
-    autocapitalize="off">
-
-  <label for="ContactFormPhone">{{ 'contact.form.phone' | t }}</label>
-  <input type="tel"
-    name="contact[phone]"
-    id="ContactFormPhone"
-    placeholder="{{ 'contact.form.phone' | t }}"
-    value="{% if form[phone] %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
-    pattern="[0-9\-]*">
-
-  <label for="ContactFormMessage">{{ 'contact.form.message' | t }}</label>
-  <textarea rows="10"
-    name="contact[body]"
-    id="ContactFormMessage"
-    placeholder="{{ 'contact.form.message' | t }}">
-    {%- if form.body -%}
-      {{- form.body -}}
-    {%- endif -%}
-  </textarea>
-
-  <input type="submit" class="button" value="{{ 'contact.form.send' | t }}">
-
-{% endform %}
+    <section class="section__principal">
+    <div class="container">
+        <div class="row">
+        <div class="col-md-10 mx-md-auto col-lg-6">
+            <div class="img-container"><img src="{{ 'contacto.png' | asset_url }}" alt="Contactanos"></div>
+        </div>
+        <div class="col-md-11 mx-md-auto col-lg-6 sticker3">
+            <div class="col-md-12 col-lg-10">
+                <h2>Queremos saber un poco más sobre ti</h2>
+                <p>¿Dudas sobre tu pedido? ¿Todo quieres y no sabes qué comprar? Mándanos un mail, nos pondremos en contacto contigo en menos de 24 hrs <3 </p>
+                <a href="/pages/preguntas-frecuentes" class="link--orange">Visita nuestra sección de FAQ</a>
+            </div>
+            <div class="contacto__items">
+                <div class="col-12 col-md-5">
+                <b>Nuestra tienda en CDMX</b>
+                <address>Lagos 123, Colonia Condesa, Ciudad de México, 06100</address>
+                <a href="telto:+52 (55) 7825 8810">+52 (55) 7825 8810</a>
+                </div>
+                <div class="col-12 col-md-5">
+                <b>Experience Center Monterrey</b>
+                <address>Guillermo Prieto 400, San Pedro Garza García, Nuevo León, 66220</address>
+                <a href="telto:+52 (81) 8336 6666">+52 (81) 8336 6666</a>
+                </div>
+                <div class="col-12 col-md-5">
+                <b>Dudas y preguntas sobre pedidos</b>
+                <a href="mailto:help@momijibeauty.com">help@momijibeauty.com </a>
+                </div>
+                <div class="col-12 col-md-5">
+                <b>Colaboraciones y medios</b>
+                <a href="mailto:press@momijibeauty.com">press@momijibeauty.com</a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+    </section>
+</main>

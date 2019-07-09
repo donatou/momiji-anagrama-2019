@@ -12,23 +12,7 @@
     </div>
   
     <div class="header__cuenta">
-      {% if shop.customer_accounts_enabled %}
-        <p>
-          {% if customer %}
-              {% if customer.first_name != blank %}
-                {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
-                <a href="/account">Hola, {{ customer.first_name | truncatewords: 1, "" }} /</a>
-              {% else %}
-                <a href="/account">{{ 'layout.customer.account' | t }}</a>
-              {% endif %}
-              {{ 'layout.customer.log_out' | t | customer_logout_link }}
-          {% else %}
-              {{ 'layout.customer.log_in' | t | customer_login_link }}
-              <span> / </span>
-              {{ 'layout.customer.create_account' | t | customer_register_link }}
-          {% endif %}
-        </p>
-      {% endif %} 
+      {% include 'header-account' %}
     </div>
   </div>
 
@@ -45,7 +29,7 @@
 {% assign soluciones = linklists.header-skincare-soluciones %}
 
       <div class="header__nav--logo">
-        <a href="index.html"><img src="{{ 'momiji-logo-rgb.svg' | asset_url }}" alt="{{ shop.name }}" itemprop="logo"></a>
+        <a href="/index"><img src="{{ 'momiji-logo-rgb.svg' | asset_url }}" alt="{{ shop.name }}" itemprop="logo"></a>
       </div>
       <ul class="header__nav--menu list-unstyled">
         <li class="nav-item nav-item--cat"><a>Skincare</a>
@@ -129,7 +113,7 @@
         <div class="nav-btn"></div>
       </div>
       <div class="header__nav--logo">
-        <a href="index.html"><img src="{{ 'momiji-logo-rgb.svg' | asset_url }}" alt="Momiji"></a>
+        <a href="/index"><img src="{{ 'momiji-logo-rgb.svg' | asset_url }}" alt="{{ shop.name }}"></a>
       </div>
       <ul class="header__nav--menu list-unstyled">
         <li class="nav-item nav-item--cat"><a>Skincare</a>
@@ -199,23 +183,7 @@
 
     <div class="header__nav--icons d-flex">
       <div class="header__cuenta d-none d-lg-block">
-      {% if shop.customer_accounts_enabled %}
-        <p>
-          {% if customer %}
-              {% if customer.first_name != blank %}
-                {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
-                <a>Hola, {{ customer.first_name | truncatewords: 1, "" }} /</a>
-              {% else %}
-                <a href="/account">{{ 'layout.customer.account' | t }}</a>
-              {% endif %}
-              {{ 'layout.customer.log_out' | t | customer_logout_link }}
-          {% else %}
-              {{ 'layout.customer.log_in' | t | customer_login_link }}
-              <span> / </span>
-              {{ 'layout.customer.create_account' | t | customer_register_link }}
-          {% endif %}
-        </p>
-      {% endif %}
+        {% include 'header-account' %}
       </div>
       <div class="header__icons--search d-none d-md-block">
         <a data-modal="search"><img src="{{ 'search.svg' | asset_url }}" alt="Search"></a>

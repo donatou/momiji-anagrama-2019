@@ -16,13 +16,13 @@
     });
     if(isInWishlist){
       wishlistButton.setAttribute("disabled", true);
-      wishlistButton.innerHTML = "Saved";
+      wishlistButton.innerHTML = "";
     } else {
       wishlistButton.addEventListener("click", function(e){
         if(SwymPageData){
           SwymPageData.et = 4;	// et 4 stands for wishlist event type
           _swat.addToWishList(SwymPageData, function(e){
-            wishlistButton.innerHTML = "Saved"; 
+            wishlistButton.innerHTML = ""; 
           });
         }
       });

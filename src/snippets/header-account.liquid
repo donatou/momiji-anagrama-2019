@@ -1,0 +1,19 @@
+{% if shop.customer_accounts_enabled %}
+    <p>
+        {% if customer %}
+            {% if customer.first_name != blank %}
+                {% capture first_name %}
+                <a href="/account">{{ customer.first_name }}</a>
+                {% endcapture %}
+                <a href="/account">Hola, {{ customer.first_name | truncatewords: 1, "" }} /</a>
+            {% else %}
+                <a href="/account">{{ 'layout.customer.account' | t }}</a>
+            {% endif %}
+            {{ 'layout.customer.log_out' | t | customer_logout_link }}
+        {% else %}
+            {{ 'layout.customer.log_in' | t | customer_login_link }}
+            <span> / </span>
+            {{ 'layout.customer.create_account' | t | customer_register_link }}
+        {% endif %}
+    </p>
+{% endif %}

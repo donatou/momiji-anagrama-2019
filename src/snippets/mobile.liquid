@@ -54,7 +54,7 @@
           {% capture first_name %}
             <a class="nav-item" href="/account">{{ customer.first_name }}</a>
             {% endcapture %}
-          <a class="nav-item">Hola, {{ customer.first_name | truncatewords: 1, "" }} /</a>
+          <a class="nav-item" href="/account">Hola, {{ customer.first_name | truncatewords: 1, "" }}</a>
         {% else %}
           <a class="nav-item" href="/account">{{ 'layout.customer.account' | t }}</a>
         {% endif %}
@@ -70,7 +70,7 @@
 
 
 <div class="accordion-items--second" style="display: none" data-info="rutina">
-  <a class="link__regresar"> <img src="{{ 'arrow.svg' | asset_url }}" alt="Regresar">regresar</a>
+  {% include 'regresar-mobile' %}
   <h3><a class="h3">{{ rutina.title }}</a></h3>
   <ul class="list-unstyled">
     {% for link in rutina.links %}
@@ -80,7 +80,7 @@
 </div>
 
 <div class="accordion-items--second" style="display: none" data-info="tipoDePiel">
-  <a class="link__regresar"> <img src="{{ 'arrow.svg' | asset_url }}" alt="Regresar">regresar</a>
+  {% include 'regresar-mobile' %}
   <h3><a class="h3">{{ tipoDePiel.title }}</a></h3>
   <ul class="list-unstyled">
     {% for link in tipoDePiel.links %}
@@ -90,7 +90,7 @@
 </div>
 
 <div class="accordion-items--second" style="display: none" data-info="soluciones">
-  <a class="link__regresar"> <img src="{{ 'arrow.svg' | asset_url }}" alt="Regresar">regresar</a>
+  {% include 'regresar-mobile' %}
   <h3><a class="h3">{{ soluciones.title }}</a></h3>
   <ul class="list-unstyled">
     {% for link in soluciones.links %}
