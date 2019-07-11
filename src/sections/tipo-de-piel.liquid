@@ -11,7 +11,7 @@
         <div class="row no-gutters">
             <div class="col-md-4 skin--type oily">
             <div class="img-container">
-                <img src="{{ section.settings.pielgrasa_imagen | img_url: 'x1960'  }}" alt="Piel grasa">
+                <img src="{{ section.settings.pielgrasa_imagen | img_url: 'x980'  }}" alt="Piel grasa">
             </div>
             <div class="btn__more"></div>
             <div class="skin--type-container">
@@ -25,7 +25,7 @@
 
             <div class="col-md-4 skin--type mix">
             <div class="img-container">
-                <img src="{{ section.settings.pielmixta_imagen | img_url: 'x1960'  }}" alt="Piel mixta">
+                <img src="{{ section.settings.pielmixta_imagen | img_url: 'x980'  }}" alt="Piel mixta">
             </div>
             <div class="btn__more"></div>
             <div class="skin--type-container">
@@ -39,7 +39,7 @@
 
             <div class="col-md-4 skin--type dry">
             <div class="img-container">
-                <img src="{{ section.settings.pielmixta_imagen | img_url: 'x1960'  }}" alt="Piel seca">
+                <img src="{{ section.settings.pielseca_imagen | img_url: 'x980'  }}" alt="Piel seca">
             </div>
             <div class="btn__more"></div>
             <div class="skin--type-container">
@@ -77,6 +77,10 @@
         "label": "Link del botón"
         },
         {
+        "type": "header",
+        "content": "Piel Grasa"
+        },
+        {
         "type": "text",
         "id": "pielgrasa_titulo",
         "label": "Título Piel Grasa",
@@ -105,6 +109,10 @@
         "label": "Imagen de piel grasa"
         },
         {
+        "type": "header",
+        "content": "Piel Mixta"
+        },
+        {
         "type": "text",
         "id": "pielmixta_titulo",
         "label": "Título Piel mixta",
@@ -131,6 +139,10 @@
         "type": "image_picker",
         "id": "pielmixta_imagen",
         "label": "Imagen de piel mixta"
+        },
+        {
+        "type": "header",
+        "content": "Piel Seca"
         },
         {
         "type": "text",

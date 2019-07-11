@@ -8,10 +8,11 @@
   <link rel="canonical" href="{{ canonical_url }}">
 
 {%- comment -%}{{ 'theme.scss.css' | asset_url | stylesheet_tag }}{%- endcomment -%}
-{{ 'momiji.scss.css' | asset_url | stylesheet_tag }}
+{%- comment -%}{{ 'momiji.scss.css' | asset_url | stylesheet_tag }}{%- endcomment -%}
+{{ 'momiji-min.scss.css' | asset_url | stylesheet_tag }}
 {%- comment -%}{{ '//code.jquery.com/jquery-3.2.1.min.js' | script_tag }}{%- endcomment -%}
-{{ 'theme.min.js' | asset_url | script_tag }}
-{{ 'jquery-3.2.1.min.js' | asset_url | script_tag }}
+<script src="{{ 'theme.min.js' | asset_url }}" async></script>
+<script src="{{ 'jquery-3.2.1.min.js' | asset_url }}" async></script>
 {% comment %}{{ 'bootstrap.scss' | asset_url | stylesheet_tag }} {% endcomment %}
 {%- comment -%}aquite el theme.js {%- endcomment -%}
 
@@ -97,14 +98,14 @@
 
 
 {% comment %} {{ '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css' | stylesheet_tag }} {% endcomment %}
-{{ '//cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js' | script_tag }}
-{{ '//cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js' | script_tag }}
+<script src="{{ '//cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js' }}" async></script>
+<script src="{{ '//cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js' }}" async></script>
 {% comment %} {{ 'bootstrap.min.js' | script_tag }} {% endcomment %}
-{{ 'aos.js' | asset_url | script_tag }} 
-{{ 'micromodal.js' | asset_url | script_tag }} 
-{{ 'jquery.selectric.js' | asset_url | script_tag }} 
+<script src="{{ 'aos.js' | asset_url }}" async></script> 
+<script src="{{ 'micromodal.js' | asset_url }}" async></script>  
+<script src="{{ 'jquery.selectric.js' | asset_url }}" async></script>  
 {%- comment -%}{{ 'app.js' | asset_url | script_tag }}{%- endcomment -%}
-{{ 'app.min.js' | asset_url | script_tag }} 
+<script src="{{ 'app.min.js' | asset_url }}" async></script>  
 {% comment %} {{ 'instafetch.js' | asset_url | script_tag }}  {% endcomment %}
 {% comment %} {{ 'instafeed.min.js' | asset_url | script_tag }}  {% endcomment %}
 {% include "swymWishlist" %}
