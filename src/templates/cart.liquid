@@ -59,7 +59,7 @@ jQuery('[max]').change(function() {
                           <p>{{ item.variant.title }}</p>
                         {% endunless %}
 
-                        <p>{{ item.vendor }}</p>
+                        <p>{{ item.vendor | link_to_vendor }}</p>
 
                         {%- assign property_size = item.properties | size -%}
 
@@ -77,10 +77,6 @@ jQuery('[max]').change(function() {
                             {% endunless %}
                           {% endfor %}
                         {% endif %}
-
-                        <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
-                          <small>{{ 'cart.general.remove' | t }}</small>
-                        </a>
                       </td>
                       <td data-label="{{ 'cart.label.price' | t }}">
                         {% if item.original_line_price != item.line_price %}
@@ -99,6 +95,9 @@ jQuery('[max]').change(function() {
                               min="0"
                               aria-label="{{ 'cart.general.item_quantity' | t }}"
                               value="{{ item.quantity }}" {% unless item.variant.inventory_management == blank or item.variant.inventory_policy == 'continue' %} max="{{ item.variant.inventory_quantity }}" {% endunless %} />
+                        <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
+                          <small>{{ 'cart.general.remove' | t }}</small>
+                        </a>
                       </td>
                       <td data-label="{{ 'cart.label.total' | t }}">
                         {{ item.line_price | money }}
@@ -115,33 +114,33 @@ jQuery('[max]').change(function() {
 
 
             <div class="container">
-            <div class="row row-mobile">
+              <div class="row row-mobile">
 
-              <div class="col-md-8">
-              {% if settings.cart_notes_enable %}
-                <label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
-                <textarea name="note" id="CartSpecialInstructions">{{ cart.note }}</textarea>
-              {% endif %}
-              </div>
+                <div class="col-md-8">
+                {% if settings.cart_notes_enable %}
+                  <label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
+                  <textarea name="note" id="CartSpecialInstructions">{{ cart.note }}</textarea>
+                {% endif %}
+                </div>
 
-              <div class="col-md-4">
-                <div class="product__info--name mb-4">
-                  <p>{{ 'cart.general.subtotal' | t }}</p>
-                  <span>{{ cart.total_price | money }}</span>
-                  {% if cart.total_discounts > 0 %}
-                    <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}</p>
-                  {% endif %}
+                <div class="col-md-4">
+                  <div class="product__info--name mb-4">
+                    <p>{{ 'cart.general.subtotal' | t }}</p>
+                    <span>{{ cart.total_price | money }}</span>
+                    {% if cart.total_discounts > 0 %}
+                      <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}</p>
+                    {% endif %}
+                  </div>
+                  <div class="text-link mb-4">
+                    <p>{{ 'cart.general.shipping_at_checkout' | t }}</p>
+                  </div>
+                  <div class="btn--100">
+                    <input class="btn__main btn__main--lighter mb-2 mr-1" type="submit" name="update" value="{{ 'cart.general.update' | t }}">
+                    <input class="btn__main mb-2" type="submit" name="checkout" class="button" value="{{ 'cart.general.checkout' | t }}">
+                  </div>
                 </div>
-                <div class="text-link mb-4">
-                  <p>{{ 'cart.general.shipping_at_checkout' | t }}</p>
-                </div>
-                <div class="btn--100">
-                  <input class="btn__main btn__main--lighter" type="submit" name="update" value="{{ 'cart.general.update' | t }}">
-                  <input class="btn__main" type="submit" name="checkout" class="button" value="{{ 'cart.general.checkout' | t }}">
-                </div>
+              
               </div>
-            
-            </div>
             </div>
 
             </form>

@@ -5,7 +5,7 @@
  * 2. Prevent iOS and IE text size adjust after device orientation change,
  *    without disabling user zoom.
  */
-@import url("https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.min.css");
 @import url("https://unpkg.com/aos@2.3.1/dist/aos.css");
 html {
   font-family: sans-serif;
@@ -4528,6 +4528,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 @font-face {
   font-family: 'GT Momiji Medium';
+  font-display: optional;
   font-weight: 500;
   font-style: normal;
   src: url('{{ "GT-Momiji-Medium.eot" | asset_url }}');
@@ -4535,6 +4536,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 @font-face {
   font-family: 'GT Momiji Regular';
+  font-display: optional;
   font-weight: 400;
   font-style: normal;
   src: url('{{ "GT-Momiji-Regular.eot" | asset_url }}');
@@ -4542,24 +4544,28 @@ a.text-dark:hover, a.text-dark:focus {
 
 @font-face {
   font-family: 'GT Walsheim';
+  font-display: optional;
   src: url('{{ "GTWalsheim.woff2" | asset_url }}') format('woff2'), url('{{ "GTWalsheim.woff" | asset_url }}') format('woff');
   font-weight: normal;
   font-style: normal; }
 
 @font-face {
   font-family: 'GT Super Display';
+  font-display: optional;
   src: url('{{ "GTSuperDisplay-Light.woff2" | asset_url }}') format('woff2'), url('{{ "GTSuperDisplay-Light.woff" | asset_url }}') format('woff');
   font-weight: 300;
   font-style: normal; }
 
 @font-face {
   font-family: 'GT Super Text Book';
+  font-display: optional;
   src: url('{{ "GTSuperText-Book.woff2" | asset_url }}') format('woff2'), url('{{ "GTSuperText-Book.woff" | asset_url }}') format('woff');
   font-weight: 300;
   font-style: normal; }
 
 @font-face {
   font-family: 'GT Super Display';
+  font-display: optional;
   src: url('{{ "GTSuperDisplay-Regular.woff2" | asset_url }}') format('woff2'), url('{{ "GTSuperDisplay-Regular.woff" | asset_url }}') format('woff');
   font-weight: normal;
   font-style: normal; }
@@ -7614,3 +7620,18 @@ figure, address {
 .swym-button-bar {
     display: none !important;
   }
+
+/* Acuity scheduling AGENDA MOMIJI MTY */
+.content {
+  max-width: inherit !important;
+}
+
+/*
+Tabla de cart
+*/
+form > div > table > tbody > tr > td > a > img {
+  width: 100%;
+}
+form > div > table {
+  table-layout: fixed;
+}

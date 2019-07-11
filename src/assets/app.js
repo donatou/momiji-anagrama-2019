@@ -457,5 +457,6 @@ $(window).on('load', function() {
     const { value } = e.currentTarget
     
     window.location = `?sort_by=${value}`
-  })
-  
+  });
+
+// FALTA un sort-by que aplique para VENDOR
