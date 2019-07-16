@@ -18,7 +18,7 @@
                 <h4>{{ section.settings.pielgrasa_titulo }}</h4>
                 <div class="container--between">
                 <p>{{ section.settings.pielgrasa_desc }}</p>
-                <a href="{{ section.settings.pielgrasa_link }}" class="a__link">{{ section.settings.pielgrasa_textlink }}</a>
+                <a href="collections/{{ section.settings.pielgrasa_link }}" class="a__link">{{ section.settings.pielgrasa_textlink }}</a>
                 </div>
             </div>
             </div>
@@ -32,7 +32,7 @@
                 <h4>{{ section.settings.pielmixta_titulo }}</h4>
                 <div class="container--between">
                 <p>{{ section.settings.pielmixta_desc }}</p>
-                <a href="{{ section.settings.pielmixta_link }}" class="a__link">{{ section.settings.pielmixta_textlink }}</a>
+                <a href="collections/{{ section.settings.pielmixta_link }}" class="a__link">{{ section.settings.pielmixta_textlink }}</a>
                 </div>
             </div>
             </div>
@@ -46,7 +46,7 @@
                 <h4>{{ section.settings.pielseca_titulo }}</h4>
                 <div class="container--between">
                 <p>{{ section.settings.pielseca_desc }}</p>
-                <a href="{{ section.settings.pielseca_link }}" class="a__link">{{ section.settings.pielseca_textlink }}</a>
+                <a href="collections/{{ section.settings.pielseca_link }}" class="a__link">{{ section.settings.pielseca_textlink }}</a>
                 </div>
             </div>
             </div>
@@ -76,10 +76,10 @@
         "id": "boton_link",
         "label": "Link del botón"
         },
-        {
-        "type": "header",
-        "content": "Piel Grasa"
-        },
+            {
+            "type": "header",
+            "content": "Piel Grasa"
+            },
         {
         "type": "text",
         "id": "pielgrasa_titulo",
@@ -106,12 +106,13 @@
         {
         "type": "image_picker",
         "id": "pielgrasa_imagen",
-        "label": "Imagen de piel grasa"
+        "label": "Imagen de piel grasa",
+        "info": "800 x 980px 72dpi"
         },
-        {
-        "type": "header",
-        "content": "Piel Mixta"
-        },
+            {
+            "type": "header",
+            "content": "Piel Mixta"
+            },
         {
         "type": "text",
         "id": "pielmixta_titulo",
@@ -138,12 +139,13 @@
         {
         "type": "image_picker",
         "id": "pielmixta_imagen",
-        "label": "Imagen de piel mixta"
+        "label": "Imagen de piel mixta",
+        "info": "800 x 980px 72dpi"
         },
-        {
-        "type": "header",
-        "content": "Piel Seca"
-        },
+            {
+            "type": "header",
+            "content": "Piel Seca"
+            },
         {
         "type": "text",
         "id": "pielseca_titulo",
@@ -170,7 +172,8 @@
         {
         "type": "image_picker",
         "id": "pielseca_imagen",
-        "label": "Imagen de piel seca"
+        "label": "Imagen de piel seca",
+        "info": "800 x 980px 72dpi"
         }
     ],
     "presets": [

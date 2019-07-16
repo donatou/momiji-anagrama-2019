@@ -341,7 +341,8 @@ $(window).on('load', function() {
   });
 
   // LOADER
-  $('.loader-component').delay(700).fadeOut(700);
+  //   $('.loader-component').delay(700).fadeOut(700);
+  $('.loader-component').delay(10).fadeOut(50);
   $('main').css({
     opacity: 1
   });
