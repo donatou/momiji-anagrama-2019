@@ -1,119 +1,112 @@
 <!doctype html>
 <html class="no-js supports-no-cookies" lang="{{ shop.locale }}">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="{{ settings.color_accent }}">
-  <link rel="canonical" href="{{ canonical_url }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="{{ settings.color_accent }}">
+    <link rel="canonical" href="{{ canonical_url }}">
 
-{%- comment -%}<link rel="preload" href="{{ 'jquery-3.2.1.min.js' | asset_url }}" as="script">{%- endcomment -%}
-<link rel="preload" href="{{ 'https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js' }}" as="script">
-{%- comment -%}{{ 'theme.scss.css' | asset_url | stylesheet_tag }}{%- endcomment -%}
-{%- comment -%}{{ 'momiji.scss.css' | asset_url | stylesheet_tag }}{%- endcomment -%}
-{{ 'momiji-min.scss.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'theme.min.js' | asset_url }}" async></script>
+    {%- comment -%}<link rel="preload" href="{{ 'jquery-3.2.1.min.js' | asset_url }}" as="script">{%- endcomment -%}
+    <link rel="preload" href="{{ 'https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js' }}" as="script">
+    <script src="{{ 'https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js' }}" async></script>
+    {%- comment -%}{{ 'theme.scss.css' | asset_url | stylesheet_tag }}{%- endcomment -%}
+    {%- comment -%}{{ 'momiji.scss.css' | asset_url | stylesheet_tag }}{%- endcomment -%}
+    {{ 'momiji-min.scss.css' | asset_url | stylesheet_tag }}
 
-{%- comment -%}<script src="{{ 'https://code.jquery.com/jquery-3.2.1.min.js' }}" async></script>{%- endcomment -%}
-{%- comment -%}<script src="{{ 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' }}" async></script>{%- endcomment -%}
-{% comment %}{{ 'bootstrap.scss' | asset_url | stylesheet_tag }} {% endcomment %}
-{%- comment -%}aqui quite el theme.js {%- endcomment -%}
 
-{% include 'social-meta-tags' %}
-{% include 'style-tags', layout: 'theme' %}
-{% include 'script-tags', layout: 'theme' %}
+    {%- comment -%}<script src="{{ 'https://code.jquery.com/jquery-3.2.1.min.js' }}" async></script>{%- endcomment -%}
+    {%- comment -%}<script src="{{ 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' }}" async></script>{%- endcomment -%}
+    {% comment %}{{ 'bootstrap.scss' | asset_url | stylesheet_tag }} {% endcomment %}
+    {%- comment -%}aqui quite el theme.js {%- endcomment -%}
 
-  {%- if settings.favicon != blank -%}
-    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
-  {%- endif -%}
+    {% include 'social-meta-tags' %}
+    {% include 'style-tags', layout: 'theme' %}
+    {% include 'script-tags', layout: 'theme' %}
 
-  {%- capture seo_title -%}
-    {{ page_title }}
-    {%- if current_tags -%}
-      {%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+    {%- if settings.favicon != blank -%}
+      <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
     {%- endif -%}
-    {%- if current_page != 1 -%}
-      &ndash; {{ 'general.meta.page' | t: page: current_page }}
+
+    {%- capture seo_title -%}
+      {{ page_title }}
+      {%- if current_tags -%}
+        {%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+      {%- endif -%}
+      {%- if current_page != 1 -%}
+        &ndash; {{ 'general.meta.page' | t: page: current_page }}
+      {%- endif -%}
+      {%- assign escaped_page_title = page_title | escape -%}
+      {%- unless escaped_page_title contains shop.name -%}
+        &ndash; {{ shop.name }}
+      {%- endunless -%}
+    {%- endcapture -%}
+    <title>{{ seo_title | strip }}</title>
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
     {%- endif -%}
-    {%- assign escaped_page_title = page_title | escape -%}
-    {%- unless escaped_page_title contains shop.name -%}
-      &ndash; {{ shop.name }}
-    {%- endunless -%}
-  {%- endcapture -%}
-  <title>{{ seo_title | strip }}</title>
 
-  {%- if page_description -%}
-    <meta name="description" content="{{ page_description | escape }}">
-  {%- endif -%}
+    {%- comment -%}{% include 'css-variables' %}{%- endcomment -%}
 
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', '');
 
-  {%- comment -%}{% include 'css-variables' %}{%- endcomment -%}
+      window.theme = {
+        strings: {
+          addToCart: {{ 'products.product.add_to_cart' | t | json }},
+          soldOut: {{ 'products.product.sold_out' | t | json }},
+          unavailable: {{ 'products.product.unavailable' | t | json }}
+        },
+        moneyFormat: {{ shop.money_format | json }}
+      };
 
-  <script>
-    document.documentElement.className = document.documentElement.className.replace('no-js', '');
+      {% if template.directory == 'customers' %}
+        theme.allCountryOptionTags = {{ all_country_option_tags | json }};
+      {% endif %}
+    </script>
 
-    window.theme = {
-      strings: {
-        addToCart: {{ 'products.product.add_to_cart' | t | json }},
-        soldOut: {{ 'products.product.sold_out' | t | json }},
-        unavailable: {{ 'products.product.unavailable' | t | json }}
-      },
-      moneyFormat: {{ shop.money_format | json }}
-    };
+    {{ content_for_header }}
 
-    {% if template.directory == 'customers' %}
-      theme.allCountryOptionTags = {{ all_country_option_tags | json }};
-    {% endif %}
-  </script>
+  </head>
 
+  <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
 
-<script src="{{ 'https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js' }}"></script>
+    {%- comment -%}<div class="loader-component"></div>{%- endcomment -%}
+    {%- comment -%}{% include 'ask' %}{%- endcomment -%}
+    {%- comment -%}<a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a> {%- endcomment -%}
 
-  {{ content_for_header }}
+    {% include 'search-modal' %}
+    
+    <div id="modal-resena" aria-hidden="true">
+    </div>
 
-</head>
+    <div id="mb-menu" class="mobile-menu">
+      {% include 'mobile' %}
+    </div>
 
-<body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
+    {% section 'header' %}
 
-{%- comment -%}<div class="loader-component"></div>{%- endcomment -%}
+    <main class="home" role="main" id="MainContent" style="opacity: 1;">
+      {{ content_for_layout }}
+    </main>
 
-{%- comment -%}{% include 'ask' %}{%- endcomment -%}
-
-{%- comment -%}<a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a> {%- endcomment -%}
-
-  {%- comment -%}
-  Busqueda - search
-  {%- endcomment -%}
-  {% include 'search-modal' %}
-  
-  <div id="modal-resena" aria-hidden="true">
-  </div>
-
-  <div id="mb-menu" class="mobile-menu">
-    {% include 'mobile' %}
-  </div>
-
-  {% section 'header' %}
-
-  <main class="home" role="main" id="MainContent" style="opacity: 1;">
-    {{ content_for_layout }}
-  </main>
-
-  {% section 'footer' %}
+    {% section 'footer' %}
 
 
-    {% comment %} {{ '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css' | stylesheet_tag }} {% endcomment %}
-<script src="{{ '//cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js' }}" async></script>
-<script src="{{ '//cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js' }}" async></script>
-    {% comment %} {{ 'bootstrap.min.js' | script_tag }} {% endcomment %}
-<script src="{{ 'aos.js' | asset_url }}" async></script> 
-<script src="{{ 'micromodal.js' | asset_url }}" async></script>  
-<script src="{{ 'jquery.selectric.js' | asset_url }}" async></script>  
-    {%- comment -%}{{ 'app.js' | asset_url | script_tag }}{%- endcomment -%}
-<script src="{{ 'app.min.js' | asset_url }}" async></script>  
-{% include "swymWishlist" %}
-{% include 'swymSnippet' %}
-    {% comment %} {% include 'back-in-stock-helper' %} {% endcomment %}
-{{ 'product-reviews-override.css' | asset_url | stylesheet_tag }}
-</body>
+    <script src="{{ 'theme.min.js' | asset_url }}" async></script>
+        {%- comment -%}{{ 'app.js' | asset_url | script_tag }}{%- endcomment -%}
+    <script src="{{ 'app.min.js' | asset_url }}" async></script>  
+        {% comment %} {{ '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css' | stylesheet_tag }} {% endcomment %}
+    <script src="{{ '//cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js' }}" defer></script>
+    <script src="{{ '//cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js' }}" defer></script>
+        {% comment %} {{ 'bootstrap.min.js' | script_tag }} {% endcomment %}
+    <script src="{{ 'aos.js' | asset_url }}" defer></script> 
+    <script src="{{ 'micromodal.js' | asset_url }}" defer></script>  
+    <script src="{{ 'jquery.selectric.js' | asset_url }}" defer></script>  
+    {% include "swymWishlist" %}
+    {% include 'swymSnippet' %}
+        {% comment %} {% include 'back-in-stock-helper' %} {% endcomment %}
+    {{ 'product-reviews-override.css' | asset_url | stylesheet_tag }}
+  </body>
 </html>
