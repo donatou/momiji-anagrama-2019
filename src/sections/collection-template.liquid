@@ -32,18 +32,18 @@
       <div class="row">
 
         <div class="col-md-12 d-lg-none">
-          <!-- TITULO NOMBRE MOBILE Y TABLETA -->
+          {% comment %} TITULO NOMBRE MOBILE Y TABLETA {% endcomment %}
             <div class="row products__category--name row-mobile">
                 <div class="col-md-8">
                   <h2>{{ collection.title }}&nbsp;<span class="text-link d-none d-md-inline-flex">&nbsp;{{ collection.all_products_count}}&nbsp;productos</span></h2>
                 </div>
                 
-                <!-- FILTROS Y ORDENAR -->
+                {% comment %} FILTROS Y ORDENAR {% endcomment %}
                 <div class="col-6 col-md-4">
                   {% include 'collection-sorting' %}
                 </div>
 
-                <!-- Filtros moviles -->
+                {% comment %} Filtros moviles {% endcomment %}
                 {%- comment -%}
                 <div class="d-block d-md-none filter__categoria col-6">
                   <div class="trigger">
@@ -55,7 +55,7 @@
         </div>
 
         <div class="col-3 d-none d-md-block">
-            <!-- FILTROS TABLETA , DESKTOP -->
+            {% comment %} FILTROS TABLETA , DESKTOP {% endcomment %}
             {% include 'sidebar-filters' %}
         </div>
 
@@ -64,13 +64,13 @@
               <span class="text-link">{{ collection.all_products_count}}&nbsp;productos</span>
             </div>
 
-            <!-- TITULO PARA DESKTOP -->
+            {% comment %} TITULO PARA DESKTOP {% endcomment %}
             <div class="row products__category--name row-mobile d-none d-lg-flex ">
                 <div class="col-md-8">
                   <h2>{{ collection.title }}&nbsp;<span class="text-link">&nbsp;{{ collection.all_products_count}}&nbsp;productos</span></h2>
                 </div>
                 
-                <!-- FILTROS Y ORDENAR -->
+                {% comment %} FILTROS Y ORDENAR {% endcomment %}
                 <div class="col-md-4">
                     {% include 'collection-sorting' %}
                 </div>

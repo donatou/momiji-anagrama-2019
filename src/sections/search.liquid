@@ -41,7 +41,7 @@
       <div class="row">
 
         <div class="col-md-12 d-lg-none">
-          <!-- TITULO NOMBRE MOBILE Y TABLETA -->
+          {% comment %} TITULO NOMBRE MOBILE Y TABLETA {% endcomment %}
             <div class="row products__category--name row-mobile">
                 <div class="col-md-8">
                 {% if search.performed %}
@@ -55,7 +55,7 @@
                 {% endif %}
                 </div>
                 
-                <!-- FILTROS Y ORDENAR -->
+                {% comment %} FILTROS Y ORDENAR {% endcomment %}
                 {%- comment -%}
                 <div class="col-6 col-md-4">
                   {% include 'collection-sorting' %}
@@ -73,7 +73,7 @@
         </div>
 
         <div class="col-3 d-none d-md-block">
-        <!-- FILTROS TABLETA , DESKTOP -->
+        {% comment %} FILTROS TABLETA , DESKTOP {% endcomment %}
             {%- comment -%}{% include 'sidebar-filters' %}{%- endcomment -%}
         </div>
 
@@ -86,7 +86,7 @@
             {% endif %}
             </div>
 
-            <!-- TITULO PARA DESKTOP -->
+            {% comment %} TITULO PARA DESKTOP {% endcomment %}
             <div class="row products__category--name row-mobile d-none d-lg-flex ">
                 <div class="col-md-8">
                 {% if search.performed %}
@@ -100,7 +100,7 @@
                 {% endif %}
                 </div>
                 
-                <!-- FILTROS Y ORDENAR -->
+                {% comment %} FILTROS Y ORDENAR {% endcomment %}
                 {%- comment -%}
                 <div class="col-md-4">
                  {% include 'collection-sorting' %}

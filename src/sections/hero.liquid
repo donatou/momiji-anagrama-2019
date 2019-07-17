@@ -2,7 +2,7 @@
 <div class="hero__slider slider">
     <div class="swiper-container">
         <div class="swiper-wrapper">
-            <!-- Slides -->
+            {% comment %} Slides {% endcomment %}
             {% for block in section.blocks %}
             <div class="swiper-slide" {{ block.shopify_attributes }} data-swiper-autoplay="{{ section.settings.duracion | times: 1000 }}" style="background: url({{ block.settings.imagen | img_url: '2880x' }});background-repeat: no-repeat;background-position: bottom right;background-size: cover;">
                 <div class="container-fluid">

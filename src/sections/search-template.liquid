@@ -3,13 +3,13 @@
 
 
 <section class="collection search-results" data-section-id="{{ section.id }}" data-section-type="search-template">
-<!--{% if section.settings.search_layout == 'grid' %}-->
+{% comment %}{% if section.settings.search_layout == 'grid' %}{% endcomment %}
     {%- assign grid_results = true -%}
     {%- assign results_count = 18 -%}
-<!--  {% else %}
+{% comment %}  {% else %}
     {%- assign grid_results = false -%}
     {%- assign results_count = 50 -%}
-  {% endif %}-->
+  {% endif %}{% endcomment %}
 
   {% comment %}
     Check to enforce respond.js
@@ -26,9 +26,9 @@
 
  
     <div class="collection-container">
-      <!-- <div class="search-wrapper">
+      {% comment %} <div class="search-wrapper">
         {% include 'search-bar' %}
-      </div> -->
+      </div> {% endcomment %}
  
       <header class="collection-header">
         <div class="container">
@@ -108,7 +108,7 @@
                   {% include 'grid-item' %}
                 {% else %}
                   {% for i in (1..collection_limit) %}
-                    {% include 'grid-item' %} <!-- aqui iba el placeholder del product grid -->
+                    {% include 'grid-item' %} {% comment %} aqui iba el placeholder del product grid {% endcomment %}
                   {% endfor %}
                 {% endfor %}
               </div>

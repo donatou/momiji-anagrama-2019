@@ -74,7 +74,7 @@
         <a href="/pages/preguntas-frecuentes" class="link--orange">Visita nuestra sección de FAQ</a>
       </div>
       <div class="col-md-6 sticker4">
-        <!-- SERÁ IMAGEN O VIDEO -->
+        {% comment %} SERÁ IMAGEN O VIDEO {% endcomment %}
         {% if product.metafields.producto.video == blank %}
           <div class="img-container">
             <img src="{{ product.images.last | img_url: 'x680' }}" alt="{{ product.title | escape }}">

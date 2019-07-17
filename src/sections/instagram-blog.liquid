@@ -3,12 +3,12 @@
           <div class="row no-gutters">
             <div class="col-md-12 col-lg-6 order-lg-1 order-2">
               <div class="row no-gutters app-instagram-feed">
-              <!-- Aquí se inyecta la app de Instagram con una class -->
-              <!-- a futuro podemos usar este generador de widget para instagram https://lightwidget.com/add-on/widget-upgrade -->
+              {% comment %} Aquí se inyecta la app de Instagram con una class {% endcomment %}
+              {% comment %} a futuro podemos usar este generador de widget para instagram https://lightwidget.com/add-on/widget-upgrade {% endcomment %}
               </div>
             </div>
 
-            <!-- sección de blog -->
+            {% comment %} sección de blog {% endcomment %}
             <div class="col-md-12 col-lg-6 instagram--container order-lg-2  order-1">
               <div class="sticker2"></div>
               {% include 'recent-blogpost' %}
@@ -27,7 +27,7 @@
       },
       {
         "type": "paragraph",
-        "content": "Por el momento no hay opciones configurables en esta sección."
+        "content": "A futuro: https://lightwidget.com/add-on/widget-upgrade"
       }
     ],
     "presets": [

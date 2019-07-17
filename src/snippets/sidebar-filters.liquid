@@ -32,7 +32,7 @@ Filtros laterales para desktop y tablet
     {% endfor %}
     </ul>
 
-    <!-- POR MARCA
+    {% comment %} POR MARCA
     <a class="accordion">Marcas</a>
 
     <ul class="list-unstyled panel">
@@ -40,13 +40,13 @@ Filtros laterales para desktop y tablet
         <li>{{ product_vendor | link_to_vendor }}</li>
     {% endfor %}
     </ul>
-    -->
+    {% endcomment %}
 
 </div>
 
 
 
-                    <!-- Filtros: Mobile 2 - Filtros -->
+                    {% comment %} Filtros: Mobile 2 - Filtros {% endcomment %}
   <div class="filter__modal filtr">
 
     <div class="close-btn" id="close"></div>
@@ -116,19 +116,19 @@ Filtros laterales para desktop y tablet
 
             <div class="subfilters__item">
               <a>
-              <!----><span class="text-link">exfoliantes</span>
+              {% comment %}{% endcomment %}<span class="text-link">exfoliantes</span>
               </a>
             </div>
 
             <div class="subfilters__item">
               <a>
-              <!----><span class="text-link">esencias</span>
+              {% comment %}{% endcomment %}<span class="text-link">esencias</span>
               </a>
             </div>
 
             <div class="subfilters__item">
               <a>
-              <!----><span class="text-link">humectantes</span>
+              {% comment %}{% endcomment %}<span class="text-link">humectantes</span>
               </a>
             </div>
             <div class="filter__btns">

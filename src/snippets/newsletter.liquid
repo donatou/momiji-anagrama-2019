@@ -1,4 +1,4 @@
-<!-- snippets/newsletter.liquid -->
+{% comment %} snippets/newsletter.liquid {% endcomment %}
 {% form 'customer', class: "col-12 col-lg-10 mx-auto footer__newsletter" %}
     {{ form.errors | default_errors }}
     {% if form.posted_successfully? %}
