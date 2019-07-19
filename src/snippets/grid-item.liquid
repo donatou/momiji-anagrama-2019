@@ -13,10 +13,10 @@ Grid item sin container div de estilo
 <a href="{{ product.url | within: collection }}" {% if soon %} class="product soon" {% elsif new %} class="product new" {% elsif momi %} class="product momi" {% else %} class="product" {% endif %} > {%- comment -%} se tiene que hacer cuatro clases diferentes: product, product new, product momi, product soon sacado de variables asignadas en tag-logic snippet. {%- endcomment -%}
     <div class="product__container">
         <div class="product__container--main img-container">
-            <img src="{{ product | img_url: 'x321' }}" alt="{{ product.title | escape }}">
+            <img src="{{ product | img_url: '496x', format: 'pjpg' }}" alt="{{ product.title | escape }}">
         </div>
         <div class="product__container--hover">
-            <img src="{{ product.images.last | img_url: 'x321' }}" alt="{{ product.title | escape }}">
+            <img src="{{ product.images.last | img_url: '496x', format: 'pjpg' }}" alt="{{ product.title | escape }}">
         </div> 
     </div>
     <div class="product__info">
