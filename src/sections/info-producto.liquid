@@ -19,11 +19,14 @@
             {% if spf %}
               {{ product.metafields['beneficios']['SPF'] }}
             {% endif %}
-            {% if luminiza %}
+            {% if ilumina %}
               {{ product.metafields['beneficios']['ilumina'] }}
             {% endif %}
             {% if repara %}
               {{ product.metafields['beneficios']['repara'] }}
+            {% endif %}
+            {% if limpia %}
+              {{ product.metafields['beneficios']['limpia'] }}
             {% endif %}
             {% if calma %}
               {{ product.metafields['beneficios']['calma'] }}
@@ -54,7 +57,7 @@
 
           <a class="accordion h3">#MomijiApproved</a>
           <div class="panel">
-            <p>{{ product.metafields['producto']['consejos'] }}</p>
+            <p>{{ product.metafields['producto']['momijiapproved'] }}</p>
           </div>
 
           <a class="accordion h3">Instrucciones de uso</a>
@@ -77,7 +80,7 @@
         {% comment %} SERÁ IMAGEN O VIDEO {% endcomment %}
         {% if product.metafields.producto.video == blank %}
           <div class="img-container">
-            <img src="{{ product.images.last | img_url: '540x', format: 'pjpg' }}" alt="{{ product.title | escape }}">
+            <img src="{{ product.images.last | img_url: '540x' }}" alt="{{ product.title | escape }}">
           </div>
         {% elsif product.metafields.producto.video != blank %}
           {%- comment -%}<iframe frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" title="{{ product.title | escape }}" width="100%" height="100%" src="{{ product.metafields['producto']['video'] }}?autoplay=1&amp;controls=0&amp;rel=0&amp;showinfo=0&amp;iv_load_policy=3&amp;cc_load_policy=0&amp;cc_lang_pref=en&amp;wmode=transparent&amp;modestbranding=1&amp;disablekb=1&amp;origin=https%3A%2F%2Fwww.milkmakeup.com&amp;enablejsapi=1&amp;widgetid=1" tabindex="-1" ></iframe>{%- endcomment -%}

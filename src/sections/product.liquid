@@ -20,14 +20,14 @@
               <div class="swiper-container gallery-thumbs col-md-12 col-lg-2 order-2 order-lg-1">
                 <div class="swiper-wrapper ">
                 {% for image in product.images %}
-                  <div class="swiper-slide img-container" style="background-image:url({{ image.src | product_img_url: '100x', scale: 3, format: 'pjpg' }}); background-size: cover;"></div>
+                  <div class="swiper-slide img-container" style="background-image:url({{ image.src | product_img_url: '100x', scale: 3 }}); background-size: cover;"></div>
                 {% endfor %}
                 </div>
               </div>
               <div class="swiper-container gallery-top col-md-12 col-lg-10 order-1 order-lg-2">
                 <div class="swiper-wrapper">
                 {% for image in product.images %}
-                  <div class="swiper-slide img-container" style="background-image:url({{ image.src | product_img_url: '793x', format: 'pjpg' }}); background-size: cover;"><button class="btn__wishlist product_{{product.id}}" data-swaction="addToWishlist" data-product-id="{{product.id | json}}"></button></div>
+                  <div class="swiper-slide img-container" style="background-image:url({{ image.src | product_img_url: '793x' }}); background-size: cover;"><button class="btn__wishlist product_{{product.id}}" data-swaction="addToWishlist" data-product-id="{{product.id | json}}"></button></div>
                 {% endfor %} 
                 </div>
               </div>
