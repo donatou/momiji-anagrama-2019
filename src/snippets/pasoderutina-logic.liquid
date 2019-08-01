@@ -1,50 +1,50 @@
 {% assign limpiadoraceite = false %}
-{% if product.type == "Limpiador Aceite" %}
+{% if product.type == "Limpiador en Aceite" %}
   {% assign limpiadoraceite = true %}
 {% endif %}
 
 {% assign limpiadoragua = false %}
-{% if product.type == "Limpiador" %}
+{% if product.type == "Limpiador" or product.type == "Limpiador en Agua" or product.type == "limpiador" %}
   {% assign limpiadoragua = true %}
 {% endif %}
 
 {% assign exfoliante = false %}
-{% if product.type == "Exfoliante" %}
+{% if product.type == "Exfoliante" or product.type == "exfoliante" %}
   {% assign exfoliante = true %}
 {% endif %}
 
 {% assign tonico = false %}
-{% if product.type == "toner" %}
+{% if product.type == "Toner" or product.type == "toner" or product.type == "Tónico" or product.type == "tónico" %}
   {% assign tonico = true %}
 {% endif %}
 
 {% assign esencia = false %}
-{% if product.type == "Esencia" %}
+{% if product.type == "Esencia" or product.type == "esencia" %}
   {% assign esencia = true %}
 {% endif %}
 
 {% assign suero = false %}
-{% if product.type == "serum" %}
+{% if product.type == "Serum" or product.type == "serum" or product.type == "suero" or product.type == "Suero" %}
   {% assign suero = true %}
 {% endif %}
 
 {% assign mascarilla = false %}
-{% if product.type == "Mascarilla" %}
+{% if product.type == "Mascarilla" or product.type == "mascarilla" %}
   {% assign mascarilla = true %}
 {% endif %}
 
 {% assign cremadeojos = false %}
-{% if product.type == "ojos" %}
+{% if product.type == "Ojos" or product.type == "ojos" %}
   {% assign cremadeojos = true %}
 {% endif %}
 
 {% assign cremahidratante = false %}
-{% if product.type == "CREMA" %}
+{% if product.type == "crema" or product.type == "Hidratante" or product.type == "humectación" or product.type == "Humectación" or product.type == "Crema" or product.type == "hidratante" or product.type == "CREMA" %}
   {% assign cremahidratante = true %}
 {% endif %}
 
 {% assign protectorsolar = false %}
-{% if product.type == "bloqueador" %}
+{% if product.type == "bloqueador" or product.type == "Bloqueador" or product.type == "SPF" %}
   {% assign protectorsolar = true %}
 {% endif %}
 
