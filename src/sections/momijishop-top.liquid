@@ -1,0 +1,63 @@
+<div class="row br-tb mb-90 row-mobile no-gutters">
+    <div class="col-md-3 col-lg-4">
+        <b>{{ section.settings.title_izquierda }}</b>
+    </div>
+    <div class="col-md-5 col-lg-4">
+        <b>{{ section.settings.title_centro }}</b>
+        <p>{{ section.settings.texto_centro }}</p>
+    </div>
+    <div class="col-md-4 col-lg-4">
+        <b>{{ section.settings.title_derecha }}</b>
+        <p>{{ section.settings.texto_derecha }}</p>
+    </div>
+</div>
+
+{% schema %}
+    {
+        "name": "Contenido Top",
+        "settings": [
+            {
+                "type": "header",
+                "content": "Bloque Izquierda"
+            },
+            {
+                "type": "text",
+                "id": "title_izquierda",
+                "label": "Título bloque izquierdo",
+                "default": "Título bloque izquierdo"
+            },
+            {
+                "type": "header",
+                "content": "Bloque Centro"
+            },
+            {
+                "type": "text",
+                "id": "title_centro",
+                "label": "Título bloque centro",
+                "default": "Título bloque centro"
+            },
+            {
+                "type": "textarea",
+                "id": "texto_centro",
+                "label": "Texto bloque centro",
+                "default": "Texto bloque centro"
+            },
+            {
+                "type": "header",
+                "content": "Bloque Derecha"
+            },
+            {
+                "type": "text",
+                "id": "title_derecha",
+                "label": "Título bloque derecha",
+                "default": "Título bloque derecha"
+            },
+            {
+                "type": "textarea",
+                "id": "texto_derecha",
+                "label": "Texto bloque derecha",
+                "default": "Texto bloque derecha"
+            }
+        ]
+    }
+{% endschema %}

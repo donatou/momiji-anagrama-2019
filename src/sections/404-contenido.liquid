@@ -1,0 +1,52 @@
+    <section class="section__principal">
+    <div class="container">
+        <div class="row">
+        <div class="col-md-10 mx-md-auto col-lg-6">
+            <div class="img-container"><img src="{{ settings.foto404 | img_url: '540x', format: 'pjpg' }}" alt="Contactanos"></div>
+        </div>
+        <div class="col-md-11 mx-md-auto col-lg-6 sticker3">
+            <div class="col-md-12 col-lg-10">
+                <h2>{{ 'general.404.title' | t }}</h2>
+                <p>{{ 'general.404.subtext_html' | t }}</p>
+                <a href="/pages/preguntas-frecuentes" class="link--orange">Visita nuestra sección de FAQ</a>
+            </div>
+            {%- comment -%}
+            <div class="contacto__items">
+                <div class="col-12 col-md-5">
+                <b>Nuestra tienda en CDMX</b>
+                <address>Lagos 123, Colonia Condesa, Ciudad de México, 06100</address>
+                <a href="telto:+52 (55) 7825 8810">+52 (55) 7825 8810</a>
+                </div>
+                <div class="col-12 col-md-5">
+                <b>Experience Center Monterrey</b>
+                <address>Guillermo Prieto 400, San Pedro Garza García, Nuevo León, 66220</address>
+                <a href="telto:+52 (81) 8336 6666">+52 (81) 8336 6666</a>
+                </div>
+                <div class="col-12 col-md-5">
+                <b>Dudas y preguntas sobre pedidos</b>
+                <a href="mailto:help@momijibeauty.com">help@momijibeauty.com </a>
+                </div>
+                <div class="col-12 col-md-5">
+                <b>Colaboraciones y medios</b>
+                <a href="mailto:press@momijibeauty.com">press@momijibeauty.com</a>
+                </div>
+            </div>
+            {%- endcomment -%}
+        </div>
+        </div>
+    </div>
+    
+    </section>
+
+    {% schema %}
+    {
+        "name": "Foto de 404",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "foto404",
+                "label": "Foto de 404"
+            }
+        ]
+    }
+{% endschema %}

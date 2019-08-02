@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-md-12 about__info">
+        <p class="h4">{{ section.settings.titulo_cita }}</p>
+        {{ section.settings.agenda_mty }}
+    </div>
+    <div class="col-md-12 about__info mt-5">
+        {{ section.settings.mapa_mty }}
+    </div>
+</div>
+
+{% schema %}
+    {
+        "name": "Momiji Monterrey",
+        "settings": [
+            {
+                "type": "header",
+                "content": "Agenda Monterrey"
+            },
+            {
+                "type": "text",
+                "id": "titulo_cita",
+                "label": "Titulo de seccion",
+                "default": "Haz tu cita."
+            },
+            {
+                "type": "html",
+                "id": "agenda_mty",
+                "label": "Código HTML Agenda Mty"
+            },
+            {
+                "type": "header",
+                "content": "Mapa Monterrey"
+            },
+            {
+                "type": "html",
+                "id": "mapa_mty",
+                "label": "Código GoogleMaps Mty"
+            }
+        ]
+    }
+{% endschema %}

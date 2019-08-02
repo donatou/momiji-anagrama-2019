@@ -1,0 +1,46 @@
+<div class="row mb-90">
+    <figure class="col-md-8">
+        <div class="img-container">
+            <img src="{{ section.settings.imagen }}" alt="Momiji Monterrey">
+        </div>
+    </figure>
+    <div class="col-md-4 align-self-end">
+        <img src="{{ 'miffy.svg' | asset_url }}" alt="Miffy">
+        <hr>
+        <b>{{ section.settings.titulo }}</b>
+        <p>{{ section.settings.texto }}</p>
+    </div>
+</div>
+
+{% schema %}
+    {
+        "name": "Fotografía e info",
+        "settings": [
+            {
+                "type": "header",
+                "content": "Foto"
+            },
+            {
+                "type": "image_picker",
+                "id": "imagen",
+                "label": "Foto de tienda"
+            },
+            {
+                "type": "header",
+                "content": "Info"
+            },
+            {
+                "type": "text",
+                "id": "titulo",
+                "label": "Título",
+                "default": "Momiji Monterrey."
+            },
+            {
+                "type": "textarea",
+                "id": "texto",
+                "label": "Info",
+                "default": "Asia es el hotspot, nosotros el filtro, y ustedes esas personas a las que nos encanta hacer felices."
+            }
+        ]
+    }
+{% endschema %}
