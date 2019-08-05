@@ -9,7 +9,8 @@
         </div>
         <h2>
         {% if collection.metafields.coleccion.copy == blank %}
-          {{ section.settings.titulo }}
+          {%- comment -%}{{ section.settings.titulo }}{%- endcomment -%}
+          {{ collection.title }}
         {% else %}
           {{ collection.metafields['coleccion']['copy'] }}
         {% endif %}
