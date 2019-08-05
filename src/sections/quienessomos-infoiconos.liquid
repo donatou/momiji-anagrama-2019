@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-md-12 about__info">
+        {{ section.settings.historia }}
+        {%- comment -%}<p class="h4">
+        Momiji <span class="sticker6"></span> comienza con un descubrimiento en un viaje a <span class="h2">Corea del Sur.</span> Cecy y Ale encontraron que su filosofía para el <span class="border-text">cuidado de la piel</span> es interesante, emocionante y realmente funciona. <span class="sticker7"></span>
+        </p>
+        <p class="h4">
+        Nuestro <a href="/" class="h2">Momiji Team</a> se encarga de probar <span class="sticker8"></span> una variedad enorme de <a href="/" class="h4">Productos<span class="a__link--about"></span></a>    para llegar a la selección perfecta. Viajamos a <span class="border-text">Corea</span> <span class="sticker9"></span> con frecuencia en búsqueda de lo más nuevo y en tendencia, para traerlo a México más <span class="h2">cerca de ti</span>.<span class="sticker10"></span>
+        </p>{%- endcomment -%}
+        <a href="{{ section.settings.page }}" class="btn__main">{{ section.settings.page_btn }}</a>
+    </div>
+</div>
+
+{% schema %}
+    {
+        "name": "Historia",
+        "settings": [
+            {
+                "type": "header",
+                "content": "Historia"
+            },
+            {
+                "type": "html",
+                "id": "historia",
+                "label": "Historia Momiji HTML",
+                "info": "Historia con iconos y stickers."
+            },
+            {
+                "type": "header",
+                "content": "Botón"
+            },
+            {
+                "type": "text",
+                "id": "page_btn",
+                "label": "Texto de botón."
+            },
+            {
+                "type": "page",
+                "id": "page",
+                "label": "Página",
+                "info": "Selecciona la web a linkear."
+            }
+        ]
+    }
+{% endschema %}

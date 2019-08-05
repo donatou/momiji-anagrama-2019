@@ -1,20 +1,20 @@
 <div class="row mb-90">
     <figure class="col-md-8">
         <div class="img-container">
-            <img src="{{ 'contacto_optimizada.jpg' | asset_url }}" alt="Momiji Monterrey">
+            <img src="{{ 'quienesomos_optimizada.jpg' | asset_url }}" alt="Ale y Cecy Young">
         </div>
     </figure>
     <div class="col-md-4 align-self-end">
         <img src="{{ 'miffy.svg' | asset_url }}" alt="Miffy">
         <hr>
-        <b>{{ section.settings.titulo }}</b>
-        <p>{{ section.settings.texto }}</p>
+        <b>{{ section.settings.title_pie }}</b>
+        <p>{{ section.settings.text_pie }}</p>
     </div>
 </div>
 
 {% schema %}
     {
-        "name": "Fotografía e info",
+        "name": "Foto y pie de foto",
         "settings": [
             {
                 "type": "header",
@@ -23,22 +23,22 @@
             {
                 "type": "image_picker",
                 "id": "imagen",
-                "label": "Foto de tienda"
+                "label": "Foto"
             },
             {
                 "type": "header",
-                "content": "Info"
+                "content": "Pie de foto"
             },
             {
                 "type": "text",
-                "id": "titulo",
-                "label": "Título",
-                "default": "Momiji Monterrey."
+                "id": "title_pie",
+                "label": "Título pie de foto.",
+                "default": "Cecy y Ale Young, Fundadoras."
             },
             {
                 "type": "textarea",
-                "id": "texto",
-                "label": "Info",
+                "id": "text_pie",
+                "label": "Pie de foto.",
                 "default": "Asia es el hotspot, nosotros el filtro, y ustedes esas personas a las que nos encanta hacer felices."
             }
         ]

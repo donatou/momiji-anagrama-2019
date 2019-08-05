@@ -1,0 +1,63 @@
+<div class="row br-tb mb-90 row-mobile no-gutters">
+    <div class="col-md-3 col-lg-4">
+        <b>{{ section.settings.title_izquierda }}</b>
+    </div>
+    <div class="col-md-5 col-lg-4">
+        <b>{{ section.settings.title_centro }}</b>
+        <p>{{ section.settings.texto_centro }}</p>
+    </div>
+    <div class="col-md-4 col-lg-4">
+        <b>{{ section.settings.title_derecha}}</b>
+        <p>{{ section.settings.texto_derecha}}</p>
+    </div>
+</div>
+
+{% schema %}
+    {
+        "name": "Contenido Top",
+        "settings": [
+            {
+                "type": "header",
+                "content": "Bloque Izquierda"
+            },
+            {
+                "type": "text",
+                "id": "title_izquierda",
+                "label": "Título bloque izquierdo",
+                "default": "Somos Momiji beauty"
+            },
+            {
+                "type": "header",
+                "content": "Bloque Centro"
+            },
+            {
+                "type": "text",
+                "id": "title_centro",
+                "label": "Título bloque centro",
+                "default": "Primera tienda online de K-Beauty"
+            },
+            {
+                "type": "textarea",
+                "id": "texto_centro",
+                "label": "Texto bloque centro",
+                "default": "Todas nuestras importaciones cumplen con las leyes y regulaciones de importación."
+            },
+            {
+                "type": "header",
+                "content": "Bloque Derecha"
+            },
+            {
+                "type": "text",
+                "id": "title_derecha",
+                "label": "Título bloque derecha",
+                "default": "Acuerdos directos con marcas"
+            },
+            {
+                "type": "textarea",
+                "id": "texto_derecha",
+                "label": "Texto bloque derecha",
+                "default": "Encontrarás productos con estándares altos de salud y belleza. "
+            }
+        ]
+    }
+{% endschema %}
