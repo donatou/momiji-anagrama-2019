@@ -53,10 +53,21 @@
         <div class="recomendado mb-30 mt-30">
         {% if product.metafields.recomendado.nombre_1 != blank %}
           <b>Recomendado por</b>
+          
           <div class="tag"><a href="{{ product.metafields['recomendado']['link_1'] }}" target="_blank">{{ product.metafields['recomendado']['nombre_1'] }}</a></div>
+          
           {% if product.metafields.recomendado.nombre_2 != blank %}   
           <div class="tag"><a href="{{ product.metafields['recomendado']['link_2'] }}" target="_blank">{{ product.metafields['recomendado']['nombre_2'] }}</a></div>
           {% endif %}
+
+          {% if product.metafields.recomendado.nombre_3 != blank %}   
+          <div class="tag"><a href="{{ product.metafields['recomendado']['link_3'] }}" target="_blank">{{ product.metafields['recomendado']['nombre_3'] }}</a></div>
+          {% endif %}
+
+          {% if product.metafields.recomendado.nombre_4 != blank %}   
+          <div class="tag"><a href="{{ product.metafields['recomendado']['link_4'] }}" target="_blank">{{ product.metafields['recomendado']['nombre_4'] }}</a></div>
+          {% endif %}
+
         {% endif %}
         </div>
 
@@ -98,14 +109,12 @@
           {% endif %}
         {% endfor %}
 
-{%- comment -%}
-AÚN PERMITE AGREGAR PRODUCTOS AL CARRITO CUANDO AGREGAS MÁS DEL STOCK. EN PRODUCTOS SIN STOCK DESDE EL PRINCIPIO EL BOTÓN APARECE COMO NO DISPONIBLE.
-PISTA: si el cliente selecciona más de las existencias, hacer un javascrpit que anuncie "no se puede porque se excede del inventario"
-{%- endcomment -%}
-        
       {% endform %}
         
-        <button class="btn__main btn__main--big" id="BIS_trigger" {% if product.available %} style="display: none;" {% endif %}>Notificarme cuando esté disponible</button>
+        {%- comment -%}
+        El botón de Back to Stock se configura directo de la app, en THEME INTEGRATION: Custom Script.
+        {%- endcomment -%}
+        {%- comment -%}<button class="btn__main btn__main--big" id="BIS_trigger" {% if product.available %} style="display: none;" {% endif %}>Notificarme cuando esté disponible</button>{%- endcomment -%}
       </div>
     </div>
   </div>

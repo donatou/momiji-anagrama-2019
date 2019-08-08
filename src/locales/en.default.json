@@ -280,7 +280,7 @@
   },
   "products": {
     "product": {
-      "regular_price": "Precio habitual",
+      "regular_price": "Precio regular",
       "sold_out": "Agotado",
       "unavailable": "No disponible",
       "on_sale": "En oferta",
