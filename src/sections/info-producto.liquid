@@ -10,6 +10,8 @@
 
         <div class="accordions__container mt-30">
 
+        {% if product.metafields.beneficios.hidrata == blank %}
+        {% elsif product.metafields.beneficios.hidrata != blank %}
           <a class="accordion h3 active">Beneficios</a>
           <div class="panel active" style="max-height: 100%">
             {% if hidrata %}
@@ -44,12 +46,17 @@
             {% endif %}
             <p>{{ product.metafields['beneficios']['texto'] }}</p>
           </div>
+        {% endif %}
 
+        {% if product.type == "maquillaje" or "Kit" or "Accesorios" or "labios" or "Services" or  "Todos" or "Libro" or "Cuerpo" or "rociador" or "Cabello" or "Mercancia" or "Tarjeta de regalo" %}
+        {% elsif product.type != "maquillaje" or "Kit" or "Accesorios" or "labios" or "Services" or  "Todos" or "Libro" or "Cuerpo" or "rociador" or "Cabello" or "Mercancia" or "Tarjeta de regalo" %}
           <a class="accordion h3">¿Qué paso de mi rutina es este?</a>
           <div class="panel panel--step">
             {% include 'pasoderutina-logic' %}
             {% include 'pasoderutina' %}
-          </div>
+          </div>       
+        {% endif %}
+
 
         {% if product.metafields.producto.momijiapproved == blank %}
         {% elsif product.metafields.producto.momijiapproved != blank %}
@@ -59,15 +66,21 @@
           </div>
         {% endif %}
 
+        {% if product.metafields.producto.instrucciones == blank %}
+        {% elsif product.metafields.producto.instrucciones != blank %}
           <a class="accordion h3">Instrucciones de uso</a>
           <div class="panel">
             <p>{{ product.metafields['producto']['instrucciones'] }}</p>
           </div>
+        {% endif %}
 
+        {% if product.metafields.producto.ingredientes == blank %}
+        {% elsif product.metafields.producto.ingredientes != blank %}
           <a class="accordion h3">Lista de ingredientes</a>
           <div class="panel">
             <p>{{ product.metafields['producto']['ingredientes'] }}</p>
           </div>
+        {% endif %}
 
         </div>
 
