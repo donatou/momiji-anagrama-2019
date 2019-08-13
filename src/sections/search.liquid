@@ -72,12 +72,13 @@
             </div>
         </div>
 
-        <div class="col-3 d-none d-md-block">
-        {% comment %} FILTROS TABLETA , DESKTOP {% endcomment %}
-            {%- comment -%}{% include 'sidebar-filters' %}{%- endcomment -%}
-        </div>
+        {% comment %} <div class="col-3 d-none d-md-block">
+         FILTROS TABLETA , DESKTOP 
+          {% include 'sidebar-filters' %}
+        </div> {% endcomment %}
+        
 
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="d-md-none">
             {% if search.results_count == 0 %}
               <span class="text-link">{{ section.settings.coleccion }}</span>
