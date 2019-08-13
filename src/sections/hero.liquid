@@ -4,8 +4,11 @@
         <div class="swiper-wrapper">
             {% comment %} Slides {% endcomment %}
             {% for block in section.blocks %}
-            <div class="swiper-slide" {{ block.shopify_attributes }} data-swiper-autoplay="{{ section.settings.duracion | times: 1000 }}" style="background: url({{ block.settings.imagen | img_url: '2880x', format: 'pjpg' }});background-repeat: no-repeat;background-position: bottom right;background-size: cover;">
-                
+            <div class="swiper-slide" {{ block.shopify_attributes }} data-swiper-autoplay="{{ section.settings.duracion | times: 1000 }}">
+                  {% comment %} first image is for mobile {% endcomment %}
+                  <img srcset="{{ block.settings.imagen | img_url: '2880x', format: 'pjpg' }} 767w, 
+                        {{ block.settings.imagen | img_url: '2880x', format: 'pjpg' }}" 
+                    src="{{ block.settings.imagen | img_url: '2880x', format: 'pjpg' }}" alt="Image"/>
                 {% if block.settings.texto_banner %}
                 <div class="container-fluid">
                 <div class="row">
