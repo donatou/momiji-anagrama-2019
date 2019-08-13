@@ -22,6 +22,7 @@ Grid item sin container div de estilo
     <div class="product__info">
         <div class="product__info--brand">
             <p>{{ product.vendor }}</p>
+            <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
             {%- comment -%}<button class="btn__wishlist product_{{product.id}}" data-swaction="addToWatchlist" data-product-id="{{product.id | json}}"></button>{%- endcomment -%}
         </div>
         <div class="product__info--name">

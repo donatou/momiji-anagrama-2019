@@ -73,8 +73,7 @@
 
       {% form "product", product %}
 
-{%- comment -%}
-        <select name="id">
+        {% comment %} <select name="id">
           {% for variant in product.variants %}
             <option
               {% if variant == current_variant %} selected="selected" {% endif %}
@@ -83,13 +82,12 @@
                {{ variant.title }}
            </option>
          {% endfor %}
-        </select>
-{%- endcomment -%}
+        </select> {% endcomment %}
 
       <div class="input-quantity">
-        <span class="input-number-decrement">–</span>
-        <input class="input-number" type="text" value="1" min="1" max="{{ variant.inventory_quantity }}" name="quantity">
-        <span class="input-number-increment">+</span>
+        <span class="input-number-decrement">–</span><!--
+        --><input class="input-number" type="text" value="1" min="1" max="{{ variant.inventory_quantity }}" name="quantity"><!--
+        --><span class="input-number-increment">+</span>
       </div>
         
         {% for variant in product.variants %}

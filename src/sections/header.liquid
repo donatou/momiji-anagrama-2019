@@ -1,7 +1,7 @@
 <header data-section-type="header">
 <div class="header">
-  <div class="header__sitebanner d-none d-md-flex">
-    <div class="header__currency d-flex align-items-center">
+  <div class="header__sitebanner d-md-flex">
+    <div class="header__currency align-items-center d-none d-md-flex">
       <img src="{{ 'currency.svg' | asset_url }}" alt="Currency">
       <select name="price" id="">
         <option value="MXN">MXN</option>
@@ -11,7 +11,7 @@
       <p>{{ section.settings.barra_anuncios }}</p>
     </div>
   
-    <div class="header__cuenta">
+    <div class="header__cuenta d-none d-md-block">
       {% include 'header-account' %}
     </div>
   </div>

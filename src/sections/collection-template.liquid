@@ -40,7 +40,7 @@
                 </div>
                 
                 {% comment %} FILTROS Y ORDENAR {% endcomment %}
-                <div class="col-6 col-md-4">
+                <div class="col-12 col-md-4">
                   {% include 'collection-sorting' %}
                 </div>
 
@@ -81,7 +81,7 @@
             <div class="row thumbs">
             {% paginate collection.products by productos_por_pagina %}
             {% for product in collection.products limit: productos_por_pagina  %}
-              <div class="col-md-4">
+              <div class="col-md-6 col-lg-4">
                 {% include 'grid-item' %}
               </div>
             {% endfor %}

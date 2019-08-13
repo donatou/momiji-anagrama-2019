@@ -1,5 +1,3 @@
- 
-
 $(document).ready(function() {
 
   //CARGAR MODULOS
@@ -252,17 +250,13 @@ $(document).ready(function() {
       $(e).removeClass('active');
     }
   });
-});
 
-
-
-//SLIDER INIT POR SLIDER PRESENTE
-  if ($('.hero__slider').length > 0) {
-
+  //SLIDER INIT POR SLIDER PRESENTE
+  if ($('.hero__slider .swiper-slide').length > 3) {
     var mySwiper = new Swiper('.hero__slider .swiper-container', {
       loop: true,
       direction: 'horizontal',
-      effect: 'slide',
+      effect:"fade",
       slidesPerView: '1',
       keyboard: {
         enabled: true,
@@ -281,6 +275,8 @@ $(document).ready(function() {
       },
     })
   }
+});
+
 
   // PRODUCTS
   (function() {

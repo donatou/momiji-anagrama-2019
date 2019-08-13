@@ -54,7 +54,7 @@
         "other": "{{ count }} resultados para \"{{ terms }}\""
       },
       "no_results_html":
-        "Intente con un término de búsqueda diferente o regrese a la <a href=\"/\">página de inicio</a>."
+        "Intente con un término de búsqueda diferente o regrese a la <a href=\"/\"  class=\"h2 link--orange\">página de inicio</a>."
     },
     "newsletter_form": {
       "newsletter_email": "Estar en el saber",
