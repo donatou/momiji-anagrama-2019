@@ -12,8 +12,8 @@
     <script src="{{ 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' }}"></script>
     {%- comment -%}{{ 'theme.scss.css' | asset_url | stylesheet_tag }}{%- endcomment -%}
     {%- comment -%}{{ 'momiji.scss.css' | asset_url | stylesheet_tag }}{%- endcomment -%}
-    <link rel="preload" href="{{ 'momiji-min.scss.css' | asset_url }}" as="style">
-    {{ 'momiji-min.scss.css' | asset_url | stylesheet_tag }}
+    <link rel="preload" href="{{ 'momiji.scss.css' | asset_url }}" as="style">
+    {{ 'momiji.scss.css' | asset_url | stylesheet_tag }}
 
     {% include 'social-meta-tags' %}
     {% include 'style-tags', layout: 'theme' %}
