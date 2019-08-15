@@ -4710,8 +4710,8 @@ ul.ul-styled {
     margin-right: 10px; }
 
 .loader {
-background: url({{ 'loader.svg' | asset_url }}) no-repeat;
-  background-position: center;
+  {% comment %} background: url({{ 'loader.svg' | asset_url }}) no-repeat;
+  background-position: center; {% endcomment %}
   width: 100%;
   height: 110px; }
 
