@@ -7,9 +7,10 @@
     <meta name="theme-color" content="{{ settings.color_accent }}">
     <link rel="canonical" href="{{ canonical_url }}">
 
-    {%- comment -%}<link rel="preload" href="{{ 'jquery-3.2.1.min.js' | asset_url }}" as="script">{%- endcomment -%}
-    <link rel="preload" href="{{ 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' }}" as="script">
-    <script src="{{ 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' }}"></script>
+    <link rel="preload" href="{{ 'jquery.min.js' | asset_url }}" as="script">
+    {%- comment -%}<link rel="preload" href="{{ 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' }}" as="script">{%- endcomment -%}
+    {%- comment -%}<script src="{{ 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' }}"></script>{%- endcomment -%}
+    <script src="{{ 'jquery.min.js' | asset_url }}"></script>
     {%- comment -%}{{ 'theme.scss.css' | asset_url | stylesheet_tag }}{%- endcomment -%}
     {%- comment -%}{{ 'momiji.scss.css' | asset_url | stylesheet_tag }}{%- endcomment -%}
     <link rel="preload" href="{{ 'momiji.scss.css' | asset_url }}" as="style">
