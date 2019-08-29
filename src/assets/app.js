@@ -457,3 +457,23 @@ $sorter.on('change', (e) => {
 });
 
 // FALTA un sort-by que aplique para VENDOR
+// EYESHINE JS
+var image = document.getElementsByClassName('thumbnail');
+new simpleParallax(image, {
+    overflow: true
+});
+
+$("#load-ingredients").click(function() {
+    $(this).toggleClass("active");
+    $(".ingredientes__item:nth-child(n+4)").fadeToggle();
+    $(this).text(function(i, text){
+        return text === "ver menos ingredientes" ? "ver más ingredientes" : "ver menos ingredientes";
+    });
+});
+
+var child4 = $(".sticker-item"),
+parent = $(".section__content");
+
+Draggable.create(child4, {
+  type:'x, y',
+});
