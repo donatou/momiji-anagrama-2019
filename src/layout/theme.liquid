@@ -96,15 +96,16 @@
 
     <script src="{{ 'theme.min.js' | asset_url }}" async></script>
         {%- comment -%}<script src="{{ 'app.js' | asset_url }}" async></script>{%- endcomment -%} 
-    <script src="{{ 'app.min.js' | asset_url }}" async></script> 
+    {%- comment -%}<script src="{{ 'app.min.js' | asset_url }}" async></script> {%- endcomment -%}
         {% comment %} {{ '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css' | stylesheet_tag }} {% endcomment %}
     <script src="{{ '//cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js' }}" defer></script>
-    <script src="{{ '//cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js' }}" defer></script>
+    <script src="{{ 'swiper.min.js'| asset_url }}" defer></script>
         {% comment %} {{ 'bootstrap.min.js' | script_tag }} {% endcomment %}
     <script src="{{ 'parallax.js' | asset_url }}" defer></script> 
-    <script src="{{ 'aos.js' | asset_url }}" defer></script> 
+    {% comment %}<script src="{{ 'aos.js' | asset_url }}" defer></script>  {% endcomment %}
     <script src="{{ 'micromodal.js' | asset_url }}" defer></script>  
     <script src="{{ 'jquery.selectric.js' | asset_url }}" defer></script>  
+    <script src="{{ 'app.min.js' | asset_url }}" async></script> 
     {% include "swymWishlist" %}
     {% include 'swymSnippet' %}
         {% comment %} {% include 'back-in-stock-helper' %} {% endcomment %}
