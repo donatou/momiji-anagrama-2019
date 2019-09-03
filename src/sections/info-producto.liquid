@@ -48,8 +48,7 @@
           </div>
         {% endif %}
 
-        {% if product.type == "maquillaje" or "Kit" or "Accesorios" or "labios" or "Services" or  "Todos" or "Libro" or "Cuerpo" or "rociador" or "Cabello" or "Mercancia" or "Tarjeta de regalo" %}
-        {% elsif product.type != "maquillaje" or "Kit" or "Accesorios" or "labios" or "Services" or  "Todos" or "Libro" or "Cuerpo" or "rociador" or "Cabello" or "Mercancia" or "Tarjeta de regalo" %}
+        {% if product.type != "maquillaje" or "Kit" or "Accesorios" or "labios" or "Services" or  "Todos" or "Libro" or "Cuerpo" or "rociador" or "Cabello" or "Mercancia" or "Tarjeta de regalo" %}
           <a class="accordion h3">¿Qué paso de mi rutina es este?</a>
           <div class="panel panel--step">
             {% include 'pasoderutina-logic' %}
