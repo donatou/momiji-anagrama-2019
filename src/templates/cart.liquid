@@ -22,7 +22,7 @@ jQuery('[max]').change(function() {
               <div class="card__order">
               <table class="responsive-table">
                 <thead>
-                  <tr class="responsive-table-row">
+                  <tr class="responsive-table-row" class="hr_line">
                     <th colspan="2">{{ 'cart.label.product' | t }}</th>
                     <th>{{ 'cart.label.price' | t }}</th>
                     <th>{{ 'cart.label.quantity' | t }}</th>
@@ -78,7 +78,7 @@ jQuery('[max]').change(function() {
                           {% endfor %}
                         {% endif %}
                       </td>
-                      <td data-label="{{ 'cart.label.price' | t }}">
+                      <td data-label="{{ 'cart.label.price' | t }}" class="vert-line">
                         {% if item.original_line_price != item.line_price %}
                           <span class="visually-hidden">{{ 'cart.label.discounted_price' | t }}</span>
                           {{ item.price | money }}
@@ -88,8 +88,9 @@ jQuery('[max]').change(function() {
                           {{ item.price | money }}
                         {% endif %}
                       </td>
-                      <td data-label="{{ 'cart.label.quantity' | t }}">
+                      <td data-label="{{ 'cart.label.quantity' | t }}" class="vert-line">
                         <input type="number"
+                              class="qty_cart"
                               name="updates[]"
                               id="updates_{{ item.key }}"
                               min="0"
@@ -99,7 +100,7 @@ jQuery('[max]').change(function() {
                           <small>{{ 'cart.general.remove' | t }}</small>
                         </a>
                       </td>
-                      <td data-label="{{ 'cart.label.total' | t }}">
+                      <td data-label="{{ 'cart.label.total' | t }}" class="vert-line">
                         {{ item.line_price | money }}
                       </td>
                     </tr>
