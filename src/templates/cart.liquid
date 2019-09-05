@@ -8,13 +8,15 @@ jQuery('[max]').change(function() {
 
 <section class="cuenta__detalle section__principal">
   <div class="container-fluid">
+
     <div class="row">
       <div class="col-xs-12">
         <div class="header__sitebanner">
-          <h1>{{ 'cart.general.title' | t }}<br /><small>That little bucket of joy.....</small></h1>
+          <h1>{{ 'cart.general.title' | t }}<br /><small>That little bucket of joy</small></h1>
         </div>
       </div>
     </div><!-- end .row -->
+
     <div class="col-xs-12">
       <form action="/cart" method="post" novalidate>
         {% for item in cart.items %}
@@ -65,18 +67,7 @@ jQuery('[max]').change(function() {
             <h3 class="h3">
               {{ item.line_price | money }}
             </h3>
-            <small>subtotal subtotal subtotal</small>
-          </div>
-
-          <div class="col-xs-12 col-sm-2">
-          {%- comment -%}
-          {% if settings.cart_notes_enable %}
-          {%- endcomment -%}
-            <label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
-            <textarea name="note" id="CartSpecialInstructions">{{ cart.note }}</textarea>
-          {%- comment -%}
-          {% endif %}
-          {%- endcomment -%}
+            <small>subtotal</small>
           </div>
 
         </div>
