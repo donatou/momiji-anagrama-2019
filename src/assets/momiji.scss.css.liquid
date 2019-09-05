@@ -5228,6 +5228,20 @@ footer {
     .btn__main:hover, .spr-summary-actions-newreview:hover {
       background-color: #f0ddf0; } }
 
+.btn--red {
+  background: #F06C4E !important;
+  display: inline-block;
+  min-width: 150px;
+  height: 35px;
+  text-align: center;
+  padding: 8px 8px;
+  border: 0; }
+  .btn--lighter-red {
+    background-color: #FFA688 !important; }
+  @media (min-width: 992px) {
+    .btn--red:hover {
+      background-color: #D45032 !important; } }
+
 .btn__wishlist {
   background: url({{ 'wishlist.svg' | asset_url }}) no-repeat;
   height: 15px;
@@ -6506,7 +6520,7 @@ html, footer .footer__item li a, .a__more, .modal__resena .resena__container .st
 
 .input-quantity {
   width: 50%; }
-  .input-quantity .input-number {
+  .input-quantity .input-number, .input-quantity .quantity {
     width: 50%;
     padding: 0 12px;
     vertical-align: top;
@@ -6518,7 +6532,7 @@ html, footer .footer__item li a, .a__more, .modal__resena .resena__container .st
     .input-quantity .input-number-increment {
       border-left: none;
       border-right: 1px solid #0A0A0A; }
-    .input-quantity .input-number, .input-quantity .input-number-decrement, .input-quantity .input-number-increment {
+    .input-quantity .input-number, .input-quantity .quantity, .input-quantity .input-number-decrement, .input-quantity .input-number-increment {
       height: 35px;
       -webkit-user-select: none;
          -moz-user-select: none;
@@ -8157,11 +8171,6 @@ form > div > table {
 }
  .vert-line {
   border-left: solid 1px rgba(74, 74, 74, 0.1) !important;
-}
-.qty_cart {
-  border: solid 1px rgba(74, 74, 74, 0.1) !important;
-  width: 50% !important;
-  padding: 2px;
 }
 
 /*
