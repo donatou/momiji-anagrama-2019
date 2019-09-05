@@ -14,7 +14,7 @@ jQuery('[max]').change(function() {
     <div class="row products__category--name row-mobile d-lg-flex">
       <div class="col-md-8">
           <h2>{{ 'cart.general.title' | t }}</h2>
-          <h5>That little bucket of joy.</h5>
+          {%- comment -%}<h5>That little bucket of joy.</h5>{%- endcomment -%}
       </div>
     </div><!-- end .row -->
 
@@ -49,14 +49,14 @@ jQuery('[max]').change(function() {
           </div>
 
           <div class="col-xs-7 col-sm-2 align-self-sm-center">
-            <div class="input-quantity w-100">
+            <div class="input-quantity w-100 m-0 row">
               <span class="input-number-decrement"><input type='button' value='-' class='qtyminus' field='updates_{{ item.id }}' /></span>
               <input 
                 type="number" 
                 name="updates[]" 
                 id="updates_{{ item.id }}" 
                 min="0" 
-                class="quantity" 
+                class="quantity p-0 w-13-p" 
                 value="{{ item.quantity }}" {% unless item.variant.inventory_management == blank or item.variant.inventory_policy == 'continue' %} max="{{ item.variant.inventory_quantity }}" {% endunless %} 
                 />
               <span class="input-number-increment"><input type='button' value='+' class='qtyplus' field='updates_{{ item.id }}' /></span>
