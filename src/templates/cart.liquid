@@ -11,7 +11,7 @@ jQuery('[max]').change(function() {
     <div class="row">
       <div class="col-xs-12">
         <div class="header__sitebanner">
-          <h1>Your Shopping Cart <small>That little bucket of joy</small></h1>
+          <h1>{{ 'cart.general.title' | t }}<br /><small>That little bucket of joy.....</small></h1>
         </div>
       </div>
     </div><!-- end .row -->
@@ -21,14 +21,6 @@ jQuery('[max]').change(function() {
         <div class="row cart-row">
 
           <div class="col-xs-12 col-sm-2">
-            <div class="pull-left">
-              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
-                <span
-                  class="glyphicon glyphicon-remove-signe"
-                  aria-hidden="true"
-                ></span>
-              </a>
-            </div>
             <a href="{{ item.url | within: collections.all }}">
               <img 
                 src="{{ item | img_url: 'medium' }}" 
@@ -39,10 +31,10 @@ jQuery('[max]').change(function() {
           </div>
 
           <div class="col-xs-12 col-sm-4">
-            <h3><a href="{{ item.url }}">{{ item.product.title }}</a></h3>
-            {% unless item.variant.title contains 'Default' %}
-              {{ item.variant.title }}                
-            {% endunless %}
+            <h1><a href="{{ item.url }}">{{ item.product.title }}</a></h1>
+                        {% unless item.product.has_only_default_variant %}
+                          <span>{{ item.variant.title }}</span><br />
+                        {% endunless %}
             <span>{{ item.product.vendor }}</span>
           </div>
 
@@ -55,15 +47,17 @@ jQuery('[max]').change(function() {
 
           <div class="col-xs-7 col-sm-2">
             <div class="form-group">
-              <input 
-                type="number" 
-                name="updates[]" 
-                id="updates_{{ item.id }}" 
-                value="{{ item.quantity }}" 
-                min="0" 
-                class="cart-qty-input"
-              >
               <small>cantidad</small>
+              <input type="number"
+                              class="cart-qty-input"
+                              name="updates[]"
+                              id="updates_{{ item.key }}"
+                              min="0"
+                              aria-label="{{ 'cart.general.item_quantity' | t }}"
+                              value="{{ item.quantity }}" {% unless item.variant.inventory_management == blank or item.variant.inventory_policy == 'continue' %} max="{{ item.variant.inventory_quantity }}" {% endunless %} />
+                        <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
+                          <small>{{ 'cart.general.remove' | t }}</small>
+                        </a>
             </div>
           </div>
 
@@ -71,7 +65,18 @@ jQuery('[max]').change(function() {
             <h3 class="h3">
               {{ item.line_price | money }}
             </h3>
-            <small>subtotal</small>
+            <small>subtotal subtotal subtotal</small>
+          </div>
+
+          <div class="col-xs-12 col-sm-2">
+          {%- comment -%}
+          {% if settings.cart_notes_enable %}
+          {%- endcomment -%}
+            <label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
+            <textarea name="note" id="CartSpecialInstructions">{{ cart.note }}</textarea>
+          {%- comment -%}
+          {% endif %}
+          {%- endcomment -%}
           </div>
 
         </div>
