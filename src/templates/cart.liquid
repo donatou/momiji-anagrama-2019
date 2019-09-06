@@ -41,14 +41,14 @@ jQuery('[max]').change(function() {
             <span>by {{ item.product.vendor }}</span>
           </div>
 
-          <div class="col-xs-5 col-sm-5 col-md-2 align-self-sm-center">
+          <div class="col-xs-12 col-sm-12 col-md-2 align-self-sm-center">
             <h3 class="h3-price">
               {{ item.price | money }}
             </h3>
             <span>c/u</span>
           </div>
 
-          <div class="col-xs-7 col-sm-7 col-md-4 align-self-sm-center">
+          <div class="col-xs-12 col-sm-12 col-md-4 align-self-sm-center">
             <div class="input-quantity col-12 w-10-em d-inline-flex">
               <span class="input-number-decrement"><input type='button' value='-' class='qtyminus' field='updates_{{ item.id }}' /></span>
               <input 
