@@ -23,7 +23,7 @@ jQuery('[max]').change(function() {
         {% for item in cart.items %}
         <div class="row cart-row">
 
-          <div class="col-xs-12 col-sm-2 align-self-sm-center">
+          <div class="col-xs-12 col-sm-12 col-md-2 align-self-sm-center">
             <a href="{{ item.url | within: collections.all }}">
               <img 
                 src="{{ item | img_url: 'medium' }}" 
@@ -33,7 +33,7 @@ jQuery('[max]').change(function() {
             </a>
           </div>
 
-          <div class="col-xs-12 col-sm-4 align-self-sm-center">
+          <div class="col-xs-12 col-sm-12 col-md-2 align-self-sm-center">
             <a class="h3" href="{{ item.url }}">{{ item.product.title }}</a><br />
                         {% unless item.product.has_only_default_variant %}
                           <span class="text-link">{{ item.variant.title }}</span><br />
@@ -41,22 +41,22 @@ jQuery('[max]').change(function() {
             <span>by {{ item.product.vendor }}</span>
           </div>
 
-          <div class="col-xs-5 col-sm-2 align-self-sm-center">
+          <div class="col-xs-5 col-sm-5 col-md-2 align-self-sm-center">
             <h3 class="h3-price">
               {{ item.price | money }}
             </h3>
             <span>c/u</span>
           </div>
 
-          <div class="col-xs-7 col-sm-2 align-self-sm-center">
-            <div class="input-quantity w-100 m-0 row">
+          <div class="col-xs-7 col-sm-7 col-md-4 align-self-sm-center">
+            <div class="input-quantity col-12 w-10-em d-inline-flex">
               <span class="input-number-decrement"><input type='button' value='-' class='qtyminus' field='updates_{{ item.id }}' /></span>
               <input 
                 type="number" 
                 name="updates[]" 
                 id="updates_{{ item.id }}" 
                 min="0" 
-                class="quantity p-0 w-13-p" 
+                class="quantity w-35-p" 
                 value="{{ item.quantity }}" {% unless item.variant.inventory_management == blank or item.variant.inventory_policy == 'continue' %} max="{{ item.variant.inventory_quantity }}" {% endunless %} 
                 />
               <span class="input-number-increment"><input type='button' value='+' class='qtyplus' field='updates_{{ item.id }}' /></span>
@@ -66,7 +66,7 @@ jQuery('[max]').change(function() {
               </a>
           </div>
 
-          <div class="col-xs-12 col-sm-2 align-self-sm-center">
+          <div class="col-xs-12 col-sm-12 col-md-2 align-self-sm-center">
             <h3 class="h3">
               {{ item.line_price | money }}
             </h3>
