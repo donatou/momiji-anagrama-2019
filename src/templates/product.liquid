@@ -1,6 +1,10 @@
 <main class="main__product">
   {% section 'product' %}
+{% if product.type == "Accesorios" %}
+  <p>NOTHING</p>
+{% else %}
   {% section 'info-producto' %}
+{% endif %}
   {% section 'resenas-producto' %}
   {% section 'product-recommendations' %}
 </main>
