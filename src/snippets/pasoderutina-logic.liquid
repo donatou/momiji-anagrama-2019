@@ -25,11 +25,64 @@
   {% assign esencia = true %}
 {% endif %}
 
+{% if product.type == "Serum" or
+      product.type == "serum" or
+      product.type == "suero" or
+      product.type == "Suero" %}
+  {% assign suero = true %}
+{% endif %}
+
+{% if product.type == "Mascarilla" or
+      product.type == "mascarilla" or
+      product.type == "eyepatch" or
+      product.type == "Eyepatch" or
+      product.type == "Eye Patch" or
+      product.type == "eye patch" %}
+  {% assign mascarilla = true %}
+{% endif %}
+
+{% if product.type == "Ojos" or
+      product.type == "ojos" %}
+  {% assign cremadeojos = true %}
+{% endif %}
+
+{% if product.type == "crema" or
+      product.type == "Hidratante" or
+      product.type == "humectación" or
+      product.type == "Humectación" or
+      product.type == "Crema" or
+      product.type == "hidratante" or
+      product.type == "CREMA" %}
+  {% assign cremahidratante = true %}
+{% endif %}
+
+{% if product.type == "bloqueador" or
+      product.type == "Bloqueador" or
+      product.type == "SPF" %}
+  {% assign protectorsolar = true %}
+{% endif %}
+
+{% if product.type == "Accesorios" or
+      product.type == "Cabello" or
+      product.type == "Cuerpo" or
+      product.type == "Kit" or
+      product.type == "Mercancia" or
+      product.type == "Services" or
+      product.type == "Tarjeta de regalo" or
+      product.type == "Todos" or
+      product.type == "labios" or
+      product.type == "labios, maquillaje" or
+      product.type == "loción" or
+      product.type == "maquillaje" or
+      product.type == "piel grasa" or
+      product.type == "rociador" %}
+  {% assign sinpasoderutina = true %}
+{% endif %} 
+
+
+
 {%- comment -%}
-YA FUNCIONAN LOS NORMALES, FALTA AGREGAR EL RESTO DE LOS ESCENARIOS Y ADEMAS CUANDO NO ES PRODUCTO CON PASO DE RUTINA. USAR METAFIELDS EN ESE TIPO DE PRODUCTOS, O ALGUN TAG.
-{%- endcomment -%}
-
-
 {% if product.metafields.pasoderutina.sin != blank %}
   {% assign sinpasoderutina = true %}
 {% endif %}
+{%- endcomment -%}
