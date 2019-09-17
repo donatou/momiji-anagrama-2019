@@ -11,42 +11,46 @@
 
         <div class="accordions__container mt-30">
 
-        {% if product.metafields.beneficios.hidrata == blank %}
-        {% elsif product.metafields.beneficios.hidrata != blank %}
-          <a class="accordion h3 active">Beneficios</a>
-          <div class="panel active" style="max-height: 100%">
-            {% if hidrata %}
-              {{ product.metafields['beneficios']['hidrata'] }}
-            {% endif %}
-            {% if spf %}
-              {{ product.metafields['beneficios']['SPF'] }}
-            {% endif %}
-            {% if ilumina %}
-              {{ product.metafields['beneficios']['ilumina'] }}
-            {% endif %}
-            {% if repara %}
-              {{ product.metafields['beneficios']['repara'] }}
-            {% endif %}
-            {% if limpia %}
-              {{ product.metafields['beneficios']['limpia'] }}
-            {% endif %}
-            {% if calma %}
-              {{ product.metafields['beneficios']['calma'] }}
-            {% endif %}
-            {% if tonifica %}
-              {{ product.metafields['beneficios']['tonifica'] }}
-            {% endif %}
-            {% if empareja %}
-              {{ product.metafields['beneficios']['empareja'] }}
-            {% endif %}
-            {% if anti-age %}
-              {{ product.metafields['beneficios']['anti-age'] }}
-            {% endif %}
-            {% if exfolia %}
-              {{ product.metafields['beneficios']['exfolia'] }}
-            {% endif %}
-            <p>{{ product.metafields['beneficios']['texto'] }}</p>
-          </div>
+        {% if sinpasoderutina %}
+          {%- comment -%}Si el producto no tiene paso de rutina, no tiene beneficios{%- endcomment -%}
+        {% else %}
+          {% if product.metafields.beneficios.hidrata == blank %}
+          {% elsif product.metafields.beneficios.hidrata != blank %}
+            <a class="accordion h3 active">Beneficios</a>
+            <div class="panel active" style="max-height: 100%">
+              {% if hidrata %}
+                {{ product.metafields['beneficios']['hidrata'] }}
+              {% endif %}
+              {% if spf %}
+                {{ product.metafields['beneficios']['SPF'] }}
+              {% endif %}
+              {% if ilumina %}
+                {{ product.metafields['beneficios']['ilumina'] }}
+              {% endif %}
+              {% if repara %}
+                {{ product.metafields['beneficios']['repara'] }}
+              {% endif %}
+              {% if limpia %}
+                {{ product.metafields['beneficios']['limpia'] }}
+              {% endif %}
+              {% if calma %}
+                {{ product.metafields['beneficios']['calma'] }}
+              {% endif %}
+              {% if tonifica %}
+                {{ product.metafields['beneficios']['tonifica'] }}
+              {% endif %}
+              {% if empareja %}
+                {{ product.metafields['beneficios']['empareja'] }}
+              {% endif %}
+              {% if anti-age %}
+                {{ product.metafields['beneficios']['anti-age'] }}
+              {% endif %}
+              {% if exfolia %}
+                {{ product.metafields['beneficios']['exfolia'] }}
+              {% endif %}
+              <p>{{ product.metafields['beneficios']['texto'] }}</p>
+            </div>
+          {% endif %}
         {% endif %}
 
 
