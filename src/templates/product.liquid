@@ -1,7 +1,7 @@
 <main class="main__product">
   {% section 'product' %}
 {% if product.type == "Accesorios" %}
-  <p>NOTHING</p>
+  {%- comment -%}Info adicional no aparece al ser producto tipo "Accesorio".{%- endcomment -%}
 {% else %}
   {% section 'info-producto' %}
 {% endif %}
