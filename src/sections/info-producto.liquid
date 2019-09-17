@@ -48,6 +48,15 @@
           </div>
         {% endif %}
 
+
+          <a class="accordion h3">¿Qué paso de mi rutina es este?</a>
+          <div class="panel panel--step">
+            {% include 'pasoderutina-logic' %}
+            {% include 'pasoderutina' %}
+          </div>    
+
+
+        {%- comment -%}
         {% if product.type != "maquillaje" or "Kit" or "Accesorios" or "labios" or "Services" or  "Todos" or "Libro" or "Cuerpo" or "rociador" or "Cabello" or "Mercancia" or "Tarjeta de regalo" %}
           <a class="accordion h3">¿Qué paso de mi rutina es este?</a>
           <div class="panel panel--step">
@@ -55,7 +64,7 @@
             {% include 'pasoderutina' %}
           </div>       
         {% endif %}
-
+        {%- endcomment -%}
 
         {% if product.metafields.producto.momijiapproved == blank %}
         {% elsif product.metafields.producto.momijiapproved != blank %}
