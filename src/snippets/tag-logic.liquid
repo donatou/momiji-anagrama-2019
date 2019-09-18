@@ -3,10 +3,10 @@
   {% assign soon = false %}
 {% endif %}
 
+{% assign momi = false %}
+{% assign new = false %}
 {% if product.tags contains "momis_pick" %}
   {% assign momi = true %}
-{% else %}
-  {% if product.tags contains "nuevo" %}
-    {% assign new = true %}
-  {% endif %}
+{% elsif product.tags contains "nuevo" %}
+  {% assign new = true %}
 {% endif %}
