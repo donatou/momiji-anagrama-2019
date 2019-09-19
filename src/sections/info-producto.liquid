@@ -14,43 +14,40 @@
         {% if sinpasoderutina %}
           {%- comment -%}Si el producto no tiene paso de rutina, no tiene beneficios{%- endcomment -%}
         {% else %}
-          {% if product.metafields.beneficios.hidrata == blank %}
-          {% elsif product.metafields.beneficios.hidrata != blank %}
-            <a class="accordion h3 active">Beneficios</a>
-            <div class="panel active" style="max-height: 100%">
-              {% if hidrata %}
-                {{ product.metafields['beneficios']['hidrata'] }}
-              {% endif %}
-              {% if spf %}
-                {{ product.metafields['beneficios']['SPF'] }}
-              {% endif %}
-              {% if ilumina %}
-                {{ product.metafields['beneficios']['ilumina'] }}
-              {% endif %}
-              {% if repara %}
-                {{ product.metafields['beneficios']['repara'] }}
-              {% endif %}
-              {% if limpia %}
-                {{ product.metafields['beneficios']['limpia'] }}
-              {% endif %}
-              {% if calma %}
-                {{ product.metafields['beneficios']['calma'] }}
-              {% endif %}
-              {% if tonifica %}
-                {{ product.metafields['beneficios']['tonifica'] }}
-              {% endif %}
-              {% if empareja %}
-                {{ product.metafields['beneficios']['empareja'] }}
-              {% endif %}
-              {% if anti-age %}
-                {{ product.metafields['beneficios']['anti-age'] }}
-              {% endif %}
-              {% if exfolia %}
-                {{ product.metafields['beneficios']['exfolia'] }}
-              {% endif %}
-              <p>{{ product.metafields['beneficios']['texto'] }}</p>
-            </div>
-          {% endif %}
+          <a class="accordion h3 active">Beneficios</a>
+          <div class="panel active" style="max-height: 100%">
+            {% if hidrata %}
+              <div class="benefits--icon"><p class="icon">♤</p><b>Hidrata</b></div>
+            {% endif %}
+            {% if spf %}
+              <div class="benefits--icon"><p class="icon">☼</p><b>SPF</b></div>
+            {% endif %}
+            {% if ilumina %}
+              <div class="benefits--icon"><p class="icon">★</p><b>Ilumina</b></div>
+            {% endif %}
+            {% if repara %}
+              <div class="benefits--icon"><p class="icon">▢</p><b>Repara</b></div>
+            {% endif %}
+            {% if limpia %}
+              <div class="benefits--icon"><p class="icon">✧</p><b>Limpia</b></div>
+            {% endif %}
+            {% if calma %}
+              <div class="benefits--icon"><p class="icon">♥</p><b>Calma</b></div>
+            {% endif %}
+            {% if tonifica %}
+              <div class="benefits--icon"><p class="icon">☯</p><b>Tonifica</b></div>
+            {% endif %}
+            {% if empareja %}
+              <div class="benefits--icon"><p class="icon">▥</p><b>Empareja Tono</b></div>
+            {% endif %}
+            {% if anti-age %}
+              <div class="benefits--icon"><p class="icon">ᛟ</p><b>Anti-age</b></div>
+            {% endif %}
+            {% if exfolia %}
+              <div class="benefits--icon"><p class="icon">✦</p><b>Exfolia</b></div>
+            {% endif %}
+            <p>{{ product.metafields['beneficios']['texto'] }}</p>
+          </div>
         {% endif %}
 
 
