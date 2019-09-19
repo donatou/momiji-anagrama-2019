@@ -53,3 +53,16 @@
     {{ tracking_code }}
   </body>
 </html>
+
+<style>
+@font-face {
+    font-family: 'GT Walsheim';
+    src: url('{{ "GTWalsheim.woff2" | asset_url }}') format('woff2'),
+        url('{{ "GTWalsheim.woff" | asset_url }}') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    font-family: 'GT Walsheim';
+}
+</style>
