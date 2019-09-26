@@ -1,5 +1,24 @@
+<section class="products__category--header section__header">
+  <div class="container-fluid p0">
+    <div class="row">
+      <div class="col-md-6 offset-md-0 col-lg-8 offset-lg-1 col-xl-8 offset-xl-1 header--title">
+        <div class="breadcrumb">
+        <p><a href="/">Inicio</a>&nbsp;/ <a href="/collections/manchas-y-cicatrices" aria-current="page">Manchas y cicatrices</a></p>
+        </div>
+        <h2>
+          Titulo del blogpost        
+        </h2>
+        <p>
+        
+          <span style="font-weight: 400;">Desvanece manchas y cicatrices con nuestros productos favoritos para conseguir una piel más lisa y uniforme. </span>
+        
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section class="section__principal">
+<main class="section__principal bg-purple">
   <div class="container">
     <div class="row">
       {% paginate blog.articles by 5 %}
@@ -28,70 +47,74 @@
           </ul>
         {% endif %}
 
-
-        {% comment %}
-
-        Article Previews
-        ====================
-        {% endcomment %}
+      {% comment %}
+      Article Previews
+      ====================
+      {% endcomment %}
       <div class="col-md-12">
-        {% for article in blog.articles %}
+        <div class="row thumbs">
+          {% for article in blog.articles %}
+            <div class="col-md-4 mb-3 pl-2 px-2">
+            <div class="bg-white p-3">
+              <a href="{{ article.url }}">
+                <h3 class="h6">{{ article.title }}</h3>
+              </a>
 
-          <h3>
-            <a href="{{ article.url }}">{{ article.title }}</a>
-          </h3>
+              {% if article.image %}
+                <a href="{{ article.url }}">
+                  {% include 'responsive-image' with
+                    image: article.image,
+                    max_width: 1024,
+                    max_height: 1024
+                  %}
+                </a>
+              {% endif %}
 
-          {% capture date %}{{ article.published_at | time_tag: format: 'month_day_year' }}{% endcapture %}
+              {% capture date %}{{ article.published_at | time_tag: format: 'month_day_year' }}{% endcapture %}
+              <div class="product__info--brand">
+                <p>
+                  {{ 'blogs.article.author_on_date_html' | t: author: article.author, date: date }}
+                </p>
+              </div>
 
-          <p>
-            {{ 'blogs.article.author_on_date_html' | t: author: article.author, date: date }}
-          </p>
+              <div class="rte">
+                {% if article.excerpt.size > 0 %}
+                  {{ article.excerpt }}
+                {% else %}
+                  <p>
+                    {{ article.content | strip_html | truncatewords: 100 }}
+                  </p>
+                {% endif %}
+              </div>
 
-          {% if article.image %}
-            <a href="{{ article.url }}">
-              {% include 'responsive-image' with
-                image: article.image,
-                max_width: 1024,
-                max_height: 1024
-              %}
-            </a>
-          {% endif %}
+              {% if blog.comments_enabled? or article.tags.size > 0 %}
+                <ul>
+                  {% if blog.comments_enabled? %}
+                    <li>
+                      <a href="{{ article.url }}#comments">
+                        {{ 'blogs.comments.with_count' | t: count: article.comments_count }}
+                      </a>
+                    </li>
+                  {% endif %}
 
-          <div class="rte">
-            {% if article.excerpt.size > 0 %}
-              {{ article.excerpt }}
-            {% else %}
+                  {% if article.tags.size > 0 %}
+                    {% for tag in article.tags %}
+                      <li>
+                        <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>
+                        {% unless forloop.last %}, {% endunless %}
+                      </li>
+                    {% endfor %}
+                  {% endif %}
+                </ul>
+              {% endif %}
+
               <p>
-                {{ article.content | strip_html | truncatewords: 100 }}
+                <a href="{{ article.url }}">{{ 'blogs.article.read_more' | t }} &rarr;</a>
               </p>
-            {% endif %}
-          </div>
-
-          {% if blog.comments_enabled? or article.tags.size > 0 %}
-            <ul>
-              {% if blog.comments_enabled? %}
-                <li>
-                  <a href="{{ article.url }}#comments">
-                    {{ 'blogs.comments.with_count' | t: count: article.comments_count }}
-                  </a>
-                </li>
-              {% endif %}
-
-              {% if article.tags.size > 0 %}
-                {% for tag in article.tags %}
-                  <li>
-                    <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>
-                    {% unless forloop.last %}, {% endunless %}
-                  </li>
-                {% endfor %}
-              {% endif %}
-            </ul>
-          {% endif %}
-
-          <p>
-            <a href="{{ article.url }}">{{ 'blogs.article.read_more' | t }} &rarr;</a>
-          </p>
-        {% endfor %}
+            </div>
+            </div>
+          {% endfor %}
+        </div>
       </div>
 
           {% section 'product-recommendations' %}
@@ -103,4 +126,4 @@
       {% endpaginate %}
     </div>
   </div>
-</section>
+</main>
