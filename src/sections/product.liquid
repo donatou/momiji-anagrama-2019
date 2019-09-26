@@ -1,9 +1,11 @@
-<section class="section__principal" itemscope itemtype="http://schema.org/Product">
+<section class="section__principal" data-section-id="{{ section.id }}" data-section-type="product">
 
 {% include 'swym-product-view', product: product %}
 
 {%- assign unico = product.has_only_default_variant -%}
 {% assign inventario-actual = variant.inventory_quantity %}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
 
   <meta itemprop="name" content="{{ product.title }}{% unless product.has_only_default_variant %} - {{ current_variant.title }}{% endunless %}">
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
@@ -37,14 +39,14 @@
         </div>
       </div>
 
-{% include 'tag-logic' %}
+      {% include 'tag-logic' %}
 
       <div class="col-md-6 col-lg-5 section__container {% if soon %} product soon {% elsif new %} product new {% elsif momi %} product momi {% else %} product {% endif %}">
         <h1 class="text-link">{{ product.vendor }}</h1>
         <h2>{{ product.title }}</h2>
-        <div class="product__detail--name">
+        <div class="product__detail--name" data-price-wrapper>
           <h3>{{ product.metafields['producto']['presentacion'] }}</h3>
-          <p class="h3">{{ product.price | money }}</p>
+          <p class="h3" data-product-price>{{ product.variants.first.price | money }}</p>
         </div>
         <p><a class="link--orange"><span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span></a></p>
         <b>Descripción.</b>
@@ -71,25 +73,68 @@
         {% endif %}
         </div>
 
-      {% form "product", product %}
+      {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
+        {% unless product.has_only_default_variant %}
+          {% for option in product.options_with_values %}
+            <div class="js d-none">
 
-        {% comment %} <select name="id">
-          {% for variant in product.variants %}
-            <option
-              {% if variant == current_variant %} selected="selected" {% endif %}
-              {% unless variant.available %} disabled="disabled" {% endunless %}
-              value="{{ variant.id }}">
-               {{ variant.title }}
-           </option>
-         {% endfor %}
-        </select> {% endcomment %}
+              {% if forloop.index0 > 0 %}
 
-      <div class="input-quantity">
-        <span class="input-number-decrement">–</span><!--
-        --><input class="input-number" type="text" value="1" min="1" max="{{ variant.inventory_quantity }}" name="quantity"><!--
-        --><span class="input-number-increment">+</span>
-      </div>
+                {% for value in option.values %}
+                  <input type="radio" id="Option{{ option.position }}-{{ value }}" name="options[{{ option.name }}]" value="{{ value }}"{% if option.selected_value == value %} checked{% endif %}>
+                  <label for="Option{{ option.position }}-{{ value }}">{{ value }}</label>
+                {% endfor %}
+
+              {% else %}
+ 
+                <select
+                  id="Option{{ option.position }}"
+                  name="options[{{ option.name | escape }}]">
+                  {% for value in option.values %}
+                    <option
+                      value="{{ value | escape }}"
+                      {% if option.selected_value == value %}selected="selected"{% endif %}>
+                        {{ value }}
+                    </option>
+                  {% endfor %}
+                </select>
+
+              {% endif %}
+            </div>
+
+            <ul id="opciones">
+            {% for value in option.values %}
+              <li>{{ value }}</li>
+            {% endfor %}
+            </ul>
+          {% endfor %}
+        {% endunless %}
+
+
+  
+
+        <div class="input-quantity">
+          <span class="input-number-decrement">–</span><!--
+          --><input class="input-number" type="text" value="1" min="1" max="{{ variant.inventory_quantity }}" name="quantity"><!--
+          --><span class="input-number-increment">+</span>
+        </div>
         
+        <button
+          class="btn__main btn__main--big" 
+          type="submit"
+          name="add"
+          data-submit-button
+          {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+            <span data-submit-button-text>
+              {% if current_variant.available %}
+                {{ 'products.product.add_to_cart' | t }}
+              {% else %}
+                {{ 'products.product.sold_out' | t }}
+              {% endif %}
+            </span>
+        </button>
+
+        {%- comment -%}
         {% for variant in product.variants %}
           {% if variant == product.selected_or_first_available_variant %}
             <button 
@@ -106,6 +151,7 @@
             </button>            
           {% endif %}
         {% endfor %}
+        {%- endcomment -%}
 
       {% endform %}
         
@@ -118,3 +164,19 @@
   </div>
 
 </section>
+ 
+<script type="text/javascript">
+ 
+  $(function(){
+    $('#opciones li').on('click', function() {
+
+      var id = $(this).text();
+
+      var sortBySelect = document.querySelector("#Option1");
+      sortBySelect.value = id;
+      sortBySelect.dispatchEvent(new Event("change"));
+    })
+  })
+</script>
+
+
