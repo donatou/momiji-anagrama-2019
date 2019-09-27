@@ -1,0 +1,24 @@
+{% assign skincare = false %}
+{% if article.tags contains "skincare" %}
+{% assign skincare = true %}
+{% endif %}
+
+{% assign entrevistas = false %}
+{% if article.tags contains "entrevistas" %}
+{% assign entrevistas = true %}
+{% endif %}
+
+{% assign kbeauty = false %}
+{% if article.tags contains "k-beauty" %}
+{% assign kbeauty = true %}
+{% endif %}
+
+{% assign resenas = false %}
+{% if article.tags contains "reseñas" %}
+{% assign resenas = true %}
+{% endif %}
+
+{% assign selfcare = false %}
+{% if article.tags contains "self care" %}
+{% assign selfcare = true %}
+{% endif %}

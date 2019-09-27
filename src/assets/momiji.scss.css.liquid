@@ -5150,7 +5150,7 @@ footer {
 	z-index: 0;
 }
 
-.new:before, .soon:before, .momi:before {
+.new:before, .soon:before, .momi:before, .skincare-blog:before, .selfcare-blog:before, .resenas-blog:before, .kbeauty-blog:before, .entrevistas-blog:before {
   content: "";
   z-index: 44;
   position: absolute; }
@@ -5182,6 +5182,29 @@ footer {
   height: 65px;
   width: 65px;
   right: 20px; }
+
+.skincare-blog:before {
+  background: url({{ 'skincare-blog.svg' | asset_url }}) no-repeat; }
+
+.selfcare-blog:before {
+  background: url({{ 'selfcare-blog.svg' | asset_url }}) no-repeat; }
+
+.resenas-blog:before {
+  background: url({{ 'resenas-blog.svg' | asset_url }}) no-repeat; }
+
+.kbeauty-blog:before {
+  background: url({{ 'kbeauty-blog.svg' | asset_url }}) no-repeat; }
+
+.entrevistas-blog:before {
+  background: url({{ 'entrevistas-blog.svg' | asset_url }}) no-repeat; }
+
+.skincare-blog:before, .selfcare-blog:before, .resenas-blog:before, .kbeauty-blog:before, .entrevistas-blog:before {
+  background-size: contain;
+  top: -20px;
+  height: 80px;
+  width: 80px;
+  right: 0px;
+  margin: 0 auto; }
 
 .benefits--icon {
   display: -ms-inline-flexbox;
