@@ -102,9 +102,9 @@
               {% endif %}
             </div>
 
-            <ul id="opciones">
+            <ul class="list-unstyled" id="opciones">
             {% for value in option.values %}
-              <li>{{ value }}</li>
+              <li class="opciones-item">{{ value }}</li>
             {% endfor %}
             </ul>
           {% endfor %}
@@ -177,6 +177,16 @@
       sortBySelect.dispatchEvent(new Event("change"));
     })
   })
+
+  $(document).ready(function(){
+      $("#opciones li:first-child").addClass("active");
+
+      $('#opciones li').click(function(){
+        $('.opciones-item').removeClass('active');
+        $(this).addClass('active');
+        $('#opciones').toggleClass('active');
+      });
+  });
 </script>
 
 
