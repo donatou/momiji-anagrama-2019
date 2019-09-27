@@ -32,142 +32,251 @@
   {%- endunless -%}
 {%- endif -%}
 
-<article role="article">
+<main class="section__principal bg-purple">
+  <div class="container">
+    <div class="row">
 
-  {% if article.image %}
-    <div class="hero-banner hero-banner--article lazyload" data-bgset="{% include 'responsive-bg-image', image: article.image %}"></div>
+      <div class="col-md-12 col-lg-12">
+        <div class="row thumbs">
 
-    <noscript>
-      {%- assign image_size = article.image.width | append: 'x' -%}
-      <div class="hero-banner hero-banner--article" style="background-image: {{ article.image | img_url: image_size }}"></div>
-    </noscript>
-  {% endif %}
+          <div class="col-lg-7">
+            <article role="article">
 
-  <header role="banner">
-    <h1>{{ article.title }}</h1>
-    {% capture date %}{{ article.published_at | time_tag: format: 'month_day_year' }}{% endcapture %}
-    <p>{{ 'blogs.article.author_on_date_html' | t: author: article.author, date: date }}</p>
-  </header>
+              {% if article.image %}
+                <div class="hero-banner hero-banner--article lazyload" data-bgset="{% include 'responsive-bg-image', image: article.image %}"></div>
 
-  <div class="rte">
-    {{ article.content }}
-  </div>
+                <noscript>
+                  {%- assign image_size = article.image.width | append: 'x' -%}
+                  <div class="hero-banner hero-banner--article" style="background-image: {{ article.image | img_url: image_size }}"></div>
+                </noscript>
+              {% endif %}
 
-  {% if article.tags.size > 0 %}
-    <ul>
-      {% for tag in article.tags %}
-        <li>
-          <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
-        </li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-
-  {% if settings.social_sharing_blog %}
-    {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
-  {% endif %}
-
-  {% if blog.comments_enabled? %}
-    <h3>{{ 'blogs.comments.with_count' | t: count: number_of_comments }}</h3>
-
-    {% paginate article.comments by 5 %}
-
-    <div id="comments">
-      {% if comment and comment.status and comment.id != blank and paginate.current_page == 1 %}
-        <p class="form-success">
-          {% if blog.moderated? and comment.status != 'published' %}
-            {{ 'blogs.comments.success_moderated' | t }}
-          {% else %}
-            {{ 'blogs.comments.success' | t }}
-          {% endif %}
-        </p>
-      {% endif %}
-
-      {% if number_of_comments > 0 %}
-        <ul>
-          {% comment %}
-            Display comment from URL parameters if it is waiting moderation
-            We added "comment.id" check to make sure we don't display markup if there are form errors
-          {% endcomment %}
-          {% if comment and comment.status != 'published' and comment.id != blank %}
-            <li id="{{ comment.id }}">
-              <div class="rte">
-                {{ comment.content }}
+              <div class="col-lg-12">
+                <img src="{{ article.image.src | img_url: '1080px' }}" class="">
               </div>
-              {% capture date %}{{ comment.created_at | time_tag: format: 'month_day_year' }}{% endcapture %}
-              <p>{{ 'blogs.article.comment_meta_html' | t: author: comment.author, date: date }}</p>
-            </li>
-          {% endif %}
 
-          {% for comment in article.comments %}
-            <li id="{{ comment.id }}">
+              <h1>{{ article.title }}</h1>
+
+
               <div class="rte">
-                {{ comment.content }}
+              {% capture date %}{{ article.published_at | time_tag: format: 'month_day_year' }}{% endcapture %}
+              <b>Por {{ article.author }} - {{ article.published_at | date: format: 'abbreviated_date' }}</b>
+                {{ article.content }}
               </div>
-              {% capture date %}{{ comment.created_at | time_tag: format: 'month_day_year' }}{% endcapture %}
-              <p>{{ 'blogs.article.comment_meta_html' | t: author: comment.author, date: date }}</p>
-            </li>
-          {% endfor %}
-        </ul>
 
-        {% if paginate.pages > 1 %}
-          {% include 'pagination' %}
-        {% endif %}
-      {% endif %}
+              {% if article.tags.size > 0 %}
+                <ul>
+                  {% for tag in article.tags %}
+                    <li>
+                      <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+
+              {% if settings.social_sharing_blog %}
+                {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
+              {% endif %}
+
+              {% if blog.comments_enabled? %}
+                <h3>{{ 'blogs.comments.with_count' | t: count: number_of_comments }}</h3>
+
+                {% paginate article.comments by 5 %}
+
+                <div id="comments">
+                  {% if comment and comment.status and comment.id != blank and paginate.current_page == 1 %}
+                    <p class="form-success">
+                      {% if blog.moderated? and comment.status != 'published' %}
+                        {{ 'blogs.comments.success_moderated' | t }}
+                      {% else %}
+                        {{ 'blogs.comments.success' | t }}
+                      {% endif %}
+                    </p>
+                  {% endif %}
+
+                  {% if number_of_comments > 0 %}
+                    <ul>
+                      {% comment %}
+                        Display comment from URL parameters if it is waiting moderation
+                        We added "comment.id" check to make sure we don't display markup if there are form errors
+                      {% endcomment %}
+                      {% if comment and comment.status != 'published' and comment.id != blank %}
+                        <li id="{{ comment.id }}">
+                          <div class="rte">
+                            {{ comment.content }}
+                          </div>
+                          {% capture date %}{{ comment.created_at | time_tag: format: 'month_day_year' }}{% endcapture %}
+                          <p>{{ 'blogs.article.comment_meta_html' | t: author: comment.author, date: date }}</p>
+                        </li>
+                      {% endif %}
+
+                      {% for comment in article.comments %}
+                        <li id="{{ comment.id }}">
+                          <div class="rte">
+                            {{ comment.content }}
+                          </div>
+                          {% capture date %}{{ comment.created_at | time_tag: format: 'month_day_year' }}{% endcapture %}
+                          <p>{{ 'blogs.article.comment_meta_html' | t: author: comment.author, date: date }}</p>
+                        </li>
+                      {% endfor %}
+                    </ul>
+
+                    {% if paginate.pages > 1 %}
+                      {% include 'pagination' %}
+                    {% endif %}
+                  {% endif %}
+                </div>
+
+                {% endpaginate %}
+
+                {% form 'new_comment', article %}
+                  <h3>{{ 'blogs.comments.title' | t }}</h3>
+
+                  {{ form.errors | default_errors }}
+
+                  <label for="CommentAuthor" class="label-hidden">
+                    {{ 'blogs.comments.name' | t }}
+                  </label>
+                  <input type="text"
+                        name="comment[author]"
+                        id="CommentAuthor"
+                        class="{% if form.errors contains 'author' %}input-error{% endif %}"
+                        placeholder="{{ 'blogs.comments.name' | t }}"
+                        value="{{ form.author }}"
+                        autocapitalize="words">
+
+                  <label for="CommentEmail" class="label-hidden">
+                    {{ 'blogs.comments.email' | t }}
+                  </label>
+                  <input type="email"
+                        name="comment[email]"
+                        id="CommentEmail"
+                        class="{% if form.errors contains 'email' %}input-error{% endif %}"
+                        placeholder="{{ 'blogs.comments.email' | t }}"
+                        value="{{ form.email }}"
+                        spellcheck="false"
+                        autocomplete="off"
+                        autocapitalize="off">
+
+                  <label for="CommentBody" class="label-hidden">
+                    {{ 'blogs.comments.message' | t }}
+                  </label>
+                  <textarea
+                    name="comment[body]"
+                    id="CommentBody"
+                    class="{% if form.errors contains 'body' %}input-error{% endif %}"
+                    placeholder="{{ 'blogs.comments.message' | t }}">
+                    {{- form.body -}}
+                  </textarea>
+
+                  {% if blog.moderated? %}
+                    <p>{{ 'blogs.comments.moderated' | t }}</p>
+                  {% endif %}
+
+                  <input type="submit" class="button" value="{{ 'blogs.comments.post' | t }}">
+                {% endform %}
+
+              {% endif %}
+
+            </article>
+          </div>
+
+          <div class="col-lg-5">
+            <div class="row thumbs">
+              {% for article in blog.articles %}
+
+                  <div {% if skincare %} class="skincare-blog col-lg-12 bg-white d-flex mb-3"
+                        {% elsif selfcare %} class="selfcare-blog col-lg-12 bg-white d-flex mb-3"
+                        {% elsif resenas %} class="resenas-blog col-lg-12 bg-white d-flex mb-3"
+                        {% elsif kbeauty %} class="kbeauty-blog col-lg-12 bg-white d-flex mb-3"
+                        {% else entrevistas %} class="entrevistas-blog col-lg-12 bg-white d-flex mb-3"
+                        {% endif %}>
+                  {% include 'blog-tag-logic' %}
+
+                    <div class="col-lg-3">
+                      {% if article.image %}
+
+                        <a href="{{ article.url }}">
+                        <img src="{{ article.image.src | img_url: '640x' }}" class="">
+                          {%- comment -%}{% include 'responsive-image' with
+                            image: article.image,
+                            max_width: 1024,
+                            max_height: 1024,
+                            wrapper_class: 'product__container'
+                          %}{%- endcomment -%}
+                        </a>
+                      {% endif %}
+                    </div>
+
+                    <div class="col-lg-9">
+                      <a href="{{ article.url }}">
+                        <h3 class="h3">{{ article.title }}</h3>
+                      </a>
+
+                      {% capture date %}{{ article.published_at | time_tag: format: 'month_day_year' }}{% endcapture %}
+                      <div class="">
+                        <b>
+                        Por {{ article.author }} - {{ article.published_at | date: format: 'abbreviated_date' }}
+                          {%- comment -%}{{ 'blogs.article.author_on_date_html' | t: author: article.author, date: date }}{%- endcomment -%}
+                        </b>
+                      </div>
+
+                      {%- comment -%}
+                      <div class="rte">
+                        {% if article.excerpt.size > 0 %}
+                          {{ article.excerpt | strip_html | truncatewords: 12 }}
+                        {% else %}
+                          <p>
+                            {{ article.content | strip_html | truncatewords: 12 }}
+                          </p>
+                        {% endif %}
+                      </div>
+                      {%- endcomment -%}
+
+                      {%- comment -%}
+                      <div class="">
+                        <p>
+                          <a href="{{ article.url }}">{{ 'blogs.article.read_more' | t }} &rarr;</a>
+                        </p>
+                      </div>
+                      {%- endcomment -%}
+                    </div>
+
+                    {%- comment -%}
+                    {% if blog.comments_enabled? or article.tags.size > 0 %}
+                      <ul>
+                        {% if blog.comments_enabled? %}
+                          <li>
+                            <a href="{{ article.url }}#comments">
+                              {{ 'blogs.comments.with_count' | t: count: article.comments_count }}
+                            </a>
+                          </li>
+                        {% endif %}
+
+                        {% if article.tags.size > 0 %}
+                          {% for tag in article.tags %}
+                            <li>
+                              <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>
+                              {% unless forloop.last %}, {% endunless %}
+                            </li>
+                          {% endfor %}
+                        {% endif %}
+                      </ul>
+                    {% endif %}
+                    {%- endcomment -%}
+
+                  </div>
+
+              {% endfor %}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
-
-    {% endpaginate %}
-
-    {% form 'new_comment', article %}
-      <h3>{{ 'blogs.comments.title' | t }}</h3>
-
-      {{ form.errors | default_errors }}
-
-      <label for="CommentAuthor" class="label-hidden">
-        {{ 'blogs.comments.name' | t }}
-      </label>
-      <input type="text"
-             name="comment[author]"
-             id="CommentAuthor"
-             class="{% if form.errors contains 'author' %}input-error{% endif %}"
-             placeholder="{{ 'blogs.comments.name' | t }}"
-             value="{{ form.author }}"
-             autocapitalize="words">
-
-      <label for="CommentEmail" class="label-hidden">
-        {{ 'blogs.comments.email' | t }}
-      </label>
-      <input type="email"
-             name="comment[email]"
-             id="CommentEmail"
-             class="{% if form.errors contains 'email' %}input-error{% endif %}"
-             placeholder="{{ 'blogs.comments.email' | t }}"
-             value="{{ form.email }}"
-             spellcheck="false"
-             autocomplete="off"
-             autocapitalize="off">
-
-      <label for="CommentBody" class="label-hidden">
-        {{ 'blogs.comments.message' | t }}
-      </label>
-      <textarea
-        name="comment[body]"
-        id="CommentBody"
-        class="{% if form.errors contains 'body' %}input-error{% endif %}"
-        placeholder="{{ 'blogs.comments.message' | t }}">
-        {{- form.body -}}
-      </textarea>
-
-      {% if blog.moderated? %}
-        <p>{{ 'blogs.comments.moderated' | t }}</p>
-      {% endif %}
-
-      <input type="submit" class="button" value="{{ 'blogs.comments.post' | t }}">
-    {% endform %}
-
-  {% endif %}
-
-</article>
+  </div>
+</main>
 
 <script type="application/ld+json">
 {
