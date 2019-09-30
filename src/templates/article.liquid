@@ -183,6 +183,9 @@
             </article>
           </div>
 
+        {%- comment -%}
+        Sidebar de articulos
+        {%- endcomment -%}
           <div class="col-lg-5">
             <div class="row thumbs mx-1">
             {% paginate blog.articles by 4 %}
@@ -198,16 +201,7 @@
 
                     <div class="col-lg-3 list__thumb p-0">
                       {% if article.image %}
-
-                        
                         <img src="{{ article.image.src | img_url: '640x' }}" class="">
-                          {%- comment -%}{% include 'responsive-image' with
-                            image: article.image,
-                            max_width: 1024,
-                            max_height: 1024,
-                            wrapper_class: 'product__container'
-                          %}{%- endcomment -%}
-                        
                       {% endif %}
                     </div>
 
@@ -220,7 +214,6 @@
                       <div class="">
                         <b>
                         Por {{ article.author }} - {{ article.published_at | date: format: 'abbreviated_date' }}
-                          {%- comment -%}{{ 'blogs.article.author_on_date_html' | t: author: article.author, date: date }}{%- endcomment -%}
                         </b>
                       </div>
 
