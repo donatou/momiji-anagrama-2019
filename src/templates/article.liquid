@@ -32,16 +32,23 @@
   {%- endunless -%}
 {%- endif -%}
 
-<main class="section__principal bg-purple">
+<main class="section__principal bg-purple" style="opacity: 1;">
   <div class="container">
+    <div class="col-md-12 p-0 mb-2">
+      <a href="{{ blog.url }}" class="h2">{{ blog.title }}</a>
+      <h1 class="h5 mb-3 pb-3 border-bottom border-dark">{{ article.title }}</h1>
+      {% include 'blog-breadcrumbs' %}
+    </div>
+
     <div class="row">
 
       <div class="col-md-12 col-lg-12">
-        <div class="row thumbs">
+        <div class="row">
 
           <div class="col-lg-7">
             <article role="article">
 
+              {%- comment -%}
               {% if article.image %}
                 <div class="hero-banner hero-banner--article lazyload" data-bgset="{% include 'responsive-bg-image', image: article.image %}"></div>
 
@@ -50,17 +57,15 @@
                   <div class="hero-banner hero-banner--article" style="background-image: {{ article.image | img_url: image_size }}"></div>
                 </noscript>
               {% endif %}
+              {%- endcomment -%}
 
-              <div class="col-lg-12">
-                <img src="{{ article.image.src | img_url: '1080px' }}" class="">
+              <div class="col-lg-12 list__thumb pr-0 pl-0 mb-4">
+                <img src="{{ article.image.src | img_url: '1080x' }}" class="">
               </div>
 
-              <h1>{{ article.title }}</h1>
-
-
-              <div class="rte">
+              <div class="rte section__blog-text">
               {% capture date %}{{ article.published_at | time_tag: format: 'month_day_year' }}{% endcapture %}
-              <b>Por {{ article.author }} - {{ article.published_at | date: format: 'abbreviated_date' }}</b>
+                <b>Por {{ article.author }} - {{ article.published_at | date: format: 'abbreviated_date' }}</b>
                 {{ article.content }}
               </div>
 
@@ -185,18 +190,18 @@
             <div class="row thumbs">
               {% for article in blog.articles %}
 
-                  <div {% if skincare %} class="skincare-blog col-lg-12 bg-white d-flex mb-3"
-                        {% elsif selfcare %} class="selfcare-blog col-lg-12 bg-white d-flex mb-3"
-                        {% elsif resenas %} class="resenas-blog col-lg-12 bg-white d-flex mb-3"
-                        {% elsif kbeauty %} class="kbeauty-blog col-lg-12 bg-white d-flex mb-3"
-                        {% else entrevistas %} class="entrevistas-blog col-lg-12 bg-white d-flex mb-3"
+                  <div {% if skincare %} class="skincare-blog col-lg-12 bg-white d-flex mb-3 px-0"
+                        {% elsif selfcare %} class="selfcare-blog col-lg-12 bg-white d-flex mb-3 px-0"
+                        {% elsif resenas %} class="resenas-blog col-lg-12 bg-white d-flex mb-3 px-0"
+                        {% elsif kbeauty %} class="kbeauty-blog col-lg-12 bg-white d-flex mb-3 px-0"
+                        {% else entrevistas %} class="entrevistas-blog col-lg-12 bg-white d-flex mb-3 px-0"
                         {% endif %}>
                   {% include 'blog-tag-logic' %}
 
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 list__thumb p-0">
                       {% if article.image %}
 
-                        <a href="{{ article.url }}">
+                        
                         <img src="{{ article.image.src | img_url: '640x' }}" class="">
                           {%- comment -%}{% include 'responsive-image' with
                             image: article.image,
@@ -204,11 +209,11 @@
                             max_height: 1024,
                             wrapper_class: 'product__container'
                           %}{%- endcomment -%}
-                        </a>
+                        
                       {% endif %}
                     </div>
 
-                    <div class="col-lg-9">
+                    <div class="col-lg-9 py-3">
                       <a href="{{ article.url }}">
                         <h3 class="h3">{{ article.title }}</h3>
                       </a>
@@ -272,9 +277,13 @@
           </div>
 
         </div>
-      </div>
+      </div>                            
 
     </div>
+
+    <div id="disqus_thread"></div>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
   </div>
 </main>
 
@@ -325,4 +334,22 @@
     "name": "{{ shop.name }}"
   }
 }
+</script>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://momijitalks.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
 </script>
