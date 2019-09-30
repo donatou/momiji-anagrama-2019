@@ -37,7 +37,9 @@
     <div class="col-md-12 p-0 mb-2">
       <a href="{{ blog.url }}" class="h2">{{ blog.title }}</a>
       <h1 class="h5 mb-3 pb-3 border-bottom border-dark">{{ article.title }}</h1>
-      {% include 'blog-breadcrumbs' %}
+      {% if article.tags.size > 0 %}
+        {% include 'blog-breadcrumbs' %}
+      {% endif %}
     </div>
 
     <div class="row">
@@ -66,17 +68,12 @@
               <div class="rte section__blog-text">
               {% capture date %}{{ article.published_at | time_tag: format: 'month_day_year' }}{% endcapture %}
                 <b>Por {{ article.author }} - {{ article.published_at | date: format: 'abbreviated_date' }}</b>
+                <div class="clearfix pb-3"></div>
                 {{ article.content }}
               </div>
 
               {% if article.tags.size > 0 %}
-                <ul>
-                  {% for tag in article.tags %}
-                    <li>
-                      <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
-                    </li>
-                  {% endfor %}
-                </ul>
+                {% include 'blog-breadcrumbs' %}
               {% endif %}
 
               {% if settings.social_sharing_blog %}
@@ -187,7 +184,8 @@
           </div>
 
           <div class="col-lg-5">
-            <div class="row thumbs">
+            <div class="row thumbs mx-1">
+            {% paginate blog.articles by 4 %}
               {% for article in blog.articles %}
 
                   <div {% if skincare %} class="skincare-blog col-lg-12 bg-white d-flex mb-3 px-0"
@@ -273,6 +271,12 @@
                   </div>
 
               {% endfor %}
+
+            {% if paginate.pages > 1 %}
+              {% include 'pagination' %}
+            {% endif %}
+
+            {% endpaginate %}
             </div>
           </div>
 

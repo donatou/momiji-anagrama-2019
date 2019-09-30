@@ -8256,8 +8256,17 @@ border-bottom: solid 1px black !important;
 
 .section__blog-text {
   max-width:39em;
-  margin:auto;
+  /**margin:auto;**/
   /**padding:0 1em;**/
+}
+
+.section__blog-text p {
+  padding:0 0 1em 2em;
+}
+
+.section__blog-text img {
+  margin:auto;
+  padding:0 10em;
 }
 
 .section__blog-text p {
@@ -8275,3 +8284,16 @@ border-bottom: solid 1px black !important;
   letter-spacing:inherit;
   color:#f06c4e;
 }
+
+article h3 {
+  font-family: "GT Momiji Medium", sans-serif;
+  text-transform: none;
+  font-weight: 500;
+  font-size: 30px;
+  letter-spacing: -0.15px;
+  line-height: 40px;}
+  @media (min-width: 768px) {
+  article h3 {
+    font-size: 26px;
+    letter-spacing: -0.3px;
+    line-height: 30px; } }
