@@ -110,8 +110,9 @@
           {% endfor %}
         {% endunless %}
 
-
-  
+        {% if unico %}
+          <input type="hidden" name="id" value="{{current_variant.id}}">
+        {% endif %}
 
         <div class="input-quantity">
           <span class="input-number-decrement">–</span><!--
