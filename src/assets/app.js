@@ -331,7 +331,7 @@ $(window).on('load', function () {
 
   // SELECTTRIC
   $(function () {
-    $('select').selectric({
+    $('select:not(#Option1)').selectric({
       maxHeight: 200
     });
   });
