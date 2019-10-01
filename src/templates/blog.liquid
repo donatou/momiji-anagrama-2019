@@ -1,28 +1,7 @@
-{%- comment -%}
-<section class="products__category--header section__header">
-  <div class="container-fluid p0">
-    <div class="row">
-      <div class="col-md-6 offset-md-0 col-lg-8 offset-lg-1 col-xl-8 offset-xl-1 header--title">
-        <div class="breadcrumb">
-        <p><a href="/">Inicio</a>&nbsp;/ <a href="/collections/manchas-y-cicatrices" aria-current="page">Manchas y cicatrices</a></p>
-        </div>
-        <h2>
-          Titulo del blogpost        
-        </h2>
-        <p>
-        
-          <span style="font-weight: 400;">Snippet o adelanto del blog.</span>
-        
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-{%- endcomment -%}
-
 <main class="section__principal bg-purple" style="opacity: 1;">
   <div class="container">
     <div class="row">
+
       {% paginate blog.articles by 30 %} {%- comment -%}podemos dejarlo a decision del usuario con un capture??{%- endcomment -%}
 
         {%- assign blog_title = blog.title -%}
@@ -33,26 +12,11 @@
 
         <h1>{{ blog_title }}</h1>
 
-        {% if blog.all_tags.size > 0 %}
-          <h2>{{ 'blogs.general.categories' | t }}</h2>
-
-          <ul>
-            {% for tag in blog.all_tags %}
-
-              {% if current_tags contains tag %}
-                <li>{{ tag }}</li>
-              {% else %}
-                <li>{{ tag | link_to_tag: tag }}</li>
-              {% endif %}
-
-            {% endfor %}
-          </ul>
-        {% endif %}
-
       {% comment %}
       Article Previews
       ====================
       {% endcomment %}
+      {% include 'blog-menu' %}
 
       <div class="col-md-12 col-lg-12">
         <div class="row thumbs">
