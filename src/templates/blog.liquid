@@ -1,6 +1,14 @@
 <main class="section__principal bg-purple" style="opacity: 1;">
   <div class="container">
-        {% include 'blog-header' %}
+    <div class="col-md-12 p-0 mb-2">
+
+      {% include 'blog-header' %}
+
+      <div class=" mb-3 pb-2 border-bottom border-dark">
+      </div>
+
+    </div>
+
     <div class="row">
 
       {% paginate blog.articles by 30 %} {%- comment -%}podemos dejarlo a decision del usuario con un capture??{%- endcomment -%}

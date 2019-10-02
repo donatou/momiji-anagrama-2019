@@ -1,0 +1,26 @@
+{% assign bloghandol = blog.handle %}
+
+{% assign entrevistas = false %}
+{% if bloghandol contains "entrevistas" %}
+  {% assign entrevistas = true %}  
+{% endif %}
+
+{% assign kbeauty = false %}
+{% if bloghandol contains "k-beauty" %}
+  {% assign kbeauty = true %}  
+{% endif %}
+
+{% assign resenas = false %}
+{% if bloghandol contains "resenas" %}
+  {% assign resenas = true %}  
+{% endif %}
+
+{% assign selfcare = false %}
+{% if bloghandol contains "self-care" %}
+  {% assign selfcare = true %}  
+{% endif %}
+
+{% assign skincare = false %}
+{% if bloghandol contains "skincare" %}
+  {% assign skincare = true %}  
+{% endif %}
