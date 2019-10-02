@@ -1,5 +1,6 @@
 <main class="section__principal bg-purple" style="opacity: 1;">
   <div class="container">
+        {% include 'blog-header' %}
     <div class="row">
 
       {% paginate blog.articles by 30 %} {%- comment -%}podemos dejarlo a decision del usuario con un capture??{%- endcomment -%}
@@ -10,14 +11,10 @@
           {% capture blog_title %}{{ blog.title | link_to: blog.url }} &mdash; {{ current_tags.first }}{% endcapture %}
         {% endif %}
 
-        <h1>{{ blog_title }}</h1>
-
       {% comment %}
       Article Previews
       ====================
       {% endcomment %}
-      {% include 'blog-menu' %}
-
       <div class="col-md-12 col-lg-12">
         <div class="row thumbs">
           {% for article in blog.articles %}

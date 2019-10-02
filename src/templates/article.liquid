@@ -35,20 +35,9 @@
 <main class="section__principal bg-purple" style="opacity: 1;">
   <div class="container">
     <div class="col-md-12 p-0 mb-2">
-      <div class="col-md-4">
-        <a href="{{ blog.url }}" class="h2">{{ blog.title }}</a>
-      </div>
-      <div class="col-md-8 d-flex align-items-baseline">
-        <ul class="list-unstyled d-inline-flex flex-wrap w-100">
-          {% for tag in blog.all_tags %}
-            {% if current_tags contains tag %}
-              <li class="nav-item">{{ tag }}</li>
-            {% else %}
-              <li class="nav-item">{{ tag | link_to_tag: tag }}</li>
-            {% endif %}
-          {% endfor %}
-        </ul>
-      </div>
+
+      {% include 'blog-header' %}
+
       <h1 class="h5 mb-3 pb-3 border-bottom border-dark">{{ article.title }}</h1>
       {% if article.tags.size > 0 %}
         {% include 'blog-breadcrumbs' %}
