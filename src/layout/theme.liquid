@@ -62,7 +62,11 @@
       {% endif %}
     </script>
 
-    {{ content_for_header }}
+{%- comment -%}
+    {{ content_for_header }} bug documentado aqui: https://community.shopify.com/c/Technical-Q-A/window-BOOMR-throws-an-error/m-p/575778#M11525
+{%- endcomment -%}
+    {{ content_for_header | replace: "<body onload='document._boomrl();'>", "<bodx onload='document._boomrl();'>" }}
+
 
   </head>
 
