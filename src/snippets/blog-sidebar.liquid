@@ -1,83 +1,25 @@
+{% assign mostrar = 0 %}
 {% for article in blog.articles %}
-<a href="{{ article.url }}">
-    <div {% if skincare %} class="skincare-blog col-lg-12 bg-white d-flex mb-3 px-0"
-        {% elsif selfcare %} class="selfcare-blog col-lg-12 bg-white d-flex mb-3 px-0"
-        {% elsif resenas %} class="resenas-blog col-lg-12 bg-white d-flex mb-3 px-0"
-        {% elsif kbeauty %} class="kbeauty-blog col-lg-12 bg-white d-flex mb-3 px-0"
-        {% else entrevistas %} class="entrevistas-blog col-lg-12 bg-white d-flex mb-3 px-0"
-        {% endif %}>
+{% capture length %}{{ forloop.length  }}{% endcapture %}
     {% include 'blog-tag-logic' %}
-
-        {%- comment -%}
-        {% if article.tags.size > 0 %}
-            {% for tag in article.tags %}
-            <li>
-                <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>
-                {% unless forloop.last %}, {% endunless %}
-            </li>
-            {% endfor %}
-        {% endif %}
-        {%- endcomment -%}
-
-    <div class="col-lg-3 list__thumb p-0">
-        {% if article.image %}
-        <img src="{{ article.image.src | img_url: '640x' }}" class="">
-        {% endif %}
-    </div>
-
-    <div class="col-lg-9 py-3">
-        <h3 class="h3">{{ article.title }}</h3>
-        {% capture date %}{{ article.published_at | time_tag: format: 'month_day_year' }}{% endcapture %}
-        <div class="">
-        <p>
-        Por {{ article.author }} - {{ article.published_at | date: format: 'abbreviated_date' }}
-        </p>
-        </div>
-
-        {%- comment -%}
-        <div class="rte">
-        {% if article.excerpt.size > 0 %}
-            {{ article.excerpt | strip_html | truncatewords: 12 }}
-        {% else %}
-            <p>
-            {{ article.content | strip_html | truncatewords: 12 }}
-            </p>
-        {% endif %}
-        </div>
-        {%- endcomment -%}
-
-        {%- comment -%}
-        <div class="">
-        <p>
-            <a href="{{ article.url }}">{{ 'blogs.article.read_more' | t }} &rarr;</a>
-        </p>
-        </div>
-        {%- endcomment -%}
-    </div>
-
-    {%- comment -%}
-    {% if blog.comments_enabled? or article.tags.size > 0 %}
-        <ul>
-        {% if blog.comments_enabled? %}
-            <li>
-            <a href="{{ article.url }}#comments">
-                {{ 'blogs.comments.with_count' | t: count: article.comments_count }}
-            </a>
-            </li>
-        {% endif %}
-
-        {% if article.tags.size > 0 %}
-            {% for tag in article.tags %}
-            <li>
-                <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>
-                {% unless forloop.last %}, {% endunless %}
-            </li>
-            {% endfor %}
-        {% endif %}
-        </ul>
+    {% if article.tags contains "entrevistas" %}
+        {% include 'blog-thumb-individual' %}
+    {% assign mostrar = mostrar | plus: 1 %}
+        {% if mostrar >= 4 %}
+            {% break %}
+        {% endif%}
     {% endif %}
-    {%- endcomment -%}
+{% endfor %}
 
-    </div>
-</a>
+
+-----
+
+{% for article in blog.articles %}
+  {% capture length %}{{ forloop.length  }}{% endcapture %}
+  {% include 'blog-tag-logic' %}
+  {% if article.tags contains "k-beauty" %}
+
+    {% include 'blog-thumb-individual' %}
+
+  {% endif %}
 {% endfor %}

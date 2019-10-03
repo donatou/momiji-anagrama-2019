@@ -190,14 +190,9 @@
         {%- endcomment -%}
           <div class="col-lg-5">
             <div class="row thumbs mx-1">
-            {% paginate blog.articles by 50 %}
-            
-{%- comment -%}
-include de cada tag de articulo y limitartlo a las ultimas 5???
-{%- endcomment -%}
-{% include 'blog-sidebar-entrevistas' %}
 
-              {%- comment -%}{% include 'blog-sidebar' %}{%- endcomment -%}
+            
+              {% include 'blog-sidebar' %}
 
             {%- comment -%}
             {% if paginate.pages > 1 %}
@@ -205,7 +200,7 @@ include de cada tag de articulo y limitartlo a las ultimas 5???
             {% endif %}
             {%- endcomment -%}
 
-            {% endpaginate %}
+
 
             </div>
           </div>
