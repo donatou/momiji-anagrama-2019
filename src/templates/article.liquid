@@ -190,18 +190,7 @@
         {%- endcomment -%}
           <div class="col-lg-5">
             <div class="row thumbs mx-1">
-
-            
-              {% include 'blog-sidebar' %}
-
-            {%- comment -%}
-            {% if paginate.pages > 1 %}
-              {% include 'pagination' %}
-            {% endif %}
-            {%- endcomment -%}
-
-
-
+              {% section 'blog-sidebar' %}
             </div>
           </div>
 

@@ -1,0 +1,89 @@
+<p>Entrevistas</p>
+{% assign mostrar = 0 %}
+{% for article in blog.articles %}
+{% capture length %}{{ forloop.length  }}{% endcapture %}
+    {% include 'blog-tag-logic' %}
+    {% if article.tags contains "entrevistas" %}
+        <a href="{{ article.url }}">
+            <div class="entrevistas-blog col-lg-12 bg-white d-flex mb-3 px-0">
+                {% include 'blog-thumb-individual' %}
+            </div>
+        </a>
+    {% assign mostrar = mostrar | plus: 1 %}
+        {% if mostrar >= 4 %}
+            {% break %}
+        {% endif%}
+    {% endif %}
+{% endfor %}
+
+<p>K-Beauty</p>
+{% assign mostrar = 0 %}
+{% for article in blog.articles %}
+{% capture length %}{{ forloop.length  }}{% endcapture %}
+    {% include 'blog-tag-logic' %}
+    {% if article.tags contains "k-beauty" %}
+        <a href="{{ article.url }}">
+            <div class="kbeauty-blog col-lg-12 bg-white d-flex mb-3 px-0">
+                {% include 'blog-thumb-individual' %}
+            </div>
+        </a>
+    {% assign mostrar = mostrar | plus: 1 %}
+        {% if mostrar >= 4 %}
+            {% break %}
+        {% endif%}
+    {% endif %}
+{% endfor %}
+
+<p>Reseñas</p>
+{% assign mostrar = 0 %}
+{% for article in blog.articles %}
+{% capture length %}{{ forloop.length  }}{% endcapture %}
+    {% include 'blog-tag-logic' %}
+    {% if article.tags contains "reseñas" %}
+        <a href="{{ article.url }}">
+            <div class="resenas-blog col-lg-12 bg-white d-flex mb-3 px-0">
+                {% include 'blog-thumb-individual' %}
+            </div>
+        </a>
+    {% assign mostrar = mostrar | plus: 1 %}
+        {% if mostrar >= 4 %}
+            {% break %}
+        {% endif%}
+    {% endif %}
+{% endfor %}
+
+<p>Self Care</p>
+{% assign mostrar = 0 %}
+{% for article in blog.articles %}
+{% capture length %}{{ forloop.length  }}{% endcapture %}
+    {% include 'blog-tag-logic' %}
+    {% if article.tags contains "self care" %}
+        <a href="{{ article.url }}">
+            <div class="selfcare-blog col-lg-12 bg-white d-flex mb-3 px-0">
+                {% include 'blog-thumb-individual' %}
+            </div>
+        </a>
+    {% assign mostrar = mostrar | plus: 1 %}
+        {% if mostrar >= 4 %}
+            {% break %}
+        {% endif%}
+    {% endif %}
+{% endfor %}
+
+<p>Skincare</p>
+{% assign mostrar = 0 %}
+{% for article in blog.articles %}
+{% capture length %}{{ forloop.length  }}{% endcapture %}
+    {% include 'blog-tag-logic' %}
+    {% if article.tags contains "skincare" %}
+        <a href="{{ article.url }}">
+            <div class="skincare-blog col-lg-12 bg-white d-flex mb-3 px-0">
+                {% include 'blog-thumb-individual' %}
+            </div>
+        </a>
+    {% assign mostrar = mostrar | plus: 1 %}
+        {% if mostrar >= 4 %}
+            {% break %}
+        {% endif%}
+    {% endif %}
+{% endfor %}
