@@ -8330,21 +8330,21 @@ border-bottom: solid 1px black !important;
   /**padding:0 1em;**/
 }
 
-.section__blog-text p {
+.section__blog-text  {
   padding:0 0 1em 2em;
 }
 
 .section__blog-text img {
   margin:auto;
-  padding:0 10em;
+  padding:2em 7em;
 }
 
-.section__blog-text p {
+.section__blog-text  {
   font-size:122%;
   line-height:1.5;
 }
 
-.section__blog-text p a {
+.section__blog-text a {
   font-family:inherit;
   font-style:inherit;
   text-transform:inherit;
@@ -8353,6 +8353,13 @@ border-bottom: solid 1px black !important;
   text-decoration:underline;
   letter-spacing:inherit;
   color:#f06c4e;
+}
+.section__blog-text b a{
+
+}
+
+.section__blog-text strong {
+  font-weight:400 !important;
 }
 
 article h3 {
@@ -8371,6 +8378,9 @@ article h3 {
 .lh-20 {
   line-height:20px !important;
 }
+
+article h1 + p, article h2 + p, article h3 + p, article h4 + p, article h5 + p  {
+  margin-top: 10px !important; }
 
 .footer__blog {
   display: inline-block;}
@@ -8398,7 +8408,9 @@ article h3 {
   background: url({{ 'icon-tw-blog.svg' | asset_url }}) no-repeat;
   background-size: 10px auto;
   background-position: center; }
-* HERO STICKER
+
+/*
+* HERO STICKER ------------------------------------------------
 */
 .sticker-hero:after {
   background: url({{ 'momi.svg' | asset_url }}) no-repeat;

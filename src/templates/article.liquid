@@ -52,22 +52,11 @@
           <div class="col-lg-7 pb-4">
             <article role="article">
 
-              {%- comment -%}
-              {% if article.image %}
-                <div class="hero-banner hero-banner--article lazyload" data-bgset="{% include 'responsive-bg-image', image: article.image %}"></div>
-
-                <noscript>
-                  {%- assign image_size = article.image.width | append: 'x' -%}
-                  <div class="hero-banner hero-banner--article" style="background-image: {{ article.image | img_url: image_size }}"></div>
-                </noscript>
-              {% endif %}
-              {%- endcomment -%}
-
               <div class="col-lg-12 list__thumb pr-0 pl-0 mb-4">
                 <img src="{{ article.image.src | img_url: '1080x' }}" class="">
               </div>
 
-              <div class="rte section__blog-text pb-4">
+              <div class="rte section__blog-text pb-4" id="videos_yt">
               {% capture date %}{{ article.published_at | time_tag: format: 'month_day_year' }}{% endcapture %}
                 <b>Por {{ article.author }} - {{ article.published_at | date: format: 'abbreviated_date' }}</b>
                 <div class="clearfix pb-3"></div>
@@ -106,7 +95,7 @@
     </div>
 
     <div id="disqus_thread"></div>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <noscript>Por favor, habilita el Javascript en tu navegador para ver los <a href="https://disqus.com/?ref_noscript">comentarios de Disqus.</a></noscript>
 
   </div>
 </main>
@@ -168,4 +157,15 @@ s.src = 'https://momijitalks.disqus.com/embed.js';
 s.setAttribute('data-timestamp', +new Date());
 (d.head || d.body).appendChild(s);
 })();
+</script>
+
+{%- comment -%}
+PLUGIN PARA WRAPPEAR IFRAMES DE YOUTUBE EN DIVS RESPONSIVE
+{%- endcomment -%}
+<script src="{{ 'jquery.fitvids.js' | asset_url }}"></script>
+<script>
+  $(document).ready(function(){
+    // Target your .container, .wrapper, .post, etc.
+    $("#videos_yt").fitVids();
+  });
 </script>
