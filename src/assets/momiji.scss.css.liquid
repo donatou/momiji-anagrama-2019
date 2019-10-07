@@ -5130,7 +5130,7 @@ footer {
       width: 66px;
     }
   }
-}
+
 
 .new-product {
 	overflow: hidden;
@@ -8398,3 +8398,23 @@ article h3 {
   background: url({{ 'icon-tw-blog.svg' | asset_url }}) no-repeat;
   background-size: 10px auto;
   background-position: center; }
+* HERO STICKER
+*/
+.sticker-hero:after {
+  background: url({{ 'momi.svg' | asset_url }}) no-repeat;
+  content: "";
+  background-size: contain;
+  position: absolute;
+  top: -70px;
+  height: 85px;
+  width: 86px;
+  left: 60%;
+  margin: 0 auto;
+  z-index: 0;
+}
+  @media (max-width: 767.98px) {
+    .sticker-hero:after {  
+      height: 66px;
+      width: 66px;
+    }
+  }
