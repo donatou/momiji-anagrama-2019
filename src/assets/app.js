@@ -337,7 +337,7 @@ $(window).on('load', function () {
   });
 
   // LOADER
-  //   $('.loader-component').delay(700).fadeOut(700);
+  //   $('.loader-component').delay(700 10).fadeOut(700 50);
   $('.loader-component').delay(10).fadeOut(50);
   $('main').css({
     opacity: 1
@@ -467,7 +467,7 @@ $("#load-ingredients").click(function() {
     $(this).toggleClass("active");
     $(".ingredientes__item:nth-child(n+4)").fadeToggle();
     $(this).text(function(i, text){
-        return text === "ver menos ingredientes" ? "ver más ingredientes" : "ver menos ingredientes";
+        return text === "ver menos ingredientes" ? "ver mï¿½s ingredientes" : "ver menos ingredientes";
     });
 });
 
