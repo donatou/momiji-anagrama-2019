@@ -1,7 +1,7 @@
 <div class="row mb-90">
     <figure class="col-md-8">
         <div class="img-container">
-            <img src="{{ 'quienesomos_optimizada.jpg' | asset_url }}" alt="Ale y Cecy Young">
+            <img src="{{ section.settings.imagen_cecyale | img_url: 'x1460' }}" alt="Ale y Cecy Young">
         </div>
     </figure>
     <div class="col-md-4 align-self-end">
@@ -22,7 +22,7 @@
             },
             {
                 "type": "image_picker",
-                "id": "imagen",
+                "id": "imagen_cecyale",
                 "label": "Foto"
             },
             {
