@@ -380,16 +380,17 @@ $(document).ready(function () {
 
 // +++ IMAGE REVEAL
 //VIEWPORT CHECK +++
-$.fn.isInViewport = function () {
-  var elementTop = $(this).offset().top;
-  var elementBottom = elementTop + $(this).outerHeight();
-
-  var viewportTop = $(window).scrollTop();
-  var viewportBottom = viewportTop + $(window).height();
-
-  return elementBottom > viewportTop && elementTop < viewportBottom;
-};
 $(window).on('load resize scroll', function () {
+  $.fn.isInViewport = function () {
+    var elementTop = $(this).offset().top;
+    var elementBottom = elementTop + $(this).outerHeight();
+
+    var viewportTop = $(window).scrollTop();
+    var viewportBottom = viewportTop + $(window).height();
+
+    return elementBottom > viewportTop && elementTop < viewportBottom;
+  };
+  
   $('img').each(function () {
     if ($(this).isInViewport()) {
       $(this).addClass('loaded');
