@@ -1,0 +1,65 @@
+{% assign counter = 0 %}
+{% for vendor in shop.vendors %}
+{% assign counter = counter | plus: 1 %}
+{% endfor %}
+
+{% assign counter_divided_by_3 = counter | divided_by: 3 | floor %}
+
+{%- comment -%}
+
+https://www.blackbeltcommerce.com/vendor-page-in-shopify-the-clever-way-to-automatically-show-vendors-in-your-shop/
+
+{%- endcomment -%}
+
+<main class="legal bg-purple">
+
+  <section class="section__principal">
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-lg-12 privacidad--title mb-60 text-center">
+          <h2>{{ page.title }}</h2>
+        </div>
+
+        <div class="col-lg-12 legal__glosario">
+
+          <ul class="split-content split-content-4 list-unstyled text-center">
+          {% for product_vendor in shop.vendors %}
+          {% assign its_a_match = false %}
+          {% capture my_collection_handle %} {{ product_vendor | handleize | strip | escape  }} {% endcapture %}
+          {% assign my_collection_handle_stripped = my_collection_handle | strip | escape %}
+
+          {% for collection in collections %}
+          {% if my_collection_handle_stripped == collection.handle %}
+          {% assign its_a_match = true %}
+          {% endif %}
+          {% endfor %}
+
+          {% if its_a_match %}
+          <li class="vendor-list-item"><a href="/collections/{{ product_vendor | handleize }}">{{ product_vendor }}</a></li>
+          {% else %}
+          <li class="vendor-list-item">{{ product_vendor | link_to_vendor }}</li>
+          {% endif %}
+          {% endfor %}
+          </ul>
+
+          <div class="row br-tb mb-90 row-mobile no-gutters"></div>
+
+          <div class="momi-end"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+{%- comment -%}<style>
+ul {
+    -moz-column-count: 4;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 4;
+    -webkit-column-gap: 20px;
+    column-count: 4;
+    column-gap: 20px;
+}
+</style>{%- endcomment -%}

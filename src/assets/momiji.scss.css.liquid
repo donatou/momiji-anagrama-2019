@@ -8470,3 +8470,22 @@ article h1 + p, article h2 + p, article h3 + p, article h4 + p, article h5 + p  
       width: 66px;
     }
   }
+
+/**
+****
+**/
+@media (min-width: 992px) {
+  .split-content-4 {
+    -moz-column-count: 4;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 4;
+    -webkit-column-gap: 20px;
+    column-count: 4;
+    column-gap: 20px;
+  }
+}
+.momi-end {
+  background: url({{ 'loader.svg' | asset_url }}) no-repeat;
+  background-position: center; 
+  width: 100%;
+  height: 110px; }
