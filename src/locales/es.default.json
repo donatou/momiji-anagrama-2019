@@ -10,7 +10,7 @@
     "404": {
       "title": "404 Página no encontrada",
       "subtext_html":
-        "La página que ha solicitado no existe. Haga clic <a href=\"/collections/all\">aquí</a> para continuar la compra."
+        "La página que ha solicitado no existe. Haga clic <a href=\"/collections/all\" class=\"link--orange\">aquí</a> para continuar comprando."
     },
     "password_page": {
       "opening_soon": "Apertura Próximamente",
@@ -95,7 +95,7 @@
   "cart": {
     "general": {
       "title": "Carrito de compra",
-      "remove": "Quitar",
+      "remove": "Eliminar",
       "note": "Instrucciones especiales para el vendedor",
       "subtotal": "Subtotal",
       "shipping_at_checkout":
@@ -106,7 +106,7 @@
       "cookies_required":
         "Habilite las cookies para usar el carrito de compras",
       "continue_browsing_html":
-        "Continúe explorando <a href=\"/collections/all\">aquí</a>.",
+        "Continúe explorando <a href=\"/collections/all\" class=\"link--orange\">aquí</a>.",
       "item_quantity": "Cantidad de artículo",
       "savings": "Está ahorrando"
     },
@@ -115,8 +115,8 @@
       "price": "Precio",
       "quantity": "Cantidad",
       "total": "Total",
-      "discounted_price": "Discounted price",
-      "original_price": "Original price"
+      "discounted_price": "Precio con descuento",
+      "original_price": "Precio original"
     }
   },
   "collections": {
