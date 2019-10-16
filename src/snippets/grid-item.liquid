@@ -27,12 +27,12 @@ Grid item sin container div de estilo
         </div>
         <div class="product__info--name">
             <p>{{ product.title }}</p>
-            {% if product.compare_at_price_max == 0 %}
+        {% if product.compare_at_price_max == 0 or product.compare_at_price_max == product.price %}
             <span>{{ product.price | money }}</span>
-            {% else product.compare_at_price_max > 0 %}
+        {% else product.compare_at_price_max < 0 product.price %}
             <span class="compare--to">{{ product.price | money }}</span>
             <span>{{ product.compare_at_price_max | money }}</span>                
-            {% endif %}
+        {% endif %}
         </div>
 
     </div>
