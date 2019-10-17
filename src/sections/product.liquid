@@ -51,24 +51,21 @@
         {% if unico %}  
           <p class="h3 unico" data-product-price>
             {% if product.compare_at_price_max < product.price and product.compare_at_price_max != 0 %}
-              {{ product.compare_at_price_max | money }} p/dscto
+              <span class="compare--at">{{ product.price | money }}</span><br />
+              <span>{{ product.compare_at_price_max | money }}</span>
             {% else product.compare_at_price_max == blank %}
-              {{ product.price | money }} p/viejo <br />
+              {{ product.price | money }}
             {% endif %}
           </p>
         {% else current_variant %}
           <p class="h3 variantes" data-product-price>
             {% if product.selected_or_first_available_variant.price > product.selected_or_first_available_variant.compare_at_price_max %}
-              {{ product.variants.first.compare_at_price_max | money }} p/dscto
+              <span class="compare--at">{{ product.variants.first.compare_at_price_max | money }}</span>
             {% else product.compare_at_price_max == blank %}
-              {{ product.variants.first.price | money }} p/viejo <br />
+              <span>{{ product.variants.first.price | money }}</span>
             {% endif %}
           </p>
-        {% endif %}
-
-
-
-            {%- comment -%}<p class="h3 compare--to"></p>{%- endcomment -%}           
+        {% endif %}       
 
         </div>
         <p><a class="link--orange"><span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span></a></p>
@@ -212,41 +209,3 @@
       });
   });
 </script>
-
-{%- comment -%}
-        {% if product.variants.first.compare_at_price_max == 0 or product.variants.first.compare_at_price_max == blank %}
-          <p class="h3" data-product-price>{{ product.variants.first.price | money }} p/final</p>
-        {% else product.variants.first.price < 0 product.variants.first.price %}
-            <p class="h3 compare--to">{{ product.variants.first.price | money }} p/viejo</p>
-            <p class="h3" data-product-price>{{ product.variants.first.compare_at_price | money }} HELL YEAH</span>                
-        {% endif %}
-{%- endcomment -%}
-
-{%- comment -%}
-            {% if product.variants.first.compare_at_price_max == blank or product.compare_at_price_max == blank %}
-              {{ product.variants.first.price | money }} p/final
-            {% else product.variants.first.price < 0 product.variants.first.price %}
-              {{ product.variants.first.price | money }} p/viejo <br />
-              {{ product.variants.first.compare_at_price | money }} HELL YEAH
-            {% endif %}
-{%- endcomment -%}
-
-{%- comment -%}
-        {% if unico %}  
-          <p class="h3" data-product-price>
-            {% if product.price > product.compare_at_price %}
-              {{ product.compare_at_price | money }} p/dscto
-            {% else product.compare_at_price == blank %}
-              {{ product.price | money }} p/viejo <br />
-            {% endif %}
-          </p>
-        {% else current_variant %}
-          <p class="h3" data-product-price>
-            {% if product.selected_or_first_available_variant.price > product.selected_or_first_available_variant.compare_at_price_max %}
-              {{ product.variants.first.compare_at_price_max | money }} p/dscto
-            {% else product.compare_at_price_max == blank %}
-              {{ product.variants.first.price | money }} p/viejo <br />
-            {% endif %}
-          </p>
-        {% endif %}
-{%- endcomment -%}

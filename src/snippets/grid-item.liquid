@@ -30,7 +30,7 @@ Grid item sin container div de estilo
         {% if product.compare_at_price_max == 0 or product.compare_at_price_max == product.price %}
             <span>{{ product.price | money }}</span>
         {% else product.compare_at_price_max < 0 product.price %}
-            <span class="compare--to">{{ product.price | money }}</span>
+            <span class="compare--at">{{ product.price | money }}</span>
             <span>{{ product.compare_at_price_max | money }}</span>                
         {% endif %}
         </div>
