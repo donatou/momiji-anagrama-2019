@@ -3,13 +3,11 @@
           <div class="row no-gutters">
             <div class="col-md-12 col-lg-6 order-lg-1 order-2">
               <div class="row no-gutters app-instagram-feed">
-              {% comment %} Aquí se inyecta la app de Instagram con una class {% endcomment %}
-              {% comment %} a futuro podemos usar este generador de widget para instagram https://lightwidget.com/add-on/widget-upgrade {% endcomment %}
-              <!-- LightWidget WIDGET --><script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script><iframe src="https://cdn.lightwidget.com/widgets/7526839d50cf5673855f87b09a903fa4.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
+                <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
+                <iframe src="https://cdn.lightwidget.com/widgets/7526839d50cf5673855f87b09a903fa4.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
               </div>
             </div>
 
-            {% comment %} sección de blog {% endcomment %}
             <div class="col-md-12 col-lg-6 instagram--container order-lg-2  order-1">
               <div class="sticker2"></div>
               {% include 'recent-blogpost' %}
