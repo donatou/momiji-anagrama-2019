@@ -25,21 +25,21 @@ https://www.blackbeltcommerce.com/vendor-page-in-shopify-the-clever-way-to-autom
 
           <ul class="split-content split-content-4 list-unstyled text-center">
           {% for product_vendor in shop.vendors %}
-          {% assign its_a_match = false %}
-          {% capture my_collection_handle %} {{ product_vendor | handleize | strip | escape  }} {% endcapture %}
-          {% assign my_collection_handle_stripped = my_collection_handle | strip | escape %}
+            {% assign its_a_match = false %}
+            {% capture my_collection_handle %} {{ product_vendor | handleize | strip | escape  }} {% endcapture %}
+            {% assign my_collection_handle_stripped = my_collection_handle | strip | escape %}
 
-          {% for collection in collections %}
-          {% if my_collection_handle_stripped == collection.handle %}
-          {% assign its_a_match = true %}
-          {% endif %}
-          {% endfor %}
+            {% for collection in collections %}
+              {% if my_collection_handle_stripped == collection.handle %}
+                {% assign its_a_match = true %}
+              {% endif %}
+            {% endfor %}
 
-          {% if its_a_match %}
-          <li class="vendor-list-item"><a href="/collections/{{ product_vendor | handleize }}">{{ product_vendor }}</a></li>
-          {% else %}
-          <li class="vendor-list-item">{{ product_vendor | link_to_vendor }}</li>
-          {% endif %}
+            {% if its_a_match %}
+              <li class="vendor-list-item"><a href="/collections/{{ product_vendor | handleize }}">{{ product_vendor }}</a> si jala</li>
+            {% else %}
+              <li class="vendor-list-item">{{ product_vendor | link_to_vendor }} no jala</li>
+            {% endif %}
           {% endfor %}
           </ul>
 
