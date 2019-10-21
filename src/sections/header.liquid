@@ -27,7 +27,7 @@
 {% assign soluciones = linklists.header-skincare-soluciones %}
 
       <div class="header__nav--logo">
-        <a href="/index"><img src="{{ 'momiji-logo-rgb.svg' | asset_url }}" alt="{{ shop.name }}" itemprop="logo"></a>
+        <a href="/"><img src="{{ 'momiji-logo-rgb.svg' | asset_url }}" alt="{{ shop.name }}" itemprop="logo"></a>
       </div>
       <ul class="header__nav--menu list-unstyled">
         <li class="nav-item nav-item--cat"><a>Skincare</a>
@@ -111,7 +111,7 @@
         <div class="nav-btn"></div>
       </div>
       <div class="header__nav--logo">
-        <a href="/index"><img src="{{ 'momiji-logo-rgb.svg' | asset_url }}" alt="{{ shop.name }}"></a>
+        <a href="/"><img src="{{ 'momiji-logo-rgb.svg' | asset_url }}" alt="{{ shop.name }}"></a>
       </div>
       <ul class="header__nav--menu list-unstyled">
         <li class="nav-item nav-item--cat"><a>Skincare</a>
@@ -146,18 +146,7 @@
                         <li><a href="{{ link.url }}">{{ link.title }}</a></li>
                         {% endfor %}
                       </ul>
-                    </div>
-
-                    {%- comment -%} POR MARCA
-                    <div class="menu-drawer">
-                      <p class="h3">Por marca</p>
-                      <ul class="sub-nav list-unstyled">
-                        {% for product_vendor in shop.vendors %}
-                        <li>{{ product_vendor | link_to_vendor }}</li>
-                        {% endfor %}
-                      </ul>
-                    </div>
-                    {%- endcomment -%}                    
+                    </div>                  
 
                     <a href="/collections/all" class="a__all mt-30">ver todos</a>
                   </div>
