@@ -50,9 +50,9 @@
 
         {% if unico %}  
           <p class="h3 unico" data-product-price>
-            {% if product.compare_at_price_max < product.price and product.compare_at_price_max != 0 %}
-              <span class="compare--at">{{ product.price | money }}</span><br />
-              <span>{{ product.compare_at_price_max | money }}</span>
+            {% if product.compare_at_price_max > product.price and product.compare_at_price_max != 0 %}
+              <span class="compare--at">{{ product.compare_at_price_max | money }}</span><br />
+              <span>{{ product.price | money }}</span>
             {% else product.compare_at_price_max == blank %}
               {{ product.price | money }}
             {% endif %}

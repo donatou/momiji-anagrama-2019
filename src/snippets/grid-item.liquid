@@ -29,9 +29,9 @@ Grid item sin container div de estilo
             <p>{{ product.title }}</p>
         {% if product.compare_at_price_max == 0 or product.compare_at_price_max == product.price %}
             <span>{{ product.price | money }}</span>
-        {% else product.compare_at_price_max < 0 product.price %}
-            <span class="compare--at">{{ product.price | money }}</span>
-            <span>{{ product.compare_at_price_max | money }}</span>                
+        {% else product.compare_at_price_max > product.price %}
+            <span class="compare--at">{{ product.compare_at_price_max | money }}</span>
+            <span>{{ product.price | money }}</span>        
         {% endif %}
         </div>
 
