@@ -36,9 +36,9 @@ https://www.blackbeltcommerce.com/vendor-page-in-shopify-the-clever-way-to-autom
             {% endfor %}
 
             {% if its_a_match %}
-              <li class="vendor-list-item"><a href="/collections/{{ product_vendor | handleize }}">{{ product_vendor }}</a> si jala</li>
+              <li class="vendor-list-item"><a href="/collections/{{ product_vendor | handleize }}">{{ product_vendor }}</a></li>
             {% else %}
-              <li class="vendor-list-item">{{ product_vendor | link_to_vendor }} no jala</li>
+              <li class="vendor-list-item">{{ product_vendor | link_to_vendor }}</li>
             {% endif %}
           {% endfor %}
           </ul>
