@@ -46,11 +46,10 @@ jQuery('[max]').change(function() {
               <h3 class="h3-price">
                 {{ item.price | money }}
               </h3>
-              <span>c/u<br />
-                <span class="compare--at">
-                  {{ item.original_price | money }}
-                </span>
-              </span>
+              <span class="compare--at">
+                {{ item.original_price | money }}
+              </span><br />
+              <span>c/u</span>
             {% else %}
               <h3 class="h3-price">
                 {{ item.price | money }}
@@ -78,14 +77,18 @@ jQuery('[max]').change(function() {
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-2 align-self-sm-center">
-            <h3 class="h3">
-              <span class="compare--at">
-                {{ item.original_line_price | money}}
-              </span>
-              {{ item.line_price | money }}
+            {% if item.total_discount > 0 %}
+              <h3 class="h3">
+                {{ item.line_price | money }}
+              </h3>
+              <span class="compare--at">{{ item.original_line_price | money}}</span>
               <br />
-              <span>{{ item.message }}</span>
-            </h3>
+              <span>{{ item.message }}</span>              
+            {% else %}
+              <h3 class="h3">
+                {{ item.line_price | money }}
+              </h3>
+            {% endif %}
           </div>
 
         </div>
