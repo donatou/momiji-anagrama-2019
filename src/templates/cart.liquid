@@ -42,10 +42,21 @@ jQuery('[max]').change(function() {
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-2 align-self-sm-center">
-            <h3 class="h3-price">
-              {{ item.price | money }}
-            </h3>
-            <span>c/u</span>
+            {% if item.total_discount > 0 %}
+              <h3 class="h3-price">
+                {{ item.price | money }}
+              </h3>
+              <span>c/u<br />
+                <span class="compare--at">
+                  {{ item.original_price | money }}
+                </span>
+              </span>
+            {% else %}
+              <h3 class="h3-price">
+                {{ item.price | money }}
+              </h3>
+              <span>c/u</span>
+            {% endif %}
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-4 align-self-sm-center">
@@ -68,7 +79,12 @@ jQuery('[max]').change(function() {
 
           <div class="col-xs-12 col-sm-12 col-md-2 align-self-sm-center">
             <h3 class="h3">
+              <span class="compare--at">
+                {{ item.original_line_price | money}}
+              </span>
               {{ item.line_price | money }}
+              <br />
+              <span>{{ item.message }}</span>
             </h3>
           </div>
 
@@ -87,9 +103,14 @@ jQuery('[max]').change(function() {
 
           <div class="col-xl-4 col-lg-4 col-md-8 col-sm-8">
             <div class="mb-3">
-              <h3>{{ 'cart.general.subtotal' | t }}: {{ cart.total_price | money }}</h3>
+              <h3>{{ 'cart.general.subtotal' | t }}: 
+              {% if cart.total_discount > 0 %}
+              <span class="compare--at">{{ cart.original_total_price | money }}</span>
+              {% endif %}
+               {{ cart.total_price | money }}</h3>
               {% if cart.total_discounts > 0 %}
-                <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}</p>
+                <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}{% if scripts.cart_calculate_line_items %} con la promo de {{ scripts.cart_calculate_line_items.name }}{% endif %}
+                </p>
               {% endif %}
             </div>
             <div class="btn--100 mb-3">
