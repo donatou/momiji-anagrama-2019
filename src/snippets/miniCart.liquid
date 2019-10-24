@@ -4,18 +4,19 @@
       <div data-section-type="cart-template" data-ajax-update="true">
         <div class="page-header">
           <span class='closecart_mm'>&#10006;</span>
-          <div class="majortitle">Your Cart</div>
+          <div class="majortitle">{{ 'cart.general.title' | t }}</div>
         </div>
         {% if cart.item_count != 0 %}
         <form action="/cart" method="post" id="cartform" style="display:{% if cart.item_count == 0 %}none{% else %}block{% endif %};">
-          {% assign shipping_value = 20000 %}
+          {% assign shipping_value = 110000 %}
+          {%- comment -%}{% assign shipping_value = 20000 %}{%- endcomment -%}
           {% assign cart_total = cart.total_price %}
           {% assign shipping_value_left = shipping_value | minus: cart_total %}
           <h5 class="cartfreeshipping">
             {% if shipping_value_left > 0 %}
-            Add {{ shipping_value_left | money }} to unlock Free Shipping!*
+            ¡Agrega {{ shipping_value_left | money }} para que tu envío sea gratis!*
             {% else %}
-            You've Earned Free Shipping!
+            Tu orden califica para envío gratis.*
             {% endif %}
           </h5>
           <ul class="item-list divider">
@@ -52,23 +53,30 @@
             </li><!-- /.item -->
             {% endfor %}
           </ul>
+
           <div class="cf checkout-subtotal-container">
             <div class="checkout-subtotal-container__left">
-              <h4>Subtotal</h4>
+              <h4>{{ 'cart.general.subtotal' | t }}</h4>
             </div>
             <div class="checkout-subtotal-container__right">
               <h4 class="subtotal h1-style"><span class="theme-money">{{ cart.total_price | money }}</span></h4>
             </div>
           </div>
+          <div class="cf checkout-subtotal-container">
+            <div class="checkout-subtotal-container__left">
+              {% include 'estas-ahorrando' %}
+            </div>
+          </div>
+
           <div class="cf">
             <div class="checkout-col">
-              <div class="btn__main checkout-buttons">
+              {%- comment -%}<div class="btn__main checkout-buttons">
                 <input type="submit" class="button button--large" id="update-cart" name="review cart" value="Review Your Cart">
-              </div>
+              </div>{%- endcomment -%}
               <div class="btn__main checkout-buttons">
                 <input type="submit" class="button button--large" id="update-cart" name="checkout" value="Checkout">
               </div>
-              <a class="btn__main continue-shopping" href="/collections/all">Continue shopping</a>
+              <a class="continue-shopping" href="/collections/all">Continue shopping</a>
             </div>
           </div>
         </form>
@@ -84,127 +92,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  $(document).on('click','.cart-summary',function(e){
-    e.preventDefault();
-    $('body').addClass('cart-open');
-    $('#mm_cartoverlay').animate({"right": '0'});
-    $('#cart_temp_late form').css('opacity','0.2');
-    updateMinicart();
-  });
-
-  $(document).on('click','span.closecart_mm',function(e){
-    e.preventDefault();
-    closeMinicart();
-  });
-
-  function closeMinicart(){
-    $('#mm_cartoverlay').animate({"right": '-400'});
-    $('body').removeClass('cart-open');
-  }
-  $(document).on('click','#cart_temp_late .continue-shopping',function(e){
-    e.preventDefault();
-    closeMinicart();
-  });
-
-  $(document).on('click','.cart-open', function (event) {
-    if (!$(event.target).closest('#cart_temp_late').length) {
-      event.stopPropagation();
-      closeMinicart();
-    }
-  });
-
-  $(document).on('click','.minicart-summ .item .remove_mm',function(e){
-    e.preventDefault();
-    var varid = $(this).data('variant_id');
-    $(this).text('Removing...')
-    setTimeout(function(){
-      removeItemcart(varid);
-    },100);
-  });
-
-  $(document).on('click','.minicart-summ .item a.notabutton.quantity-up',function(e){
-    var parent = $(this).closest('.quantity'),
-        qty = $(parent).find('input').val(),
-        variant = $(parent).data('variant'),
-        newval = parseInt(qty)+1 ;
-    $(parent).find('input').val(newval);
-    updateCart(variant,newval);
-  });
-
-  $(document).on('click','.minicart-summ .item a.notabutton.quantity-down',function(e){
-    var parent = $(this).closest('.quantity'),
-        qty = $(parent).find('input').val(),
-        variant = $(parent).data('variant'),
-        newval = parseInt(qty)-1 ;
-    if(newval != 0){
-      $(parent).find('input').val(newval);
-      updateCart(variant,newval);
-    }
-  });
-
-  $(document).on('submit','[action="/cart/add"]',function(e){
-    e.preventDefault();
-    var formdata = $(this).serialize(),
-        parent = $(this);
-    $('#cart_temp_late form').css('opacity','0.2');
-    setTimeout(function(){
-      $(parent).find('.button').val('Add to cart');
-    },2000);
-    addItemtocart(formdata);
-  });
-
-  function updateCart(variant,newval){
-    $.ajax({
-      type: "post",
-      url: "/cart/change.js",
-      data: {id:variant,quantity:newval},
-      dataType: 'json',
-      success : function(cart) {
-        updateMinicart();
-      }
-    });
-  }
-
-  function removeItemcart(varid){
-    $.ajax({
-      type: "post",
-      url: "/cart/change.js",
-      data: {id:varid,quantity:0},
-      dataType: 'json',
-      success : function(cart) {
-        updateMinicart();
-      }
-    });
-  }
-
-  function addItemtocart(formdat){
-    $.ajax({
-      type: "post",
-      url: "/cart/add.js",
-      data: formdat,
-      dataType: 'json',
-      success : function(cart) {
-        console.log('item added');
-        updateMinicart(); 
-      }
-    });
-  }
-
-  function updateMinicart(){
-    $.ajax({
-      type: "GET",
-      url: "/",
-      success : function(data) {
-        console.log('minicart loaded');
-        $('#cart_temp_late form').css('opacity','1');
-        var recomenpro = $(data).filter('#mm_cartoverlay').html();
-        $(document).find('#mm_cartoverlay').html(recomenpro);
-        $('body').addClass('cart-open');
-        $('#mm_cartoverlay').animate({"right": '0'});
-      }
-    });
-  }
-
-</script>

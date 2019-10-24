@@ -111,10 +111,7 @@ jQuery('[max]').change(function() {
               <span class="compare--at">{{ cart.original_total_price | money }}</span>
               {% endif %}
                {{ cart.total_price | money }}</h3>
-              {% if cart.total_discounts > 0 %}
-                <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}{% if scripts.cart_calculate_line_items %} con la promo de {{ scripts.cart_calculate_line_items.name }}{% endif %}
-                </p>
-              {% endif %}
+              {% include 'estas-ahorrando' %}
             </div>
             <div class="btn--100 mb-3">
               <input class="btn__main btn--red btn--lighter-red mb-2 mr-1" type="submit" name="update" value="{{ 'cart.general.update' | t }}">
