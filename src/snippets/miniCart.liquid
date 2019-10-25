@@ -2,10 +2,12 @@
   <div class="cartoverlay" id="cart-content">
     <div id="cart_temp_late" class="shopify-section">
       <div data-section-type="cart-template" data-ajax-update="true">
+
         <div class="page-header">
           <span class='closecart_mm'>&#10006;</span>
           <div class="majortitle">{{ 'cart.general.title' | t }}</div>
         </div>
+
         {% if cart.item_count != 0 %}
         <form action="/cart" method="post" id="cartform" style="display:{% if cart.item_count == 0 %}none{% else %}block{% endif %};">
           {% assign shipping_value = 110000 %}
@@ -81,14 +83,25 @@
           </div>
         </form>
         {% else %}
-         <div class="col-md-12 carTempty">
-            <h2>{{ 'cart.general.title' | t }}</h2>
-            <h5>{{ 'cart.general.empty' | t }} </h5>
-            <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
-          </div>
+        <div class="col-md-12 carTempty">
+          <h2>{{ 'cart.general.title' | t }}</h2>
+          <h5>{{ 'cart.general.empty' | t }} </h5>
+          <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
+        </div>
         
         {% endif %}
       </div>
     </div>
   </div>
 </div>
+
+
+{%- comment -%}
+
+        switch para prender o apagar minicart
+        usar tags de shopify en minicart
+        condicionales de envío gratis o de ofertas en minicart
+        revisar si se requiere avisar cuando hay un shipping discount en carrito
+        upsell de minicart
+
+{%- endcomment -%}  

@@ -1,0 +1,114 @@
+<div id="mm_cartoverlay" class="mm_cartoverlay minicart-summ" style="right: -400px;">
+  <div class="cartoverlay" id="cart-content">
+    <div id="cart_temp_late" class="shopify-section">
+      <div data-section-type="cart-template" data-ajax-update="true">
+
+        <div class="page-header">
+          <span class='closecart_mm'>&#10006;</span>
+          <div class="majortitle">{{ 'cart.general.title' | t }}</div>
+        </div>
+
+        {% if cart.item_count != 0 %}
+        <form action="/cart" method="post" id="cartform" style="display:{% if cart.item_count == 0 %}none{% else %}block{% endif %};">
+          {% assign shipping_value = 110000 %}
+          {%- comment -%}{% assign shipping_value = 20000 %}{%- endcomment -%}
+          {% assign cart_total = cart.total_price %}
+          {% assign shipping_value_left = shipping_value | minus: cart_total %}
+<div class="minicart-nosubtotal">
+          <h5 class="cartfreeshipping">
+            {% if shipping_value_left > 0 %}
+            ¡Agrega {{ shipping_value_left | money }} para que tu envío sea gratis!*
+            {% else %}
+            Tu orden califica para envío gratis.*
+            {% endif %}
+          </h5>
+
+          <div class="cart__body">  
+            <ul class="item-list divider">
+              {% for item in cart.items %}
+              <li class="item cf product-2-cruiser-65l">
+                <div class="imagedesc">
+                  <div class="image">
+                    <a href="{{ item.url }}">
+                      <img src="{{item.image | img_url:'100x'}}">
+                    </a>
+                  </div>
+                  <a class="remove_mm" data-variant_id="{{item.id}}">
+                    &#10006;
+                  </a>
+                </div>
+                <div class="quantity-container">
+                  <div class="desc">
+                    <div>
+                      <a class="name" href="{{ item.url }}">{{ item.product.title }}</a>
+                      {% if item.product.variants.size > 1 %}
+                      <div class="variant">{{ item.variant.title }}</div>
+                      {% endif %}
+                    </div>
+                    <div class="line-total" data-line="1">
+                      <span class="theme-money">{{ item.line_price | money }}</span>
+                    </div>
+                  </div>
+                  <div data-variant="{{ item.id }}" class="quantity buttoned-input">
+                    <a class="notabutton quantity-down" href="#"> - </a>
+                    <input class="select-on-focus" type="text" size="2" id="updates_1" name="updates[]" value="{{item.quantity}}" data-line="1" aria-label="Quantity">
+                    <a class="notabutton quantity-up " href="#"> + </a>
+                  </div>
+                </div>
+              </li><!-- /.item -->
+              {% endfor %}
+            </ul>
+          </div>
+</div>
+          <div class="cart__footer">
+            <div class="cf checkout-subtotal-container">
+              <div class="checkout-subtotal-container__left">
+                <h4>{{ 'cart.general.subtotal' | t }}</h4>
+              </div>
+              <div class="checkout-subtotal-container__right">
+                <h4 class="subtotal h1-style"><span class="theme-money">{{ cart.total_price | money }}</span></h4>
+              </div>
+            </div>
+            <div class="cf checkout-subtotal-container">
+              <div class="checkout-subtotal-container__left">
+                {% include 'estas-ahorrando' %}
+              </div>
+            </div>
+
+            <div class="cf">
+              <div class="checkout-col">
+                {%- comment -%}<div class="btn__main checkout-buttons">
+                  <input type="submit" class="button button--large" id="update-cart" name="review cart" value="Review Your Cart">
+                </div>{%- endcomment -%}
+                <div class="btn__main checkout-buttons">
+                  <input type="submit" class="button button--large" id="update-cart" name="checkout" value="Checkout">
+                </div>
+                <a class="continue-shopping" href="/collections/all">Continue shopping</a>
+              </div>
+            </div>
+          </div>
+
+        </form>
+        {% else %}
+        <div class="col-md-12 carTempty">
+          <h2>{{ 'cart.general.title' | t }}</h2>
+          <h5>{{ 'cart.general.empty' | t }} </h5>
+          <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
+        </div>
+        
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{%- comment -%}
+
+        switch para prender o apagar minicart
+        usar tags de shopify en minicart
+        condicionales de envío gratis o de ofertas en minicart
+        revisar si se requiere avisar cuando hay un shipping discount en carrito
+        upsell de minicart
+
+{%- endcomment -%}  

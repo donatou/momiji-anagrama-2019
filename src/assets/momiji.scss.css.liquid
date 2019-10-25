@@ -8544,6 +8544,9 @@ article h1 + p, article h2 + p, article h3 + p, article h4 + p, article h5 + p  
     text-align: center;
   }
   .minicart-summ form#cartform {
+    /**padding: 20px;**/
+  }
+  .minicart-nosubtotal {
     padding: 20px;
   }
   h5.cartfreeshipping {
@@ -8624,5 +8627,22 @@ article h1 + p, article h2 + p, article h3 + p, article h4 + p, article h5 + p  
   .carTempty h5 {
     margin: 10px 0;
   }
+  .cart__body {
+    flex-grow: 1;
+    display: flex;
+    flex-flow: column;
+    min-height: 14.6rem;
+  }
+  .cart__footer {
+    position: sticky;
+    bottom: 0;
+    height: 160px;
+    background-color: #F06C4E;
+  }
+.cart__border-top {
+  border-top: solid 1px rgba(74, 74, 74, 0.1);
+  padding-top: 20px;
+  margin-top: 20px;
+}
 
   /********************************/
