@@ -67,7 +67,7 @@
 {%- endcomment -%}
     {{ content_for_header | replace: "<body onload='document._boomrl();'>", "<bodx onload='document._boomrl();'>" }}
 
-    <meta name="google-site-verification" content="Lrt_wQm8pILk0eIq6gdG_1W73P2QGcpV8lnvb4oxdpk" />
+    <meta name="google-site-verification" content="Lrt_wQm8pILk0eIq6gdG_1W73P2QGcpV8lnvb4oxdpk" >
   </head>
 
   <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
@@ -100,10 +100,14 @@
 
     <script src="{{ '//cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js' }}" defer></script>
     <script src="{{ 'swiper.min.js'| asset_url }}" defer></script>
+    <script src="{{ 'app.min.js' | asset_url }}" defer></script> 
     <script src="{{ 'parallax.js' | asset_url }}" defer></script> 
     <script src="{{ 'micromodal.js' | asset_url }}" defer></script>  
     <script src="{{ 'jquery.selectric.js' | asset_url }}" defer></script>  
+<<<<<<< HEAD
     <script src="{{ 'app.min.js' | asset_url }}" defer></script> 
+=======
+>>>>>>> master
     {% include "swymWishlist" %}
     {% include 'swymSnippet' %}
         {% comment %} {% include 'back-in-stock-helper' %} {% endcomment %}
