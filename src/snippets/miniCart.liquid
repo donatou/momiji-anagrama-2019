@@ -2,23 +2,20 @@
   <div class="cartoverlay" id="cart-content">
     <div id="cart_temp_late" class="shopify-section">
       <div data-section-type="cart-template" data-ajax-update="true">
-
         <div class="page-header">
           <span class='closecart_mm'>&#10006;</span>
-          <div class="majortitle">{{ 'cart.general.title' | t }}</div>
+          <div class="majortitle">Your Cart</div>
         </div>
-
         {% if cart.item_count != 0 %}
         <form action="/cart" method="post" id="cartform" style="display:{% if cart.item_count == 0 %}none{% else %}block{% endif %};">
-          {% assign shipping_value = 110000 %}
-          {%- comment -%}{% assign shipping_value = 20000 %}{%- endcomment -%}
+          {% assign shipping_value = 20000 %}
           {% assign cart_total = cart.total_price %}
           {% assign shipping_value_left = shipping_value | minus: cart_total %}
           <h5 class="cartfreeshipping">
             {% if shipping_value_left > 0 %}
-            ¡Agrega {{ shipping_value_left | money }} para que tu envío sea gratis!*
+            Add {{ shipping_value_left | money }} to unlock Free Shipping!*
             {% else %}
-            Tu orden califica para envío gratis.*
+            You've Earned Free Shipping!
             {% endif %}
           </h5>
           <ul class="item-list divider">
@@ -55,39 +52,32 @@
             </li><!-- /.item -->
             {% endfor %}
           </ul>
-
           <div class="cf checkout-subtotal-container">
             <div class="checkout-subtotal-container__left">
-              <h4>{{ 'cart.general.subtotal' | t }}</h4>
+              <h4>Subtotal</h4>
             </div>
             <div class="checkout-subtotal-container__right">
               <h4 class="subtotal h1-style"><span class="theme-money">{{ cart.total_price | money }}</span></h4>
             </div>
           </div>
-          <div class="cf checkout-subtotal-container">
-            <div class="checkout-subtotal-container__left">
-              {% include 'estas-ahorrando' %}
-            </div>
-          </div>
-
           <div class="cf">
             <div class="checkout-col">
-              {%- comment -%}<div class="btn__main checkout-buttons">
+              <div class="btn__main checkout-buttons">
                 <input type="submit" class="button button--large" id="update-cart" name="review cart" value="Review Your Cart">
-              </div>{%- endcomment -%}
+              </div>
               <div class="btn__main checkout-buttons">
                 <input type="submit" class="button button--large" id="update-cart" name="checkout" value="Checkout">
               </div>
-              <a class="continue-shopping" href="/collections/all">Continue shopping</a>
+              <a class="btn__main continue-shopping" href="/collections/all">Continue shopping</a>
             </div>
           </div>
         </form>
         {% else %}
-        <div class="col-md-12 carTempty">
-          <h2>{{ 'cart.general.title' | t }}</h2>
-          <h5>{{ 'cart.general.empty' | t }} </h5>
-          <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
-        </div>
+         <div class="col-md-12 carTempty">
+            <h2>{{ 'cart.general.title' | t }}</h2>
+            <h5>{{ 'cart.general.empty' | t }} </h5>
+            <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
+          </div>
         
         {% endif %}
       </div>
@@ -95,13 +85,235 @@
   </div>
 </div>
 
+<style>
+  div#mm_cartoverlay {
+    width: 400px;
+    background: #fff;
+    z-index: 9999;
+    border: 1px solid #ccc;
+    position: fixed;
+    height: 100vh !important;
+    overflow-y: scroll;
+  }
+  span.closecart_mm {
+    position: absolute;
+    left: 6px;
+    top: 4px;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+    padding: 5px;
+  }
+  .minicart-summ .majortitle {
+    background: #000;
+    color: #fff;
+    height: 41px;
+    line-height: 41px;
+    font-size: 15px;
+    text-align: center;
+  }
+  .minicart-summ form#cartform {
+    padding: 20px;
+  }
+  h5.cartfreeshipping {
+    margin: 0 auto 20px;
+    color: #457f53;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #D3D3D3;
+    text-align: center;
+  }
+  ul.item-list.divider {
+    padding: 0;
+  }
+  .minicart-summ #cartform .item {
+    position: relative;
+    display: flex;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dedede;
+  }
+  .imagedesc {
+    margin-right: 10px;
+  }
+  .minicart-summ .item .remove_mm {
+    position: absolute;
+    right: 0;
+    top: 2em;
+    display: block;
+    margin-top: 5px;
+    cursor: pointer;
+  }
+  .quantity.buttoned-input {
+    width: 100px;
+    display: flex;
+    margin-top: 10px;
+  }
+  .minicart-summ .select-on-focus {
+    text-align: center;
+    width: 40px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+  }
+  .checkout-col{
+    margin-top: 10px;
+  }
+  .checkout-col >*{
+    width: 100%;
+  }
+  .checkout-col > input{
+    text-transform: uppercase;
+  }
+  .minicart-summ .checkout-buttons {
+    margin-bottom: 10px; 
+  }
+  .cf.checkout-subtotal-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+  }
+  .minicart-summ .notabutton {
+    border: 1px solid;
+    border: 1px solid;
+    padding: 3px 5px !important;
+  }
+  .empty-cart-message {
+    text-align: center;
+    padding: 10px 20px;
+  }
+  .empty-cart-message h3 {
+    margin-bottom: 40px;
+  }
+  .cart-open header {
+    z-index: 9;
+  }
+  .col-md-12.carTempty {
+    margin-top: 100px;
+    text-align: center;
+  }
+  .carTempty h5 {
+    margin: 10px 0;
+  }
+</style>
+<script>
+  $(document).on('click','.cart-summary',function(e){
+    e.preventDefault();
+    $('body').addClass('cart-open');
+    $('#mm_cartoverlay').animate({"right": '0'});
+    $('#cart_temp_late form').css('opacity','0.2');
+    updateMinicart();
+  });
 
-{%- comment -%}
+  $(document).on('click','span.closecart_mm',function(e){
+    e.preventDefault();
+    closeMinicart();
+  });
 
-        switch para prender o apagar minicart
-        usar tags de shopify en minicart
-        condicionales de envío gratis o de ofertas en minicart
-        revisar si se requiere avisar cuando hay un shipping discount en carrito
-        upsell de minicart
+  function closeMinicart(){
+    $('#mm_cartoverlay').animate({"right": '-400'});
+    $('body').removeClass('cart-open');
+  }
+  $(document).on('click','#cart_temp_late .continue-shopping',function(e){
+    e.preventDefault();
+    closeMinicart();
+  });
 
-{%- endcomment -%}  
+  $(document).on('click','.cart-open', function (event) {
+    if (!$(event.target).closest('#cart_temp_late').length) {
+      event.stopPropagation();
+      closeMinicart();
+    }
+  });
+
+  $(document).on('click','.minicart-summ .item .remove_mm',function(e){
+    e.preventDefault();
+    var varid = $(this).data('variant_id');
+    $(this).text('Removing...')
+    setTimeout(function(){
+      removeItemcart(varid);
+    },100);
+  });
+
+  $(document).on('click','.minicart-summ .item a.notabutton.quantity-up',function(e){
+    var parent = $(this).closest('.quantity'),
+        qty = $(parent).find('input').val(),
+        variant = $(parent).data('variant'),
+        newval = parseInt(qty)+1 ;
+    $(parent).find('input').val(newval);
+    updateCart(variant,newval);
+  });
+
+  $(document).on('click','.minicart-summ .item a.notabutton.quantity-down',function(e){
+    var parent = $(this).closest('.quantity'),
+        qty = $(parent).find('input').val(),
+        variant = $(parent).data('variant'),
+        newval = parseInt(qty)-1 ;
+    if(newval != 0){
+      $(parent).find('input').val(newval);
+      updateCart(variant,newval);
+    }
+  });
+
+  $(document).on('submit','[action="/cart/add"]',function(e){
+    e.preventDefault();
+    var formdata = $(this).serialize(),
+        parent = $(this);
+    $('#cart_temp_late form').css('opacity','0.2');
+    setTimeout(function(){
+      $(parent).find('.button').val('Add to cart');
+    },2000);
+    addItemtocart(formdata);
+  });
+
+  function updateCart(variant,newval){
+    $.ajax({
+      type: "post",
+      url: "/cart/change.js",
+      data: {id:variant,quantity:newval},
+      dataType: 'json',
+      success : function(cart) {
+        updateMinicart();
+      }
+    });
+  }
+
+  function removeItemcart(varid){
+    $.ajax({
+      type: "post",
+      url: "/cart/change.js",
+      data: {id:varid,quantity:0},
+      dataType: 'json',
+      success : function(cart) {
+        updateMinicart();
+      }
+    });
+  }
+
+  function addItemtocart(formdat){
+    $.ajax({
+      type: "post",
+      url: "/cart/add.js",
+      data: formdat,
+      dataType: 'json',
+      success : function(cart) {
+        console.log('item added');
+        updateMinicart(); 
+      }
+    });
+  }
+
+  function updateMinicart(){
+    $.ajax({
+      type: "GET",
+      url: "/",
+      success : function(data) {
+        console.log('minicart loaded');
+        $('#cart_temp_late form').css('opacity','1');
+        var recomenpro = $(data).filter('#mm_cartoverlay').html();
+        $(document).find('#mm_cartoverlay').html(recomenpro);
+        $('body').addClass('cart-open');
+        $('#mm_cartoverlay').animate({"right": '0'});
+      }
+    });
+  }
+
+</script>

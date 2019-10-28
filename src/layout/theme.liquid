@@ -66,14 +66,13 @@
     {{ content_for_header }} bug documentado aqui: https://community.shopify.com/c/Technical-Q-A/window-BOOMR-throws-an-error/m-p/575778#M11525
 {%- endcomment -%}
     {{ content_for_header | replace: "<body onload='document._boomrl();'>", "<bodx onload='document._boomrl();'>" }}
-
     <meta name="google-site-verification" content="Lrt_wQm8pILk0eIq6gdG_1W73P2QGcpV8lnvb4oxdpk" >
   </head>
 
   <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
+    {% include 'miniCart' %}
+    {%- comment -%}{% include 'miniCartDonato' %}{%- endcomment -%}
     <div class="loader-component"></div>
-    {%- comment -%}{% include 'miniCart' %}{%- endcomment -%}
-    {% include 'miniCartDonato' %}
     {%- comment -%}{% include 'ask' %}{%- endcomment -%}
     {%- comment -%}<a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a> {%- endcomment -%}
 
@@ -111,7 +110,7 @@
     {% if template == 'article' %}
         <script id="dsq-count-scr" src="//momijitalks.disqus.com/count.js" defer></script>
     {% endif %}
-    <script src="{{ 'minicart.min.js'| asset_url }}" defer></script>
+    {%- comment -%}<script src="{{ 'minicart.min.js'| asset_url }}" defer></script>{%- endcomment -%}
     {% include 'adroll' %}
   </body>
 </html>
