@@ -3,7 +3,7 @@
     <div id="cart_temp_late" class="shopify-section">
       <div data-section-type="cart-template" data-ajax-update="true">
 
-        <div class="page-header">
+        <div class="cart__header">
           <span class='closecart_mm'>&#10006;</span>
           <div class="majortitle">{{ 'cart.general.title' | t }}</div>
         </div>
@@ -15,13 +15,13 @@
           {% assign cart_total = cart.total_price %}
           {% assign shipping_value_left = shipping_value | minus: cart_total %}
           <div class="minicart-nosubtotal">
-            <h5 class="cartfreeshipping">
+            <p class="cartfreeshipping">
               {% if shipping_value_left > 0 %}
               ¡Agrega {{ shipping_value_left | money }} para que tu envío sea gratis!*
               {% else %}
               Tu orden califica para envío gratis.*
               {% endif %}
-            </h5>
+            </p>
 
 
             <div class="cart__body">  
@@ -83,10 +83,10 @@
                 {%- comment -%}<div class="btn__main checkout-buttons">
                   <input type="submit" class="button button--large" id="update-cart" name="review cart" value="Review Your Cart">
                 </div>{%- endcomment -%}
-                <div class="btn__main checkout-buttons">
+                <div class="btn__main btn--red checkout-buttons">
                   <input type="submit" class="button button--large" id="update-cart" name="checkout" value="Checkout">
                 </div>
-                <a class="continue-shopping" href="/collections/all">Continue shopping</a>
+                {%- comment -%}<a class="continue-shopping" href="/collections/all">Continue shopping</a>{%- endcomment -%}
               </div>
             </div>
           </div>
