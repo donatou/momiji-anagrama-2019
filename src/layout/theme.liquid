@@ -70,8 +70,7 @@
   </head>
 
   <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
-    {% include 'miniCart' %}
-    {%- comment -%}{% include 'miniCartDonato' %}{%- endcomment -%}
+    {% include 'miniCartDonato' %}
     <div class="loader-component"></div>
     {%- comment -%}{% include 'ask' %}{%- endcomment -%}
     {%- comment -%}<a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a> {%- endcomment -%}
@@ -110,7 +109,7 @@
     {% if template == 'article' %}
         <script id="dsq-count-scr" src="//momijitalks.disqus.com/count.js" defer></script>
     {% endif %}
-    {%- comment -%}<script src="{{ 'minicart.min.js'| asset_url }}" defer></script>{%- endcomment -%}
+    <script src="{{ 'minicart.min.js'| asset_url }}" defer></script>
     {% include 'adroll' %}
   </body>
 </html>
