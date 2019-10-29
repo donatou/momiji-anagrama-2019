@@ -30,7 +30,7 @@ $(document).on('click', '.cart-open', function (event) {
 $(document).on('click', '.minicart-summ .item .remove_mm', function (e) {
     e.preventDefault();
     var varid = $(this).data('variant_id');
-    $(this).text('Removing...')
+    $(this).text('Eliminando...')
     setTimeout(function () {
         removeItemcart(varid);
     }, 100);
