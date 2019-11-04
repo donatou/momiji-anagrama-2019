@@ -1,9 +1,8 @@
-<section class="home__skin section__st bg-purple">
+<section class="home__skin section__st">
     <div class="container">
         <div class="row row-mobile no-gutters">
-        <div class="section__title col-12 sticker">
+        <div class="section__title col-12 sticker3">
             <h2>{{ section.settings.titulo_seccion }}</h2>
-            <a href="{{ section.settings.boton_link }}" class="btn__main">{{ section.settings.boton_texto }}</a>
         </div>
         </div>
     </div>
@@ -11,42 +10,42 @@
         <div class="row no-gutters">
             <div class="col-md-4 skin--type monterrey">
             <div class="img-container">
-                <img src="{{ section.settings.pielgrasa_imagen | img_url: '634x' }}" alt="Piel grasa">
+                <img src="{{ section.settings.tienda1_imagen | img_url: '634x' }}" alt="Tienda 1">
             </div>
             <div class="btn__more"></div>
             <div class="skin--type-container">
-                <h4>{{ section.settings.pielgrasa_titulo }}</h4>
+                <h4>{{ section.settings.tienda1_titulo }}</h4>
                 <div class="container--between">
-                <p>{{ section.settings.pielgrasa_desc }}</p>
-                <a href="collections/{{ section.settings.pielgrasa_link }}" target="_blank" rel="noopener noreferrer" class="a__link">{{ section.settings.pielgrasa_textlink }}</a>
+                <p>{{ section.settings.tienda1_desc }}</p>
+                <a href="{{ section.settings.tienda1_link }}" target="_blank" rel="noopener noreferrer" class="a__link">{{ section.settings.tienda1_textlink }}</a>
                 </div>
             </div>
             </div>
 
             <div class="col-md-4 skin--type cdmx-popup">
             <div class="img-container">
-                <img src="{{ section.settings.pielmixta_imagen | img_url: '634x' }}" alt="Piel mixta">
+                <img src="{{ section.settings.tienda2_imagen | img_url: '634x' }}" alt="Tienda 2">
             </div>
             <div class="btn__more"></div>
             <div class="skin--type-container">
-                <h4>{{ section.settings.pielmixta_titulo }}</h4>
+                <h4>{{ section.settings.tienda2_titulo }}</h4>
                 <div class="container--between">
-                <p>{{ section.settings.pielmixta_desc }}</p>
-                <a href="collections/{{ section.settings.pielmixta_link }}" target="_blank" rel="noopener noreferrer" class="a__link">{{ section.settings.pielmixta_textlink }}</a>
+                <p>{{ section.settings.tienda2_desc }}</p>
+                <a href="{{ section.settings.tienda2_link }}" target="_blank" rel="noopener noreferrer" class="a__link">{{ section.settings.tienda2_textlink }}</a>
                 </div>
             </div>
             </div>
 
             <div class="col-md-4 skin--type cdmx-palacio">
             <div class="img-container">
-                <img src="{{ section.settings.pielseca_imagen | img_url: '634x' }}" alt="Piel seca">
+                <img src="{{ section.settings.tienda3_imagen | img_url: '634x' }}" alt="Tienda 3">
             </div>
             <div class="btn__more"></div>
             <div class="skin--type-container">
-                <h4>{{ section.settings.pielseca_titulo }}</h4>
+                <h4>{{ section.settings.tienda3_titulo }}</h4>
                 <div class="container--between">
-                <p>{{ section.settings.pielseca_desc }}</p>
-                <a href="{{ section.settings.pielseca_link }}" target="_blank" rel="noopener noreferrer" class="a__link">{{ section.settings.pielseca_textlink }}</a>
+                <p>{{ section.settings.tienda3_desc }}</p>
+                <a href="{{ section.settings.tienda3_link }}" target="_blank" rel="noopener noreferrer" class="a__link">{{ section.settings.tienda3_textlink }}</a>
                 </div>
             </div>
             </div>
@@ -65,114 +64,94 @@
         "label": "Título",
         "default": "Encuéntranos en:"
         },
-        {
-        "type": "text",
-        "id": "boton_texto",
-        "label": "Texto del botón",
-        "default": "Texto del botón"
-        },
-        {
-        "type": "url",
-        "id": "boton_link",
-        "label": "Link del botón"
-        },
             {
             "type": "header",
-            "content": "Monterrey"
+            "content": "Tienda 1"
             },
         {
         "type": "text",
-        "id": "pielgrasa_titulo",
-        "label": "Título Piel Grasa",
-        "default": "Piel grasa."
+        "id": "tienda1_titulo",
+        "label": "Título Tienda 1"
         },
         {
         "type": "textarea",
-        "id": "pielgrasa_desc",
-        "label": "Descripción Piel Grasa",
-        "default": "Piel grasa."
+        "id": "tienda1_desc",
+        "label": "Descripción Tienda 1"
         },
         {
         "type": "text",
-        "id": "pielgrasa_textlink",
-        "label": "Texto del link piel grasa",
-        "default": "Productos para piel grasa"
+        "id": "tienda1_textlink",
+        "label": "Texto del link tienda 1"
         },
         {
         "type": "url",
-        "id": "pielgrasa_link",
-        "label": "Link de piel grasa"
+        "id": "tienda1_link",
+        "label": "Link de tienda 1"
         },
         {
         "type": "image_picker",
-        "id": "pielgrasa_imagen",
-        "label": "Imagen de piel grasa",
+        "id": "tienda1_imagen",
+        "label": "Imagen de tienda 1",
         "info": "800w x 980h px, 72dpi 50% ~ 52%"
         },
             {
             "type": "header",
-            "content": "CDMX Juárez"
+            "content": "Tienda 2"
             },
         {
         "type": "text",
-        "id": "pielmixta_titulo",
-        "label": "Título Piel mixta",
-        "default": "Piel mixta."
+        "id": "tienda2_titulo",
+        "label": "Título Tienda 2"
         },
         {
         "type": "textarea",
-        "id": "pielmixta_desc",
-        "label": "Descripción Piel mixta",
-        "default": "Piel mixta."
+        "id": "tienda2_desc",
+        "label": "Descripción Tienda 2"
         },
         {
         "type": "text",
-        "id": "pielmixta_textlink",
-        "label": "Texto del link piel mixta",
-        "default": "Productos para piel mixta"
+        "id": "tienda2_textlink",
+        "label": "Texto del link tienda 2"
         },
         {
         "type": "url",
-        "id": "pielmixta_link",
-        "label": "Link de piel mixta"
+        "id": "tienda2_link",
+        "label": "Link de tienda 2"
         },
         {
         "type": "image_picker",
-        "id": "pielmixta_imagen",
-        "label": "Imagen de piel mixta",
+        "id": "tienda2_imagen",
+        "label": "Imagen de tienda 2",
         "info": "800w x 980h px, 72dpi 50% ~ 52%"
         },
             {
             "type": "header",
-            "content": "CDMX Palacio de Hierro"
+            "content": "Tienda 3"
             },
         {
         "type": "text",
-        "id": "pielseca_titulo",
-        "label": "Título Piel seca",
-        "default": "Piel seca."
+        "id": "tienda3_titulo",
+        "label": "Título Tienda 3"
         },
         {
         "type": "textarea",
-        "id": "pielseca_desc",
-        "label": "Descripción Piel seca",
-        "default": "Piel seca."
+        "id": "tienda3_desc",
+        "label": "Descripción Tienda 3"
         },
         {
         "type": "text",
-        "id": "pielseca_textlink",
-        "label": "Texto del link piel seca",
-        "default": "Productos para piel seca"
+        "id": "tienda3_textlink",
+        "label": "Texto del link tienda 3"
         },
         {
         "type": "url",
-        "id": "pielseca_link",
-        "label": "Link de piel seca"
+        "id": "tienda3_link",
+        "label": "Link de tienda 3"
         },
         {
         "type": "image_picker",
-        "id": "pielseca_imagen",
-        "label": "Imagen de piel seca",
+        "id": "tienda3_imagen",
+        "label": "Imagen de tienda 3",
         "info": "800w x 980h px, 72dpi 50% ~ 52%"
         }
     ],
