@@ -11,10 +11,10 @@
         {% if cart.item_count != 0 %}
         <form action="/cart" method="post" id="cartform" style="display:{% if cart.item_count == 0 %}none{% else %}block{% endif %};">
           {% assign shipping_value = 110000 %}
-          {%- comment -%}{% assign shipping_value = 20000 %}{%- endcomment -%}
           {% assign cart_total = cart.total_price %}
           {% assign shipping_value_left = shipping_value | minus: cart_total %}
           <div class="minicart-nosubtotal">
+            {%- comment -%}
             <p class="cartfreeshipping">
               {% if shipping_value_left > 0 %}
               ¡Agrega {{ shipping_value_left | money }} para que tu envío sea gratis!*
@@ -22,7 +22,25 @@
               Tu orden califica para envío gratis.*
               {% endif %}
             </p>
+            {%- endcomment -%}
 
+            {%- comment -%}
+            Full Shine Kit ID: 3693318799465
+            {%- endcomment -%}
+            {% for item in cart.items %}
+              {% if item.product.id == 3693318799465 %}
+              {% assign fullshine = true %}
+              {% endif %}
+            {% endfor %}
+            {% if fullshine %}
+              <p class="cartfreeshipping">
+                ¡Tu orden califica para envío gratis!
+              </p>
+            {% else %}
+              <p class="cartfreeshipping">
+                ¡Agrega un <a href="/products/full-shine-kit" rel="noopener noreferrer">Full Shine Kit</a> para que tu envío sea gratis!
+              </p>
+            {% endif %}
 
             <div class="cart__body">  
               <ul class="item-list divider">
