@@ -8,7 +8,7 @@ Grid item sin container div de estilo
  Hide when not loaded - Best practice - Move to a css file 
 .swym-button.swym-add-to-watchlist-view-product:not(.swym-loaded){display: none;}
 </style>{%- endcomment -%}
-{% include 'swym-product-view', product: product %}
+{%- comment -%}{% include 'swym-product-view', product: product %}{%- endcomment -%}
 
 <a href="{{ product.url | within: collection }}" {% if soon %} class="product soon" {% elsif new %} class="product new" {% elsif momi %} class="product momi" {% else %} class="product" {% endif %} > {%- comment -%} se tiene que hacer cuatro clases diferentes: product, product new, product momi, product soon sacado de variables asignadas en tag-logic snippet. {%- endcomment -%}
     <div class="product__container">

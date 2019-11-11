@@ -102,8 +102,8 @@
     <script src="{{ 'parallax.js' | asset_url }}" defer></script> 
     <script src="{{ 'micromodal.js' | asset_url }}" defer></script>  
     <script src="{{ 'jquery.selectric.js' | asset_url }}" defer></script>  
-    {% include "swymWishlist" %}
-    {% include 'swymSnippet' %}
+    {%- comment -%}{% include "swymWishlist" %}
+    {% include 'swymSnippet' %}{%- endcomment -%}
         {% comment %} {% include 'back-in-stock-helper' %} {% endcomment %}
     {{ 'product-reviews-override.min.css' | asset_url | stylesheet_tag }}
     {% if template == 'article' %}

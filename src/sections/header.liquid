@@ -90,9 +90,9 @@
       <div class="header__icons--search d-none d-md-block">
         <a data-modal="search"><img src="{{ 'search.svg' | asset_url }}" alt="Search"></a>
       </div>
-      <div class="header__icons--love d-none d-md-block">
+      {%- comment -%}<div class="header__icons--love d-none d-md-block">
         <a href="#swym-wishlist" class="swym-wishlist"><img src="{{ 'wishlist-header.svg' | asset_url }}" alt="Wishlist"></a>
-      </div>
+      </div>{%- endcomment -%}
       <div class="header__icons--shop">
         <a href="/cart" class="cart-summary"><img src="{{ 'cart.svg' | asset_url }}" alt="Cart"><span class="cart-quantity">{{ cart.item_count }}</span></a>
       </div>
@@ -179,9 +179,9 @@
       <div class="header__icons--search d-none d-md-block">
         <a data-modal="search"><img src="{{ 'search.svg' | asset_url }}" alt="Search"></a>
       </div>
-      <div class="header__icons--love d-none d-md-block">
+      {%- comment -%}<div class="header__icons--love d-none d-md-block">
         <a href="#swym-wishlist" class="swym-wishlist"><img src="{{ 'wishlist-header.svg' | asset_url }}" alt="Wishlist"></a>
-      </div>
+      </div>{%- endcomment -%}
       <div class="header__icons--shop">
         <a href="/cart" class="cart-summary"><img src="{{ 'cart.svg' | asset_url }}" alt="Cart"><span class="cart-quantity">{{ cart.item_count }}</span></a>
       </div>

@@ -1,6 +1,6 @@
 <section class="section__principal" data-section-id="{{ section.id }}" data-section-type="product">
 
-{% include 'swym-product-view', product: product %}
+{%- comment -%}{% include 'swym-product-view', product: product %}{%- endcomment -%}
 
 {%- assign unico = product.has_only_default_variant -%}
 {% assign inventario-actual = variant.inventory_quantity %}
@@ -29,7 +29,7 @@
               <div class="swiper-container gallery-top col-md-12 col-lg-10 order-1 order-lg-2">
                 <div class="swiper-wrapper">
                 {% for image in product.images %}
-                  <div class="swiper-slide img-container" style="background-image:url({{ image.src | product_img_url: '793x' }}); background-size: cover;"><button class="btn__wishlist product_{{product.id}}" data-swaction="addToWishlist" data-product-id="{{product.id | json}}"></button></div>
+                  <div class="swiper-slide img-container" style="background-image:url({{ image.src | product_img_url: '793x' }}); background-size: cover;">{%- comment -%}<button class="btn__wishlist product_{{product.id}}" data-swaction="addToWishlist" data-product-id="{{product.id | json}}"></button>{%- endcomment -%}</div>
                 {% endfor %} 
                 </div>
               </div>
