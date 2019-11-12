@@ -32,7 +32,7 @@
               {% assign fullshine = true %}
               {% endif %}
             {% endfor %}
-            {% if fullshine %}
+            {% if fullshine or shipping_value_left <= 0 %}
               <p class="cartfreeshipping">
                 ¡Tu orden califica para envío gratis!
               </p>
