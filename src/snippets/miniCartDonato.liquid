@@ -14,6 +14,7 @@
           {% assign cart_total = cart.total_price %}
           {% assign shipping_value_left = shipping_value | minus: cart_total %}
           <div class="minicart-nosubtotal">
+            {%- comment -%} REGULAR CODE FOR 1,100 FREE SHIPPING {% endcomment %}
             {%- comment -%}
             <p class="cartfreeshipping">
               {% if shipping_value_left > 0 %}
@@ -23,9 +24,13 @@
               {% endif %}
             </p>
             {%- endcomment -%}
+            {%- comment -%} REGULAR CODE FOR 1,100 FREE SHIPPING {% endcomment %}
 
+        {%- comment -%}
+        LUNES 15 NOV
+        {%- endcomment -%}
             {%- comment -%}
-            Full Shine Kit ID: 3693318799465
+              Full Shine Kit ID: 3693318799465
             {%- endcomment -%}
             {% for item in cart.items %}
               {% if item.product.id == 3693318799465 %}
@@ -41,6 +46,9 @@
                 ¡Agrega un <a href="/products/full-shine-kit" rel="noopener noreferrer">Full Shine Kit</a> para que tu envío sea gratis!
               </p>
             {% endif %}
+        {%- comment -%}
+        LUNES 15 NOV
+        {%- endcomment -%}
 
             <div class="cart__body">  
               <ul class="item-list divider">
