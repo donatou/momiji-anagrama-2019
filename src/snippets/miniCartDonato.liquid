@@ -10,12 +10,11 @@
 
         {% if cart.item_count != 0 %}
         <form action="/cart" method="post" id="cartform" style="display:{% if cart.item_count == 0 %}none{% else %}block{% endif %};">
-          {% assign shipping_value = 70000 %}
+          {% assign shipping_value = 50000 %}
           {% assign cart_total = cart.total_price %}
           {% assign shipping_value_left = shipping_value | minus: cart_total %}
           <div class="minicart-nosubtotal">
             {%- comment -%} REGULAR CODE FOR 1,100 FREE SHIPPING {% endcomment %}
-            {%- comment -%}
             <p class="cartfreeshipping">
               {% if shipping_value_left > 0 %}
               ¡Agrega {{ shipping_value_left | money }} para que tu envío sea gratis!*
@@ -23,7 +22,6 @@
               Tu orden califica para envío gratis.*
               {% endif %}
             </p>
-            {%- endcomment -%}
             {%- comment -%} REGULAR CODE FOR 1,100 FREE SHIPPING {% endcomment %}
 
         {%- comment -%}
@@ -69,7 +67,7 @@
         {%- comment -%}
         DOMINGO 16 NOV
         {%- endcomment -%}
-            {% if shipping_value_left <= 0 %}
+            {% comment %} {% if shipping_value_left <= 0 %}
               <p class="cartfreeshipping">
                 ¡Te enviaremos un COSRX Clear Fit Master Patch!<br /> *No es necesario agregarlo al carrito.
               </p>
@@ -77,7 +75,7 @@
               <p class="cartfreeshipping">
                 ¡Agrega {{ shipping_value_left | money }} más para recibir un COSRX Clear Fit Master Patch en tu pedido!<br />*No es necesario agregarlo al carrito.
               </p>
-            {% endif %}
+            {% endif %} {% endcomment %}
         {%- comment -%}
         DOMINGO 16 NOV
         {%- endcomment -%}
