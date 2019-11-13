@@ -10,7 +10,7 @@
 
         {% if cart.item_count != 0 %}
         <form action="/cart" method="post" id="cartform" style="display:{% if cart.item_count == 0 %}none{% else %}block{% endif %};">
-          {% assign shipping_value = 95000 %}
+          {% assign shipping_value = 70000 %}
           {% assign cart_total = cart.total_price %}
           {% assign shipping_value_left = shipping_value | minus: cart_total %}
           <div class="minicart-nosubtotal">
@@ -53,13 +53,29 @@
         {%- comment -%}
         SABADO 16 NOV
         {%- endcomment -%}
-            {% if shipping_value_left <= 0 %}
+            {%- comment -%}{% if shipping_value_left <= 0 %}
               <p class="cartfreeshipping">
                 ¡Te enviaremos un E Nature Trial Kit!
               </p>
             {% else %}
               <p class="cartfreeshipping">
                 ¡Agrega {{ shipping_value_left | money }} más para recibir un E Nature Trial Kit en tu envío!
+              </p>
+            {% endif %}{%- endcomment -%}
+        {%- comment -%}
+        SABADO 16 NOV
+        {%- endcomment -%}
+
+        {%- comment -%}
+        SABADO 16 NOV
+        {%- endcomment -%}
+            {% if shipping_value_left <= 0 %}
+              <p class="cartfreeshipping">
+                ¡Te enviaremos un COSRX Clear Fit Master Patch!*
+              </p>
+            {% else %}
+              <p class="cartfreeshipping">
+                ¡Agrega {{ shipping_value_left | money }} más para recibir un COSRX Clear Fit Master Patch en tu pedido! *No es necesario agregarlo al carrito.
               </p>
             {% endif %}
         {%- comment -%}
