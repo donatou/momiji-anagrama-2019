@@ -1,68 +1,60 @@
 <section class="hero" data-section-type="hero">
-<div class="hero__slider slider">
+  <div class="hero__slider slider">
     <div class="swiper-container">
-        <div class="swiper-wrapper">
-
-            {% comment %} Slides {% endcomment %}
-            {% for block in section.blocks %}
-            <div class="swiper-slide" {{ block.shopify_attributes }} data-swiper-autoplay="{{ section.settings.duracion | times: 1000 }}">
-              {% comment %} first image is for mobile {% endcomment %}
-              <img srcset="{{ block.settings.image-mobile | img_url: '830x', format: 'pjpg' }} 500w, 
-                    {{ block.settings.image-full | img_url: '1900x', format: 'pjpg' }}"
-                src="{{ block.settings.image-full | img_url: '1900x', format: 'pjpg' }}" alt="Imagen promocional"/>
-
-              {% if block.settings.theme_layout contains "complete" %}
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-sm-12 col-md-7 col-lg-6 col-xl-5 
-                  {% if block.settings.sticker %} sticker-hero{% endif %}
-                  {% if block.settings.sticker-buenfin %} sticker-buenfin{% endif %}
-                  ">
-                    <h1>{{ block.settings.titulo }}</h1>
-                    <p>{{ block.settings.subtitulo }}</p>
-                    <a href="{{ block.settings.link_boton }}" class="btn__main">{{ block.settings.texto_boton }}</a>
-                  </div> 
-                </div>
+      <div class="swiper-wrapper">
+          {% comment %} Slides {% endcomment %}
+        {% for block in section.blocks %}
+          <div class="swiper-slide" {{ block.shopify_attributes }} data-swiper-autoplay="{{ section.settings.duracion | times: 1000 }}">
+            {% comment %} first image is for mobile {% endcomment %}
+            <img srcset="{{ block.settings.image-mobile | img_url: '830x', format: 'pjpg' }} 500w, 
+                  {{ block.settings.image-full | img_url: '1900x', format: 'pjpg' }}"
+              src="{{ block.settings.image-full | img_url: '1900x', format: 'pjpg' }}" alt="Imagen promocional"/>
+          {% if block.settings.theme_layout contains "complete" %}
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-12 col-md-7 col-lg-6 col-xl-5 
+                {% if block.settings.sticker %} sticker-hero{% endif %}
+                {% if block.settings.sticker-buenfin %} sticker-buenfin{% endif %}
+                ">
+                  <h1>{{ block.settings.titulo }}</h1>
+                  <p>{{ block.settings.subtitulo }}</p>
+                  <a href="{{ block.settings.link_boton }}" class="btn__main">{{ block.settings.texto_boton }}</a>
+                </div> 
               </div>
-
-              {% elsif block.settings.theme_layout contains "no_text" %}
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-sm-12 col-md-7 col-lg-6 col-xl-5 
-                  {% if block.settings.sticker %} sticker-hero{% endif %}
-                  {% if block.settings.sticker-buenfin %} sticker-buenfin{% endif %}
-                  ">
-                    <a href="{{ block.settings.link_boton }}" class="btn__main">{{ block.settings.texto_boton }}</a>
-                  </div> 
-                </div>
-              </div>
-            
-              {% elsif block.settings.theme_layout contains "no_button" %}
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-sm-12 col-md-7 col-lg-6 col-xl-5 
-                  {% if block.settings.sticker %} sticker-hero{% endif %}
-                  {% if block.settings.sticker-buenfin %} sticker-buenfin{% endif %}
-                  ">
-                    <h1>{{ block.settings.titulo }}</h1>
-                    <p>{{ block.settings.subtitulo }}</p>
-                  </div> 
-                </div>
-              </div>
-
-              {% else block.settings.theme_layout contains "nothing" %}
-              <div class="container-fluid">
-              </div>
-
-              {% endif %}
-
             </div>
-            {% endfor %}
-
-        </div>
-        <div class="swiper-pagination"></div>
+          {% elsif block.settings.theme_layout contains "no_text" %}
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-12 col-md-7 col-lg-6 col-xl-5 
+                {% if block.settings.sticker %} sticker-hero{% endif %}
+                {% if block.settings.sticker-buenfin %} sticker-buenfin{% endif %}
+                ">
+                  <a href="{{ block.settings.link_boton }}" class="btn__main">{{ block.settings.texto_boton }}</a>
+                </div> 
+              </div>
+            </div>
+          {% elsif block.settings.theme_layout contains "no_button" %}
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-12 col-md-7 col-lg-6 col-xl-5 
+                {% if block.settings.sticker %} sticker-hero{% endif %}
+                {% if block.settings.sticker-buenfin %} sticker-buenfin{% endif %}
+                ">
+                  <h1>{{ block.settings.titulo }}</h1>
+                  <p>{{ block.settings.subtitulo }}</p>
+                </div> 
+              </div>
+            </div>
+          {% else block.settings.theme_layout contains "nothing" %}
+            <div class="container-fluid">
+            </div>
+          {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination"></div>
     </div>
-</div>
+  </div>
 </section>
 
 {% schema %}
