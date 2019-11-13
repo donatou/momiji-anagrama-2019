@@ -12,7 +12,7 @@
           {% if block.settings.theme_layout contains "complete" %}
             <div class="container-fluid">
               <div class="row">
-                <div class="col-sm-12 col-md-7 col-lg-6 col-xl-5 
+                <div class="{% if block.settings.long_title %}col-sm-12 col-md-7 col-lg-8 col-xl-8 {% else %}col-sm-12 col-md-7 col-lg-6 col-xl-5 {% endif %}
                 {% if block.settings.sticker %} sticker-hero{% endif %}
                 {% if block.settings.sticker-buenfin %} sticker-buenfin{% endif %}
                 ">
@@ -25,7 +25,7 @@
           {% elsif block.settings.theme_layout contains "no_text" %}
             <div class="container-fluid">
               <div class="row">
-                <div class="col-sm-12 col-md-7 col-lg-6 col-xl-5 
+                <div class="{% if block.settings.long_title %}col-sm-12 col-md-7 col-lg-8 col-xl-8 {% else %}col-sm-12 col-md-7 col-lg-6 col-xl-5 {% endif %}
                 {% if block.settings.sticker %} sticker-hero{% endif %}
                 {% if block.settings.sticker-buenfin %} sticker-buenfin{% endif %}
                 ">
@@ -36,7 +36,7 @@
           {% elsif block.settings.theme_layout contains "no_button" %}
             <div class="container-fluid">
               <div class="row">
-                <div class="col-sm-12 col-md-7 col-lg-6 col-xl-5 
+                <div class="{% if block.settings.long_title %}col-sm-12 col-md-7 col-lg-8 col-xl-8 {% else %}col-sm-12 col-md-7 col-lg-6 col-xl-5 {% endif %}
                 {% if block.settings.sticker %} sticker-hero{% endif %}
                 {% if block.settings.sticker-buenfin %} sticker-buenfin{% endif %}
                 ">
@@ -107,6 +107,13 @@
           "id": "titulo",
           "label": "Título",
           "default": "Aquí ingresa el título de la slide."
+        },
+        {
+          "type": "checkbox",
+          "id": "long_title",
+          "label": "Usaré un título largo.",
+          "default": false,
+          "info": "Marca la casilla para permitir un título largo."
         },
         {
           "type": "textarea",
