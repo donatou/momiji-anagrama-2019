@@ -15,13 +15,13 @@
           {% assign shipping_value_left = shipping_value | minus: cart_total %}
           <div class="minicart-nosubtotal">
             {%- comment -%} REGULAR CODE FOR 1,100 FREE SHIPPING {% endcomment %}
-            {% comment %} <p class="cartfreeshipping">
+            <p class="cartfreeshipping">
               {% if shipping_value_left > 0 %}
               ¡Agrega {{ shipping_value_left | money }} para que tu envío sea gratis!*
               {% else %}
               Tu orden califica para envío gratis.*
               {% endif %}
-            </p> {% endcomment %}
+            </p>
             {%- comment -%} REGULAR CODE FOR 1,100 FREE SHIPPING {% endcomment %}
 
         {%- comment -%}
@@ -32,7 +32,7 @@
               var id: 31209446244457
               var id: 31209452241001
             {%- endcomment -%}
-            {% for item in cart.items %}
+            {% comment %} {% for item in cart.items %}
               {% if item.variant.id == 13674267508841 or item.variant.id == 31209446244457 or item.variant.id == 31209452241001 %}
               {% assign momijiMaskKit = true %}
               {% endif %}
@@ -45,7 +45,7 @@
               <p class="cartfreeshipping">
                 ¡Agrega un <a href="/products/momiji-masks" rel="noopener noreferrer">Momiji Brand Mask Kit</a> para que tu envío sea gratis!
               </p>
-            {% endif %}
+            {% endif %} {% endcomment %}
         {%- comment -%}
         VIERNES 15 NOV
         {%- endcomment -%}
