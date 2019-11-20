@@ -136,13 +136,25 @@
     ]
   },
   {
-    "name": "Cart",
+    "name": "Carrito",
     "settings": [
       {
         "type": "checkbox",
         "id": "cart_notes_enable",
         "label": "Enable cart notes",
         "default": true
+      },
+      {
+        "type": "header",
+        "content": "Opciones de envio"
+      },
+      {
+        "type": "text",
+        "id": "costo_enviogratis",
+        "label": "Cantidad a gastar para envio gratis",
+        "default": "1100",
+        "info": "La cantidad es en numero sin signos de puntuacion.",
+        "placeholder": "1100"
       }
     ]
   },

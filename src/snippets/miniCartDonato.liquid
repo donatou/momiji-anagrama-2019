@@ -10,7 +10,7 @@
 
         {% if cart.item_count != 0 %}
         <form action="/cart" method="post" id="cartform" style="display:{% if cart.item_count == 0 %}none{% else %}block{% endif %};">
-          {% assign shipping_value = 110000 %}
+          {% assign shipping_value = settings.costo_enviogratis | times: 100 %}
           {% assign cart_total = cart.total_price %}
           {% assign shipping_value_left = shipping_value | minus: cart_total %}
           <div class="minicart-nosubtotal">
@@ -172,4 +172,4 @@
         revisar si se requiere avisar cuando hay un shipping discount en carrito
         upsell de minicart
 
-{%- endcomment -%}  
+{%- endcomment -%}
