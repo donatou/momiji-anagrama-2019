@@ -14,6 +14,7 @@
 
         {% if cart.item_count != 0 %}
         <form action="/cart" method="post" id="cartform" style="display:{% if cart.item_count == 0 %}none{% else %}block{% endif %};">
+<div class="minicart-nosubtotal">
           {% assign promo_vigente = settings.promo_vigente %}
           {% case promo_vigente %}
             {% when 'agrega_producto' %} {%- comment -%}Envío gratis al agregar un producto (o varios) X en carrito.{%- endcomment -%}
@@ -26,21 +27,17 @@
                 {% assign selected_product = true %}
                 {% endif %}
               {% endfor %}
+                <p class="cartfreeshipping">
               {% if selected_product or shipping_value_left <= 0 %}
-                <p class="cartfreeshipping">
                   ¡Tu orden califica para envío gratis!
-                </p>
               {% else %}
-                <p class="cartfreeshipping">
-                  ¡Agrega un <a href="/products/momiji-masks" rel="noopener noreferrer">{{ settings.x_product }}</a> para que tu envío sea gratis!
-                </p>
+                  ¡Agrega un <a href="/" rel="noopener noreferrer"> producto </a> para que tu envío sea gratis!
               {% endif %}
-              <p>si hay prod seleccionado{{ all_products[settings.x_product].id }}</p>
+                </p>
             {% endif %}
             {% when 'incluye_regalo' %} {%- comment -%}Producto (ya sea en stock o escondido) de regalo, en compras arriba de X.{%- endcomment -%}
               <p>Incluye regalo</p>
             {% when 'envio_gasto' %} {%- comment -%}Envío gratis en compras arriba de X.{%- endcomment -%}
-              <div class="minicart-nosubtotal">
                 <p class="cartfreeshipping">
                   {% if shipping_value_left > 0 %}
                   ¡Agrega {{ shipping_value_left | money }} para que tu envío sea gratis!*
@@ -132,8 +129,8 @@
               </ul>
             </div>
 
-
           </div>
+          
           <div class="cart__footer">
             <div class="cf checkout-subtotal-container">
               <div class="checkout-subtotal-container__left">
