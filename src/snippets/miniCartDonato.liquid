@@ -10,19 +10,27 @@
 
         {% if cart.item_count != 0 %}
         <form action="/cart" method="post" id="cartform" style="display:{% if cart.item_count == 0 %}none{% else %}block{% endif %};">
-          {% assign shipping_value = settings.costo_enviogratis | times: 100 %}
-          {% assign cart_total = cart.total_price %}
-          {% assign shipping_value_left = shipping_value | minus: cart_total %}
-          <div class="minicart-nosubtotal">
-            {%- comment -%} REGULAR CODE FOR 1,100 FREE SHIPPING {% endcomment %}
-            <p class="cartfreeshipping">
-              {% if shipping_value_left > 0 %}
-              ¡Agrega {{ shipping_value_left | money }} para que tu envío sea gratis!*
-              {% else %}
-              Tu orden califica para envío gratis.*
-              {% endif %}
-            </p>
-            {%- comment -%} REGULAR CODE FOR 1,100 FREE SHIPPING {% endcomment %}
+          {% assign promo_vigente = settings.promo_vigente %}
+          {% case promo_vigente %}
+            {% when 'agrega_producto' %} {%- comment -%}Envío gratis al agregar un producto (o varios) X en carrito.{%- endcomment -%}
+              <p>Agrega producto</p>
+            {% when 'incluye_regalo' %} {%- comment -%}Producto (ya sea en stock o escondido) de regalo, en compras arriba de X.{%- endcomment -%}
+              <p>Incluye regalo</p>
+            {% when 'envio_gasto' %} {%- comment -%}Envío gratis en compras arriba de X.{%- endcomment -%}
+              {% assign shipping_value = settings.costo_enviogratis | times: 100 %}
+              {% assign cart_total = cart.total_price %}
+              {% assign shipping_value_left = shipping_value | minus: cart_total %}
+              <div class="minicart-nosubtotal">
+                {%- comment -%} REGULAR CODE FOR 1,100 FREE SHIPPING {% endcomment %}
+                <p class="cartfreeshipping">
+                  {% if shipping_value_left > 0 %}
+                  ¡Agrega {{ shipping_value_left | money }} para que tu envío sea gratis!*
+                  {% else %}
+                  Tu orden califica para envío gratis.*
+                  {% endif %}
+                </p>
+                {%- comment -%} REGULAR CODE FOR 1,100 FREE SHIPPING {% endcomment %}
+          {% endcase %}
 
         {%- comment -%}
         VIERNES 15 NOV
