@@ -8,20 +8,39 @@
           <div class="majortitle">{{ 'cart.general.title' | t }}</div>
         </div>
 
+        {% assign shipping_value = settings.costo_enviogratis | times: 100 %}
+        {% assign cart_total = cart.total_price %}
+        {% assign shipping_value_left = shipping_value | minus: cart_total %}
+
         {% if cart.item_count != 0 %}
         <form action="/cart" method="post" id="cartform" style="display:{% if cart.item_count == 0 %}none{% else %}block{% endif %};">
           {% assign promo_vigente = settings.promo_vigente %}
           {% case promo_vigente %}
             {% when 'agrega_producto' %} {%- comment -%}Envío gratis al agregar un producto (o varios) X en carrito.{%- endcomment -%}
-              <p>Agrega producto</p>
+            {% if settings.x_product == blank %}
+              <p>no se selecciono nada</p>
+            {% else %}
+              {% assign product_var_id = {{ all_products[settings.x_product].id }} %}
+              {% for item in cart.items %}
+                {% if item.product.id == product_var_id %}
+                {% assign selected_product = true %}
+                {% endif %}
+              {% endfor %}
+              {% if selected_product or shipping_value_left <= 0 %}
+                <p class="cartfreeshipping">
+                  ¡Tu orden califica para envío gratis!
+                </p>
+              {% else %}
+                <p class="cartfreeshipping">
+                  ¡Agrega un <a href="/products/momiji-masks" rel="noopener noreferrer">{{ settings.x_product }}</a> para que tu envío sea gratis!
+                </p>
+              {% endif %}
+              <p>si hay prod seleccionado{{ all_products[settings.x_product].id }}</p>
+            {% endif %}
             {% when 'incluye_regalo' %} {%- comment -%}Producto (ya sea en stock o escondido) de regalo, en compras arriba de X.{%- endcomment -%}
               <p>Incluye regalo</p>
             {% when 'envio_gasto' %} {%- comment -%}Envío gratis en compras arriba de X.{%- endcomment -%}
-              {% assign shipping_value = settings.costo_enviogratis | times: 100 %}
-              {% assign cart_total = cart.total_price %}
-              {% assign shipping_value_left = shipping_value | minus: cart_total %}
               <div class="minicart-nosubtotal">
-                {%- comment -%} REGULAR CODE FOR 1,100 FREE SHIPPING {% endcomment %}
                 <p class="cartfreeshipping">
                   {% if shipping_value_left > 0 %}
                   ¡Agrega {{ shipping_value_left | money }} para que tu envío sea gratis!*
@@ -29,7 +48,6 @@
                   Tu orden califica para envío gratis.*
                   {% endif %}
                 </p>
-                {%- comment -%} REGULAR CODE FOR 1,100 FREE SHIPPING {% endcomment %}
           {% endcase %}
 
         {%- comment -%}
@@ -40,20 +58,7 @@
               var id: 31209446244457
               var id: 31209452241001
             {%- endcomment -%}
-            {% comment %} {% for item in cart.items %}
-              {% if item.variant.id == 13674267508841 or item.variant.id == 31209446244457 or item.variant.id == 31209452241001 %}
-              {% assign momijiMaskKit = true %}
-              {% endif %}
-            {% endfor %}
-            {% if momijiMaskKit or shipping_value_left <= 0 %}
-              <p class="cartfreeshipping">
-                ¡Tu orden califica para envío gratis!
-              </p>
-            {% else %}
-              <p class="cartfreeshipping">
-                ¡Agrega un <a href="/products/momiji-masks" rel="noopener noreferrer">Momiji Brand Mask Kit</a> para que tu envío sea gratis!
-              </p>
-            {% endif %} {% endcomment %}
+
         {%- comment -%}
         VIERNES 15 NOV
         {%- endcomment -%}
