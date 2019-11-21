@@ -14,30 +14,60 @@
 
         {% if cart.item_count != 0 %}
         <form action="/cart" method="post" id="cartform" style="display:{% if cart.item_count == 0 %}none{% else %}block{% endif %};">
-<div class="minicart-nosubtotal">
+          <div class="minicart-nosubtotal"><!-- /.minicart-nosubtotal -->
+
           {% assign promo_vigente = settings.promo_vigente %}
           {% case promo_vigente %}
-            {% when 'agrega_producto' %} {%- comment -%}Envío gratis al agregar un producto (o varios) X en carrito.{%- endcomment -%}
-            {% if settings.x_product == blank %}
-              <p>no se selecciono nada</p>
-            {% else %}
-              {% assign product_var_id = {{ all_products[settings.x_product].id }} %}
-              {% for item in cart.items %}
-                {% if item.product.id == product_var_id %}
-                {% assign selected_product = true %}
+
+          {%- comment -%}
+          Envío gratis al agregar un producto (o varios) X en carrito.
+          {%- endcomment -%}
+            {% when 'agrega_producto' %}
+              {% if settings.x_product == blank and settings.x_product_tag == blank %}
+                <p class="cartfreeshipping">SELECCIONAR PRODUCTO DE PROMOCIÓN, TAG REQUERIDO O CAMBIAR DE TIPO DE PROMOCIÓN</p>
+              {% elsif settings.x_product != blank %}
+                {% assign product_var_id = {{ all_products[settings.x_product].id }} %}
+                {% for item in cart.items %}
+                  {% if item.product.id == product_var_id %}
+                    {% assign selected_product = true %}
+                  {% endif %}
+                {% endfor %}
+                  <p class="cartfreeshipping">
+                {% if selected_product or shipping_value_left <= 0 %}
+                    ¡Tu orden califica para envío gratis!
+                {% else %}
+                    ¡Agrega un <a href="/" rel="noopener noreferrer"> producto id: {{ all_products[settings.x_product].id }} </a> para que tu envío sea gratis!
                 {% endif %}
-              {% endfor %}
-                <p class="cartfreeshipping">
-              {% if selected_product or shipping_value_left <= 0 %}
-                  ¡Tu orden califica para envío gratis!
-              {% else %}
-                  ¡Agrega un <a href="/" rel="noopener noreferrer"> producto </a> para que tu envío sea gratis!
+                  </p>
+              {% else settings.x_product_tag != blank %}
+                {% assign tag = settings.x_product_tag %}
+                {% for item in cart.items %}
+                  {% if item.product.tags contains tag %}
+                    {% assign selected_product = true %}
+                  {% endif %}
+                {% endfor %}
+                  <p class="cartfreeshipping">
+                {% if selected_product or shipping_value_left <= 0 %}
+                  {% capture sicalifica %}
+                    ¡Tu orden califica para envío gratis! El tag es: {{ tag }}.
+                  {% endcapture %}
+                  {{ sicalifica }}
+                {% else %}
+                    ¡Agrega un <a href="/" rel="noopener noreferrer"> producto </a> para que tu envío sea gratis!
+                {% endif %}
+                  </p>
               {% endif %}
-                </p>
-            {% endif %}
-            {% when 'incluye_regalo' %} {%- comment -%}Producto (ya sea en stock o escondido) de regalo, en compras arriba de X.{%- endcomment -%}
+
+          {%- comment -%}
+          Producto (ya sea en stock o escondido) de regalo, en compras arriba de X.
+          {%- endcomment -%}
+            {% when 'incluye_regalo' %}
               <p>Incluye regalo</p>
-            {% when 'envio_gasto' %} {%- comment -%}Envío gratis en compras arriba de X.{%- endcomment -%}
+
+          {%- comment -%}
+          Envío gratis en compras arriba de X.
+          {%- endcomment -%}
+            {% when 'envio_gasto' %}
                 <p class="cartfreeshipping">
                   {% if shipping_value_left > 0 %}
                   ¡Agrega {{ shipping_value_left | money }} para que tu envío sea gratis!*
@@ -45,6 +75,7 @@
                   Tu orden califica para envío gratis.*
                   {% endif %}
                 </p>
+
           {% endcase %}
 
         {%- comment -%}
@@ -129,8 +160,8 @@
               </ul>
             </div>
 
-          </div>
-          
+          </div><!-- /.minicart-nosubtotal -->
+
           <div class="cart__footer">
             <div class="cf checkout-subtotal-container">
               <div class="checkout-subtotal-container__left">

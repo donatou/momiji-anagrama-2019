@@ -176,7 +176,7 @@
       },
       {
         "type": "text",
-        "id": "x_product-tag",
+        "id": "x_product_tag",
         "label": "Tag de productos",
         "info": "Tag de productos a incluir en carrito",
         "placeholder": "Ej: PROMO-REGALO"
