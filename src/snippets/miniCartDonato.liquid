@@ -41,6 +41,7 @@
                   </p>
               {% else settings.x_product_tag != blank %}
                 {% assign tag = settings.x_product_tag %}
+                {% assign promo = settings.promo_txt %}
                 {% for item in cart.items %}
                   {% if item.product.tags contains tag %}
                     {% assign selected_product = true %}
@@ -48,12 +49,12 @@
                 {% endfor %}
                   <p class="cartfreeshipping">
                 {% if selected_product or shipping_value_left <= 0 %}
-                  {% capture sicalifica %}
-                    ¡Tu orden califica para envío gratis! El tag es: {{ tag }}.
-                  {% endcapture %}
-                  {{ sicalifica }}
+                  ¡Tu orden califica para envío gratis!
                 {% else %}
-                    ¡Agrega un <a href="/" rel="noopener noreferrer"> producto </a> para que tu envío sea gratis!
+                    {% capture bundle %}
+                    ¡Agrega {{ promo }} para que tu envío sea gratis!
+                    {% endcapture %}
+                    {{ bundle }}
                 {% endif %}
                   </p>
               {% endif %}

@@ -182,6 +182,13 @@
         "placeholder": "Ej: PROMO-REGALO"
       },
       {
+        "type": "text",
+        "id": "promo_txt",
+        "label": "promo",
+        "info": "txt promo",
+        "placeholder": "cualquier producto de Momiji Brand"
+      },
+      {
         "type": "header",
         "content": "Prod. de regalo"
       },
