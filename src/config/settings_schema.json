@@ -154,19 +154,19 @@
         "label": "Tipo de promo:",
         "options": [
           {
-            "value": "agrega_producto", "label": "Prod. activa envio gratis"
+            "value": "agrega_producto", "label": "Envío gratis incluyendo X producto en carrito"
           },
           {
-            "value": "incluye_regalo", "label": "Prod. de regalo"
+            "value": "incluye_regalo", "label": "Producto de regalo"
           },
           {
-            "value": "envio_gasto", "label": "Total > X = envio gratis"
+            "value": "envio_gasto", "label": "Envío gratis en compras iguales o mayores a X"
           }
         ]
       },
       {
         "type": "header",
-        "content": "Prod. activa envio gratis"
+        "content": "Envío gratis incluyendo X producto en carrito"
       },
       {
         "type": "product",
@@ -184,13 +184,13 @@
       {
         "type": "text",
         "id": "promo_txt",
-        "label": "promo",
-        "info": "txt promo",
+        "label": "Agrega",
+        "info": "para que tu envío sea gratis",
         "placeholder": "cualquier producto de Momiji Brand"
       },
       {
         "type": "header",
-        "content": "Prod. de regalo"
+        "content": "Producto de regalo"
       },
       {
         "type": "checkbox",
@@ -201,19 +201,34 @@
       },
       {
         "type": "text",
-        "id": "regalo_enviogratis",
-        "label": "Copy de promo:",
-        "info": "Bla bla bla bla",
-        "placeholder": "Incluye de regalo X cosa."
+        "id": "costo_enviogratis_x",
+        "label": "Cantidad a gastar para regalo:",
+        "default": "500",
+        "info": "No incluir signos o puntuación. Shipping rates se modifica en [Envíos](https://momiji-beauty.myshopify.com/admin/settings/shipping)",
+        "placeholder": "500"
+      },
+      {
+        "type": "text",
+        "id": "copy_regalo",
+        "label": "Regalo:",
+        "info": "Copy del regalo",
+        "placeholder": "un kit de viaje gratis."
+      },
+      {
+        "type": "text",
+        "id": "textop",
+        "label": "Copy previo a regalo:",
+        "info": "Tu pedido califica para",
+        "placeholder": "Tu pedido califica para"
       },
       {
         "type": "header",
-        "content": "Total > X = envio gratis"
+        "content": "Envío gratis en compras iguales o mayores a X"
       },
       {
         "type": "text",
         "id": "costo_enviogratis",
-        "label": "Cantidad a gastar para envio gratis:",
+        "label": "Total en carrito para envio gratis:",
         "default": "1100",
         "info": "No incluir signos o puntuación. Shipping rates se modifica en [Envíos](https://momiji-beauty.myshopify.com/admin/settings/shipping)",
         "placeholder": "1100"

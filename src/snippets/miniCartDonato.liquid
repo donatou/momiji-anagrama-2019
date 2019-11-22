@@ -52,7 +52,7 @@
                   ¡Tu orden califica para envío gratis!
                 {% else %}
                     {% capture bundle %}
-                    ¡Agrega {{ promo }} para que tu envío sea gratis!
+                    Agrega {{ promo }} para que tu envío sea gratis.
                     {% endcapture %}
                     {{ bundle }}
                 {% endif %}
@@ -63,7 +63,30 @@
           Producto (ya sea en stock o escondido) de regalo, en compras arriba de X.
           {%- endcomment -%}
             {% when 'incluye_regalo' %}
-              <p>Incluye regalo</p>
+            
+            {% assign shipping_value_promo = settings.costo_enviogratis_x | times: 100 %}
+            {% assign cart_total_promo = cart.total_price %}
+            {% assign shipping_value_left_promo = shipping_value_promo | minus: cart_total_promo %}
+            {% assign falta_x = shipping_value_left_promo | money %}
+            {% assign promo_x = settings.copy_regalo %}
+            {% assign mememe = settings.textop %}
+
+              {% if including_product != false %}
+                <p class="cartfreeshipping">
+                  {% if shipping_value_left_promo > 0 %}
+                    {% capture printeo %}
+                      Agrega {{ falta_x }} para recibir {{ promo_x }}*
+                    {% endcapture %}
+                    {{ printeo }}
+                  {% else %}
+                    {% capture printeo2 %}
+                      {{ mememe }} {{ promo_x }}
+                    {% endcapture %}
+                    {{ printeo2 }}
+                  {% endif %}
+                </p>
+              {% endif %}
+
 
           {%- comment -%}
           Envío gratis en compras arriba de X.
