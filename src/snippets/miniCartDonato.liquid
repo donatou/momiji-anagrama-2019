@@ -26,9 +26,9 @@
               {% if settings.x_product == blank and settings.x_product_tag == blank %}
                 <p class="cartfreeshipping">SELECCIONAR PRODUCTO DE PROMOCIÓN, TAG REQUERIDO O CAMBIAR DE TIPO DE PROMOCIÓN</p>
               {% elsif settings.x_product != blank %}
-                {% assign product_var_id = {{ all_products[settings.x_product].id }} %}
+                {% assign product_id = {{ all_products[settings.x_product].id }} %}
                 {% for item in cart.items %}
-                  {% if item.product.id == product_var_id %}
+                  {% if item.product.id == product_id %}
                     {% assign selected_product = true %}
                   {% endif %}
                 {% endfor %}
@@ -36,7 +36,7 @@
                 {% if selected_product or shipping_value_left <= 0 %}
                     ¡Tu orden califica para envío gratis!
                 {% else %}
-                    ¡Agrega un <a href="/" rel="noopener noreferrer"> producto id: {{ all_products[settings.x_product].id }} </a> para que tu envío sea gratis!
+                    ¡Agrega un <a href="{{ all_products[settings.x_product].url }}" rel="noopener noreferrer"> {{ all_products[settings.x_product].title }} </a> para que tu envío sea gratis! Prod var id: {{ all_products[settings.x_product].id }}
                 {% endif %}
                   </p>
               {% else settings.x_product_tag != blank %}
