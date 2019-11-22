@@ -29,14 +29,17 @@
                 {% assign product_id = {{ all_products[settings.x_product].id }} %}
                 {% for item in cart.items %}
                   {% if item.product.id == product_id %}
-                    {% assign selected_product = true %}
+                    {% assign selected_product = true %} {%- comment -%}
+                    AQUI ESTA EL PROBLEMA, no esta pasando el true
+                    {%- endcomment -%}
                   {% endif %}
                 {% endfor %}
                   <p class="cartfreeshipping">
                 {% if selected_product or shipping_value_left <= 0 %}
                     ¡Tu orden califica para envío gratis!
                 {% else %}
-                    ¡Agrega un <a href="{{ all_products[settings.x_product].url }}" rel="noopener noreferrer"> {{ all_products[settings.x_product].title }} </a> para que tu envío sea gratis! Prod var id: {{ all_products[settings.x_product].id }}
+                    ¡Agrega un <a href="{{ all_products[settings.x_product].url }}" rel="noopener noreferrer"> {{ all_products[settings.x_product].title }} </a> para que tu envío sea gratis! Prod var id: {{ all_products[settings.x_product].id }} handle: {{ all_products[settings.x_product].handle }} 
+                    <BR /> TAMBIEN SE PUEDE USAR EL HANDLE DEL PRODUCTO PARA HACER EL COMPARE
                 {% endif %}
                   </p>
               {% else settings.x_product_tag != blank %}
