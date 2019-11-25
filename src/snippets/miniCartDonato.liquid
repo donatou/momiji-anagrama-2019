@@ -78,7 +78,7 @@
                 <p class="cartfreeshipping">
                   {% if shipping_value_left_promo > 0 %}
                     {% capture printeo %}
-                      Agrega {{ falta_x }} para recibir {{ promo_x }}*
+                      Agrega {{ falta_x }} para recibir {{ promo_x }}
                     {% endcapture %}
                     {{ printeo }}
                   {% else %}
@@ -97,9 +97,9 @@
             {% when 'envio_gasto' %}
                 <p class="cartfreeshipping">
                   {% if shipping_value_left > 0 %}
-                  ¡Agrega {{ shipping_value_left | money }} para que tu envío sea gratis!*
+                  ¡Agrega {{ shipping_value_left | money }} para que tu envío sea gratis!
                   {% else %}
-                  Tu orden califica para envío gratis.*
+                  Tu orden califica para envío gratis.
                   {% endif %}
                 </p>
 

@@ -149,36 +149,61 @@
         "content": "Promociones de carrito"
       },
       {
+        "type": "paragraph",
+        "content": "Seleccionar tipo de promo de carrito y luego llenar la sección correspondiente."
+      },
+      {
         "type": "radio",
         "id": "promo_vigente",
         "label": "Tipo de promo:",
         "options": [
           {
-            "value": "agrega_producto", "label": "Envío gratis incluyendo X producto en carrito"
+            "value": "envio_gasto",
+            "label": "Envío gratis por gasto"
           },
           {
-            "value": "incluye_regalo", "label": "Producto de regalo"
+            "value": "agrega_producto",
+            "label": "Envío gratis incluyendo producto"
           },
           {
-            "value": "envio_gasto", "label": "Envío gratis en compras iguales o mayores a X"
+            "value": "incluye_regalo",
+            "label": "Producto de regalo"
           }
         ]
       },
       {
         "type": "header",
-        "content": "Envío gratis incluyendo X producto en carrito"
+        "content": "Envío gratis por gasto"
+      },
+      {
+        "type": "text",
+        "id": "costo_enviogratis",
+        "label": "Total $ en carrito para envio gratis:",
+        "default": "1100",
+        "info": "No incluir signos o puntuación. Shipping rates se modifica en [Envíos](https://momiji-beauty.myshopify.com/admin/settings/shipping)",
+        "placeholder": "1100"
+      },
+      {
+        "type": "paragraph",
+        "content": "Este dato también es accesible a las otras opciones de envío."
+      },
+      {
+        "type": "header",
+        "content": "Envío gratis incluyendo producto"
       },
       {
         "type": "product",
         "id": "x_product",
-        "label": "Producto que debe estar en carrito.",
-        "info": "Si es más de un producto, usar un tag en el campo inferior."
+        "label": "Producto que debe estar en carrito."
+      },
+      {
+        "type": "paragraph",
+        "content": "Si es más de un producto a incluir en carrito, se deberá taggear los productos y usar a continuación la etiqueta y después completar el texto personalizado más abajo."
       },
       {
         "type": "text",
         "id": "x_product_tag",
-        "label": "Tag de productos",
-        "info": "Tag de productos a incluir en carrito",
+        "label": "Etiqueta de productos",
         "placeholder": "Ej: PROMO-REGALO"
       },
       {
@@ -220,26 +245,6 @@
         "label": "Copy previo a regalo:",
         "info": "Tu pedido califica para",
         "placeholder": "Tu pedido califica para"
-      },
-      {
-        "type": "header",
-        "content": "Envío gratis en compras iguales o mayores a X"
-      },
-      {
-        "type": "text",
-        "id": "costo_enviogratis",
-        "label": "Total en carrito para envio gratis:",
-        "default": "1100",
-        "info": "No incluir signos o puntuación. Shipping rates se modifica en [Envíos](https://momiji-beauty.myshopify.com/admin/settings/shipping)",
-        "placeholder": "1100"
-      },
-      {
-        "type": "header",
-        "content": "Notas"
-      },
-      {
-        "type": "paragraph",
-        "content": "Se debe seleccionar primero el tipo de promoción de carrito y luego llenar la sección correspondiente. El resto de las secciones deben estar completamente en blanco."
       }
     ]
   },
