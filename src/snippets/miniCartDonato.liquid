@@ -26,20 +26,20 @@
               {% if settings.x_product == blank and settings.x_product_tag == blank %}
                 <p class="cartfreeshipping">SELECCIONAR PRODUCTO DE PROMOCIÓN, TAG REQUERIDO O CAMBIAR DE TIPO DE PROMOCIÓN</p>
               {% elsif settings.x_product != blank %}
-                {% assign product_id = {{ all_products[settings.x_product].id }} %}
+              {% capture settings_product %}
+                {{ all_products[settings.x_product].id }}
+              {% endcapture %}
+              {% assign prod_id = settings_product | times: 1 %}
                 {% for item in cart.items %}
-                  {% if item.product.id == product_id %}
-                    {% assign selected_product = true %} {%- comment -%}
-                    AQUI ESTA EL PROBLEMA, no esta pasando el true
-                    {%- endcomment -%}
+                  {% if item.product.id == prod_id %}
+                    {% assign prod_select = true %}
                   {% endif %}
                 {% endfor %}
                   <p class="cartfreeshipping">
-                {% if selected_product or shipping_value_left <= 0 %}
-                    ¡Tu orden califica para envío gratis!
+                {% if prod_select or shipping_value_left <= 0 %}
+                  ¡Tu orden califica para envío gratis!
                 {% else %}
-                    ¡Agrega un <a href="{{ all_products[settings.x_product].url }}" rel="noopener noreferrer"> {{ all_products[settings.x_product].title }} </a> para que tu envío sea gratis! Prod var id: {{ all_products[settings.x_product].id }} handle: {{ all_products[settings.x_product].handle }} 
-                    <BR /> TAMBIEN SE PUEDE USAR EL HANDLE DEL PRODUCTO PARA HACER EL COMPARE
+                  ¡Agrega un <a href="{{ all_products[settings.x_product].url }}" rel="noopener noreferrer"> {{ all_products[settings.x_product].title }} </a> para que tu envío sea gratis!
                 {% endif %}
                   </p>
               {% else settings.x_product_tag != blank %}
