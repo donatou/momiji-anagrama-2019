@@ -105,51 +105,6 @@
 
           {% endcase %}
 
-        {%- comment -%}
-        VIERNES 15 NOV
-        {%- endcomment -%}
-            {%- comment -%}
-              var id: 13674267508841
-              var id: 31209446244457
-              var id: 31209452241001
-            {%- endcomment -%}
-
-        {%- comment -%}
-        VIERNES 15 NOV
-        {%- endcomment -%}
-
-        {%- comment -%}
-        SABADO 16 NOV
-        {%- endcomment -%}
-            {%- comment -%}{% if shipping_value_left <= 0 %}
-              <p class="cartfreeshipping">
-                ¡Te enviaremos un E Nature Trial Kit!
-              </p>
-            {% else %}
-              <p class="cartfreeshipping">
-                ¡Agrega {{ shipping_value_left | money }} más para recibir un E Nature Trial Kit en tu envío!
-              </p>
-            {% endif %}{%- endcomment -%}
-        {%- comment -%}
-        SABADO 16 NOV
-        {%- endcomment -%}
-
-        {%- comment -%}
-        DOMINGO 16 NOV
-        {%- endcomment -%}
-            {% comment %} {% if shipping_value_left <= 0 %}
-              <p class="cartfreeshipping">
-                ¡Te enviaremos un COSRX Clear Fit Master Patch!<br /> *No es necesario agregarlo al carrito.
-              </p>
-            {% else %}
-              <p class="cartfreeshipping">
-                ¡Agrega {{ shipping_value_left | money }} más para recibir un COSRX Clear Fit Master Patch en tu pedido!<br />*No es necesario agregarlo al carrito.
-              </p>
-            {% endif %} {% endcomment %}
-        {%- comment -%}
-        DOMINGO 16 NOV
-        {%- endcomment -%}
-
             <div class="cart__body">  
               <ul class="item-list divider">
                 {% for item in cart.items %}
@@ -231,13 +186,3 @@
     </div>
   </div>
 </div>
-
-{%- comment -%}
-
-        switch para prender o apagar minicart
-        usar tags de shopify en minicart
-        condicionales de envío gratis o de ofertas en minicart
-        revisar si se requiere avisar cuando hay un shipping discount en carrito
-        upsell de minicart
-
-{%- endcomment -%}
