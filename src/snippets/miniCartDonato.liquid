@@ -167,12 +167,13 @@
                 <div class="btn__main btn--red checkout-buttons">
                   <input type="submit" class="button button--large text-link" id="update-cart" name="checkout" value="Pagar">
                 </div>
-
-<a onclick="reveal('Text1');">reveal text 1</a>  <span class="myHiddenText" id="Text1">Hidden text 1</span>
-
                 {%- comment -%}<b>*Si vas a recoger tu pedido en tienda, puedes usar cualquier dirección en el checkout.</b>{%- endcomment -%}
                 {%- comment -%}<a class="continue-shopping" href="/collections/all">Continue shopping</a>{%- endcomment -%}
               </div>
+
+              <a onclick="reveal('Text1');">Términos y condiciones de la promoción.</a> 
+              <b class="myHiddenText" id="Text1">Mauris molestie quam risus, at lobortis enim venenatis quis. Maecenas bibendum mi ac mauris ullamcorper, sed scelerisque velit blandit. Ut vulputate urna quis arcu porttitor, quis porttitor justo tincidunt. Duis faucibus tincidunt quam non volutpat. </b>
+
             </div>
           </div>
 
@@ -202,14 +203,14 @@
 <script>
 function reveal(id) {
   var e = document.getElementById(id);
-  if (e.style.display == 'inline') {
+  if (e.style.display == 'flex') {
     e.style.display = 'none';
   } else {
     var allTexts = document.querySelectorAll(".myHiddenText");
     for (var i = 0, len = allTexts.length; i < len; i++) {
       allTexts[i].style.display = 'none';
     }
-    e.style.display = 'inline';
+    e.style.display = 'flex';
   }
 }
 </script>
