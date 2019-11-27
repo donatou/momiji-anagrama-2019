@@ -167,6 +167,9 @@
                 <div class="btn__main btn--red checkout-buttons">
                   <input type="submit" class="button button--large text-link" id="update-cart" name="checkout" value="Pagar">
                 </div>
+
+<a onclick="reveal('Text1');">reveal text 1</a>  <span class="myHiddenText" id="Text1">Hidden text 1</span>
+
                 {%- comment -%}<b>*Si vas a recoger tu pedido en tienda, puedes usar cualquier dirección en el checkout.</b>{%- endcomment -%}
                 {%- comment -%}<a class="continue-shopping" href="/collections/all">Continue shopping</a>{%- endcomment -%}
               </div>
@@ -186,3 +189,47 @@
     </div>
   </div>
 </div>
+
+<style>
+
+.myHiddenText {
+  display: none;
+}
+
+</style>
+
+
+<script>
+function reveal(id) {
+  var e = document.getElementById(id);
+  if (e.style.display == 'inline') {
+    e.style.display = 'none';
+  } else {
+    var allTexts = document.querySelectorAll(".myHiddenText");
+    for (var i = 0, len = allTexts.length; i < len; i++) {
+      allTexts[i].style.display = 'none';
+    }
+    e.style.display = 'inline';
+  }
+}
+</script>
+
+{%- comment -%}
+$(document).on('click', '.cart-summary', function (e) {
+    e.preventDefault();
+    $('body').addClass('cart-open');
+    $('#mm_cartoverlay').animate({ "right": '0' });
+    $('#cart_temp_late form').css('opacity', '0.2');
+    updateMinicart();
+});
+
+$(document).on('click', 'span.closecart_mm', function (e) {
+    e.preventDefault();
+    closeMinicart();
+});
+
+function closeMinicart() {
+    $('#mm_cartoverlay').animate({ "right": '-400' });
+    $('body').removeClass('cart-open');
+}
+{%- endcomment -%}
