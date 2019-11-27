@@ -118,3 +118,16 @@ function updateMinicart() {
         }
     });
 }
+
+function reveal(id) {
+    var e = document.getElementById(id);
+    if (e.style.display == 'flex') {
+        e.style.display = 'none';
+    } else {
+        var allTexts = document.querySelectorAll(".hidden_tyc");
+        for (var i = 0, len = allTexts.length; i < len; i++) {
+            allTexts[i].style.display = 'none';
+        }
+        e.style.display = 'flex';
+    }
+}

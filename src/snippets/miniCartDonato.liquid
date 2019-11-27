@@ -171,8 +171,8 @@
                 {%- comment -%}<a class="continue-shopping" href="/collections/all">Continue shopping</a>{%- endcomment -%}
               </div>
 
-              <a onclick="reveal('Text1');">Términos y condiciones de la promoción.</a> 
-              <b class="myHiddenText" id="Text1">Mauris molestie quam risus, at lobortis enim venenatis quis. Maecenas bibendum mi ac mauris ullamcorper, sed scelerisque velit blandit. Ut vulputate urna quis arcu porttitor, quis porttitor justo tincidunt. Duis faucibus tincidunt quam non volutpat. </b>
+              <a onclick="reveal('terminos_condiciones');" class="tyc">Términos y condiciones de la promoción.</a> 
+              <b class="hidden_tyc" id="terminos_condiciones">Mauris molestie quam risus, at lobortis enim venenatis quis. Maecenas bibendum mi ac mauris ullamcorper, sed scelerisque velit blandit. Ut vulputate urna quis arcu porttitor, quis porttitor justo tincidunt. Duis faucibus tincidunt quam non volutpat. </b>
 
             </div>
           </div>
@@ -190,47 +190,3 @@
     </div>
   </div>
 </div>
-
-<style>
-
-.myHiddenText {
-  display: none;
-}
-
-</style>
-
-
-<script>
-function reveal(id) {
-  var e = document.getElementById(id);
-  if (e.style.display == 'flex') {
-    e.style.display = 'none';
-  } else {
-    var allTexts = document.querySelectorAll(".myHiddenText");
-    for (var i = 0, len = allTexts.length; i < len; i++) {
-      allTexts[i].style.display = 'none';
-    }
-    e.style.display = 'flex';
-  }
-}
-</script>
-
-{%- comment -%}
-$(document).on('click', '.cart-summary', function (e) {
-    e.preventDefault();
-    $('body').addClass('cart-open');
-    $('#mm_cartoverlay').animate({ "right": '0' });
-    $('#cart_temp_late form').css('opacity', '0.2');
-    updateMinicart();
-});
-
-$(document).on('click', 'span.closecart_mm', function (e) {
-    e.preventDefault();
-    closeMinicart();
-});
-
-function closeMinicart() {
-    $('#mm_cartoverlay').animate({ "right": '-400' });
-    $('body').removeClass('cart-open');
-}
-{%- endcomment -%}
