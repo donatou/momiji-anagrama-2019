@@ -172,8 +172,10 @@
                 {%- comment -%}<a class="continue-shopping" href="/collections/all">Continue shopping</a>{%- endcomment -%}
               </div>
 
-              <a onclick="reveal('terminos_condiciones');" class="tyc">Términos y condiciones de la promoción.</a> 
-              <b class="hidden_tyc" id="terminos_condiciones">Mauris molestie quam risus, at lobortis enim venenatis quis. Maecenas bibendum mi ac mauris ullamcorper, sed scelerisque velit blandit. Ut vulputate urna quis arcu porttitor, quis porttitor justo tincidunt. Duis faucibus tincidunt quam non volutpat. </b>
+              {% if settings.tyc_text != blank %}
+                <a onclick="reveal('terminos_condiciones');" class="tyc">{{ settings.tyc_title }}</a> 
+                <b class="hidden_tyc" id="terminos_condiciones">{{ settings.tyc_text }}</b>
+              {% endif %}
 
             </div>
           </div>

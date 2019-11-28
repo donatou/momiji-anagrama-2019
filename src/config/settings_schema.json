@@ -245,6 +245,21 @@
         "label": "Copy previo a regalo:",
         "info": "Tu pedido califica para",
         "placeholder": "Tu pedido califica para"
+      },
+      {
+        "type": "header",
+        "content": "Términos y condiciones"
+      },
+      {
+        "type": "text",
+        "id": "tyc_title",
+        "label": "Terminos y condiciones link",
+        "placeholder": "Revisa los términos y condiciones de esta promoción."
+      },
+      {
+        "type": "textarea",
+        "id": "tyc_text",
+        "label": "Terminos y condiciones"
       }
     ]
   },
