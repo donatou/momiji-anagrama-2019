@@ -9,6 +9,7 @@
 {% endfor %}
 
 {% assign recompro_mm = remcomen_meta | replace:', ',',' | replace:' ,',',' | replace:' , ',',' | split :',' %}
+
 <div class="cartrecom">
   {% for pro_han in recompro_mm %}
   {% assign has_item = true %}
@@ -21,16 +22,16 @@
   {% if has_item  %}
   <div class='recomended_pro_mm'>
     <div class="image">
-      <img src="{{prod.featured_image | img_url:'200x'}}">
+      <img src="{{prod.featured_image | img_url:'120x'}}">
     </div>
     <div class="inner_mm">
       <div class="title-price">
-        <span>{{prod.title}}</span>
+        <b>{{prod.title}}</b>
         <br>
-        <span style="color:#2b5135">agregar por {{prod.selected_or_first_available_variant.price | money }}</span>
+        <p>agregar por {{prod.selected_or_first_available_variant.price | money }}</p>
       </div>
       <div class="button-add">
-        <button type="button" data-variant="{{prod.selected_or_first_available_variant.id}}">Agregar</button>
+        <button type="button" data-variant="{{prod.selected_or_first_available_variant.id}}">agregar</button>
       </div>
     </div>
   </div>
@@ -43,6 +44,7 @@
   $('.cartrecom').slick({
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: false
+    arrows: false,
+    centerMode: true
   });
 </script>
