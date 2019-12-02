@@ -146,6 +146,16 @@
       },
       {
         "type": "header",
+        "content": "Cross Sales"
+      },
+      {
+        "type": "textarea",
+        "id": "prohandles",
+        "label": "Productos de Cross Sale",
+        "info": "Se usan los \"product handles\" de cada producto separados por coma."
+      },
+      {
+        "type": "header",
         "content": "Promociones de carrito"
       },
       {

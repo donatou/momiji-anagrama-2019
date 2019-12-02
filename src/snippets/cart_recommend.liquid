@@ -1,0 +1,50 @@
+{% if cart.item_count >  0 %}
+{% assign remcomen_meta = '' %}
+{% for item in cart.items %}
+{% assign proobj_mm = item.product %}
+{%- comment -%}
+{% assign remcomen_meta = proobj_mm.metafields.recommended_product.handles %}
+{%- endcomment -%}
+{% assign remcomen_meta = settings.prohandles %}
+{% endfor %}
+
+{% assign recompro_mm = remcomen_meta | replace:', ',',' | replace:' ,',',' | replace:' , ',',' | split :',' %}
+
+<div class="cartrecom">
+  {% for pro_han in recompro_mm %}
+  {% assign has_item = true %}
+  {% assign prod = all_products[pro_han] %}
+  {% for item in cart.items %}
+  {% if item.product.id == prod.id %}
+  {% assign has_item = false %}
+  {% endif %}
+  {% endfor %}
+  {% if has_item  %}
+  <div class='recomended_pro_mm'>
+    <div class="image">
+      <img src="{{prod.featured_image | img_url:'120x'}}">
+    </div>
+    <div class="inner_mm">
+      <div class="title-price">
+        <b>{{prod.title}}</b>
+        <br>
+        <p class="agregarPor">agregar por {{prod.selected_or_first_available_variant.price | money }}</p>
+      </div>
+      <div class="button-add">
+        <button type="button" data-variant="{{prod.selected_or_first_available_variant.id}}">agregar</button>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
+{% endif %}
+
+<script>
+  $('.cartrecom').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    centerMode: true
+  });
+</script>
