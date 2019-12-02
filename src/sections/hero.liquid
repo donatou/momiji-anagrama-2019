@@ -5,7 +5,7 @@
             {% comment %} Slides {% endcomment %}
     
             {% for block in section.blocks %}
-   
+  
               {% if block.settings.slider_type == "1" %}
                 <div class="swiper-slide slide-col-2 slide-gray slide-orange" {{ block.shopify_attributes }}>
                   {% comment %} first image is for mobile {% endcomment %}
@@ -53,16 +53,16 @@
               {% if block.settings.slider_type == "3" %}
                 <div class="swiper-slide slide-lilac text-center slide-images-2" {{ block.shopify_attributes }}>
                   {% comment %} first image is for mobile {% endcomment %}
-                   
-                  <figure class="col-12 col-lg-6">
+                  
+                  <figure class="col-12">
                     <img srcset="{{ block.settings.image-mobile | img_url: '830x', format: 'pjpg' }} 500w, 
                           {{ block.settings.image-full | img_url: '1900x', format: 'pjpg' }}"
                       src="{{ block.settings.image-full | img_url: '1900x', format: 'pjpg' }}" alt="Imagen promocional"/>
                   </figure>
 
 
-                  <div class="col-10 col-md-8 col-lg-4 mx-auto">
-                    <img class="slide-product" src="{{ 'eyeshine-kit.jpg' | asset_url }}" alt="">
+                  <div class="col-12 col-md-6 col-lg-4 mx-auto">
+                    
                     {% if block.settings.texto_banner %}
                       <h3>{{ block.settings.titulo }}</h3>
                       <a href="{{ block.settings.link_boton }}" class="btn__main">{{ block.settings.texto_boton }}</a>
@@ -76,16 +76,10 @@
                 <div class="swiper-slide slide-col-images text-center" {{ block.shopify_attributes }}>
                   {% comment %} first image is for mobile {% endcomment %}
                   
-                  <figure class="col-12 col-md-6 ">
+                  <figure class="col-12">
                     <img srcset="{{ block.settings.image-mobile | img_url: '830x', format: 'pjpg' }} 500w, 
                           {{ block.settings.image-full | img_url: '1900x', format: 'pjpg' }}"
                       src="{{ block.settings.image-full | img_url: '1900x', format: 'pjpg' }}" alt="Imagen promocional"/>
-                  </figure>
-
-                  <figure class="col-12 col-md-6">
-                    <img srcset="{{ 'eyeshine-about-1.jpg' | asset_url }} 500w, 
-                    {{ 'eyeshine-about-1.jpg' | asset_url }}"
-                          src="{{ 'eyeshine-about-1.jpg' | asset_url }}" alt="Imagen promocional"/>
                   </figure>
                   
                   {% if block.settings.texto_banner %}
