@@ -30,7 +30,7 @@ $(document).on('click', '.cart-open', function (event) {
 $(document).on('click','.recomended_pro_mm .button-add button',function(e){
   e.preventDefault();
   var varid = $(this).data('variant');
-  $(this).text('Adding...')
+  $(this).text('Agregando...')
   setTimeout(function(){
     addItemtocart({id:varid,quantity:1});
   },300);
