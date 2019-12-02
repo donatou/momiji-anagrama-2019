@@ -8589,7 +8589,7 @@ article h1 + p, article h2 + p, article h3 + p, article h4 + p, article h5 + p  
     line-height: 40px;
     font-size: 15px;
     text-align: center;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #0a0a0a;
   }
   a.name {
     font-family: 'GT Momiji Regular';
@@ -8609,11 +8609,20 @@ article h1 + p, article h2 + p, article h3 + p, article h4 + p, article h5 + p  
     text-transform: none;
     letter-spacing: 0.2px;
     line-height: 16px;
-    margin: 0 auto 20px;
+    margin: 0 auto 10px;
     color: #0a0a0a;
     padding-bottom: 10px;
-    border-bottom: 1px solid #e1e1e1;
+    border-bottom: 1px solid #0a0a0a;
     text-align: center;
+  }
+    b.cartfreeshipping {
+    font-family: 'GT Walsheim';
+    font-size: 12px;
+    text-transform: none;
+    letter-spacing: 0.2px;
+    line-height: 16px;
+    margin: 0 auto 10px;
+    color: #0a0a0a;
   }
   ul.item-list.divider {
     padding: 0;
@@ -8622,8 +8631,6 @@ article h1 + p, article h2 + p, article h3 + p, article h4 + p, article h5 + p  
     position: relative;
     display: flex;
     margin-bottom: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #e1e1e1;
   }
   .imagedesc {
     margin-right: 10px;
@@ -8631,9 +8638,9 @@ article h1 + p, article h2 + p, article h3 + p, article h4 + p, article h5 + p  
   .minicart-summ .item .remove_mm {
     position: absolute;
     right: 0;
-    top: 2em;
+    top: 0;
+    padding: 0 0 10px 10px;
     display: block;
-    margin-top: 5px;
     cursor: pointer;
   }
   .quantity.buttoned-input {
@@ -8706,6 +8713,9 @@ article h1 + p, article h2 + p, article h3 + p, article h4 + p, article h5 + p  
   padding-top: 20px;
   margin-top: 20px;
 }
+.subtotalMinicart {
+  font-family: 'GT Momiji Medium';
+}
 
   /********************************/
 
@@ -8746,6 +8756,7 @@ Cart recommendations
 .cartrecom {
   font-family: 'GT Momiji Regular';
   padding: 20px 0 0 0;
+  border-top: 1px solid #0a0a0a;
 }
 .recomended_pro_mm .image {
   width: 60px;
@@ -8758,18 +8769,26 @@ Cart recommendations
 .recomended_pro_mm {
   display: flex !important;
 }
+.agregarPor {
+  font-family: 'GT Walsheim';
+  font-size: 12px;
+  letter-spacing: 0.2px;
+}
 
 .button-add button {
-  font-size: 14px;
+  font-family: 'GT Momiji Medium';
+  text-transform: uppercase;
+  font-size: 10px;
   width: 100px;
   margin-bottom: 2px;
   min-width: 0;
-  background: #fff;
+  background: #f0ddf0;
   color: #000;
-  text-transform: lowercase;
-  border: 1px solid #2F3133;
-  letter-spacing: .1rem;
- /** box-shadow: 3px 3px #F06C4E; **/
+  text-transform: uppercase;
+  border: 1px solid #f0ddf0;
+  letter-spacing: 1.25px;
+  line-height: 20px;
+/** box-shadow: 3px 3px #F06C4E; **/
   padding: 3px;
   margin-top: 5px;
 }

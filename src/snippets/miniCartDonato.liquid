@@ -113,7 +113,7 @@
                   <div class="imagedesc">
                     <div class="image">
                       <a href="{{ item.url }}">
-                        <img src="{{item.image | img_url:'100x'}}">
+                        <img src="{{item.image | img_url:'80x'}}">
                       </a>
                     </div>
                     <a class="remove_mm" data-variant_id="{{item.id}}">
@@ -148,10 +148,10 @@
 
 
           <div class="cart__footer">
-                    {% include 'cart_recommend' %}
+            {% include 'cart_recommend' %}
             <div class="cf checkout-subtotal-container">
               <div class="checkout-subtotal-container__left">
-                <h4>{{ 'cart.general.subtotal' | t }}</h4>
+                <h4 class="subtotalMinicart">{{ 'cart.general.subtotal' | t }}</h4>
               </div>
               <div class="checkout-subtotal-container__right">
                 <h4 class="subtotal h1-style"><span class="theme-money">{{ cart.total_price | money }}</span></h4>
@@ -177,7 +177,7 @@
 
               {% if settings.tyc_text != blank %}
                 <a onclick="reveal('terminos_condiciones');" class="tyc">{{ settings.tyc_title }}</a> 
-                <b class="hidden_tyc" id="terminos_condiciones">{{ settings.tyc_text }}</b>
+                <b class="hidden_tyc cartfreeshipping" id="terminos_condiciones">{{ settings.tyc_text }}</b>
               {% endif %}
 
             </div>
