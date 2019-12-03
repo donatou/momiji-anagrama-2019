@@ -123,7 +123,7 @@
 {% schema %}
 {
   "name": "Slideshow hero",
-  "max_blocks": 3,
+  "max_blocks": 5,
   "class": "hero",
   "settings": [
     {
@@ -155,15 +155,11 @@
           "info": "830 x 1325, JPEG 50% ~ 52%"
         },
         {
-          "type": "radio",
-          "id": "theme_layout",
-          "label": "Layout",
-          "options": [
-            { "value": "complete", "label": "Normal" },
-            { "value": "no_text", "label": "Sin textos" },
-            { "value": "no_button", "label": "Sin boton" },
-            { "value": "nothing", "label": "Sin elementos" }
-          ]
+          "type": "checkbox",
+          "id": "texto_banner",
+          "label": "Texto y botón de banner.",
+          "default": true,
+          "info": "Muestra texto y botón de banner."
         },
         {
           "type": "text",
@@ -176,13 +172,6 @@
           "id": "titulo",
           "label": "Título",
           "default": "Aquí ingresa el título de la slide."
-        },
-        {
-          "type": "checkbox",
-          "id": "long_title",
-          "label": "Usaré un título largo.",
-          "default": false,
-          "info": "Marca la casilla para permitir un título largo."
         },
         {
           "type": "textarea",
@@ -225,6 +214,12 @@
         "duracion": 3
       },
       "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
         {
           "type": "image"
         },
