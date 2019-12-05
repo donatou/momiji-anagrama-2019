@@ -129,6 +129,7 @@
                         <div class="variant">{{ item.variant.title }}</div>
                         {% endif %}
                       </div>
+                      {%- comment -%}No se puede agregar precio compare at por ser carrito aja. Requiere un tempate de json diferente.{%- endcomment -%}
                       <div class="line-total" data-line="1">
                         <span class="theme-money">{{ item.line_price | money }}</span>
                       </div>
