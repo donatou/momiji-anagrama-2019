@@ -105,33 +105,13 @@
       },
       {
         "type": "text",
-        "id": "social_pinterest_link",
-        "label": "Pinterest link"
-      },
-      {
-        "type": "text",
         "id": "social_instagram_link",
         "label": "Instagram link"
       },
       {
         "type": "text",
-        "id": "social_snapchat_link",
-        "label": "Snapchat link"
-      },
-      {
-        "type": "text",
-        "id": "social_tumblr_link",
-        "label": "Tumblr link"
-      },
-      {
-        "type": "text",
         "id": "social_youtube_link",
         "label": "Youtube link"
-      },
-      {
-        "type": "text",
-        "id": "social_vimeo_link",
-        "label": "Vimeo link"
       }
     ]
   },
@@ -153,6 +133,12 @@
         "id": "prohandles",
         "label": "Productos de Cross Sale",
         "info": "Se usan los \"product handles\" de cada producto separados por coma."
+      },
+      {
+        "type": "text",
+        "id": "csTxt",
+        "label": "agregar por \/ a solo\/",
+        "placeholder": "a solo"
       },
       {
         "type": "header",

@@ -28,7 +28,7 @@
       <div class="title-price">
         <b>{{prod.title}}</b>
         <br>
-        <p class="agregarPor">agregar por {{prod.selected_or_first_available_variant.price | money }}</p>
+        <p class="agregarPor">{{ settings.csTxt }} {{prod.selected_or_first_available_variant.price | money }}</p>
       </div>
       <div class="button-add">
         <button type="button" data-variant="{{prod.selected_or_first_available_variant.id}}">agregar</button>
@@ -45,6 +45,8 @@
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    centerMode: true
+    centerMode: true,
+    autoplay: true,
+    pauseOnHover: true
   });
 </script>

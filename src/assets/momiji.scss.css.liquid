@@ -8767,7 +8767,7 @@ article h1 + p, article h2 + p, article h3 + p, article h4 + p, article h5 + p  
   }
   @media (max-width: 767.98px) {
     div#mm_cartoverlay {
-      width: -webkit-fill-available; 
+     /** width: -webkit-fill-available; **/
       height: calc(var(--vh, 1vh) * 100);
       overflow-y: scroll;
       box-shadow: -3px 0px 10px 1px rgba(0, 0, 65, 0.1);}
@@ -8777,6 +8777,15 @@ article h1 + p, article h2 + p, article h3 + p, article h4 + p, article h5 + p  
   }
   span.closecart_mm {
     position: absolute;
+    right: 12px;
+    top: 11px;
+    font-size: 18px;
+    color: #0a0a0a;
+    cursor: pointer;
+  }
+{%- comment -%}
+  span.closecart_mm {
+    position: absolute;
     left: 6px;
     top: 4px;
     font-size: 18px;
@@ -8784,6 +8793,7 @@ article h1 + p, article h2 + p, article h3 + p, article h4 + p, article h5 + p  
     cursor: pointer;
     padding: 5px;
   }
+{%- endcomment -%}
   .minicart-summ .majortitle {
     font-family: 'GT Momiji Medium';
     background: #FAF2FA;
@@ -9003,12 +9013,6 @@ Cart recommendations
 .cartrecom .slick-slide {
   opacity: .3;
 }
-
 .cartrecom .slick-slide.slick-current.slick-active {
     opacity: 1;
-}
-@media screen and (max-width: 640px){
-  div#mm_cartoverlay {
-    width: 100%;
-  }
 }
