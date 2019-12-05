@@ -12,7 +12,7 @@ $(document).on('click', 'span.closecart_mm', function (e) {
 });
 
 function closeMinicart() {
-  $('#mm_cartoverlay').animate({ "right": '-400' });
+  $('#mm_cartoverlay').animate({ "right": '-100vw' });
   $('body').removeClass('cart-open');
 }
 $(document).on('click', '#cart_temp_late .continue-shopping', function (e) {
