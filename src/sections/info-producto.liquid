@@ -11,8 +11,11 @@
 
         <div class="accordions__container mt-30">
 
-        {% if sinpasoderutina %}
-          {%- comment -%}Si el producto no tiene paso de rutina, no tiene beneficios{%- endcomment -%}
+        {% if infoAdicional %}
+          <a class="accordion h3 active">Más info</a>
+          <div class="panel active" style="max-height: 100%">
+            <p>{{ product.metafields['infoadicional']['texto'] }}</p>
+          </div>
         {% else %}
           <a class="accordion h3 active">Beneficios</a>
           <div class="panel active" style="max-height: 100%">
@@ -51,7 +54,7 @@
         {% endif %}
 
 
-        {% if sinpasoderutina %}
+        {% if infoAdicional %}
           {%- comment -%}No es parte de la rutina.{%- endcomment -%}
         {% else %}
           <a class="accordion h3">¿Qué paso de mi rutina es este?</a>

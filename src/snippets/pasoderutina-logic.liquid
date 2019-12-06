@@ -65,9 +65,10 @@
 {% if product.type == "Accesorios" or
       product.type == "Cabello" or
       product.type == "Cuerpo" or
-      product.type == "Kit" or
       product.type == "Mercancia" or
       product.type == "Services" or
+      product.type == "Kit" or
+      product.type == "kit" or
       product.type == "Tarjeta de regalo" or
       product.type == "Todos" or
       product.type == "labios" or
@@ -76,9 +77,8 @@
       product.type == "maquillaje" or
       product.type == "piel grasa" or
       product.type == "rociador" %}
-  {% assign sinpasoderutina = true %}
+  {% assign infoAdicional = true %}
 {% endif %} 
-
 
 
 {%- comment -%}
