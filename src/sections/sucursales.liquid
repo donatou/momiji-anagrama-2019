@@ -1,165 +1,244 @@
-<section class="home__skin section__st">
+{% comment %} 
+
+SECCION GENERAL DE LO QUE SEA, PERO APLICA A SUCURSALES.
+
+.home__skin .skin--type img {
+
+    width: 100%;
+    object-fit: cover;
+    max-height: 400px;
+
+.home__skin .skin--type-container h4 {
+
+    font-family: "GT Momiji Medium", sans-serif;
+    font-size: 53px;
+    letter-spacing: -3px;
+    line-height: 52px;
+
+.slide-gray {
+
+    background-color: #F9FCFC;
+
+
+
+hacer el ::before un condicional en un archiuvo multiple de svg que se presenta con un case.
+
+block de dos, tres y cuatro imágenes.
+altura variable 1 2 y 3 (mínimo 350px)
+fondo gris #F9FCFC, blanco o rosa
+
+block
+max 6 bloques
+min 2 bloques
+schema:
+	imagen
+	título h4
+	texto descriptivo
+	texto link
+	link de texto
+	sin etiquetas de sucursal, solo las de popup!!!!!
+general: alto de la sección
+	color de la sección
+	título de la sección
+	botón de la sección
+	link del botón de la sección HAY QUE HAQCER PAG DE SUCURSALES {% endcomment %}
+    
+
+<section class="home__sucursal section__st {{ section.settings.color_sect }}">
     <div class="container">
         <div class="row row-mobile no-gutters">
-        <div class="section__title col-12 sticker3">
-            <h2>{{ section.settings.titulo_seccion }}</h2>
+        <div class="section__title col-12 {% if section.settings.button_suc == blank %} sticker3 {% endif %}">
+            <h2>{{ section.settings.title_suc }}</h2>
+            {% if section.settings.button_suc == blank %}
+            {% else %}
+            <a href="{{ section.settings.buttonlink_suc }}" class="btn__main">{{ section.settings.button_suc }}</a>
+            {% endif %}
         </div>
         </div>
     </div>
+
+    {% case section.blocks.size %}
+    {% when 0 %}
+    {% when 1 %}
+        {% assign column_width = 'col-md-12' %}
+        {% assign row_height = 'tall' %}
+    {% when 2 %}
+        {% assign column_width = 'col-md-6' %}
+        {% assign row_height = 'tall' %}
+    {% when 3 %}
+        {% assign column_width = 'col-md-4' %}
+        {% assign row_height = 'tall' %}
+    {% when 4 %}
+        {% assign column_width = 'col-md-6' %}
+        {% assign row_height = 'short' %}
+    {% when 5 %}
+        {% assign column_width = 'col-md-2_3' %}
+        {% assign row_height = 'short' %}
+    {% when 6 %}
+        {% assign column_width = 'col-md-4' %}
+        {% assign row_height = 'tall' %}
+    {% endcase %}
+
     <div class="container-fluid p-0">
         <div class="row no-gutters">
-            <div class="col-md-4 skin--type monterrey">
-            <div class="img-container">
-                <img src="{{ section.settings.tienda1_imagen | img_url: '634x' }}" alt="Tienda 1">
-            </div>
-            <div class="btn__more"></div>
-            <div class="skin--type-container">
-                <h4>{{ section.settings.tienda1_titulo }}</h4>
-                <div class="container--between">
-                <p>{{ section.settings.tienda1_desc }}</p>
-                <a href="{{ section.settings.tienda1_link }}" target="_blank" rel="noopener noreferrer" class="a__link">{{ section.settings.tienda1_textlink }}</a>
-                </div>
-            </div>
-            </div>
 
-            <div class="col-md-4 skin--type cdmx-popup">
-            <div class="img-container">
-                <img src="{{ section.settings.tienda2_imagen | img_url: '634x' }}" alt="Tienda 2">
-            </div>
-            <div class="btn__more"></div>
-            <div class="skin--type-container">
-                <h4>{{ section.settings.tienda2_titulo }}</h4>
-                <div class="container--between">
-                <p>{{ section.settings.tienda2_desc }}</p>
-                <a href="{{ section.settings.tienda2_link }}" target="_blank" rel="noopener noreferrer" class="a__link">{{ section.settings.tienda2_textlink }}</a>
+        {% for block in section.blocks %}
+            <div class="{{ column_width }} sucursal {% if popup %} popup__shop {% endif %}">
+                <div class="img-container">
+                    <img src="{{ block.settings.image | img_url: '634x' }}" alt="{{ block.settings.title_suc }}" class="{{ row_height }}">
+                </div>
+                <div class="btn__more"></div>
+                <div class="sucursal-container {{ section.settings.color_suc }}">
+                    <h4>{{ block.settings.title_suc }}</h4>
+                    <div class="container--between">
+                        <p>{{ block.settings.desc_suc }}</p>
+                        <a href="{{ block.settings.link }}" target="_blank" rel="noopener noreferrer" class="a__link">{{ block.settings.loc_suc }}</a>
+                    </div>
                 </div>
             </div>
-            </div>
-
-            <div class="col-md-4 skin--type cdmx-palacio">
-            <div class="img-container">
-                <img src="{{ section.settings.tienda3_imagen | img_url: '634x' }}" alt="Tienda 3">
-            </div>
-            <div class="btn__more"></div>
-            <div class="skin--type-container">
-                <h4>{{ section.settings.tienda3_titulo }}</h4>
-                <div class="container--between">
-                <p>{{ section.settings.tienda3_desc }}</p>
-                <a href="{{ section.settings.tienda3_link }}" target="_blank" rel="noopener noreferrer" class="a__link">{{ section.settings.tienda3_textlink }}</a>
-                </div>
-            </div>
-            </div>
+        {% endfor %}
 
         </div>
     </div>
 </section>
 
 {% schema %}
-  {
-    "name": "Sucursales",
-    "settings": [
-        {
-        "type": "text",
-        "id": "titulo_seccion",
-        "label": "Título",
-        "default": "Encuéntranos en:"
-        },
-            {
-            "type": "header",
-            "content": "Tienda 1"
-            },
-        {
-        "type": "text",
-        "id": "tienda1_titulo",
-        "label": "Título Tienda 1"
-        },
-        {
-        "type": "textarea",
-        "id": "tienda1_desc",
-        "label": "Descripción Tienda 1"
-        },
-        {
-        "type": "text",
-        "id": "tienda1_textlink",
-        "label": "Texto del link tienda 1"
-        },
-        {
-        "type": "url",
-        "id": "tienda1_link",
-        "label": "Link de tienda 1"
-        },
-        {
-        "type": "image_picker",
-        "id": "tienda1_imagen",
-        "label": "Imagen de tienda 1",
-        "info": "800w x 980h px, 72dpi 50% ~ 52%"
-        },
-            {
-            "type": "header",
-            "content": "Tienda 2"
-            },
-        {
-        "type": "text",
-        "id": "tienda2_titulo",
-        "label": "Título Tienda 2"
-        },
-        {
-        "type": "textarea",
-        "id": "tienda2_desc",
-        "label": "Descripción Tienda 2"
-        },
-        {
-        "type": "text",
-        "id": "tienda2_textlink",
-        "label": "Texto del link tienda 2"
-        },
-        {
-        "type": "url",
-        "id": "tienda2_link",
-        "label": "Link de tienda 2"
-        },
-        {
-        "type": "image_picker",
-        "id": "tienda2_imagen",
-        "label": "Imagen de tienda 2",
-        "info": "800w x 980h px, 72dpi 50% ~ 52%"
-        },
-            {
-            "type": "header",
-            "content": "Tienda 3"
-            },
-        {
-        "type": "text",
-        "id": "tienda3_titulo",
-        "label": "Título Tienda 3"
-        },
-        {
-        "type": "textarea",
-        "id": "tienda3_desc",
-        "label": "Descripción Tienda 3"
-        },
-        {
-        "type": "text",
-        "id": "tienda3_textlink",
-        "label": "Texto del link tienda 3"
-        },
-        {
-        "type": "url",
-        "id": "tienda3_link",
-        "label": "Link de tienda 3"
-        },
-        {
-        "type": "image_picker",
-        "id": "tienda3_imagen",
-        "label": "Imagen de tienda 3",
-        "info": "800w x 980h px, 72dpi 50% ~ 52%"
-        }
-    ],
-    "presets": [
-        {
-        "name": "Sucursales",
-        "category": "Collection"
-        }
-    ]
-  }
+{
+	"name":"Sucursales",
+	"max_blocks":6,
+	"settings":[
+		{
+			"id":"title_suc",
+			"type":"text",
+			"label":"Titulo de seccion",
+			"default":"Encuentranos en"
+		},
+		{
+			"id":"button_suc",
+			"type":"text",
+			"label":"Boton",
+			"default":"Ver sucursales"
+		},
+		{
+			"id":"buttonlink_suc",
+			"type":"url",
+			"label":"Link del boton"
+		},
+		{
+			"type":"radio",
+			"id":"color_sect",
+			"options":[
+				{
+					"value":"bg-red",
+					"label":"rojo"
+				},
+				{
+					"value":"bg-pink",
+					"label":"rosa"
+				},
+				{
+					"value":"bg-babyblue",
+					"label":"celeste"
+				},
+				{
+					"value":"bg-gray",
+					"label":"gris"
+				},
+				{
+					"value":"bg-whie",
+					"label":"blanco"
+				}
+			],
+			"default":"bg-gray",
+			"label":"Color de fondo de seccion"
+		},
+		{
+			"type":"radio",
+			"id":"color_suc",
+			"options":[
+				{
+					"value":"rojo",
+					"label":"rojo"
+				},
+				{
+					"value":"rosa",
+					"label":"rosa"
+				},
+				{
+					"value":"celeste",
+					"label":"celeste"
+				},
+				{
+					"value":"gris",
+					"label":"gris"
+				},
+				{
+					"value":"blanco",
+					"label":"blanco"
+				}
+			],
+			"default":"gris",
+			"label":"Color de fondo de thumbnail"
+		}
+	],
+	"blocks":[
+		{
+			"type":"select",
+			"name":"sucur",
+			"settings":[
+				{
+					"id":"image",
+					"type":"image_picker",
+					"label":"imagen de sucursal"
+				},
+				{
+					"id":"title_suc",
+					"type":"text",
+					"label":"sucursal",
+					"placeholder":"Momiji Monterrey"
+				},
+				{
+					"id":"desc_suc",
+					"type":"textarea",
+					"label":"domicilio",
+					"placeholder":"Río Orinoco 414, Local 6, Plaza Selda, Col. Del Valle, SPGG. C.P. 66220, Monterrey, N.L. México."
+				},
+				{
+					"id":"loc_suc",
+					"type":"text",
+					"label":"ver direccion",
+					"placeholder":"ver direccion de sucursal"
+				},
+				{
+					"id":"link",
+					"type":"url",
+					"label":"link de google maps"
+				},
+				{
+					"id":"popup_suc",
+					"type":"text",
+					"label":"Sticker Popup",
+					"default":"text"
+				}
+			]
+		}
+	],
+	"presets":[
+		{
+			"name":"Sucursales",
+			"category":"Sucursales y Popups",
+			"blocks":[
+				{
+					"type":"select"
+				},
+				{
+					"type":"select"
+				},
+				{
+					"type":"select"
+				}
+			]
+		}
+	]
+}
 {% endschema %}

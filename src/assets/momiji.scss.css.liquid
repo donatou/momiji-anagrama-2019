@@ -848,7 +848,7 @@ pre {
 
 .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col,
 .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm,
-.col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md,
+.col-sm-auto, .col-md-1, .col-md-2, .col-md-2_3, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md,
 .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg,
 .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl,
 .col-xl-auto {
@@ -1174,6 +1174,10 @@ pre {
     -ms-flex: 0 0 16.66667%;
         flex: 0 0 16.66667%;
     max-width: 16.66667%; }
+  .col-md-2_3 {
+    -ms-flex: 0 0 20%;
+        flex: 0 0 20%;
+    max-width: 20%; }
   .col-md-3 {
     -ms-flex: 0 0 25%;
         flex: 0 0 25%;
@@ -4591,6 +4595,18 @@ html {
 .bg-purple {
   background-color: #FAF2FA; }
 
+.bg-red {
+  background-color: #F06C4E; }
+
+.bg-pink {
+  background-color: #FAF2FA; }
+
+.bg-babyblue {
+  background-color: #D5F3FF; }
+
+.bg-gray {
+  background-color: #F9FCFC; }
+
 .container-fluid {
   padding: 0 40px; }
 
@@ -7711,6 +7727,106 @@ input + input {
         left: unset;
         right: unset; } }
 
+/**
+**  CUSTOM SECTION sucursales START
+**/
+
+  .home__sucursal .sucursal {
+    overflow: hidden; }
+    .home__sucursal .sucursal img {
+      width: 100%;
+      object-fit: cover; }
+      .home__sucursal .sucursal img tall {
+        max-height: 550px; }
+      .home__sucursal .sucursal img medium {
+        max-height: 450px; }
+      .home__sucursal .sucursal img short {
+        max-height: 350px; }
+    .home__sucursal .sucursal.oily:before {
+      content: "";
+      background-size: contain;
+      position: absolute;
+      top: -50px;
+      height: 200px;
+      width: 200px;
+      right: -80px;
+      margin: 0 auto;
+      z-index: 0; }
+    .home__sucursal .sucursal.popup__shop:before {
+      background: url({{ 'oily.svg' | asset_url }}) no-repeat; }
+
+    .home__sucursal .sucursal-container {
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #0A0A0A;
+      padding: 40px;
+      visibility: hidden;
+      transition: visibility 0.2s, opacity 0.2s linear;
+      opacity: 0;
+      width: 100%; }
+    .home__sucursal .sucursal-container.rojo {
+      background-color: #F06C4E;}
+    .home__sucursal .sucursal-container.rosa {
+      background-color: #FAF2FA;}
+    .home__sucursal .sucursal-container.celeste {
+      background-color: #D5F3FF;}
+    .home__sucursal .sucursal-container.gris {
+      background-color: #F9FCFC;}
+    .home__sucursal .sucursal-container.blanco {
+      background-color: #FFF;}
+      .home__sucursal .sucursal-container h4 {
+        font-family: "GT Momiji Medium", sans-serif;
+        font-size: 77px;
+        letter-spacing: -3px;
+        line-height: 61px; }
+        @media (max-width: 991.98px) {
+          .home__sucursal .sucursal-container h4 {
+            font-size: 40px;
+            letter-spacing: -0.7px;
+            line-height: 40px; } }
+      .home__sucursal .sucursal-container .container--between {
+        position: absolute;
+        bottom: 40px;
+        width: 70%; }
+        .home__sucursal .sucursal-container .container--between p + a {
+          margin-top: 20px; }
+      @media (max-width: 991.98px) {
+        .home__sucursal .sucursal-container {
+          padding: 15px;
+          overflow: scroll;}
+          .home__sucursal .sucursal-container .container--between {
+            width: 90%;
+            position: relative;
+            bottom: 0;
+            margin-top: 30px;} }
+    .home__sucursal .sucursal.active .sucursal-container {
+      visibility: visible;
+      opacity: 1;
+      transition: visibility 0.2s, opacity 0.2s linear; }
+    @media (min-width: 992px) {
+      .home__sucursal .sucursal:hover .sucursal-container {
+        visibility: visible;
+        opacity: 1;
+        transition: visibility 0.2s, opacity 0.2s linear; } }
+
+    .home__sucursal .sucursal.monterrey:before, .home__sucursal .sucursal.cdmx-popup:before, .home__sucursal .sucursal.cdmx-palacio:before {
+      content: "";
+      background-size: contain;
+      position: absolute;
+      top: -50px;
+      height: 200px;
+      width: 200px;
+      right: -52px;
+      margin: 0 auto;
+      z-index: 0; }
+
+
+/**
+**  CUSTOM SECTION sucursales END
+**/
+
 .contacto h2 + p {
   margin-top: 30px; }
 
@@ -8932,27 +9048,6 @@ article h1 + p, article h2 + p, article h3 + p, article h4 + p, article h5 + p  
 .subtotalMinicart {
   font-family: 'GT Momiji Medium';
 }
-
-  /********************************/
-
-
-
-    .home__skin .skin--type.monterrey:before, .home__skin .skin--type.cdmx-popup:before, .home__skin .skin--type.cdmx-palacio:before {
-      content: "";
-      background-size: contain;
-      position: absolute;
-      top: -50px;
-      height: 200px;
-      width: 200px;
-      right: -52px;
-      margin: 0 auto;
-      z-index: 0; }
-    .home__skin .skin--type.monterrey:before {
-      background: url({{ 'monterrey.svg' | asset_url }}) no-repeat; }
-    .home__skin .skin--type.cdmx-popup:before {
-      background: url({{ 'cdmx-popup.svg' | asset_url }}) no-repeat; }
-    .home__skin .skin--type.cdmx-palacio:before {
-      background: url({{ 'cdmx-palacio.svg' | asset_url }})  no-repeat; }
 
 /**
 Terminos y condiciones minicart

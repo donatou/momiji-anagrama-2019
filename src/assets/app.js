@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(() => {
 
   //CARGAR MODULOS
   // $("header").load("_header.html");
@@ -151,6 +151,13 @@ $(document).ready(function () {
     });
   }
 
+  //SUCURSAL INFO
+  if ($(window).width() <= 991) {
+    $(".sucursal .btn__more").click(function () {
+      $('.sucursal').removeClass('active');
+      $(this).closest('.sucursal').toggleClass('active');
+    });
+  }
 
   // CART CANTIDAD
   (function () {
@@ -279,9 +286,9 @@ $(document).ready(function () {
 
 
 // PRODUCTS
-(function () {
+(function() {
 
-  'use strict';
+  
 
   const breakpoint = window.matchMedia('(max-width:767px)');
   let swiper;
@@ -290,15 +297,15 @@ $(document).ready(function () {
 
     if (breakpoint.matches === true) {
       if (swiper !== undefined) swiper.destroy(true, true);
-      return;
+      
     } else if (breakpoint.matches === false) {
       return enableSwiper();
     }
   };
 
-  const enableSwiper = function () {
+  const enableSwiper = function() {
 
-    var swiper = new Swiper('.products__slider .swiper-container', {
+    let swiper = new Swiper('.products__slider .swiper-container', {
       loop: true,
       direction: 'horizontal',
       effect: 'slide',
@@ -316,7 +323,7 @@ $(document).ready(function () {
         delay: 4000,
         reverseDirection: true,
       },
-    })
+    });;
 
   };
 
@@ -327,7 +334,7 @@ $(document).ready(function () {
 })();
 
 
-$(window).on('load', function () {
+$(window).on('load', () => {
 
   // SELECTTRIC
   $(function () {
@@ -345,7 +352,7 @@ $(window).on('load', function () {
 });
 
 // //DETALLE DE PRODUCTO
-$(document).ready(function () {
+$(document).ready(() => {
 
   var galleryThumbs = new Swiper('.gallery-thumbs', {
     direction: 'vertical',
@@ -379,8 +386,8 @@ $(document).ready(function () {
 
 
 // +++ IMAGE REVEAL
-//VIEWPORT CHECK +++
-$(window).on('load resize scroll', function () {
+// VIEWPORT CHECK +++
+$(window).on('load resize scroll', () => {
   $.fn.isInViewport = function () {
     var elementTop = $(this).offset().top;
     var elementBottom = elementTop + $(this).outerHeight();
@@ -410,7 +417,7 @@ $(window).on('load resize scroll', function () {
 // });
 
 
-$(window).on('load', function () {
+$(window).on('load', () => {
   // LOADER
   var height = $(window).height();
   var intervalId = null;
@@ -438,43 +445,43 @@ $(window).on('load', function () {
 });
 
 // SORT-BY de /snippets/collection-sorting.liquid
-const $sorter = $('.js-collection-sort')
-let sortBy = false
+const $sorter = $('.js-collection-sort');;
+let sortBy = false;;
 
 if (window.location.search.length) {
-  sortBy = new URLSearchParams(window.location.search).get('sort_by')
+  sortBy = new URLSearchParams(window.location.search).get('sort_by');;
 }
 
-//preserve current selection
+// preserve current selection
 // set sort value to present query
 if (sortBy) {
-  $sorter.val(sortBy)
+  $sorter.val(sortBy);;
 }
 
 $sorter.on('change', (e) => {
-  const { value } = e.currentTarget
+  const {value} = e.currentTarget;;
 
-  window.location = `?sort_by=${value}`
+  window.location = `?sort_by=${value}`;;
 });
 
 // FALTA un sort-by que aplique para VENDOR
 // EYESHINE JS
-var image = document.getElementsByClassName('thumbnail');
+let image = document.getElementsByClassName('thumbnail');
 new simpleParallax(image, {
-    overflow: true
+  overflow: true,
 });
 
-$("#load-ingredients").click(function() {
-    $(this).toggleClass("active");
-    $(".ingredientes__item:nth-child(n+4)").fadeToggle();
-    $(this).text(function(i, text){
+$('#load-ingredients').click(function() {
+  $(this).toggleClass('active');
+  $('.ingredientes__item:nth-child(n+4)').fadeToggle();
+  $(this).text((i, text) => {
         return text === "ver menos ingredientes" ? "ver m�s ingredientes" : "ver menos ingredientes";
     });
 });
 
-var child4 = $(".sticker-item"),
-parent = $(".section__content");
+let child4 = $('.sticker-item'),
+  parent = $('.section__content');
 
 Draggable.create(child4, {
-  type:'x, y',
+  type: 'x, y',
 });
