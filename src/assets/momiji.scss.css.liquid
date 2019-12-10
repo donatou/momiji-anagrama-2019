@@ -7742,18 +7742,17 @@ input + input {
         max-height: 450px; }
       .home__sucursal .sucursal img short {
         max-height: 350px; }
-    .home__sucursal .sucursal.oily:before {
+    .home__sucursal .sucursal.popup__shop:before {
       content: "";
+      background: url({{ 'popup.svg' | asset_url }}) no-repeat;
       background-size: contain;
       position: absolute;
-      top: -50px;
-      height: 200px;
-      width: 200px;
-      right: -80px;
+      top: 20px;
+      height: 80px;
+      width: 80px;
+      right: 20px;
       margin: 0 auto;
       z-index: 0; }
-    .home__sucursal .sucursal.popup__shop:before {
-      background: url({{ 'oily.svg' | asset_url }}) no-repeat; }
 
     .home__sucursal .sucursal-container {
       height: 100%;

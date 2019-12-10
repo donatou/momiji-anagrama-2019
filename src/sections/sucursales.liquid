@@ -83,7 +83,7 @@ general: alto de la sección
         <div class="row no-gutters">
 
         {% for block in section.blocks %}
-            <div class="{{ column_width }} sucursal {% if popup %} popup__shop {% endif %}">
+            <div class="{{ column_width }} sucursal {% if block.settings.popup == true %} popup__shop {% endif %}">
                 <div class="img-container">
                     <img src="{{ block.settings.image | img_url: '634x' }}" alt="{{ block.settings.title_suc }}" class="{{ row_height }}">
                 </div>
@@ -187,9 +187,16 @@ general: alto de la sección
 			"name":"sucur",
 			"settings":[
 				{
+					"id":"popup",
+					"type":"checkbox",
+					"label":"Es pop-up?",
+					"default":false
+				},
+				{
 					"id":"image",
 					"type":"image_picker",
-					"label":"imagen de sucursal"
+					"label":"imagen de sucursal",
+					"info":"Tamaño 800x800 pixeles"
 				},
 				{
 					"id":"title_suc",
