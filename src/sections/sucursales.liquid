@@ -85,7 +85,7 @@ general: alto de la sección
         {% for block in section.blocks %}
             <div class="{{ column_width }} sucursal {% if block.settings.popup == true %} popup__shop {% endif %}">
                 <div class="img-container">
-                    <img src="{{ block.settings.image | img_url: '634x' }}" alt="{{ block.settings.title_suc }}" class="{{ row_height }}">
+                    <img src="{{ block.settings.image | img_url: '800x' }}" alt="{{ block.settings.title_suc }}" class="{{ row_height }}">
                 </div>
                 <div class="btn__more"></div>
                 <div class="sucursal-container {{ section.settings.color_suc }}">
@@ -184,7 +184,7 @@ general: alto de la sección
 	"blocks":[
 		{
 			"type":"select",
-			"name":"sucur",
+			"name":"Sucursal",
 			"settings":[
 				{
 					"id":"popup",
@@ -220,12 +220,6 @@ general: alto de la sección
 					"id":"link",
 					"type":"url",
 					"label":"link de google maps"
-				},
-				{
-					"id":"popup_suc",
-					"type":"text",
-					"label":"Sticker Popup",
-					"default":"text"
 				}
 			]
 		}
