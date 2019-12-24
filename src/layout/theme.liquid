@@ -74,7 +74,7 @@
   <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
     {% include 'miniCartDonato' %}
     <div class="loader-component"></div>
-    {%- comment -%}{% include 'ask' %}{%- endcomment -%}
+    {% include 'ask' %}
     {%- comment -%}<a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a> {%- endcomment -%}
 
     {% include 'search-modal' %}
@@ -100,7 +100,8 @@
 
     <script src="{{ '//cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js' }}" defer></script>
     <script src="{{ 'swiper.min.js'| asset_url }}" defer></script>
-    <script src="{{ 'app.min.js' | asset_url }}" defer></script> 
+    {%- comment -%}<script src="{{ 'app.min.js' | asset_url }}" defer></script>{%- endcomment -%}
+    <script src="{{ 'app.js' | asset_url }}" defer></script>
     <script src="{{ 'parallax.js' | asset_url }}" defer></script> 
     <script src="{{ 'micromodal.js' | asset_url }}" defer></script>  
     <script src="{{ 'jquery.selectric.js' | asset_url }}" defer></script>  

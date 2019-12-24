@@ -485,3 +485,7 @@ let child4 = $('.sticker-item'),
 Draggable.create(child4, {
   type: 'x, y',
 });
+
+// ask our experts modal
+var miffy = document.classList('miffy');
+console.log(miffy);
