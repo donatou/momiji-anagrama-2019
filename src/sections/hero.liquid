@@ -18,8 +18,8 @@
                   {% if block.settings.texto_banner %}
                     <div class="col-12 col-md-10 col-lg-5 mx-auto">
                       <h2 class="text-link">{{ block.settings.headline }}</h2>
-                      <h1>{{ block.settings.titulo }}</h1>
-                      <p>{{ block.settings.subtitulo }}</p>
+                      <h1 class="{{ block.settings.h1Size }}">{{ block.settings.titulo }}</h1>
+                      <p class="{{ block.settings.pSize }}">{{ block.settings.subtitulo }}</p>
                       <a href="{{ block.settings.link_boton }}" class="btn__main">{{ block.settings.texto_boton }}</a>
                     </div> 
                   {% endif %}
@@ -41,7 +41,7 @@
                         <div class="col-sm-12 {{ block.settings.slider_color }} col-md-6 col-lg-5 ml-auto">
                           <h2 class="text-link">{{ block.settings.headline }}</h2>
                           <h1 class="h2">{{ block.settings.titulo }}</h1>
-                          <p>{{ block.settings.subtitulo }}</p>
+                          <p class="{{ block.settings.pSize }}">{{ block.settings.subtitulo }}</p>
                           <a href="{{ block.settings.link_boton }}" class="btn__main">{{ block.settings.texto_boton }}</a>
                         </div> 
                       </div>
@@ -143,54 +143,6 @@
       "name": "Promo banner",
       "settings": [
         {
-          "type": "image_picker",
-          "id": "image-full",
-          "label": "Imagen de fondo full size",
-          "info": "1900 x 1000, JPEG 50% ~ 52%"
-        },
-        {
-          "type": "image_picker",
-          "id": "image-mobile",
-          "label": "Imagen de fondo para móviles",
-          "info": "830 x 1325, JPEG 50% ~ 52%"
-        },
-        {
-          "type": "checkbox",
-          "id": "texto_banner",
-          "label": "Texto y botón de banner.",
-          "default": true,
-          "info": "Muestra texto y botón de banner."
-        },
-        {
-          "type": "text",
-          "id": "headline",
-          "label": "Headline",
-          "default": "By Momiji"
-        },
-        {
-          "type": "text",
-          "id": "titulo",
-          "label": "Título",
-          "default": "Aquí ingresa el título de la slide."
-        },
-        {
-          "type": "textarea",
-          "id": "subtitulo",
-          "label": "Subtítulo",
-          "default": "Este es el espacio para poner el subtítulo de la slide."
-        },
-        {
-          "type": "text",
-          "id": "texto_boton",
-          "label": "Texto del botón",
-          "default": "Texto del Botón"
-        },
-        {
-          "type": "url",
-          "id": "link_boton",
-          "label": "Link del botón"
-        },
-        {
           "type": "radio",
           "id": "slider_type",
           "options": [
@@ -213,6 +165,75 @@
             ],
           "default":   "slide-gray",
           "label": "Color de Slider"
+        },
+        {
+          "type": "image_picker",
+          "id": "image-full",
+          "label": "Background desktop"
+        },
+        {
+          "type": "image_picker",
+          "id": "image-mobile",
+          "label": "Background móviles",
+          "info": "REQUERIDO"
+        },
+        {
+          "type": "checkbox",
+          "id": "texto_banner",
+          "label": "Texto y botón de banner.",
+          "default": true,
+          "info": "Muestra texto y botón de banner."
+        },
+        {
+          "type": "text",
+          "id": "headline",
+          "label": "Headline",
+          "default": "By Momiji"
+        },
+        {
+          "type": "text",
+          "id": "titulo",
+          "label": "Título",
+          "default": "Aquí ingresa el título de la slide."
+        },
+        {
+          "type": "radio",
+          "id": "h1Size",
+          "options": [
+            { "value": "normal", "label": "normal" },
+            { "value": "smaller", "label": "chico" },
+            { "value": "bigger", "label": "grande" }
+          ],
+          "default": "normal",
+          "label": "Tamaño Titulo"
+        },
+        {
+          "type": "textarea",
+          "id": "subtitulo",
+          "label": "Subtítulo",
+          "default": "Este es el espacio para poner el subtítulo de la slide."
+        },
+        {
+          "type": "radio",
+          "id": "pSize",
+          "options": [
+            { "value": "normal", "label": "normal" },
+            { "value": "big", "label": "grande" },
+            { "value": "bigger", "label": "mas grande" }
+          ],
+          "default": "normal",
+          "label": "Tamaño Subtitulo"
+        },
+        {
+          "type": "text",
+          "id": "texto_boton",
+          "label": "Texto del botón",
+          "default": "Texto del Botón"
+        },
+        {
+          "type": "url",
+          "id": "link_boton",
+          "label": "Link del botón"
         }
       ]
     }
