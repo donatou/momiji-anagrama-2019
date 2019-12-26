@@ -82,9 +82,13 @@
     <div id="modal-resena" aria-hidden="true">
     </div>
 
+    {%- comment -%}
     <div class="modal__newsletter">
-       {% include 'newsletter-modal' %}
+      {% include 'newsletter-modal' %}
     </div>
+    {%- endcomment -%}
+
+    {% include 'popup_ask' %}
 
     <div id="mb-menu" class="mobile-menu">
       {% include 'mobile' %}

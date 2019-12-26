@@ -4652,7 +4652,7 @@ a {
 .ask {
   writing-mode: vertical-lr;
   position: fixed;
-  right: 0;
+  left: 0;
   top: 40%;
   bottom: 0;
   z-index: 90;
@@ -7047,6 +7047,48 @@ input + input {
 
 .subfilters input[type="checkbox"]:checked + label::after {
   background: #F06C4E; }
+
+/***************** BEGIN Modal Ask our Experts ****************/
+  .ask-modal__container {
+    padding: 35px 40px;
+    background-color: #F06C4E;
+    position: absolute;
+    color: #0A0A0A;
+    max-width: 600px;
+    min-height: 550px;
+    z-index: 999999;
+    display: block;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%); }
+    .ask-modal__container h1 {
+      width: 90%; }
+    .ask-modal__container-info {
+      position: absolute;
+      bottom: 40px;
+      padding-right: 40px;
+      width: 70%; }
+      @media (max-width: 767.98px) {
+        .ask-modal__container-info {
+          width: 80%; } }
+      .ask-modal__container-info img {
+        display: block;
+        margin-bottom: 20px; }
+    @media (max-width: 767.98px) {
+      .ask-modal__container {
+        max-width: 100%;
+        min-height: 100%; } }
+  .modal .background {
+    background: rgba(246, 246, 249, 0.3);
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    z-index: 5; }
+/***************** END Modal Ask our Experts ******************/
+
 
 .modal {
   min-height: 100vh;
