@@ -37,7 +37,7 @@ $(document).ready(() => {
   });
 
   $('body').on('click touchstart', '#close', () => {
-    $('.legal .modal, .modal__newsletter, .filter__modal').fadeOut();
+    $('.legal .modal, .modal__newsletter, .modal-ask, .filter__modal').fadeOut();
   });
 
   // MODALES
@@ -487,4 +487,3 @@ let child4 = $('.sticker-item'),
 Draggable.create(child4, {
   type: 'x, y',
 });
-
