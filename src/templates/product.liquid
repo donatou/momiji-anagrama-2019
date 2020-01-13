@@ -1,6 +1,6 @@
 <main class="main__product">
   {% section 'product' %}
-{% if product.type == "Accesorios" %}
+{% if product.type == "Accesorios" or product.type == "Mercancia" or product.type == "Mercancía" %}
   {%- comment -%}Info adicional no aparece al ser producto tipo "Accesorio".{%- endcomment -%}
 {% else %}
   {% section 'info-producto' %}
