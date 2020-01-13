@@ -14,7 +14,11 @@
         {% if infoAdicional %}
           <a class="accordion h3 active">Más info</a>
           <div class="panel active" style="max-height: 100%">
+          {% if product.metafields.infoadicional.texto != blank %}
             <p>{{ product.metafields['infoadicional']['texto'] }}</p>
+          {% else %}
+            <p>{{ product.metafields['beneficios']['texto'] }}</p>
+          {% endif %}
           </div>
         {% else %}
           <a class="accordion h3 active">Beneficios</a>
