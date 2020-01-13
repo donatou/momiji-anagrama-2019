@@ -10,3 +10,8 @@
 {% elsif product.tags contains "nuevo" %}
   {% assign new = true %}
 {% endif %}
+
+{% assign clean = false %}
+{% if product.tags contains "clean" %}
+{% assign clean = true %}
+{% endif %}
