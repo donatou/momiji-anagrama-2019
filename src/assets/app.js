@@ -287,6 +287,8 @@ $(document).ready(() => {
   }
 });
 
+const mySwiper = new Swiper('.swiper-container-news');
+
 
 // PRODUCTS
 (function() {

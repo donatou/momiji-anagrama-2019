@@ -1,8 +1,34 @@
-<div class="header__banner">
+{% comment %} <div class="header__banner">
 {% if section.settings.link_barra_anuncios == blank %}
     <p>{{ section.settings.barra_anuncios }}</p>        
  {% else %}
     <a href="{{ section.settings.link_barra_anuncios }}">{{ section.settings.barra_anuncios }}</a>
 {% endif %}
-</div>
+</div> {% endcomment %}
 
+{% comment %} <div class="swiper-container-news">
+    <div class="swiper-wrapper"> {% endcomment %}
+
+        <div class="header__banner">
+        {% if section.settings.link_barra_anuncios == blank %}
+            <p>{{ section.settings.barra_anuncios }}</p>        
+        {% else %}
+            <a href="{{ section.settings.link_barra_anuncios }}">{{ section.settings.barra_anuncios }}</a>
+        {% endif %}
+        </div>
+
+    {% comment %} </div>
+</div> {% endcomment %}
+
+{% comment %} <script>
+var swiperNews = new Swiper ('.swiper-container-news', {
+    loop: true,
+    direction: 'horizontal',
+    effect: 'fade',
+    slidesPerView: '1',
+    autoplay: {
+        delay: 100,
+        reverseDirection: true,
+    }
+})
+</script> {% endcomment %}
