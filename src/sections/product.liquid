@@ -45,9 +45,10 @@
         {% if soon %} product soon 
         {% elsif new %} product new 
         {% elsif momi %} product momi 
-        {% elsif clean %} product clean 
+        {% elsif clean %} product clean
         {% else %} product 
-        {% endif %}">
+        {% endif %}
+        ">
         <h1 class="text-link">by {{ product.vendor }}</h1>
         <h2>{{ product.title }}</h2>
         <div class="product__detail--name" data-price-wrapper>

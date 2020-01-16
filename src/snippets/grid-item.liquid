@@ -16,7 +16,8 @@ Grid item sin container div de estilo
             {% elsif momi %}product momi
             {% elsif clean %}product clean
             {% else %}product
-            {% endif %}" > {%- comment -%} se tiene que hacer cuatro clases diferentes: product, product new, product momi, product soon sacado de variables asignadas en tag-logic snippet. {%- endcomment -%}
+            {% endif %}
+            " > {%- comment -%} se tiene que hacer cuatro clases diferentes: product, product new, product momi, product soon sacado de variables asignadas en tag-logic snippet. {%- endcomment -%}
     <div class="product__container">
         <div class="product__container--main img-container">
             <img src="{{ product | img_url: '496x' }}" alt="{{ product.title | escape }}">

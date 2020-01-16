@@ -5,13 +5,11 @@
 
 {% assign momi = false %}
 {% assign new = false %}
+{% assign clean = false %}
 {% if product.tags contains "momis_pick" %}
   {% assign momi = true %}
 {% elsif product.tags contains "nuevo" %}
   {% assign new = true %}
-{% endif %}
-
-{% assign clean = false %}
-{% if product.tags contains "clean" %}
-{% assign clean = true %}
+{% else product.tags contains "clean beauty" %}
+  {% assign clean = true %}
 {% endif %}
