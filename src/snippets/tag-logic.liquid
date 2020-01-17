@@ -1,15 +1,34 @@
 {% assign soon = true %}
+{% assign clean = false %}
+{% assign momi = false %}
+{% assign new = false %}
+
 {% if product.available %}
   {% assign soon = false %}
 {% endif %}
 
+{% if product.tags contains "clean_beauty" %}
+  {% assign clean = true %}
+{% elsif product.tags contains "momis_pick" %}
+  {% assign momi = true %}
+{% else product.tags contains "nuevo" %}
+  {% assign new = true %}
+{% endif %}
+
+
+{% comment %} {% assign soon = false %}
+{% assign clean = false %}
 {% assign momi = false %}
 {% assign new = false %}
-{% assign clean = false %}
-{% if product.tags contains "momis_pick" %}
-  {% assign momi = true %}
-{% elsif product.tags contains "nuevo" %}
-  {% assign new = true %}
-{% else product.tags contains "clean beauty" %}
-  {% assign clean = true %}
-{% endif %}
+
+{% case badge %}
+  {% when product.available %}
+    {% assign soon = true %}
+  {% when product.tags contains "clean beauty" %}
+    {% assign clean = true %}
+  {% when product.tags contains "momis_pick" %}
+    {% assign momi = true %}
+  {% when product.tags contains "nuevo" %}
+    {% assign new = true %}
+  {% else %}
+{% endcase %} {% endcomment %}
