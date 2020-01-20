@@ -487,15 +487,21 @@ Draggable.create(child4, {
   type: 'x, y',
 });
 
-
-// slick slider news
-// $(document).ready(() => {
-//   $('.header__banner').slick({
-//     autoplay: true,
-//     autoplaySpeed: 1000,
-//     arrows: false,
-//     fade: true,
-//     infinte: true,
-//     pauseOnHover: true,
-//   });
-// });
+// swiper news
+// window.onload = function () {
+const barraSwiper = new Swiper('.swiper-container-barra', {
+  loop: true,
+  // direction: 'vertical',
+  fadeEffect: {
+    crossFade: true,
+  },
+  speed: 500,
+  autoplay: {
+    delay: 4000,
+  },
+  slidersPerView: 1,
+  effect: 'slide',
+  setWrapperSize: true,
+  updateOnWindowResize: true,
+});
+// };

@@ -16,34 +16,25 @@
 
 
 <div class="swiper-container-barra">
-    <div class="header__banner swiper-wrapper">
-        <div class="swiper-slide">
-            <p>{{ section.settings.barra_anuncios }}</p>
-        </div>
-        <div class="swiper-slide">
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-        </div>
-        <div class="swiper-slide">
-            <p>Deleniti distinctio soluta deserunt unde.</p>
-        </div>
+    <div class="swiper-wrapper header__banner">
+
+            <p class="swiper-slide content">{{ section.settings.barra_anuncios }}</p>
+
+            <p class="swiper-slide content">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+
     </div>
 </div>
 
-<script>
-// swiper news
-window.onload = function () {
-const barraSwiper = new Swiper('.swiper-container-barra', {
-  loop: true,
-  direction: 'horizontal',
-  fadeEffect: {
-    crossFade: true,
-  },
-  speed: 500,
-  autoplay: {
-    delay: 4000,
-  },
-  slidersPerView: 1,
-  effect: 'fade',
-});
-};
-</script>
+<style>
+.swiper-container-barra {
+    width:100%;
+    height:100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;   
+    padding: 0; 
+    z-index: 1;
+}
+</style>
