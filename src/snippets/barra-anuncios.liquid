@@ -1,37 +1,49 @@
-{% comment %} <div class="header__banner">
-{% if section.settings.link_barra_anuncios == blank %}
-    <p>{{ section.settings.barra_anuncios }}</p>        
- {% else %}
-    <a href="{{ section.settings.link_barra_anuncios }}">{{ section.settings.barra_anuncios }}</a>
-{% endif %}
-</div> {% endcomment %}
 
-{% comment %} <div class="swiper-container-news">
-    <div class="swiper-wrapper"> {% endcomment %}
-
-        <div class="header__banner">
+    {% comment %} <div class="header__banner">
+        <div class="">
         {% if section.settings.link_barra_anuncios == blank %}
-            <p>{{ section.settings.barra_anuncios }}</p>        
+            <p>{{ section.settings.barra_anuncios }}</p>
         {% else %}
             <a href="{{ section.settings.link_barra_anuncios }}">{{ section.settings.barra_anuncios }}</a>
         {% endif %}
         </div>
+        <div class="">
+            <a>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id, vel ex. Accusamus, ad! Ipsum.</a>
+        </div>
+    </div> {% endcomment %}
+
+{% comment %} <link rel="stylesheet" type="text/css" href="slick/slick.css"/> {% endcomment %}
 
 
-        agregar clases con nombres del swiper, para poder hacer el container y wrapper, así como cada slide.
+<div class="swiper-container-barra">
+    <div class="header__banner swiper-wrapper">
+        <div class="swiper-slide">
+            <p>{{ section.settings.barra_anuncios }}</p>
+        </div>
+        <div class="swiper-slide">
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+        </div>
+        <div class="swiper-slide">
+            <p>Deleniti distinctio soluta deserunt unde.</p>
+        </div>
+    </div>
+</div>
 
-    {% comment %} </div>
-</div> {% endcomment %}
-
-{% comment %} <script>
-var swiperNews = new Swiper ('.swiper-container-news', {
-    loop: true,
-    direction: 'horizontal',
-    effect: 'fade',
-    slidesPerView: '1',
-    autoplay: {
-        delay: 100,
-        reverseDirection: true,
-    }
-})
-</script> {% endcomment %}
+<script>
+// swiper news
+window.onload = function () {
+const barraSwiper = new Swiper('.swiper-container-barra', {
+  loop: true,
+  direction: 'horizontal',
+  fadeEffect: {
+    crossFade: true,
+  },
+  speed: 500,
+  autoplay: {
+    delay: 4000,
+  },
+  slidersPerView: 1,
+  effect: 'fade',
+});
+};
+</script>

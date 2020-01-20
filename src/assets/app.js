@@ -287,9 +287,6 @@ $(document).ready(() => {
   }
 });
 
-const mySwiper = new Swiper('.swiper-container-news');
-
-
 // PRODUCTS
 (function() {
 
@@ -489,3 +486,16 @@ let child4 = $('.sticker-item'),
 Draggable.create(child4, {
   type: 'x, y',
 });
+
+
+// slick slider news
+// $(document).ready(() => {
+//   $('.header__banner').slick({
+//     autoplay: true,
+//     autoplaySpeed: 1000,
+//     arrows: false,
+//     fade: true,
+//     infinte: true,
+//     pauseOnHover: true,
+//   });
+// });
