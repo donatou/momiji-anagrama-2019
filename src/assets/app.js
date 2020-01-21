@@ -487,21 +487,18 @@ Draggable.create(child4, {
   type: 'x, y',
 });
 
-// swiper news
-// window.onload = function () {
+// swiper announcement bar news
 const barraSwiper = new Swiper('.swiper-container-barra', {
   loop: true,
-  // direction: 'vertical',
   fadeEffect: {
     crossFade: true,
   },
-  speed: 500,
+  speed: 350,
   autoplay: {
-    delay: 4000,
+    delay: 5000,
   },
   slidersPerView: 1,
   effect: 'fade',
   setWrapperSize: true,
   updateOnWindowResize: true,
 });
-// };
