@@ -12,30 +12,12 @@
         </div>
     </div> {% endcomment %}
 
-{% comment %} <link rel="stylesheet" type="text/css" href="slick/slick.css"/> {% endcomment %}
-
-
 <div class="swiper-container-barra">
     <div class="swiper-wrapper header__banner">
-
-            <p class="swiper-slide content">{{ section.settings.barra_anuncios }}</p>
-
-            <p class="swiper-slide content">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-
+        <p class="swiper-slide content">{{ section.settings.barra_anuncios1 }}</p>
+    {% if section.settings.barra_anuncios2 == blank %}
+    {% else %}
+        <p class="swiper-slide content">{{ section.settings.barra_anuncios2 }}</p>
+    {% endif %}
     </div>
 </div>
-
-<style>
-.swiper-container-barra {
-    width:80%;
-    height:100%;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    overflow: hidden;
-    list-style: none;   
-    padding: 1; 
-    z-index: 1;
-    text-align: center;
-}
-</style>

@@ -500,7 +500,7 @@ const barraSwiper = new Swiper('.swiper-container-barra', {
     delay: 4000,
   },
   slidersPerView: 1,
-  effect: 'slide',
+  effect: 'fade',
   setWrapperSize: true,
   updateOnWindowResize: true,
 });
