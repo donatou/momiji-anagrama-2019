@@ -1,4 +1,14 @@
-{% comment %} {% include 'tag-logic' %} {% endcomment %}
+{%- comment -%}
+Grid item sin container div de estilo
+{%- endcomment -%}
+
+{% include 'tag-logic' %}
+
+{%- comment -%}<style>
+ Hide when not loaded - Best practice - Move to a css file 
+.swym-button.swym-add-to-watchlist-view-product:not(.swym-loaded){display: none;}
+</style>{%- endcomment -%}
+{%- comment -%}{% include 'swym-product-view', product: product %}{%- endcomment -%}
 
 <a  href="{{ product.url | within: collection }}"
     class=  "{% if soon %}product soon
@@ -7,13 +17,8 @@
             {% elsif clean %}product clean
             {% else %}product
             {% endif %}
-            " >
+            " > {%- comment -%} se tiene que hacer cuatro clases diferentes: product, product new, product momi, product soon sacado de variables asignadas en tag-logic snippet. {%- endcomment -%}
     <div class="product__container">
-
-        <ul class="item-icons">
-            <li class="product-badge__item">{% include 'grid-item-icons', icon: 'momi-icon' %}</li>
-            <li class="product-badge__item">{% include 'grid-item-icons', icon: 'clean-icon' %}</li>
-        </ul>
         <div class="product__container--main img-container">
             <img src="{{ product | img_url: '496x' }}" alt="{{ product.title | escape }}">
         </div>
@@ -21,7 +26,6 @@
             <img src="{{ product.images.last | img_url: '496x' }}" alt="{{ product.title | escape }}">
         </div> 
     </div>
-
     <div class="product__info">
         <div class="product__info--brand">
             <p>by {{ product.vendor }}</p>
@@ -40,3 +44,7 @@
 
     </div>
 </a>
+
+{%- comment -%}
+Grid item sin container div de estilo - END
+{%- endcomment -%}
