@@ -54,6 +54,10 @@
   </body>
 </html>
 
+{%- comment -%}
+CUSTOMIZACIONES DEL CHECKOUT ENGLOBADAS EN UN CONDICIONAL
+{%- endcomment -%}
+{% if settings.customCheckout != blank %}
 <style>
 @font-face {
     font-family: 'GT Walsheim';
@@ -67,3 +71,21 @@ body {
     color: #0A0A0A;
 }
 </style>
+
+<script>
+  //seleccionar el div de la imagen y borrarlo
+const mercadoLogo = document.querySelector('.offsite-payment-gateway-logo');
+mercadoLogo.remove();
+
+//crear elemento para inyectar previo al span
+let parentMercado = document.createElement("div");
+let p = document.createElement("p");
+parentMercado.append("Woa que divertido", p);
+console.log(parentMercado.childNodes);
+
+//span al que hay que inyectarle como child el nuievo elemento
+const cosita = document.querySelector('.content-box__emphasis');
+cosita.appendChild(span);
+</script>
+{% else %}
+{% endif %}

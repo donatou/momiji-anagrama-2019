@@ -269,5 +269,17 @@
         "info": "Will be scaled down to 320 x 320px"
       }
     ]
+  },
+  {
+    "name": "Custom Checkout Momiji",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "customCheckout",
+        "label": "Modificaciones activas.",
+        "default": false,
+        "info": "Desactivarlo cuando haya problemas con el checkout."
+      }
+    ]
   }
 ]
