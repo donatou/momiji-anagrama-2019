@@ -74,7 +74,7 @@ body {
 
 <script>
 
-    //seleccionar el div de la imagen y borrarlo
+  //seleccionar el div de la imagen y borrarlo
   const mercadoLogo = document.querySelector('.offsite-payment-gateway-logo');
   mercadoLogo.remove();
 
@@ -86,37 +86,33 @@ body {
   const myWrapper = document.querySelector('.content-box__emphasis');
   myWrapper.appendChild(mySpan);
 
+// 1 el nodo que voy a observar
+const alaberga = document.querySelector('.order-summary__section--discount');
+
+const observer = new MutationObserver(mutations => {
+  mutations.forEach(record => {
+    console.log(record);
+  });
+});
+
+observer.observe(alaberga, {
+  childList: true
+});
+
+setTimeout(() => {
+   const mer = document.querySelector('.offsite-payment-gateway-logo');
+  mer.remove();
+  const nuevop = document.createElement('span');
+  nuevop.textContent = 'hallo';
+  myWrapper.appendChild(nuevop);
+
+}, 1000);
 
 
-//test de mutation observer
+OKAY....
+primero se debe seleccionar EL PRIMER nodo donde está el logo de mercadopago, luego se agrega un nuevo nodo de span y se le pone el texto que queremos. https://www.youtube.com/watch?v=ofpJ2cyz2Xg
 
-  //target node
-  const targetNode = document.querySelector('.section__text');
-  console.log(targetNode);
-  // Options for the observer which mutations to observe
-  const config = { attributes: true, childList: true, subtree: true };
-  console.log(config);
-  // Callback function to execute when mutations are observed
-  const callback = function(mutationsList, observer) {
-      // Use traditional 'for loops' for IE 11
-      for(let mutation of mutationsList) {
-          if (mutation.type === 'childList') {
-              console.log('A child node has been added or removed.');
-          }
-          else if (mutation.type === 'attributes') {
-              console.log('The ' + mutation.attributeName + ' attribute was modified.');
-          }
-      }
-  };
 
-  // Create an observer instance linked to the callback function
-  const observer = new MutationObserver(callback);
-
-  // Start observing the target node for configured mutations
-  observer.observe(targetNode, config);
-
-  // Later, you can stop observing
-  observer.disconnect();
 
 </script>
 
