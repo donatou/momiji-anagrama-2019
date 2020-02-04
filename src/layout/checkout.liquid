@@ -67,3 +67,25 @@ body {
     color: #0A0A0A;
 }
 </style>
+
+<script>
+
+  let logo = document.querySelector(`.offsite-payment-gateway-logo`);
+
+  document.addEventListener("DOMContentLoaded", function(event) {
+      console.log(`cargado`);
+      logo.remove();
+  });
+
+  document.onchange = function(){
+      let logoRefreshed = document.querySelector(`.offsite-payment-gateway-logo`);
+      console.log(`cambiado`);
+        if(document.querySelector(".offsite-payment-gateway-logo")){
+           // alert("Element exists");
+            logoRefreshed.remove();
+        } else {
+           // alert("Element does not exist");
+        }
+  };
+
+</script>
