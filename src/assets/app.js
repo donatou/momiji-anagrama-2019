@@ -147,6 +147,7 @@ $(document).ready(() => {
 
   // SKIN TYPE INFO
   if ($(window).width() <= 991) {
+    console.log('omaigod');
     $('.skin--type .btn__more').click(function() {
       $('.skin--type').removeClass('active');
       $(this).closest('.skin--type').toggleClass('active');
@@ -409,7 +410,7 @@ $(window).on('load resize scroll', () => {
 });
 
 // AGREGAR EFECTOS DE ON SCROLL
-// $(window).on('load', function () {
+// $(window).on('load', () => {
 //   $('h1, h2, h3, h4, span,  p, a:not(.product), b ').addClass('element');
 //   $('.element').attr('data-aos', 'fade-in-up');
 //   $('.element').attr('data-aos-offset', '-50');
