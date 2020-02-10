@@ -8,9 +8,9 @@
         <h3>{{ article.title }}</h3>
         {%- assign content = article.excerpt_or_content -%}
         <p>{{ content | strip_html | truncatewords: 32 }}
-            <a class="a__more" href="{{ article.url }}" target="_blank"> Leer más</a>
+            <a class="a__more" href="{{ article.url }}" target="_blank"> {{ 'blogs.article.read_more' | t }}</a>
         </p>
-        <a href="/blogs/{{ blog_handle }}" class="btn__main" target="_blank">Visita momiji talks</a>
+        <a href="/blogs/{{ blog_handle }}" class="btn__main" target="_blank">momiji talks</a>
     {%- endfor -%}
     </div>
 {%- endunless -%}
