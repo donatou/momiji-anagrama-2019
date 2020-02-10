@@ -158,6 +158,10 @@
             "label": "Envío gratis por gasto"
           },
           {
+            "value": "envio_gasto_x",
+            "label": "Envío en X por gasto Y"
+          },
+          {
             "value": "agrega_producto",
             "label": "Envío gratis incluyendo producto"
           },
@@ -175,13 +179,33 @@
         "type": "text",
         "id": "costo_enviogratis",
         "label": "Total $ en carrito para envio gratis:",
-        "default": "1100",
+        "default": "1500",
         "info": "No incluir signos o puntuación. Shipping rates se modifica en [Envíos](https://momiji-beauty.myshopify.com/admin/settings/shipping)",
-        "placeholder": "1100"
+        "placeholder": "1500"
       },
       {
         "type": "paragraph",
         "content": "Este dato también es accesible a las otras opciones de envío."
+      },
+      {
+        "type": "header",
+        "content": "Envío en X gastando Y"
+      },
+      {
+        "type": "text",
+        "id": "costo_envio_x",
+        "label": "Total $ en carrito para envio reducido:",
+        "default": "500",
+        "info": "No incluir signos o puntuación. Shipping rates se modifica en [Envíos](https://momiji-beauty.myshopify.com/admin/settings/shipping)",
+        "placeholder": "500"
+      },
+      {
+        "type": "text",
+        "id": "envio_x",
+        "label": "Costo de envio reducido:",
+        "default": "14",
+        "info": "Es el costo al que estara el envio reducido de precio.",
+        "placeholder": "14"
       },
       {
         "type": "header",
@@ -222,7 +246,7 @@
       },
       {
         "type": "text",
-        "id": "costo_enviogratis_x",
+        "id": "costo_envio_x",
         "label": "Cantidad a gastar para regalo:",
         "default": "500",
         "info": "No incluir signos o puntuación. Shipping rates se modifica en [Envíos](https://momiji-beauty.myshopify.com/admin/settings/shipping)",
