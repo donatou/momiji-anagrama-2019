@@ -115,7 +115,7 @@
                   {% if cart_total < shipping_value_x %}
                     Agrega {{ shipping_value_x_left | money }} para que tu envío cueste {{ settings.envio_x | times: 100 | money }} MXN.
                   {% elsif cart_total >= shipping_value_x and cart_total < shipping_value %}
-                    ¡Tu orden califica para envío en {{ settings.envio_x | times: 100 | money }} MXN!
+                    ¡Tu orden califica para envío en {{ settings.envio_x | times: 100 | money }} MXN!<br />Agrega {{ shipping_value_left | money }} más para que tu envío sea gratis.
                   {% else %}
                     ¡Tu orden califica para envío gratis!
                   {% endif %}
