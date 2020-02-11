@@ -112,15 +112,13 @@
           {%- endcomment -%}
             {% when 'envio_gasto_x' %}
                 <p class="cartfreeshipping">
-                  {% if shipping_value <= 150000 %}
-                    El envio es menor o igual a 1500.  
-                  {% endif %}
-
-                  {% comment %} {% if shipping_value_x_left > 0 %}
-                  ¡Agrega {{ shipping_value_x_left | money }} para que tu envío cueste {{ settings.envio_x | times: 100 | money }}!
+                  {% if cart_total < shipping_value_x %}
+                    Agrega {{ shipping_value_x_left | money }} para que tu envío cueste {{ settings.envio_x | times: 100 | money }} MXN.
+                  {% elsif cart_total >= shipping_value_x and cart_total < shipping_value %}
+                    ¡Tu orden califica para envío en {{ settings.envio_x | times: 100 | money }} MXN!
                   {% else %}
-                  Tu orden califica para envío en {{ settings.envio_x | times: 100 | money }}. Shipping value: {{ shipping_value | money }} y Shipping value X: {{ shipping_value_x }}
-                  {% endif %} {% endcomment %}
+                    ¡Tu orden califica para envío gratis!
+                  {% endif %}
                 </p>
 
           {% endcase %}
