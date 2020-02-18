@@ -503,3 +503,40 @@ const barraSwiper = new Swiper('.swiper-container-barra', {
   setWrapperSize: true,
   updateOnWindowResize: true,
 });
+
+
+// banner text on mobile
+
+var UpdateBar = function(){
+  if ($(window).width() <= 767) {
+    var pos = $('.dsh-MobileBar').offset();
+    $('.shop-item').each(function () {
+      if (pos.top >= $(this).offset().top && pos.top <= $(this).next().offset().top) {
+        var projectDescription = $(this).data('section');
+        $("header").hide();
+        $('.dsh-MobileBar').text(projectDescription);
+        return; 
+      } else {
+        $("header").fadeIn();
+      }
+    });
+  }
+}
+
+
+// banner display on mobile
+var distance = $('.shop-item').offset().top;
+
+$(window).scroll(function() {
+    if ( $(this).scrollTop() >= distance ) {
+      $('.dsh-MobileBar').fadeIn();
+    } else {
+      $('.dsh-MobileBar').hide();
+    }
+});
+
+
+$(window)
+    .ready(UpdateBar)
+    .resize(UpdateBar)
+    .scroll(UpdateBar)

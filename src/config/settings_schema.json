@@ -246,7 +246,7 @@
       },
       {
         "type": "text",
-        "id": "costo_envio_x",
+        "id": "costo_enviogratis_x",
         "label": "Cantidad a gastar para regalo:",
         "default": "500",
         "info": "No incluir signos o puntuación. Shipping rates se modifica en [Envíos](https://momiji-beauty.myshopify.com/admin/settings/shipping)",
