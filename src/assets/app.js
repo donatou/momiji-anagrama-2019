@@ -409,15 +409,6 @@ $(window).on('load resize scroll', () => {
   });
 });
 
-// AGREGAR EFECTOS DE ON SCROLL
-// $(window).on('load', () => {
-//   $('h1, h2, h3, h4, span,  p, a:not(.product), b ').addClass('element');
-//   $('.element').attr('data-aos', 'fade-in-up');
-//   $('.element').attr('data-aos-offset', '-50');
-//   $('.element').attr('data-aos-once', 'true');
-//   AOS.init();
-// });
-
 
 $(window).on('load', () => {
   // LOADER
