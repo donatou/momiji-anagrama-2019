@@ -1,0 +1,444 @@
+ {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+
+<script>
+  $(function(){
+    $(".edit").click(function(){
+      var id = $(this).data("id");
+      console.log(id);
+      $("#EditAddress_"+id).toggle();
+    })
+  })
+  $(function(){
+    $(".add").click(function(){
+      var id = $(this).data("id");
+      console.log(id);
+      $("#AddAddress").toggle();
+    })
+  })
+</script>
+
+<main class="cuenta">
+  
+  <section class="cuenta__detalle section__principal">
+    <div class="container">
+      <div class="row">
+          <div class="col-12 cuenta__title">
+              <h2>{{ 'customer.account.title' | t }}</h2>
+              <!--Borrar cuenta
+              <a class="btn__main" href="borrar-cuenta.html">Borrar cuenta</a>
+              -->
+          </div>
+      </div>
+
+      <div class="row mt-50 row-mobile">
+        <div class="col-md-12 col-lg-6 p-0">
+          <div class="col-12 section__title">
+            <h3>{{ 'customer.orders.title' | t }}</h3>
+          </div>
+        {% paginate customer.orders by 20 %}
+          <div class="col-12 d-none d-md-block">
+            {% if customer.orders.size != 0 %}
+            <table>
+              <tr>
+                <th>{{ 'customer.orders.order_number' | t }}</th>
+                <th>{{ 'customer.orders.date' | t }}</th>
+                <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                <th>{{ 'customer.orders.total' | t }}</th>
+              </tr>
+            {% for order in customer.orders %}
+              <tr>
+                <td data-label="{{ 'customer.orders.order_number' | t }}">{{ order.name | link_to: order.customer_url }}</td>
+                <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: format: 'month_day_year' }}</td>
+                <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
+                <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+              </tr>
+            {% endfor %}
+            </table>
+            {% else %}
+            <p>{{ 'customer.orders.none' | t }}</p>
+            {% endif %}
+          </div>
+          {% if paginate.pages > 1 %}
+            {% include 'pagination' %}
+          {% endif %}
+        {% endpaginate %}
+
+          <div class="col-12 d-md-none">
+        {% paginate customer.orders by 20 %}
+        {% if customer.orders.size != 0 %}
+          {% for order in customer.orders %}
+            <div class="card__order">
+              <table>
+                <tr>
+                  <th>{{ 'customer.orders.order_number' | t }}</th>
+                  <td data-label="{{ 'customer.orders.order_number' | t }}">{{ order.name | link_to: order.customer_url }}</td>
+                </tr>
+                <tr>
+                  <th>{{ 'customer.orders.date' | t }}</th>
+                  <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: format: 'month_day_year' }}</td>
+                </tr>
+                <tr>
+                  <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                  <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
+                </tr>
+                <tr>
+                  <th>{{ 'customer.orders.total' | t }}</th> 
+                  <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+                </tr>
+              </table>
+            </div>
+          {% endfor %}
+        {% else %}
+            <p>{{ 'customer.orders.none' | t }}</p>
+        {% endif %}
+          </div>
+          <br>
+          {% if paginate.pages > 1 %}
+            {% include 'pagination' %}
+          {% endif %}
+        {% endpaginate %}
+        </div>
+
+
+        <div class="col-md-12 col-lg-6 br">
+          <div class="row">
+            <div class="col-md-12 col-lg-9 mx-auto">
+              <div class="row">
+                <div class="col-12 section__title">
+                  <h3>{{ 'customer.account.details' | t }}</h3>
+                </div>
+                <div class="col-md-6 col-lg-12 cuenta__direccion">
+                  <b>{{ customer.name }}</b>
+                  <p>{{ customer.email }}</p>
+                  <p>Teléfono: {{customer.phone }}</p>
+                </div>
+
+              {% for address in customer.addresses %}
+                <div class="col-md-6 col-lg-12 cuenta__direccion" data-address>
+                  <b>
+                    {{ address.first_name | capitalize }} {{ address.last_name | capitalize }}
+                    {% if address == customer.default_address %}({{ 'customer.addresses.default' | t }}){% endif %}
+                  </b>
+
+                  <address>
+                    {% if address.company != '' %}
+                      {{ address.company }}<br>
+                    {% endif %}
+                    {{ address.street }}<br>
+                    {{ address.city }}<br>
+                    {% if address.province_code %}
+                      {{ address.province_code | upcase }}<br>
+                    {% endif %}
+                    {{ address.zip | upcase }}<br>
+                    {{ address.country }}<br>
+                    {{ address.phone }}
+                  </address>
+
+                  <div class="btn--100">
+                    <a class="btn__main edit w-50" data-id="{{ address.id }}">Editar dirección</a>
+                    <form class="address-delete-form" method="post" action="/account/addresses/{{ address.id }}" data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}">
+                      <input type="hidden" name="_method" value="delete"/>
+                      <button type="submit" class="btn__main btn__main--lighter ml-0 mt-2 w-50">
+                        {{ 'customer.addresses.delete' | t }}
+                      </button>
+                    </form>
+
+                  </div>
+                  
+                  {% form 'customer_address', address %}
+                    <div id="EditAddress_{{ address.id }}" class="mt-4" {% unless form.errors %}style="display:none;"{% endunless %}>
+
+                      <p class="text-link">{{ 'customer.addresses.edit_address' | t }}</p>
+
+                      <div class="selection-wrapper">
+                        {{ form.errors | default_errors }}
+                      </div>
+
+                      <div class="selection-wrapper" style="display:none">
+                        <div class="errors">{{ 'customer.addresses.error' | t }}</div>
+                      </div>
+
+                      <div class="selection-wrapper">
+
+                        <div>
+                          <input type="text" id="AddressFirstName_{{ form.id }}" class="input-full" name="address[first_name]" value="{{ form.first_name }}" autocapitalize="words" placeholder="{{ 'customer.addresses.first_name' | t }}" required>
+                        </div>
+                        
+                        <div>
+                          <input type="text" id="AddressLastName_{{ form.id }}" class="input-full" name="address[last_name]" value="{{ form.last_name }}" autocapitalize="words" placeholder="{{ 'customer.addresses.last_name' | t }}" required>
+                        </div>
+
+
+                        <div>
+                        {%- comment -%} Calle, número, departamento, etc. *antes era el campo COMPANY {%- endcomment -%}
+                          <input type="text" id="AddressCompany_{{ form.id }}" class="input-full" name="address[company]" value="{{ form.company }}" autocapitalize="words" placeholder="{{ 'customer.addresses.company' | t }}">
+                        </div>
+
+                        <div>
+                        {%- comment -%} Colonia o fraccionamiento. {%- endcomment -%}
+                          <input type="text" id="AddressAddress1_{{ form.id }}" class="input-full" name="address[address1]" value="{{ form.address1 }}" autocapitalize="words" placeholder="{{ 'customer.addresses.address1' | t }}" required>
+                        </div>
+
+                        <div>
+                        {%- comment -%} Referencia (entre calles, empresa, color de casa, etc.) {%- endcomment -%}
+                          <input type="text" id="AddressAddress2_{{ form.id }}" class="input-full" name="address[address2]" value="{{ form.address2 }}" autocapitalize="words" placeholder="{{ 'customer.addresses.address2' | t }}" required>
+                        </div>
+
+                        <div>
+                          <input type="text" id="AddressCity_{{ form.id }}" class="input-full" name="address[city]" value="{{ form.city }}" autocapitalize="words" placeholder="{{ 'customer.addresses.city' | t }}" required>
+                        </div>
+<div>
+<select name="country">
+  {{ data-provinces }}
+</select>
+</div>
+
+                        <div>
+                          <select name="address[province]" id="AddressProvince_{{ form.id }}" value="{{ form.province }}" placeholder="Estado" required>
+                            <option value="Aguascalientes">Aguascalientes</option>
+                            <option value="Baja California">Baja California</option>
+                            <option value="Baja California Sur">Baja California Sur</option>
+                            <option value="Campeche">Campeche</option>
+                            <option value="Chiapas">Chiapas</option>
+                            <option value="Chihuahua">Chihuahua</option>
+                            <option value="Ciudad de México">Ciudad de México</option>
+                            <option value="Coahuila">Coahuila</option>
+                            <option value="Colima">Colima</option>
+                            <option value="Durango">Durango</option>
+                            <option value="Guanajuato">Guanajuato</option>
+                            <option value="Guerrero">Guerrero</option>
+                            <option value="Hidalgo">Hidalgo</option>
+                            <option value="Jalisco">Jalisco</option>
+                            <option value="México">Estado de México</option>
+                            <option value="Michoacán">Michoacán</option>
+                            <option value="Morelos">Morelos</option>
+                            <option value="Nayarit">Nayarit</option>
+                            <option value="Nuevo León">Nuevo León</option>
+                            <option value="Oaxaca">Oaxaca</option>
+                            <option value="Puebla">Puebla</option>
+                            <option value="Querétaro">Querétaro</option>
+                            <option value="Quintana Roo">Quintana Roo</option>
+                            <option value="San Luis Potosí">San Luis Potosí</option>
+                            <option value="Sinaloa">Sinaloa</option>
+                            <option value="Sonora">Sonora</option>
+                            <option value="Tabasco">Tabasco</option>
+                            <option value="Tamaulipas">Tamaulipas</option>
+                            <option value="Tlaxcala">Tlaxcala</option>
+                            <option value="Veracruz">Veracruz</option>
+                            <option value="Yucatán">Yucatán</option>
+                            <option value="Zacatecas">Zacatecas</option>
+                          </select>
+                        </div>
+
+                        <div>
+                            <div class="input-col">
+                              <select id="AddressCountry_{{ form.id }}" class="input-full full-select" name="address[country]" data-default="{{ form.country }}">{{ country_option_tags }}</select>
+                            </div>
+                        </div>
+
+                        <div>
+                          <div class="input-col">
+                            <input type="text" id="AddressZip_{{ form.id }}" class="input-full" name="address[zip]" value="{{ form.zip }}" autocapitalize="characters" placeholder="{{ 'customer.addresses.zip' | t }}" required>
+                          </div>
+                        </div>
+
+                        <div>
+                          <div class="input-col">
+                            <input type="tel" id="AddressPhone_{{ form.id }}" class="input-full" name="address[phone]" value="{{ form.phone }}" placeholder="{{ 'customer.addresses.phone' | t }}" required>
+                          </div>
+                        </div>
+
+                        <div>
+                        <div class="checkbox">
+                          {{ form.set_as_default_checkbox }}
+                          <label for="address_default_address_{{ form.id }}"></label>
+                        </div>
+                          <label for="address_default_address_{{ form.id }}">{{ 'customer.addresses.set_default' | t }}</label>
+                        </div>
+
+                      </div>
+
+                        <button type="submit" class="btn__main mt-0 ml-0 w-100" value="{{ 'customer.addresses.update' | t }}">{{ 'customer.addresses.update' | t }}</button>
+
+                    </div>
+                  {% endform %}
+                </div>
+              {% endfor %}
+
+
+              <div class="col-md-6 col-lg-12 cuenta__direccion">
+                <!-- Nueva direccion -->
+                {% form 'customer_address', customer.new_address %}
+                  <div id="AddAddress" class="customer-address form-vertical bottom" {% unless form.errors %}style="display:none;"{% endunless %}>
+
+                    <p class="text-link">{{ 'customer.addresses.add' | t }}</p>
+
+                    <div class="selection-wrapper">
+                      {{ form.errors | default_errors }}
+                    </div>
+
+                    <div class="selection-wrapper" style="display:none">
+                      <div class="errors">{{ 'customer.addresses.error' | t }}</div>
+                    </div>
+
+                    <div class="selection-wrapper">
+                      <div class="input-row">
+                        <div class="grid">
+                          <div class="input-col">
+                            <input type="text" id="AddressFirstName_{{ form.id }}" class="input-full" name="address[first_name]" value="{{ form.first_name }}" autocapitalize="words" placeholder="{{ 'customer.addresses.first_name' | t }}" required>
+                          </div>
+                          <div class="input-col">
+                            <input type="text" id="AddressLastName_{{ form.id }}" class="input-full" name="address[last_name]" value="{{ form.last_name }}" autocapitalize="words" placeholder="{{ 'customer.addresses.last_name' | t }}" required>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="input-row">
+                        {%- comment -%} Calle, número, departamento, etc. *antes era el campo COMPANY {%- endcomment -%}
+                        <input type="text" id="AddressCompany_{{ form.id }}" class="input-full" name="address[company]" value="{{ form.company }}" autocapitalize="words" placeholder="{{ 'customer.addresses.company' | t }}" required>
+                      </div>
+
+                      <div class="input-row">
+                      {%- comment -%} Colonia o fraccionamiento. {%- endcomment -%}
+                        <input type="text" id="AddressAddress1_{{ form.id }}" class="input-full" name="address[address1]" value="{{ form.address1 }}" autocapitalize="words" placeholder="{{ 'customer.addresses.address1' | t }}" required>
+                      </div>
+
+                      <div class="input-row">
+                      {%- comment -%} Referencia (entre calles, empresa, color de casa, etc.) {%- endcomment -%}
+                        <input type="text" id="AddressAddress2_{{ form.id }}" class="input-full" name="address[address2]" value="{{ form.address2 }}" autocapitalize="words" placeholder="{{ 'customer.addresses.address2' | t }}" required>
+                      </div>
+
+                      <div class="input-col">
+                        <input type="text" id="AddressCity_{{ form.id }}" class="input-full" name="address[city]" value="{{ form.city }}" autocapitalize="words" placeholder="{{ 'customer.addresses.city' | t }}" required>
+                      </div>
+
+                      <div class="input-row">
+                        <select name="address[province]" id="AddressProvince_{{ form.id }}" value="{{ form.province }}" placeholder="Estado" required>
+                          <option value="Aguascalientes">Aguascalientes</option>
+                          <option value="Baja California">Baja California</option>
+                          <option value="Baja California Sur">Baja California Sur</option>
+                          <option value="Campeche">Campeche</option>
+                          <option value="Chiapas">Chiapas</option>
+                          <option value="Chihuahua">Chihuahua</option>
+                          <option value="Ciudad de México">Ciudad de México</option>
+                          <option value="Coahuila">Coahuila</option>
+                          <option value="Colima">Colima</option>
+                          <option value="Durango">Durango</option>
+                          <option value="Guanajuato">Guanajuato</option>
+                          <option value="Guerrero">Guerrero</option>
+                          <option value="Hidalgo">Hidalgo</option>
+                          <option value="Jalisco">Jalisco</option>
+                          <option value="México">Estado de México</option>
+                          <option value="Michoacán">Michoacán</option>
+                          <option value="Morelos">Morelos</option>
+                          <option value="Nayarit">Nayarit</option>
+                          <option value="Nuevo León">Nuevo León</option>
+                          <option value="Oaxaca">Oaxaca</option>
+                          <option value="Puebla">Puebla</option>
+                          <option value="Querétaro">Querétaro</option>
+                          <option value="Quintana Roo">Quintana Roo</option>
+                          <option value="San Luis Potosí">San Luis Potosí</option>
+                          <option value="Sinaloa">Sinaloa</option>
+                          <option value="Sonora">Sonora</option>
+                          <option value="Tabasco">Tabasco</option>
+                          <option value="Tamaulipas">Tamaulipas</option>
+                          <option value="Tlaxcala">Tlaxcala</option>
+                          <option value="Veracruz">Veracruz</option>
+                          <option value="Yucatán">Yucatán</option>
+                          <option value="Zacatecas">Zacatecas</option>
+                        </select>
+                      </div>
+
+                      <div class="input-row">
+                          <div class="input-col">
+                            <select id="AddressCountry_{{ form.id }}" class="input-full full-select" name="address[country]" data-default="{{ form.country }}">{{ country_option_tags }}</select>
+                          </div>
+                      </div>
+
+                      <div class="input-row">
+                        <div class="input-col">
+                          <input type="text" id="AddressZip_{{ form.id }}" class="input-full" name="address[zip]" value="{{ form.zip }}" autocapitalize="characters" placeholder="{{ 'customer.addresses.zip' | t }}" required>
+                        </div>
+                      </div>
+
+                      <div class="input-row">
+                        <div class="input-col">
+                          <input type="tel" id="AddressPhone_{{ form.id }}" class="input-full" name="address[phone]" value="{{ form.phone }}" placeholder="{{ 'customer.addresses.phone' | t }}" required>
+                        </div>
+                      </div>
+
+                      <div class="input-row">
+                      <div class="checkbox">
+                        {{ form.set_as_default_checkbox }}
+                        <label for="address_default_address_{{ form.id }}" class="inline"></label>
+                      </div>
+                        <label for="address_default_address_{{ form.id }}" class="inline">{{ 'customer.addresses.set_default' | t }}</label>
+                      </div>
+
+                    </div>
+
+                      <button class="btn__main mt-0 ml-0 w-100" value="{{ 'customer.addresses.add' | t }}">{{ 'customer.addresses.add' | t }}</button>
+
+                  </div>
+                {% endform %}
+              </div>
+
+                <!-- Trigger nueva direccion -->
+                <div class="col-12 cuenta__agregar">
+                  <p class="text-link">{{ 'customer.addresses.add_new' | t }}<a class="btn__more add" data-id="{{ address.id }}"></a></p>
+                </div>
+
+              </div>
+              
+            </div>
+            
+          </div>
+        </div>
+      </div>
+        
+    </div>
+  </section>
+    
+</main>
+
+<script>
+// Initialize observers on address selectors
+new Shopify.CountryProvinceSelector('AddressCountryNew', 'AddressProvinceNew', {
+  hideElement: 'AddressProvinceContainerNew'
+});
+
+// Setup province selector on each customer address
+{% for address in customer.addresses %}
+  new Shopify.CountryProvinceSelector('AddressCountry_{{ address.id }}', 'AddressProvince_{{ address.id }}', {
+    hideElement: 'AddressProvinceContainer_{{ address.id }}'}
+  );
+{% endfor %}
+
+ 
+
+  // Modified contents of customer_area.js (global asset)
+  Shopify.CustomerAddress = {
+    toggleForm: function(id) {
+      var editEl = document.getElementById('EditAddress_'+id);
+      editEl.style.display = editEl.style.display == 'none' ? '' : 'none';
+      return false;
+    },
+
+    toggleNewForm: function() {
+      var addEl = document.getElementById('AddAddress_'+id);
+      addEl.style.display = addEl.style.display == 'none' ? '' : 'none';
+      return false;
+    },
+
+    destroy: function(id, confirm_msg) {
+      if (confirm(confirm_msg || "Are you sure you wish to delete this address?")) {
+        Shopify.postLink('/account/addresses/'+id, {'parameters': {'_method': 'delete'}});
+      }
+    }
+  }
+
+    // Initialize observers on address selectors
+  new Shopify.CountryProvinceSelector('address_country_new', 'address_province_new', {
+    hideElement: 'address_province_container_new'
+  });
+</script>

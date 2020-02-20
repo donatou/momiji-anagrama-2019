@@ -11,8 +11,10 @@
         </div>
 
         {% assign shipping_value = settings.costo_enviogratis | times: 100 %}
+        {% assign shipping_value_x = settings.costo_envio_x | times: 100 %}
         {% assign cart_total = cart.total_price %}
         {% assign shipping_value_left = shipping_value | minus: cart_total %}
+        {% assign shipping_value_x_left = shipping_value_x | minus: cart_total %}
 
         {% if cart.item_count != 0 %}
         <form action="/cart" method="post" id="cartform" style="display:{% if cart.item_count == 0 %}none{% else %}block{% endif %};">
@@ -102,6 +104,20 @@
                   ¡Agrega {{ shipping_value_left | money }} para que tu envío sea gratis!
                   {% else %}
                   Tu orden califica para envío gratis.
+                  {% endif %}
+                </p>
+
+          {%- comment -%}
+          Envío en XX en compras arriba de X.
+          {%- endcomment -%}
+            {% when 'envio_gasto_x' %}
+                <p class="cartfreeshipping">
+                  {% if cart_total < shipping_value_x %}
+                    Agrega {{ shipping_value_x_left | money }} para que tu envío cueste {{ settings.envio_x | times: 100 | money }} MXN.
+                  {% elsif cart_total >= shipping_value_x and cart_total < shipping_value %}
+                    ¡Tu orden califica para envío en {{ settings.envio_x | times: 100 | money }} MXN!<br />Agrega {{ shipping_value_left | money }} más para que tu envío sea gratis.
+                  {% else %}
+                    ¡Tu orden califica para envío gratis!
                   {% endif %}
                 </p>
 
