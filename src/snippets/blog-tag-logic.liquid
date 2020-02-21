@@ -22,3 +22,8 @@
 {% if article.tags contains "self care" %}
 {% assign selfcare = true %}
 {% endif %}
+
+{% assign lifestyle = false %}
+{% if article.tags contains "lifestyle" %}
+{% assign lifestyle = true %}
+{% endif %}
