@@ -9715,7 +9715,13 @@ account/orders page
   }
 }
 
-.icon, .icon-heart {
+.icon {
+  background-size: contain;
+  background-position: center;
+  z-index: 1;
+  display: inline-block;
+}
+.icon-heart {
   background-size: contain;
   background-position: center;
   height: 23px;
@@ -9725,7 +9731,7 @@ account/orders page
   transform: rotate(90deg);
 }
 @media (max-width: 767px) {
-  .icon, .icon-heart {
+  .icon-heart {
     height: 23px;
     width: 25px;
   }
