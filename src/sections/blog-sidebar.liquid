@@ -39,6 +39,26 @@
 {% endfor %}
 
 <h4 class="mb-1">
+    <a class="h6">Lifestyle</a>
+</h4>
+{% assign mostrar = 0 %}
+{% for article in blog.articles %}
+{% capture length %}{{ forloop.length  }}{% endcapture %}
+    {% include 'blog-tag-logic' %}
+    {% if article.tags contains "lifestyle" or article.tags contains "Lifestyle"   %}
+        <a href="{{ article.url }}">
+            <div class="lifestyle-blog col-lg-12 bg-white d-flex mb-3 px-0">
+                {% include 'blog-thumb-individual' %}
+            </div>
+        </a>
+    {% assign mostrar = mostrar | plus: 1 %}
+        {% if mostrar >= 4 %}
+            {% break %}
+        {% endif%}
+    {% endif %}
+{% endfor %}
+
+<h4 class="mb-1">
     <a class="h6">Reseñas</a>
 </h4>
 {% assign mostrar = 0 %}

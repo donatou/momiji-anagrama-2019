@@ -1,24 +1,29 @@
 {% assign skincare = false %}
-{% if article.tags contains "skincare" %}
+{% if article.tags contains "skincare" or article.tags contains "Skincare" %}
 {% assign skincare = true %}
 {% endif %}
 
 {% assign entrevistas = false %}
-{% if article.tags contains "entrevistas" %}
+{% if article.tags contains "entrevistas" or article.tags contains "Entrevistas" %}
 {% assign entrevistas = true %}
 {% endif %}
 
 {% assign kbeauty = false %}
-{% if article.tags contains "k-beauty" %}
+{% if article.tags contains "k-beauty" or article.tags contains "K-beauty" %}
 {% assign kbeauty = true %}
 {% endif %}
 
 {% assign resenas = false %}
-{% if article.tags contains "reseñas" %}
+{% if article.tags contains "reseñas" or article.tags contains "Reseñas"  %}
 {% assign resenas = true %}
 {% endif %}
 
 {% assign selfcare = false %}
-{% if article.tags contains "self care" %}
+{% if article.tags contains "self care" or article.tags contains "Self Care" %}
 {% assign selfcare = true %}
+{% endif %}
+
+{% assign lifestyle = false %}
+{% if article.tags contains "lifestyle" or article.tags contains "Lifestyle" %}
+{% assign lifestyle = true %}
 {% endif %}

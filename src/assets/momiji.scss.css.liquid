@@ -5213,7 +5213,7 @@ footer {
 	z-index: 0;
 }
 
-.new:before, .soon:before, .momi:before, .clean:before, .skincare-blog:before, .selfcare-blog:before, .resenas-blog:before, .kbeauty-blog:before, .entrevistas-blog:before {
+.new:before, .soon:before, .momi:before, .clean:before, .skincare-blog:before, .selfcare-blog:before, .resenas-blog:before, .kbeauty-blog:before, .entrevistas-blog:before, .lifestyle-blog:before {
   content: "";
   z-index: 44;
   position: absolute; }
@@ -5269,7 +5269,10 @@ footer {
 .entrevistas-blog:before {
   background: url({{ 'entrevistas-blog.svg' | asset_url }}) no-repeat; }
 
-.skincare-blog:before, .selfcare-blog:before, .resenas-blog:before, .kbeauty-blog:before, .entrevistas-blog:before {
+.lifestyle-blog:before {
+  background: url({{ 'lifestyle-blog.svg' | asset_url }}) no-repeat; }
+
+.skincare-blog:before, .selfcare-blog:before, .resenas-blog:before, .kbeauty-blog:before, .entrevistas-blog:before, .lifestyle-blog:before {
   background-size: contain;
   top: -20px;
   height: 80px;
