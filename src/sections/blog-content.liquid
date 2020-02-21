@@ -34,11 +34,11 @@
                 {% include 'blog-tag-logic' %}
                   <a href="{{ article.url }}"
                   {% if skincare %} class="skincare-blog"
-                  {% elsif lifestyle %} class="lifestyle-blog"
                   {% elsif selfcare %} class="selfcare-blog"
                   {% elsif resenas %} class="resenas-blog"
                   {% elsif kbeauty %} class="kbeauty-blog"
-                  {% else entrevistas %} class="entrevistas-blog"
+                  {% elsif entrevistas %} class="entrevistas-blog"
+                  {% else lifestyle %} class="lifestyle-blog"
                   {% endif %}>
                   <img src="{{ article.image.src | img_url: '640x' }}" class="pb-3">
                     {%- comment -%}{% include 'responsive-image' with
