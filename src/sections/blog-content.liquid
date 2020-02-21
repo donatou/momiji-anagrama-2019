@@ -34,6 +34,7 @@
                 {% include 'blog-tag-logic' %}
                   <a href="{{ article.url }}"
                   {% if skincare %} class="skincare-blog"
+                  {% elsif lifestyle %} class="lifestyle-blog"
                   {% elsif selfcare %} class="selfcare-blog"
                   {% elsif resenas %} class="resenas-blog"
                   {% elsif kbeauty %} class="kbeauty-blog"
