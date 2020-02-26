@@ -11,8 +11,9 @@
   {% assign clean = true %}
 {% elsif product.tags contains "momis_pick" %}
   {% assign momi = true %}
-{% else product.tags contains "nuevo" %}
+{% elsif product.tags contains "nuevo" %}
   {% assign new = true %}
+{% else %}
 {% endif %}
 
 
