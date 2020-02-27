@@ -1,7 +1,3 @@
-{%- comment -%}
-Grid item sin container div de estilo
-{%- endcomment -%}
-
 {% include 'tag-logic' %}
 
 <a  href="{{ product.url | within: collection }}"
@@ -9,7 +5,7 @@ Grid item sin container div de estilo
             {% elsif new %}product new
             {% else %}product
             {% endif %}
-            " > {%- comment -%} se tiene que hacer cuatro clases diferentes: product, product new, product momi, product soon sacado de variables asignadas en tag-logic snippet. {%- endcomment -%}
+            " >
     <div class="product__container">
         <div class="product__container--main img-container">
             <img src="{{ product | img_url: '496x' }}" alt="{{ product.title | escape }}">
@@ -18,14 +14,11 @@ Grid item sin container div de estilo
             <img src="{{ product.images.last | img_url: '496x' }}" alt="{{ product.title | escape }}">
         </div> 
     </div>
-
     {% include 'grid-item-icons' %}
-
     <div class="product__info">
         <div class="product__info--brand">
             <p>by {{ product.vendor }}</p>
             <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
-            {%- comment -%}<button class="btn__wishlist product_{{product.id}}" data-swaction="addToWatchlist" data-product-id="{{product.id | json}}"></button>{%- endcomment -%}
         </div>
         <div class="product__info--name">
             <p>{{ product.title }}</p>
@@ -36,10 +29,5 @@ Grid item sin container div de estilo
             <span>{{ product.price | money }}</span>        
         {% endif %}
         </div>
-
     </div>
 </a>
-
-{%- comment -%}
-Grid item sin container div de estilo - END
-{%- endcomment -%}

@@ -1,35 +1,14 @@
+{%- comment -%}
+Esta validación funciona con las etiquetas de abajo del thumbnail. No tiene nada que ver con los badges de Clean Beauty ni Momis Pick.
+{%- endcomment -%}
+
 {% assign soon = true %}
-{% assign clean = false %}
-{% assign momi = false %}
 {% assign new = false %}
 
 {% if product.available %}
   {% assign soon = false %}
 {% endif %}
 
-{% if product.tags contains "clean_beauty" %}
-  {% assign clean = true %}
-{% elsif product.tags contains "momis_pick" %}
-  {% assign momi = true %}
-{% elsif product.tags contains "nuevo" %}
+{% if product.tags contains "nuevo" or product.tags contains "Nuevo" %}
   {% assign new = true %}
-{% else %}
 {% endif %}
-
-
-{% comment %} {% assign soon = false %}
-{% assign clean = false %}
-{% assign momi = false %}
-{% assign new = false %}
-
-{% case badge %}
-  {% when product.available %}
-    {% assign soon = true %}
-  {% when product.tags contains "clean beauty" %}
-    {% assign clean = true %}
-  {% when product.tags contains "momis_pick" %}
-    {% assign momi = true %}
-  {% when product.tags contains "nuevo" %}
-    {% assign new = true %}
-  {% else %}
-{% endcase %} {% endcomment %}
