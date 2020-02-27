@@ -7,8 +7,6 @@ Grid item sin container div de estilo
 <a  href="{{ product.url | within: collection }}"
     class=  "{% if soon %}product soon
             {% elsif new %}product new
-            {% elsif momi %}product momi
-            {% elsif clean %}product clean
             {% else %}product
             {% endif %}
             " > {%- comment -%} se tiene que hacer cuatro clases diferentes: product, product new, product momi, product soon sacado de variables asignadas en tag-logic snippet. {%- endcomment -%}
@@ -21,7 +19,7 @@ Grid item sin container div de estilo
         </div> 
     </div>
 
-{% include 'grid-item-icons' %}
+    {% include 'grid-item-icons' %}
 
     <div class="product__info">
         <div class="product__info--brand">
