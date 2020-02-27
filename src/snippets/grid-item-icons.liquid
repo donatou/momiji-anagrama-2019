@@ -1,0 +1,12 @@
+{% capture clean_string %}<img src="{{ 'clean_48px.svg' | asset_url }}" alt="Clean">{% endcapture %}
+{% capture momi_string %}<img src="{{ 'momi_48px.svg' | asset_url }}" alt="Momi">{% endcapture %}
+
+    <div class="icon-list">
+        <ul>
+            {% for tag in product.tags %}
+                {% if tag contains 'momis_pick' %}<li>{{ momi_string }}{% break %}</li>{% endif %}
+                {% if tag contains 'clean_beauty' %}<li>{{ clean_string }}{% break %}</li>{% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
