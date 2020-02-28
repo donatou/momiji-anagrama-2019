@@ -5235,7 +5235,7 @@ footer {
 	z-index: 0;
 }
 
-.new:before, .soon:before, .momi:before, .clean:before, .skincare-blog:before, .selfcare-blog:before, .resenas-blog:before, .kbeauty-blog:before, .entrevistas-blog:before {
+.new:before, .soon:before, .momi:before, .clean:before, .skincare-blog:before, .selfcare-blog:before, .resenas-blog:before, .kbeauty-blog:before, .entrevistas-blog:before, .lifestyle-blog:before {
   content: "";
   z-index: 44;
   position: absolute; }
@@ -5291,7 +5291,10 @@ footer {
 .entrevistas-blog:before {
   background: url({{ 'entrevistas-blog.svg' | asset_url }}) no-repeat; }
 
-.skincare-blog:before, .selfcare-blog:before, .resenas-blog:before, .kbeauty-blog:before, .entrevistas-blog:before {
+.lifestyle-blog:before {
+  background: url({{ 'lifestyle-blog.svg' | asset_url }}) no-repeat; }
+
+.skincare-blog:before, .selfcare-blog:before, .resenas-blog:before, .kbeauty-blog:before, .entrevistas-blog:before, .lifestyle-blog:before {
   background-size: contain;
   top: -20px;
   height: 80px;
@@ -9867,7 +9870,13 @@ account/orders page
   }
 }
 
-.icon, .icon-heart {
+.icon {
+  background-size: contain;
+  background-position: center;
+  z-index: 1;
+  display: inline-block;
+}
+.icon-heart {
   background-size: contain;
   background-position: center;
   height: 23px;
@@ -9877,7 +9886,7 @@ account/orders page
   transform: rotate(90deg);
 }
 @media (max-width: 767px) {
-  .icon, .icon-heart {
+  .icon-heart {
     height: 23px;
     width: 25px;
   }
@@ -9910,3 +9919,22 @@ account/orders page
   background: url({{ 'icon-heart.svg' | asset_url }}) no-repeat;
   transform: rotate(0deg);
 }
+
+/**
+    Grid Item icons
+**/
+.icon-list {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+}
+  .icon-list ul {
+    list-style-type: none;
+  }
+    .icon-list li {
+      padding-bottom: 10px;
+    }
+      .icon-list li img {
+        width: 48px;
+        height: 48px;
+      }

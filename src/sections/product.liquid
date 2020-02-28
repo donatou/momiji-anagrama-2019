@@ -30,7 +30,8 @@
                 <div class="swiper-wrapper">
                 {% for image in product.images %}
                   <div class="swiper-slide img-container" style="background-image:url({{ image.src | product_img_url: '793x' }}); background-size: cover;">{%- comment -%}<button class="btn__wishlist product_{{product.id}}" data-swaction="addToWishlist" data-product-id="{{product.id | json}}"></button>{%- endcomment -%}</div>
-                {% endfor %} 
+                {% endfor %}
+                {% include 'grid-item-icons' %}
                 </div>
               </div>
             </div>
@@ -41,12 +42,18 @@
 
       {% include 'tag-logic' %}
 
-      <div class="col-md-6 col-lg-5 section__container
+      {% comment %} <div class="col-md-6 col-lg-5 section__container
         {% if soon %} product soon 
         {% elsif new %} product new 
         {% elsif momi %} product momi 
         {% elsif clean %} product clean
         {% else %} product 
+        {% endif %}
+        "> {% endcomment %}
+      <div class="col-md-6 col-lg-5 section__container
+        {% if soon %} product soon
+        {% elsif new %} product new
+        {% else %} product
         {% endif %}
         ">
         <h1 class="text-link">by {{ product.vendor }}</h1>

@@ -1,0 +1,20 @@
+<div class="icon-list">
+    <ul>
+        {% for tag in product.tags %}
+            {% if tag contains 'momis_pick' %}
+                <li>
+                    <img src="{{ 'momi_48px.svg' | asset_url }}" alt="Momi's Pick">
+            {% break %}
+                </li>
+            {% endif %}
+        {% endfor %}
+        {% for tag in product.tags %}
+            {% if tag contains 'clean_beauty' %}
+                <li>
+                    <img src="{{ 'clean_48px.svg' | asset_url }}" alt="Clean Beauty">
+            {% break %}
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
