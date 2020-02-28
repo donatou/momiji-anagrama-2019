@@ -4591,8 +4591,10 @@ a.text-dark:hover, a.text-dark:focus {
 
 /* // MIDABI  */
 
-#midabi .home {
+#midabi .home .img-container img{
   overflow-x: visible;
+  transition: opacity 700ms;
+  transition-delay:500ms;
 }
 
 @media (max-width: 767.98px) {
@@ -9750,8 +9752,8 @@ account/orders page
   display: flex;
   align-items: center;
   justify-content: center;
-  position: -webkit-sticky;
-  position: sticky;
+  /* position: -webkit-sticky;
+  position: sticky; */
   will-change:transform;
   top: 0;
   z-index: 0;
