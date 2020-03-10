@@ -6,53 +6,71 @@
     <div class="container">
       <div class="row">
           <div class="col-12 cuenta__title">
-              <h2>Mi Cuenta</h2>
-              <a class="btn__main" href="borrar-cuenta.html">Borrar cuenta</a>
+              {% comment %} Mi cuenta {% endcomment %}
+              <h2>{{ 'customer.account.title' | t }}</h2>
           </div>
       </div>
 
       <div class="row mt-50 row-mobile">
         <div class="col-md-12 col-lg-6 p-0">
           <div class="col-12 section__title">
-            <h3>Historia de órdenes</h3>
+          {% comment %} Historial de ordenes {% endcomment %}
+            <h3>{{ 'customer.orders.title' | t }}</h3>
           </div>
+
+        {% comment %} Layout desktop END {% endcomment %}
           <div class="col-12 d-none d-md-block">
             <table>
               <tr>
-                <th>Orden</th>
-                <th>Fecha</th>
-                <th>Estatus de Envío</th>
-                <th>Total</th>
+                <th>{{ 'customer.orders.order_number' | t }}</th>
+                <th>{{ 'customer.orders.date' | t }}</th>
+                <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                <th>{{ 'shopify.checkout.order_summary.discount_label' | t }}</th>
+                <th>{{ 'customer.orders.total' | t }}</th>
               </tr>
+              {% if customer.orders.size != 0 %}
               {% for order in customer.orders %}
               <tr>
                 <td>{{ order.name | link_to: order.customer_url }}</td>
                 <td>{{ order.created_at | date: format: 'month_day_year' }}</td>
                 <td>{{ order.fulfillment_status_label }}</td>
+                {% if order.total_discounts != 0 %}
+                  {% for discount_application in order.discount_applications %}
+                    <td>{{ discount_application.title }}</td>
+                  {% endfor %}
+                  {% else %}
+                    <td>Ninguno</td>
+                {% endif %}
                 <td>{{ order.total_price | money }}</td>
               </tr>
               {% endfor %}
+              {% else %}
+                <p>{{ 'customer.orders.none' | t }}</p>
+              {% endif %}
             </table>
           </div>
+        {% comment %} Layout desktop END {% endcomment %}
 
+        {% comment %} Layout moviles {% endcomment %}
           <div class="col-12 d-md-none">
+          {% if customer.orders.size != 0 %}
           {% for order in customer.orders %}
             <div class="card__order">
               <table>
                 <tr>
-                  <th>Orden</th>
+                  <th>{{ 'customer.orders.order_number' | t }}</th>
                   <td>{{ order.name | link_to: order.customer_url }}</td>
                 </tr>
                 <tr>
-                  <th>Fecha</th>
+                  <th>{{ 'customer.orders.date' | t }}</th>
                   <td>{{ order.created_at | date: format: 'month_day_year' }}</td>
                 </tr>
                 <tr>
-                  <th>Estatus de Envío</th>
+                  <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
                   <td>{{ order.fulfillment_status_label }}</td>
                 </tr>
                 <tr>
-                  <th>Código de descuento</th>
+                  <th>{{ 'shopify.checkout.order_summary.discount_label' | t }}</th>
                   {% if order.total_discounts != 0 %}
                   {% for discount_application in order.discount_applications %}
                     <td>{{ discount_application.title }}</td>
@@ -62,13 +80,17 @@
                   {% endif %}
                 </tr>
                 <tr>
-                  <th>Total</th> 
+                  <th>{{ 'customer.orders.total' | t }}</th> 
                   <td>{{ order.total_price | money }}</td>
                 </tr>
               </table>
             </div>
-          {% endfor %}            
+          {% endfor %}  
+          {% else %}
+            <p>{{ 'customer.orders.none' | t }}</p>
+          {% endif %}          
           </div>
+        {% comment %} Layout moviles END {% endcomment %}  
 
         </div>
 
@@ -77,7 +99,7 @@
             <div class="col-md-12 col-lg-9 mx-auto">
               <div class="row">
                 <div class="col-12 section__title">
-                  <h3>Mis direcciones</h3>
+                  <h3>{{ 'shopify.page_titles.addresses' | t }}</h3>
                 </div>
                 <div class="col-md-6 col-lg-12 cuenta__direccion">
                   <p class="text-link">Dirección principal</p>
