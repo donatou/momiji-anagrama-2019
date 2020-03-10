@@ -33,7 +33,7 @@ function initializeAddressForm(countryProvinceSelector, container) {
 
   container.querySelectorAll(selectors.addressToggle).forEach((button) => {
     button.addEventListener('click', () => {
-      console.log("entro");
+      console.log('entro');
       addressForm.classList.toggle(hideClass);
     });
   });

@@ -25,7 +25,7 @@
                 <th>{{ 'customer.orders.order_number' | t }}</th>
                 <th>{{ 'customer.orders.date' | t }}</th>
                 <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
-                <th>{{ 'shopify.checkout.order_summary.discount_label' | t }}</th>
+                <th>{{ 'shopify.checkout.order_summary.discount_title' | t }}</th>
                 <th>{{ 'customer.orders.total' | t }}</th>
               </tr>
               {% if customer.orders.size != 0 %}
@@ -102,31 +102,83 @@
                   <h3>{{ 'shopify.page_titles.addresses' | t }}</h3>
                 </div>
                 <div class="col-md-6 col-lg-12 cuenta__direccion">
-                  <p class="text-link">Dirección principal</p>
-                  <b>Carolina Ortiz</b>
-                  <p>carolina@anagrama.com</p>
-                  <p>11 de Abril de 1989</p>
-                  <address>Guillermo Prieto N. 400, Colonia Palo Blanco, San Pedro Garza Garcia, Monterrey Nuevo León, México. Código Postal 66220 </address>
-                  <p>81 1176 3931</p>
-                  <div class="btn--100">
-                    <a class="btn__main" href="cuenta-direccion.html">Editar dirección</a>
-                    <a class="btn__main btn__main--lighter" href="/">Borrar dirección</a>
-                  </div>
+                  <b>{{ customer.name }}</b>
+                  <p>{{ customer.email }}</p>
+                  <p>{{ customer.metafields['customer']['birthday'] }}</p>
                 </div>
+
+              {% for address in customer.addresses %}
                 <div class="col-md-6 col-lg-12 cuenta__direccion">
-                  <p class="text-link">Dirección principal</p>
-                  <b>Carolina Ortiz</b>
-                  <p>carolina@anagrama.com</p>
-                  <p>11 de Abril de 1989</p>
-                  <address>Guillermo Prieto N. 400, Colonia Palo Blanco, San Pedro Garza Garcia, Monterrey Nuevo León, México. Código Postal 66220 </address>
-                  <p>81 1176 3931</p>
+                {% if address == customer.default_address %}
+                  <p class="text-link">{{ 'customer.addresses.default' | t }}</p>
+                {% endif %}
+                  <b>{{ address.name }}</b>
+                  <p>{{ address.email }}</p>
+                  <address data-addressId={{ address.id }}>{{ address.company }}, {{ address.address2 }}, {{ address.address1 }}, {{ address.city }}, {{ address.province_code }}, {{ address.country }}. {{ 'shopify.addresses.zip_code'| t }} {{ address.zip }}</address>
+                  <p>{{ address.phone }}</p>
                   <div class="btn--100">
-                    <a class="btn__main" href="cuenta-direccion.html">Editar dirección</a>
-                    <a class="btn__main btn__main--lighter" href="/">Borrar dirección</a>
+                    <a class="btn__main" href="/account/addresses">{{ 'customer.addresses.edit_address' | t }}</a>
+                    <a class="btn__main btn__main--lighter" href="/">{{ 'customer.addresses.delete' | t }}</a>
                   </div>
                 </div>
+              {% endfor %}
+
+        {% comment %}
+          <div class="row">
+            <div class="col-md-10 col-lg-5 mx-auto mt-30">
+              <form action="" class="row">
+                <div class="col-12">
+                  <p class="text-link">Dirección principal</p>
+        {% endcomment %}
+
+{% comment %} {% form 'customer_address', customer.new_address %}
+
+  <input type="text" id="AddressFirstName_{{ form.id }}" class="input-full" name="address[first_name]" value="{{ form.first_name }}" autocapitalize="words" placeholder="{{ 'customer.addresses.first_name' | t }}" required>
+  <div class="input-error"><p>{{ 'shopify.checkout.field_errors.address_first_name_blank' | t }}</p></div>
+
+  <input type="text" id="AddressLastName_{{ form.id }}" class="input-full" name="address[last_name]" value="{{ form.last_name }}" autocapitalize="words" placeholder="{{ 'customer.addresses.last_name' | t }}" required>
+  <div class="input-error"><p>{{ 'shopify.checkout.field_errors.address_last_name_blank' | t }}</p></div>
+
+  <input type="text" id="AddressCompany_{{ form.id }}" class="input-full" name="address[company]" value="{{ form.company }}" autocapitalize="words" placeholder="{{ 'customer.addresses.company' | t }}">
+  <div class="input-error"><p>{{ 'shopify.checkout.field_errors.address_company_blank' | t }}</p></div>
+
+  <input type="text" id="AddressAddress2_{{ form.id }}" class="input-full" name="address[address2]" value="{{ form.address2 }}" autocapitalize="words" placeholder="{{ 'customer.addresses.address2' | t }}" required>
+  <div class="input-error"><p>{{ 'shopify.checkout.field_errors.address_address2_blank' | t }}</p></div>
+
+  <input type="text" id="AddressAddress1_{{ form.id }}" class="input-full" name="address[address1]" value="{{ form.address1 }}" autocapitalize="words" placeholder="{{ 'customer.addresses.address1' | t }}" required>
+  <div class="input-error"><p>{{ 'shopify.checkout.field_errors.address_address1_blank' | t }}</p></div>
+
+  <input type="text" id="AddressCity_{{ form.id }}" class="input-full" name="address[city]" value="{{ form.city }}" autocapitalize="words" placeholder="{{ 'customer.addresses.city' | t }}" required>
+  <div class="input-error"><p>{{ 'shopify.checkout.field_errors.address_city_blank' | t }}</p></div>
+  <select name="address[province]" id="AddressProvince_{{ form.id }}" value="{{ form.province }}" placeholder="Estado" data-default="{{form.province}}" required></select>
+
+
+<!--
+nombres <input type="text" id="AddressFirstName_{{ form.id }}" class="input-full" name="address[first_name]" value="{{ form.first_name }}" autocapitalize="words" placeholder="{{ 'customer.addresses.first_name' | t }}" required>
+
+apellidos <input type="text" id="AddressLastName_{{ form.id }}" class="input-full" name="address[last_name]" value="{{ form.last_name }}" autocapitalize="words" placeholder="{{ 'customer.addresses.last_name' | t }}" required>
+
+calle y numero (company) <input type="text" id="AddressCompany_{{ form.id }}" class="input-full" name="address[company]" value="{{ form.company }}" autocapitalize="words" placeholder="{{ 'customer.addresses.company' | t }}">
+
+referencia (address2) <input type="text" id="AddressAddress2_{{ form.id }}" class="input-full" name="address[address2]" value="{{ form.address2 }}" autocapitalize="words" placeholder="{{ 'customer.addresses.address2' | t }}" required>
+
+colonia (address1) <input type="text" id="AddressAddress1_{{ form.id }}" class="input-full" name="address[address1]" value="{{ form.address1 }}" autocapitalize="words" placeholder="{{ 'customer.addresses.address1' | t }}" required>
+
+ciudad (city) <input type="text" id="AddressCity_{{ form.id }}" class="input-full" name="address[city]" value="{{ form.city }}" autocapitalize="words" placeholder="{{ 'customer.addresses.city' | t }}" required>
+
+shopify.checkout.field_errors.address_province_blank
+edo (province code)
+
+pais (country)
+
+cp (address zip)
+ -->
+
+{% endform %} {% endcomment %}
+
+
                 <div class="col-12 cuenta__agregar">
-                  <p class="text-link">AGREGAR NUEVA DIRECCIÓN<a href="cuenta-direccion.html" class="btn__more"></a></p>
+                  <p class="text-link">{{ 'customer.addresses.add_new' | t }}<a href="cuenta-direccion.html" class="btn__more"></a></p>
                 </div>
               </div>
               
