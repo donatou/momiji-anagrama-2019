@@ -32,54 +32,64 @@
     <div id="AddAddress" class="col-md-10 col-lg-5 mx-auto mt-30" style="display: none;">
       {% form 'customer_address', customer.new_address, class: 'row' %}
 
-        <h2 class="h3">{{ 'customer.addresses.add_new' | t }}</h2>
+        {% comment %} <h2 class="h3">{{ 'customer.addresses.add_new' | t }}</h2> {% endcomment %}
 
           <div class="col-12">
             {% comment %} <label for="AddressFirstNameNew">{{ 'customer.addresses.first_name' | t }}</label> {% endcomment %}
-            <input type="text" id="AddressFirstNameNew" class="input-full" name="address[first_name]" value="{{form.first_name}}" autocapitalize="words" placeholder="{{ 'customer.addresses.first_name' | t }}">
+            <input type="text" id="AddressFirstNameNew" class="input-full" name="address[first_name]" value="{{form.first_name}}" autocapitalize="words" placeholder="{{ 'customer.addresses.first_name' | t }}" required>
+            <div class="input-error"><p>{{ 'shopify.checkout.field_errors.address_first_name_blank' | t }}</p></div>
           </div>
 
           <div class="col-12">
             {% comment %} <label for="AddressLastNameNew">{{ 'customer.addresses.last_name' | t }}</label> {% endcomment %}
-            <input type="text" id="AddressLastNameNew" class="input-full" name="address[last_name]" value="{{form.last_name}}" autocapitalize="words" placeholder="{{ 'customer.addresses.last_name' | t }}">
+            <input type="text" id="AddressLastNameNew" class="input-full" name="address[last_name]" value="{{form.last_name}}" autocapitalize="words" placeholder="{{ 'customer.addresses.last_name' | t }}" required>
+            <div class="input-error"><p>{{ 'shopify.checkout.field_errors.address_last_name_blank' | t }}</p></div>
           </div>
 
           <div class="col-12">
             {% comment %} <label for="AddressCompanyNew">{{ 'customer.addresses.company' | t }}</label> {% endcomment %}
-            <input type="text" id="AddressCompanyNew" class="input-full" name="address[company]" value="{{form.company}}" autocapitalize="words" placeholder="{{ 'customer.addresses.company' | t }}">
+            <input type="text" id="AddressCompanyNew" class="input-full" name="address[company]" value="{{form.company}}" autocapitalize="words" placeholder="{{ 'customer.addresses.company' | t }}" required>
+            <div class="input-error"><p>{{ 'shopify.checkout.field_errors.address_company_blank' | t }}</p></div>
           </div>
-          <div class="col-12">
-            {% comment %} <label for="AddressAddress1New">{{ 'customer.addresses.address1' | t }}</label> {% endcomment %}
-            <input type="text" id="AddressAddress1New" class="input-full" name="address[address1]" value="{{form.address1}}" autocapitalize="words" placeholder="{{ 'customer.addresses.address1' | t }}">
-          </div>
+
           <div class="col-12">
             {% comment %} <label for="AddressAddress2New">{{ 'customer.addresses.address2' | t }}</label> {% endcomment %}
-            <input type="text" id="AddressAddress2New" class="input-full" name="address[address2]" value="{{form.address2}}" autocapitalize="words" placeholder="{{ 'customer.addresses.address2' | t }}">
+            <input type="text" id="AddressAddress2New" class="input-full" name="address[address2]" value="{{form.address2}}" autocapitalize="words" placeholder="{{ 'customer.addresses.address2' | t }}" required>
+            <div class="input-error"><p>{{ 'shopify.checkout.field_errors.address_address2_blank' | t }}</p></div>
+          </div>
+
+          <div class="col-12">
+            {% comment %} <label for="AddressAddress1New">{{ 'customer.addresses.address1' | t }}</label> {% endcomment %}
+            <input type="text" id="AddressAddress1New" class="input-full" name="address[address1]" value="{{form.address1}}" autocapitalize="words" placeholder="{{ 'customer.addresses.address1' | t }}" required>
+            <div class="input-error"><p>{{ 'shopify.checkout.field_errors.address_address1_blank' | t }}</p></div>
           </div>
 
           <div class="col-12">
             {% comment %} <label for="AddressCityNew">{{ 'customer.addresses.city' | t }}</label> {% endcomment %}
-            <input type="text" id="AddressCityNew" class="input-full" name="address[city]" value="{{form.city}}" autocapitalize="words" placeholder="{{ 'customer.addresses.city' | t }}">
+            <input type="text" id="AddressCityNew" class="input-full" name="address[city]" value="{{form.city}}" autocapitalize="words" placeholder="{{ 'customer.addresses.city' | t }}" required>
+            <div class="input-error"><p>{{ 'shopify.checkout.field_errors.address_city_blank' | t }}</p></div>
           </div>
 
           <div class="col-6">
             {% comment %} <label for="AddressCountryNew">{{ 'customer.addresses.country' | t }}</label> {% endcomment %}
-            <select id="AddressCountryNew" class="input-full" name="address[country]" data-default="{{form.country}}">{{ all_country_option_tags }}</select>
+            <select id="AddressCountryNew" class="input-full" name="address[country]" data-default="{{form.country}}" required>{{ all_country_option_tags }}</select>
           </div>
 
           <div class="col-6" id="AddressProvinceContainerNew" style="display:none">
             {% comment %} <label for="AddressProvinceNew">{{ 'customer.addresses.province' | t }}</label> {% endcomment %}
-            <select id="AddressProvinceNew" class="input-full" name="address[province]" data-default="{{form.province}}"></select>
+            <select id="AddressProvinceNew" class="input-full" name="address[province]" data-default="{{form.province}}" required></select>
           </div>
 
           <div class="col-6">
             {% comment %} <label for="AddressZipNew">{{ 'customer.addresses.zip' | t }}</label> {% endcomment %}
-            <input type="text" id="AddressZipNew" class="input-full" name="address[zip]" value="{{form.zip}}" autocapitalize="characters" placeholder="{{ 'customer.addresses.zip' | t }}">
+            <input type="text" id="AddressZipNew" class="input-full" name="address[zip]" value="{{form.zip}}" autocapitalize="characters" placeholder="{{ 'customer.addresses.zip' | t }}" minlength="5" maxlength="9" required>
+            <div class="input-error"><p>{{ 'shopify.checkout.field_errors.address_city_blank' | t }}</p></div>
           </div>
 
           <div class="col-6">
             {% comment %} <label for="AddressPhoneNew">{{ 'customer.addresses.phone' | t }}</label> {% endcomment %}
-            <input type="tel" id="AddressPhoneNew" class="input-full" name="address[phone]" value="{{form.phone}}" placeholder="{{ 'customer.addresses.phone' | t }}">
+            <input type="tel" id="AddressPhoneNew" class="input-full" name="address[phone]" value="{{form.phone}}" placeholder="{{ 'customer.addresses.phone' | t }}" required>
+            <div class="input-error"><p>{{ 'shopify.checkout.field_errors.address_city_blank' | t }}</p></div>
           </div>
 
           <div class="col-12">
@@ -94,14 +104,8 @@
           <button type="submit" class="botoncito--btn" value="{{ 'customer.addresses.add' | t }}">{{ 'customer.addresses.add' | t }}</button>
           <a class="botoncito--btn btn--2" href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">{{ 'customer.addresses.cancel' | t }}</a>
         </div>
-
-        {%- comment -%}        <div class="btn--100 d-flex">
-          <button type="submit" class="btn__main  mb-2 mt-0 col-6" value="{{ 'customer.addresses.add' | t }}">{{ 'customer.addresses.add' | t }}</button>
-          <a class="btn__main btn__main--lighter col-6" href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">{{ 'customer.addresses.cancel' | t }}</a>
-        </div>{%- endcomment -%}
-
-        <hr>
       {% endform %}
+      <hr>
     </div>
 
     {%- comment -%}Separador{%- endcomment -%}
