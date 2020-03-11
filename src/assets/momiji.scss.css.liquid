@@ -7107,7 +7107,7 @@ form .input-error {
   margin-bottom: 5px; }
 
 input + input {
-/**  margin-top: 25px; } **/
+  {% comment %} margin-top: 25px; }  {% endcomment %}
   margin-top: 0px; }
 
 .subfilters input[type="checkbox"]:checked + label::after {
@@ -9786,3 +9786,27 @@ account/orders page
         width: 48px;
         height: 48px;
       }
+
+
+button.botoncito--btn, a.btn--2 {
+	width: 48%;
+  min-width:120px;
+	height: 35px;
+	padding: 8px 0 8px 0;
+	background-color: antiquewhite;
+  font-family: "GT Momiji Medium", sans-serif;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 1.25px;
+  line-height: 20px;
+  text-align:center;
+  border: none;
+}
+button.botoncito--btn {
+	margin-left: 0px !important;
+  margin-top: 0px !important;
+}
+a.botoncito--btn {
+  float: right;
+  margin-left:15px;
+}

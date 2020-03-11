@@ -90,11 +90,22 @@
               <label for="address_default_address_new">{{ 'customer.addresses.set_default' | t }}</label>
           </div>
 
-        <p><input type="submit" class="btn" value="{{ 'customer.addresses.add' | t }}"></p>
-        <p><a href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">{{ 'customer.addresses.cancel' | t }}</a></p>
+        <div class="col-12">
+          <button type="submit" class="botoncito--btn" value="{{ 'customer.addresses.add' | t }}">{{ 'customer.addresses.add' | t }}</button>
+          <a class="botoncito--btn btn--2" href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">{{ 'customer.addresses.cancel' | t }}</a>
+        </div>
+
+        {%- comment -%}        <div class="btn--100 d-flex">
+          <button type="submit" class="btn__main  mb-2 mt-0 col-6" value="{{ 'customer.addresses.add' | t }}">{{ 'customer.addresses.add' | t }}</button>
+          <a class="btn__main btn__main--lighter col-6" href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">{{ 'customer.addresses.cancel' | t }}</a>
+        </div>{%- endcomment -%}
 
         <hr>
       {% endform %}
+    </div>
+
+    {%- comment -%}Separador{%- endcomment -%}
+    <div class="w-100 h-auto">
     </div>
 
     {% comment %}
