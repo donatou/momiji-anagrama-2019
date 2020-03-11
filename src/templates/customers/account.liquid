@@ -116,13 +116,12 @@
                   <p>{{ address.email }}</p>
                   <address data-addressId={{ address.id }}>{{ address.company }}, {{ address.address2 }}, {{ address.address1 }}, {{ address.city }}, {{ address.province_code }}, {{ address.country }}. {{ 'shopify.addresses.zip_code'| t }} {{ address.zip }}</address>
                   <p>{{ address.phone }}</p>
-                  <div class="btn--100">
-                    <a class="btn__main" href="/account/addresses">{{ 'customer.addresses.edit_address' | t }}</a>
-                    <a class="btn__main btn__main--lighter" href="/">{{ 'customer.addresses.delete' | t }}</a>
-                  </div>
                 </div>
               {% endfor %}
 
+                  <div class="btn--100 col">
+                    <a class="btn__main col-12" href="/account/addresses">{{ 'customer.account.view_addresses' | t }}</a>
+                  </div>
         {% comment %}
           <div class="row">
             <div class="col-md-10 col-lg-5 mx-auto mt-30">
@@ -177,9 +176,9 @@ cp (address zip)
 {% endform %} {% endcomment %}
 
 
-                <div class="col-12 cuenta__agregar">
+                {% comment %} <div class="col-12 cuenta__agregar">
                   <p class="text-link">{{ 'customer.addresses.add_new' | t }}<a href="cuenta-direccion.html" class="btn__more"></a></p>
-                </div>
+                </div> {% endcomment %}
               </div>
               
             </div>
@@ -193,7 +192,7 @@ cp (address zip)
     
 </main>
 
-<script>
+{% comment %} <script>
 // Initialize observers on address selectors
 new Shopify.CountryProvinceSelector('AddressCountryNew', 'AddressProvinceNew', {
   hideElement: 'AddressProvinceContainerNew'
@@ -233,4 +232,4 @@ new Shopify.CountryProvinceSelector('AddressCountryNew', 'AddressProvinceNew', {
   new Shopify.CountryProvinceSelector('address_country_new', 'address_province_new', {
     hideElement: 'address_province_container_new'
   });
-</script>
+</script> {% endcomment %}

@@ -1,31 +1,31 @@
-<!-- /templates/customers/addressess.liquid -->
-{% comment %}
-
-  Template note:
-    - There are instances of inline JS below. Best practices advise separating this
-      into an external JS file
-    - There are separate 'add new' and 'edit' address forms
-
-{% endcomment %}
-
- {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+{{ 'shopify_common.js' | shopify_asset_url | script_tag }}
 
 <main class="cuenta">
-  
   <section class="cuenta__detalle section__principal">
     <div class="container">
+      <div class="row">
+          <div class="col-12 cuenta__title">
+              <h2>{{ 'shopify.checkout.contact.stored_addresses_label' | t }}</h2>
+          </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="breadcrumb">
+            <p class="h3"><a href="{{ routes.account_url }}" class="h3" >{{ 'customer.account.return' | t }}</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <p class="text-link">{{ 'customer.addresses.add_new' | t }}<a href="#" class="btn__more" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;"></a></p>
+        </div>
+      </div>
 
 {% paginate customer.addresses by 5 %}
 
-<div class="grid">
-
-  <div class="grid__item one-third medium-down--one-whole medium-down--text-center">
-    <p><a href="#" class="btn" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">{{ 'customer.addresses.add_new' | t }}</a></p>
-    <hr class="hr--small hr--clear">
-    <p><a href="{{ routes.account_url }}" class="return-link">&larr; {{ 'customer.account.return' | t }}</a></p>
-    <hr class="hr--small hr--clear">
-  </div>
-  <div class="grid__item two-thirds medium-down--one-whole">
+  <div class="row d-inline-flex">
 
     {% comment %}
       Add address form, hidden by default
@@ -97,23 +97,25 @@
       {% endform %}
     </div>
 
-    <h2 class="h3">{{ 'customer.addresses.title' | t }}</h2>
-
     {% comment %}
       List all customer addresses with a unique edit form.
       Also add pagination in case they have a large number of addresses
     {% endcomment %}
     {% for address in customer.addresses %}
+
+      <div class="col-md-6 col-lg-4 cuenta__direccion mt-4">
+        <b>{{ address.name }}</b>
       {% if address == customer.default_address %}
-        <p><strong>{{ 'customer.addresses.default' | t }}</strong></p>
+        <p>{{ 'customer.addresses.default' | t }}</p>
       {% endif %}
-
-      {{ address | format_address }}
-
-      <p>
-        {{ 'customer.addresses.edit' | t | edit_customer_address_link: address.id }} |
-        {{ 'customer.addresses.delete' | t | delete_customer_address_link: address.url }}
-      </p>
+        <address data-addressId={{ address.id }} {% if address == customer.default_address %}
+        class="mt-0"{% endif %}>{{ address.company }}, {{ address.address2 }}, {{ address.address1 }}, {{ address.city }}, {{ address.province_code }}, {{ address.country }}. {{ 'shopify.addresses.zip_code'| t }} {{ address.zip }}</address>
+        <p>{{ address.phone }}</p>
+        <div class="btn--100 d-flex">
+          {{ 'customer.addresses.edit' | t | edit_customer_address_link: address.id  | replace: '<a', '<a class="btn__main w-100 mb-2"' }}
+          {{ 'customer.addresses.delete' | t | delete_customer_address_link: address.url | replace: '<a', '<a class="btn__main btn__main--lighter w-100"' }}
+        </div>
+      </div>
 
       <div id="EditAddress_{{address.id}}" class="form-vertical" style="display:none;">
         {% form 'customer_address', address %}
@@ -184,7 +186,7 @@
 
   </div>
 
-</div>
+
 
 </div>
 </section>
