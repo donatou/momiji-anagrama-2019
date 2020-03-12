@@ -107,12 +107,12 @@
                   <p>{{ customer.metafields['customer']['birthday'] }}</p>
                 </div>
 
-                <div class="btn--100 col mt-2 mb-2">
+                <div class="btn--100 col mt-4 mb-4">
                   <a class="btn__main col-12" href="/account/addresses">{{ 'customer.account.view_addresses' | t }}</a>
                 </div>
 
               {% for address in customer.addresses %}
-                <div class="col-md-6 col-lg-12 cuenta__direccion mt-4 mb-4">
+                <div class="col-md-6 col-lg-12 cuenta__direccion mt-2 mb-2">
                 {% if address == customer.default_address %}
                   <p class="text-link">{{ 'customer.addresses.default' | t }}</p>
                 {% endif %}
@@ -120,13 +120,9 @@
                   <p>{{ address.email }}</p>
                   <address data-addressId={{ address.id }}>{{ address.company }}, {{ address.address2 }}, {{ address.address1 }}, {{ address.city }}, {{ address.province_code }}, {{ address.country }}. {{ 'shopify.addresses.zip_code'| t }} {{ address.zip }}</address>
                   <p>{{ address.phone }}</p>
+                  <hr>
                 </div>
-                <hr>
               {% endfor %}
-
-                {% comment %} <div class="btn--100 col mt-2 mb-2">
-                  <a class="btn__main col-12" href="/account/addresses">{{ 'customer.account.view_addresses' | t }}</a>
-                </div> {% endcomment %}
 
               </div>
               
