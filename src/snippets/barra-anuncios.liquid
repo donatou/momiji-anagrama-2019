@@ -1,9 +1,17 @@
 <div class="swiper-container-barra">
-    <div class="swiper-wrapper header__banner">
+    <div class="swiper-wrapper header__banner col-12">
+    {% if section.settings.barra_anuncios1_link == blank %}
         <p class="swiper-slide">{{ section.settings.barra_anuncios1 }}</p>
+    {% else %}
+        <p class="swiper-slide"><a href="{{ section.settings.barra_anuncios1_link }}">{{ section.settings.barra_anuncios1 }}</a></p>
+    {% endif %}
     {% if section.settings.barra_anuncios2 == blank %}
     {% else %}
-        <p class="swiper-slide">{{ section.settings.barra_anuncios2 }}</p>
+        {% if section.settings.barra_anuncios2_link == blank %}
+            <p class="swiper-slide">{{ section.settings.barra_anuncios2 }}</p>
+        {% else %}
+            <p class="swiper-slide"><a href="{{ section.settings.barra_anuncios2_link }}">{{ section.settings.barra_anuncios2 }}</a></p>
+        {% endif %}
     {% endif %}
     </div>
 </div>
