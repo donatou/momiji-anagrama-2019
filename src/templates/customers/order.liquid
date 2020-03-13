@@ -108,13 +108,6 @@
           RESPONSIVE MOBILE TABLE
       {%- endcomment -%}
       <div class="d-xl-none d-lg-none d-md-none col-xs-12 col-sm-12 align-self-sm-center mt-3">
-            {% comment %} <div class="">
-              <div class="">{{ 'customer.order.product' | t }}</div>
-              <div class="">{{ 'customer.order.sku' | t }}</div>
-              <div class="">{{ 'customer.order.price' | t }}</div>
-              <div class="">{{ 'customer.order.quantity' | t }}</div>
-              <div class="">{{ 'customer.order.total' | t }}</div>
-            </div> {% endcomment %}
             
             <div class="row">
             {% for line_item in order.line_items %}
