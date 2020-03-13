@@ -1,7 +1,6 @@
 <header data-section-type="header">
 <div class="header">
-  <div class="header__sitebanner d-md-flex">
-  
+  <div class="header__sitebanner d-md-flex"{% if section.settings.white = true %} style="background: #fff;"{% endif %}>  
     <div class="header__currency align-items-center d-none d-md-flex">
       <img src="{{ 'currency.svg' | asset_url }}" alt="Moneda">
       <select name="price" id="">
@@ -223,6 +222,13 @@
         "id": "barra_anuncios2_link",
         "label": "Link 2:"
       },
+      {
+        "type": "checkbox",
+        "id": "white",
+        "label": "Fondo blanco",
+        "default": false,
+        "info": "Hacer blanco el fondo de la barra de anuncios"
+      }
       {
         "type": "header",
         "content": "Header"
