@@ -28,7 +28,7 @@
 
       <div class="row">
         {% comment %}Add address form, hidden by default{% endcomment %}
-        <div id="AddAddress" class="col-md-10 col-lg-5 mx-auto mt-30" style="display: none;">
+        <div id="AddAddress" class="col-md-12 col-lg-12 mx-auto mt-30" style="display: none;">
           {% form 'customer_address', customer.new_address, class: 'row' %}
 
               <div class="col-12">
@@ -102,7 +102,7 @@
         {% comment %} List all customer addresses with a unique edit form. Also add pagination in case they have a large number of addresses {% endcomment %}
         {% for address in customer.addresses %}
 
-          <div class="col-md-6 col-lg-4 cuenta__direccion mt-4">
+          <div class="col-md-6 col-lg-6 cuenta__direccion mt-4">
             <b>{{ address.name }}</b>
           {% if address == customer.default_address %}
             <p>{{ 'customer.addresses.default' | t }}</p>
@@ -117,7 +117,7 @@
             <hr>
           </div>
 
-          <div id="EditAddress_{{address.id}}" class="col-md-10 col-lg-5 mx-auto mt-30" style="display:none;">
+          <div id="EditAddress_{{address.id}}" class="col-md-12 col-lg-12 mx-auto mt-30" style="display:none;">
             {% form 'customer_address', address, class: 'row' %}
 
               <div class="col-12">
