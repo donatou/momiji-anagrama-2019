@@ -168,6 +168,10 @@
           {
             "value": "incluye_regalo",
             "label": "Producto de regalo"
+          },
+          {
+            "value": "mensaje_custom",
+            "label": "Mensaje en carrito"
           }
         ]
       },
@@ -265,6 +269,17 @@
         "label": "Copy previo a regalo:",
         "info": "Tu pedido califica para",
         "placeholder": "Tu pedido califica para"
+      },
+      {
+        "type": "header",
+        "content": "Mensaje custom"
+      },
+      {
+        "type": "text",
+        "id": "mensaje",
+        "label": "Mensaje custom",
+        "info": "Agrega un mensaje al carrito.",
+        "placeholder": "Envíos con descuento toda la semana."
       },
       {
         "type": "header",

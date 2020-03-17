@@ -94,6 +94,17 @@
                 </p>
               {% endif %}
 
+          {%- comment -%}
+          Mensaje custom.
+          {%- endcomment -%}
+            {% when 'mensaje_custom' %}
+            {% assign mensaje = settings.mensaje %}
+                <p class="cartfreeshipping">
+                {% capture mensaje_custom %}
+                  {{ mensaje }}
+                {% endcapture %}
+                  {{ mensaje_custom }}
+                </p>
 
           {%- comment -%}
           Envío gratis en compras arriba de X.
