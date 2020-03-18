@@ -1,0 +1,34 @@
+{% comment %} {% form 'currency' %}
+{{ form | currency_selector }}
+{% endform %} {% endcomment %}
+
+<div class="header__currency align-items-center d-none d-md-flex">
+    <img src="{{ 'currency.svg' | asset_url }}" alt="Moneda">
+    <select name="price" id="">
+        <option value="MXN">MXN</option>
+        {% comment %} <option value="USD">USD</option> {% endcomment %}
+    </select>
+</div>
+
+{%- comment -%}
+<div class="header__currency align-items-center d-none d-md-flex">
+    <img src="{{ 'currency.svg' | asset_url }}" alt="Moneda">
+    <select name="price" id="">
+    <option value="MXN">{{ cart.currency.iso_code }}</option>
+    </select>
+</div>
+{%- endcomment -%}
+
+{% comment %} <div class="header__currency align-items-center d-none d-md-flex">
+    {% form 'currency' %}
+        <select name="currency" id="">
+            {% for currency in shop.enabled_curencies %}
+                {% if currency == cart.currency %}
+                    <option selected="true">{{currency.iso_code}} {{currency.symbol}}</option>
+                    {% else %}
+                    <option>{{currency.iso_code}}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    {% endform %}
+</div> {% endcomment %}

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 $(document).ready(() => {
 
   // CARGAR MODULOS
@@ -487,6 +489,13 @@ let child4 = $('.sticker-item'),
 Draggable.create(child4, {
   type: 'x, y',
 });
+
+// Currency selector
+// $('.shopify-currency-form select').on('change', function () {
+//   $(this)
+//     .parents('form')
+//     .submit();
+// });
 
 // swiper announcement bar news
 const barraSwiper = new Swiper('.swiper-container-barra', {
