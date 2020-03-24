@@ -2,14 +2,161 @@
   <section class="section__principal">
     <div class="container">
       <div class="row">
-        <div class="col-md-7 col-lg-8 privacidad--title mb-60">
-
-            <a data-lion-account-link>Access your Rewards</a>
-            <div data-lion-rules-list></div> ??
-            <div data-lion-account></div> ???
-
+        <div class="col-12 privacidad--title mb-60">
+          <h1 class="lh-20"><a class="h2">Momiji Points</a></h1>
+          <div class=" mb-3 pb-2 border-bottom border-dark"></div>
+          {%- comment -%}Loyalty Panel{%- endcomment -%}
+            <div data-lion-account></div>
         </div>
       </div>
     </div>
   </section>
 </main>
+
+<style>
+{%- comment -%}
+Area contenido general
+{%- endcomment -%}
+#loyaltylion .lion-loyalty-panel-content--earn, #loyaltylion .lion-loyalty-panel-content--rewards {
+	background-color: transparent;
+}
+#loyaltylion .lion-loyalty-panel-content__header {
+	background-color: transparent;
+	border-bottom: none;
+	border-top-right-radius: inherit;
+	padding: 10px 0 9px 15px;
+	color: #0a0a0a;
+	font-weight: 400;
+	font-size: 2.3em;
+	font-family: 'GT Super Display';
+}
+#loyaltylion .lion-checkout-redemption-banner {
+	font-size: 1.8em;
+	padding: 20px 20px;
+	border-bottom: none;
+	display: flex;
+	background-color: transparent;
+}
+#loyaltylion .lion-loyalty-panel-reward-item__content {
+	min-width: 0;
+	min-height: 150px;
+	width: 100%;
+	background-color: #fff;
+	border-radius: 3px;
+	font-size: 1.6em;
+	box-shadow: none;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+}
+#loyaltylion b, #loyaltylion strong {
+	font-weight: 400;
+}
+#loyaltylion .lion-loyalty-panel-reward-item__percent-off {
+	display: none;
+}
+
+
+
+{%- comment -%}
+Sidebar
+{%- endcomment -%}
+#loyaltylion .lion-loyalty-panel-sidebar {
+	width: 190px;
+	background: transparent;
+	border-top-left-radius: inherit;
+	border-bottom-left-radius: inherit;
+	flex: 0 0 auto;
+	display: flex;
+	flex-direction: column;
+	border-right: 1px solid #0a0a0a;
+}
+
+{%- comment -%}
+sidebar title 
+{%- endcomment -%}
+#loyaltylion .lion-loyalty-panel-sidebar__title {
+/*	font-size: 2em; */
+	padding: 10px;
+	font-size: 40px;
+	letter-spacing: -0.7px;
+	line-height: 40px;
+	border-top-left-radius: inherit;
+  display: none;
+}
+#loyaltylion .lion-loyalty-panel-sidebar__header {
+	border-bottom: none;
+	color: #0a0a0a;
+}
+#loyaltylion .lion-loyalty-panel-sidebar__menu-item.lion-active, #loyaltylion .lion-loyalty-panel-sidebar__menu-item:hover {
+	background: transparent;
+	color: #F06C4E;
+}
+#loyaltylion .lion-loyalty-panel-sidebar__menu-item {
+	display: block;
+	color: #0a0a0a;
+	text-decoration: none;
+	padding: 7px 10px 7px 11px;
+	outline: none;
+	font-size: 1.6em;
+	cursor: pointer;
+  background: transparent;
+}
+
+
+#loyaltylion .lion-loyalty-panel--format-embed {
+	font-family: 'GT Momiji Regular', sans-serif;
+}
+#loyaltylion .lion-loyalty-panel-reward-item__redeem-button {
+	font-family: 'GT Momiji Medium', sans-serif;
+}
+
+{%- comment -%}
+botones
+{%- endcomment -%}
+.lion-action-button, #loyaltylion .lion-action-button {
+  background: #F06C4E;
+  color:#0a0a0a;
+	/*padding: 9px 15px;*/
+  padding: 8px 8px;
+	/*font-size: 1.2em;*/
+	border-radius: 0px;
+	cursor: pointer;
+	display: inline-block;
+	text-decoration: none;
+	outline: none;
+	border: none;
+}
+#loyaltylion .lion-action-button:hover {
+  background: #D45032;
+}
+
+#loyaltylion .lion-loyalty-panel-reward-item__redeem-button-text {
+  font-family: "GT Momiji Medium", sans-serif;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 1.25px;
+  line-height: 20px;
+}
+{%- comment -%}
+.btn--red {
+  background: #F06C4E !important;
+  display: inline-block;
+  min-width: 150px;
+  height: 35px;
+  text-align: center;
+  padding: 8px 8px;
+  border: 0; }
+  .btn--lighter-red {
+    background-color: #FFA688 !important; }
+  @media (min-width: 992px) {
+    .btn--red:hover {
+      background-color: #D45032 !important; } }
+
+{%- endcomment -%}
+
+.lion-icon__rule--purchase, .lion-icon__rule--product-purchase, .lion-icon__rule--collection-purchase, #loyaltylion .lion-icon__rule--purchase, #loyaltylion .lion-icon__rule--product-purchase, #loyaltylion .lion-icon__rule--collection-purchase {
+	background: url({{ '01.svg' | asset_url }}) center/contain no-repeat;
+}
+</style>
