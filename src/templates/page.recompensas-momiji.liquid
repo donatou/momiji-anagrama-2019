@@ -37,6 +37,14 @@ Area contenido general
 	display: flex;
 	background-color: transparent;
 }
+#loyaltylion .lion-checkout-redemption-banner span {
+	font-family: "GT Momiji Medium", sans-serif;
+	text-transform: none;
+	font-weight: 400;
+	font-size: 1em;
+	letter-spacing: -0.3px;
+	line-height: 1em;
+}
 #loyaltylion .lion-loyalty-panel-reward-item__content {
 	min-width: 0;
 	min-height: 150px;
@@ -53,10 +61,58 @@ Area contenido general
 #loyaltylion b, #loyaltylion strong {
 	font-weight: 400;
 }
+#loyaltylion .lion-loyalty-panel-reward-item__title {
+	font-family: "GT Momiji Medium", sans-serif;
+	text-transform: none;
+	font-weight: 500;
+	font-size: 1.6em;
+	letter-spacing: -0.3px;
+	line-height: 30px;
+	padding-bottom: 5px;
+}
 #loyaltylion .lion-loyalty-panel-reward-item__percent-off {
 	display: none;
 }
-
+#loyaltylion .lion-loyalty-panel-reward-item__min-spend::before, #loyaltylion .lion-loyalty-panel-reward-item__cost:not(:first-child)::before {
+	content: '';
+}
+#loyaltylion .lion-loyalty-panel-reward-item__meta {
+	color: #0a0a0a;
+}
+#loyaltylion .lion-loyalty-panel-reward-item a {
+	font-family: "GT Momiji Medium", sans-serif;
+	text-transform: uppercase;
+	font-size: 10px;
+	letter-spacing: 1.25px;
+	line-height: 20px;
+}
+#loyaltylion .lion-loyalty-panel-reward-item a:hover {
+	color: #F06C4E;
+}
+#loyaltylion .lion-loyalty-panel-reward-item__more-info-url, #loyaltylion .lion-loyalty-panel-reward-item__terms-url {
+	margin: 7px 5px 0 0px;
+}
+#loyaltylion .lion-loyalty-panel-rule-item__content {
+	border-radius: 0;
+	border: none;
+	font-size: 1.6em;
+	box-shadow: none;
+}
+#loyaltylion .lion-loyalty-panel-rule-item--actionable:hover .lion-loyalty-panel-rule-item__content {
+	border: none;
+	color: #F06C4E;
+}
+#loyaltylion .lion-loyalty-panel-rule-item__title {
+	font-family: "GT Momiji Medium", sans-serif;
+	text-transform: none;
+	font-weight: 500;
+	font-size: 1.6em;
+	letter-spacing: -0.3px;
+	line-height: 30px;
+	flex-grow: 1;
+	padding: 15px 40px 15px 15px;
+	overflow: hidden;
+}
 
 
 {%- comment -%}
@@ -83,11 +139,18 @@ sidebar title
 	letter-spacing: -0.7px;
 	line-height: 40px;
 	border-top-left-radius: inherit;
-  display: none;
+  	display: none;
 }
 #loyaltylion .lion-loyalty-panel-sidebar__header {
 	border-bottom: none;
 	color: #0a0a0a;
+}
+#loyaltylion .lion-loyalty-panel-sidebar__points {
+	text-align: right;
+	padding: 3px 15px 0px 10px;
+	font-family: "GT Super Display";
+	font-weight: 400;
+	font-size: 1.4em;
 }
 #loyaltylion .lion-loyalty-panel-sidebar__menu-item.lion-active, #loyaltylion .lion-loyalty-panel-sidebar__menu-item:hover {
 	background: transparent;
@@ -99,11 +162,15 @@ sidebar title
 	text-decoration: none;
 	padding: 7px 10px 7px 11px;
 	outline: none;
-	font-size: 1.6em;
+	font-size: 1.5em;
 	cursor: pointer;
-  background: transparent;
+	background: transparent;
+	font-family: "GT Momiji Medium", sans-serif;
+	letter-spacing: 0px;
+	line-height: 20px;
+	font-weight: 500;
+	text-transform: unset;
 }
-
 
 #loyaltylion .lion-loyalty-panel--format-embed {
 	font-family: 'GT Momiji Regular', sans-serif;
@@ -157,6 +224,37 @@ botones
 {%- endcomment -%}
 
 .lion-icon__rule--purchase, .lion-icon__rule--product-purchase, .lion-icon__rule--collection-purchase, #loyaltylion .lion-icon__rule--purchase, #loyaltylion .lion-icon__rule--product-purchase, #loyaltylion .lion-icon__rule--collection-purchase {
-	background: url({{ '01.svg' | asset_url }}) center/contain no-repeat;
+	background: url({{ 'haz-una-compra.svg' | asset_url }}) center/contain no-repeat;
+}
+.lion-icon__reward--product-cart, .lion-icon__reward--product-discount-voucher, .lion-icon__rule--birthday, #loyaltylion .lion-icon__reward--product-cart, #loyaltylion .lion-icon__reward--product-discount-voucher, #loyaltylion .lion-icon__rule--birthday {
+	background: transparent url({{ 'birthday.svg' | asset_url }}) center/contain no-repeat;
+}
+.lion-icon__rule--referral, #loyaltylion .lion-icon__rule--referral {
+	background: url({{ 'refiere.svg' | asset_url }}) center/contain no-repeat;
+}
+.lion-icon__rule--newsletter-signup, #loyaltylion .lion-icon__rule--newsletter-signup {
+	background: url({{ 'newsletter.svg' | asset_url }}) center/contain no-repeat;
+}
+.lion-icon__rule--signup, #loyaltylion .lion-icon__rule--signup {
+	background: url({{ 'crear-cuenta.svg' | asset_url }}) center/contain no-repeat;
+}
+#loyaltylion .lion-checkout-redemption-banner__icon {
+	background-size: 35px;
+	border-radius: 0;
+	box-shadow: none;
+	height: 55px;
+	width: 55px;
+	margin-right: 10px;
+}
+#loyaltylion .lion-loyalty-panel-rule-item__icon {
+	width: 90px;
+	height: 90px;
+	background-color: transparent;
+	border-radius: 0;
+	position: absolute;
+	top: -34px;
+	right: -10px;
+	background-size: 45px;
+	box-shadow: none;
 }
 </style>
