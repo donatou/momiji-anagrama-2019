@@ -223,6 +223,22 @@ botones
 
 {%- endcomment -%}
 
+#loyaltylion .lion-loyalty-panel-rule-item__points {
+	text-align: left;
+	background-color: #F9FCFC;
+	border-radius: 0;
+	padding: 8px 8px 8px 15px;
+}
+
+#loyaltylion .lion-loyalty-panel-rule-item span {
+	font-family: "GT Momiji Medium", sans-serif;
+	text-transform: uppercase;
+	color: #0a0a0a;
+	font-size: 10px;
+	letter-spacing: 1.25px;
+	line-height: 20px;
+}
+
 .lion-icon__rule--purchase, .lion-icon__rule--product-purchase, .lion-icon__rule--collection-purchase, #loyaltylion .lion-icon__rule--purchase, #loyaltylion .lion-icon__rule--product-purchase, #loyaltylion .lion-icon__rule--collection-purchase {
 	background: url({{ 'haz-una-compra.svg' | asset_url }}) center/contain no-repeat;
 }
@@ -247,14 +263,64 @@ botones
 	margin-right: 10px;
 }
 #loyaltylion .lion-loyalty-panel-rule-item__icon {
-	width: 90px;
-	height: 90px;
+	width: 93px;
+	height: 93px;
 	background-color: transparent;
 	border-radius: 0;
 	position: absolute;
-	top: -34px;
-	right: -10px;
+	top: 37px;
+	right: -11px;
 	background-size: 45px;
 	box-shadow: none;
+}
+
+{%- comment -%}
+Modal
+{%- endcomment -%}
+#loyaltylion .lion-modal {
+	font-size: 10px;
+	color: #0a0a0a;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	width: 100%;
+	max-width: 600px;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	border-radius: 0;
+	box-shadow: 0 3px 18px rgba(0, 0, 0, 0.25);
+	z-index: 1000000003;
+	font-family: 'GT Momiji Regular';
+}
+#loyaltylion .lion-modal__header {
+	background-color: #FAF2FA;
+	border-bottom: 1px solid black;
+	border-radius: 0;
+	display: flex;
+	cursor: default;
+}
+#loyaltylion .lion-modal__title {
+	flex-grow: 1;
+	font-family: 'GT Momiji Medium';
+	padding: 10px 15px;
+	font-size: 2em;
+	color: #0a0a0a;
+}
+#loyaltylion .lion-action-button {
+	background: #F06C4E;
+	padding: 8px 15px;
+	border-radius: 0px;
+	cursor: pointer;
+	display: inline-block;
+	text-decoration: none;
+	outline: none;
+	border: none;
+	font-family: "GT Momiji Medium", sans-serif;
+	text-transform: uppercase;
+	color: #0a0a0a;
+	font-size: 10px;
+	letter-spacing: 1.25px;
+	line-height: 20px;
 }
 </style>
