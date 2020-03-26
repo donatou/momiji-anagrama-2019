@@ -113,6 +113,12 @@ Area contenido general
 	padding: 15px 40px 15px 15px;
 	overflow: hidden;
 }
+#loyaltylion .lion-referral-widget-panels {
+	background-color: transparent;
+}
+#loyaltylion .lion-referral-widget-main__share-buttons {
+	border-top: none;
+}
 
 
 {%- comment -%}
@@ -206,22 +212,39 @@ botones
   letter-spacing: 1.25px;
   line-height: 20px;
 }
-{%- comment -%}
-.btn--red {
-  background: #F06C4E !important;
-  display: inline-block;
-  min-width: 150px;
-  height: 35px;
-  text-align: center;
-  padding: 8px 8px;
-  border: 0; }
-  .btn--lighter-red {
-    background-color: #FFA688 !important; }
-  @media (min-width: 992px) {
-    .btn--red:hover {
-      background-color: #D45032 !important; } }
-
-{%- endcomment -%}
+#loyaltylion .lion-referral-share-button--twitter {
+	display: none !important;
+}
+#loyaltylion .lion-referral-share-button--whatsapp {
+	display: none !important;
+}
+#loyaltylion .lion-referral-share-button {
+	cursor: pointer;
+	display: inline-block;
+	height: 48px;
+	width: auto;
+	border-radius: 6px;
+	padding: 0 18px;
+	margin: 8px;
+	line-height: 47px;
+	font-size: 16px;
+}
+#loyaltylion .lion-referral-share-button--email {
+  	background: #F06C4E;
+  	color:#0a0a0a;
+	border-radius: 0px;
+	cursor: pointer;
+	text-decoration: none;
+	outline: none;
+	border: none;
+	font-family: "GT Momiji Medium", sans-serif;
+	text-transform: uppercase;
+	font-size: 10px;
+	letter-spacing: 1.25px;
+}
+#loyaltylion .lion-referral-share-button--email:hover {
+  	background: #D45032;
+}
 
 #loyaltylion .lion-loyalty-panel-rule-item__points {
 	text-align: left;
