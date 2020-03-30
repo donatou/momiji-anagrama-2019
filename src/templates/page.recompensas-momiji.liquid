@@ -5,12 +5,12 @@
         <div class="col-12 privacidad--title mb-60">
           <h1 class="lh-20"><a class="h2">Momiji Points</a></h1>
           <div class=" mb-3 mb-3_loyalty pb-2 border-bottom border-dark"></div>
-		  	<h2 class="h6 text-center">Nuestro Programa de Recompensas Momiji consiste en recibir puntos con los que podrás realizar compras, recibir descuentos, regalos, envíos gratis, ventas exclusivas y más.</h2>
+		  	<h2 class="h6 text-center h6-600">Nuestro Programa de Recompensas Momiji consiste en recibir puntos con los que podrás realizar compras, recibir descuentos, regalos, envíos gratis, ventas exclusivas y más.</h2>
 		  	<div data-lion-account></div>
-			<h2 class="h6 text-center">Niveles.</h2>
+			<h2 class="h6 text-center mb-2">Niveles.</h2>
 		  	<div data-lion-tier-overview></div>
-			<h2 class="h6 text-center">Podrás obtener las siguientes recompensas.</h2>
-		  	<div data-lion-rewards-list></div>
+			{% comment %} <h2 class="h6 text-center mb-2">Podrás obtener las siguientes recompensas.</h2>
+		  	<div data-lion-rewards-list></div> {% endcomment %}
         </div>
       </div>
     </div>
@@ -63,10 +63,13 @@
 	}
 }
 
-
 {%- comment -%}
 contenido sin login
 {%- endcomment -%}
+div#lion-loyalty-panel-custom-css {
+	margin-bottom: 60px;
+}
+
 #loyaltylion .lion-loyalty-splash__heading {
 	display: none;
 }
@@ -102,6 +105,7 @@ contenido sin login
 }
 #loyaltylion .lion-loyalty-splash__footer {
 	border-top: none;
+	padding: 0 0 80px 0;
 }
 #loyaltylion .lion-loyalty-splash__get-started-text {
 	color: #0a0a0a;
@@ -115,6 +119,9 @@ contenido sin login
 {%- comment -%}
 Area contenido general
 {%- endcomment -%}
+.privacidad--title > div:nth-child(4) > div:nth-child(1) {
+  margin: 20px 0 0 0;
+}
 #loyaltylion .lion-loyalty-panel-content--earn, #loyaltylion .lion-loyalty-panel-content--rewards {
 	background-color: transparent;
 }
@@ -258,6 +265,10 @@ sidebar title
 	font-family: "GT Super Display";
 	font-weight: 400;
 	font-size: 1.4em;
+}
+#loyaltylion .lion-loyalty-panel-sidebar__tier-info-link {
+	color: #0a0a0a;
+	font-family: 'GT Momiji Medium';
 }
 #loyaltylion .lion-loyalty-panel-sidebar__menu-item.lion-active, #loyaltylion .lion-loyalty-panel-sidebar__menu-item:hover {
 	background: transparent;
@@ -475,17 +486,128 @@ Modal
 	letter-spacing: 1.25px;
 	line-height: 20px;
 }
-{%- comment -%}Niveles{%- endcomment -%}
-#loyaltylion .lion-tier-box {
-	flex: 1 1 0px;
-	display: flex;
-	flex-direction: column;
-	border: 0px;
+
+.lion-tier-overview {
+	margin-bottom: 60px;
+}
+.lion-tier-box, .lion-tier-box--0, .lion-tier-box--guest {
+	border: none;
 	margin: 10px;
 	height: auto;
-	min-height: 250px;
-	text-align: center;
-	background-color: #fff;
+	min-height: 200px;
+	background-color: #fff !important;
 }
 
+.lion-reward-item__content {
+  border-radius: 0px;
+  box-shadow: none;
+}
+
+.lion-tier-box__title {
+  font-size: 2.2rem;
+  font-family: 'GT Momiji Medium';
+}
+
+.lion-tier-box__sub-title {
+  margin-top: 15px;
+  font-size: 1.4rem;
+  font-family: 'GT Momiji Regular';
+}
+
+.lion-tier-box .lion-tier-benefits-list {
+  display: none;
+}
+
+.lion-tier-box {
+  font-family: 'GT Super Display';
+  font-size: 1.2rem;
+}
+
+.lion-tier-box__footer--current {
+  background-color: #D5F3FF;
+  color: #0a0a0a;
+  padding-bottom: 10px;
+}
+
+.lion-tier-box__you-are-here {
+  text-transform: none;
+  font-size: 1.3rem;
+  font-family: 'GT Momiji Regular';
+}
+
+.lion-tier-box__header {
+  margin-top: 10px;
+}
+
+.lion-tier-box, .lion-tier-box--0, .lion-tier-box--guest {
+  min-height: 155px;
+}
+
+.lion-tier-box__header {
+	margin-top: 20px;
+}
+
+/* default-cfb1ae8-ccb533b.css | https://sdk.loyaltylion.net/sdk/css/685bcc14859da3348aeea3454790b313/default-cfb1ae8-ccb533b.css */
+
+#loyaltylion .lion-loyalty-panel-page-tiers {
+  /* background-color: #fff; */
+  background-color: transparent;
+}
+
+#loyaltylion .lion-loyalty-panel-tier-item::after {
+  /* color: #666; */
+  color: #0a0a0a;
+}
+
+#loyaltylion .lion-loyalty-panel-tier-item__header {
+  /* background-color: #fbfbfb; */
+  background-color: #D5F3FF;
+}
+
+#loyaltylion .lion-loyalty-panel-tier-item {
+  /* border: 1px solid #e1e1e1; */
+  border: none;
+  background: #fff;
+}
+
+#loyaltylion .lion-loyalty-panel-tier-item__list-heading {
+  font-size: 1.7em;
+  font-weight: 400;
+  font-family: 'GT Momiji Medium';
+  letter-spacing: -0.2px;
+}
+
+#loyaltylion .lion-loyalty-panel-tier-item__list-item--rule::before {
+  font-family: 'GT Momiji Regular;
+}
+
+#loyaltylion .lion-loyalty-panel-tier-item__list-item-value {
+  /* font-weight: bold; */
+  font-weight: normal;
+}
+
+#loyaltylion .lion-loyalty-panel-tier-item__list {
+  font-size: 0.9em;
+}
+
+#loyaltylion .lion-loyalty-panel-tier-item__name {
+  font-size: 2em;
+  font-weight: 400;
+  font-family: 'GT Momiji Medium';
+}
+
+
+
+
+
+
+
+@media (max-width: 600px) {
+	h2.h6-600 {
+		font-size: 1.4rem;
+		font-family: 'GT Momiji Regular';
+		line-height: 1.5rem;
+		letter-spacing: -0.1px;
+	}
+}
 </style>
