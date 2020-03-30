@@ -5,9 +5,12 @@
         <div class="col-12 privacidad--title mb-60">
           <h1 class="lh-20"><a class="h2">Momiji Points</a></h1>
           <div class=" mb-3 mb-3_loyalty pb-2 border-bottom border-dark"></div>
-            <div data-lion-tier-overview></div>TIER OVERWIEW not showing
-			<div data-lion-tier-benefits-compare></div>TIER COMPARE not showing
-			<div data-lion-account></div>
+		  	<h2 class="h6 text-center">Nuestro Programa de Recompensas Momiji consiste en recibir puntos con los que podrás realizar compras, recibir descuentos, regalos, envíos gratis, ventas exclusivas y más.</h2>
+		  	<div data-lion-account></div>
+			<h2 class="h6 text-center">Niveles.</h2>
+		  	<div data-lion-tier-overview></div>
+			<h2 class="h6 text-center">Podrás obtener las siguientes recompensas.</h2>
+		  	<div data-lion-rewards-list></div>
         </div>
       </div>
     </div>
@@ -472,4 +475,17 @@ Modal
 	letter-spacing: 1.25px;
 	line-height: 20px;
 }
+{%- comment -%}Niveles{%- endcomment -%}
+#loyaltylion .lion-tier-box {
+	flex: 1 1 0px;
+	display: flex;
+	flex-direction: column;
+	border: 0px;
+	margin: 10px;
+	height: auto;
+	min-height: 250px;
+	text-align: center;
+	background-color: #fff;
+}
+
 </style>
