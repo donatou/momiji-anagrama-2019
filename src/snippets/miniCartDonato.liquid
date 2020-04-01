@@ -141,7 +141,7 @@
                   <div class="imagedesc">
                     <div class="image">
                       <a href="{{ item.url }}">
-                        <img src="{{item.image | img_url:'80x'}}">
+                        <img src="{{item.image | img_url:'x80'}}">
                       </a>
                     </div>
                     <a class="remove_mm" data-variant_id="{{item.id}}">
@@ -156,15 +156,18 @@
                         <div class="variant">{{ item.variant.title }}</div>
                         {% endif %}
                       </div>
-                      {%- comment -%}No se puede agregar precio compare at por ser carrito aja. Requiere un tempate de json diferente.{%- endcomment -%}
+
+                    </div>
+                    <div class="d-flex pt-2 align-items-center">
+                      <div data-variant="{{ item.id }}" class="quantity buttoned-input mt-0 col-auto">
+                        <a class="notabutton quantity-down" href="#"> - </a>
+                        <input class="select-on-focus" type="text" size="2" id="updates_1" name="updates[]" value="{{item.quantity}}" data-line="1" aria-label="Quantity">
+                        <a class="notabutton quantity-up " href="#"> + </a>
+                      </div>
+                        {%- comment -%}No se puede agregar precio compare at por ser carrito aja. Requiere un tempate de json diferente.{%- endcomment -%}
                       <div class="line-total" data-line="1">
                         <span class="theme-money">{{ item.line_price | money }}</span>
                       </div>
-                    </div>
-                    <div data-variant="{{ item.id }}" class="quantity buttoned-input">
-                      <a class="notabutton quantity-down" href="#"> - </a>
-                      <input class="select-on-focus" type="text" size="2" id="updates_1" name="updates[]" value="{{item.quantity}}" data-line="1" aria-label="Quantity">
-                      <a class="notabutton quantity-up " href="#"> + </a>
                     </div>
                   </div>
                 </li><!-- /.item -->
