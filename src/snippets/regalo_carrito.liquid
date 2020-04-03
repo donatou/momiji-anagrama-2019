@@ -1,0 +1,6 @@
+{% if settings.cart_notes_enable == true %}
+<div class="drawer-present field-container">
+    <label for="CartSpecialInstructions" class="ajaxcart__note mb-2">{{ settings.drawer_present }}</label>
+    <textarea name="note" class="present-message" id="CartSpecialInstructions" placeholder="{{ settings.present_placeholder }}">{{ cart.note }}</textarea>
+</div>
+{% endif %}

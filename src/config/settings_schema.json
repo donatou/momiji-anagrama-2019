@@ -121,8 +121,20 @@
       {
         "type": "checkbox",
         "id": "cart_notes_enable",
-        "label": "Enable cart notes",
+        "label": "Habilitar Regalos en Carrito",
         "default": true
+      },
+      {
+        "type": "text",
+        "id": "drawer_present",
+        "label": "Invitacion a regalo",
+        "placeholder": "¿Tu pedido es un regalo?"
+      },
+      {
+        "type": "text",
+        "id": "present_placeholder",
+        "label": "Placeholder",
+        "placeholder": "Escribe aquí tu mensaje"
       },
       {
         "type": "header",

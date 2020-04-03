@@ -1,3 +1,4 @@
+/* eslint-disable */
 $(document).on('click', '.cart-summary', function (e) {
   e.preventDefault();
   $('body').addClass('cart-open');

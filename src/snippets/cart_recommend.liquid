@@ -22,16 +22,16 @@
   {% if has_item  %}
   <div class='recomended_pro_mm'>
     <div class="image">
-      <img src="{{prod.featured_image | img_url:'120x'}}">
+      <img src="{{prod.featured_image | img_url:'x60'}}">
     </div>
     <div class="inner_mm">
-      <div class="title-price">
-        <b>{{prod.title}}</b>
-        <br>
-        <p class="agregarPor">{{ settings.csTxt }} {{prod.selected_or_first_available_variant.price | money }}</p>
+      <div>
+        <p class="prod-title_recommend">{{prod.title}}</p>
+        {% comment %} <br>
+        <p class="agregarPor">{{ settings.csTxt }} {{prod.selected_or_first_available_variant.price | money }}</p> {% endcomment %}
       </div>
       <div class="button-add">
-        <button type="button" data-variant="{{prod.selected_or_first_available_variant.id}}">agregar</button>
+        <button type="button" data-variant="{{prod.selected_or_first_available_variant.id}}">{{ settings.csTxt }} {{prod.selected_or_first_available_variant.price | money }}</button>
       </div>
     </div>
   </div>
