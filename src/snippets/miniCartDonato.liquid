@@ -144,8 +144,11 @@
                         <img src="{{item.image | img_url:'x73'}}">
                       </a>
                     </div>
-                    <a class="remove_mm" data-variant_id="{{item.id}}">
+                    {% comment %} <a class="remove_mm" data-variant_id="{{item.id}}">
                       &#10006;
+                    </a> {% endcomment %}
+                    <a class="remove_mm" data-variant_id="{{item.id}}">
+                      quitar
                     </a>
                   </div>
                   <div class="quantity-container">

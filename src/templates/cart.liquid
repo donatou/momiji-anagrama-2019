@@ -98,14 +98,11 @@ jQuery('[max]').change(function() {
         <div class="row cart-row col-xl-12">
 
           <div class="col-xl-8 col-lg-8 col-md-4 col-sm-4">
-          {% if settings.cart_notes_enable %}
-            <label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
-            <textarea name="note" id="CartSpecialInstructions">{{ cart.note }}</textarea>
-          {% endif %}
+            {% include 'regalo_carrito' %}
           </div>
 
           <div class="col-xl-4 col-lg-4 col-md-8 col-sm-8">
-            <div class="mb-3">
+            <div class="mb-3 mt-3">
               <h3>{{ 'cart.general.subtotal' | t }}: 
               {% if cart.total_discount > 0 %}
               <span class="compare--at">{{ cart.original_total_price | money }}</span>
