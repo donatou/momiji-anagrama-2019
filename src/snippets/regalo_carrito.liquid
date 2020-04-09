@@ -1,6 +1,14 @@
 {% if settings.cart_notes_enable == true %}
 <div class="drawer-present field-container">
+    <input type="checkbox" name="attributes[mensajito]" value="{{ cart.attributes.mensajito }}" />
     <label for="CartSpecialInstructions" class="ajaxcart__note mb-2">{{ settings.drawer_present }}</label>
     <textarea name="note" class="present-message" id="CartSpecialInstructions" placeholder="{{ settings.present_placeholder }}">{{ cart.note }}</textarea>
 </div>
 {% endif %}
+
+
+{% comment %} ESTA OPCIÓN LO AGREGA COMO CART ATTRIBUTE, NO ES PERSISTENTE EN CARRITOS AJAX.
+<div class="drawer-present field-container">
+  <label for="incluir-mensaje">Incluir mensaje</label>
+  <textarea class="required" id="incluir-mensaje" name="attributes[Incluir mensaje]">{{ cart.attributes["Incluir mensaje"] }}</textarea>
+</div> {% endcomment %}
