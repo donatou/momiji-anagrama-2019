@@ -48,8 +48,8 @@
           <div class="sidebar__content">
             {% if checkout.note != null %}
             <div class="checkout__note">
-              <a href="/cart" class="h2">Clic para editar mensaje en carrito:</a>
-              <p><a href="/cart">{{ checkout.note }}</a></p>
+              <a href="/cart" class="h2">Clic aquí para editar mensaje en carrito.</a>
+              <p>{{ checkout.note }}</p>
             </div>
             {% endif %}
             {{ content_for_order_summary }}
@@ -64,14 +64,84 @@
 
 <style>
 @font-face {
-    font-family: 'GT Walsheim';
-    src: url('{{ "GTWalsheim.woff2" | asset_url }}') format('woff2'),
-        url('{{ "GTWalsheim.woff" | asset_url }}') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
+  font-family: 'GT Momiji Medium';
+  font-display: swap;
+  font-weight: 500;
+  font-style: normal;
+  src: url('{{ "GT-Momiji-Medium.eot" | asset_url }}');
+  src: url('{{ "GT-Momiji-Medium.woff" | asset_url }}') format('woff'), url('{{ "GT-Momiji-Medium.woff2" | asset_url }}') format('woff2');
+  }
+@font-face {
+  font-family: 'GT Momiji Regular';
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+  src: url('{{ "GT-Momiji-Regular.eot" | asset_url }}');
+  src: url('{{ "GT-Momiji-Regular.woff" | asset_url }}') format('woff'), url('{{ "GT-Momiji-Regular.woff2" | asset_url }}') format('woff2');
+  }
+@font-face {
+  font-family: 'GT Walsheim';
+  font-display: swap;
+  src: url('{{ "GTWalsheim.woff2" | asset_url }}') format('woff2'), url('{{ "GTWalsheim.woff" | asset_url }}') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  }
+@font-face {
+  font-family: 'GT Super Display';
+  font-display: swap;
+  src: url('{{ "GTSuperDisplay-Regular.woff2" | asset_url }}') format('woff2'), url('{{ "GTSuperDisplay-Regular.woff" | asset_url }}') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  }
+h2 {
+  font-family: 'GT Super Display';
+  color: #0A0A0A;
+  }
 body {
-    font-family: 'GT Walsheim';
-    color: #0A0A0A;
+  font-family: 'GT Momiji Regular';
+  color: #0A0A0A;
+  }
+.breadcrumb__item, .sidebar .icon-svg--color-adaptive-light {
+  color: #0a0a0a;
+}
+.breadcrumb__item--current {
+  font-weight: 400;
+  color: #f06c4e;
+  }
+.field__input {
+  border: 1px solid #0a0a0a;
+  border-radius: 0px;
+  }
+.field__input::placeholder {
+  color: #767676;
+  }
+.field__input:focus, .field__input-wrapper--flag-focus .field__input {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-color: #0a0a0a;
+}
+.btn, .sp-modal-toggle {
+  border-radius: 0;
+  font-weight: normal;
+  padding: 1em 1.5em;
+}
+.content-box {
+  border-radius: 0px;
+  color: #0a0a0a;
+}
+.product-thumbnail::after {
+  border-radius: 0px;
+}
+.tag {
+  border-radius: 0px;
+  background-color: #FFF685;
+  color: #fff;
+}
+.checkout__note {
+  margin: 20px 0;
+}
+.checkout__note p {
+  font-family: 'GT Walsheim';
+  color: #0a0a0a;
 }
 </style>
