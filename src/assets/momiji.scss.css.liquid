@@ -4589,8 +4589,32 @@ a.text-dark:hover, a.text-dark:focus {
   font-style: normal; }
 
 
-// MIDABI 
+/* // MIDABI  */
 
+#midabi .home .img-container img{
+  overflow-x: visible;
+  transition: opacity 700ms;
+  transition-delay:500ms;
+}
+
+@media (max-width: 767.98px) {
+  #midabi .home {
+    overflow-y: hidden;
+  }
+}
+
+#midabi #shopify-section-footer {
+  position:relative;
+  background-color:#E64937;
+}
+
+#midabi #shopify-section-footer footer {
+  background-color:#E64937;
+}
+
+#midabi .img-container {
+  background-color:#439966;
+}
 
 @font-face {
     font-family: 'GT Standard Beta A3';
@@ -9279,6 +9303,52 @@ account/orders page
 
 /* // MIBADI */
 
+.fade-on-scroll,
+.animate-on-scroll {
+  opacity: 0;
+}
+
+.fade-on-scroll.animate {
+  animation-name: d;
+  animation-fill-mode: forwards;
+  animation-duration: 1.5s;
+  transition-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.animate-on-scroll.animate {
+  animation-name: a;
+  animation-fill-mode: forwards;
+  animation-duration: 1.5s;
+  transition-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+@keyframes a {
+  0% {
+    opacity: 0;
+    -webkit-backface-visibility: hidden;
+  }
+
+  to {
+    opacity: 1;
+    -webkit-backface-visibility: hidden;
+  }
+}
+
+@keyframes d {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+    -webkit-backface-visibility: hidden;
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    -webkit-backface-visibility: hidden;
+  }
+}
+
+
 .btn__midabi {
   transition: all 400ms cubic-bezier(0.445, 0.5, 0.55, 0.95);
 }
@@ -9380,15 +9450,22 @@ account/orders page
   top: 10px;
   height: 85px;
   width: 86px;
-  right: 0%;
+  right: 3%;
   margin: 0 auto;
   z-index: 0;
+  -webkit-animation:spin 8s linear infinite;
+  -moz-animation:spin 8s linear infinite;
+  animation:spin 8s linear infinite;
 }
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
 @media (max-width: 767px) {
   .sticker-midabi::after {
-    height: 66px;
-    width: 66px;
     right: 15px;
+    top:-25px;
   }
 }
 
@@ -9428,6 +9505,7 @@ account/orders page
 
 .fix {
   position: sticky;
+  position: -webkit-sticky;
   top: 100px;
   min-height: 80vh;
   display: flex;
@@ -9437,6 +9515,12 @@ account/orders page
 @media (max-width: 991.98px) {
   .fix {
     min-height: 50vh;
+    min-height: auto;
+  }
+
+  .fix .content {
+    padding-left:0;
+    margin-top:80px;
   }
 }
 @media (max-width: 767px) {
@@ -9444,6 +9528,14 @@ account/orders page
     min-height: auto;
     position: relative;
     top: unset;
+  }
+
+  .breadcrumb + .title {
+    margin-top: 20px;
+  }
+
+  .fix .content {
+    margin-top:60px;
   }
 }
 
@@ -9473,25 +9565,37 @@ account/orders page
   left: 0;
   right: 0;
   margin: 0 auto;
-  padding: 0;
 }
 @media (max-width: 991.98px) {
   .midabi__hero {
     height: 590px;
   }
   .midabi__hero .hero__footer {
-    width: calc(100% - 40px);
+    width: calc(100% - 20px);
   }
 }
 @media (max-width: 767px) {
   .midabi__hero .hero__footer {
-    width: calc(100% - 30px);
+    width: calc(100% - 5px);
+    position:relative;
+    top:0;
+    margin-top:50px;
+  }
+
+  .midabi__hero {
+    min-height: 400px;
+    height: auto;
+    padding-top: 70px;
+    padding-bottom: 70px;
   }
 }
 .midabi__benefits {
   transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
   z-index: 1000;
+  position: relative;
+  will-change:transform;
 }
 .midabi__benefits .col-md-6:first-child, .midabi__benefits .benefits-items {
   padding-left: 70px;
@@ -9527,6 +9631,7 @@ account/orders page
 }
 .midabi__benefits .benefits-items img {
   margin: 0 auto;
+  width:100%;
 }
 .midabi__benefits .benefits-items h4 {
   margin-top: 20px;
@@ -9540,8 +9645,8 @@ account/orders page
     padding-right: 15px;
   }
   .midabi__benefits .benefits-items .benefit-item:nth-child(even), .midabi__benefits .benefits-items .benefit-item:nth-child(odd) {
-    padding-left: 35px;
-    padding-right: 35px;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 }
 @media (max-width: 767px) {
@@ -9556,22 +9661,39 @@ account/orders page
   .midabi__benefits .benefits-items .benefit-item:not(:first-child) {
     padding-top: 50px;
   }
+
+  .midabi__instagram figure figcaption {
+    text-align: left;
+    margin-top:10px;
+  }
 }
 .midabi__instagram {
   background-color: #FEFEFE;
+  -webkit-backface-visibility: hidden; /* Safari */
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
+  overflow: hidden; 
+  box-sizing: border-box;
   z-index: 1000;
+  position: relative;
+}
+.midabi__instagram .row.mt-70 {
+  position: relative;
+}
+.midabi__instagram .img-container {
+  display: inline-flex;
+  max-width:90%;
 }
 .midabi__instagram figure img {
-  max-width: 90%;
+  max-width: 100%;
 }
 .midabi__instagram figure figcaption {
-  display: inline-block;
+  display: inline-flex;
   writing-mode: vertical-rl;
   vertical-align: bottom;
   transform: rotate(180deg);
   margin-left: 10px;
+  height:auto;
 }
 .midabi__instagram figure figcaption i {
   margin-bottom: 5px;
@@ -9579,6 +9701,7 @@ account/orders page
 .midabi__instagram figure:nth-child(even) {
   margin-top: 30%;
   margin-left: auto;
+  text-align:right;
 }
 .midabi__instagram .instagram-circle {
   background: #FFD7D2;
@@ -9609,7 +9732,23 @@ account/orders page
 .midabi__instagram .instagram-circle h4 + h5, .midabi__instagram .instagram-circle h5 + h4, .midabi__instagram .instagram-circle .title-midabi + .noto, .midabi__instagram .instagram-circle .shop-item .shop-title h2 + .noto, .shop-item .shop-title .midabi__instagram .instagram-circle h2 + .noto {
   margin-top: 10px;
 }
+
 @media (max-width: 991.98px) {
+  .midabi__instagram .img-container {
+    max-width:90%;
+    display:inline-block;
+  }
+
+  .midabi__instagram .instagram-circle {
+    top: 45%;
+  }
+}
+@media (max-width: 767px) {
+  .midabi__instagram .img-container {
+    max-width:100%;
+    width: 100%;
+  }
+
   .midabi__instagram .container-fluid {
     display: flex;
     flex-wrap: wrap;
@@ -9617,6 +9756,7 @@ account/orders page
   }
   .midabi__instagram figure img {
     max-width: 100%;
+    width:100%;
   }
   .midabi__instagram figure figcaption {
     writing-mode: horizontal-tb;
@@ -9627,6 +9767,9 @@ account/orders page
     transform: rotate(-90deg);
     margin-right: 5px;
     margin-bottom: 0;
+  }
+  .midabi__instagram figure:nth-child(even) {
+    text-align:left;
   }
   .midabi__instagram .row figure:not(:first-child) {
     margin-top: 60px;
@@ -9654,8 +9797,9 @@ account/orders page
   display: flex;
   align-items: center;
   justify-content: center;
-  position: -webkit-sticky;
-  position: sticky;
+  /* position: -webkit-sticky;
+  position: sticky; */
+  will-change:transform;
   top: 0;
   z-index: 0;
 }
@@ -9671,6 +9815,9 @@ account/orders page
   height: 100%;
   object-fit: cover;
   width: 100%;
+}
+.shop-item .img-container {
+  height:100%;
 }
 .shop-item .col-md-6:first-child {
   padding: 0 70px;
@@ -9726,6 +9873,10 @@ account/orders page
   .shop-item .shop-benefits {
     left: -55px;
   }
+
+  .shop-item .img-container {
+    height:100%;
+  }
 }
 @media (max-width: 767px) {
   .shop-item {
@@ -9742,6 +9893,9 @@ account/orders page
   }
   .shop-item .shop-benefits {
     left: -55px;
+  }
+  .shop-item .col-md-6:first-child {
+    padding: 50px 30px;
   }
 }
 
