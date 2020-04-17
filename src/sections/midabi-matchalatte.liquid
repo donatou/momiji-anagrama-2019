@@ -1,0 +1,94 @@
+{%- assign product = all_products[section.settings.product] -%}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+<section class="section_swipe shop-item" data-section="{{ section.settings.titulo }}">
+    <div class="container-fluid p-0">
+        <div class="row m-0">
+        <div class="col-12 col-md-6">
+            <div class="shop-title">
+            <h2 class="animate-on-scroll">{{ section.settings.titulo }}<span class="tag-oval d-none d-lg-inline-block">Nuevo</span></h2>
+            <p class="animate-on-scroll">{{ section.settings.subtitulo }}</p>
+            <p class="animate-on-scroll">{{ section.settings.subtitulo2 }}</p>
+            </div>
+
+            <figure class="shop-product animate-on-scroll">
+            <img src="{{ section.settings.product_image | img_url: '426x' }}" alt="{{ section.settings.titulo }}">
+            <span class="tag-oval d-block d-lg-none">Nuevo</span>
+            </figure>
+
+            <!-- // DESKTOP cart -->
+            <div class="shop-cart d-none d-lg-block animate-on-scroll">
+                <form action="/cart/add" data-productid="{{ current_variant.id }}" method="post" class="product-form mt-4" id="AddToCartForm">
+                    <input type="hidden" name="id" value="{{ current_variant.id }}">
+                    <input type="hidden" name="quantity" value="1">
+                    <button class="btn__midabi" type="submit">{{ product.price | money_without_trailing_zeros }} — {{ 'products.product.add_to_cart' | t }}</button>
+                </form>
+                <a class="link__midabi" href="/products/{{ section.settings.matcha_latte }}">{{ 'shopify.checkout.general.tooltip_accessibility_label' | t}}</a>
+            </div>
+
+            <!-- MOBILE TABLET CART  -->
+            <div class="shop-cart d-block d-lg-none animate-on-scroll">
+            <button class="btn__midabi">{{ product.price | money_without_trailing_zeros }} — agregar</button>
+            <a class="link__midabi" href="/">más info</a>
+            </div>
+
+            {{ section.settings.sidetext }}
+
+        </div>
+        <figure class="col-12 col-md-6 p-0">
+            <div class="img-container">
+            <img src="{{ section.settings.model_image | img_url: '1200x' }}" alt="{{ section.settings.titulo }}">
+            </div>
+        </figure>
+        </div>
+    </div>
+</section>
+{% schema %}
+    {
+        "name": "Momiji Life Product",
+        "settings": [
+        {
+            "type": "product",
+            "id": "product",
+            "label": "Producto"
+        },
+        {
+            "type": "image_picker",
+            "id": "product_image",
+            "label": "Foto producto"
+        },
+        {
+            "type": "image_picker",
+            "id": "model_image",
+            "label": "Foto modelo"
+        },
+        {
+            "type": "text",
+            "id": "titulo",
+            "label": "Titulo producto"
+        },
+        {
+            "type": "text",
+            "id": "subtitulo",
+            "label": "Subtitulo"
+        },
+        {
+            "type": "text",
+            "id": "subtitulo2",
+            "label": "Subtitulo 2"
+        },
+        {
+        "type": "html",
+        "id": "sidetext",
+        "label": "HTML de Sidetext",
+        "default": "<div><p>Some HTML content</p></div>"
+        }
+        ],
+        "presets": [
+        {
+            "name": "Momiji Life Product",
+            "category": "Momiji Life"
+        }
+        ]
+    }
+{% endschema %}
