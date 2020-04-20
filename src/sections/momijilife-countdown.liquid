@@ -1,0 +1,82 @@
+{% comment %} <main class="midabi-page" id="page"> {% endcomment %}
+<section class="midabi__hero bg-gray">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 col-lg-9 col-xl-8 sticker-midabi">
+        <h1 class="noto">안녕하세요!</h1>
+        <h1 class="title-midabi">momiji life <strong><span class="test"></span></strong><br>↓↓↓ <span class="days"></span> : <span class="hours"></span> : <span class="minutes"></span> : <span class="seconds"></span></h1>
+      </div>
+      <div class="col-12 hero__footer">
+        <div class="row justify-content-between">
+          <div class="col-12 col-md-4 col-lg-3">
+            <h2 class="subtitle-midabi">18.05.2020</h2>
+          </div>
+          <div class="col-12 col-md-4 col-lg-3 col-xl-2 text-md-right">
+            <h3 class="subtitle-midabi">boost your confidence through self-care</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%}https://codepen.io/AllThingsSmitty/pen/JJavZN{%- endcomment -%}
+<script>
+var quotes = [
+      "made for you, made for everyone.",
+      "the best of science and nature designed for real life.",
+      "self-care is productive.",
+      "4 pasos, un ritual."   
+    ];
+
+window.addEventListener('DOMContentLoaded', (event) => {
+    console.log('DOM fully loaded and parsed');
+    var q = quotes[ Math.floor( Math.random() * quotes.length ) ];
+    document.querySelector(".test").innerHTML = q;   
+});
+
+const second = 1000,
+      minute = second * 60,
+      hour = minute * 60,
+      day = hour * 24;
+
+let countDown = new Date('May 18, 2020 00:00:00').getTime(),
+    x = setInterval(function() {    
+
+      let now = new Date().getTime(),
+          distance = countDown - now;
+
+      document.querySelector('.days').innerText = Math.floor(distance / (day)),
+        document.querySelector('.hours').innerText = Math.floor((distance % (day)) / (hour)),
+        document.querySelector('.minutes').innerText = Math.floor((distance % (hour)) / (minute)),
+        document.querySelector('.seconds').innerText = Math.floor((distance % (minute)) / second);
+
+      //do something later when date is reached
+      //if (distance < 0) {
+      //  clearInterval(x);
+      //  'IT'S MY BIRTHDAY!;
+      // Agregar un refresh en el botón para dar refresh
+      //}
+
+    }, second);
+</script>
+
+{% schema %}
+  {
+    "name": "Momiji Life Countdown",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_section",
+        "label": "Show section",
+        "default": true
+      }
+    ],
+    "presets": [
+      {
+        "name": "Countdown",
+        "category": "Momiji Life"
+      }
+    ]
+  }
+{% endschema %}
