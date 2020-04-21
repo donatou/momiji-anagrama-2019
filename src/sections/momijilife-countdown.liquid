@@ -1,10 +1,9 @@
-{% comment %} <main class="midabi-page" id="page"> {% endcomment %}
 <section class="midabi__hero bg-gray">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12 col-lg-9 col-xl-8 sticker-midabi">
         <h1 class="noto">안녕하세요!</h1>
-        <h1 class="title-midabi">momiji life <strong><span class="test"></span></strong><br>↓↓↓ <span class="days"></span> : <span class="hours"></span> : <span class="minutes"></span> : <span class="seconds"></span></h1>
+        <h1 class="title-midabi">momiji life <strong><span class="quotes"></span></strong><br>↓↓↓ <span class="days"></span> : <span class="hours"></span> : <span class="minutes"></span> : <span class="seconds"></span></h1>
       </div>
       <div class="col-12 hero__footer">
         <div class="row justify-content-between">
@@ -20,7 +19,6 @@
   </div>
 </section>
 
-{%- comment -%}https://codepen.io/AllThingsSmitty/pen/JJavZN{%- endcomment -%}
 <script>
 var quotes = [
       "made for you, made for everyone.",
@@ -30,9 +28,8 @@ var quotes = [
     ];
 
 window.addEventListener('DOMContentLoaded', (event) => {
-    console.log('DOM fully loaded and parsed');
     var q = quotes[ Math.floor( Math.random() * quotes.length ) ];
-    document.querySelector(".test").innerHTML = q;   
+    document.querySelector(".quotes").innerHTML = q;   
 });
 
 const second = 1000,
@@ -51,14 +48,11 @@ let countDown = new Date('May 18, 2020 00:00:00').getTime(),
         document.querySelector('.minutes').innerText = Math.floor((distance % (hour)) / (minute)),
         document.querySelector('.seconds').innerText = Math.floor((distance % (minute)) / second);
 
-      //do something later when date is reached
-      //if (distance < 0) {
-      //  clearInterval(x);
-      //  'IT'S MY BIRTHDAY!;
-      // Agregar un refresh en el botón para dar refresh
-      //}
-
-    }, second);
+      if (distance < 1) {
+        clearInterval(x);
+        location.reload();
+        }
+      }, second);
 </script>
 
 {% schema %}
