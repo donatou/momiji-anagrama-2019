@@ -1,0 +1,29 @@
+{%- comment -%}Reseñas a Momiji{%- endcomment -%}
+
+<section>
+    <div class="grid-container">
+        <div>
+            <p>Texto</p>
+        </div>
+        <div>Reseña por</div>
+    </div>
+</section>
+
+{% schema %}
+{
+"blocks": [
+    {
+    "type": "resenia",
+    "name": "Reseñas",
+    "max_blocks": 6
+    "settings": [
+        {
+        "id": "content",
+        "type": "text",
+        "label": "Reseñas"
+        }
+    ]
+    }
+]
+}
+{% endschema %}
