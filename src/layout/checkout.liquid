@@ -14,6 +14,7 @@
     {{ checkout_scripts }}
     {% include "loyaltylion" %}
   <script>lion.configure({ checkout: true })</script>
+  
 </head>
   <body>
     {{ skip_to_content_link }}
@@ -57,10 +58,27 @@
         </div>
       </div>
     </div>
-
     {{ tracking_code }}
+    <script src="{{ 'jquery.min.js' | asset_url }}"></script>
   </body>
 </html>
+
+
+
+<script>
+$(document).on('page:load page:change', () => {
+  function replaceMP() {
+    const mpImage = document.querySelector('img[alt="Mercado Pago"]');
+    const mpLabel = document.querySelector('label[for="checkout_payment_gateway_38941884521"]');
+    mpImage.remove();
+    const myLabel = 'Pago con tarjeta de crédito y débito con MercadoPago';
+    mpLabel.innerHTML = myLabel;
+  }
+  replaceMP();
+});
+</script>
+
+
 
 <style>
 @font-face {
