@@ -2,28 +2,190 @@
 
 <section>
     <div class="grid-container">
-        <div>
-            <p>Texto</p>
+        <div class="resenia-container">
+            <div class="resenia">
+                <h3>Momiji, el espacio por excelencia de K-beauty en donde puedes encontrar el paraíso de las mascarillas.</h3>
+                <b>QUIÉN</b>
+            </div>
         </div>
-        <div>Reseña por</div>
+        <div class="resenia-container">
+            <div class="resenia">
+                <h3>These serum-soaked patches depute and moisturize that delicate under area for an at-home spa day.</h3>
+                <b>ALLURE</b>
+            </div>
+        </div>
+        <div class="resenia-container">
+            <div class="resenia">
+                <h3>La primera tienda en línea que celebra y pone a tu alcance la innovadora cosmética oriental.</h3>
+                <b>Elle</b>
+            </div>
+        </div>
     </div>
 </section>
 
+<style>
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    background-color: #F9FCFC;
+    align-items: center;
+}
+.resenia-container {
+    display:grid;
+    margin: 90px 15px;
+    justify-items: center;
+}
+.resenia {
+    width: 75%;
+    text-align: center;
+}
+.resenia h3 {
+    border-bottom: 1px solid #0a0a0a;
+    padding-bottom: 20px;
+}
+.resenia b {
+    margin-top: 20px;
+}
+</style>
+
 {% schema %}
 {
-"blocks": [
-    {
-    "type": "resenia",
-    "name": "Reseñas",
-    "max_blocks": 6
-    "settings": [
-        {
-        "id": "content",
-        "type": "text",
-        "label": "Reseñas"
-        }
-    ]
-    }
-]
+	"name":"Reseñas",
+	"max_blocks":6,
+	"settings":[
+		{
+			"id":"title_suc",
+			"type":"text",
+			"label":"Titulo de seccion",
+			"default":"Encuentranos en"
+		},
+		{
+			"id":"button_suc",
+			"type":"text",
+			"label":"Boton",
+			"default":"Ver sucursales"
+		},
+		{
+			"id":"buttonlink_suc",
+			"type":"url",
+			"label":"Link del boton"
+		},
+		{
+			"type":"radio",
+			"id":"color_sect",
+			"options":[
+				{
+					"value":"bg-red",
+					"label":"rojo"
+				},
+				{
+					"value":"bg-pink",
+					"label":"rosa"
+				},
+				{
+					"value":"bg-babyblue",
+					"label":"celeste"
+				},
+				{
+					"value":"bg-gray",
+					"label":"gris"
+				},
+				{
+					"value":"bg-whie",
+					"label":"blanco"
+				}
+			],
+			"default":"bg-gray",
+			"label":"Color de fondo de seccion"
+		},
+		{
+			"type":"radio",
+			"id":"color_suc",
+			"options":[
+				{
+					"value":"rojo",
+					"label":"rojo"
+				},
+				{
+					"value":"rosa",
+					"label":"rosa"
+				},
+				{
+					"value":"celeste",
+					"label":"celeste"
+				},
+				{
+					"value":"gris",
+					"label":"gris"
+				},
+				{
+					"value":"blanco",
+					"label":"blanco"
+				}
+			],
+			"default":"gris",
+			"label":"Color de fondo de thumbnail"
+		}
+	],
+	"blocks":[
+		{
+			"type":"select",
+			"name":"Sucursal",
+			"settings":[
+				{
+					"id":"popup",
+					"type":"checkbox",
+					"label":"Es pop-up?",
+					"default":false
+				},
+				{
+					"id":"image",
+					"type":"image_picker",
+					"label":"imagen de sucursal",
+					"info":"Tamaño 800x800 pixeles"
+				},
+				{
+					"id":"title_suc",
+					"type":"text",
+					"label":"sucursal",
+					"placeholder":"Momiji Monterrey"
+				},
+				{
+					"id":"desc_suc",
+					"type":"textarea",
+					"label":"domicilio",
+					"placeholder":"Río Orinoco 414, Local 6, Plaza Selda, Col. Del Valle, SPGG. C.P. 66220, Monterrey, N.L. México."
+				},
+				{
+					"id":"loc_suc",
+					"type":"text",
+					"label":"ver direccion",
+					"placeholder":"ver direccion de sucursal"
+				},
+				{
+					"id":"link",
+					"type":"url",
+					"label":"link de google maps"
+				}
+			]
+		}
+	],
+	"presets":[
+		{
+			"name":"Reseñas",
+			"category":"Contenido",
+			"blocks":[
+				{
+					"type":"select"
+				},
+				{
+					"type":"select"
+				},
+				{
+					"type":"select"
+				}
+			]
+		}
+	]
 }
 {% endschema %}
