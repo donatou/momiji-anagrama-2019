@@ -2,19 +2,19 @@
 
 <section>
     <div class="grid-container">
-        <div class="resenia-container">
+        <div class="resenia-container g1">
             <div class="resenia">
                 <h3>Momiji, el espacio por excelencia de K-beauty en donde puedes encontrar el paraíso de las mascarillas.</h3>
                 <b>QUIÉN</b>
             </div>
         </div>
-        <div class="resenia-container">
+        <div class="resenia-container g2">
             <div class="resenia">
                 <h3>These serum-soaked patches depute and moisturize that delicate under area for an at-home spa day.</h3>
                 <b>ALLURE</b>
             </div>
         </div>
-        <div class="resenia-container">
+        <div class="resenia-container g3">
             <div class="resenia">
                 <h3>La primera tienda en línea que celebra y pone a tu alcance la innovadora cosmética oriental.</h3>
                 <b>Elle</b>
@@ -25,8 +25,9 @@
 
 <style>
 .grid-container {
-    display: grid;
-    grid-template-columns: auto auto;
+	display: grid;
+	grid-template-columns: 50% 50%;
+	grid-template-rows: 50% 50%;
     background-color: #F9FCFC;
     align-items: center;
 }
@@ -34,6 +35,10 @@
     display:grid;
     margin: 90px 15px;
     justify-items: center;
+}
+.g1 {
+	grid-column: span 1;
+	grid-row: span 2;
 }
 .resenia {
     width: 75%;
@@ -189,3 +194,5 @@
 	]
 }
 {% endschema %}
+
+
