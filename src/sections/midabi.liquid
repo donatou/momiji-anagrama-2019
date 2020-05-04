@@ -1,6 +1,3 @@
-{% comment %} {%- assign product = all_products[block.settings.product] -%}
-{%- assign current_variant = product.selected_or_first_available_variant -%} {% endcomment %}
-
 <main class="midabi-page" id="page">
   <section class="midabi__hero bg-gray">
     <div class="container-fluid">
@@ -63,14 +60,6 @@
             </div>
 
             {{ block.settings.sidetext }}
-            {% comment %} <div class="shop-benefits animate-on-scroll">
-              calma, hidrata y fortalece
-              <div class="shop-icons">
-                <i class="icon icon-calma"></i>
-                <i class="icon icon-hidrata"></i>
-                <i class="icon icon-fortalece"></i>
-              </div>
-            </div> {% endcomment %}
           </div>
           <figure class="col-12 col-md-6 p-0">
             <div class="img-container">
@@ -104,31 +93,31 @@
         <div class="col-md-6 benefits-items section__spacers">
           <div class="benefit-item animate-on-scroll">
             <div class="img-container">
-              <img src="{{ 'benefit-1.jpg' | asset_url }}" alt="">
+              <img src="{{ section.settings.benefits_img_1 | img_url: '750x' }}" alt="{{ section.settings.benefits_title_1 }}">
             </div>
             <div class="item-content animate-on-scroll">
-              <h4 class="bodytitle-midabi">Hecho en Momiji Lab para tu rutina diaria</h4>
-              <p>Momiji Life es para las personas que se encuentran en constante movimiento. Aquellas que valoran momentos consigo mismas y requieren de un aliado</p>
+              <h4 class="bodytitle-midabi">{{ section.settings.benefits_title_1 }}</h4>
+              <p>{{ section.settings.benefits_txt_1 }}</p>
             </div>
           </div>
 
           <div class="benefit-item animate-on-scroll">
             <div class="img-container">
-              <img src="{{ 'benefit-2.jpg' | asset_url }}" alt="">
+              <img src="{{ section.settings.benefits_img_2 | img_url: '918x' }}" alt="{{ section.settings.benefits_title_2 }}">
             </div>
             <div class="item-content animate-on-scroll">
-              <h4 class="bodytitle-midabi">Para cualquier tipo de piel</h4>
-              <p>Momiji Life es para las personas que se encuentran en constante movimiento. Aquellas que valoran momentos consigo mismas.</p>
+              <h4 class="bodytitle-midabi">{{ section.settings.benefits_title_2 }}</h4>
+              <p>{{ section.settings.benefits_txt_2 }}</p>
             </div>
           </div>
 
           <div class="benefit-item animate-on-scroll">
             <div class="img-container">
-              <img src="{{ 'benefit-3.jpg' | asset_url }}" alt="">
+              <img src="{{ section.settings.benefits_img_3 | img_url: '750x' }}" alt="{{ section.settings.benefits_title_3 }}">
             </div>
             <div class="item-content animate-on-scroll">
-              <h4 class="bodytitle-midabi">Con ingredientes activos suaves</h4>
-              <p>Utilizamos ingredientes activos suaves, pero efectivos, con tu piel y su barrera protectora. La idea es fortalecerla y hacerla más resiliente.</p>
+              <h4 class="bodytitle-midabi">{{ section.settings.benefits_title_3 }}</h4>
+              <p>{{ section.settings.benefits_txt_3 }}</p>
             </div>
           </div>
         </div>
@@ -142,12 +131,12 @@
       <div class="row order-1">
         <div class="col-md-12">
           <div class="breadcrumb">
-            <h2 class="animate-on-scroll">boost your confidence</h2>
-            <h3 class="animate-on-scroll">#momijilife</h3>
+            <h2 class="animate-on-scroll">{{ section.settings.last_left_txt }}</h2>
+            <h3 class="animate-on-scroll">{{ section.settings.last_right_txt }}</h3>
           </div>
 
           <div class="title col-12 col-lg-8 p-0 animate-on-scroll">
-            <h1 class="title-midabi"><strong>Momiji Life</strong> is about living your best self. For people with no time for bs <strong>(but time for self-care).</strong></h1>
+            <h1 class="title-midabi">{{ section.settings.last_title }}</h1>
             <h1 class="noto">실제 스킨 케.</h1>
           </div>
         </div>
@@ -156,23 +145,23 @@
       <div class="row mt-70 order-2 order-md-1">
         <figure class="col-md-6 col-lg-5">
           <div class="img-container ">
-            <img src="{{ 'ig-1.jpg' | asset_url }}" alt="">
+            <img src="{{ section.settings.last_img_1 | img_url: '427x' }}" alt="{{ section.settings.last_caption_1 }}">
           </div>
-          <figcaption><i class="icon icon-heart"></i>transform yourself inside and out</figcaption>
+          <figcaption><i class="icon icon-heart"></i>{{ section.settings.last_caption_1 }}</figcaption>
         </figure>
 
         <figure class="col-md-6 col-lg-5">
           <div class="img-container">
-            <img src="{{ 'ig-2.jpg' | asset_url }}" alt="">
+            <img src="{{ section.settings.last_img_2 | img_url: '427x' }}" alt="{{ section.settings.last_caption_2 }}">
           </div>
-          <figcaption><i class="icon icon-heart"></i>created and tested by us  in momiji labs</figcaption>
+          <figcaption><i class="icon icon-heart"></i>{{ section.settings.last_caption_2 }}</figcaption>
         </figure>
 
         <figure class="col-md-6 col-lg-5">
           <div class="img-container">
-            <img src="{{ 'ig-3.jpg' | asset_url }}" alt="">
+            <img src="{{ section.settings.last_img_3 | img_url: '427x' }}" alt="{{ section.settings.last_caption_3 }}">
           </div>
-          <figcaption><i class="icon icon-heart"></i>made for your daily routine</figcaption>
+          <figcaption><i class="icon icon-heart"></i>{{ section.settings.last_caption_3 }}</figcaption>
         </figure>
       </div>
 
@@ -185,7 +174,6 @@
             #Self-care  #Momijilife</p>
           <a class="link__midabi" href="/">Visitar Instagram</a>
         </div>
-
 
         <!-- //ESTE ES UN UPDATE DE INSTAGRAM (información) DE LA ULTIMA FOTO PERO SIN LA FOTO NI LA DESCRIPCION -->
         <div class="ig-header" id="ig-header">
@@ -253,12 +241,106 @@
       {
         "type": "html",
         "id": "benefits_title",
-        "label": "Titulo de benefits"
+        "label": "Titulo de benefits (area verde)"
       },
       {
         "type": "textarea",
         "id": "benefits_content",
-        "label": "Contenido de benefits"
+        "label": "Contenido de benefits (area verde)"
+      },
+      {
+        "type": "image_picker",
+        "id": "benefits_img_1",
+        "label": "Imagen beneficio 1"
+      },
+      {
+        "type": "text",
+        "id": "benefits_title_1",
+        "label": "Beneficio 1 Title"
+      },
+      {
+        "type": "textarea",
+        "id": "benefits_txt_1",
+        "label": "Beneficio 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "benefits_img_2",
+        "label": "Imagen beneficio 2"
+      },
+      {
+        "type": "text",
+        "id": "benefits_title_2",
+        "label": "Beneficio 2 Title"
+      },
+      {
+        "type": "textarea",
+        "id": "benefits_txt_2",
+        "label": "Beneficio 2"
+      },
+      {
+        "type": "image_picker",
+        "id": "benefits_img_3",
+        "label": "Imagen beneficio 3"
+      },
+      {
+        "type": "text",
+        "id": "benefits_title_3",
+        "label": "Beneficio 3 Title"
+      },
+      {
+        "type": "textarea",
+        "id": "benefits_txt_3",
+        "label": "Beneficio 3"
+      },
+      {
+        "type": "header",
+        "content": "Last Section"
+      },
+      {
+        "type": "text",
+        "id": "last_left_txt",
+        "label": "Texto izquierdo"
+      },
+      {
+        "type": "text",
+        "id": "last_right_txt",
+        "label": "Texto derecho"
+      },
+      {
+        "type": "html",
+        "id": "last_title",
+        "label": "Copy principal"
+      },
+      {
+        "type": "image_picker",
+        "id": "last_img_1",
+        "label": "Imagen 1"
+      },
+      {
+        "type": "text",
+        "id": "last_caption_1",
+        "label": "Caption imagen 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "last_img_2",
+        "label": "Imagen 2"
+      },
+      {
+        "type": "text",
+        "id": "last_caption_2",
+        "label": "Caption imagen 2"
+      },
+      {
+        "type": "image_picker",
+        "id": "last_img_3",
+        "label": "Imagen 3"
+      },
+      {
+        "type": "text",
+        "id": "last_caption_3",
+        "label": "Caption imagen 3"
       }
     ],
     "presets": [
