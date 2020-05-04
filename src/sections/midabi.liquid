@@ -7,16 +7,16 @@
       <div class="row">
         <div class="col-md-12 col-lg-9 col-xl-8 sticker-midabi">
           <h1 class="noto">안녕하세요!</h1>
-          <h1 class="title-midabi">We believe <strong>confidence</strong> should be a part of your skincare routine. No more boring beauty standards. You are the <strong>real beauty standard ↓↓↓</strong></h1>
+          <h1 class="title-midabi">{{ section.settings.title_momijilife }}</h1>
         </div> 
 
         <div class="col-12 hero__footer">
           <div class="row justify-content-between">
             <div class="col-12 col-md-4 col-lg-3">
-              <h2 class="subtitle-midabi">our manifesto</h2>
+              <h2 class="subtitle-midabi">{{ section.settings.subtitle_left }}</h2>
             </div>
             <div class="col-12 col-md-4 col-lg-3 col-xl-2 text-md-right">
-              <h3 class="subtitle-midabi">boost your confidence through self-care</h3>
+              <h3 class="subtitle-midabi">{{ section.settings.subtitle_right }}</h3>
             </div>
           </div>
         </div>
@@ -28,51 +28,6 @@
   <div class="dsh-MobileBar" style="display: none;"></div>
 
   <!-- SHOP ITEMS  -->
-  {% comment %} <section class="section_swipe shop-item" data-section="Golden Hour">
-    <div class="container-fluid p-0">
-      <div class="row m-0">
-        <div class="col-12 col-md-6">
-          <div class="shop-title w-100">
-            <h2 class="animate-on-scroll">Golden Hour <span class="tag-oval d-none d-lg-inline-block">Nuevo</span></h2>
-            <p class="animate-on-scroll">Limpiador de un paso (3.5 oz.)</p>
-            <p class="animate-on-scroll"> feel: clean & nourished </p>
-          </div>
-
-          <figure class="shop-product animate-on-scroll">
-            <img src="{{ 'shop-product.jpg' | asset_url }}" alt="Product title">
-            <span class="tag-oval d-block d-lg-none">Nuevo</span>
-          </figure>
-
-          <!-- // DESKTOP cart -->
-          <div class="shop-cart d-none d-lg-block animate-on-scroll">
-            <button class="btn__midabi">$560 — agregar al carrito</button>
-            <a class="link__midabi" href="/">más información</a>
-          </div>
-
-          <!-- MOBILE TABLET CART  -->
-          <div class="shop-cart d-block d-lg-none animate-on-scroll">
-            <button class="btn__midabi">$560 — agregar</button>
-            <a class="link__midabi" href="/">más info</a>
-          </div>
-
-
-          <div class="shop-benefits animate-on-scroll">
-            calma, hidrata y fortalece
-            <div class="shop-icons">
-              <i class="icon icon-calma"></i>
-              <i class="icon icon-hidrata"></i>
-              <i class="icon icon-fortalece"></i>
-            </div>
-          </div>
-        </div>
-        <figure class="col-12 col-md-6 p-0">
-          <div class="img-container">
-            <img src="{{ 'shop-image.jpg' | asset_url }}" alt="/">
-          </div>
-        </figure>
-      </div>
-    </div>
-  </section> {% endcomment %}
   {% for block in section.blocks %}
     {%- assign product = all_products[block.settings.product] -%}
     {%- assign current_variant = product.selected_or_first_available_variant -%}
@@ -127,140 +82,6 @@
     </section>
   {% endfor %}
 
-  {% comment %} <section class="section_swipe shop-item" data-section="Matcha latte">
-    <div class="container-fluid p-0">
-      <div class="row m-0">
-        <div class="col-12 col-md-6">
-          <div class="shop-title">
-            <h2 class="animate-on-scroll">Matcha latte<span class="tag-oval d-none d-lg-inline-block">Nuevo</span></h2>
-            <p class="animate-on-scroll">Tónico equilibrante y antioxidante (3.5 oz.)</p>
-            <p class="animate-on-scroll">feel: hydrated & fresh</p>
-          </div>
-
-          <figure class="shop-product animate-on-scroll">
-            <img src="{{ 'shop-tonic.png' | asset_url }}" alt="Product title">
-            <span class="tag-oval d-block d-lg-none">Nuevo</span>
-          </figure>
-
-          <!-- // DESKTOP cart -->
-          <div class="shop-cart d-none d-lg-block animate-on-scroll">
-            <button class="btn__midabi">$560 — agregar al carrito</button>
-            <a class="link__midabi" href="/">más información</a>
-          </div>
-
-          <!-- MOBILE TABLET CART  -->
-          <div class="shop-cart d-block d-lg-none animate-on-scroll">
-            <button class="btn__midabi">$560 — agregar</button>
-            <a class="link__midabi" href="/">más info</a>
-          </div>
-
-
-          <div class="shop-benefits animate-on-scroll">
-            hidrata, refina, protege
-            <div class="shop-icons">
-              <i class="icon icon-hidrata"></i>
-              <i class="icon icon-refina"></i>
-              <i class="icon icon-protege"></i>
-            </div>
-          </div>
-        </div>
-        <figure class="col-12 col-md-6 p-0">
-          <div class="img-container">
-            <img src="{{ 'matcha-img.jpg' | asset_url }}" alt="/">
-          </div>
-        </figure>
-      </div>
-    </div>
-  </section>
-  <section class="section_swipe shop-item" data-section="Eye job">
-    <div class="container-fluid p-0">
-      <div class="row m-0">
-        <div class="col-12 col-md-6">
-          <div class="shop-title">
-            <h2 class="animate-on-scroll">Eye job<span class="tag-oval d-none d-lg-inline-block">Nuevo</span></h2>
-            <p class="animate-on-scroll">Suero para ojos anti–edad (3.5 oz.)</p>
-            <p class="animate-on-scroll">feel: plumpy & restored </p>
-          </div>
-
-          <figure class="shop-product animate-on-scroll">
-            <img src="{{ 'shop-eye.png' | asset_url }}" alt="Product title">
-            <span class="tag-oval d-block d-lg-none">Nuevo</span>
-          </figure>
-
-          <!-- // DESKTOP cart -->
-          <div class="shop-cart d-none d-lg-block animate-on-scroll">
-            <button class="btn__midabi">$560 — agregar al carrito</button>
-            <a class="link__midabi" href="/">más información</a>
-          </div>
-
-          <!-- MOBILE TABLET CART  -->
-          <div class="shop-cart d-block d-lg-none animate-on-scroll">
-            <button class="btn__midabi">$560 — agregar</button>
-            <a class="link__midabi" href="/">más info</a>
-          </div>
-
-
-          <div class="shop-benefits animate-on-scroll">
-            repara e hidrata
-            <div class="shop-icons">
-              <i class="icon icon-repara"></i>
-              <i class="icon icon-hidrata"></i>
-            </div>
-          </div>
-        </div>
-        <figure class="col-12 col-md-6 p-0">
-          <div class="img-container">
-            <img src="{{ 'eye-img.jpg' | asset_url }}" alt="/">
-          </div>
-        </figure>
-      </div>
-    </div>
-  </section>
-  <section class="section_swipe shop-item" data-section="CTRL+Drop">
-    <div class="container-fluid p-0">
-      <div class="row m-0">
-        <div class="col-12 col-md-6">
-          <div class="shop-title">
-            <h2 class="animate-on-scroll">CTRL+Drop<span class="tag-oval d-none d-lg-inline-block">Nuevo</span></h2>
-            <p class="animate-on-scroll">Suero anti–imperfecciones (3.5 oz.)</p>
-            <p class="animate-on-scroll">feel: protected & soothed </p>
-          </div>
-
-          <figure class="shop-product animate-on-scroll">
-            <img src="{{ 'shop-suero.png' | asset_url }}" alt="Product title">
-            <span class="tag-oval d-block d-lg-none">Nuevo</span>
-          </figure>
-
-          <!-- // DESKTOP cart -->
-          <div class="shop-cart d-none d-lg-block animate-on-scroll">
-            <button class="btn__midabi">$560 — agregar al carrito</button>
-            <a class="link__midabi" href="/">más información</a>
-          </div>
-
-          <!-- MOBILE TABLET CART  -->
-          <div class="shop-cart d-block d-lg-none animate-on-scroll">
-            <button class="btn__midabi">$560 — agregar</button>
-            <a class="link__midabi" href="/">más info</a>
-          </div>
-
-
-          <div class="shop-benefits animate-on-scroll">
-            repara e hidrata
-            <div class="shop-icons">
-              <i class="icon icon-repara"></i>
-              <i class="icon icon-hidrata"></i>
-            </div>
-          </div>
-        </div>
-        <figure class="col-12 col-md-6 p-0">
-          <div class="img-container">
-            <img src="{{ 'drop-img.jpg' | asset_url }}" alt="/">
-          </div>
-        </figure>
-      </div>
-    </div>
-  </section> {% endcomment %}
-
   <section class="midabi__benefits">
     <div class="container-fluid p-0">
       <div class="row m-0">
@@ -271,11 +92,11 @@
               <h3 class="animate-on-scroll">Momiji life</h3>
             </div>
             <div class="title animate-on-scroll">
-              <h1 class="title-midabi">Creado para <strong>nutrir la piel</strong> en la que vives.</h1>
+              <h1 class="title-midabi">{{ section.settings.benefits_title }}</h1>
             </div>
 
             <div class="content mt-lg-auto col-12 col-lg-9 animate-on-scroll">
-              <p>Entre tantos pasos y rutinas complicadas, que solo agregan al estrés de ser “perfecto”, Midabi tiene solo lo necesario para fortalecer y proteger tu piel: productos básicos que le suman y no le restan.</p>
+              <p>{{ section.settings.benefits_content }}</p>
             </div>
           </div>
         </div>
@@ -409,6 +230,35 @@
         "id": "show_section",
         "label": "Show section",
         "default": true
+      },
+      {
+        "type": "html",
+        "id": "title_momijilife",
+        "label": "Copy principal"
+      },
+      {
+        "type": "text",
+        "id": "subtitle_left",
+        "label": "Subtitulo izquierdo"
+      },
+      {
+        "type": "text",
+        "id": "subtitle_right",
+        "label": "Subtitulo derecho"
+      },
+      {
+        "type": "header",
+        "content": "Benefits"
+      },
+      {
+        "type": "html",
+        "id": "benefits_title",
+        "label": "Titulo de benefits"
+      },
+      {
+        "type": "textarea",
+        "id": "benefits_content",
+        "label": "Contenido de benefits"
       }
     ],
     "presets": [
