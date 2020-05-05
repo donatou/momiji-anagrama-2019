@@ -45,18 +45,22 @@
 
             <!-- // DESKTOP cart -->
             <div class="shop-cart d-none d-lg-block animate-on-scroll">
-                <form action="/cart/add" data-productid="{{ current_variant.id }}" method="post" class="product-form mt-4" id="AddToCartForm">
-                    <input type="hidden" name="id" value="{{ current_variant.id }}">
-                    <input type="hidden" name="quantity" value="1">
-                    <button class="btn__midabi" type="submit">{{ product.price | money_without_trailing_zeros }} — {{ 'products.product.add_to_cart' | t }}</button>
-                </form>
-                <a class="link__midabi" href="/products/{{ block.settings.matcha_latte }}">{{ 'shopify.checkout.general.tooltip_accessibility_label' | t}}</a>
+              <form action="/cart/add" data-productid="{{ current_variant.id }}" method="post" class="product-form mt-4" id="AddToCartForm">
+                <input type="hidden" name="id" value="{{ current_variant.id }}">
+                <input type="hidden" name="quantity" value="1">
+                <button class="btn__midabi" type="submit">{{ product.price | money_without_trailing_zeros }} — {{ 'products.product.add_to_cart' | t }}</button>
+              </form>
+              <a class="link__midabi" href="/products/{{ block.settings.product }}">{{ 'shopify.checkout.general.tooltip_accessibility_label' | t}}</a>
             </div>
 
             <!-- MOBILE TABLET CART  -->
             <div class="shop-cart d-block d-lg-none animate-on-scroll">
-              <button class="btn__midabi">{{ product.price | money_without_trailing_zeros }} — agregar</button>
-              <a class="link__midabi" href="/">más info</a>
+              <form action="/cart/add" data-productid="{{ current_variant.id }}" method="post" class="product-form mt-4" id="AddToCartForm">
+                <input type="hidden" name="id" value="{{ current_variant.id }}">
+                <input type="hidden" name="quantity" value="1">
+                <button class="btn__midabi" type="submit">{{ product.price | money_without_trailing_zeros }} — agregar</button>
+              </form>
+              <a class="link__midabi" href="/products/{{ block.settings.product }}">más info</a>
             </div>
 
             {{ block.settings.sidetext }}
