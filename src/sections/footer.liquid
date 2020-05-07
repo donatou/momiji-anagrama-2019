@@ -21,9 +21,10 @@
           <div class="footer__item col-12 col-md-7 col-lg-5">
             <b>{{ section.settings.servicioalcliente_title }}</b>
             <p>Envíanos un correo a
-              <a class="a__more" href="mailto:{{ section.settings.email_sc }}">{{ section.settings.email_sc }}</a>
+              <a class="a__more" href="mailto:{{ section.settings.email_sc }}">{{ section.settings.email_sc }}</a></p>
             <p>{{ section.settings.horario_atencion }}</p>
-            </p>
+            <p>Contacto de mayoreo
+              <a class="a__more" href="mailto:{{ section.settings.email_mayoreo }}">{{ section.settings.email_mayoreo }}</a></p>
           </div>
           <div class="footer__item col-6 col-md-5 col-lg-3">
             <b>{{ footer-left.title }}</b>
@@ -124,6 +125,12 @@
         "id": "horario_atencion",
         "label": "Horario de atención",
         "default": "Lunes a Viernes: 10am—5pm"
+      },
+      {
+        "type": "text",
+        "id": "email_mayoreo",
+        "label": "Email mayoreo",
+        "default": "ventas@bellezaasiatica.com"
       },
       {
         "type": "header",
