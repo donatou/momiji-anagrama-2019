@@ -1,0 +1,194 @@
+<section class="section__principal" data-section-id="{{ section.id }}" data-section-type="product">
+
+{%- comment -%}{% include 'swym-product-view', product: product %}{%- endcomment -%}
+
+{%- assign unico = product.has_only_default_variant -%}
+{% assign inventario-actual = variant.inventory_quantity %}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
+
+  <meta itemprop="name" content="{{ product.title }}{% unless product.has_only_default_variant %} - {{ current_variant.title }}{% endunless %}">
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+  <meta itemprop="image" content="{{ product.featured_image.src | img_url: '1024x1024' }}">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-lg-7">
+        <div class="row">
+          <div class="col-12 breadcrumb">
+            {% include 'breadcrumbs' %}
+          </div>
+          <div class="col-12 product__slider">
+            <div class="row row-mobile">
+              <div class="swiper-container gallery-thumbs col-md-12 col-lg-2 order-2 order-lg-1">
+                <div class="swiper-wrapper ">
+                {% for image in product.images %}
+                  <div class="swiper-slide img-container" style="background-image:url({{ image.src | product_img_url: '100x', scale: 3 }}); background-size: cover;"></div>
+                {% endfor %}
+                </div>
+              </div>
+              <div class="swiper-container gallery-top col-md-12 col-lg-10 order-1 order-lg-2">
+                <div class="swiper-wrapper">
+                {% for image in product.images %}
+                  <div class="swiper-slide img-container" style="background-image:url({{ image.src | product_img_url: '793x' }}); background-size: cover;"></div>
+                {% endfor %}
+                {% include 'grid-item-icons' %}
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+      {% include 'tag-logic' %}
+
+      <div class="col-md-6 col-lg-5 section__container
+        {% if soon %} product soon
+        {% elsif new %} product new
+        {% else %} product
+        {% endif %}
+        ">
+        <h1 class="text-link">by {{ product.vendor }}</h1>
+        <h2>{{ product.title }} (pre-order)</h2>
+        <div class="product__detail--name" data-price-wrapper>
+          <h3>{{ product.metafields['producto']['presentacion'] }}</h3>
+
+
+        {% if unico %}  
+          <p class="h3 unico" data-product-price>
+            {% if product.compare_at_price_max > product.price and product.compare_at_price_max != 0 %}
+              <span class="compare--at">{{ product.compare_at_price_max | money }}</span><br />
+              <span>{{ product.price | money }}</span>
+            {% else product.compare_at_price_max == blank %}
+              {{ product.price | money }}
+            {% endif %}
+          </p>
+        {% else current_variant %}
+         
+          <p class="h3 variantes" data-product-price>
+            {% if current_variant.price < current_variant.compare_at_price %}
+              <span class="compare--at">{{ current_variant.compare_at_price | money }}</span>
+              <span>{{ current_variant.price | money }}</span>
+            {% else current_variant.compare_at_price == blank %}
+              <span>{{ current_variant.price | money }}--</span>
+            {% endif %}
+          </p>
+        {% endif %}       
+
+        </div>
+        <p><a class="link--orange"><span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span></a></p>
+        <div class="recomendado mb-3 mt-3">
+          <b>Sold out.</b>
+          <div class="preorder"><a href="/" target="_blank">¡En compra solamente por Pre-orden! Favor de leer la siguiente información:<br><br>Debido a la alta demanda, el producto está agotado. La única manera de reservarlo es con pre-order. Todas las pre órdenes serán enviadas el día <span class="text-underline">{{ product.metafields['preorder']['date'] }}</span> y no se pueden cancelar.<br><br><span class="text-underline">TODAS</span> las órdenes que contengan Momiji Life Kit saldrán hasta que haya el restock.</a></div>
+        </div>
+        <b>Descripción.</b>
+        <p class="mb-3">{{ product.description }}</p>
+
+        {% comment %} <div class="recomendado mb-30 mt-30">
+        {% if product.metafields.recomendado.nombre_1 != blank %}
+          <b>Recomendado por</b>
+          
+          <div class="tag"><a href="{{ product.metafields['recomendado']['link_1'] }}" target="_blank">{{ product.metafields['recomendado']['nombre_1'] }}</a></div>
+          
+          {% if product.metafields.recomendado.nombre_2 != blank %}   
+          <div class="tag"><a href="{{ product.metafields['recomendado']['link_2'] }}" target="_blank">{{ product.metafields['recomendado']['nombre_2'] }}</a></div>
+          {% endif %}
+
+          {% if product.metafields.recomendado.nombre_3 != blank %}   
+          <div class="tag"><a href="{{ product.metafields['recomendado']['link_3'] }}" target="_blank">{{ product.metafields['recomendado']['nombre_3'] }}</a></div>
+          {% endif %}
+
+          {% if product.metafields.recomendado.nombre_4 != blank %}   
+          <div class="tag"><a href="{{ product.metafields['recomendado']['link_4'] }}" target="_blank">{{ product.metafields['recomendado']['nombre_4'] }}</a></div>
+          {% endif %}
+
+        {% endif %}
+        </div> {% endcomment %}
+
+
+      {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
+        {% unless product.has_only_default_variant %}
+          {% for option in product.options_with_values %}
+            <div class="js d-none">
+
+              {% if forloop.index0 > 0 %}
+
+                {% for value in option.values %}
+                  <input type="radio" id="Option{{ option.position }}-{{ value }}" name="options[{{ option.name }}]" value="{{ value }}"{% if option.selected_value == value %} checked{% endif %}>
+                  <label for="Option{{ option.position }}-{{ value }}">{{ value }}</label>
+                {% endfor %}
+
+              {% else %}
+ 
+                <select
+                  id="Option{{ option.position }}"
+                  name="options[{{ option.name | escape }}]">
+                  {% for value in option.values %}
+                    <option
+                      value="{{ value | escape }}"
+                      {% if option.selected_value == value %}selected="selected"{% endif %}>
+                        {{ value }}
+                    </option>
+                  {% endfor %}
+                </select>
+
+              {% endif %}
+            </div>
+
+            <ul class="list-unstyled" id="opciones">
+            {% for value in option.values %}
+              <li class="opciones-item">{{ value }}</li>
+            {% endfor %}
+            </ul>
+          {% endfor %}
+        {% endunless %}
+
+        {% if unico %}
+          <input type="hidden" name="id" value="{{current_variant.id}}">
+        {% endif %}
+
+        <div class="input-quantity">
+          <span class="input-number-decrement">–</span><!--
+          --><input class="input-number" type="text" value="1" min="1" max="{{ variant.inventory_quantity }}" name="quantity"><!--
+          --><span class="input-number-increment">+</span>
+        </div>
+        
+        <button
+          class="btn__main btn__main--big btn__main--addtocart btn__main--addtocart--big" 
+          type="submit"
+          name="add"
+          data-submit-button
+          {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+            <span data-submit-button-text>Pre-order</span>
+        </button>
+      {% endform %}
+      
+      </div>
+    </div>
+  </div>
+
+</section>
+ 
+<script type="text/javascript">
+ 
+  $(function(){
+    $('#opciones li').on('click', function() {
+
+      var id = $(this).text();
+
+      var sortBySelect = document.querySelector("#Option1");
+      sortBySelect.value = id;
+      sortBySelect.dispatchEvent(new Event("change"));
+    })
+  })
+
+  $(document).ready(function(){
+      $("#opciones li:first-child").addClass("active");
+
+      $('#opciones li').click(function(){
+        $('.opciones-item').removeClass('active');
+        $(this).addClass('active');
+        $('#opciones').toggleClass('active');
+      });
+  });
+</script>
