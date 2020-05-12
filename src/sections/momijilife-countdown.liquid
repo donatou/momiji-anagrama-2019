@@ -3,7 +3,8 @@
     <div class="row">
       <div class="col-md-12 col-lg-9 col-xl-8 sticker-midabi">
         <h1 class="noto">안녕하세요!</h1>
-        <h1 class="title-midabi">momiji life <strong><span class="quotes"></span> ↓↓↓</strong><br><span class="days"></span> : <span class="hours"></span> : <span class="minutes"></span> : <span class="seconds"></span></h1>
+        <h1 class="title-midabi bigger-midabi before">momiji life <strong><span class="quotes"></span> ↓↓↓</strong><br><span class="days"></span> : <span class="hours"></span> : <span class="minutes"></span> : <span class="seconds"></span></h1>
+        <h1 class="title-midabi bigger-midabi after" style="display:none">refresh now <strong>to discover</strong><br> Momiji Life!</h1>
       </div>
       <div class="col-12 hero__footer">
         <div class="row justify-content-between">
@@ -24,7 +25,7 @@ var quotes = [
       "made for you, made for everyone.",
       "the best of science and nature designed for real life.",
       "self-care is productive.",
-      "4 pasos, un ritual."   
+      "boost your confidence through self-care."   
     ];
 
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -37,7 +38,7 @@ const second = 1000,
       hour = minute * 60,
       day = hour * 24;
 
-let countDown = new Date('May 18, 2020 08:00:00').getTime(),
+let countDown = new Date('May 12, 2020 17:23:00').getTime(),
     x = setInterval(function() {    
 
       let now = new Date().getTime(),
@@ -50,7 +51,12 @@ let countDown = new Date('May 18, 2020 08:00:00').getTime(),
 
       if (distance < 1) {
         clearInterval(x);
-        location.reload();
+          function replaceCopy() {
+          const before = document.querySelector('.before');
+          before.remove();
+          const after = document.querySelector('.after').style.display="inherit";
+          }
+          replaceCopy();
         }
       }, second);
 </script>
