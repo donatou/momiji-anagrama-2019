@@ -174,23 +174,17 @@
         <div class="ig-content animate-on-scroll">
           <h4 class="title-midabi">@momijibeauty</h4>
           <h5 class="noto">특집 게시물</h5>
-          {% comment %} <p>#MomijiiTeRecomienda 👉 CTRL+Drop Suero Anti–imperfecciones ❤️ Un suero 3 en 1: hidrata, brinda luminosidad y reafirma la piel 👶 Si buscas revitalizar tu piel ¡Esta es la mascarilla ideal para ti! ✨
-            #Self-care  #Momijilife</p> {% endcomment %}
           <p>{{ section.settings.circle_txt }}</p> 
           <a class="link__midabi" href="https://www.instagram.com/momijibeauty/">Visitar Instagram</a>
         </div>
 
         <!-- //ESTE ES UN UPDATE DE INSTAGRAM (información) DE LA ULTIMA FOTO PERO SIN LA FOTO NI LA DESCRIPCION -->
         <div class="ig-header" id="ig-header">
-          <span>Octubre 23, 2019</span>
-          <img src="{{ 'icon-heart.svg' | asset_url }}" alt="">
-          <span><i class="icon icon-heart"></i> 879 likes</span>
+          <span>{{ section.settings.top_circle }}</span>
         </div>
 
         <div class="ig-footer" id="ig-footer">
-          <span>Octubre 23,2019</span>
-          <img src="{{ 'icon-heart.svg' | asset_url }}" alt="">
-          <span>879 likes</span>
+          <span>{{ section.settings.bottom_circle }}</span>
         </div>
       </div>
     </div>
@@ -348,9 +342,19 @@
         "label": "Caption imagen 3"
       },
       {
+        "type": "text",
+        "id": "top_circle",
+        "label": "Header de círculo"
+      },
+      {
         "type": "textarea",
         "id": "circle_txt",
         "label": "Texto de círculo"
+      },
+      {
+        "type": "text",
+        "id": "bottom_circle",
+        "label": "Footer de círculo"
       }
     ],
     "presets": [
