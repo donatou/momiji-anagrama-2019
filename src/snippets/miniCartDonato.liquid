@@ -192,7 +192,8 @@
               </div>
             </div>
 
-            {% include 'estas-ahorrando' %}
+            {% comment %} No se puede incluir porque al usar un script para bloquear códigos de descuento, éste snippet lo muestra como "Estás ahorrando X cantidad con la promoción de BLOQUEO DE SCRIPTS" {% endcomment %}
+            {% comment %} {% include 'estas-ahorrando' %} {% endcomment %}
 
             <div class="cf">
               <div class="checkout-col">
