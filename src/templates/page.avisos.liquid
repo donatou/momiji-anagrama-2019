@@ -4,21 +4,11 @@
     <div class="container">
       <div class="row">
         <div class="col-md-7 col-lg-8 privacidad--title mb-60">
-        {% comment %} <div class="col-md-7 offset-md-3 col-lg-8 offset-lg-4 privacidad--title mb-60"> {% endcomment %}
-          <h2>Nuestras acciones ante el brote de COVID-19.</h2>
+          <h2>{{ page.title }}</h2>
         </div>
-        {% comment %} <aside class="col-md-3 col-lg-4">
-          <ul class="list-unstyled nav-scroll">
-            <li class="text-link"><a href="/pages/preguntas-frecuentes">Preguntas frecuentes</a></li>
-            <li class="text-link"><a href="/pages/glosario">Glosario</a></li>
-            <li class="text-link"><a href="/pages/pagos-envios">Pagos y envíos</a></li>
-            <li class="text-link active">Aviso de Privacidad</li>
-            <li class="text-link"><a href="/pages/politicas-compra">Políticas de compra</a></li>
-            <li class="text-link"><a href="/pages/wholesale">Wholesale</a></li>
-          </ul>
-        </aside> {% endcomment %}
         <div class="col-md-9 col-lg-8 legal__item legal__privacidad">
-          <p>¡Esperamos que estés muy bien!</p>
+          {{ page.content }}
+          {% comment %} <p>¡Esperamos que estés muy bien!</p>
           <p>Nos encontramos trabajando desde casa y tenemos algunas noticias que queremos compartirles sobre las acciones que estamos tomando ante esta situación.</p>
           <br>
           <h3>Sitio Web</h3>
@@ -53,7 +43,7 @@
         <p>Cuidándote, cuidas a los demas.</p>
         <br>
         <p>Atentamente,<br>Equipo Momiji</p>
-          <hr>
+          <hr> {% endcomment %}
         </div>
 
       </div>
