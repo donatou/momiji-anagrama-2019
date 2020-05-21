@@ -9044,13 +9044,27 @@ article h1 + p, article h2 + p, article h3 + p, article h4 + p, article h5 + p  
     padding: 5px;
   }
 {%- endcomment -%}
-  .minicart-summ .majortitle {
+  {% comment %} .minicart-summ .majortitle {
     font-family: 'GT Momiji Medium';
     background: #FAF2FA;
     color: #0a0a0a;
     height: 40px;
     line-height: 40px;
     font-size: 15px;
+    text-align: center;
+    border-bottom: 1px solid #0a0a0a;
+  } {% endcomment %}
+  .minicart-summ .majortitle {
+    font-family: "GT Standard Beta A", sans-serif;
+    background: #F8F7F5;
+    letter-spacing: 0.5px;
+    color: #0a0a0a;
+    font-weight: normal;
+    font-style: normal;
+    text-transform: uppercase;
+    height: 40px;
+    line-height: 40px;
+    font-size: 12px;
     text-align: center;
     border-bottom: 1px solid #0a0a0a;
   }
