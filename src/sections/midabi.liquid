@@ -39,7 +39,9 @@
             </div>
 
             <figure class="shop-product animate-on-scroll">
-              <img src="{{ block.settings.product_image | img_url: '426x' }}" alt="{{ block.settings.titulo }}">
+              <a href="/products/{{ block.settings.product }}">
+                <img src="{{ block.settings.product_image | img_url: '426x' }}" alt="{{ block.settings.titulo }}">
+              </a>
               <span class="tag-oval d-block d-lg-none">Nuevo</span>
             </figure>
 
@@ -57,6 +59,12 @@
               </form>
               <a class="link__midabi" href="/products/{{ block.settings.product }}">{{ 'shopify.checkout.general.tooltip_accessibility_label' | t}}</a>
             </div>
+
+{%- comment -%}
+CUANDO SE TENGA QUE HABILITAR EL PREORDER, EL BOTÓN DE AGREGAR A CARRITO SE PODRÍA CAMBIAR CON UN CONDICIONAL PARA QUE TE LLEVE A LA PÁGINA DE PRODUCTO PARA QUE SE VEAN LAS POLÍTICAS DE PREORDER. EL BOTÓN TAMBIÉN DEBE CAMBIAR DE NOMBRE A "PREORDER".
+CAMBIARLO EN DESKTOP Y MÓVILES
+{%- endcomment -%}
+
 
             <!-- MOBILE TABLET CART  -->
             <div class="shop-cart d-block d-lg-none animate-on-scroll">
@@ -235,12 +243,12 @@
         "label": "Copy principal"
       },
       {
-        "type": "text",
+        "type": "richtext",
         "id": "subtitle_left",
         "label": "Subtitulo izquierdo"
       },
       {
-        "type": "text",
+        "type": "richtext",
         "id": "subtitle_right",
         "label": "Subtitulo derecho"
       },
