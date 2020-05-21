@@ -47,11 +47,13 @@
             {{ content_for_logo }}
           </div>
           <div class="sidebar__content">
-            {% if checkout.note != null %}
-            <div class="checkout__note">
-              <a href="/cart" class="h2">Clic aquí para editar mensaje en carrito.</a>
-              <p>{{ checkout.note }}</p>
-            </div>
+            {% if settings.cart_notes_enable == true %}
+              {% if checkout.note %}
+              <div class="checkout__note">
+                <a href="/cart" class="h2">Clic aquí para editar mensaje en carrito.</a>
+                <p>{{ checkout.note }}</p>
+              </div>
+              {% endif %}
             {% endif %}
             {{ content_for_order_summary }}
           </div>
