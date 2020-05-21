@@ -20,6 +20,7 @@
   {% endif %}
   {% endfor %}
   {% if has_item  %}
+  {% assign current_variant = prod.selected_or_first_available_variant %}
   <div class='recomended_pro_mm'>
     <div class="image">
       <img src="{{prod.featured_image | img_url:'x60'}}">
@@ -31,7 +32,13 @@
         <p class="agregarPor">{{ settings.csTxt }} {{prod.selected_or_first_available_variant.price | money }}</p> {% endcomment %}
       </div>
       <div class="button-add">
-        <button type="button" data-variant="{{prod.selected_or_first_available_variant.id}}">{{ settings.csTxt }} {{prod.selected_or_first_available_variant.price | money }}</button>
+        <button type="button" data-variant="{{prod.selected_or_first_available_variant.id}}" {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+          {% if current_variant.available %}
+            {{ settings.csTxt }} {{ prod.selected_or_first_available_variant.price | money }}
+          {% else %}
+            {{ 'products.product.sold_out' | t }}
+          {% endif %}
+        </button>
       </div>
     </div>
   </div>

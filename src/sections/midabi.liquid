@@ -48,7 +48,12 @@
               <form action="/cart/add" data-productid="{{ current_variant.id }}" method="post" class="product-form mt-4" id="AddToCartForm">
                 <input type="hidden" name="id" value="{{ current_variant.id }}">
                 <input type="hidden" name="quantity" value="1">
-                <button class="btn__midabi" type="submit">{{ product.price | money_without_trailing_zeros }} — {{ 'products.product.add_to_cart' | t }}</button>
+                <button class="btn__midabi" type="submit" {% unless current_variant.available %}disabled="disabled"{% endunless %}>{% if current_variant.available %}
+                  {{ product.price | money_without_trailing_zeros }} — {{ 'products.product.add_to_cart' | t }}
+                {% else %}
+                  {{ product.price | money_without_trailing_zeros }} — {{ 'products.product.sold_out' | t }}
+                {% endif %}
+                </button>
               </form>
               <a class="link__midabi" href="/products/{{ block.settings.product }}">{{ 'shopify.checkout.general.tooltip_accessibility_label' | t}}</a>
             </div>
@@ -58,7 +63,13 @@
               <form action="/cart/add" data-productid="{{ current_variant.id }}" method="post" class="product-form mt-4" id="AddToCartForm">
                 <input type="hidden" name="id" value="{{ current_variant.id }}">
                 <input type="hidden" name="quantity" value="1">
-                <button class="btn__midabi" type="submit">{{ product.price | money_without_trailing_zeros }} — agregar</button>
+                <button class="btn__midabi" type="submit" {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+                  {% if current_variant.available %}
+                    {{ product.price | money_without_trailing_zeros }} — agregar
+                  {% else %}
+                    {{ product.price | money_without_trailing_zeros }} — {{ 'products.product.sold_out' | t }}
+                  {% endif %}
+                </button>
               </form>
               <a class="link__midabi" href="/products/{{ block.settings.product }}">más info</a>
             </div>
