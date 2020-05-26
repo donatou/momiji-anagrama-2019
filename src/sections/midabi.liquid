@@ -47,16 +47,23 @@
 
             <!-- // DESKTOP cart -->
             <div class="shop-cart d-none d-lg-block animate-on-scroll">
-              <form action="/cart/add" data-productid="{{ current_variant.id }}" method="post" class="product-form mt-4" id="AddToCartForm">
-                <input type="hidden" name="id" value="{{ current_variant.id }}">
-                <input type="hidden" name="quantity" value="1">
-                <button class="btn__midabi" type="submit" {% unless current_variant.available %}disabled="disabled"{% endunless %}>{% if current_variant.available %}
-                  {{ product.price | money_without_trailing_zeros }} — {{ 'products.product.add_to_cart' | t }}
-                {% else %}
-                  {{ product.price | money_without_trailing_zeros }} — {{ 'products.product.sold_out' | t }}
-                {% endif %}
-                </button>
-              </form>
+              {% if block.settings.preorder %}
+                <a class="btn__midabi" href="/products/{{ block.settings.product }}">
+                  {{ product.price | money_without_trailing_zeros }} — PREORDER
+                </a>
+              {% else %}
+                <form action="/cart/add" data-productid="{{ current_variant.id }}" method="post" class="product-form mt-4" id="AddToCartForm">
+                  <input type="hidden" name="id" value="{{ current_variant.id }}">
+                  <input type="hidden" name="quantity" value="1">
+                  <button class="btn__midabi" type="submit" {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+                  {% if current_variant.available %}
+                    {{ product.price | money_without_trailing_zeros }} — {{ 'products.product.add_to_cart' | t }}
+                  {% else %}
+                    {{ product.price | money_without_trailing_zeros }} — {{ 'products.product.sold_out' | t }}
+                  {% endif %}
+                  </button>
+                </form>
+              {% endif %}
               <a class="link__midabi" href="/products/{{ block.settings.product }}">{{ 'shopify.checkout.general.tooltip_accessibility_label' | t}}</a>
             </div>
 
@@ -68,17 +75,23 @@ CAMBIARLO EN DESKTOP Y MÓVILES
 
             <!-- MOBILE TABLET CART  -->
             <div class="shop-cart d-block d-lg-none animate-on-scroll">
-              <form action="/cart/add" data-productid="{{ current_variant.id }}" method="post" class="product-form mt-4" id="AddToCartForm">
-                <input type="hidden" name="id" value="{{ current_variant.id }}">
-                <input type="hidden" name="quantity" value="1">
-                <button class="btn__midabi" type="submit" {% unless current_variant.available %}disabled="disabled"{% endunless %}>
-                  {% if current_variant.available %}
-                    {{ product.price | money_without_trailing_zeros }} — agregar
-                  {% else %}
-                    {{ product.price | money_without_trailing_zeros }} — {{ 'products.product.sold_out' | t }}
-                  {% endif %}
-                </button>
-              </form>
+              {% if block.settings.preorder %}
+                <a class="btn__midabi" href="/products/{{ block.settings.product }}">
+                  {{ product.price | money_without_trailing_zeros }} PREORDER
+                </a>
+              {% else %}
+                <form action="/cart/add" data-productid="{{ current_variant.id }}" method="post" class="product-form mt-4" id="AddToCartForm">
+                  <input type="hidden" name="id" value="{{ current_variant.id }}">
+                  <input type="hidden" name="quantity" value="1">
+                  <button class="btn__midabi" type="submit" {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+                    {% if current_variant.available %}
+                      {{ product.price | money_without_trailing_zeros }} — agregar
+                    {% else %}
+                      {{ product.price | money_without_trailing_zeros }} — {{ 'products.product.sold_out' | t }}
+                    {% endif %}
+                  </button>
+                </form>
+              {% endif %}
               <a class="link__midabi" href="/products/{{ block.settings.product }}">más info</a>
             </div>
 
@@ -391,6 +404,11 @@ CAMBIARLO EN DESKTOP Y MÓVILES
             "id": "product",
             "type": "product",
             "label": "Producto"
+          },
+          {
+            "id": "preorder",
+            "type": "checkbox",
+            "label": "Es producto para preorder"
           },
           {
             "type": "image_picker",
