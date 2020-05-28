@@ -67,8 +67,10 @@
 </html>
 
 
-
-<script>
+{%- comment -%}
+  Se quitó Mercado Pago el 28 de mayo de 2020.
+{%- endcomment -%}
+{% comment %} <script>
 $(document).on('page:load page:change', () => {
   function replaceMP() {
     const mpImage = document.querySelector('img[alt="Mercado Pago"]');
@@ -79,7 +81,7 @@ $(document).on('page:load page:change', () => {
   }
   replaceMP();
 });
-</script>
+</script> {% endcomment %}
 
 
 
