@@ -148,8 +148,8 @@
       "first_name": "Nombre",
       "last_name": "Apellido",
       "company": "Empresa",
-      "address1": "Calle, número y fraccionamiento o colonia",
-      "address2": "Casa, apartamento, etc.",
+      "address1": "Calle, número, departamento, unidad, etc.",
+      "address2": "Colonia, fraccionamiento, etc.",
       "city": "Ciudad",
       "country": "País",
       "province": "Estado",
@@ -295,8 +295,9 @@
   "shopify": {
     "checkout": {
       "contact": {
-        "address1_label": "Calle, número y fraccionamiento o colonia",
-        "address2_label": "Casa, apartamento, etc."
+        "address1_label": "Calle, número, departamento, unidad, etc.",
+        "address2_label": "Colonia, fraccionamiento, etc.",
+        "optional_address2_label": "Colonia, fraccionamiento, etc. (opcional)"
       },
       "shop_policies": {
         "shipping_policy": "Políticas de envío"
@@ -308,7 +309,8 @@
         "status_column_header": "Estado de orden"
       },
       "field_errors": {
-        "address_address1_blank": "Introduce calle, número y fraccionamiento o colonia"
+        "address_address1_blank": "Introduce calle, número, departamento, unidad, etc.",
+        "address_address2_blank": "Introduce tu colonia, fraccionamiento, etc."
       }
     },
     "notices": {
