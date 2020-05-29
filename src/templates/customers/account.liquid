@@ -120,7 +120,7 @@
                 {% endif %}
                   <b>{{ address.name }}</b>
                   <p>{{ address.email }}</p>
-                  <address data-addressId={{ address.id }}>{{ address.company }}, {{ address.address2 }}, {{ address.address1 }}, {{ address.city }}, {{ address.province_code }}, {{ address.country }}. {{ 'shopify.addresses.zip_code'| t }} {{ address.zip }}</address>
+                  <address data-addressId={{ address.id }}>{% if address.company != blank %}{{ address.company }}, {% endif %}{{ address.address1 }}, {{ address.address2 }}, {{ address.city }}, {{ address.province_code }}, {{ address.country }}. {{ 'shopify.addresses.zip_code'| t }} {{ address.zip }}</address>
                   <p>{{ address.phone }}</p>
                   <hr>
                 </div>

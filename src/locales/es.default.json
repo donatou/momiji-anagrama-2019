@@ -9,7 +9,7 @@
     },
     "404": {
       "title": "404 Página no encontrada",
-      "subtext_html": "La página que ha solicitado no existe. Haga clic <a href=\"/collections/all\" class=\"link--orange\">aquí</a> para continuar comprando."
+      "subtext_html": "La página que ha solicitado no existe. Haga clic <a href=\"\/collections\/all\" class=\"link--orange\">aquí<\/a> para continuar comprando."
     },
     "password_page": {
       "opening_soon": "Apertura Próximamente",
@@ -23,7 +23,7 @@
       "signup_form_email_placeholder": "Tu dirección de correo electrónico",
       "signup_form_submit": "Enviar",
       "signup_form_success": "¡Te enviaremos un correo electrónico antes de inaugurar!",
-      "admin_link_html": "¿Eres el dueño de la tienda? <a href=\"/admin\">Regístrate aquí</a>",
+      "admin_link_html": "¿Eres el dueño de la tienda? <a href=\"\/admin\">Regístrate aquí<\/a>",
       "password_link": "Entrar usando contraseña",
       "powered_by_shopify_html": "Esta tienda estará impulsada por {{ shopify }}"
     },
@@ -49,7 +49,7 @@
         "one": "{{ count }} resultado para \"{{ terms }}\"",
         "other": "{{ count }} resultados para \"{{ terms }}\""
       },
-      "no_results_html": "Intente con un término de búsqueda diferente o regrese a la <a href=\"/\" class=\"h2 link--orange\">página de inicio</a>."
+      "no_results_html": "Intente con un término de búsqueda diferente o regrese a la <a href=\"\/\" class=\"h2 link--orange\">página de inicio<\/a>."
     },
     "newsletter_form": {
       "newsletter_email": "Estar en el saber",
@@ -89,16 +89,16 @@
     "general": {
       "title": "Carrito de compra",
       "remove": "Eliminar",
-      "note": "Instrucciones especiales para el vendedor",
+      "note": "¿Tu pedido es un regalo? Escríbele un mensajito.",
       "subtotal": "Subtotal",
       "shipping_at_checkout": "Gastos de envío y descuentos calculados al momento de pagar",
       "update": "Actualizar carrito",
       "checkout": "Finalizar pedido",
-      "empty": "Su carrito actualmente está vacío.",
+      "empty": "Su carrito está vacío.",
       "cookies_required": "Habilite las cookies para usar el carrito de compras",
-      "continue_browsing_html": "Continúe explorando <a href=\"/collections/all\" class=\"link--orange\">aquí</a>.",
+      "continue_browsing_html": "Continúe explorando <a href=\"\/collections\/all\" class=\"link--orange\">aquí<\/a>.",
       "item_quantity": "Cantidad de artículo",
-      "savings": "Está ahorrando"
+      "savings": "Estás ahorrando"
     },
     "label": {
       "product": "Producto",
@@ -134,34 +134,34 @@
     },
     "activate_account": {
       "title": "Activar cuenta",
-      "subtext": "Cree su contraseña para activar su cuenta.",
+      "subtext": "Crea tu contraseña para activar tu cuenta.",
       "password": "Contraseña",
       "password_confirm": "Confirmar contraseña",
       "submit": "Activar cuenta",
       "cancel": "Rechazar invitación"
     },
     "addresses": {
-      "title": "Sus direcciones",
-      "default": "Por defecto",
-      "add_new": "Agregar una nueva dirección",
+      "title": "Tus direcciones",
+      "default": "Dirección principal",
+      "add_new": "Agregar nueva dirección",
       "edit_address": "Editar dirección",
       "first_name": "Nombre",
       "last_name": "Apellido",
-      "company": "Calle, número, departamento, etc.",
-      "address1": "Colonia o fraccionamiento",
-      "address2": "Referencia (entre calles, empresa, color de casa, etc.)",
+      "company": "Empresa",
+      "address1": "Calle, número y fraccionamiento o colonia",
+      "address2": "Casa, apartamento, etc.",
       "city": "Ciudad",
       "country": "País",
       "province": "Estado",
       "zip": "Código postal",
       "phone": "Teléfono",
-      "set_default": "Fijar como dirección por defecto",
+      "set_default": "Definir como dirección principal",
       "add": "Agregar dirección",
       "update": "Actualizar dirección",
       "cancel": "Cancelar",
       "edit": "Editar",
       "delete": "Eliminar",
-      "delete_confirm": "¿Está seguro de que desea eliminar esta dirección?"
+      "delete_confirm": "¿Deseas eliminar esta dirección?"
     },
     "login": {
       "title": "Ingresar",
@@ -174,23 +174,23 @@
       "guest_continue": "Continuar"
     },
     "orders": {
-      "title": "Historial de pedidos",
-      "order_number": "Pedido",
+      "title": "Historial de órdenes",
+      "order_number": "Orden",
       "date": "Fecha",
       "payment_status": "Estado del pago",
-      "fulfillment_status": "Estado de finalización",
+      "fulfillment_status": "Estado de la orden",
       "total": "Total",
-      "none": "No ha realizado algún pedido aún."
+      "none": "No ha realizado ninguna orden."
     },
     "order": {
-      "title": "Pedido {{ name }}",
-      "date": "Realizado en {{ date }}",
-      "cancelled": "Pedido cancelado en {{ date }}",
-      "cancelled_reason": "Motivo: {{ reason }}",
+      "title": "Orden {{ name }}",
+      "date": "Realizada el {{ date }}",
+      "cancelled": "Orden cancelada el {{ date }}",
+      "cancelled_reason": "Motivo de cancelación: {{ reason }}",
       "billing_address": "Dirección de facturación",
       "payment_status": "Estado del pago",
       "shipping_address": "Dirección de envío",
-      "fulfillment_status": "Estado de finalización",
+      "fulfillment_status": "Estado de la orden",
       "discount": "Descuento",
       "shipping": "Envío",
       "tax": "Impuesto",
@@ -199,11 +199,11 @@
       "price": "Precio",
       "quantity": "Cantidad",
       "total": "Total",
-      "fulfilled_at": "Fecha cumplió",
+      "fulfilled_at": "Generada el",
       "track_shipment": "Rastrear envío",
-      "tracking_url": "Enlace de seguimiento",
+      "tracking_url": "Rastreo de paquetería",
       "tracking_company": "Empresa",
-      "tracking_number": "Número de seguimiento",
+      "tracking_number": "Número de guía",
       "subtotal": "Subtotal"
     },
     "recover_password": {
@@ -211,12 +211,12 @@
       "email": "Correo electrónico",
       "submit": "Enviar",
       "cancel": "Cancelar",
-      "subtext": "Le enviaremos un correo electrónico para restablecer su contraseña.",
+      "subtext": "Te enviaremos un correo electrónico para restablecer tu contraseña.",
       "success": "Hemos enviado un correo electrónico con un enlace para actualizar su contraseña."
     },
     "reset_password": {
       "title": "Restablecer contraseña de cuenta",
-      "subtext": "Ingrese una nueva contraseña para {{ email }}",
+      "subtext": "Ingresa una nueva contraseña para {{ email }}",
       "password": "Contraseña",
       "password_confirm": "Confirmar contraseña",
       "submit": "Restablecer contraseña"
@@ -251,7 +251,7 @@
     },
     "customer": {
       "account": "Cuenta",
-      "logged_in_as_html": "Conectado como {{ first_name }}",
+      "logged_in_as_html": "Hola, {{ first_name }}",
       "log_out": "Cerrar sesión",
       "log_in": "Ingresar",
       "create_account": "Crear cuenta"
@@ -291,5 +291,41 @@
   },
   "date_formats": {
     "month_day_year": "%d de %B, %Y"
+  },
+  "shopify": {
+    "checkout": {
+      "contact": {
+        "address1_label": "Calle, número y fraccionamiento o colonia",
+        "address2_label": "Casa, apartamento, etc."
+      },
+      "shop_policies": {
+        "shipping_policy": "Políticas de envío"
+      },
+      "order_summary": {
+        "customer_already_used_once_per_customer_discount_notice": "El cupón <strong>{{ code }}<\/strong> ya lo usaste anteriormente."
+      },
+      "stock": {
+        "status_column_header": "Estado de orden"
+      },
+      "field_errors": {
+        "address_address1_blank": "Introduce calle, número y fraccionamiento o colonia"
+      }
+    },
+    "notices": {
+      "order": {
+        "fulfillment_status": {
+          "unfulfilled": "En proceso",
+          "restocked": "Reembolsada",
+          "fulfilled": "Guía generada"
+        },
+        "cancel_reason": {
+          "customer": "Cliente cambió o canceló la orden",
+          "declined": "Pago rechazado",
+          "inventory": "Artículos no disponibles",
+          "fraud": "Orden fraudulenta",
+          "other": "Otro motivo"
+        }
+      }
+    }
   }
 }
