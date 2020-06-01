@@ -64,7 +64,7 @@
                   </button>
                 </form>
               {% endif %}
-              <a class="link__midabi" href="/products/{{ block.settings.product }}">{{ 'shopify.checkout.general.tooltip_accessibility_label' | t}}</a>
+              <span class="link__midabi--iva">IVA incluido </span><a class="link__midabi" href="/products/{{ block.settings.product }}">{{ 'shopify.checkout.general.tooltip_accessibility_label' | t}}</a>
             </div>
 
 {%- comment -%}
@@ -92,7 +92,7 @@ CAMBIARLO EN DESKTOP Y MÓVILES
                   </button>
                 </form>
               {% endif %}
-              <a class="link__midabi" href="/products/{{ block.settings.product }}">más info</a>
+              <span class="link__midabi--iva">IVA incluido </span><a class="link__midabi" href="/products/{{ block.settings.product }}">más info</a>
             </div>
 
             {{ block.settings.sidetext }}
