@@ -20,6 +20,9 @@
             <p>by {{ product.vendor }}</p>
             <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
         </div>
+        <div class="product__info--iva">
+            <p>IVA incluido</p>
+        </div>
         <div class="product__info--name">
             <p>{{ product.title }}</p>
         {% if product.compare_at_price_max == 0 or product.compare_at_price_max == product.price %}
