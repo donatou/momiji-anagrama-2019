@@ -193,7 +193,7 @@
       "fulfillment_status": "Estado de la orden",
       "discount": "Descuento",
       "shipping": "Envío",
-      "tax": "Impuesto",
+      "tax": "IVA",
       "product": "Producto",
       "sku": "SKU",
       "price": "Precio",
@@ -303,7 +303,10 @@
         "shipping_policy": "Políticas de envío"
       },
       "order_summary": {
-        "customer_already_used_once_per_customer_discount_notice": "El cupón <strong>{{ code }}<\/strong> ya lo usaste anteriormente."
+        "customer_already_used_once_per_customer_discount_notice": "El cupón <strong>{{ code }}<\/strong> ya lo usaste anteriormente.",
+        "taxes_label": "IVA",
+        "vat_label_html": "Incluye {{ amount }} de IVA",
+        "estimated_taxes_label": "IVA (estimado)"
       },
       "stock": {
         "status_column_header": "Estado de orden"

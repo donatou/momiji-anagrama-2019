@@ -6177,7 +6177,7 @@ a, .text-link, .ask a, .header__nav--level-2 .a__all, .btn__main, .btn__agregar,
   letter-spacing: 1.25px;
   line-height: 20px; }
 
-b, header .header__nav--menu a, .product__info--name p, .filter__applied,
+b, header .header__nav--menu a, .product__info--name p, .product__info--price p, .filter__applied,
 .text-sans, .spr-review-header-byline, .spr-summary-actions-togglereviews {
   font-family: "GT Momiji Medium", sans-serif;
   font-size: 14px;
@@ -6946,19 +6946,35 @@ html, footer .footer__item li a, .a__more, .modal__resena .resena__container .st
     .product__info--name {
       display:flex;
       padding-top: 0px;
-      text-align: left; }
+      text-align: left;}
       .product__info--name p {
         text-transform: capitalize; 
-        display:inline-block;
-        width:60%;}
+        display:block;}
       .product__info--name span {
         font-family: "GT Momiji Medium", sans-serif;
         font-size: 11px;
         letter-spacing: 1.3px;
         text-align: right;
         line-height: 20px;
-        display:inline-block;
-        width:40%; }
+        display:block}
+    .product__info--price {
+      display:grid;
+      padding-top: 0px;
+      text-align: left;}
+      .product__info--price p {
+        text-transform: capitalize; 
+        display:block;}
+      .product__info--price span {
+        font-family: "GT Momiji Medium", sans-serif;
+        font-size: 11px;
+        letter-spacing: 1.3px;
+        text-align: right;
+        line-height: 20px;
+        display:block;}
+
+.product__info--name-price {
+  display: grid;
+  grid-template-columns: 60% 40%;}
 
 .product__info--iva {
   border-bottom: none;
@@ -6966,9 +6982,19 @@ html, footer .footer__item li a, .a__more, .modal__resena .resena__container .st
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: justify;
-      justify-content: end;
+      justify-content: flex-end;
   text-align: right;
 }
+
+header .header__nav--menu a.product {
+  font-family: "GT Momiji Medium", sans-serif;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 1.25px;
+  line-height: 20px; }
+
+
+
 .compare--at {
   text-decoration: line-through; }
 

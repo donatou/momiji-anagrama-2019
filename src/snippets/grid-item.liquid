@@ -23,14 +23,18 @@
         <div class="product__info--iva">
             <p>IVA incluido</p>
         </div>
-        <div class="product__info--name">
-            <p>{{ product.title }}</p>
-        {% if product.compare_at_price_max == 0 or product.compare_at_price_max == product.price %}
-            <span>{{ product.price | money }}</span>
-        {% else product.compare_at_price_max > product.price %}
-            <span class="compare--at">{{ product.compare_at_price_max | money }}</span>
-            <span>{{ product.price | money }}</span>        
-        {% endif %}
+        <div class="product__info--name-price">
+            <div class="product__info--name">
+                <p>{{ product.title }}</p>
+            </div>
+            <div class="product__info--price">
+            {% if product.compare_at_price_max == 0 or product.compare_at_price_max == product.price %}
+                <span>{{ product.price | money }}</span>
+            {% else product.compare_at_price_max > product.price %}
+                <span class="compare--at">{{ product.compare_at_price_max | money }}</span>
+                <span>{{ product.price | money }}</span>        
+            {% endif %}
+            </div>
         </div>
     </div>
 </a>
