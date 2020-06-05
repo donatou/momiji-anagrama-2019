@@ -10095,3 +10095,34 @@ a.botoncito--btn {
 .bigger-midabi, .bigger-midabi strong {
   font-size: 59px;
 }
+
+{%- comment -%}
+    FEATURED PRODUCT HERO
+{%- endcomment -%}
+.product__hero {
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+@media (max-width: 767px) {
+  .product__hero {
+    min-height: 400px;
+    height: auto;
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+}
+.product__hero img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  object-position: right;
+}
+
+.bg-variable {
+  background-color: {{ settings.background_color }};
+}

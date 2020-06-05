@@ -7,29 +7,45 @@
   {%- assign onboarding_title = 'homepage.onboarding.product_title' | t -%}
 {% endif %}
 
-{%- comment -%}
-<div class="midabi__hero bg-gray">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12 col-lg-9 col-xl-8 sticker-midabi">
-        <h1 class="noto">안녕하세요!</h1>
-        <h1 class="title-midabi">{{ section.settings.title_momijilife }}</h1>
-      </div>
-    </div>
-  </div>
-</div>
-{%- endcomment -%}
 
+<div data-section-id="{{ section.id }}" data-section-type="product">
 
+  {% for image in product.images %}
+    {% capture wrapper_class %}
+      {%- unless featured_image == image -%}
+        hide
+      {%- endunless -%}
+    {% endcapture %}
 
-<div  class="product__hero section__spacers bg-variable" data-section-id="{{ section.id }}" data-section-type="product">
+    {% include 'responsive-image' with
+      image: image,
+      max_width: 700,
+      max_height: 800,
+      image_attributes: "data-product-featured-image",
+      wrapper_class: wrapper_class,
+      wrapper_attributes: "data-product-image-wrapper",
+    %}
+  {% endfor %}
 
-  <h1>{{ product.title | default: onboarding_title }}{{ section.settings.background_color }}</h1>
+  {% if product.images.size > 1 %}
+    <ul>
+      {% for image in product.images %}
+        <li>
+          <a href="{{ image.src | img_url: '480x480' }}" data-thumbnail-id="{{ image.id }}" data-product-single-thumbnail>
+            <img class="product-single__thumbnail-image" src="{{ image.src | img_url: '160x160' }}" alt="{{ image.alt | escape }}">
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <h1>{{ product.title | default: onboarding_title }}</h1>
   {% if product.vendor != blank %}
     <p>{{ product.vendor }}</p>
   {% endif %}
 
   <div>
+
     <form action="/cart/add" method="post" enctype="multipart/form-data">
       {% unless product.has_only_default_variant %}
         {% for option in product.options_with_values %}
@@ -105,13 +121,9 @@
     {{ product.description }}
   </div>
 
-{% if section.settings.background_image %}
-  <img srcset="{{ 'eyeshine-hero-mobile.jpg' | asset_url }} 500w, {{ 'eyeshine-hero-2.jpg' | asset_url }}" src="{{ 'eyeshine-hero-2.jpg' | asset_url }}" alt="Image"/>
-{% endif %}
-
-  {% comment %} {% if section.settings.show_share_buttons %}
+  {% if section.settings.show_share_buttons %}
     {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
-  {% endif %} {% endcomment %}
+  {% endif %}
 
   {% unless product == empty %}
     <script type="application/json" data-product-json>
@@ -130,9 +142,9 @@
         "label": "Product"
       },
       {
-        "type": "image_picker",
-        "id": "background_image",
-        "label": "Background image"
+        "type": "checkbox",
+        "id": "show_share_buttons",
+        "label": "Show social sharing buttons"
       }
     ],
     "presets": [
