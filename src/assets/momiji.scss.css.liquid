@@ -10099,29 +10099,62 @@ a.botoncito--btn {
 {%- comment -%}
     FEATURED PRODUCT HERO
 {%- endcomment -%}
-.product__hero {
-  height: 100vh;
-  min-height: 600px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
 
-@media (max-width: 767px) {
-  .product__hero {
-    min-height: 400px;
-    height: auto;
-    padding-top: 70px;
-    padding-bottom: 70px;
-  }
-}
-.product__hero img {
-  width: 100%;
+.featured-product__hero {
   height: 100vh;
-  object-fit: cover;
-  object-position: right;
+  min-height: 640px;
+  position: relative;
+  overflow: hidden; }
+  .featured-product__hero .background__img img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: right; }
+  .featured-product__hero .feature-product__grid-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 10px; }
+  .featured-product__hero .feature-product__grid-wrapper .img-wrapper {
+    overflow-x: visible;
+    transition: opacity 700ms;
+    transition-delay:500ms;  }
+  .featured-product__hero .feature-product__grid-wrapper .image-1 img {
+    grid-column: 5;
+    grid-row: 2;
+    padding-top: 60px;  }
+  @media (max-width: 991.98px) {
+    .featured-product__hero {
+      height: 600px;
+      min-height: 600px; }
+      .featured-product__hero .feature-product__grid-wrapper .background__img {
+        height: 600px; } }
+  @media (max-width: 767.98px) {
+    .featured-product__hero {
+      min-height: 200px;
+      height: 85vh; }
+      .featured-product__hero .feature-product__grid-wrapper .background__img {
+        min-height: 200px;
+        height: 85vh; } }
+
+.sticker-featured-product:after {
+  background: url({{ 'eyeshine-1.svg' | asset_url }}) no-repeat;
+  content: "";
+  background-size: contain;
+  position: absolute;
+  top: -50px;
+  height: 85px;
+  width: 86px;
+  left: 40%;
+  margin: 0 auto;
+  z-index: 0;
 }
+  @media (max-width: 767.98px) {
+    .sticker-featured-product:after {  
+      height: 66px;
+      width: 66px;
+    }
+  }
 
 .bg-variable {
   background-color: {{ settings.background_color }};

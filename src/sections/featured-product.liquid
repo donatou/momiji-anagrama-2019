@@ -7,13 +7,23 @@
   {%- assign onboarding_title = 'homepage.onboarding.product_title' | t -%}
 {% endif %}
 
-<section class="eyeshine__hero bg-variable" data-section-id="{{ section.id }}" data-section-type="product">
+<section class="featured-product__hero bg-variable" data-section-id="{{ section.id }}" data-section-type="product">
   {% if section.settings.background_image %}
-    <img srcset="{{ 'eyeshine-hero-mobile.jpg' | asset_url }} 500w, {{ 'eyeshine-hero-2.jpg' | asset_url }}" src="{{ 'eyeshine-hero-2.jpg' | asset_url }}" alt="Image"/>
+    <div class="background__img">
+      <img srcset="{{ 'eyeshine-hero-mobile.jpg' | asset_url }} 500w, {{ 'eyeshine-hero-2.jpg' | asset_url }}" src="{{ 'eyeshine-hero-2.jpg' | asset_url }}" alt="Image" />
+    </div>
   {% endif %}
+
+  <div class="feature-product__grid-wrapper">
+  <div class="img-wrapper">
+      <div class="image-1">
+        <img src="{{ section.settings.image_1 | img_url: '426x' }}" alt=""/>
+      </div>
+  </div>
+
   <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-12 col-md-7 col-lg-6 col-xl-5 sticker-eyeshine">
+      <div class="col-sm-12 col-md-7 col-lg-6 col-xl-5 sticker-featured-product">
         <h1 class="title-midabi">{{ section.settings.title_product }}</h1>
         <h2 class="h3">{{ section.settings.subtitle }}</h2>
 
@@ -100,6 +110,7 @@
       {{ product | json }}
     </script>
   {% endunless %}
+  </div>
 </section>
 
 {% schema %}
@@ -120,6 +131,11 @@
         "type": "html",
         "id": "title_product",
         "label": "Copy principal H1"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_1",
+        "label": "Imagen 1"
       }
     ],
     "presets": [

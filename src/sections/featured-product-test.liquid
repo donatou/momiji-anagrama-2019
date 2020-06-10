@@ -1,0 +1,127 @@
+<div id="featured-product__test">
+    <div id="wrapper__test">
+        <div id="grid__test">
+            <div class="copy-wrapper__test">
+                <h1>Nuevo handy, producto genial para tus manos.</h1>
+                <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et quam fermentum, luctus lectus.</h4>
+
+                <form action="/cart/add" method="post" enctype="multipart/form-data">
+                    <button 
+                        type="submit"
+                        name="add"
+                        class="btn__agregar"
+                        data-add-to-cart
+                        {% unless product.available %}disabled="disabled"{% endunless %}
+                        {% if section_onboarding %}disabled="disabled"{% endif %}>
+                        <span data-add-to-cart-text>
+                            {% if product.available %}
+                            {{ 'products.product.add_to_cart' | t }} <span class="color-blueop">|</span> $500.00
+                            {% else %}
+                            {{ 'products.product.sold_out' | t }} <span class="color-blueop">|</span> $500.00
+                            {% endif %}
+                        </span>
+                    </button>
+                </form>
+
+            </div>
+        <div class="image-1__test">
+            <img src="{{ section.settings.image_1 | img_url: '400x' }}" alt="Picsum" />
+        </div>    
+        </div>
+    </div>
+  {% if section.settings.background_image %}
+    <div class="img-wrapper__test">
+      <img srcset="https://picsum.photos/1800/1000?grayscale 500w, https://picsum.photos/1800/1000?grayscale" src="https://picsum.photos/1800/1000?grayscale" alt="Image" />
+    </div>
+  {% endif %}
+</div>
+
+<style>
+#featured-product__test {
+    height: 100vh;
+    min-height: 640px;
+    position: relative;
+    overflow: hidden; 
+}
+#featured-product__test .img-wrapper__test {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+.img-wrapper__test img {
+    width: 100%;
+    object-fit: cover;
+    object-position: right;
+}
+#wrapper__test {
+    position: absolute;
+    margin: 40px 30px;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    min-width: 300px;
+    min-height: 300px;
+    max-width: calc(100vw - 60px);
+    max-height: calc(100vh - 80px);
+    overflow: hidden;
+}
+#grid__test {
+    display: grid;
+    grid-template-columns: 16.666% 16.666% 16.666% 16.666% 16.666% 16.666%;
+    grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.copy-wrapper__test {
+    grid-column: 1/4;
+    grid-row: 3;
+}
+.copy-wrapper__test h1 + h4, .copy-wrapper__test h4 + form {
+    margin-top: 20px;
+}
+.image-1__test {
+    display: flex;
+    grid-column: 4/6;
+    grid-row: 2/9;
+}
+.image-1__test img {
+    height: 100%;
+}
+</style>
+
+{% schema %}
+  {
+    "name": "Featured product TEST",
+    "settings": [
+      {
+        "type": "product",
+        "id": "product",
+        "label": "Product"
+      },
+      {
+        "type": "image_picker",
+        "id": "background_image",
+        "label": "Background image"
+      },
+      {
+        "type": "html",
+        "id": "title_product",
+        "label": "Copy principal H1"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_1",
+        "label": "Imagen 1"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured product TEST",
+        "category": "Product"
+      }
+    ]
+  }
+{% endschema %}
