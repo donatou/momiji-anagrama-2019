@@ -12,7 +12,7 @@
     "settings": [
       {
         "type": "color",
-        "id": "background_color",
+        "id": "featured_product_background_color",
         "label": "Featured Product background color",
         "default": "#c4cdd5",
         "info": "Background de sección tipo FEATURED PRODUCT"
