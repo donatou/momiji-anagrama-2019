@@ -10,23 +10,23 @@
 <div id="featured-product__test">
     <div id="wrapper__test">
         <div id="grid__test">
-            <div class="copy-wrapper__test">
+            <div class="copy-wrapper__test featured-product__font-color">
                 {{ section.settings.title_product }}
-                <h2 class="h3">{{ section.settings.subtitle_product }}</h2>
+                <h2 class="featured-product__subtitle">{{ section.settings.subtitle_product }}</h2>
 
                 <form action="/cart/add" method="post" enctype="multipart/form-data">
                     <button 
                         type="submit"
                         name="add"
-                        class="btn__agregar"
+                        class="btn__agregar--featured"
                         data-add-to-cart
                         {% unless product.available %}disabled="disabled"{% endunless %}
                         {% if section_onboarding %}disabled="disabled"{% endif %}>
                         <span data-add-to-cart-text>
                             {% if current_variant.available %}
-                             {{ product.price | money_without_trailing_zeros }} <span class="color-blueop">|</span> {{ 'products.product.add_to_cart' | t }}
+                             {{ product.price | money_without_trailing_zeros }} <span class="featured-product__background-color">|</span> {{ 'products.product.add_to_cart' | t }}
                             {% else %}
-                            {{ product.price | money_without_trailing_zeros }} <span class="color-blueop">|</span> {{ 'products.product.sold_out' | t }}
+                            {{ product.price | money_without_trailing_zeros }} <span class="featured-product__background-color">|</span> {{ 'products.product.sold_out' | t }}
                             {% endif %}
                         </span>
                     </button>
@@ -102,6 +102,7 @@
 }
 .copy-wrapper__test h1 + h2, .copy-wrapper__test h2 + form {
     margin-top: 20px;
+    padding-right: 80px;
 }
 .image-1__test figcaption {
   display: inline-flex;
@@ -113,19 +114,73 @@
 }
 .image-1__test {
     display: flex;
-    grid-column: 4/7;
+    /* grid-column: 4/7;
     grid-row: auto;
-    height: fit-content;
+    height: fit-content; */
+    align-self: self-end;
 }
 @media (max-width: 991.98px) {
   .image-1__test {
       display: flex;
-      grid-column:2/7;
-      grid-row: auto;
+      /* grid-column:2/7;
+      grid-row: auto; */
+      align-self: self-end;
   }   
 }
 .image-1__test img {
     height: max-content;
+}
+.featured-product__title {
+  font-family: "GT Standard Packaging", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  padding-top: 40px;
+}
+@media (max-width: 991.98px) {
+  .featured-product__title {
+    padding-top: 60px;
+    letter-spacing: -0.2px;
+  }
+  .copy-wrapper__test h1 + h2, .copy-wrapper__test h2 + form {
+    padding-right: 60px;
+  }
+}
+@media (max-width: 767px) {
+  .featured-product__title {
+    padding-top: 40px;
+    letter-spacing: -0.2px;
+  }
+  .copy-wrapper__test h1 + h2, .copy-wrapper__test h2 + form {
+    padding-right: 10px;
+  }
+}
+
+.featured-product__subtitle {
+  font-family: "GT Standard Beta A3", sans-serif;
+  font-size: 18px;
+  letter-spacing: -0.2px;
+  line-height: 23px;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.featured-product__accent-color {
+  color: {{ settings.featured_product_accent_color }};
+}
+.btn__agregar--featured {
+  background: {{ settings.featured_product_accent_color }};
+  display: inline-block;
+  height: 35px;
+  text-align: center;
+  padding: 8px 15px 8px 15px;
+  padding-top: 8px;
+  border:0;
+  color: {{ settings.featured_product_font_color }};
+}
+
+.btn__agregar--featured:hover {
+  background-color: #1959b9;
+  color: white;
 }
 </style>
 

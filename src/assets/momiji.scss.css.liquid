@@ -4644,9 +4644,12 @@ a.text-dark:hover, a.text-dark:focus {
     font-style: normal;
 }
 
-
-
-
+@font-face {
+  font-family: 'GT Standard Packaging';
+  font-display: swap;
+  font-style: normal;
+    src: url('{{ "gt-standard-packaging.woff" | asset_url }}') format('woff'), url('{{ "gt-standard-packaging.woff2" | asset_url }}') format('woff2');
+    src: url('{{ "gt-standard-packaging.eot" | asset_url }}'); }
 
 
 body,
@@ -10158,4 +10161,7 @@ a.botoncito--btn {
 
 .bg-variable {
   background-color: {{ settings.background_color }};
+}
+.featured-product__font-color {
+  color: {{ settings.featured_product_font_color }};
 }

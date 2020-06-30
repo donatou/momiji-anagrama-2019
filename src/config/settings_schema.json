@@ -8,14 +8,29 @@
     "theme_support_url": "https://github.com/Shopify/starter-theme/issues"
   },
   {
-    "name": "Colores de elementos",
+    "name": "Colores",
     "settings": [
+      {
+        "type": "header",
+        "content": "Featured Product"
+      },
       {
         "type": "color",
         "id": "featured_product_background_color",
-        "label": "Featured Product background color",
-        "default": "#c4cdd5",
-        "info": "Background de sección tipo FEATURED PRODUCT"
+        "label": "Background color",
+        "default": "#0056B1"
+      },
+      {
+        "type": "color",
+        "id": "featured_product_font_color",
+        "label": "Font color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "featured_product_accent_color",
+        "label": "Accent & button color",
+        "default": "#ffffff"
       }
     ]
   },
