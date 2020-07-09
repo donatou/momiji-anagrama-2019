@@ -40,20 +40,48 @@
             </figure>
         {%-endif-%}
         </div>
+        <div id="wrapper__additional-info">
+            <div class="info-card__title"><p>Ingredientes:</p></div>
+            <div id="grid__additional-info">
+              <div class="grid__info-card">
+                <h3 class="additional-info__title">62% alcohol*</h3>
+                <p>Elimina bacterias de manera efectiva y segura.</p>
+              </div>
+              <div class="grid__info-card">
+                <h3 class="additional-info__title">Hialuronato de sodio</h3>
+                <p>Derivado de ácido hialurónico de mejor absorción que hidrata la piel de manera más profunda.</p>
+              </div>
+              <div class="grid__info-card">
+                <h3 class="additional-info__title">Agua de rosas</h3>
+                <p>Hidrata, calma y está llena de antioxidantes. Además, tiene propiedades antibacterianas y antisépticas.</p>
+              </div>
+              <div class="grid__info-card">
+                <h3 class="additional-info__title">Extracto de lavanda</h3>
+                <p>Hidrata y le da a Handy un aroma relajante.</p>
+              </div>
+              <div class="disclaimer"><p>*Los Centros para el Control y la Prevención de Enfermedades (CDC) recomiendan utilizar un desinfectante de manos con un porcentaje mayor a 60% de alcohol para
+      eliminar bacterias y microbios. El uso de gel antibacterial no reemplaza el lavado de manos, pero si no tienes acceso inmediato a agua y jabón, es una buena opción
+      para desinfectarlas.</p></div>
+            </div>
+        </div>
     </div>
   {% if section.settings.background_image %}
-    <div class="img-wrapper__test">
-      <img srcset="https://picsum.photos/1800/1000?white 500w, https://picsum.photos/1800/1000?white" src="https://picsum.photos/1800/1000?white" alt="Image" />
-    </div>
+
   {% endif %}
 </div>
 
 <style>
 #featured-product__test {
-    height: 100vh;
+    /*height: 100vh;*/
     min-height: 640px;
+    width: 100%;
     position: relative;
-    overflow: hidden; 
+    /*overflow: hidden; */
+    background-image: url({{ section.settings.background_image | img_url: '4000x' }});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-attachment: scroll;
     background-color: {{ settings.featured_product_background_color }};
 }
 #featured-product__test .img-wrapper__test {
@@ -67,42 +95,45 @@
     object-position: right;
 }
 #wrapper__test {
-    position: absolute;
-    margin: 40px 30px;
+    /*position: absolute;*/
+    margin: 0px;
+    padding: 0 60px;
     top: 0;
     width: 100vw;
-    height: 100vh;
+    /*height: 100vh;*/
     min-width: 300px;
     min-height: 300px;
     max-width: calc(100vw - 60px);
-    max-height: calc(100vh - 80px);
-    overflow: hidden;
+    /*max-height: calc(100vh - 80px);
+    overflow: hidden;*/
 }
 #grid__test {
-    display: grid;
-    grid-template-columns: 16.666% 16.666% 16.666% 16.666% 16.666% 16.666%;
-    /*grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;*/
-    position: absolute;
+    /*display: grid;*/
+    display: flex;
+    /*grid-template-columns: 16.666% 16.666% 16.666% 16.666% 16.666% 16.666%;
+    position: absolute; */
     top: 0;
     left: 0;
-    width: 100%;
+    /*width: 100%;*/
+    padding-bottom: 60px;
     height: 100%;
 }
 .copy-wrapper__test {
-    grid-column: 1/4;
+    /*grid-column: 1/4;
     grid-row: auto;
-    align-self: center;
+    align-self: center;*/
 }
 @media (max-width: 991.98px) {
     .copy-wrapper__test {
-        grid-column: 1/4;
+       /* grid-column: 1/4;
         grid-row: auto;
-        align-self: center;
+        align-self: center;*/
     }    
 }
 .copy-wrapper__test h1 + h2, .copy-wrapper__test h2 + form {
     margin-top: 20px;
-    padding-right: 80px;
+   /* padding-right: 80px;*/
+    max-width: 600px;
 }
 .image-1__test figcaption {
   display: inline-flex;
@@ -142,7 +173,8 @@
     letter-spacing: -0.2px;
   }
   .copy-wrapper__test h1 + h2, .copy-wrapper__test h2 + form {
-    padding-right: 60px;
+    /*padding-right: 60px;*/
+    max-width: 600px;
   }
 }
 @media (max-width: 767px) {
@@ -151,7 +183,7 @@
     letter-spacing: -0.2px;
   }
   .copy-wrapper__test h1 + h2, .copy-wrapper__test h2 + form {
-    padding-right: 10px;
+    /*padding-right: 10px;*/
   }
 }
 
@@ -168,13 +200,19 @@
   color: {{ settings.featured_product_accent_color }};
 }
 .btn__agregar--featured {
-  background: {{ settings.featured_product_accent_color }};
   display: inline-block;
-  height: 35px;
+  font-family: "GT Standard Beta A3", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  height: auto;
   text-align: center;
-  padding: 8px 15px 8px 15px;
-  padding-top: 8px;
+  padding: 10px 15px 13px 15px;
   border:0;
+  background: {{ settings.featured_product_accent_color }};
   color: {{ settings.featured_product_font_color }};
 }
 
@@ -182,6 +220,70 @@
   background-color: #1959b9;
   color: white;
 }
+#wrapper__additional-info {
+    /*position: absolute;
+    margin: 40px 30px;
+    top: 0;*/
+    /*width: 100vw;
+    height: 100vh;*/
+    min-width: 300px;
+    min-height: 300px;
+    padding-bottom: 60px;
+   /* max-width: calc(100vw - 60px);
+    max-height: calc(100vh - 80px);
+    overflow: hidden; */
+}
+#wrapper__additional-info .info-card__title {
+  background-color: {{ settings.featured_product_font_color }};
+  /*width: fit-content;*/
+  width: max-content;
+  padding: 5px 10px 9px;
+}
+#wrapper__additional-info .info-card__title p {
+  color: {{ settings.featured_product_background_color }};
+}
+#grid__additional-info {
+  display: flex;
+  max-width: 80%;
+  flex-wrap: wrap;
+}
+#grid__additional-info p, .grid__info-card {
+  color: {{ settings.featured_product_font_color }};
+}
+#grid__additional-info .grid__info-card {
+  padding: 14px 0;
+  margin: 0 90px 0 0;
+  max-width: 30ch;
+  min-width: 27ch;
+}
+#grid__additional-info .disclaimer {
+  padding-top: 40px;
+  width: 80%;
+}
+#grid__additional-info .disclaimer p {
+  font-family: "GT Standard Beta A3", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 85%;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+.additional-info__title, #grid__additional-info .grid__info-card, #wrapper__additional-info .info-card__title p {
+  font-family: "GT Standard Beta A3", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: -0.01em;
+}
+.additional-info__title {
+  border-bottom: 2px solid {{ settings.featured_product_font_color }};
+  padding-bottom: 14px;
+}
+.grid__info-card h3 + p {
+  margin-top: 14px;
+}
+
 </style>
 
 {% schema %}
