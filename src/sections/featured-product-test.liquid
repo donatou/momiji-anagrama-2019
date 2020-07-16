@@ -31,6 +31,7 @@
                         </span>
                     </button>
                 </form>
+              <a class="link__featured-product" href="/products/{{ section.settings.product }}">{{ 'shopify.checkout.general.tooltip_accessibility_label' | t}}</a>
 
             </div>
         {%-if section.settings.image_1-%}    
@@ -49,11 +50,9 @@
 
 <style>
 #featured-product__test {
-    /*height: 100vh;*/
     min-height: 640px;
     width: 100%;
     position: relative;
-    /*overflow: hidden; */
     background-image: url({{ section.settings.background_image | img_url: '2107x' }});
     background-size: cover;
     background-repeat: no-repeat;
@@ -77,29 +76,13 @@
     min-width: 300px;
     min-height: 300px;
 }
-@media (max-height: 558px) {
-    #wrapper__test {
-      padding-top: 60px;
-  }
-}
 #grid__test {
     display: flex;
     height: 100vh;
     align-items: center;
 }
-.copy-wrapper__test {
-    /*grid-column: 1/4;
-    grid-row: auto;
-    align-self: center;*/
-}
-@media (max-width: 991.98px) {
-  #featured-product__test {
-      background-image: url({{ section.settings.background_image_992 | img_url: '992x' }});
-  }
-}
 .copy-wrapper__test h1 + h2, .copy-wrapper__test h2 + form {
     margin-top: 20px;
-   /* padding-right: 80px;*/
     max-width: 600px;
 }
 .image-1__test figcaption {
@@ -112,18 +95,7 @@
 }
 .image-1__test {
     display: flex;
-    /* grid-column: 4/7;
-    grid-row: auto;
-    height: fit-content; */
     align-self: self-end;
-}
-@media (max-width: 991.98px) {
-  .image-1__test {
-      display: flex;
-      /* grid-column:2/7;
-      grid-row: auto; */
-      align-self: self-end;
-  }   
 }
 .image-1__test img {
     height: max-content;
@@ -134,26 +106,6 @@
   font-style: normal;
   padding-top: 40px;
 }
-@media (max-width: 991.98px) {
-  .featured-product__title {
-    padding-top: 60px;
-    letter-spacing: -0.2px;
-  }
-  .copy-wrapper__test h1 + h2, .copy-wrapper__test h2 + form {
-    /*padding-right: 60px;*/
-    max-width: 600px;
-  }
-}
-@media (max-width: 767px) {
-  .featured-product__title {
-    padding-top: 40px;
-    letter-spacing: -0.2px;
-  }
-  .copy-wrapper__test h1 + h2, .copy-wrapper__test h2 + form {
-    /*padding-right: 10px;*/
-  }
-}
-
 .featured-product__subtitle {
   font-family: "GT Standard Beta A3", sans-serif;
   font-size: 18px;
@@ -162,7 +114,6 @@
   font-weight: 500;
   font-style: normal;
 }
-
 .featured-product__accent-color {
   color: {{ settings.featured_product_accent_color }};
 }
@@ -182,13 +133,71 @@
   background: {{ settings.featured_product_accent_color }};
   color: {{ settings.featured_product_font_color }};
 }
-
 .btn__agregar--featured:hover {
   background-color: #1959b9;
   color: white;
 }
-
-
+.link__featured-product {
+  font-family: "GT Standard Beta A3", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  line-height: 16px;
+  font-weight: normal;
+  font-style: normal;
+  text-transform: uppercase;
+  margin-top: 20px;
+  border-bottom: 1px {{ settings.featured_product_font_color }} solid;
+}
+.link__featured-product:hover {
+  border-bottom:none;
+}
+@media (max-width: 991.98px) {
+  #featured-product__test {
+      background-image: url({{ section.settings.background_image_992 | img_url: '992x' }});
+  }
+  .featured-product__title {
+    padding-top: 60px;
+    letter-spacing: -0.2px;
+  }
+  .copy-wrapper__test h1 + h2, .copy-wrapper__test h2 + form {
+    max-width: 450px;
+  }
+  .image-1__test {
+      display: flex;
+      align-self: self-end;
+  }   
+}
+@media (max-width: 767px) {
+  #grid__test {
+      display: flex;
+      height: 80vh;
+      align-items: flex-start;
+  } 
+  .featured-product__title {
+    padding-top: 40px;
+    letter-spacing: -0.2px;
+  }
+}
+/*width*/
+@media (max-width: 558px) {
+  #wrapper__test {
+    margin: 0 30px;
+  }
+  #grid__test {
+      height: 80vh;
+  }
+  h1.featured-product__title {
+    font-size: 55px;
+    letter-spacing: -0.2px;
+    line-height: 50px;
+  }
+}
+/*height*/
+@media (max-height: 558px) {
+  #wrapper__test {
+      padding-top: 60px;
+  }
+}
 </style>
 
 {% schema %}
