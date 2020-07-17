@@ -8,7 +8,7 @@
     "theme_support_url": "https://github.com/Shopify/starter-theme/issues"
   },
   {
-    "name": "Colores",
+    "name": "Featured Product",
     "settings": [
       {
         "type": "header",
@@ -29,6 +29,22 @@
       {
         "type": "color",
         "id": "featured_product_accent_color",
+        "label": "Accent & button color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "featured_product_hover_color",
+        "label": "Button color hover",
+        "default": "#000000"
+      },
+      {
+        "type": "header",
+        "content": "Additional Info Section"
+      },
+      {
+        "type": "color",
+        "id": "featured_product_a",
         "label": "Accent & button color",
         "default": "#ffffff"
       }
