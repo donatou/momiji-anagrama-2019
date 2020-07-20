@@ -7,115 +7,64 @@
   {%- assign onboarding_title = 'homepage.onboarding.product_title' | t -%}
 {% endif %}
 
-<section class="featured-product__hero bg-variable" data-section-id="{{ section.id }}" data-section-type="product">
-  {% if section.settings.background_image %}
-    <div class="background__img">
-      <img srcset="{{ 'eyeshine-hero-mobile.jpg' | asset_url }} 500w, {{ 'eyeshine-hero-2.jpg' | asset_url }}" src="{{ 'eyeshine-hero-2.jpg' | asset_url }}" alt="Image" />
+<div id="featured-product">
+    <div id="featured-product__wrapper">
+        <div id="featured-product__content">
+            <div class="featured-product_copy featured-product__font-color">
+                <h1 class="featured-product__title">{{ section.settings.title_product }}</h1>
+                <h2 class="featured-product__subtitle">{{ section.settings.subtitle_product }}</h2>
+              {% if section.settings.preorder %}
+                <a class="btn__agregar--featured" href="/products/{{ section.settings.product }}">
+                  {{ product.price | money_without_trailing_zeros }} — PREORDER
+                </a>
+              {% else %}
+                <form 
+                  action="/cart/add" 
+                  data-productid="{{ current_variant.id }}" 
+                  method="post"
+                  id="AddToCartForm">
+                  <input type="hidden" name="id" value="{{ current_variant.id }}">
+                  <input type="hidden" name="quantity" value="1">
+                  <button
+                    class="btn__agregar--featured" 
+                    type="submit" {% unless current_variant.available %}
+                    disabled="disabled"{% endunless %}>
+                  {% if current_variant.available %}
+                    {{ product.price | money_without_trailing_zeros }} <span class="featured-product__background-color">—</span> {{ 'products.product.add_to_cart' | t }}
+                  {% else %}
+                    {{ product.price | money_without_trailing_zeros }} <span class="featured-product__background-color">—</span> {{ 'products.product.sold_out' | t }}
+                  {% endif %}
+                  </button>
+                </form>
+              {% endif %}
+              {% if section.settings.preorder %}
+              {% else %}
+                <a class="link__featured-product" href="/products/{{ section.settings.product }}">{{ 'shopify.checkout.general.tooltip_accessibility_label' | t}}</a>
+              {% endif %}
+            </div>
+        </div>
     </div>
-  {% endif %}
+</div>
 
-  <div class="feature-product__grid-wrapper">
-  <div class="img-wrapper">
-      <div class="image-1">
-        <img src="{{ section.settings.image_1 | img_url: '426x' }}" alt=""/>
-      </div>
-  </div>
-
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-12 col-md-7 col-lg-6 col-xl-5 sticker-featured-product">
-        <h1 class="title-midabi">{{ section.settings.title_product }}</h1>
-        <h2 class="h3">{{ section.settings.subtitle }}</h2>
-
-        {% comment %} <form action="/cart/add" data-productid="{{ current_variant.id }}" method="post" class="product-form mt-4" id="AddToCartForm">
-          <input type="hidden" name="id" value="{{ current_variant.id }}"><input type="hidden" name="quantity" value="1">
-          <button class="btn__agregar" type="submit">$500 <span class="color-blueop">|</span> Agregar a la bolsa</button>
-        </form> {% endcomment %}
-
-        <form action="/cart/add" method="post" enctype="multipart/form-data">
-          {% unless product.has_only_default_variant %}
-            {% for option in product.options_with_values %}
-              <div class="selector-wrapper js">
-                <label for="SingleOptionSelector-{{ section.id }}-{{ forloop.index0 }}">
-                  {{ option.name }}
-                </label>
-
-                <select
-                  id="SingleOptionSelector-{{ section.id }}-{{ forloop.index0 }}"
-                  data-single-option-selector
-                  data-index="option{{ option.position }}">
-                  {% for value in option.values %}
-                    <option
-                      value="{{ value | escape }}"
-                      {% if option.selected_value == value %}selected="selected"{% endif %}>
-                        {{ value }}
-                    </option>
-                  {% endfor %}
-                </select>
-              </div>
-            {% endfor %}
-          {% endunless %}
-
-          <select name="id" class="no-js" data-product-select>
-            {% for variant in product.variants %}
-              <option
-                {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
-                {% unless variant.available %}disabled="disabled"{% endunless %}
-                value="{{ variant.id }}">
-                  {{ variant.title }}
-              </option>
-            {% endfor %}
-          </select>
-
-          <label for="Quantity-{{ section.id }}">{{ 'products.product.quantity' | t }}</label>
-          <input type="number" id="Quantity-{{ section.id }}" name="quantity" value="1" min="1">
-
-          <div data-price-wrapper>
-            <span data-product-price>
-              {{ current_variant.price | default: '1999' | money }}
-            </span>
-
-            {% if product.compare_at_price_max > product.price %}
-              <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
-              <s data-compare-price>
-                {% if current_variant.compare_at_price > current_variant.price %}
-                  {{ current_variant.compare_at_price | money }}
-                {% endif %}
-              </s>
-            {% endif %}
-          </div>
-
-          <button
-            type="submit"
-            name="add"
-            data-add-to-cart
-            {% unless product.available %}disabled="disabled"{% endunless %}
-            {% if section_onboarding %}disabled="disabled"{% endif %}>
-              <span data-add-to-cart-text>
-                {% if product.available %}
-                  {{ 'products.product.add_to_cart' | t }}
-                {% else %}
-                  {{ 'products.product.sold_out' | t }}
-                {% endif %}
-              </span>
-          </button>
-        </form>
-
-      </div> 
-    </div>
-  </div>
-
-  {% unless product == empty %}
-    <script type="application/json" data-product-json>
-      {{ product | json }}
-    </script>
-  {% endunless %}
-  </div>
-</section>
+<style>
+#featured-product {
+    background-image: url({{ section.settings.background_image | img_url: '2107x' }});
+}
+@media (max-width: 991.98px) {
+  #featured-product {
+      background-image: url({{ section.settings.background_image_992 | img_url: '992x' }});
+  }
+}
+@media (max-width: 558px) {
+  #featured-product {
+      background-image: url({{ section.settings.background_image_558 | img_url: '558x' }});
+  }
+}
+</style>
 
 {% schema %}
   {
-    "name": "Featured product",
+    "name": "Featured Product Hero",
     "settings": [
       {
         "type": "product",
@@ -123,86 +72,48 @@
         "label": "Product"
       },
       {
-        "type": "image_picker",
-        "id": "background_image",
-        "label": "Background image"
+        "id": "preorder",
+        "type": "checkbox",
+        "label": "Es producto para preorder"
       },
       {
         "type": "html",
         "id": "title_product",
-        "label": "Copy principal H1"
+        "label": "Copy principal H1",
+        "placeholder": "Handy:<br>clean care<br>is self-care",
+        "default": "Lorem<br>ipsum dolor<br>sit amet"
+      },
+      {
+        "type": "textarea",
+        "id": "subtitle_product",
+        "label": "Copy subtítulo",
+        "placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin posuere elementum nibh, non rhoncus ex ultrices sit amet. Nulla a ligula a mi pharetra imperdiet sed sit amet diam. Suspendisse quis dapibus risus.",
+        "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin posuere elementum nibh, non rhoncus ex ultrices sit amet. Nulla a ligula a mi pharetra imperdiet sed sit amet diam. Suspendisse quis dapibus risus."
       },
       {
         "type": "image_picker",
-        "id": "image_1",
-        "label": "Imagen 1"
+        "id": "background_image",
+        "label": "Background image full",
+        "info": "2107 x 1080 pixeles"
+      },
+      {
+        "type": "image_picker",
+        "id": "background_image_992",
+        "label": "Background image tablet",
+        "info": "992 x 1200 pixeles"
+      },
+      {
+        "type": "image_picker",
+        "id": "background_image_558",
+        "label": "Background image mobile",
+        "info": "558 x 640 pixeles"
       }
     ],
     "presets": [
       {
-        "name": "Featured product",
+        "name": "Featured Product Hero",
         "category": "Product"
       }
     ]
   }
 {% endschema %}
-
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org/",
-  "@type": "Product",
-  "name": "{{ product.title | escape }}",
-  "url": "{{ shop.url }}{{ product.url }}",
-  {% if product.featured_image %}
-    {% assign image_size = product.featured_image.width | append: 'x' %}
-    "image": [
-      "https:{{ product.featured_image.src | img_url: image_size }}"
-    ],
-  {% endif %}
-  "description": "{{ product.description | strip_html | escape }}",
-  {% if current_variant.sku != blank %}
-    "sku": "{{ current_variant.sku }}",
-  {% endif %}
-  "brand": {
-    "@type": "Thing",
-    "name": "{{ product.vendor | escape }}"
-  },
-  {% if product.variants %}
-    "offers": [
-      {% for variant in product.variants %}
-        {
-          "@type" : "Offer",
-          "availability" : "http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
-          "price" : "{{ variant.price | divided_by: 100.00 }}",
-          "priceCurrency" : "{{ shop.currency }}",
-          "url" : "{{ shop.url }}{{ variant.url }}",
-          "itemOffered" :
-          {
-              "@type" : "Product",
-              {% if variant.image %}
-                {% assign variant_image_size = variant.image.width | append: 'x' %}
-                "image": "http:{{ variant.image.src | img_url: variant_image_size }}",
-              {% endif %}
-              {% if variant.title != blank %}
-                "name" : "{{ variant.title | escape }}",
-              {% endif %}
-              {% if variant.sku != blank %}
-                "sku": "{{ variant.sku }}",
-              {% endif %}
-              {% if variant.weight != blank %}
-                "weight": {
-                  "@type": "QuantitativeValue",
-                  {% if variant.weight_unit != blank %}
-                    "unitCode": "{{ variant.weight_unit }}",
-                  {% endif %}
-                  "value": "{{ variant.weight | weight_with_unit: variant.weight_unit }}"
-                },
-              {% endif %}
-              "url": "{{ shop.url }}{{ variant.url }}"
-          }
-        }{% unless forloop.last %},{% endunless %}
-      {% endfor %}
-    ]
-  {% endif %}
-}
-</script>

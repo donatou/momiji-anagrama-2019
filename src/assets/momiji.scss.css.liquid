@@ -10102,9 +10102,6 @@ a.botoncito--btn {
 {%- comment -%}
     FEATURED PRODUCT SECTION
 {%- endcomment -%}
-
-
-
 .sticker-featured-product:after {
   background: url({{ 'eyeshine-1.svg' | asset_url }}) no-repeat;
   content: "";
@@ -10129,4 +10126,195 @@ a.botoncito--btn {
 }
 .featured-product__font-color {
   color: {{ settings.featured_product_font_color }};
+}
+#featured-product {
+    min-height: 640px;
+    width: 100%;
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-attachment: scroll;
+    background-color: {{ settings.featured_product_background_color }};
+}
+#featured-product__wrapper {
+    margin: 0 60px;
+    top: 0;
+    min-width: 300px;
+    min-height: 300px;
+}
+#featured-product__content {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+}
+.featured-product_copy h1 + h2, .featured-product_copy h2 + form, .featured-product_copy h2 + a {
+    margin-top: 20px;
+    max-width: 600px;
+}
+.featured-product__title {
+  font-family: "GT Standard Packaging", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  padding-top: 40px;
+}
+.featured-product__subtitle {
+  font-family: "GT Standard Beta A3", sans-serif;
+  font-size: 18px;
+  letter-spacing: -0.2px;
+  line-height: 23px;
+  font-weight: 500;
+  font-style: normal;
+}
+.featured-product__accent-color {
+  color: {{ settings.featured_product_accent_color }};
+}
+.btn__agregar--featured {
+  transition: all 400ms cubic-bezier(0.445, 0.5, 0.55, 0.95);
+}
+.btn__agregar--featured {
+  display: inline-block;
+  font-family: "GT Standard Beta A3", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  height: auto;
+  text-align: center;
+  padding: 10px 15px 13px 15px;
+  border:0;
+  background: {{ settings.featured_product_accent_color }};
+  color: {{ settings.featured_product_font_color }};
+}
+.btn__agregar--featured:hover {
+  background-color: {{ settings.featured_product_hover_color }};
+  color: white;
+}
+.link__featured-product {
+  font-family: "GT Standard Beta A3", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  line-height: 16px;
+  font-weight: normal;
+  font-style: normal;
+  text-transform: uppercase;
+  margin-top: 20px;
+  border-bottom: 1px {{ settings.featured_product_font_color }} solid;
+}
+.link__featured-product:hover {
+  border-bottom:none;
+}
+@media (max-width: 991.98px) {
+  .featured-product__title {
+    padding-top: 60px;
+    letter-spacing: -0.2px;
+  }
+  .featured-product_copy h1 + h2, .featured-product_copy h2 + form {
+    max-width: 450px;
+  }
+}
+@media (max-width: 767px) {
+  #featured-product__content {
+      display: flex;
+      height: 80vh;
+      align-items: flex-start;
+  }
+  h1.featured-product__title {
+    padding-top: 40px;
+    font-size: 55px;
+    letter-spacing: -0.2px;
+    line-height: 50px;
+  }
+  .featured-product_copy h1 + h2, .featured-product_copy h2 + form {
+    max-width: 350px;
+  }
+}
+@media (max-width: 558px) {
+  #featured-product__wrapper {
+    margin: 0 30px;
+  }
+  #featured-product__content {
+      height: 80vh;
+  }
+  h1.featured-product__title {
+    font-size: 55px;
+    letter-spacing: -0.2px;
+    line-height: 50px;
+  }
+  .featured-product_copy h1 + h2, .featured-product_copy h2 + form {
+    max-width: 250px;
+  }
+}
+@media (max-height: 558px) {
+  #featured-product__wrapper {
+      padding-top: 60px;
+  }
+}
+
+{%- comment -%}
+FEATURED PRODUCT ADDITIONAL INFO SECTION
+{%- endcomment -%}
+#featured-product__info {
+    width: 100%;
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-attachment: scroll;
+    background-color: {{ settings.featured_product_background_color }};
+}
+#wrapper__additional-info {
+    min-width: 300px;
+    min-height: 300px;
+    padding: 60px 0;
+}
+#wrapper__additional-info .info-card__title {
+  background-color: {{ settings.featured_product_font_color }};
+  width: max-content;
+  padding: 5px 10px 9px;
+}
+#wrapper__additional-info .info-card__title p {
+  color: {{ settings.featured_product_background_color }};
+}
+#grid__additional-info {
+  display: flex;
+  flex-wrap: wrap;
+}
+#grid__additional-info p, .grid__info-card {
+  color: {{ settings.featured_product_font_color }};
+}
+#grid__additional-info .grid__info-card {
+  padding: 14px 0;
+  margin: 0 50px 0 0;
+  max-width: 28ch;
+  min-width: 25ch;
+}
+#grid__additional-info .disclaimer {
+  padding-top: 40px;
+  width: 80%;
+}
+#grid__additional-info .disclaimer p {
+  font-family: "GT Standard Beta A3", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 85%;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+.additional-info__title, #grid__additional-info .grid__info-card, #wrapper__additional-info .info-card__title p {
+  font-family: "GT Standard Beta A3", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: -0.01em;
+}
+.additional-info__title {
+  border-bottom: 2px solid {{ settings.featured_product_font_color }};
+  padding-bottom: 14px;
+}
+.grid__info-card h3 + p {
+  margin-top: 14px;
 }

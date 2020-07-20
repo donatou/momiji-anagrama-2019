@@ -17,76 +17,15 @@
 
 <style>
 #featured-product__info {
-    width: 100%;
-    position: relative;
 {% if section.settings.background_image %}
     background-image: url({{ section.settings.background_image | img_url: '2107x' }});
 {% endif %}
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center right;
-    background-attachment: scroll;
-    background-color: {{ settings.featured_product_background_color }};
 }
-#wrapper__additional-info {
-    min-width: 300px;
-    min-height: 300px;
-    padding: 60px 0;
-}
-#wrapper__additional-info .info-card__title {
-  background-color: {{ settings.featured_product_font_color }};
-  width: max-content;
-  padding: 5px 10px 9px;
-}
-#wrapper__additional-info .info-card__title p {
-  color: {{ settings.featured_product_background_color }};
-}
-#grid__additional-info {
-  display: flex;
-  flex-wrap: wrap;
-}
-#grid__additional-info p, .grid__info-card {
-  color: {{ settings.featured_product_font_color }};
-}
-#grid__additional-info .grid__info-card {
-  padding: 14px 0;
-  margin: 0 50px 0 0;
-  max-width: 28ch;
-  min-width: 25ch;
-}
-#grid__additional-info .disclaimer {
-  padding-top: 40px;
-  width: 80%;
-}
-#grid__additional-info .disclaimer p {
-  font-family: "GT Standard Beta A3", sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 85%;
-  line-height: 1.2;
-  letter-spacing: -0.03em;
-}
-.additional-info__title, #grid__additional-info .grid__info-card, #wrapper__additional-info .info-card__title p {
-  font-family: "GT Standard Beta A3", sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 22px;
-  letter-spacing: -0.01em;
-}
-.additional-info__title {
-  border-bottom: 2px solid {{ settings.featured_product_font_color }};
-  padding-bottom: 14px;
-}
-.grid__info-card h3 + p {
-  margin-top: 14px;
-}
-
 </style>
 
 {% schema %}
   {
-    "name": "Featured product info",
+    "name": "Featured Product Info",
     "settings": [
       {
         "type": "text",
@@ -101,7 +40,7 @@
     ],
     "presets": [
       {
-        "name": "Featured product info",
+        "name": "Featured Product Info",
         "category": "Product"
       }
     ],
