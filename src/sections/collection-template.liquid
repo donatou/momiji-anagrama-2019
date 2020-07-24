@@ -57,7 +57,10 @@
 
         <div class="col-3 d-none d-md-block">
             {% comment %} FILTROS TABLETA , DESKTOP {% endcomment %}
-            {% include 'sidebar-filters' %}
+            {% comment %} {% include 'sidebar-filters' %} {% endcomment %}
+
+            {%- comment -%}Filter & Search app inject{%- endcomment -%}
+            <div id="bc-sf-filter-tree"></div>
         </div>
 
         <div class="col-md-9">
@@ -81,7 +84,7 @@
             <div class="row thumbs">
             {% paginate collection.products by productos_por_pagina %}
             {% for product in collection.products limit: productos_por_pagina  %}
-              <div class="col-md-6 col-lg-4">
+              <div id="bc-sf-filter-products" class="col-md-6 col-lg-4">
                 {% include 'grid-item' %}
               </div>
             {% endfor %}
@@ -129,3 +132,33 @@
     ]
   }
 {% endschema %}
+
+<script>   
+  // Declare bcSfFilterConfig variable   
+  var bcSfFilterConfig = {     
+    label: {       
+      sorting: {% assign temp = 'collections.sorting.title' | t  %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Sorting" {% endunless %},       
+      sorting_best_selling: {% assign temp = collection.sort_options[1].name %} {% unless temp == nil %} {{ temp | json }} {% else %} "Best Selling" {% endunless %},       
+      sorting_featured: {% assign temp = collection.sort_options[0].name %} {% unless temp == nil %} {{ temp | json }} {% else %} "Featured" {% endunless %},       
+      sorting_title_ascending: {% assign temp = collection.sort_options[2].name %} {% unless temp == nil %} {{ temp | json }} {% else %} "Alphabetically, A-Z" {% endunless %},       
+      sorting_title_descending: {% assign temp = collection.sort_options[3].name %} {% unless temp == nil %} {{ temp | json }} {% else %} "Alphabetically, Z-A" {% endunless %},       
+     sorting_price_ascending: {% assign temp = collection.sort_options[4].name %} {% unless temp == nil %} {{ temp | json }} {% else %} "Lowest Price" {% endunless %},       
+      sorting_price_descending: {% assign temp = collection.sort_options[5].name %} {% unless temp == nil %} {{ temp | json }} {% else %} "Highest Price" {% endunless %},       
+      sorting_date_ascending: {% assign temp = collection.sort_options[6].name %} {% unless temp == nil  %} {{ temp | json }} {% else %} "Date, Old to New" {% endunless %},       
+      sorting_date_descending: {% assign temp = collection.sort_options[7].name %} {% unless temp == nil  %} {{ temp | json }} {% else %} "Date, New to Old" {% endunless %},       
+      sorting_relevance: {% assign temp = 'collections.sorting.relevance' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Relevance" {% endunless %},        
+
+
+      sale: {{ 'products.product.on_sale' | t | json }},       
+      sale_price: {{ 'products.product.sale_price' | t | json }},       
+      sold_out: {{ 'products.product.sold_out' | t | json }},       
+      vendor: {{ 'products.product.vendor' | t |json }},       
+      regular_price: {{ 'products.product.regular_price' | t | json }},       items_with_count_one: {{ 'collections.general.items_with_count.one' | t | json}},       
+      items_with_count_other: {{ 'collections.general.items_with_count.other' | t | json }},       
+      current_page: {{ 'general.pagination.current_page' | t | json }}, 
+    },     
+    custom: {       
+      // Add custom value here     
+    }   
+  }; 
+</script>

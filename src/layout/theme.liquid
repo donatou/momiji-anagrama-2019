@@ -86,6 +86,7 @@
     </script>
 
     {% include 'loyaltylion' %}
+    {% include 'bc-sf-filter-style' %}
   </head>
 
   <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
@@ -115,23 +116,19 @@
 
     {% section 'footer' %}
     {% comment %} <script src="{{ 'theme.js' | asset_url }}" defer></script>   {% endcomment %}
-    
     <script src="{{ '//cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js' }}" defer></script>
     <script src="{{ 'swiper4.min.js'| asset_url }}" defer></script>
     <script src="{{ 'parallax.js' | asset_url }}" defer></script> 
     <script src="{{ 'app.js' | asset_url }}" defer></script> 
-    {% comment %} <script src="{{ 'app.js' | asset_url }}" defer></script> {% endcomment %} 
     <script src="{{ 'micromodal.js' | asset_url }}" defer></script>  
     <script src="{{ 'jquery.selectric.js' | asset_url }}" defer></script>  
-    {%- comment -%}{% include "swymWishlist" %}
-    {% include 'swymSnippet' %}{%- endcomment -%}
         {% comment %} {% include 'back-in-stock-helper' %} {% endcomment %}
     {{ 'product-reviews-override.min.css' | asset_url | stylesheet_tag }}
     {% if template == 'article' %}
         <script id="dsq-count-scr" src="//momijitalks.disqus.com/count.js" defer></script>
     {% endif %}
     <script src="{{ 'minicart.min.js'| asset_url }}" defer></script>
-    {% comment %} <script src="{{ 'minicart.js'| asset_url }}" defer></script> {% endcomment %}
+    {% include 'bc-sf-filter' %}
     {% include 'adroll' %}
   </body>
 </html>
