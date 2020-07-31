@@ -39,6 +39,12 @@
         "default": "#000000"
       },
       {
+        "type": "color",
+        "id": "featured_p_font_button_color",
+        "label": "Button font color",
+        "default": "#ffffff"
+      },
+      {
         "type": "header",
         "content": "Additional Info Section"
       },

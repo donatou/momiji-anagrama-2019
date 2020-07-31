@@ -149,7 +149,6 @@ $(document).ready(() => {
 
   // SKIN TYPE INFO
   if ($(window).width() <= 991) {
-    console.log('omaigod');
     $('.skin--type .btn__more').click(function() {
       $('.skin--type').removeClass('active');
       $(this).closest('.skin--type').toggleClass('active');
