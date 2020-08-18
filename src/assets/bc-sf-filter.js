@@ -9,27 +9,62 @@ var bcSfFilterSettings = {
 
 // Declare Templates
 var bcSfFilterTemplate = {
-    'soldOutClass': 'sold-out',
+    'soldOutClass': 'soon',
     'saleClass': 'on-sale',
     'soldOutLabelHtml': '<div>' + bcSfFilterConfig.label.sold_out + '</div>',
     'saleLabelHtml': '<div>' + bcSfFilterConfig.label.sale + '</div>',
-    'vendorHtml': '<div>{{itemVendorLabel}}</div>',
+    'vendorHtml': '<p>{{itemVendorLabel}}</p>',
 
-    // Grid Template
-    'productGridItemHtml': '<div class="grid__item wide--one-fifth large--one-quarter medium-down--one-half">' +
-                                '<div class="{{soldOutClass}} {{saleClass}}">' +
-                                    '<a href="{{itemUrl}}" class="grid-link">' +
-                                        '<span class="grid-link__image {{imageSoldOutClass}} grid-link__image--product">' +
-                                            '{{itemSaleLabel}}' +
-                                            '{{itemSoldOutLabel}}' +
-                                            '<span class="grid-link__image-centered"><img src="{{imageUrl}}" alt="{{itemTitle}}" /></span>' +
-                                        '</span>' +
-                                        '<p class="grid-link__title">{{itemTitle}}</p>' +
-                                        '{{itemVendor}}' +
-                                        '{{itemPrice}}' +
-                                    '</a>' +
-                                '</div>' +
-                            '</div>',
+    // Grid Template OLD
+    // 'productGridItemHtml': '<div class="grid__item wide--one-fifth large--one-quarter medium-down--one-half">' +
+    //     '<div class="{{soldOutClass}} {{saleClass}}">' +
+    //     '<a href="{{itemUrl}}" class="grid-link">' +
+    //     '<span class="grid-link__image {{imageSoldOutClass}} grid-link__image--product">' +
+    //     '{{itemSaleLabel}}' +
+    //     '{{itemSoldOutLabel}}' +
+    //     '<span class="grid-link__image-centered"><img src="{{imageUrl}}" alt="{{itemTitle}}" /></span>' +
+    //     '</span>' +
+    //     '<p class="grid-link__title">{{itemTitle}}</p>' +
+    //     '{{itemVendor}}' +
+    //     '{{itemPrice}}' +
+    //     '</a>' +
+    //     '</div>' +
+    //     '</div>',
+
+    // CUSTOM MOMIJI Grid Template 
+    'productGridItemHtml': '<a href="{{itemUrl}}"' +
+                                'class=  "{% if soon %}product soon' +
+                                        '{% elsif new %}product new' +
+                                        '{% else %}product' +
+                                        '{% endif %}' +
+                                        '" >' +
+    '<div class="product__container">' +
+        '<div class="product__container--main img-container">' +
+        '<img src="{{itemThumbUrl}}" alt="{{itemTitle}}">' +
+        '</div>' +
+        '<div class="product__container--hover">' +
+            '<img src="{{itemHoverThumbUrl}}" alt="{{itemTitle}}">' +
+        '</div>' +
+    '</div>' +
+    '{% include`grid-item-icons` %}' +
+    '<div class="product__info">' +
+        '<div class="product__info--brand">' +
+            '<p>by {{itemVendorSillo}}</p>' +
+            '<span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>' +
+        '</div>' +
+        '<div class="product__info--iva">' +
+            '<p>IVA incluido</p>' +
+        '</div>' +
+        '<div class="product__info--name-price">' +
+            '<div class="product__info--name">' +
+                '<p>{{itemTitle}}</p>' +
+            '</div>' +
+            '<div class="product__info--price">' +
+                '{{itemPrice}}' +
+            '</div>' +
+        '</div>' +
+    '</div>' +
+'</a>',
 
     // Pagination Template
     'previousActiveHtml': '<li><a href="{{itemUrl}}">&larr;</a></li>',
@@ -80,16 +115,16 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index) {
     // Add Price
     var itemPriceHtml = '';
     if (data.title != '')  {
-        itemPriceHtml += '<p class="grid-link__meta">';
+        itemPriceHtml += '<div class="product__info--price">';
         if (onSale) {
-            itemPriceHtml += '<s class="grid-link__sale_price">' + this.formatMoney(data.compare_at_price_min) + '</s> ';
+            itemPriceHtml += '<span class="compare--at">' + this.formatMoney(data.compare_at_price_min) + '</span> ';
         }
         if (priceVaries) {
             itemPriceHtml += (bcSfFilterConfig.label.from_price).replace(/{{ price }}/g, this.formatMoney(data.price_min));
         } else {
-            itemPriceHtml += this.formatMoney(data.price_min);
+            itemPriceHtml += '<span>' + this.formatMoney(data.price_min) + '</span> ';
         }
-        itemPriceHtml += '</p>';
+        itemPriceHtml += '</div>';
     }
     itemHtml = itemHtml.replace(/{{itemPrice}}/g, itemPriceHtml);
 
@@ -118,6 +153,7 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index) {
     itemHtml = itemHtml.replace(/{{itemHandle}}/g, data.handle);
     itemHtml = itemHtml.replace(/{{itemTitle}}/g, data.title);
     itemHtml = itemHtml.replace(/{{itemUrl}}/g, this.buildProductItemUrl(data));
+    itemHtml = itemHtml.replace(/{{itemVendorSillo}}/g, data.vendor);
 
     return itemHtml;
 };
