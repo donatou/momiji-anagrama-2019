@@ -62,6 +62,37 @@
 }
 </style>
 
+{% if section.settings.countdown %}
+  <script>
+  const second = 1000,
+        minute = second * 60,
+        hour = minute * 60,
+        day = hour * 24;
+
+  let countDown = new Date('{{ section.settings.countdown_txt }}').getTime(),
+      x = setInterval(function() {    
+
+        let now = new Date().getTime(),
+            distance = countDown - now;
+
+          //document.querySelector('.days').innerText = Math.floor(distance / (day)),
+          document.querySelector('.hours').innerText = Math.floor((distance % (day)) / (hour)),
+          document.querySelector('.minutes').innerText = Math.floor((distance % (hour)) / (minute)),
+          document.querySelector('.seconds').innerText = Math.floor((distance % (minute)) / second);
+
+        if (distance < 1) {
+          clearInterval(x);
+            function replaceCopy() {
+            const before = document.querySelector('.before');
+            before.remove();
+            const after = document.querySelector('.after').style.display="inherit";
+            }
+            replaceCopy();
+          }
+        }, second);
+  </script>
+{% endif %}
+
 {% schema %}
   {
     "name": "Featured Product Hero",
@@ -82,6 +113,19 @@
         "label": "Copy principal H1",
         "placeholder": "Handy:<br>clean care<br>is self-care",
         "default": "Lorem<br>ipsum dolor<br>sit amet"
+      },
+      {
+        "id": "countdown",
+        "type": "checkbox",
+        "label": "Habilitar countdown",
+        "info": "Usar en Copy principal: <span class=\"days\"></span> : <span class=\"hours\"></span> : <span class=\"minutes\"></span> : <span class=\"seconds\"></span>"
+      },
+      {
+        "type": "text",
+        "id": "countdown_txt",
+        "label": "Fecha y hora",
+        "placeholder": "May 18, 2020 08:00:00",
+        "info": "El formato es en inglés: Sep 14, 2021 14:09:00"
       },
       {
         "type": "textarea",

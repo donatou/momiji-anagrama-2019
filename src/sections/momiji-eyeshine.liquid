@@ -11,8 +11,16 @@
           <h2 class="h3">Los nuevos parches de hidrogel para ojos que desinflaman, hidratan, y dan luminosidad.</h2>
           <form action="/cart/add" data-productid="{{ current_variant.id }}" method="post" class="product-form mt-4" id="AddToCartForm">
             <input type="hidden" name="id" value="{{ current_variant.id }}"><input type="hidden" name="quantity" value="1">
-            <button class="btn__agregar" type="submit">$500 <span class="color-blueop">|</span> Agregar a la bolsa</button>
-
+            <button
+              class="btn__agregar"
+              type="submit" {% unless current_variant.available %}
+              disabled="disabled"{% endunless %}>
+              {% if current_variant.available %}
+                {{ product.price | money_without_trailing_zeros }} <span class="color-blueop">|</span> {{ 'products.product.add_to_cart' | t }}
+              {% else %}
+                {{ product.price | money_without_trailing_zeros }} <span class="color-blueop">|</span> {{ 'products.product.sold_out' | t }}
+              {% endif %}
+            </button>
           </form>
         </div> 
       </div>
