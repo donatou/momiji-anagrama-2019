@@ -1,6 +1,6 @@
 {%- comment -%} Check if template is collection or search page  {%- endcomment -%}
 {%- assign bcsffilter_is_initfilter = false -%}
-{%- if template contains 'collection' or template contains 'search' -%}
+{%- if request.page_type == 'collection' or request.page_type == 'search' -%}
   {%- unless template contains 'bc-original' -%}
     {%- assign bcsffilter_is_initfilter = true -%}
   {%- endunless -%}
@@ -39,10 +39,16 @@
       {%- comment -%} Get currencies {%- endcomment -%}
       currencies: [
         {%- for currency in shop.enabled_currencies -%}
-        {{- currency.iso_code | json -}}{%- if forloop.last != true -%},{%- endif -%}        
+        {{- currency.iso_code | json -}}{%- if forloop.last != true -%},{%- endif -%}
         {%- endfor -%}
       ],
       current_currency: {{- cart.currency.iso_code | json -}},
+      published_locales: {
+      {%- for locale in shop.published_locales -%}
+      {{- locale.iso_code | json -}}:{{- locale.primary | json -}}{%- if forloop.last != true -%},{%- endif -%}
+      {%- endfor -%}
+      },        
+      current_locale: {{- request.locale.iso_code | json -}},
       isInitFilter: {{- bcsffilter_is_initfilter | json -}}
     },
     {% if shop.metafields.bc-sf-filter.settings != blank %}
@@ -56,9 +62,9 @@
     return obj3;
   }
   if (typeof bcSfFilterConfig !== 'undefined') {
-    var bcSfFilterConfig = mergeObject(bcSfFilterConfig, bcSfFilterMainConfig); 
+    var bcSfFilterConfig = mergeObject(bcSfFilterConfig, bcSfFilterMainConfig);
   } else {
-    var bcSfFilterConfig = mergeObject({}, bcSfFilterMainConfig); 
+    var bcSfFilterConfig = mergeObject({}, bcSfFilterMainConfig);
   }
 </script>
 
