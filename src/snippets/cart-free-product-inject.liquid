@@ -1,5 +1,8 @@
-{% assign free_gift_over_price_40 = 40000 %} 
-{% assign variant_id = '32719882485865' %}
+{% assign free_gift_over_x_price = settings.minimum_spend | times: 100 %}
+{% capture promo_product %}
+  {{ all_products[settings.free_product].selected_or_first_available_variant.id }}
+{% endcapture %}
+{% assign variant_id = promo_product %}
 
   <script>
   (function($) {
@@ -17,7 +20,7 @@
       cartUpdates = { {{ variant_id }}: 0 }
     }
     
-    else if ( ( cartItems.length >= 1 ) && ( qtyInTheCart !== 1 ) && (cartTotal >= {{ free_gift_over_price_40 }} ) ) {
+    else if ( ( cartItems.length >= 1 ) && ( qtyInTheCart !== 1 ) && (cartTotal >= {{ free_gift_over_x_price }} ) ) {
       cartUpdates = { {{ variant_id }}: 1 }
     }
     else {

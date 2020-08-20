@@ -167,10 +167,15 @@
       },
       {
         "type": "text",
-        "id": "autoaddtocart",
-        "label": "Auto add to cart",
-        "info": "Se usa el \"variant id\" de cada producto.",
-        "placeholder": "32719882485865"
+        "id": "minimum_spend",
+        "label": "Cantidad a gastar",
+        "info": "Subtotal mínimo para activar promo",
+        "placeholder": "500"
+      },
+      {
+        "type": "product",
+        "id": "free_product",
+        "label": "Producto de regalo."
       },
       {
         "type": "header",
