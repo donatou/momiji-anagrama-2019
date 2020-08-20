@@ -163,6 +163,17 @@
       },
       {
         "type": "header",
+        "content": "Auto add to cart"
+      },
+      {
+        "type": "text",
+        "id": "autoaddtocart",
+        "label": "Auto add to cart",
+        "info": "Se usa el \"variant id\" de cada producto.",
+        "placeholder": "32719882485865"
+      },
+      {
+        "type": "header",
         "content": "Cross Sales"
       },
       {

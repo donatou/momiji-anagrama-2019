@@ -18,6 +18,7 @@
 
         {% if cart.item_count != 0 %}
         <form action="/cart" method="post" id="cartform" style="display:{% if cart.item_count == 0 %}none{% else %}block{% endif %};">
+        {% include 'cart-free-product-inject' %}
           <div class="minicart-nosubtotal"><!-- /.minicart-nosubtotal -->
 
           {% assign promo_vigente = settings.promo_vigente %}

@@ -1,4 +1,4 @@
-{% assign free_gift_over_price_40 = 4000 %} 
+{% assign free_gift_over_price_40 = 40000 %} 
 {% assign variant_id = '32719882485865' %}
 
   <script>
@@ -17,7 +17,7 @@
       cartUpdates = { {{ variant_id }}: 0 }
     }
     
-    else if ( ( cartItems.length >= 1 ) && ( qtyInTheCart !== 1 ) && (cartTotal >= {{ free_gift_over_price_30 }} ) ) {
+    else if ( ( cartItems.length >= 1 ) && ( qtyInTheCart !== 1 ) && (cartTotal >= {{ free_gift_over_price_40 }} ) ) {
       cartUpdates = { {{ variant_id }}: 1 }
     }
     else {
