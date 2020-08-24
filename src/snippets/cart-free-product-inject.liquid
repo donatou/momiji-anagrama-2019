@@ -30,11 +30,20 @@
       type: 'POST',
       url: '/cart/update.js',
       data: { updates: cartUpdates },
+      dataType: 'json'
+    };
+    $.ajax(params);
+  })(jQuery);
+  </script>
+
+  {%- comment -%}
+      var params = {
+      type: 'POST',
+      url: '/cart/update.js',
+      data: { updates: cartUpdates },
       dataType: 'json',
       success: function(stuff) { 
         window.location.href = '/cart';
       }
     };
-    $.ajax(params);
-  })(jQuery);
-  </script>
+  {%- endcomment -%}
