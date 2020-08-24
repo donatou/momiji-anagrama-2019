@@ -146,7 +146,7 @@
       {
         "type": "checkbox",
         "id": "cart_notes_enable",
-        "label": "Habilitar Regalos en Carrito",
+        "label": "Habilitar notas en carrito",
         "default": true
       },
       {
@@ -160,22 +160,6 @@
         "id": "present_placeholder",
         "label": "Placeholder",
         "placeholder": "Escribe aquí tu mensaje"
-      },
-      {
-        "type": "header",
-        "content": "Auto add to cart"
-      },
-      {
-        "type": "text",
-        "id": "minimum_spend",
-        "label": "Cantidad a gastar",
-        "info": "Subtotal mínimo para activar promo",
-        "placeholder": "500"
-      },
-      {
-        "type": "product",
-        "id": "free_product",
-        "label": "Producto de regalo."
       },
       {
         "type": "header",
@@ -220,7 +204,7 @@
           },
           {
             "value": "incluye_regalo",
-            "label": "Producto de regalo"
+            "label": "Auto add to cart"
           },
           {
             "value": "mensaje_custom",
@@ -292,22 +276,19 @@
       },
       {
         "type": "header",
-        "content": "Producto de regalo"
-      },
-      {
-        "type": "checkbox",
-        "id": "including_product",
-        "label": "Incluye un regalo.",
-        "default": false,
-        "info": "Activarlo cuando el envio gratis incluye un regalo."
+        "content": "Auto add to cart"
       },
       {
         "type": "text",
-        "id": "costo_enviogratis_x",
-        "label": "Cantidad a gastar para regalo:",
-        "default": "500",
-        "info": "No incluir signos o puntuación. Shipping rates se modifica en [Envíos](https://momiji-beauty.myshopify.com/admin/settings/shipping)",
+        "id": "minimum_spend",
+        "label": "Cantidad a gastar",
+        "info": "Subtotal mínimo para activar promo",
         "placeholder": "500"
+      },
+      {
+        "type": "product",
+        "id": "free_product",
+        "label": "Producto de regalo."
       },
       {
         "type": "text",
