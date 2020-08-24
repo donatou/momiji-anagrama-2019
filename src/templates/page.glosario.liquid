@@ -5,27 +5,14 @@
   <section class="section__principal">
     <div class="container">
       <div class="row">
-        
         <div class="col-md-7 offset-md-3 col-lg-8 offset-lg-4 privacidad--title mb-60">
           <h2>{{ page.title }}</h2>
         </div>
-
-        <aside class="col-md-3 col-lg-4">
-          <ul class="list-unstyled nav-scroll">
-            <li class="text-link"><a href="/pages/preguntas-frecuentes">Preguntas frecuentes</a></li>
-            <li class="text-link active">Glosario</li>
-            <li class="text-link"><a href="/pages/pagos-envios">Pagos y envíos</a></li>
-            <li class="text-link"><a href="/pages/aviso-privacidad">Aviso de Privacidad</a></li>
-            <li class="text-link"><a href="/pages/politicas-compra">Políticas de compra</a></li>
-            <li class="text-link"><a href="/pages/wholesale">Wholesale</a></li>
-          </ul>
-        </aside>
-
+        {% include 'aside-pages' %}
         <div class="col-10 offset-1 col-md-8 offset-md-1 col-lg-8 offset-lg-0 legal__item legal__glosario" data-id="2">
           {% include 'glosario-a-z' %}
           <div class="loader"></div>
         </div>
-
       </div>
     </div>
   </section>
