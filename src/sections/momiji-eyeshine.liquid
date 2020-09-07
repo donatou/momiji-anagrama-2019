@@ -7,8 +7,8 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12 col-md-7 col-lg-6 col-xl-5 sticker-eyeshine">
-          <h1>Eye shine. <br> menos ojeras, más brillo.</h1>
-          <h2 class="h3">Los nuevos parches de hidrogel para ojos que desinflaman, hidratan, y dan luminosidad.</h2>
+          <h1>{{ section.settings.copy_1 }}</h1>
+          <h2 class="h3">{{ section.settings.copy_2 }}</h2>
           <form action="/cart/add" data-productid="{{ current_variant.id }}" method="post" class="product-form mt-4" id="AddToCartForm">
             <input type="hidden" name="id" value="{{ current_variant.id }}"><input type="hidden" name="quantity" value="1">
             <button
@@ -22,6 +22,7 @@
               {% endif %}
             </button>
           </form>
+          <a class="mt-3" href="/products/{{ section.settings.product }}">{{ 'shopify.checkout.general.tooltip_accessibility_label' | t}}</a>
         </div> 
       </div>
     </div>
@@ -42,6 +43,16 @@
         "id": "product",
         "type": "product",
         "label": "Product"
+      },
+      {
+        "id": "copy_1",
+        "type": "textarea",
+        "label": "Copy principal"
+      },
+      {
+        "id": "copy_2",
+        "type": "textarea",
+        "label": "Copy secundario"
       }
     ],
     "presets": [

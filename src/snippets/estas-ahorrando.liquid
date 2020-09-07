@@ -1,8 +1,9 @@
 {% if cart.total_discounts > 0 %}
     <div class="cf checkout-subtotal-container">
         <div class="checkout-subtotal-container__left">
-        <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}{% if scripts.cart_calculate_line_items %} con la promo de {{ scripts.cart_calculate_line_items.name }}{% endif %}
-        </p>
+        <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money_with_currency }}</p>
+        {% comment %} <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}{% if scripts.cart_calculate_line_items %} con la promo de {{ scripts.cart_calculate_line_items.name }}{% endif %}
+        </p> {% endcomment %}
         </div>
     </div>
 {% endif %}
