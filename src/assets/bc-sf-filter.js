@@ -42,7 +42,13 @@ var bcSfFilterTemplate = {
             '<img src="{{itemHoverThumbUrl}}" alt="{{itemTitle}}">' +
         '</div>' +
     '</div>' +
-    '{% include`grid-item-icons` %}' +
+        '<div class="icon-list">' +
+            '<ul>' +
+                '<li><img src="https://cdn.shopify.com/s/files/1/1099/2810/t/314/assets/freeshipping_4life_48px.svg" alt="Free Shipping 4 life"></li>' +
+                '<li><img src="https://cdn.shopify.com/s/files/1/1099/2810/t/314/assets/freeshipping_4life_48px.svg" alt="Free Shipping 4 life"></li>' +
+                '<li><img src="https://cdn.shopify.com/s/files/1/1099/2810/t/314/assets/freeshipping_4life_48px.svg" alt="Free Shipping 4 life"></li>' +
+            '</ul>' +
+        '</div>' +
     '<div class="product__info">' +
         '<div class="product__info--brand">' +
             '<p>by {{itemVendorSillo}}</p>' +
