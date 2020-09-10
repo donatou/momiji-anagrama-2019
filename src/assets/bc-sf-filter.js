@@ -3,7 +3,7 @@ var bcSfFilterSettings = {
     general: {
         limit: 20,
         /* Optional */
-        // loadProductFirst: true,
+        loadProductFirst: true,
     }
 };
 
@@ -33,11 +33,7 @@ var bcSfFilterTemplate = {
 
     // CUSTOM MOMIJI Grid Template 
     'productGridItemHtml': '<a href="{{itemUrl}}"' +
-                                'class=  "{% if soon %}product soon' +
-                                        '{% elsif new %}product new' +
-                                        '{% else %}product' +
-                                        '{% endif %}' +
-                                        '" >' +
+                                'class= "product {{soldOutClass}} {{saleClass}}" >' +
     '<div class="product__container">' +
         '<div class="product__container--main img-container">' +
         '<img src="{{itemThumbUrl}}" alt="{{itemTitle}}">' +
