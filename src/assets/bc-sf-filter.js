@@ -39,7 +39,7 @@ var bcSfFilterTemplate = {
         '<img src="{{itemThumbUrl}}" alt="{{itemTitle}}">' +
         '</div>' +
         '<div class="product__container--hover">' +
-            '<img src="{{itemHoverThumbUrl}}" alt="{{itemTitle}}">' +
+            '<img src="{{itemThumbUrl}}" alt="{{itemTitle}}">' +
         '</div>' +
     '</div>' +
         '<div class="icon-list">' +
@@ -156,6 +156,7 @@ BCSfFilter.prototype.buildProductGridItem = function(data, index) {
     itemHtml = itemHtml.replace(/{{itemTitle}}/g, data.title);
     itemHtml = itemHtml.replace(/{{itemUrl}}/g, this.buildProductItemUrl(data));
     itemHtml = itemHtml.replace(/{{itemVendorSillo}}/g, data.vendor);
+   // itemHtml = itemHtml.replace(/{{itemHoverPic}}/g, data.vendor);
 
     return itemHtml;
 };
@@ -324,3 +325,19 @@ BCSfFilter.prototype.buildExtrasProductList = function(data, eventType) {};
 
 // Build additional elements
 BCSfFilter.prototype.buildAdditionalElements = function(data, eventType) {};
+
+
+// Intento de obtener tags con ajax
+// function getFilterProducts(tag) {
+//     $.ajax({
+//         type: 'GET',
+//         url: '/products.json',
+//         dataType: 'json',
+//         success: function (res) {
+//             console.log(res);
+//         },
+//         error: function (status) {
+//             alert(status);
+//         }
+//     })
+// }
