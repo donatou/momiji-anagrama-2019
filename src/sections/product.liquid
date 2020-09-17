@@ -56,6 +56,7 @@
         ">
         <h1 class="text-link">by {{ product.vendor }}</h1>
         <h2>{{ product.title }}</h2>
+        <p><a class="link--orange"><span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span></a></p>
         <div class="product__detail--name" data-price-wrapper>
           <h3>{{ product.metafields['producto']['presentacion'] }}</h3>
 
@@ -82,7 +83,7 @@
         {% endif %}       
 
         </div>
-        <p><a class="link--orange"><span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span></a></p>
+        {% comment %} <p><a class="link--orange"><span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span></a></p> {% endcomment %}
         <b>Descripción.</b>
         <p>{{ product.description }}</p>
 
