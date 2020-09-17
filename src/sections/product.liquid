@@ -1,4 +1,4 @@
-<section class="section__principal" data-section-id="{{ section.id }}" data-section-type="product">
+<section itemscope itemtype="http://schema.org/Product" class="section__principal" data-section-id="{{ section.id }}" data-section-type="product">
 
 {%- assign unico = product.has_only_default_variant -%}
 {% assign inventario_actual = variant.inventory_quantity %}
