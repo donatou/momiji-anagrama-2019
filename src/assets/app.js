@@ -355,37 +355,37 @@ $(window).on('load', () => {
 });
 
 // //DETALLE DE PRODUCTO
-$(document).ready(() => {
+// $(document).ready(() => {
 
-  const galleryThumbs = new Swiper('.gallery-thumbs', {
-    direction: 'vertical',
-    spaceBetween: 10,
-    slidesPerView: 5,
-    freeMode: true,
-    watchSlidesVisibility: true,
-    watchSlidesProgress: true,
-    breakpoints: {
-      991: {
-        direction: 'horizontal',
-      },
-    },
-  });
+//   const galleryThumbs = new Swiper('.gallery-thumbs', {
+//     direction: 'vertical',
+//     spaceBetween: 10,
+//     slidesPerView: 5,
+//     freeMode: true,
+//     watchSlidesVisibility: true,
+//     watchSlidesProgress: true,
+//     breakpoints: {
+//       991: {
+//         direction: 'horizontal',
+//       },
+//     },
+//   });
 
-  const galleryTop = new Swiper('.gallery-top', {
-    direction: 'vertical',
-    spaceBetween: 10,
-    breakpoints: {
-      991: {
-        spaceBetween: 0,
-        direction: 'horizontal',
-      },
-    },
-    thumbs: {
-      swiper: galleryThumbs,
-    },
-  });
+//   const galleryTop = new Swiper('.gallery-top', {
+//     direction: 'vertical',
+//     spaceBetween: 10,
+//     breakpoints: {
+//       991: {
+//         spaceBetween: 0,
+//         direction: 'horizontal',
+//       },
+//     },
+//     thumbs: {
+//       swiper: galleryThumbs,
+//     },
+//   });
 
-});
+// });
 
 
 // +++ IMAGE REVEAL
