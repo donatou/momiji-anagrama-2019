@@ -84,7 +84,7 @@
 
         </div>
         {% comment %} <p><a class="link--orange"><span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span></a></p> {% endcomment %}
-        <b>Descripción.</b>
+        {% comment %} <b>Descripción.</b>
         <p>{{ product.description }}</p>
 
         <div class="recomendado mb-30 mt-30">
@@ -106,7 +106,7 @@
           {% endif %}
 
         {% endif %}
-        </div>
+        </div> {% endcomment %}
 
       {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
         {% unless product.has_only_default_variant %}
@@ -195,6 +195,30 @@
         El botón de Back to Stock se configura directo de la app, en THEME INTEGRATION: Custom Script.
         {%- endcomment -%}
         {%- comment -%}<button class="btn__main btn__main--big" id="BIS_trigger" {% if product.available %} style="display: none;" {% endif %}>Notificarme cuando esté disponible</button>{%- endcomment -%}
+
+        <b>Descripción.</b>
+        <p>{{ product.description }}</p>
+
+        <div class="recomendado mb-30 mt-30">
+        {% if product.metafields.recomendado.nombre_1 != blank %}
+          <b>Recomendado por</b>
+          
+          <div class="tag"><a href="{{ product.metafields['recomendado']['link_1'] }}" target="_blank">{{ product.metafields['recomendado']['nombre_1'] }}</a></div>
+          
+          {% if product.metafields.recomendado.nombre_2 != blank %}   
+          <div class="tag"><a href="{{ product.metafields['recomendado']['link_2'] }}" target="_blank">{{ product.metafields['recomendado']['nombre_2'] }}</a></div>
+          {% endif %}
+
+          {% if product.metafields.recomendado.nombre_3 != blank %}   
+          <div class="tag"><a href="{{ product.metafields['recomendado']['link_3'] }}" target="_blank">{{ product.metafields['recomendado']['nombre_3'] }}</a></div>
+          {% endif %}
+
+          {% if product.metafields.recomendado.nombre_4 != blank %}   
+          <div class="tag"><a href="{{ product.metafields['recomendado']['link_4'] }}" target="_blank">{{ product.metafields['recomendado']['nombre_4'] }}</a></div>
+          {% endif %}
+
+        {% endif %}
+        </div>
       </div>
     </div>
   </div>
