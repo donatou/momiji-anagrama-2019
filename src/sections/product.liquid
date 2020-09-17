@@ -190,14 +190,15 @@
         {%- endcomment -%}
 
       {% endform %}
-        
+      <div class="clearfix"></div>
         {%- comment -%}
         El botón de Back to Stock se configura directo de la app, en THEME INTEGRATION: Custom Script.
         {%- endcomment -%}
         {%- comment -%}<button class="btn__main btn__main--big" id="BIS_trigger" {% if product.available %} style="display: none;" {% endif %}>Notificarme cuando esté disponible</button>{%- endcomment -%}
-
-        <b>Descripción.</b>
-        <p>{{ product.description }}</p>
+        <div class="mt-30 mb-30">
+          <b>Descripción.</b>
+          <p>{{ product.description }}</p>
+        </div>
 
         <div class="recomendado mb-30 mt-30">
         {% if product.metafields.recomendado.nombre_1 != blank %}
