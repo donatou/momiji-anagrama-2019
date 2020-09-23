@@ -503,6 +503,20 @@ const barraSwiper = new Swiper('.swiper-container-barra', {
   updateOnWindowResize: true,
 });
 
+// swiper reviews
+const pressReviewsThumbs = new Swiper('.thumbs', {
+  slidesPerView: 3,
+  loop: true,
+  spaceBetween: 10,
+});
+
+const pressReviewInfo = new Swiper('.info', {
+  loop: true,
+  thumbs: {
+    swiper: pressReviewsThumbs,
+  },
+});
+
 
 // banner text on mobile
 

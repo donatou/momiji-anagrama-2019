@@ -1,0 +1,129 @@
+<section id="press-reviews">
+  <div class="swiper-container info">
+    <div class="swiper-wrapper">
+    {% for block in section.blocks %}
+      <blockquote class="swiper-slide review-text"><p class="review-text">{{ block.settings.press_text }}</p></blockquote>
+    {% endfor %}
+    </div>
+  </div>
+
+  <div class="swiper-container thumbs">
+    <div class="swiper-wrapper">
+    {% for block in section.blocks %}
+      <div class="swiper-slide"><span class="reviewer">{{ block.settings.press_logotext }}</span></div>
+    {% endfor %}
+    </div>
+  </div>
+</section> 
+
+  <style>
+
+    #press-reviews {
+        padding: 60px 0 60px 0;
+        background-color: #eee;
+    }
+
+    blockquote.review-text {
+        padding: 0 0 60px 0;
+    }
+
+    #press-reviews .swiper-container {
+      width: 100%;
+      height: 100%;
+    }
+
+    #press-reviews .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+    /*  background: #fff; */
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+    #press-reviews .review-text {
+        font-family: 'GT Super Display', sans-serif;
+        font-size: 2.4rem;
+        letter-spacing: -0.1rem;
+        line-height: 2.4rem;
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #press-reviews .thumbs {
+        width: 80%;
+    }
+    #press-reviews .thumbs .swiper-slide {
+        cursor: pointer;
+        opacity: 0.4;
+    }
+    #press-reviews .thumbs .swiper-slide-thumb-active {
+        text-decoration: underline;
+        opacity: 1;
+    }
+
+  </style>
+
+{% schema %}
+{
+  "name": "Reviews",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": {
+        "en": "Title",
+        "es": "Título"
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "type": "select",
+      "name": "Press Review",
+      "limit": 3,
+      "settings": [
+        {
+          "id": "press_logo",
+          "type": "image_picker",
+       	  "label": "Logo"
+        },
+        {
+          "id": "press_logotext",
+          "type": "text",
+       	  "label": "Press Name"
+        },
+        {
+          "id": "press_text",
+          "type": "textarea",
+       	  "label": "Review"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews",
+      "category": "Reviews",
+      "blocks": [
+        { 
+          "type": "select"
+        },
+        {
+          "type": "select"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
