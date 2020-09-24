@@ -504,18 +504,26 @@ const barraSwiper = new Swiper('.swiper-container-barra', {
 });
 
 // swiper reviews
-const pressReviewsThumbs = new Swiper('.thumbs', {
-  slidesPerView: 3,
+/* const pressReviewsThumbs = new Swiper('.thumbs', {
+  slidesPerView: 1,
   loop: true,
-  spaceBetween: 10,
+  spaceBetween: 3,
+  freeMode: true,
+  loopedSlides: 5, //looped slides should be the same
+  watchSlidesVisibility: true,
+  watchSlidesProgress: true,
 });
 
 const pressReviewInfo = new Swiper('.info', {
   loop: true,
+  loopedSlides: 3,
+  autoplay: {
+    delay: 1000,
+  },
   thumbs: {
     swiper: pressReviewsThumbs,
   },
-});
+}); */
 
 
 // banner text on mobile

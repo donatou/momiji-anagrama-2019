@@ -1,22 +1,112 @@
-<section id="press-reviews">
-  <div class="swiper-container info">
-    <div class="swiper-wrapper">
-    {% for block in section.blocks %}
-      <blockquote class="swiper-slide review-text"><p class="review-text">{{ block.settings.press_text }}</p></blockquote>
-    {% endfor %}
+
+<div class="tabs">
+  <div class="tab-body">
+    <div class="active">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error neque saepe commodi blanditiis fugiat nisi aliquam ratione porro quibusdam in, eveniet accusantium cumque. Dolore officia reprehenderit perferendis quod libero omnis.</p>
+    </div>
+    <div>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi minus exercitationem vero, id autem fugit assumenda a molestiae numquam at, quisquam cumque. Labore eligendi perspiciatis quia incidunt quaerat ut ducimus?</p>
+    </div>
+    <div>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi minus exercitationem vero, id autem fugit assumenda a molestiae numquam at, quisquam cumque. Labore eligendi perspiciatis quia incidunt quaerat ut ducimus?</p>
     </div>
   </div>
-
-  <div class="swiper-container thumbs">
-    <div class="swiper-wrapper">
-    {% for block in section.blocks %}
-      <div class="swiper-slide"><span class="reviewer">{{ block.settings.press_logotext }}</span></div>
-    {% endfor %}
+  <div class="tab-header">
+    <div class="active">
+      Code
+    </div>
+    <div>
+      About
+    </div>
+    <div>
+      Services
     </div>
   </div>
-</section> 
+</div>
 
-  <style>
+<style>
+
+.tabs {
+  width:100%;
+  height:20rem;
+  background:#f5f5f5;
+  padding:0px;
+  overflow:hidden;
+  display:flex;
+  flex-flow: column nowrap;
+  align-items:center;
+}
+.tabs .tab-header {
+  height:60px;
+  display:flex;
+  width: 80vw;
+  align-items:center;
+}
+.tabs .tab-header > div {
+  width:calc(100% / 3);
+  text-align:center;
+  color:#888;
+  font-weight:600;
+  cursor:pointer;
+  font-size:14px;
+  text-transform:uppercase;
+  outline:none;
+}
+.tabs .tab-header > div > i {
+  display:block;
+  margin-bottom:5px;
+}
+.tabs .tab-header > div.active {
+  color:#0a0a0a;
+  text-decoration: underline;
+}
+.tabs .tab-body {
+  position:relative;
+  height:calc(100% - 0px);
+  padding:10px 5px;
+  width: 80vw;
+  text-align:center;
+}
+.tabs .tab-body > div {
+  position:absolute;
+  top:-200%;
+  opacity:0;
+  transition:opacity 500ms ease-in-out 0ms,
+    transform 500ms ease-in-out 0ms;
+}
+.tabs .tab-body > div.active {
+  top:0px;
+  opacity:1;
+}
+.tab-body p {
+  font-family: 'GT Super Display', sans-serif;
+  font-size: 2.4rem;
+  letter-spacing: -0.1rem;
+  line-height: 2.4rem;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+
+<script>
+let tabHeader = document.getElementsByClassName("tab-header")[0];
+let tabBody = document.getElementsByClassName("tab-body")[0];
+
+let tabsPane = tabHeader.getElementsByTagName("div");
+
+for(let i=0;i<tabsPane.length;i++){
+  tabsPane[i].addEventListener("click",function(){
+    tabHeader.getElementsByClassName("active")[0].classList.remove("active");
+    tabsPane[i].classList.add("active");
+    tabBody.getElementsByClassName("active")[0].classList.remove("active");
+    tabBody.getElementsByTagName("div")[i].classList.add("active");
+  });
+}
+</script>
+
+{% comment %}   <style>
 
     #press-reviews {
         padding: 60px 0 60px 0;
@@ -73,7 +163,7 @@
     }
 
   </style>
-
+ {% endcomment %}
 {% schema %}
 {
   "name": "Reviews",
