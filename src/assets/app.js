@@ -2,6 +2,20 @@
 
 $(document).ready(() => {
 
+  const reviewsSwiper = new Swiper('#reviews .swiper-container', {
+    autoHeight: true, //enable auto height
+    spaceBetween: 0,
+    loop: true,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: true,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+  });
+
   // CARGAR MODULOS
   // $("header").load("_header.html");
   // $("#mb-menu").load("_mobile.html");
