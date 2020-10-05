@@ -78,8 +78,8 @@
         </div>
         <p><a class="link--orange"><span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span></a></p>
         <div class="recomendado mb-3 mt-3">
-          <b>Sold out.</b>
-          <div class="preorder"><p>Este producto se agrega automáticamente a tu carrito en la compra de XXX o más.</p></div>
+          <b></b>
+          <div class="preorder"><p>{{ product.metafields['producto']['regalo'] }}</p></div>
         </div>
         <b>Descripción.</b>
         <p class="mb-3">{{ product.description }}</p>
@@ -125,7 +125,7 @@
           <input type="hidden" name="id" value="{{current_variant.id}}">
         {% endif %}
 
-        <div class="input-quantity">
+        {% comment %} <div class="input-quantity">
           <span class="input-number-decrement">–</span><!--
           --><input class="input-number" type="text" value="1" min="1" max="{{ variant.inventory_quantity }}" name="quantity"><!--
           --><span class="input-number-increment">+</span>
@@ -138,7 +138,7 @@
           data-submit-button
           disabled="disabled">
             <span data-submit-button-text>No está a la venta</span>
-        </button>
+        </button> {% endcomment %}
       {% endform %}
       
       </div>
