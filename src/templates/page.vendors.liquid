@@ -1,14 +1,16 @@
-{% assign counter = 0 %}
-{% for vendor in shop.vendors %}
-  {% assign counter = counter | plus: 1 %}
-{% endfor %}
-
-{% assign counter_divided_by_3 = counter | divided_by: 3 | floor %}
 
 {%- comment -%}
-
+Antes se usaba este método, tomaba colecciones y vendors y luego armaba los urls.
 https://www.blackbeltcommerce.com/vendor-page-in-shopify-the-clever-way-to-automatically-show-vendors-in-your-shop/
 
+A partir de octubre 2020 se usa el sig. método, modificado para no incluir resultados con el texto "#":
+For loop - this is your standard 'get all vendors'
+line 2 - (re)sets a variable used for the product count. This variable gets set later, but if you don't reset it early, sometimes it keeps its count in later iterations of the loop.
+line 3 - choose the vendor in this iteration, use the handle version of the name
+line 4 - checks for the matching collection (using the handle), and does a product count. Note the "plus: 0" at the end. Somtimes the collection.product_count returns a null instead of a zero. When it does that, your next if check returns an error. The plus-zero basically forces this to be an integer rather than a string.
+line 5 - the if-check. If the product count is greater than zero...
+line 6 - returns a link to the matched collection
+and then the appropriate endifs.
 {%- endcomment -%}
 
 <main class="legal bg-purple">
@@ -25,20 +27,12 @@ https://www.blackbeltcommerce.com/vendor-page-in-shopify-the-clever-way-to-autom
 
           <ul class="split-content split-content-4 list-unstyled text-center">
           {% for product_vendor in shop.vendors %}
-            {% assign its_a_match = false %}
-            {% capture my_collection_handle %} {{ product_vendor | handleize | strip | escape  }} {% endcapture %}
-            {% assign my_collection_handle_stripped = my_collection_handle | strip | escape %}
-
-            {% for collection in collections %}
-              {% if my_collection_handle_stripped == collection.handle %}
-                {% assign its_a_match = true %}
-              {% endif %}
-            {% endfor %}
-
-            {% if its_a_match %}
-              <li class="vendor-list-item"><a href="/collections/{{ product_vendor | handleize }}">{{ product_vendor }}</a></li>
+            {% assign vendorproductcount = 0 %}
+            {% assign thisVendor = product_vendor | handleize %}
+            {% assign vendorproductcount = collections[thisVendor].products_count | plus:0 %}
+            {% if thisVendor contains "#" %}
             {% else %}
-              <li class="vendor-list-item">{{ product_vendor | link_to_vendor }}</li>
+              <li class="vendor-list-item"><a href="/collections/{{thisVendor}}">{{ product_vendor }}</a></li>           
             {% endif %}
           {% endfor %}
           </ul>
@@ -52,14 +46,3 @@ https://www.blackbeltcommerce.com/vendor-page-in-shopify-the-clever-way-to-autom
     </div>
   </section>
 </main>
-
-{%- comment -%}<style>
-ul {
-    -moz-column-count: 4;
-    -moz-column-gap: 20px;
-    -webkit-column-count: 4;
-    -webkit-column-gap: 20px;
-    column-count: 4;
-    column-gap: 20px;
-}
-</style>{%- endcomment -%}
