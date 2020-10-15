@@ -1,7 +1,7 @@
 <section itemscope itemtype="http://schema.org/Product" class="section__principal" data-section-id="{{ section.id }}" data-section-type="product">
 
 {%- assign unico = product.has_only_default_variant -%}
-{% assign inventario_actual = variant.inventory_quantity %}
+{%- assign inventario_actual = variant.inventory_quantity -%}
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
 
@@ -71,14 +71,15 @@
             {% endif %}
           </p>
         {% else current_variant %}
-         
-          <p class="h3 variantes" data-product-price>
+          {% comment %} <p class="h3 variantes" data-product-price>
             {% if current_variant.price < current_variant.compare_at_price %}
-              <del>{{ current_variant.compare_at_price | money }}</del>
-              <span>{{ current_variant.price | money }}</span>
+              <del>{{ current_variant.compare_at_price | money }}</del> {{ current_variant.price | money }}
             {% else current_variant.compare_at_price == blank %}
-              <span>{{ current_variant.price | money }}--</span>
+              {{ current_variant.price | money }}
             {% endif %}
+          </p> {% endcomment %}
+          <p class="h3 variantes">
+            {%- comment -%}Se quito de aqui el control de precios cuando es variante, pues el dropdown ya lo tiene.{%- endcomment -%}
           </p>
         {% endif %}       
 
@@ -289,44 +290,6 @@ theme.Product = (function() {
         }
       });
     },
-    productImageGallery: function() {
-      if (theme.variables.bpSmall) return;
-      if (!this.selectors.$productImageGallery.length) return;
-      this.selectors.$productImageGallery.magnificPopup({
-        type: 'image',
-        mainClass: 'mfp-fade',
-        closeOnBgClick: true,
-        closeBtnInside: false,
-        closeOnContentClick: true,
-        tClose: theme.strings.zoomClose,
-        removalDelay: 500,
-        callbacks: {
-          open: function() {
-            $('html').css('overflow-y', 'hidden');
-          },
-          close: function() {
-            $('html').css('overflow-y', '');
-          }
-        },
-        gallery: {
-          enabled: true,
-          navigateByImgClick: false,
-          arrowMarkup:
-            '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"><span class="mfp-chevron mfp-chevron-%dir%"></span></button>',
-          tPrev: theme.strings.zoomPrev,
-          tNext: theme.strings.zoomNext
-        }
-      });
-      var $productImageGallery = this.selectors.$productImageGallery;
-      this.selectors.$productImages.each(function() {
-        $(this).bind('click', function() {
-          var imageId = $(this).attr('data-image-id');
-          $productImageGallery
-            .filter('[data-image-id="' + imageId + '"]')
-            .trigger('click');
-        });
-      });
-    },
     productImageSwitch: function() {
       if (!this.selectors.$thumbImages.length) {
         return;
@@ -482,43 +445,6 @@ theme.Product = (function() {
       } else {
         return url + separator + key + '=' + value;
       }
-    },
-    switchImage: function(imageId) {
-      var $newImage = $(
-        this.selectors.$productImages.selector +
-          "[data-image-id='" +
-          imageId +
-          "']",
-        this.$container
-      );
-      var $otherImages = $(
-        this.selectors.$productImages.selector +
-          ":not([data-image-id='" +
-          imageId +
-          "'])",
-        this.$container
-      );
-      $newImage.removeClass(this.classes.hide);
-      $otherImages.addClass(this.classes.hide);
-    },
-    productImageZoom: function() {
-      if (theme.variables.bpSmall && this.zoomType !== 'zoom-in') return;
-      if (
-        !this.selectors.$productImages.length ||
-        this.selectors.$html.hasClass('supports-touch')
-      )
-        return;
-      // Destroy zoom (in case it was already set), then set it up again
-      this.selectors.$productImages.trigger('zoom.destroy');
-      this.selectors.$productImages.each(function() {
-        $(this)
-          .addClass('image-zoom')
-          .zoom({
-            url: $(this)
-              .find('img')
-              .attr('data-zoom')
-          });
-      });
     },
     getBaseUnit: function(variant) {
       return variant.unit_price_measurement.reference_value === 1
