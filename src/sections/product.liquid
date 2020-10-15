@@ -89,23 +89,6 @@
           {% assign variant = product.selected_or_first_available_variant %}
           <meta itemprop="priceCurrency" content="{{ cart.currency.iso_code }}">
           <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
-          <div class="product-single__prices{% if shop.taxes_included or shop.shipping_policy.body != blank %} product-single__prices--policy-enabled{% endif %}">
-            <span id="ProductPrice" class="product-single__price" itemprop="price" content="{{ product.price | divided_by: 100.00 }}">
-              {{ product.price | money }}
-            </span>
-            {% if product.compare_at_price > product.price %}
-              {% comment %} <span id="ComparePriceA11y" class="visually-hidden" aria-hidden="false">{{ 'products.product.on_sale_from_html' | t }}</span> {% endcomment %}
-              <s id="ComparePrice" class="product-single__sale-price">
-                {{ product.compare_at_price_max | money }}
-              </s>
-            {% else %}
-              {% comment %} <span id="ComparePriceA11y" class="visually-hidden" aria-hidden="true">{{ 'products.product.on_sale_from_html' | t }}</span> {% endcomment %}
-              <s id="ComparePrice" class="product-single__sale-price hide">
-                {{ product.compare_at_price_max | money }}
-              </s>
-            {% endif %}
-            {% include 'product-unit-price', variant: variant, available: true %}
-          </div>
           {% form 'product', product, class:productform_class %}
           {% if product.has_only_default_variant %}
             <input name="id" value="{{ variant.id }}" type="hidden">
