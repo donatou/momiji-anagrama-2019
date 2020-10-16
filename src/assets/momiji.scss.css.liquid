@@ -8273,8 +8273,7 @@ input + input {
 
 .main__product .section__container button {
   padding: 0;
-  float: right;
-  width: 50%; }
+  flex-grow: 1; }
 
 .main__product .breadcrumb {
   margin-bottom:10px;
@@ -8282,7 +8281,8 @@ input + input {
 
 #BIS_trigger {
   width:100%;
-  margin-top: 25px; }
+  margin-top:1em;
+}
 
 .main__product .section__container .input-quantity {
   width: 50%;
@@ -10393,7 +10393,7 @@ HOME PRESS REVIEWS SECTION (press-reviews.liquid)
 
 #shopify-section-product form {
   display: flex;
-  flex-flow: row;
+  flex-flow: row wrap;
 }
 
 #shopify-section-product .selectric-wrapper {
@@ -10401,4 +10401,10 @@ HOME PRESS REVIEWS SECTION (press-reviews.liquid)
   padding: 7px 0 6px 0;
   margin: 0 10px 0 0;
   flex-grow: 1;
+}
+
+@media (max-width: 1199px) {
+  #shopify-section-product .selectric-wrapper {
+    margin: 0 0 1em 0;
+  }
 }
