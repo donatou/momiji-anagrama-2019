@@ -114,8 +114,20 @@
               --><span class="input-number-increment">+</span>
             </div>
           {% endif %}
-            <button type="submit" name="add" id="AddToCart" class="btn__main btn__main--big btn__main--addtocart btn__main--addtocart--big">
-              <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
+            <button 
+              type="submit" 
+              name="add" 
+              id="AddToCart" 
+              class="btn__main btn__main--big btn__main--addtocart btn__main--addtocart--big"
+              data-submit-button
+              {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+              <span id="AddToCartText">
+              {% if current_variant.available %}
+                {{ 'products.product.add_to_cart' | t }}
+              {% else %}
+                {{ 'products.product.sold_out' | t }}
+              {% endif %}
+              </span>
             </button>
             {% comment %} {% if section.settings.enable_payment_button %}
               {{ form | payment_button }}

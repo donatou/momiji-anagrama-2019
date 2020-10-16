@@ -10404,7 +10404,21 @@ HOME PRESS REVIEWS SECTION (press-reviews.liquid)
 }
 
 @media (max-width: 1199px) {
+  #shopify-section-product form {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+  }
   #shopify-section-product .selectric-wrapper {
     margin: 0 0 1em 0;
+  }
+  .main__product .section__container .input-quantity {
+    width: 100%;
+    float: none;
+    text-align: center;
+    margin-bottom: 1em;
+  }
+  .main__product .section__container button {
+    width: 100%;
   }
 }
