@@ -1,3 +1,9 @@
+{% assign top = linklists.header-principal-sin-skincare %}
+{% assign rutina = linklists.header-skincare-rutina %}
+{% assign tipoDePiel = linklists.header-skincare-tipo-de-piel %}
+{% assign soluciones = linklists.header-skincare-soluciones %}
+{% assign ultimoelemento = section.settings.last_item_menu_color %}
+
 <header data-section-type="header">
 <div class="header">
   <div class="header__sitebanner d-md-flex"{% if section.settings.white == true %} style="background: #fff;"{% endif %}>
@@ -17,11 +23,6 @@
       <div class="mobile-btn d-lg-none">
         <div class="nav-btn"></div>
       </div>
-
-{% assign top = linklists.header-principal-sin-skincare %}
-{% assign rutina = linklists.header-skincare-rutina %}
-{% assign tipoDePiel = linklists.header-skincare-tipo-de-piel %}
-{% assign soluciones = linklists.header-skincare-soluciones %}
 
       <div class="header__nav--logo">
         <a href="/"><img src="{{ 'momiji-logo-rgb.svg' | asset_url }}" alt="{{ shop.name }}" itemprop="logo"></a>
@@ -188,6 +189,14 @@
 </div>
 </header>
 
+{% if ultimoelemento == true %}
+<style>
+  header .header__nav--menu > li:last-child {
+    color: {{ section.settings.last_item_color }};
+  }
+</style>
+{% endif %}
+
 {% schema %}
   {
     "name": "Header",
@@ -224,6 +233,22 @@
         "label": "Fondo blanco",
         "default": false,
         "info": "Hacer blanco el fondo de la barra de anuncios"
+      },
+      {
+        "type": "header",
+        "content": "Menú"
+      },
+      {
+        "type": "checkbox",
+        "id": "last_item_menu_color",
+        "default": false,
+        "label": "¿Último elemento de color?"
+      },
+      {
+        "type": "color",
+        "id": "last_item_color",
+        "label": "Color del último elemento",
+        "default": "#0e0e0e"
       },
       {
         "type": "header",
