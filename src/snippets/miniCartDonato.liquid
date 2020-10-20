@@ -87,6 +87,14 @@
                     {% endcapture %}
                     {{ printeo }}
                   {% else %}
+                    {% if promo_product_inventory | times: 1 < 4 %} {%- comment -%} poner un igual o menor que 1, y otro cuando sea igual o menor a 0. usar cases o elsif??? {%- endcomment -%}
+                    {%- comment -%}
+                    REBVISAR CONDICIONES DE CANTIDAD MÍNIMA A DESPLEGAR.
+                    REVISAR CONDICIONES CUANDO ES 0
+                    REVISAR TAMBIÉN CUANDO EL PRODUCTO NO LLEVA CONTROL DE STOCK.
+                    {%- endcomment -%}
+                      Ya no hay promo.
+                    {% endif %}
                     {% capture printeo2 %}
                       {{ mememe }} {{ promo_x }} Stock: {{ promo_product_inventory }}
                     {% endcapture %}
