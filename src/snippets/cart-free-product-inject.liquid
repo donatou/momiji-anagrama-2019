@@ -2,9 +2,7 @@
 {% capture promo_product %}
   {{ all_products[settings.free_product].selected_or_first_available_variant.id }}
 {% endcapture %}
-{% capture promo_product_inventory %}
-  {{ all_products[settings.free_product].selected_or_first_available_variant.inventory_quantity }}
-{% endcapture %}
+{% assign promo_product_inventory = all_products[settings.free_product].selected_or_first_available_variant.inventory_quantity | times: 1 %}
 {% assign variant_id = promo_product %}
 
   <script>

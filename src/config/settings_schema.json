@@ -279,6 +279,11 @@
         "content": "Auto add to cart"
       },
       {
+        "type": "product",
+        "id": "free_product",
+        "label": "Producto de regalo."
+      },
+      {
         "type": "text",
         "id": "minimum_spend",
         "label": "Cantidad a gastar",
@@ -286,9 +291,17 @@
         "placeholder": "500"
       },
       {
-        "type": "product",
-        "id": "free_product",
-        "label": "Producto de regalo."
+        "type": "checkbox",
+        "id": "show_inventory",
+        "label": "Mostrar stock de producto",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "alerta_stock",
+        "label": "Stock minimo para mostrar alerta:",
+        "info": "Ingresa en numero un 20% del total a regalar.",
+        "placeholder": "5"
       },
       {
         "type": "text",
