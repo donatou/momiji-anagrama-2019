@@ -84,13 +84,18 @@
             {% capture stock_qty %}
               <br>¡Quedan {{ promo_product_inventory }} piezas!
             {% endcapture %}
+            {% capture stock_qty_one %}
+              <br>¡Queda solo una pieza!
+            {% endcapture %}
                                   
                     {% comment %} {% if promo_product_inventory | times: 1 < 4 %}
                       Promoción agotada.
                     {% endif %} {% endcomment %}
 <h5>
-{% if promo_product_inventory <= alerta_stock %}
+{% if promo_product_inventory <= alerta_stock and promo_product_inventory != 1 and promo_product_inventory != 0 %}
   {{ stock_qty }}
+{% elsif promo_product_inventory == 1 %}
+  {{ stock_qty_one }}
 {% elsif promo_product_inventory == 0 %}
   Promocion agotada.
 {% endif %}
