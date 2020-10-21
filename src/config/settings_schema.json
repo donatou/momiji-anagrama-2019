@@ -305,6 +305,12 @@
       },
       {
         "type": "text",
+        "id": "producto_agotado",
+        "label": "Texto a mostrar cuando se agote el producto:",
+        "placeholder": "Producto agotado :("
+      },
+      {
+        "type": "text",
         "id": "copy_regalo",
         "label": "Regalo:",
         "info": "Copy del regalo",

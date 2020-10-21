@@ -10,170 +10,159 @@
           <div class="majortitle">{{ 'cart.general.title' | t }}</div>
         </div>
 
-        {% assign shipping_value = settings.costo_enviogratis | times: 100 %}
-        {% assign shipping_value_x = settings.costo_envio_x | times: 100 %}
-        {% assign cart_total = cart.total_price %}
-        {% assign shipping_value_left = shipping_value | minus: cart_total %}
-        {% assign shipping_value_x_left = shipping_value_x | minus: cart_total %}
+        {%- assign shipping_value = settings.costo_enviogratis | times: 100 -%}
+        {%- assign shipping_value_x = settings.costo_envio_x | times: 100 -%}
+        {%- assign cart_total = cart.total_price -%}
+        {%- assign shipping_value_left = shipping_value | minus: cart_total -%}
+        {%- assign shipping_value_x_left = shipping_value_x | minus: cart_total -%}
 
-        {% if cart.item_count != 0 %}
-        <form action="/cart" method="post" id="cartform" style="display:{% if cart.item_count == 0 %}none{% else %}block{% endif %};">
-        {% comment %} {% include 'cart-free-product-inject' %} {% endcomment %}
+        {%- if cart.item_count != 0 -%}
+        <form action="/cart" method="post" id="cartform" style="display:{%- if cart.item_count == 0 -%}none{%- else -%}block{%- endif -%};">
+        {%- comment -%} {%- include 'cart-free-product-inject' -%} {%- endcomment -%}
           <div class="minicart-nosubtotal"><!-- /.minicart-nosubtotal -->
 
-          {% assign promo_vigente = settings.promo_vigente %}
-          {% case promo_vigente %}
+          {%- assign promo_vigente = settings.promo_vigente -%}
+          {%- case promo_vigente -%}
 
           {%- comment -%}
           Envío gratis al agregar un producto (o varios) X en carrito.
           {%- endcomment -%}
-            {% when 'agrega_producto' %}
-              {% if settings.x_product == blank and settings.x_product_tag == blank %}
+            {%- when 'agrega_producto' -%}
+              {%- if settings.x_product == blank and settings.x_product_tag == blank -%}
                 <p class="cartfreeshipping">SELECCIONAR PRODUCTO DE PROMOCIÓN, TAG REQUERIDO O CAMBIAR DE TIPO DE PROMOCIÓN</p>
-              {% elsif settings.x_product != blank %}
-              {% capture settings_product %}
+              {%- elsif settings.x_product != blank -%}
+              {%- capture settings_product -%}
                 {{ all_products[settings.x_product].id }}
-              {% endcapture %}
-              {% assign prod_id = settings_product | times: 1 %}
-                {% for item in cart.items %}
-                  {% if item.product.id == prod_id %}
-                    {% assign prod_select = true %}
-                  {% endif %}
-                {% endfor %}
+              {%- endcapture -%}
+              {%- assign prod_id = settings_product | times: 1 -%}
+                {%- for item in cart.items -%}
+                  {%- if item.product.id == prod_id -%}
+                    {%- assign prod_select = true -%}
+                  {%- endif -%}
+                {%- endfor -%}
                   <p class="cartfreeshipping">
-                {% if prod_select or shipping_value_left <= 0 %}
+                {%- if prod_select or shipping_value_left <= 0 -%}
                   ¡Tu orden califica para envío gratis!
-                {% else %}
+                {%- else -%}
                   ¡Agrega un <a href="{{ all_products[settings.x_product].url }}" rel="noopener noreferrer"> {{ all_products[settings.x_product].title }} </a> para que tu envío sea gratis!
-                {% endif %}
+                {%- endif -%}
                   </p>
-              {% else settings.x_product_tag != blank %}
-                {% assign tag = settings.x_product_tag %}
-                {% assign promo = settings.promo_txt %}
-                {% for item in cart.items %}
-                  {% if item.product.tags contains tag %}
-                    {% assign selected_product = true %}
-                  {% endif %}
-                {% endfor %}
+              {%- else settings.x_product_tag != blank -%}
+                {%- assign tag = settings.x_product_tag -%}
+                {%- assign promo = settings.promo_txt -%}
+                {%- for item in cart.items -%}
+                  {%- if item.product.tags contains tag -%}
+                    {%- assign selected_product = true -%}
+                  {%- endif -%}
+                {%- endfor -%}
                   <p class="cartfreeshipping">
-                {% if selected_product or shipping_value_left <= 0 %}
+                {%- if selected_product or shipping_value_left <= 0 -%}
                   ¡Tu orden califica para envío gratis!
-                {% else %}
-                    {% capture bundle %}
+                {%- else -%}
+                    {%- capture bundle -%}
                     Agrega {{ promo }} para que tu envío sea gratis.
-                    {% endcapture %}
+                    {%- endcapture -%}
                     {{ bundle }}
-                {% endif %}
+                {%- endif -%}
                   </p>
-              {% endif %}
+              {%- endif -%}
 
           {%- comment -%}
           Producto (ya sea en stock o escondido) de regalo, en compras arriba de X.
           {%- endcomment -%}
-            {% when 'incluye_regalo' %}
-              {% include 'cart-free-product-inject' %}
-            
-            {% comment %} {% assign shipping_value_promo = settings.costo_enviogratis_x | times: 100 %} {% endcomment %}
-            {% assign cart_total_promo = cart.total_price %}
-            {% assign shipping_value_left_promo = free_gift_over_x_price | minus: cart_total_promo %}
-            {% assign falta_x = shipping_value_left_promo | money %}
-            {% assign promo_x = settings.copy_regalo %}
-            {% assign mememe = settings.textop %}
-            {% assign display_stock = settings.show_inventory %}
-            {% assign alerta_stock = settings.alerta_stock | times: 1 %}
-            {% capture stock_qty %}
-              <br>¡Quedan {{ promo_product_inventory }} piezas!
-            {% endcapture %}
-            {% capture stock_qty_one %}
-              <br>¡Queda solo una pieza!
-            {% endcapture %}
-                                  
-                    {% comment %} {% if promo_product_inventory | times: 1 < 4 %}
-                      Promoción agotada.
-                    {% endif %} {% endcomment %}
-<h5>
-{% if promo_product_inventory <= alerta_stock and promo_product_inventory != 1 and promo_product_inventory != 0 %}
-  {{ stock_qty }}
-{% elsif promo_product_inventory == 1 %}
-  {{ stock_qty_one }}
-{% elsif promo_product_inventory == 0 %}
-  Promocion agotada.
-{% endif %}
-</h5>
+            {%- when 'incluye_regalo' -%}
+
+              {%- include 'cart-free-product-inject' -%}
+
+              {%- assign cart_total_promo = cart.total_price -%}
+              {%- assign shipping_value_left_promo = free_gift_over_x_price | minus: cart_total_promo -%}
+              {%- if all_products[settings.free_product].selected_or_first_available_variant.inventory_management == "shopify" and all_products[settings.free_product].selected_or_first_available_variant.inventory_policy != "continue" -%}
+                {% assign llevainventario = true %}
+              {%- endif -%}
+              {%- assign falta_x = shipping_value_left_promo | money -%}
+              {%- assign promo_x = settings.copy_regalo -%}
+              {%- capture promo_no_aplica -%}
+                Agrega {{ falta_x }} más para recibir {{ promo_x }}
+              {%- endcapture -%}
+              {%- assign mememe = settings.textop -%}
+              {%- capture promo_aplica -%}
+                {{ mememe }} {{ promo_x }}
+              {%- endcapture -%}
+              {%- assign producto_agotado = settings.producto_agotado -%}
+              {%- assign display_stock = settings.show_inventory -%}
+              {%- assign alerta_stock = settings.alerta_stock | times: 1 -%}
+              {%- capture stock_qty -%}
+                ¡Quedan {{ promo_product_inventory }} piezas!
+              {%- endcapture -%}
+              {%- capture stock_qty_one -%}
+                ¡Queda solo una pieza!
+              {%- endcapture -%}
+              {% capture stock_alert_copy %}
+                {%- if llevainventario -%}
+                  {%- if promo_product_inventory <= alerta_stock and promo_product_inventory != 1 and promo_product_inventory != 0 -%}
+                    {{ stock_qty }}
+                  {%- elsif promo_product_inventory == 1 -%}
+                    {{ stock_qty_one }}
+                  {%- elsif promo_product_inventory == 0 -%}
+                    {%- assign strikethrough = true -%}
+                    {{ producto_agotado }}
+                  {%- endif -%}
+                {%- endif -%}
+              {% endcapture %}
 
                 <p class="cartfreeshipping">
-                  {% if shipping_value_left_promo > 0 %}
-                    {% capture promo_no_aplica %}
-                      Agrega {{ falta_x }} más para recibir {{ promo_x }}.
-                    {% endcapture %}
-                    {{ promo_no_aplica }}
-                    {% if promo_product_inventory >= promo_product_inventory %}
-                      {{ stock_qty }}
-                    {% endif %}
-                  {% else %}
-                    {% capture promo_aplica %}
-                      {{ mememe }} {{ promo_x }}
-                    {% endcapture %}
-                    {{ promo_aplica }} 
-                    {% if promo_product_inventory >= promo_product_inventory %}
-                      {{ stock_qty }}
-                    {% endif %}
-                  {% endif %}
+                  {%- if shipping_value_left_promo > 0 -%}
+                    <span class="{%- if strikethrough -%} compare--at {%- endif -%}">{{ promo_no_aplica }}<br></span>
+                    <span>{{ stock_alert_copy }}</span>
+                  {%- else -%}
+                    <span class="{%- if strikethrough -%} compare--at {%- endif -%}">{{ promo_aplica }}<br></span>
+                    <span>{{ stock_alert_copy }}</span>
+                  {%- endif -%}
                 </p>
-
-{%- comment -%} poner un igual o menor que 1, y otro cuando sea igual o menor a 0. usar cases o elsif??? {%- endcomment -%}
-{%- comment -%}
-REBVISAR CONDICIONES DE CANTIDAD MÍNIMA A DESPLEGAR.
-REVISAR CONDICIONES CUANDO ES 0
-REVISAR TAMBIÉN CUANDO EL PRODUCTO NO LLEVA CONTROL DE STOCK.
-condicional para aparecer o desaparecer el feature: stock_product_inventory = true
-{%- endcomment -%}
-
-
 
           {%- comment -%}
           Mensaje custom.
           {%- endcomment -%}
-            {% when 'mensaje_custom' %}
-            {% assign mensaje = settings.mensaje %}
+            {%- when 'mensaje_custom' -%}
+            {%- assign mensaje = settings.mensaje -%}
                 <p class="cartfreeshipping">
-                {% capture mensaje_custom %}
+                {%- capture mensaje_custom -%}
                   {{ mensaje }}
-                {% endcapture %}
+                {%- endcapture -%}
                   {{ mensaje_custom }}
                 </p>
 
           {%- comment -%}
           Envío gratis en compras arriba de X.
           {%- endcomment -%}
-            {% when 'envio_gasto' %}
+            {%- when 'envio_gasto' -%}
                 <p class="cartfreeshipping">
-                  {% if shipping_value_left > 0 %}
+                  {%- if shipping_value_left > 0 -%}
                   ¡Agrega {{ shipping_value_left | money }} para que tu envío sea gratis!
-                  {% else %}
+                  {%- else -%}
                   Tu orden califica para envío gratis.
-                  {% endif %}
+                  {%- endif -%}
                 </p>
 
           {%- comment -%}
           Envío en XX en compras arriba de X.
           {%- endcomment -%}
-            {% when 'envio_gasto_x' %}
+            {%- when 'envio_gasto_x' -%}
                 <p class="cartfreeshipping">
-                  {% if cart_total < shipping_value_x %}
+                  {%- if cart_total < shipping_value_x -%}
                     Agrega {{ shipping_value_x_left | money }} para que tu envío cueste {{ settings.envio_x | times: 100 | money }} MXN.
-                  {% elsif cart_total >= shipping_value_x and cart_total < shipping_value %}
+                  {%- elsif cart_total >= shipping_value_x and cart_total < shipping_value -%}
                     ¡Tu orden califica para envío en {{ settings.envio_x | times: 100 | money }} MXN!<br />Agrega {{ shipping_value_left | money }} más para que tu envío sea gratis.
-                  {% else %}
+                  {%- else -%}
                     ¡Tu orden califica para envío gratis!
-                  {% endif %}
+                  {%- endif -%}
                 </p>
 
-          {% endcase %}
+          {%- endcase -%}
 
             <div class="cart__body">  
               <ul class="item-list divider">
-                {% for item in cart.items %}
+                {%- for item in cart.items -%}
                 <li class="item cf product-2-cruiser-65l">
                   <div class="imagedesc">
                     <div class="image">
@@ -181,9 +170,9 @@ condicional para aparecer o desaparecer el feature: stock_product_inventory = tr
                         <img src="{{item.image | img_url:'x73'}}">
                       </a>
                     </div>
-                    {% comment %} <a class="remove_mm" data-variant_id="{{item.id}}">
+                    {%- comment -%} <a class="remove_mm" data-variant_id="{{item.id}}">
                       &#10006;
-                    </a> {% endcomment %}
+                    </a> {%- endcomment -%}
                     <a class="remove_mm" data-variant_id="{{item.id}}">
                       quitar
                     </a>
@@ -192,9 +181,9 @@ condicional para aparecer o desaparecer el feature: stock_product_inventory = tr
                     <div class="desc">
                       <div>
                         <a class="name" href="{{ item.url }}">{{ item.product.title }}</a>
-                        {% if item.product.variants.size > 1 %}
+                        {%- if item.product.variants.size > 1 -%}
                         <div class="variant">{{ item.variant.title }}</div>
-                        {% endif %}
+                        {%- endif -%}
                       </div>
 
                     </div>
@@ -211,15 +200,15 @@ condicional para aparecer o desaparecer el feature: stock_product_inventory = tr
                     </div>
                   </div>
                 </li><!-- /.item -->
-                {% endfor %}
+                {%- endfor -%}
               </ul>
             </div>
 
           </div><!-- /.minicart-nosubtotal -->
 
           <div class="cart__footer">
-            {% include 'cart_recommend' %}
-            {% include 'regalo_carrito' %}
+            {%- include 'cart_recommend' -%}
+            {%- include 'regalo_carrito' -%}
             <div class="cf checkout-subtotal-container">
               <div class="checkout-subtotal-container__left">
                 <h4 class="subtotalMinicart">{{ 'cart.general.subtotal' | t }}</h4>
@@ -229,8 +218,8 @@ condicional para aparecer o desaparecer el feature: stock_product_inventory = tr
               </div>
             </div>
 
-            {% comment %} No se puede incluir porque al usar un script para bloquear códigos de descuento, éste snippet lo muestra como "Estás ahorrando X cantidad con la promoción de BLOQUEO DE SCRIPTS" {% endcomment %}
-            {% comment %} {% include 'estas-ahorrando' %} {% endcomment %}
+            {%- comment -%} No se puede incluir porque al usar un script para bloquear códigos de descuento, éste snippet lo muestra como "Estás ahorrando X cantidad con la promoción de BLOQUEO DE SCRIPTS" {%- endcomment -%}
+            {%- comment -%} {%- include 'estas-ahorrando' -%} {%- endcomment -%}
 
             <div class="cf">
               <div class="checkout-col">
@@ -239,23 +228,23 @@ condicional para aparecer o desaparecer el feature: stock_product_inventory = tr
                 </div>
               </div>
 
-              {% if settings.tyc_text != blank %}
+              {%- if settings.tyc_text != blank -%}
                 <a onclick="reveal('terminos_condiciones');" class="tyc">{{ settings.tyc_title }}</a> 
                 <b class="hidden_tyc cartfreeshipping" id="terminos_condiciones">{{ settings.tyc_text }}</b>
-              {% endif %}
+              {%- endif -%}
 
             </div>
           </div>
 
         </form>
-        {% else %}
+        {%- else -%}
         <div class="col-md-12 carTempty">
           <h2>{{ 'cart.general.title' | t }}</h2>
           <h5>{{ 'cart.general.empty' | t }} </h5>
           <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
         </div>
         
-        {% endif %}
+        {%- endif -%}
       </div>
     </div>
   </div>
