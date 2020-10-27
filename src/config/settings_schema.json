@@ -203,6 +203,10 @@
             "label": "Envío gratis incluyendo producto"
           },
           {
+            "value": "regalo_con_tags",
+            "label": "Regalo manual incluyendo producto"
+          },
+          {
             "value": "incluye_regalo",
             "label": "Auto add to cart"
           },
@@ -273,6 +277,37 @@
         "label": "Agrega",
         "info": "para que tu envío sea gratis",
         "placeholder": "cualquier producto de Momiji Brand"
+      },
+      {
+        "type": "header",
+        "content": "Regalo manual incluyendo producto"
+      },
+      {
+        "type": "product",
+        "id": "almacen_product",
+        "label": "Producto que debe estar en carrito."
+      },
+      {
+        "type": "paragraph",
+        "content": "Si es más de un producto a incluir en carrito, se deberá taggear los productos y usar a continuación el tag y después completar el texto personalizado más abajo."
+      },
+      {
+        "type": "text",
+        "id": "almacen_product_tag",
+        "label": "o tag de productos",
+        "placeholder": "Ej: PROMO-REGALO"
+      },
+      {
+        "type": "text",
+        "id": "almacen_promo_before",
+        "label": "Agrega X obten Y",
+        "placeholder": "Agrega X producto y obtén Y."
+      },
+      {
+        "type": "text",
+        "id": "almacen_promo_after",
+        "label": "¡Obtendrás Y!",
+        "placeholder": "¡Tu orden califica para Y!"
       },
       {
         "type": "header",

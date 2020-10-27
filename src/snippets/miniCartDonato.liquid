@@ -67,6 +67,56 @@
                   </p>
               {%- endif -%}
 
+
+
+
+
+          {%- comment -%}
+          Producto de regalo manual en almacén, usando tags.
+          {%- endcomment -%}
+            {%- when 'regalo_con_tags' -%}
+              {%- assign promo_before_msg = settings.almacen_promo_before -%}
+              {%- assign promo_after_msg = settings.almacen_promo_after -%}
+
+              {%- if settings.almacen_product_tag == blank -%}
+                <p class="cartfreeshipping">LLENAR TAG REQUERIDO</p>
+              {%- elsif settings.almacen_product != blank -%}
+              {%- capture settings_product -%}
+                {{ all_products[settings.almacen_product].id }}
+              {%- endcapture -%}
+              {%- assign prod_id = settings_product | times: 1 -%}
+                {%- for item in cart.items -%}
+                  {%- if item.product.id == prod_id -%}
+                    {%- assign prod_select = true -%}
+                  {%- endif -%}
+                {%- endfor -%}
+                  <p class="cartfreeshipping">
+                {%- if prod_select -%}
+                  {{ promo_after_msg }}
+                {%- else -%}
+                  {{ promo_before_msg }}
+                {%- endif -%}
+                  </p>
+              {%- else settings.almacen_product_tag != blank -%}
+                {%- assign tag = settings.almacen_product_tag -%}
+                {%- for item in cart.items -%}
+                  {%- if item.product.tags contains tag -%}
+                    {%- assign selected_product = true -%}
+                  {%- endif -%}
+                {%- endfor -%}
+                  <p class="cartfreeshipping">
+                {%- if selected_product -%}
+                  {{ promo_after_msg }}
+                {%- else -%}
+                  {{ promo_before_msg }}
+                {%- endif -%}
+                  </p>
+              {%- endif -%}
+
+
+
+
+
           {%- comment -%}
           Producto (ya sea en stock o escondido) de regalo, en compras arriba de X.
           {%- endcomment -%}
