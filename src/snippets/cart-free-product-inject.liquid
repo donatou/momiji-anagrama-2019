@@ -1,3 +1,7 @@
+{%- comment -%}
+  Lógica basada en el total del carrito. No aplica para otros escenarios.
+{%- endcomment -%}
+
 {% assign free_gift_over_x_price = settings.minimum_spend | times: 100 %}
 {% capture promo_product %}
   {{ all_products[settings.free_product].selected_or_first_available_variant.id }}
