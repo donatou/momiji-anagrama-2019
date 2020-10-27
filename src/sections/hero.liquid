@@ -12,7 +12,8 @@
                   <figure class="col-12 col-lg-6">
                     <img srcset="{{ block.settings.image-mobile | img_url: '830x', format: 'pjpg' }} 500w, 
                           {{ block.settings.image-full | img_url: '1900x', format: 'pjpg' }}"
-                      src="{{ block.settings.image-full | img_url: '1900x', format: 'pjpg' }}" alt="Imagen promocional"/>
+                      src="{{ block.settings.image-full | img_url: '1900x', format: 'pjpg' }}" alt="Imagen promocional"
+                      class="{{ block.settings.cover_position }}"/>
                   </figure>
 
                   {% if block.settings.texto_banner %}
@@ -172,6 +173,17 @@
           "label": "Background desktop"
         },
         {
+          "type": "radio",
+          "id": "cover_position",
+          "options": [
+            { "value": "object-position_top", "label": "Top"},
+            { "value": "object-position_center", "label": "Center"},
+            { "value": "object-position_bottom", "label": "Bottom"}
+            ],
+          "default": "object-position_center",
+          "label": "Desktop cover image position"
+        },
+        {
           "type": "image_picker",
           "id": "image-mobile",
           "label": "Background móviles",
@@ -246,18 +258,6 @@
         "duracion": 3
       },
       "blocks": [
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
         {
           "type": "image"
         }
