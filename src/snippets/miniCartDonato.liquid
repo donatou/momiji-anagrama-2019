@@ -172,6 +172,53 @@
 
 
 
+
+
+
+          {%- comment -%}
+          Producto de regalo por nivel de gasto, hasta 3 niveles.
+          {%- endcomment -%}
+            {%- when 'regalos_escalonados' -%}
+
+{% comment %} ASIGNAR VARIABLES A CADA PRODUCTO. {% endcomment %}
+            
+{% comment %} HACER UN IF LOOP PARA INCLUIR CADA INJECT. {% endcomment %}
+              {%- include 'first-free-product-inject' -%}
+              {%- include 'second-free-product-inject' -%}
+
+
+              {% comment %} 
+              {%- include '3rd-cart-free-product-inject' -%} {% endcomment %}
+
+{% comment %} ELIMINAR TODAS LAS VARIABLES Y CÓDIGO DE INVENTARIO {% endcomment %}
+              {%- assign cart_total_promo1 = cart.total_price -%}
+              {%- assign shipping_value_left_promo1 = first_free_gift_over_x_price | minus: cart_total_promo1 -%}
+              {%- assign falta_x = shipping_value_left_promo | money -%}
+              {%- assign promo_x = settings.first_copy_regalo -%}
+              {%- capture promo_no_aplica -%}
+                Agrega {{ falta_x }} más para recibir {{ promo_x }}
+              {%- endcapture -%}
+              {%- assign mememe = settings.first_textop -%}
+              {%- capture promo_aplica -%}
+                {{ mememe }} {{ promo_x }}
+              {%- endcapture -%}
+
+{% comment %} REDACTAR MENSAJES QUE INVITEN A SUBIR GASTO PARA OBTENER OTRA RECOMPENSA. {% endcomment %}
+                <p class="cartfreeshipping">
+                  {%- if shipping_value_left_promo1 > 0 -%}
+                    <span class="">{{ promo_no_aplica }}<br></span>
+                  {%- else -%}
+                    <span class="">{{ promo_aplica }}<br></span>
+                  {%- endif -%}
+                </p>
+
+
+
+
+
+
+
+
           {%- comment -%}
           Mensaje custom.
           {%- endcomment -%}

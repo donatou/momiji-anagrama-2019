@@ -211,6 +211,10 @@
             "label": "Auto add to cart"
           },
           {
+            "value": "regalos_escalonados",
+            "label": "Regalos escalonados 3 niveles"
+          },
+          {
             "value": "mensaje_custom",
             "label": "Mensaje en carrito"
           }
@@ -355,6 +359,88 @@
         "type": "text",
         "id": "textop",
         "label": "Copy previo a regalo:",
+        "info": "Tu pedido califica para",
+        "placeholder": "Tu pedido califica para"
+      },
+      {
+        "type": "header",
+        "content": "Regalos escalonados 3 niveles"
+      },
+      {
+        "type": "product",
+        "id": "first_tiered_product",
+        "label": "Primer producto de regalo."
+      },
+      {
+        "type": "text",
+        "id": "first_minimum_spend",
+        "label": "Cantidad a gastar para nivel 1",
+        "info": "Subtotal mínimo para nivel 1",
+        "placeholder": "301"
+      },
+      {
+        "type": "text",
+        "id": "first_copy_regalo",
+        "label": "Regalo:",
+        "info": "Copy previo regalo nivel 1",
+        "placeholder": "un kit de viaje gratis."
+      },
+      {
+        "type": "text",
+        "id": "first_textop",
+        "label": "Copy recibe regalo nivel 1:",
+        "info": "Tu pedido califica para",
+        "placeholder": "Tu pedido califica para"
+      },
+      {
+        "type": "product",
+        "id": "second_tiered_product",
+        "label": "Segundo producto de regalo."
+      },
+      {
+        "type": "text",
+        "id": "second_minimum_spend",
+        "label": "Cantidad a gastar para nivel 2",
+        "info": "Subtotal mínimo para nivel 2",
+        "placeholder": "801"
+      },
+      {
+        "type": "text",
+        "id": "second_copy_regalo",
+        "label": "Regalo:",
+        "info": "Copy previo regalo nivel 2",
+        "placeholder": "un kit de viaje gratis."
+      },
+      {
+        "type": "text",
+        "id": "second_textop",
+        "label": "Copy recibe regalo nivel 2:",
+        "info": "Tu pedido califica para",
+        "placeholder": "Tu pedido califica para"
+      },
+      {
+        "type": "product",
+        "id": "3rd_tiered_product",
+        "label": "Tercer producto de regalo."
+      },
+      {
+        "type": "text",
+        "id": "3rd_minimum_spend",
+        "label": "Cantidad a gastar para nivel 3",
+        "info": "Subtotal mínimo para nivel 3",
+        "placeholder": "1201"
+      },
+      {
+        "type": "text",
+        "id": "3rd_copy_regalo",
+        "label": "Regalo:",
+        "info": "Copy previo regalo nivel 3",
+        "placeholder": "un kit de viaje gratis."
+      },
+      {
+        "type": "text",
+        "id": "3rd_textop",
+        "label": "Copy recibe regalo nivel 3:",
         "info": "Tu pedido califica para",
         "placeholder": "Tu pedido califica para"
       },

@@ -1,0 +1,41 @@
+{%- comment -%}
+  Lógica basada en el total del carrito. No aplica para otros escenarios.
+{%- endcomment -%}
+
+{% assign second_free_gift_over_x_price = settings.second_minimum_spend | times: 100 %}
+{% capture second_promo_product %}
+  {{ all_products[settings.second_tiered_product].selected_or_first_available_variant.id }}
+{% endcapture %}
+{% assign variant_id_2 = second_promo_product %}
+
+  <script>
+  (function($) {
+    var cartItems2 = {{ cart.items | json }},
+        qtyInTheCart2 = 0,
+        cartUpdates2 = {},
+        cartTotal2 = {{ cart.total_price }};
+    for (var k=0; k<cartItems2.length; k++) {
+      if ( cartItems2[k].id === {{ variant_id_2 }} ) {
+        qtyInTheCart2 = cartItems2[k].quantity;
+        break;
+      }
+    }
+    if ( ( cartTotal2 < {{ second_free_gift_over_x_price }} ) && ( qtyInTheCart2 > 0 ) ) {
+      cartUpdates2 = { {{ variant_id_2 }}: 0 }
+    }
+    
+    else if ( ( cartItems2.length >= 1 ) && ( qtyInTheCart2 !== 1 ) && (cartTotal2 >= {{ second_free_gift_over_x_price }} ) ) {
+      cartUpdates2 = { {{ variant_id_2 }}: 1 }
+    }
+    else {
+      return;
+    }
+    var params2 = {
+      type: 'POST',
+      url: '/cart/update.js',
+      data: { updates: cartUpdates2 },
+      dataType: 'json'
+    };
+    $.ajax(params2);
+  })(jQuery);
+  </script>
