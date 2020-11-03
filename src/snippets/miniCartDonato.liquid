@@ -18,7 +18,6 @@
 
         {%- if cart.item_count != 0 -%}
         <form action="/cart" method="post" id="cartform" style="display:{%- if cart.item_count == 0 -%}none{%- else -%}block{%- endif -%};">
-        {%- comment -%} {%- include 'cart-free-product-inject' -%} {%- endcomment -%}
           <div class="minicart-nosubtotal"><!-- /.minicart-nosubtotal -->
 
           {%- assign promo_vigente = settings.promo_vigente -%}
@@ -68,9 +67,6 @@
               {%- endif -%}
 
 
-
-
-
           {%- comment -%}
           Producto de regalo manual en almacén, usando tags.
           {%- endcomment -%}
@@ -112,9 +108,6 @@
                 {%- endif -%}
                   </p>
               {%- endif -%}
-
-
-
 
 
           {%- comment -%}
@@ -171,52 +164,43 @@
                 </p>
 
 
-
-
-
-
           {%- comment -%}
           Producto de regalo por nivel de gasto, hasta 3 niveles.
           {%- endcomment -%}
             {%- when 'regalos_escalonados' -%}
 
-{% comment %} ASIGNAR VARIABLES A CADA PRODUCTO. {% endcomment %}
-            
-{% comment %} HACER UN IF LOOP PARA INCLUIR CADA INJECT. {% endcomment %}
               {%- include 'first-free-product-inject' -%}
               {%- include 'second-free-product-inject' -%}
+              {%- include 'third-free-product-inject' -%}
+
+              {%- comment -%} Variables de gasto minimo {%- endcomment -%}
+              {%- comment -%}
+                Gasto minimo 1: first_free_gift_over_x_price
+                Gasto minimo 2: second_free_gift_over_x_price
+                Gasto minimo 3: third_free_gift_over_x_price
+              {%- endcomment -%}
+
+              {%- comment -%} Variables de cantidades faltantes {%- endcomment -%}
+              {%- assign cart_subtotal = cart.total_price -%}
+              {%- assign first_shipping_left = first_free_gift_over_x_price | minus: cart_subtotal -%}
+              {%- assign second_shipping_left = second_free_gift_over_x_price | minus: cart_subtotal -%}
+              {%- assign third_shipping_left = third_free_gift_over_x_price | minus: cart_subtotal -%}
+
+              {%- comment -%} Variables string para textos de theme settings {%- endcomment -%}
+              {%- assign first_pressetn = value -%}
 
 
-              {% comment %} 
-              {%- include '3rd-cart-free-product-inject' -%} {% endcomment %}
-
-{% comment %} ELIMINAR TODAS LAS VARIABLES Y CÓDIGO DE INVENTARIO {% endcomment %}
-              {%- assign cart_total_promo1 = cart.total_price -%}
-              {%- assign shipping_value_left_promo1 = first_free_gift_over_x_price | minus: cart_total_promo1 -%}
-              {%- assign falta_x = shipping_value_left_promo | money -%}
-              {%- assign promo_x = settings.first_copy_regalo -%}
-              {%- capture promo_no_aplica -%}
-                Agrega {{ falta_x }} más para recibir {{ promo_x }}
-              {%- endcapture -%}
-              {%- assign mememe = settings.first_textop -%}
-              {%- capture promo_aplica -%}
-                {{ mememe }} {{ promo_x }}
-              {%- endcapture -%}
-
-{% comment %} REDACTAR MENSAJES QUE INVITEN A SUBIR GASTO PARA OBTENER OTRA RECOMPENSA. {% endcomment %}
                 <p class="cartfreeshipping">
-                  {%- if shipping_value_left_promo1 > 0 -%}
-                    <span class="">{{ promo_no_aplica }}<br></span>
-                  {%- else -%}
-                    <span class="">{{ promo_aplica }}<br></span>
-                  {%- endif -%}
+                {%- if cart_subtotal < first_free_gift_over_x_price -%}
+                  <span>Faltan {{ first_shipping_left | money }} para primera recompensa.</span>
+                {%- elsif first_free_gift_over_x_price <= cart_subtotal and cart_subtotal <= second_free_gift_over_x_price -%}
+                  <span>Te llevas X, faltan {{ second_shipping_left | money }} para segunda recompensa.</span>
+                {%- elsif second_free_gift_over_x_price <= cart_subtotal and cart_subtotal <= third_free_gift_over_x_price -%}
+                  <span>Te llevas X y Y, faltan {{ third_shipping_left | money }} para tercera recompensa.</span>
+                {%- else cart_subtotal >= third_free_gift_over_x_price -%}
+                  <span>Te llevas X, Y y Z.</span>
+                {%- endif -%}
                 </p>
-
-
-
-
-
-
 
 
           {%- comment -%}
@@ -231,6 +215,7 @@
                   {{ mensaje_custom }}
                 </p>
 
+
           {%- comment -%}
           Envío gratis en compras arriba de X.
           {%- endcomment -%}
@@ -242,6 +227,7 @@
                   Tu orden califica para envío gratis.
                   {%- endif -%}
                 </p>
+
 
           {%- comment -%}
           Envío en XX en compras arriba de X.

@@ -8,139 +8,6 @@
     "theme_support_url": "https://github.com/Shopify/starter-theme/issues"
   },
   {
-    "name": "Featured Product",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Featured Product"
-      },
-      {
-        "type": "color",
-        "id": "featured_product_background_color",
-        "label": "Background color",
-        "default": "#0056B1"
-      },
-      {
-        "type": "color",
-        "id": "featured_product_font_color",
-        "label": "Font color",
-        "default": "#ffffff"
-      },
-      {
-        "type": "color",
-        "id": "featured_product_accent_color",
-        "label": "Accent & button color",
-        "default": "#ffffff"
-      },
-      {
-        "type": "color",
-        "id": "featured_product_hover_color",
-        "label": "Button color hover",
-        "default": "#000000"
-      },
-      {
-        "type": "color",
-        "id": "featured_p_font_button_color",
-        "label": "Button font color",
-        "default": "#ffffff"
-      },
-      {
-        "type": "header",
-        "content": "Additional Info Section"
-      },
-      {
-        "type": "color",
-        "id": "featured_product_a",
-        "label": "Accent & button color",
-        "default": "#ffffff"
-      }
-    ]
-  },
-  {
-    "name": "Typography",
-    "settings": [
-      {
-        "type": "font_picker",
-        "id": "font-serif",
-        "default": "helvetica_n4",
-        "label": "Serif"
-      },
-      {
-        "type": "font_picker",
-        "id": "font-title",
-        "default": "helvetica_n4",
-        "label": "Title"
-      }
-    ]
-  },
-  {
-    "name": "Social media",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Social sharing image"
-      },
-      {
-        "type": "image_picker",
-        "id": "share_image",
-        "label": "Image",
-        "info": "Shown when sharing a link on social media. [Learn more](https://help.shopify.com/manual/using-themes/troubleshooting/showing-social-media-thumbnail-images/) about image thumbnails."
-      },
-      {
-        "type": "header",
-        "content": "Social sharing options"
-      },
-      {
-        "type": "checkbox",
-        "id": "social_sharing_blog",
-        "label": "Enable sharing for blog articles",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "share_facebook",
-        "label": "Share on Facebook",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "share_twitter",
-        "label": "Tweet on Twitter",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "share_pinterest",
-        "label": "Pin on Pinterest",
-        "default": true
-      },
-      {
-        "type": "header",
-        "content": "Sharing links"
-      },
-      {
-        "type": "text",
-        "id": "social_twitter_link",
-        "label": "Twitter link"
-      },
-      {
-        "type": "text",
-        "id": "social_facebook_link",
-        "label": "Facebook link"
-      },
-      {
-        "type": "text",
-        "id": "social_instagram_link",
-        "label": "Instagram link"
-      },
-      {
-        "type": "text",
-        "id": "social_youtube_link",
-        "label": "Youtube link"
-      }
-    ]
-  },
-  {
     "name": "Cart Drawer",
     "settings": [
       {
@@ -420,26 +287,26 @@
       },
       {
         "type": "product",
-        "id": "3rd_tiered_product",
+        "id": "third_tiered_product",
         "label": "Tercer producto de regalo."
       },
       {
         "type": "text",
-        "id": "3rd_minimum_spend",
+        "id": "third_minimum_spend",
         "label": "Cantidad a gastar para nivel 3",
         "info": "Subtotal mínimo para nivel 3",
         "placeholder": "1201"
       },
       {
         "type": "text",
-        "id": "3rd_copy_regalo",
+        "id": "third_copy_regalo",
         "label": "Regalo:",
         "info": "Copy previo regalo nivel 3",
         "placeholder": "un kit de viaje gratis."
       },
       {
         "type": "text",
-        "id": "3rd_textop",
+        "id": "third_textop",
         "label": "Copy recibe regalo nivel 3:",
         "info": "Tu pedido califica para",
         "placeholder": "Tu pedido califica para"
@@ -469,6 +336,139 @@
         "type": "richtext",
         "id": "tyc_text",
         "label": "Terminos y condiciones"
+      }
+    ]
+  },
+  {
+    "name": "Featured Product",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Featured Product"
+      },
+      {
+        "type": "color",
+        "id": "featured_product_background_color",
+        "label": "Background color",
+        "default": "#0056B1"
+      },
+      {
+        "type": "color",
+        "id": "featured_product_font_color",
+        "label": "Font color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "featured_product_accent_color",
+        "label": "Accent & button color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "featured_product_hover_color",
+        "label": "Button color hover",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "featured_p_font_button_color",
+        "label": "Button font color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "header",
+        "content": "Additional Info Section"
+      },
+      {
+        "type": "color",
+        "id": "featured_product_a",
+        "label": "Accent & button color",
+        "default": "#ffffff"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "font-serif",
+        "default": "helvetica_n4",
+        "label": "Serif"
+      },
+      {
+        "type": "font_picker",
+        "id": "font-title",
+        "default": "helvetica_n4",
+        "label": "Title"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social sharing image"
+      },
+      {
+        "type": "image_picker",
+        "id": "share_image",
+        "label": "Image",
+        "info": "Shown when sharing a link on social media. [Learn more](https://help.shopify.com/manual/using-themes/troubleshooting/showing-social-media-thumbnail-images/) about image thumbnails."
+      },
+      {
+        "type": "header",
+        "content": "Social sharing options"
+      },
+      {
+        "type": "checkbox",
+        "id": "social_sharing_blog",
+        "label": "Enable sharing for blog articles",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_facebook",
+        "label": "Share on Facebook",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_twitter",
+        "label": "Tweet on Twitter",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_pinterest",
+        "label": "Pin on Pinterest",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Sharing links"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter link"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook link"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram link"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "Youtube link"
       }
     ]
   },
