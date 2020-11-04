@@ -187,18 +187,22 @@
               {%- assign third_shipping_left = third_free_gift_over_x_price | minus: cart_subtotal -%}
 
               {%- comment -%} Variables string para textos de theme settings {%- endcomment -%}
-              {%- assign first_pressetn = value -%}
-
+              {%- capture add -%}{{ settings.agrega_string }}{%- endcapture -%}
+              {%- capture more -%}{{ settings.more_string }}{%- endcapture -%}
+              {%- capture won -%}{{ settings.won_string }}{%- endcapture -%}
+              {%- capture first_price -%}{{ settings.first_copy_regalo }}{%- endcapture -%}
+              {%- capture second_price -%}{{ settings.second_copy_regalo }}{%- endcapture -%}
+              {%- capture third_price -%}{{ settings.third_copy_regalo }}{%- endcapture -%}
 
                 <p class="cartfreeshipping">
                 {%- if cart_subtotal < first_free_gift_over_x_price -%}
-                  <span>Faltan {{ first_shipping_left | money }} para primera recompensa.</span>
-                {%- elsif first_free_gift_over_x_price <= cart_subtotal and cart_subtotal <= second_free_gift_over_x_price -%}
-                  <span>Te llevas X, faltan {{ second_shipping_left | money }} para segunda recompensa.</span>
-                {%- elsif second_free_gift_over_x_price <= cart_subtotal and cart_subtotal <= third_free_gift_over_x_price -%}
-                  <span>Te llevas X y Y, faltan {{ third_shipping_left | money }} para tercera recompensa.</span>
+                  <span>{{add}} {{ first_shipping_left | money_with_currency }} {{more}} {{first_price}}.</span>
+                {%- elsif first_free_gift_over_x_price <= cart_subtotal and cart_subtotal < second_free_gift_over_x_price -%}
+                  <span class="font-weight-bold">{{won}} {{first_price}}.</span> <span>{{add}}{{ second_shipping_left | money_with_currency }} {{more}} {{second_price}}.</span>
+                {%- elsif second_free_gift_over_x_price <= cart_subtotal and cart_subtotal < third_free_gift_over_x_price -%}
+                  <span class="font-weight-bold">{{won}} {{first_price}} y {{second_price}}.</span> <span>{{add}}{{ third_shipping_left | money_with_currency }} {{more}} {{third_price}}.</span>
                 {%- else cart_subtotal >= third_free_gift_over_x_price -%}
-                  <span>Te llevas X, Y y Z.</span>
+                  <span class="font-weight-bold">{{won}} {{first_price}}, {{second_price}} y {{third_price}}.</span>
                 {%- endif -%}
                 </p>
 
