@@ -307,6 +307,7 @@
                 <h4 class="subtotal h1-style"><span class="theme-money">{{ cart.total_price | money }}</span></h4>
               </div>
             </div>
+            {% include 'kp-cart-snippet' %}
 
             {%- comment -%} No se puede incluir porque al usar un script para bloquear códigos de descuento, éste snippet lo muestra como "Estás ahorrando X cantidad con la promoción de BLOQUEO DE SCRIPTS" {%- endcomment -%}
             {%- comment -%} {%- include 'estas-ahorrando' -%} {%- endcomment -%}
