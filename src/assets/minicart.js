@@ -7,6 +7,14 @@ $(document).on('click', '.cart-summary', function (e) {
   updateMinicart();
 });
 
+$(document).on('click', '.refresh-btn', function (e) {
+  e.preventDefault();
+  //$('body').addClass('cart-open');
+  //$('#mm_cartoverlay').animate({ "right": '0' });
+  //$('#cart_temp_late form').css('opacity', '0.2');
+  updateMinicart();
+});
+
 $(document).on('click', 'span.closecart_mm', function (e) {
   e.preventDefault();
   closeMinicart();
