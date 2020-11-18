@@ -1,0 +1,9 @@
+<aside class="col-md-3 col-lg-4">
+    <ul class="list-unstyled nav-scroll">
+    {% for link in linklists.buenfin2020.links %}
+        <li class="text-link">
+            <a href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+</aside>

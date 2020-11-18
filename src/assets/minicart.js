@@ -7,6 +7,12 @@ $(document).on('click', '.cart-summary', function (e) {
   updateMinicart();
 });
 
+$(document).on('click', '.refresh-btn', function (e) {
+  e.preventDefault();
+  $('#cart_temp_late form').css('opacity', '0.2');
+  updateMinicart();
+});
+
 $(document).on('click', 'span.closecart_mm', function (e) {
   e.preventDefault();
   closeMinicart();
