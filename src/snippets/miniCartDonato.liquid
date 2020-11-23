@@ -249,7 +249,7 @@
 
           {%- endcase -%}
 
-            <div class="cart__body">  
+            <div class="cart__body">
               <ul class="item-list divider">
                 {%- for item in cart.items -%}
                 <li class="item cf product-2-cruiser-65l">
@@ -299,6 +299,7 @@
           <div class="cart__footer">
             {%- include 'cart_recommend' -%}
             {%- include 'regalo_carrito' -%}
+            {%- include 'kp-product-page-snippet' -%}
             <div class="cf checkout-subtotal-container">
               <div class="checkout-subtotal-container__left">
                 <h4 class="subtotalMinicart">{{ 'cart.general.subtotal' | t }}</h4>
@@ -307,7 +308,7 @@
                 <h4 class="subtotal h1-style"><span class="theme-money">{{ cart.total_price | money }}</span></h4>
               </div>
             </div>
-            {% include 'kp-cart-snippet' %}
+            
 
             <a class="refresh-btn">{{ 'cart.general.update' | t }}</a>
 

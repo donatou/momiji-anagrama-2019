@@ -114,6 +114,7 @@ jQuery('[max]').change(function() {
               <input class="btn__main btn--red btn--lighter-red mb-2 mr-1" type="submit" name="update" value="{{ 'cart.general.update' | t }}">
               <input class="btn__main btn--red mb-2" type="submit" name="checkout" class="button" value="{{ 'cart.general.checkout' | t }}">
             </div>
+            {%- include 'kp-product-page-snippet' -%}
             <div class="text-link mb-3">
               <p>{{ 'cart.general.shipping_at_checkout' | t }}</p>
             </div>
