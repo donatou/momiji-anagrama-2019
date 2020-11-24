@@ -56,7 +56,8 @@
         ">
         <h1 class="text-link">by {{ product.vendor }}</h1>
         <h2>{{ product.title }}</h2>
-        <p class="mt-1"><a class="link--orange"><span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span></a></p>
+        {% comment %} <p class="mt-1"><a class="link--orange"><span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span></a></p> {% endcomment %}
+        <span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{product.id}}" data-product-title="{{product.title}}" data-product-type="{{product.type}}" style="display: block;"></span>
         <div class="product__detail--name" data-price-wrapper>
           <h3>{{ product.metafields['producto']['presentacion'] }}</h3>
         {% if unico %}  

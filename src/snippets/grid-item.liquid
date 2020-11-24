@@ -18,7 +18,8 @@
     <div class="product__info">
         <div class="product__info--brand">
             <p>by {{ product.vendor }}</p>
-            <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+            <span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{product.id}}" data-product-title="{{product.title}}" data-product-type="{{product.type}}" style="display: block;"></span>
+            {% comment %} <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span> {% endcomment %}
         </div>
         <div class="product__info--iva">
             <p>IVA incluido</p>

@@ -2,6 +2,7 @@
 {% assign rutina = linklists.header-skincare-rutina %}
 {% assign tipoDePiel = linklists.header-skincare-tipo-de-piel %}
 {% assign soluciones = linklists.header-skincare-soluciones %}
+{% assign ver_todo = linklists.ver-todo %}
 
 <div class="mobile__header">
   <div class="mobile-btn link__mobile" id="close">
@@ -32,9 +33,9 @@
         <a class="h3">{{ soluciones.title }}</a>
       </li>
       <li class="accordion-item">
-        <a href="/pages/marcas">ver marcas</a>
-        <span> / </span>
-        <a href="collections/todos-los-productos">ver todos</a>
+        {% for link in ver_todo.links %}
+          <a href="{{ link.url }}" class="h3">{{ link.title }}&nbsp;&nbsp;&nbsp;</a>
+        {% endfor %}
       </li>
     </ul>
   </li>
