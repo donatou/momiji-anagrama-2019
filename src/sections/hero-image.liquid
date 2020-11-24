@@ -1,0 +1,59 @@
+<div class="hero-banner_section">
+    <div class="hero-banner_wrapper">
+        <a href="{{ section.settings.hero-banner-url }}" class="hero-banner_image-container">
+            <img class=""
+            src="{{ section.settings.hero-banner-image | img_url: '2048x' }}"
+            data-src="{{ img_url }}"
+            data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
+            data-sizes="auto"
+            alt="{{ page.title | escape }}">
+        </a>
+    </div>
+</div>
+
+<style>
+.hero-banner_section {
+    display:grid;
+    border: 1px solid black;
+    justify-items: center;
+    align-items: center;
+    height: 400px;
+    min-height: 640px;
+    width: 100%;
+    position: relative;
+}
+.hero-banner_wrapper {
+
+}
+.hero-banner_image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    overflow: hidden;
+}
+</style>
+
+{% schema %}
+  {
+    "name": "Plain Hero",
+    "settings": [
+      {
+        "type": "url",
+        "id": "hero-banner-url",
+        "label": "URL destino"
+      },
+      {
+        "type": "image_picker",
+        "id": "hero-banner-image",
+        "label": "Background image full",
+        "info": "2048 pixeles"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero Image",
+        "category": "Contenido"
+      }
+    ]
+  }
+{% endschema %}
