@@ -1,0 +1,95 @@
+<section class="sundae-marquee py-100 pb-125 py-md-170 py-lg-200">
+  <div class="container-fluid">
+    <div class="row text-center">
+      <div class="col-lg-9 mx-auto text-center mb-20 desc-icons fade-on-scroll">
+        {{ section.settings.title }}
+      </div>
+ 
+      <div class="marquee fade-on-scroll">
+        {% assign block_1 = section.blocks | where: "type", "block-1" %}
+        {% for block in block_1 %}
+          <span class="h1">{% if block.settings.image %}<img src="{{ block.settings.image  | img_url: '88x88' }}" alt="Icono {{ block.settings.title }}">{% endif %}{{ block.settings.title }}</span>
+        {% endfor %}
+      </div>
+
+      <div class="marquee fade-on-scroll" data-direction="right">
+        {% assign block_2 = section.blocks | where: "type", "block-2" %}
+        {% for block in block_2 %}
+          <span class="h1">{% if block.settings.image %}<img src="{{ block.settings.image  | img_url: '88x88' }}" alt="Icono {{ block.settings.title }}">{% endif %}{{ block.settings.title }}</span>
+        {% endfor %}
+      </div>
+
+      <div class="marquee fade-on-scroll">
+        {% assign block_3 = section.blocks | where: "type", "block-3" %}
+        {% for block in block_3 %}
+          <span class="h1">{% if block.settings.image %}<img src="{{ block.settings.image  | img_url: '88x88' }}" alt="Icono {{ block.settings.title }}">{% endif %}{{ block.settings.title }}</span>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Marquee",
+    "settings": [
+      {
+          "type": "richtext",
+          "id": "title",
+          "label": "Title",
+          "default": "<p><strong>SIN</strong>ingredientes dañinos. con<strong>TODO</strong>lo bueno.</p>"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "block-1",
+        "name": "Block 1",
+        "settings": [
+          {
+              "type": "image_picker",
+              "id": "image",
+              "label": "Image"
+          },
+          {
+             "type": "text",
+             "id": "title",
+             "label": "Title"
+          }
+        ]
+      },
+      {
+        "type": "block-2",
+        "name": "Block 2",
+        "settings": [
+          {
+              "type": "image_picker",
+              "id": "image",
+              "label": "Image"
+          },
+          {
+             "type": "text",
+             "id": "title",
+             "label": "Title"
+          }
+        ]
+      },
+      {
+        "type": "block-3",
+        "name": "Block 3",
+        "settings": [
+          {
+              "type": "image_picker",
+              "id": "image",
+              "label": "Image"
+          },
+          {
+             "type": "text",
+             "id": "title",
+             "label": "Title"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
