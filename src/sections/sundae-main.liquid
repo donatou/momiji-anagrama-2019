@@ -8,7 +8,7 @@
         <img class="stagger-child" src="{{ 'sundae.svg' | asset_url }}" alt="sundae">
       </div>
       <div class="col-md-10 col-lg-7 text-center mx-auto mt-20 desc-icons stagger-child">
-        <h2 class="h3">Make-up your Beauty, by<strong>MOMIJI</strong>. 4<strong>Products</strong>: A lip tint <span class="icon-sundae-lip"></span>, a lip cream puff <span class="icon-sundae-cream"></span>, an eyebrow pencil <span class="icon-sundae-pencil"></span>and a brush <span class="icon-sundae-brush"></span>.</h2>
+        <h2 class="h3">{{ section.settings.subtitle }}</h2>
       </div>
     </div>
 
@@ -47,6 +47,13 @@
           "id": "title",
           "label": "Title",
           "default": "<p></p>"
+      },
+      {
+          "type": "html",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Make-up your Beauty, by<strong>MOMIJI</strong>. 4<strong>Products</strong>: A lip tint <span class='icon-sundae-lip'></span>, a lip cream puff <span class='icon-sundae-cream'></span>, an eyebrow pencil <span class='icon-sundae-pencil'></span>and a brush <span class='icon-sundae-brush'></span>.",
+          "info": "List of icons: icon-sundae-heart, icon-sundae-star, icon-sundae-lip"
       },
       {
           "type": "image_picker",
