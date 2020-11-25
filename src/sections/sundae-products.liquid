@@ -35,7 +35,7 @@
 
             <div class="thumb-actions ctn-center d-block d-md-flex">
               {% if product.available %}
-                <button class="btn btn-sundae link add-to-cart">Agregar a bolsa</button>
+                <button class="btn btn-sundae link add-to-cart" data-id="{{ product.first_available_variant.id }}">Agregar a bolsa</button>
               {% else %}
                 <button disabled class="btn btn-sundae link">Agotado</button>
               {% endif %}
@@ -51,13 +51,15 @@
         <script type="text/javascript">
           $(function(){
             $(".sundae-products .add-to-cart").click(function(){
+              var id = $(this).data("id");
               $.ajax({
                 type: 'POST', 
                 url: '/cart/add.js',
                 dataType: 'json', 
                 async: !1,
-                data: "quantity=1&id=" + {{ product.first_available_variant.id }},
+                data: "quantity=1&id=" + id,
                 success: function (data){
+                  updateMinicart();
                   return true
                 },
                 error: function (jqXHR, textStatus, errorThrown) { console.log(textStatus); }

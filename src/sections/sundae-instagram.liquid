@@ -7,12 +7,16 @@
 
       <!-- IMG  -->
       <div class="col-md-6 col-lg-4 order-md-1 stagger-child img-container">
-        <img class="w-100" src="{{ 'sundae-03.jpg' | asset_url }}" alt="">
+        {% if section.settings.image_1 %}
+        <a class="w-100" href="{{ section.settings.image_1_link }}"><img class="w-100" src="{{ section.settings.image_1 | img_url: "612x600" }}" alt=""></a>
+        {% endif %}
       </div>
 
       <!-- IMG  -->
       <div class="col-md-6 col-lg-4 order-md-1  stagger-child img-container">
-        <img class="w-100" src="{{ 'sundae-03.jpg' | asset_url }}" alt="">
+        {% if section.settings.image_2 %}
+        <a class="w-100" href="{{ section.settings.image_2_link }}"><img class="w-100" src="{{ section.settings.image_2 | img_url: "612x600" }}" alt=""></a>
+        {% endif %}
       </div>
 
       <!-- card  -->
@@ -31,17 +35,21 @@
       <!-- instagram IMAGE  -->
       <div class="col-md-6 col-lg-4 order-md-2 order-lg-3 stagger-child">
         <div class="bg-beige px-40 py-40 px-md-60 py-md-60">
-          <img class="w-100" src="{{ 'sundae-03.jpg' | asset_url }}" alt="">
+          {% if section.settings.image_3 %}
+          <a class="w-100" href="{{ section.settings.image_3_link }}"><img class="w-100" src="{{ section.settings.image_3 | img_url: "612x600" }}" alt=""></a>
+          {% endif %}
           <div class="card-desc link d-flex justify-content-between mt-15">
             <div class=""><a href="/" class="link"> <span class="icon-sundae-heart icon-sundae-heart--xs mr-2"></span>@momijibeauty</a></div>
-            <div>23.ago.2020</div>
+            <div>{{ section.settings.date }}</div>
           </div>
         </div>
       </div>
 
        <!-- IMG  -->
       <div class="col-12 col-lg-8 order-5 stagger-child img-container">
-        <img class="w-100" src="{{ 'sundae-04.jpg' | asset_url }}" alt="">
+        {% if section.settings.image_4 %}
+        <a class="w-100" href="{{ section.settings.image_4_link }}"><img class="w-100" src="{{ section.settings.image_4 | img_url: "1001x600" }}" alt=""></a>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -79,6 +87,11 @@
         "label": "Image"
     },
     {
+        "type": "text",
+        "id": "image_1_link",
+        "label": "Link"
+    },
+    {
       "type":      "header",
       "content":   "Image 2"
     },
@@ -88,6 +101,11 @@
         "label": "Image"
     },
     {
+        "type": "text",
+        "id": "image_2_link",
+        "label": "Link"
+    },
+    {
       "type":      "header",
       "content":   "Image 3"
     },
@@ -95,6 +113,11 @@
         "type": "image_picker",
         "id": "image_3",
         "label": "Image"
+    },
+    {
+        "type": "text",
+        "id": "image_3_link",
+        "label": "Link"
     },
     {
         "type": "text",
@@ -109,6 +132,11 @@
         "type": "image_picker",
         "id": "image_4",
         "label": "Image"
+    },
+    {
+        "type": "text",
+        "id": "image_4_link",
+        "label": "Link"
     }
   ]
 }
