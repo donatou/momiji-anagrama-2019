@@ -1,28 +1,24 @@
 <div class="marco">
     <a class="design-wrapper">
-      <img class=""
+      {% comment %} <img class=""
               src="{{ section.settings.hero-banner-image | img_url: '2048x' }}"
               data-src="{{ img_url }}"
               data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
               data-sizes="auto"
-              alt="{{ page.title | escape }}">
+              alt="{{ page.title | escape }}"> {% endcomment %}
+
+      <picture>
+        <source srcset="{{ section.settings.hero-mobile-image-1x | img_url: '768x' }}, {{ section.settings.hero-mobile-image-1x | img_url: '1536x' }} 2x" media="(max-width: 768px)">
+        <source srcset="{{ section.settings.hero-desktop-image-1x | img_url: '2000x' }}, {{ section.settings.hero-desktop-image-1x | img_url: '4000x' }} 2x" media="(max-width: 2000px)">
+        <img src="{{ section.settings.hero-desktop-image-1x | img_url: '2048x' }}" alt="logo">
+      </picture>
+
     </a>
 </div>
 
-{% comment %} #featured-product {
-    background-image: url({{ section.settings.background_image | img_url: '2107x' }});
-}
-@media (max-width: 991.98px) {
-  #featured-product {
-      background-image: url({{ section.settings.background_image_992 | img_url: '992x' }});
-  }
-}
-@media (max-width: 558px) {
-  #featured-product {
-      background-image: url({{ section.settings.background_image_558 | img_url: '1080x' }});
-  }
-} {% endcomment %}
-
+{%- comment -%}  
+    SE PUEDE CONSIDERAR A FUTURO USAR EN EL BANNER UN DISEÑO EN VECTORES, EN SVG. ESCALABLE FOREVER.
+{%- endcomment -%}
 
 <style>
 .marco {
@@ -38,7 +34,6 @@
   height: auto;
   object-fit: contain;
 }
-
 </style>
 
 {% schema %}
@@ -47,9 +42,15 @@
     "settings": [
       {
         "type": "image_picker",
-        "id": "hero-banner-image",
-        "label": "Background image full",
-        "info": "2048 pixeles"
+        "id": "hero-desktop-image-1x",
+        "label": "Background 1x",
+        "info": "No info yet"
+      },
+      {
+        "type": "image_picker",
+        "id": "hero-mobile-image-1x",
+        "label": "Mobile 1x",
+        "info": "No info yet"
       },
       {
         "type": "color",
