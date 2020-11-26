@@ -8,9 +8,27 @@
               alt="{{ page.title | escape }}"> {% endcomment %}
 
       <picture>
-        <source srcset="{{ section.settings.hero-mobile-image-1x | img_url: '768x' }}, {{ section.settings.hero-mobile-image-1x | img_url: '1536x' }} 2x" media="(max-width: 768px)">
-        <source srcset="{{ section.settings.hero-desktop-image-1x | img_url: '2000x' }}, {{ section.settings.hero-desktop-image-1x | img_url: '4000x' }} 2x" media="(max-width: 2000px)">
-        <img src="{{ section.settings.hero-desktop-image-1x | img_url: '2048x' }}" alt="logo">
+        <!-- MOBILE-->
+        <source 
+          srcset="{{ section.settings.hero-mobile-image-1x | img_url: '883x' }},
+                  {{ section.settings.hero-mobile-image-2x | img_url: '1766x' }} 2x,
+                  {{ section.settings.hero-mobile-image-3x | img_url: '2648x' }} 3x,
+                  {{ section.settings.hero-mobile-image-4x | img_url: '3541x' }} 4x
+                  "
+          media="(max-width: 991.98px)">
+        <!-- MOBILE-->
+        <!-- DESKTOP-->
+        <source
+          srcset="{{ section.settings.hero-desktop-image-1x | img_url: '1832x' }},
+                  {{ section.settings.hero-desktop-image-2x | img_url: '3664x' }} 2x,
+                  {{ section.settings.hero-desktop-image-3x | img_url: '4470x' }} 3x,
+                  {{ section.settings.hero-desktop-image-4x | img_url: '4470x' }} 4x
+                  "
+          media="(max-width: 4470px)">
+        <!-- DESKTOP-->
+        <!-- FALLBACK-->
+        <img src="{{ section.settings.hero-desktop-image-2x | img_url: '2048x' }}" alt="logo">
+        <!-- FALLBACK-->
       </picture>
 
     </a>
@@ -48,10 +66,51 @@
       },
       {
         "type": "image_picker",
+        "id": "hero-desktop-image-2x",
+        "label": "Background 2x",
+        "info": "No info yet"
+      },
+      {
+        "type": "image_picker",
+        "id": "hero-desktop-image-3x",
+        "label": "Background 3x",
+        "info": "No info yet"
+      },
+      {
+        "type": "image_picker",
+        "id": "hero-desktop-image-4x",
+        "label": "Background 4x",
+        "info": "No info yet"
+      },
+      {
+        "type": "header",
+        "content": "fotos de moviles",
+        "info": "las fotos que van en los cels"
+      },
+      {
+        "type": "image_picker",
         "id": "hero-mobile-image-1x",
         "label": "Mobile 1x",
         "info": "No info yet"
       },
+      {
+        "type": "image_picker",
+        "id": "hero-mobile-image-2x",
+        "label": "Mobile 2x",
+        "info": "No info yet"
+      },
+      {
+        "type": "image_picker",
+        "id": "hero-mobile-image-3x",
+        "label": "Mobile 3x",
+        "info": "No info yet"
+      },
+      {
+        "type": "image_picker",
+        "id": "hero-mobile-image-4x",
+        "label": "Mobile 4x",
+        "info": "No info yet"
+      },      
       {
         "type": "color",
         "id": "marco-color",
