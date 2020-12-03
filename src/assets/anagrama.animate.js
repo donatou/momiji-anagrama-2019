@@ -50,7 +50,7 @@ function setAnimationWaypoints() {
             var thisElement = this.element;
             thisElement.classList.add('animate');
             var children = $(thisElement).find(".stagger-child")
-            $(children).velocity("transition.slideUpIn", {
+            $(children).velocity("transition.fadeIn", {
               stagger: 450,
               duration: 600,
               complete: function () {

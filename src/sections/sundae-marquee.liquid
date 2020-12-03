@@ -1,28 +1,28 @@
 <section class="sundae-marquee py-100 pb-125 py-md-170 py-lg-200">
   <div class="container-fluid">
     <div class="row text-center">
-      <div class="col-lg-9 mx-auto text-center mb-20 desc-icons fade-on-scroll">
+      <div class="col-lg-9 mx-auto text-center mb-20 desc-icons animate-on-scroll h3">
         {{ section.settings.title }}
       </div>
  
-      <div class="marquee fade-on-scroll">
+      <div class="marquee animate-on-scroll">
         {% assign block_1 = section.blocks | where: "type", "block-1" %}
         {% for block in block_1 %}
-          <span class="h1">{% if block.settings.image %}<img src="{{ block.settings.image  | img_url: '88x88' }}" alt="Icono {{ block.settings.title }}">{% endif %}{{ block.settings.title }}</span>
+          <span class="h1">{% if block.settings.image %}<img src="{{ block.settings.image  | img_url: '132x132' }}" alt="Icono {{ block.settings.title }}">{% endif %}{{ block.settings.title }}</span>
         {% endfor %}
       </div>
 
-      <div class="marquee fade-on-scroll" data-direction="right">
+      <div class="marquee animate-on-scroll" data-direction="right">
         {% assign block_2 = section.blocks | where: "type", "block-2" %}
         {% for block in block_2 %}
-          <span class="h1">{% if block.settings.image %}<img src="{{ block.settings.image  | img_url: '88x88' }}" alt="Icono {{ block.settings.title }}">{% endif %}{{ block.settings.title }}</span>
+          <span class="h1">{% if block.settings.image %}<img src="{{ block.settings.image  | img_url: '132x132' }}" alt="Icono {{ block.settings.title }}">{% endif %}{{ block.settings.title }}</span>
         {% endfor %}
       </div>
 
-      <div class="marquee fade-on-scroll">
+      <div class="marquee animate-on-scroll">
         {% assign block_3 = section.blocks | where: "type", "block-3" %}
         {% for block in block_3 %}
-          <span class="h1">{% if block.settings.image %}<img src="{{ block.settings.image  | img_url: '88x88' }}" alt="Icono {{ block.settings.title }}">{% endif %}{{ block.settings.title }}</span>
+          <span class="h1">{% if block.settings.image %}<img src="{{ block.settings.image  | img_url: '132x132' }}" alt="Icono {{ block.settings.title }}">{% endif %}{{ block.settings.title }}</span>
         {% endfor %}
       </div>
 

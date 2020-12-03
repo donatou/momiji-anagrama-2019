@@ -4854,7 +4854,7 @@ header {
   header .header__nav {
     padding: 20px 30px 8px; }
     header .header__nav nav {
-      width: 70%; }
+      width: 95%; }
     header .header__nav--logo {
       display: inline-block; }
       header .header__nav--logo img {
@@ -10690,7 +10690,20 @@ HOME PRESS REVIEWS SECTION (press-reviews.liquid)
 }
 
 .tag-rotate {
-	padding: 5px 2px 0 1px
+  padding: 3px 5px 1px;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  line-height: 19px;
+}
+
+
+@media (max-width:767.98px) {
+	.tag-rotate {
+    padding: 3px 5px 0px;
+    transform: rotate(0deg);
+    transform-origin: center;
+    line-height: 19px;
+  }
 }
 
 .btn-sundae {
@@ -10730,9 +10743,90 @@ HOME PRESS REVIEWS SECTION (press-reviews.liquid)
 }
 
 .icon-hover:hover {
-	-webkit-animation: wobble-hor-bottom .8s both;
-	animation: wobble-hor-bottom .8s both
+	/* // -webkit-animation: wobble-hor-bottom .8s both;
+  // animation: wobble-hor-bottom .8s both; */
+  animation: shake4 1.5s infinite steps(1);
 }
+
+
+@keyframes shake4 {
+  0% {
+    -webkit-transform: rotate(1deg) translate(-2px, 2px);
+            transform: rotate(1deg) translate(-2px, 2px);
+    
+  }
+  16.6666666667% {
+    -webkit-transform: rotate(2deg) translate(-1px, 1px);
+            transform: rotate(2deg) translate(-1px, 1px);
+    
+  }
+  25% {
+    -webkit-transform: rotate(3deg) translate(-2px, 3px);
+            transform: rotate(3deg) translate(-2px, 3px);
+    
+  }
+  29.1666666667% {
+    -webkit-transform: rotate(-3deg) translate(0px, 0px);
+            transform: rotate(-3deg) translate(0px, 0px);
+    
+  }
+  37.5% {
+    -webkit-transform: rotate(-1deg) translate(-2px, -1px);
+            transform: rotate(-1deg) translate(-2px, -1px);
+    
+  }
+  41.6666666667% {
+    -webkit-transform: rotate(1deg) translate(-1px, 3px);
+            transform: rotate(1deg) translate(-1px, 3px);
+    
+  }
+  45.8333333333% {
+    -webkit-transform: rotate(1deg) translate(-1px, -1px);
+            transform: rotate(1deg) translate(-1px, -1px);
+    
+  }
+  50% {
+    -webkit-transform: rotate(4deg) translate(1px, 0px);
+            transform: rotate(4deg) translate(1px, 0px);
+    
+  }
+  54.1666666667% {
+    -webkit-transform: rotate(-3deg) translate(-2px, 3px);
+            transform: rotate(-3deg) translate(-2px, 3px);
+    
+  }
+  58.3333333333% {
+    -webkit-transform: rotate(1deg) translate(1px, 2px);
+            transform: rotate(1deg) translate(1px, 2px);
+    
+  }
+  62.5% {
+    -webkit-transform: rotate(-1deg) translate(-2px, 2px);
+            transform: rotate(-1deg) translate(-2px, 2px);
+    
+  }
+  75% {
+    -webkit-transform: rotate(2deg) translate(-2px, 2px);
+            transform: rotate(2deg) translate(-2px, 2px);
+    
+  }
+  87.5% {
+    -webkit-transform: rotate(1deg) translate(2px, 2px);
+            transform: rotate(1deg) translate(2px, 2px);
+    
+  }
+  91.6666666667% {
+    -webkit-transform: rotate(4deg) translate(3px, -2px);
+            transform: rotate(4deg) translate(3px, -2px);
+    
+  }
+  95.8333333333% {
+    -webkit-transform: rotate(-1deg) translate(0px, -2px);
+            transform: rotate(-1deg) translate(0px, -2px);
+    
+  }
+}
+
 
 .icon-sundae-brush,
 .icon-sundae-cream,
@@ -10751,15 +10845,20 @@ HOME PRESS REVIEWS SECTION (press-reviews.liquid)
 }
 
 .icon-sundae-cream {
-	background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTUiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEyLjkwOCAxNUgyLjM3OEEyLjM4NCAyLjM4NCAwIDAxMCAxMi42MjNhLjc0Ljc0IDAgMDEuNzM3LS43MzdoMTMuODExYS43NC43NCAwIDAxLjczNy43MzdBMi4zODQgMi4zODQgMCAwMTEyLjkwOCAxNXoiIGZpbGw9IiMwOTA5MDkiLz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTE0LjE4IDYuNTM3YTYuNTM3IDYuNTM3IDAgMTEtMTMuMDc1IDAgNi41MzcgNi41MzcgMCAwMTEzLjA3NSAwem0tMi42MzkgMGEzLjg5OSAzLjg5OSAwIDExLTcuNzk3IDAgMy44OTkgMy44OTkgMCAwMTcuNzk3IDB6IiBmaWxsPSIjMDkwOTA5Ii8+PC9zdmc+")
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTUiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEyLjkwOCAxNUgyLjM3OEEyLjM4NCAyLjM4NCAwIDAxMCAxMi42MjNhLjc0Ljc0IDAgMDEuNzM3LS43MzdoMTMuODExYS43NC43NCAwIDAxLjczNy43MzdBMi4zODQgMi4zODQgMCAwMTEyLjkwOCAxNXoiIGZpbGw9IiMwOTA5MDkiLz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTE0LjE4IDYuNTM3YTYuNTM3IDYuNTM3IDAgMTEtMTMuMDc1IDAgNi41MzcgNi41MzcgMCAwMTEzLjA3NSAwem0tMi42MzkgMGEzLjg5OSAzLjg5OSAwIDExLTcuNzk3IDAgMy44OTkgMy44OTkgMCAwMTcuNzk3IDB6IiBmaWxsPSIjMDkwOTA5Ii8+PC9zdmc+");
+  height: 15px;
+  width: 15px;
+  margin: 0 4px;
 }
 
 .icon-sundae-pencil {
-	background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTMuNyAxMy43MjNsNy45Ni03Ljk3LTMuMTUtMy4xNS03Ljk3IDcuOTYtLjU0IDMuNyAzLjctLjU0ek0xMi4zNyA1LjA1M2wtMy4xNi0zLjE2IDEuNi0xLjZhLjk5Ni45OTYgMCAwMTEuNDEgMGwxLjc0IDEuNzRjLjM5LjM5LjM5IDEuMDIgMCAxLjQxbC0xLjU5IDEuNjF6IiBmaWxsPSIjMDkwOTA5Ii8+PC9zdmc+")
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTMuNyAxMy43MjNsNy45Ni03Ljk3LTMuMTUtMy4xNS03Ljk3IDcuOTYtLjU0IDMuNyAzLjctLjU0ek0xMi4zNyA1LjA1M2wtMy4xNi0zLjE2IDEuNi0xLjZhLjk5Ni45OTYgMCAwMTEuNDEgMGwxLjc0IDEuNzRjLjM5LjM5LjM5IDEuMDIgMCAxLjQxbC0xLjU5IDEuNjF6IiBmaWxsPSIjMDkwOTA5Ii8+PC9zdmc+");
+  margin: 0 5px;
 }
 
 .icon-sundae-brush {
-	background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik00LjY4OCAxNS4zNGMtLjY1IDAtMS4xOC0uNS0xLjIyLTEuMTVsLS45MS03LjloNC4yNWwtLjkxIDcuOWMtLjAzLjY1LS41NiAxLjE1LTEuMjEgMS4xNXpNLjA2OCAyLjIxYy0uMS0uMTItLjA5LS4zLjAzLS40MS41Mi0uNTEgMi4xLTEuOCA0LjU5LTEuOCAyLjQ5IDAgNC4wOCAxLjI5IDQuNiAxLjguMTEuMTEuMTIuMjguMDMuNDFsLTIuNSAzLjA4aC00LjI1bC0yLjUtMy4wOHoiIGZpbGw9IiMwOTA5MDkiLz48L3N2Zz4=")
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik00LjY4OCAxNS4zNGMtLjY1IDAtMS4xOC0uNS0xLjIyLTEuMTVsLS45MS03LjloNC4yNWwtLjkxIDcuOWMtLjAzLjY1LS41NiAxLjE1LTEuMjEgMS4xNXpNLjA2OCAyLjIxYy0uMS0uMTItLjA5LS4zLjAzLS40MS41Mi0uNTEgMi4xLTEuOCA0LjU5LTEuOCAyLjQ5IDAgNC4wOCAxLjI5IDQuNiAxLjguMTEuMTEuMTIuMjguMDMuNDFsLTIuNSAzLjA4aC00LjI1bC0yLjUtMy4wOHoiIGZpbGw9IiMwOTA5MDkiLz48L3N2Zz4=");
+  height:15px;
 }
 
 .icon-sundae-star {
@@ -10799,7 +10898,10 @@ HOME PRESS REVIEWS SECTION (press-reviews.liquid)
 
 .page-sundae .movable-desc {
 	margin-top: 16px;
-	margin-bottom: 10px
+  margin-bottom: 10px;
+  font-size: 18px;
+  line-height: 125%;
+  letter-spacing: 0.002rem;
 }
 
 .page-sundae .movable-icon {
@@ -10813,7 +10915,7 @@ HOME PRESS REVIEWS SECTION (press-reviews.liquid)
 
 .page-sundae .movable.bg-sticky.icon-ramen {
 	top: 60px;
-	margin-bottom: 430px
+	margin-bottom: 160px
 }
 
 .page-sundae .movable.bg-sticky.icon-ramen img {
@@ -10831,7 +10933,7 @@ HOME PRESS REVIEWS SECTION (press-reviews.liquid)
 
 .page-sundae .movable.bg-yellow {
 	top: 80px;
-	margin-bottom: 230px
+	margin-bottom: 160px
 }
 
 .page-sundae .movable.bg-purple {
@@ -10897,7 +10999,8 @@ HOME PRESS REVIEWS SECTION (press-reviews.liquid)
 }
 
 .page-sundae .graphics>img {
-	position: absolute
+  position: absolute;
+  will-change:transform;
 }
 
 .page-sundae .graphics>img:first-child {
@@ -10946,6 +11049,10 @@ HOME PRESS REVIEWS SECTION (press-reviews.liquid)
 	}
 }
 
+.page-sundae .desc-icons {
+  flex:1;
+}
+
 .page-sundae .desc-icons img,
 .page-sundae .desc-icons strong {
 	margin-left: 3px;
@@ -10962,12 +11069,16 @@ HOME PRESS REVIEWS SECTION (press-reviews.liquid)
 }
 
 .page-sundae .sundae-marquee .marquee {
-	margin-bottom: 30px
+  margin-bottom: 30px;
+  will-change:transform;
 }
 
 .page-sundae .sundae-marquee .marquee img {
 	vertical-align: baseline;
-	margin-bottom: -5px
+  margin-bottom: -2px;
+  will-change:transform;
+  width: 44px;
+  height: 44px;
 }
 
 .page-sundae .sundae-marquee .marquee span+span {
@@ -10977,6 +11088,11 @@ HOME PRESS REVIEWS SECTION (press-reviews.liquid)
 @media (max-width:767.98px) {
 	.page-sundae .sundae-marquee .marquee {
 		margin-bottom: 20px
+  }
+  
+  .page-sundae .sundae-marquee .marquee img {
+    width:30px;
+    height:30px;
 	}
 }
 
@@ -11185,13 +11301,15 @@ HOME PRESS REVIEWS SECTION (press-reviews.liquid)
 .page-sundae .product__container--hover {
 	position: absolute;
 	top: 0;
-	width: 100%;
+  width: calc(100% - 30px);
 	height: 100%;
 	opacity: 0;
-	left: 0;
+  left: 0;
+  right:0;
 	cursor: pointer;
   overflow: hidden;
   transition: opacity 400ms ease-in-out;
+  margin:0 auto;
 }
 
 .page-sundae .product__container--hover img {
@@ -11223,18 +11341,20 @@ HOME PRESS REVIEWS SECTION (press-reviews.liquid)
 }
 
 .page-sundae .product .desc-rotate {
-	transform: rotate(180deg);
-	position: absolute;
-	right: 5px;
-	top: 80px;
-	-webkit-writing-mode: vertical-rl;
-	-ms-writing-mode: tb-rl;
-	writing-mode: vertical-rl;
-	cursor: pointer
+  transform: rotate(180deg) translateY(50px);
+  position: absolute;
+  right: -25px;
+  -webkit-writing-mode: vertical-rl;
+  -ms-writing-mode: tb-rl;
+  writing-mode: vertical-rl;
+  cursor: pointer;
+  top: 50%;
+  transform-origin: center;
 }
 
 .page-sundae .product .desc-rotate .link-u {
-	border-left: 1px solid #090909
+  border-left: 1px solid #090909;
+  line-height: 12px;
 }
 
 .page-sundae .product:hover .product__container--hover {
@@ -11270,8 +11390,8 @@ HOME PRESS REVIEWS SECTION (press-reviews.liquid)
 		position: absolute;
 		right: 20px;
 		top: 20px;
-		width: 15px;
-		height: 15px;
+		width: 10px;
+		height: 10px;
 		cursor: pointer;
 	}
 }
@@ -11282,10 +11402,11 @@ HOME PRESS REVIEWS SECTION (press-reviews.liquid)
 		padding: 30px 20px
 	}
 	.page-sundae .product .desc-rotate {
-		right: 0
+		right: -15px;
 	}
 	.page-sundae .product .btn-sundae {
-		margin-bottom: 15px
+    margin-bottom: 15px;
+    width:100%;
 	}
 	.page-sundae .product .link {
 		display: block;

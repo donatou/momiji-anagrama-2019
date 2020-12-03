@@ -30,11 +30,10 @@
 
   $(document).on('click', '.desc-rotate', function() {
     $('.product').removeClass('active');
-    $(this).parent().addClass('active');
+    $(this).parent().parent().addClass('active');
   });
 
   $(document).on('click', '.product .close', function() {
     $('.product').removeClass('active');
-    $(this).parent().removeClass('');
   });
   </script>

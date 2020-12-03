@@ -1,7 +1,7 @@
 <section class="sundae-products">
   <div class="container">
     <div class="row pb-125 pb-md-190 pb-lg-220">
-      <div class="col-md-9 col-lg-7 col-xl-6 mx-auto text-center desc-icons fade-on-scroll">
+      <div class="col-md-9 col-lg-7 col-xl-6 mx-auto text-center desc-icons animate-on-scroll">
         <h2>{{ section.settings.title }}</h2>
       </div>
     </div>
@@ -12,14 +12,19 @@
         <!-- PRODUCT  -->
         <div class="col-sm-6 col-md-6 mb-30 stagger-child">
           <div class="thumb-product product">
-            <a href="{{ product.url }}">
-              <div class="thumb-img product__container--main col-10 mx-auto">
-                <img src="{{ block.settings.image  | img_url: '580x556' }}" alt="{{ product.title }}">
-                <div class="thumb-img--hover product__container--hover">
-                  <img src="{{ block.settings.hover_image  | img_url: '580x556' }}" alt="">
+            <div class="position-relative">
+              <a href="{{ product.url }}">
+                <div class="thumb-img product__container--main col-10 mx-auto">
+                  <img src="{{ block.settings.image  | img_url: '580x556' }}" alt="{{ product.title }}">
+                  <div class="thumb-img--hover product__container--hover">
+                    <img src="{{ block.settings.hover_image  | img_url: '580x556' }}" alt="">
+                  </div>
                 </div>
+              </a>
+              <div class="desc-rotate d-block d-lg-none">
+                <p class="link link-u">Descripción</p>
               </div>
-            </a>
+            </div>
             <div class="thumb-title text-center">
               <a href="{{ product.url }}" class="h2 d-block">{{ product.title }}</a>
               <div class="tag-b">{{ product.price | money_with_currency }}</div>
@@ -40,10 +45,6 @@
                 <button disabled class="btn btn-sundae link">Agotado</button>
               {% endif %}
               <a href="{{ product.url }}" class="link ml-md-20 link-detail">ver DETALLE</a>
-            </div>
-
-            <div class="desc-rotate d-block d-lg-none">
-              <p class="link link-u">Descripción</p>
             </div>
           </div>
         </div>

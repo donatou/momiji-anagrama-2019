@@ -2,7 +2,7 @@
   <div class="container pt-45 pt-md-150 stagger-on-scroll">
     <div class="row">
       <div class="col-12">
-        <div class="d-md-flex align-items-center title text-center text-md-left stagger-child">
+        <div class="d-md-flex align-items-baseline title text-center text-md-left stagger-child">
           <h1 class="h3">{{ section.settings.title }}</h1><div class="tag-b mt-5 mt-md-0 ml-md-1 d-inline-block">안녕하세요</div> 
         </div>
         <img class="stagger-child" src="{{ 'sundae.svg' | asset_url }}" alt="sundae">
@@ -20,17 +20,17 @@
         </div>
 
         <div class="graphics">
-          <img class="img-h icon-hover stagger-child" src="{{ 'sundae-sticker-01.png' | asset_url }}" alt="heart">
-          <img class="img-h icon-hover fade-on-scroll" src="{{ 'Sundae-Powder.png' | asset_url }}" alt="powder">
+          <img class="img-h icon-hover" src="{{ 'sundae-sticker-01.png' | asset_url }}" alt="heart">
+          <img class="img-h icon-hover" src="{{ 'Sundae-Powder.png' | asset_url }}" alt="powder">
         </div>
       </div>
     </div>
 
     <!-- //descripción  -->
     <div class="row">
-      <div class="col-12 d-block d-md-flex ctn-center align-items-start text-center text-md-left">
-        <div class="tag-b tag-rotate mr-md-40 mr-lg-30 d-inline-block mb-10 mb-md-0 fade-on-scroll">안녕하세요</div>
-        <div class="desc-icons text-left fade-on-scroll">
+      <div class="col-12 d-block d-md-flex ctn-center flex-wrap text-center text-md-left animate-on-scroll">
+        <div class="tag-b tag-rotate mr-md-40 mr-lg-30 d-inline-block mb-10 mb-md-0">안녕하세요</div>
+        <div class="desc-icons text-left">
           {{ section.settings.content | replace: "<p>", '<p class="h3 text-indent">' }}
         </div>
       </div>

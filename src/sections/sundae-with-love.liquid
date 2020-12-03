@@ -1,13 +1,13 @@
 <section id="home" class="pb-100 pb-md-190">
   <div class="container">
     <div class="row">
-      <div class="col-md-9 col-lg-7 col-xl-6 mx-auto text-center inner fade-on-scroll">
+      <div class="col-md-9 col-lg-7 col-xl-6 mx-auto text-center inner animate-on-scroll">
           <h2>{{ section.settings.title }}</h2>
       </div>
 
       <div class="col-12 col-sm-7 col-md-12 col-lg-12 col-xl-10 mx-auto">
         <!-- card 1  -->
-        <div class="col-md-6 col-lg-5 offset-md-2 mx-lg-auto movable bg-yellow fade-on-scroll">
+        <div class="col-md-6 col-lg-5 offset-md-2 mx-lg-auto movable bg-yellow">
           <div class="icon-number">1</div>
           <h3 class="h2">{{ section.settings.block_1_title }}</h3>
           <div class="movable-desc">
@@ -18,18 +18,18 @@
 
         {% if section.settings.block_1_image %}
           <!-- icon 1  -->
-          <div class="movable bg-sticky icon-ramen offset-md-7 offset-lg-8 fade-on-scroll">
+          <div class="movable bg-sticky icon-ramen offset-md-7 offset-lg-8">
             <img class="icon-hover" src="{{ section.settings.block_1_image  | img_url: '416x' }}" alt="{{ section.settings.block_1_title }}">
           </div>
         {% endif %}
 
         {% if section.settings.block_2_image%}
           <!-- card img  -->
-          <div class="col-md-6 col-lg-5 movable bg-img offset-md-6 fade-on-scroll" style="background: url('{{ section.settings.block_2_image  | img_url: '542x618' }}');background-repeat: no-repeat;background-size: cover;">
+          <div class="col-md-6 col-lg-5 movable bg-img offset-md-6" style="background: url('{{ section.settings.block_2_image  | img_url: '542x618' }}');background-repeat: no-repeat;background-size: cover;">
           </div>
         {% endif %}
         <!-- card 2  -->
-        <div class="col-md-6 col-lg-5 movable bg-purple fade-on-scroll">
+        <div class="col-md-6 col-lg-5 movable bg-purple">
           <div class="icon-number">2</div>
           <h3 class="h2">{{ section.settings.block_2_title }}</h3>
           <div class="movable-desc">
@@ -39,7 +39,7 @@
         </div>
 
         <!-- card 3  -->
-        <div class="col-md-6 col-lg-5 offset-md-4 offset-lg-5 movable bg-orange fade-on-scroll">
+        <div class="col-md-6 col-lg-5 offset-md-4 offset-lg-5 movable bg-orange">
           <div class="icon-number">3</div>
           <h3 class="h2">{{ section.settings.block_3_title }}</h3>
           <div class="movable-desc">
@@ -50,7 +50,7 @@
 
         {% if section.settings.block_3_image %}
         <!-- icon 2  -->
-        <div class="movable bg-sticky icon-lipstick offset-md-1 fade-on-scroll">
+        <div class="movable bg-sticky icon-lipstick offset-md-1">
           <img class="icon-hover" src="{{ section.settings.block_3_image  | img_url: '394x476' }}" alt="lipstick">
         </div>
         {% endif %}
