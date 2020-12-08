@@ -1,15 +1,16 @@
 {%- comment -%} kp-cart-snippet {%- endcomment -%}
-<!-- Trigger/Open The Modal -->
 <div id="kueski-pay-ppd-message"
      data-kueskipay-class="Product"
      data-kueskipay-location="Cart"
      data-kueskipay-product-name="{{ product.title }}"
      data-kueskipay-merchant-name="{{ shop.name }}"
-     data-kueskipay-purchase-value="{{ product.price }}"
+     data-kueskipay-purchase-value="{{ cart.total }}"
      data-kueskipay-api-key="ac1b792f-3d63-4ba9-a7c7-3352049449ad"
+     data-kueskipay-font-color="#0a0a0a"
+     data-kueskipay-font-size="14"
+     data-kueskipay-font-family="GT-Walsheim"
+     data-kueskipay-logo-color="black"
+     data-kueskipay-trigger-color="#F06C4E"
+     data-kueskipay-trigger-weight="400"
 >
 </div>
-<link rel="stylesheet" href="https://cdn.kueskipay.com/v1/assets/plugin/kp-product-page.min.css">
-<script src="https://cdn.kueskipay.com/v1/assets/plugin/moment.min.js"></script>
-<script src="https://cdn.kueskipay.com/v1/assets/plugin/bi-winstallmentsjs.js" charset="utf-8"></script>
-<script src="https://cdn.kueskipay.com/v1/assets/plugin/kp-product-page.js" data-kueskipay-sandbox="true" charset="utf-8"></script> 

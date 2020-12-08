@@ -299,7 +299,6 @@
           <div class="cart__footer">
             {%- include 'cart_recommend' -%}
             {%- include 'regalo_carrito' -%}
-            {%- include 'kp-product-page-snippet' -%}
             <div class="cf checkout-subtotal-container">
               <div class="checkout-subtotal-container__left">
                 <h4 class="subtotalMinicart">{{ 'cart.general.subtotal' | t }}</h4>
@@ -309,8 +308,8 @@
               </div>
             </div>
             
-
-            <a class="refresh-btn">{{ 'cart.general.update' | t }}</a>
+            {%- include 'kp-cart-snippet' -%}
+            {% comment %} <a class="refresh-btn">{{ 'cart.general.update' | t }}</a> {% endcomment %}
 
             {%- comment -%} No se puede incluir porque al usar un script para bloquear códigos de descuento, éste snippet lo muestra como "Estás ahorrando X cantidad con la promoción de BLOQUEO DE SCRIPTS" {%- endcomment -%}
             {%- comment -%} {%- include 'estas-ahorrando' -%} {%- endcomment -%}
