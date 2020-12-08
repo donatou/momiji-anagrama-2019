@@ -2,6 +2,7 @@
 {% assign rutina = linklists.header-skincare-rutina %}
 {% assign tipoDePiel = linklists.header-skincare-tipo-de-piel %}
 {% assign soluciones = linklists.header-skincare-soluciones %}
+{% assign ver_todo = linklists.ver-todo %}
 {% assign ultimoelemento = section.settings.last_item_menu_color %}
 
 <header data-section-type="header">
@@ -62,9 +63,12 @@
                       </ul>
                     </div>
 
-                    <a href="/pages/marcas" class="a__all mt-30">ver marcas</a>
+                    {% for link in ver_todo.links %}
+                      <a href="{{ link.url }}" class="a__all mt-30">{{ link.title }}&nbsp;&nbsp;&nbsp;</a>
+                    {% endfor %}
+                    {% comment %} <a href="/pages/marcas" class="a__all mt-30">ver marcas</a>
                     <span> / </span>
-                    <a href="collections/todos-los-productos" class="a__all mt-30">ver todos</a>
+                    <a href="collections/todos-los-productos" class="a__all mt-30">ver todos</a> {% endcomment %}
                   </div>
 
                   <div class="col-lg-4 br">
@@ -146,11 +150,14 @@
                         <li><a href="{{ link.url }}">{{ link.title }}</a></li>
                         {% endfor %}
                       </ul>
-                    </div>                  
+                    </div>        
 
-                    <a href="/pages/marcas" class="a__all mt-30">ver marcas</a>
+                    {% for link in ver_todo.links %}
+                      <a href="{{ link.url }}" class="a__all mt-30">{{ link.title }}&nbsp;&nbsp;&nbsp;</a>
+                    {% endfor %}
+                    {% comment %} <a href="/pages/marcas" class="a__all mt-30">ver marcas</a>
                     <span> / </span>
-                    <a href="collections/todos-los-productos" class="a__all mt-30">ver todos</a>
+                    <a href="collections/todos-los-productos" class="a__all mt-30">ver todos</a> {% endcomment %}
                   </div>
 
                   <div class="col-lg-4 br">

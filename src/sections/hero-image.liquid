@@ -1,0 +1,110 @@
+<div class="hero-image__marco marco--bg-color">
+    <a href="{{ section.settings.hero-banner-url }}" class="hero-image__wrapper">
+      <picture>
+        <!-- MOBILE-->
+        <source 
+          srcset="{{ section.settings.hero-mobile-image-1x | img_url: '883x' }},
+                  {{ section.settings.hero-mobile-image-2x | img_url: '1766x' }} 2x,
+                  {{ section.settings.hero-mobile-image-3x | img_url: '2648x' }} 3x,
+                  {{ section.settings.hero-mobile-image-4x | img_url: '3530x' }} 4x
+                  "
+          media="(max-width: 991.98px)">
+        <!-- MOBILE-->
+        <!-- DESKTOP-->
+        <source
+          srcset="{{ section.settings.hero-desktop-image-1x | img_url: '1832x' }},
+                  {{ section.settings.hero-desktop-image-2x | img_url: '3664x' }} 2x,
+                  {{ section.settings.hero-desktop-image-3x-4x | img_url: '4470x' }} 3x,
+                  {{ section.settings.hero-desktop-image-3x-4x | img_url: '4470x' }} 4x
+                  "
+          media="(max-width: 4470px)">
+        <!-- DESKTOP-->
+        <img src="{{ section.settings.hero-desktop-image-3x | img_url: '2048x' }}" alt="logo">
+      </picture>
+    </a>
+</div>
+
+{%- comment -%}  
+    SE PUEDE CONSIDERAR A FUTURO USAR EN EL BANNER UN DISEÑO EN VECTORES, EN SVG. ESCALABLE FOREVER.
+{%- endcomment -%}
+
+<style>
+.marco--bg-color {
+  background-color: {{ section.settings.marco-color }};
+}
+</style>
+
+{% schema %}
+  {
+    "name": "Hero Image",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Imágenes para desktop"
+      },
+      {
+        "type": "image_picker",
+        "id": "hero-desktop-image-1x",
+        "label": "Imagen desktop 1x",
+        "info": "1832 x 732 px"
+      },
+      {
+        "type": "image_picker",
+        "id": "hero-desktop-image-2x",
+        "label": "Imagen desktop 2x",
+        "info": "3664 x 1463 px"
+      },
+      {
+        "type": "image_picker",
+        "id": "hero-desktop-image-3x-4x",
+        "label": "Imagen desktop 3x y 4x",
+        "info": "4470 x 1785 px"
+      },
+      {
+        "type": "header",
+        "content": "Imágenes para móviles"
+      },
+      {
+        "type": "image_picker",
+        "id": "hero-mobile-image-1x",
+        "label": "Imagen móviles 1x",
+        "info": "883 x 1117 px"
+      },
+      {
+        "type": "image_picker",
+        "id": "hero-mobile-image-2x",
+        "label": "Imagen móviles 2x",
+        "info": "1766 x 2236 px"
+      },
+      {
+        "type": "image_picker",
+        "id": "hero-mobile-image-3x",
+        "label": "Imagen móviles 3x",
+        "info": "2648 x 3352 px"
+      },
+      {
+        "type": "image_picker",
+        "id": "hero-mobile-image-4x",
+        "label": "Imagen móviles 4x",
+        "info": "3530 x 4469 px"
+      },      
+      {
+        "type": "color",
+        "id": "marco-color",
+        "label": "Section color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "url",
+        "id": "hero-banner-url",
+        "label": "URL destino"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero Image",
+        "category": "Contenido"
+      }
+    ]
+  }
+{% endschema %}

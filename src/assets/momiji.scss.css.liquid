@@ -10439,3 +10439,25 @@ HOME PRESS REVIEWS SECTION (press-reviews.liquid)
 ::selection {
   background: #f0ddf0;
 }
+
+
+{%- comment -%}
+  HERO-IMAGE.LIQUID SECTION  
+{%- endcomment -%}
+.hero-image__marco {
+  height: 100%;
+  display: grid;
+  padding: 120px 2% 5% 2%;
+  align-items: center;
+  justify-items: center;
+}
+@media (max-width: 991.98px) {
+  .hero-image__marco {
+    padding: 10% 5% 10% 5%;
+  }
+}
+.hero-image__wrapper img {
+  max-width: 90vw;
+  height: auto;
+  object-fit: contain;
+}
