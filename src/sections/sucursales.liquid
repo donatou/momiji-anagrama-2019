@@ -91,6 +91,15 @@ general: alto de la sección
                 <div class="sucursal-container {{ section.settings.color_suc }}">
                     <h4>{{ block.settings.title_suc }}</h4>
                     <div class="container--between">
+						<p>
+							{% if block.settings.title_suc contains "Monterrey" %}
+								{{shop.metafields.sucursal.monterrey}}
+							{% elsif block.settings.title_suc contains "Palacio" %}
+								{{shop.metafields.sucursal.cdmx-palacio}}
+							{% elsif block.settings.title_suc contains "Station" %}
+								{{shop.metafields.sucursal.cdmx-momijistation}}
+							{% endif %}
+						</p>
                         <p>{{ block.settings.desc_suc }}</p>
                         <a href="{{ block.settings.link }}" target="_blank" rel="noopener noreferrer" class="a__link">{{ block.settings.loc_suc }}</a>
                     </div>
