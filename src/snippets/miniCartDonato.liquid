@@ -6,7 +6,6 @@
 
         <div class="cart__header">
           <span class='closecart_mm close-btn'></span>
-{%- comment -%}<span class='closecart_mm'>&#10006;</span>{%- endcomment -%}
           <div class="majortitle">{{ 'cart.general.title' | t }}</div>
         </div>
 
@@ -259,9 +258,6 @@
                         <img src="{{item.image | img_url:'x73'}}">
                       </a>
                     </div>
-                    {%- comment -%} <a class="remove_mm" data-variant_id="{{item.id}}">
-                      &#10006;
-                    </a> {%- endcomment -%}
                     <a class="remove_mm" data-variant_id="{{item.id}}">
                       {{ 'cart.general.remove' | t }}
                     </a>
@@ -283,7 +279,7 @@
                         <input class="select-on-focus" type="text" size="2" id="updates_1" name="updates[]" value="{{item.quantity}}" data-line="1" aria-label="Quantity">
                         <a class="notabutton quantity-up " href="#"> + </a>
                       </div>
-                        {%- comment -%}No se puede agregar precio compare at por ser carrito aja. Requiere un tempate de json diferente.{%- endcomment -%}
+                        {%- comment -%}No se puede agregar precio compare at por ser carrito ajax. Requiere un tempate de json diferente.{%- endcomment -%}
                       <div class="line-total" data-line="1">
                         <span class="theme-money">{{ item.line_price | money }}</span>
                       </div>
@@ -308,7 +304,19 @@
               </div>
             </div>
             
-            {%- include 'kp-cart-snippet' -%}
+            <kueskipay-widget
+              data-kpay-widget-type="cart"
+              data-kpay-widget-font-family="GT-Walsheim"
+              data-kpay-widget-font-size="14"
+              data-kpay-widget-text-align="center"
+              data-kpay-widget-offer-color="#0a0a0a"
+              data-kpay-widget-link-color="#F06C4E"
+              data-kpay-widget-installments-color="#0a0a0a"
+              data-kpay-widget-link-emphasis="400"
+              data-kpay-widget-logo-color="black"
+              data-kpay-widget-amount="{{ cart.total_price }}">
+            </kueskipay-widget>
+
             {% comment %} <a class="refresh-btn">{{ 'cart.general.update' | t }}</a> {% endcomment %}
 
             {%- comment -%} No se puede incluir porque al usar un script para bloquear códigos de descuento, éste snippet lo muestra como "Estás ahorrando X cantidad con la promoción de BLOQUEO DE SCRIPTS" {%- endcomment -%}

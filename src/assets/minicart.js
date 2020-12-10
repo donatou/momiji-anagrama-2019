@@ -91,7 +91,6 @@ function updateCart(variant, newval) {
     dataType: 'json',
     success: function (cart) {
       updateMinicart();
-      kueskipay.refresh();
     }
   });
 }
@@ -104,7 +103,6 @@ function removeItemcart(varid) {
     dataType: 'json',
     success: function (cart) {
       updateMinicart();
-      kueskipay.refresh();
     }
   });
 }
@@ -118,7 +116,6 @@ function addItemtocart(formdat) {
     success: function (cart) {
       console.log('item added');
       updateMinicart();
-      kueskipay.refresh();
     }
   });
 }
@@ -134,7 +131,6 @@ function updateMinicart() {
       $(document).find('#mm_cartoverlay').html(recomenpro);
       $('body').addClass('cart-open');
       $('#mm_cartoverlay').animate({ "right": '0' });
-      kueskipay.refresh();
     }
   });
 }
