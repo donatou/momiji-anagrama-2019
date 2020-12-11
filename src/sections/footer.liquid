@@ -22,7 +22,8 @@
             <b>{{ section.settings.servicioalcliente_title }}</b>
             <p>Envíanos un correo a
               <a class="a__more" href="mailto:{{ section.settings.email_sc }}">{{ section.settings.email_sc }}</a></p>
-            <p>{{ section.settings.horario_atencion }}</p>
+            {% comment %} <p>{{ section.settings.horario_atencion }}</p> {% endcomment %}
+            <p>{{shop.metafields.horario.servicio-clientes}}</p>
             <p>Contacto de mayoreo
               <a class="a__more" href="mailto:{{ section.settings.email_mayoreo }}">{{ section.settings.email_mayoreo }}</a></p>
           </div>
