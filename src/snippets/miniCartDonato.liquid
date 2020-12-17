@@ -166,6 +166,44 @@
           {%- comment -%}
           Producto de regalo por nivel de gasto, hasta 3 niveles.
           {%- endcomment -%}
+            {%- when 'dos_regalos_escalonados' -%}
+
+              {%- include 'first-free-product-inject-2' -%}
+              {%- include 'second-free-product-inject-2' -%}
+
+              {%- comment -%} Variables de gasto minimo {%- endcomment -%}
+              {%- comment -%}
+                Gasto minimo 1: first_free_gift_over_x_price
+                Gasto minimo 2: second_free_gift_over_x_price
+              {%- endcomment -%}
+
+              {%- comment -%} Variables de cantidades faltantes {%- endcomment -%}
+              {%- assign cart_subtotal = cart.total_price -%}
+              {%- assign first_shipping_left = first_free_gift_over_x_price | minus: cart_subtotal -%}
+              {%- assign second_shipping_left = second_free_gift_over_x_price | minus: cart_subtotal -%}
+
+              {%- comment -%} Variables string para textos de theme settings {%- endcomment -%}
+              {%- capture add -%}{{ settings.agrega_string_2 }}{%- endcapture -%}
+              {%- capture more -%}{{ settings.more_string_2 }}{%- endcapture -%}
+              {%- capture won -%}{{ settings.won_string_2 }}{%- endcapture -%}
+              {%- capture first_price -%}{{ settings.first_copy_regalo_2 }}{%- endcapture -%}
+              {%- capture second_price -%}{{ settings.second_copy_regalo_2 }}{%- endcapture -%}
+              {%- capture final_price -%}{{ settings.final_copy_regalo_2 }}{%- endcapture -%}
+
+                <p class="cartfreeshipping">
+                {%- if cart_subtotal < first_free_gift_over_x_price -%}
+                  <span>{{add}} {{ first_shipping_left | money_with_currency }} {{more}} {{first_price}}.</span>
+                {%- elsif first_free_gift_over_x_price <= cart_subtotal and cart_subtotal < second_free_gift_over_x_price -%}
+                  <span class="font-weight-bold">{{won}} {{first_price}}.</span> <span>{{add}}{{ second_shipping_left | money_with_currency }} {{more}} {{second_price}}.</span>
+                {%- else second_free_gift_over_x_price <= cart_subtotal -%}
+                  <span class="font-weight-bold">{{won}} {{final_price}}.</span>
+                {%- endif -%}
+                </p>
+
+
+          {%- comment -%}
+          Producto de regalo por nivel de gasto, hasta 3 niveles.
+          {%- endcomment -%}
             {%- when 'regalos_escalonados' -%}
 
               {%- include 'first-free-product-inject' -%}
