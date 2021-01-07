@@ -1,0 +1,124 @@
+{% assign img_url = section.settings.partners_bg_img | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+
+<div class="momiji-partners">
+    <h3 class="">Compra con nuestros partners</h3>
+    <div class="logos_wrapper">
+      <div class="logo_svg">
+        {% include 'partners-icons' with 'fahorro' %}
+      </div>
+      <div class="logo_svg">
+        {% include 'partners-icons' with 'cornershop' %}
+      </div>
+      <div class="logo_svg">
+        {% include 'partners-icons' with 'amazon' %}
+      </div>
+      <div class="logo_svg">
+        {% include 'partners-icons' with 'palacio' %}
+      </div>
+      <div class="logo_svg">
+        {% include 'partners-icons' with 'enviaflores' %}
+      </div>
+    </div>
+    <img class="gallery__image lazyload"
+        src="{{ section.settings.partners_bg_img | img_url: '2048x' }}"
+        data-src="{{ img_url }}"
+        data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
+        data-aspectratio="{{ section.settings.partners_bg_img.aspect_ratio }}"
+        data-sizes="auto"
+        alt="Momiji Partners">
+</div>
+
+<style>
+  .momiji-partners {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    height: auto;
+    margin-bottom: 0px;
+  }
+  .momiji-partners h3 {
+  display: grid;
+  position: absolute;
+  justify-self: center;
+  align-self: center;
+  }
+  .momiji-partners .logos_wrapper {
+  display: flex;
+  position: absolute;
+  justify-self: center;
+  align-self: center;
+  }
+  .logo_svg svg {
+    width: 18vw;
+  }
+  .momiji-partners img {
+    position: relative;
+    width: 100%;
+    height: 25vw;
+    object-fit: cover;
+    z-index:-1;
+  }
+  
+</style>
+
+{% schema %}
+{
+  "name": "Partners",
+  "settings": [
+      {
+        "type": "header",
+        "content": "Momiji Partners"
+      },
+      {
+        "type": "image_picker",
+        "id": "partners_bg_img",
+        "label": "Background image"
+      },
+      {
+        "type": "radio",
+        "id": "partners_bg_position",
+        "options": [
+          { "value": "object-position_top", "label": "Top"},
+          { "value": "object-position_center", "label": "Center"},
+          { "value": "object-position_bottom", "label": "Bottom"}
+          ],
+        "default": "object-position_center",
+        "label": "Background image position"
+      },
+      {
+        "type": "color",
+        "id": "partners_overlay_color",
+        "label": "Overlay color",
+        "default": "#000000"
+      },
+      {
+        "type": "range",
+        "id": "partners_overlay_op",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "label": "Background overlay opacity",
+        "default": 0
+      },
+      {
+        "type": "text",
+        "id": "partners_copy",
+        "label": "Copy principal",
+        "default": "Compra con nuestros partners"
+      },
+      {
+        "type": "color",
+        "id": "partners_logo_color",
+        "label": "Logos color",
+        "default": "#ffffff"
+      }
+  ],
+  "presets": [
+    {
+      "name": "Momiji Partners",
+      "category": "Contenido"
+    }
+  ]
+}
+{% endschema %}
