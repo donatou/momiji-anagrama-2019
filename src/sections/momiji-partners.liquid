@@ -1,8 +1,6 @@
-{% assign img_url = section.settings.partners_bg_img | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
-
 <div class="momiji-partners">
     <div class="momiji-partners__copy">
-      <h3>Compra con nuestros partners</h3>
+      <h1>{{ section.settings.partners_copy }}</h1>
     </div>
     
     <div class="logos_wrapper">
@@ -22,13 +20,9 @@
         {% include 'partners-icons' with 'enviaflores' %}
       </div>
     </div>
-    {% comment %} <img class="gallery__image lazyload"
-        src="{{ section.settings.partners_bg_img | img_url: '2048x' }}"
-        data-src="{{ img_url }}"
-        data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
-        data-aspectratio="{{ section.settings.partners_bg_img.aspect_ratio }}"
-        data-sizes="auto"
-        alt="Momiji Partners"> {% endcomment %}
+
+<div class="back-color"></div>
+
 </div>
 
 <style>
@@ -39,33 +33,57 @@
     height: 600px;
     background-image: url({{ section.settings.partners_bg_img | img_url: '2048x' }});
     background-size: cover;
-    background-position-y: center;
+    background-position: center center;
+  }
+  .back-color {
+    position:absolute;
+    height: inherit;
+    width: 100%;
+    background-color: {{ section.settings.partners_overlay_color }};
+    opacity: {{ section.settings.partners_overlay_op | times: 0.01 }};
+    z-index: 0;
   }
   .momiji-partners__copy {
   width: 100%;
+  z-index: 1;
   }
-  .momiji-partners__copy h3 {
-    font-family: 'GT Momiji';
-    font-size: 2em;
+  .momiji-partners__copy h1 {
     color: {{ section.settings.partners_logo_color }};
+    margin: 0 20px;
+    font-size: 40px;
+    letter-spacing: -0.7px;
+    line-height: 40px;
+    /*font-family: "GT Momiji Medium", sans-serif;
+    font-size: 40px;
+    letter-spacing: -1.56px;
+    line-height: 40px;*/
   }
   .logos_wrapper {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-evenly;
+  justify-content: center;
   width: 100%;
-  padding: 4em 40px;
+  padding: 2em 4em;
+  z-index: 1;
   }
   .logo_svg {
     flex: 0 1 auto;
     align-self: center;
-    margin-inline-end: .5em;
-    margin-inline-start: .5em;
+    margin: 1em;
+    width: 16%;
   }
-  /*.logo_svg svg {
-    width: 10em;
-  }*/
-  svg.fahorro {
+  @media (max-width: 767.98px) {
+    .momiji-partners__copy h1{
+      text-align: center;
+    }
+    .logos_wrapper {
+      padding: 20px;
+    }
+    .logo_svg {
+      width: 40%;
+    }
+  }
+  /*svg.fahorro {
     height: 5em;
   }
     svg.cornershop {
@@ -79,7 +97,7 @@
   }
     svg.enviaflores {
     height: 2em;
-  }
+  }*/
   
 </style>
 
