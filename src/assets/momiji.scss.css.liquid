@@ -10468,3 +10468,60 @@ HOME PRESS REVIEWS SECTION (press-reviews.liquid)
   height: auto;
   object-fit: contain;
 }
+
+
+{%- comment -%}
+  MOMIJI PARTNERS SECTION
+{%- endcomment -%}
+.momiji-partners {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 600px;
+  background-size: cover;
+  background-position-x: center;
+}
+.momiji-partners__overlay {
+  position:absolute;
+  height: inherit;
+  width: 100%;
+  z-index: 0;
+}
+.momiji-partners__copy {
+max-width: 1140px;
+margin: 0 auto;
+z-index: 1;
+}
+.momiji-partners__copy h1 {
+  margin: 0 20px;
+  font-size: 40px;
+  letter-spacing: -0.7px;
+  line-height: 40px;
+}
+.momiji-partners__logos-wrapper {
+display: flex;
+flex-flow: row wrap;
+justify-content: center;
+max-width: 1140px;
+width: 100%;
+padding: 2em 4em;
+z-index: 1;
+}
+.momiji-partners__logo_svg {
+  flex: 0 1 auto;
+  align-self: center;
+  margin: 1em;
+  width: 16%;
+}
+@media (max-width: 767.98px) {
+  .momiji-partners__copy h1{
+    text-align: center;
+  }
+  .momiji-partners__logos-wrapper {
+    padding: 20px;
+  }
+  .momiji-partners__logo_svg {
+    width: 40%;
+  }
+}
