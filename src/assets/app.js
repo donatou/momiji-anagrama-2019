@@ -2,19 +2,45 @@
 
 $(document).ready(() => {
 
+// SWIPER RESEÑAS DE MEDIOS
   const reviewsSwiper = new Swiper('#reviews .swiper-container', {
     autoHeight: true, //enable auto height
+    slidesPerView: 1,
     spaceBetween: 0,
     loop: true,
     autoplay: {
       delay: 4000,
       disableOnInteraction: true,
     },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
+    breakpoints: {
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      768: {
+        slidesPerView: 4,
+        spaceBetween: 40,
+      },
+      1024: {
+        slidesPerView: 5,
+        spaceBetween: 50,
+      },
+    }
   });
+
+  // const reviewsSwiper = new Swiper('#reviews .swiper-container', {
+  //   autoHeight: true, //enable auto height
+  //   spaceBetween: 0,
+  //   loop: true,
+  //   autoplay: {
+  //     delay: 4000,
+  //     disableOnInteraction: true,
+  //   },
+  //   pagination: {
+  //     el: '.swiper-pagination',
+  //     clickable: true,
+  //   },
+  // });
 
   // CARGAR MODULOS
   // $("header").load("_header.html");
