@@ -4,47 +4,44 @@ $(document).ready(() => {
 
 // SWIPER RESEÑAS DE MEDIOS
   const reviewsSwiper = new Swiper('#reviews .swiper-container', {
-    autoHeight: true, //enable auto height
+    autoHeight: false, //enable auto height
     slidesPerView: 5,
-    spaceBetween: 10,
+    spaceBetween: 40,
     loop: true,
-    autoplay: {
-      delay: 4000,
-      disableOnInteraction: true,
-    },
-    pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-    },
     breakpoints: {
       640: {
         slidesPerView: 2,
         spaceBetween: 20,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        }
       },
       768: {
-        slidesPerView: 4,
+        slidesPerView: 3,
         spaceBetween: 40,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        }
       },
       1024: {
-        slidesPerView: 5,
-        spaceBetween: 50,
+        slidesPerView: 4,
+        spaceBetween: 40,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        }
       },
     }
   });
 
-  // const reviewsSwiper = new Swiper('#reviews .swiper-container', {
-  //   autoHeight: true, //enable auto height
-  //   spaceBetween: 0,
-  //   loop: true,
-  //   autoplay: {
-  //     delay: 4000,
-  //     disableOnInteraction: true,
-  //   },
-  //   pagination: {
-  //     el: '.swiper-pagination',
-  //     clickable: true,
-  //   },
-  // });
+  resizeObserver(
+    function () {
+      reviewsSwiper.update();
+    },
+    200
+  );
 
   // CARGAR MODULOS
   // $("header").load("_header.html");

@@ -1,7 +1,5 @@
 <div class="container" id="reviews">
-  <div class="row"> 
-{% comment %} <div class="" id="reviews">
-  <div class=""> {% endcomment %}
+  <div class="row flex-column"> 
 
     <div class="swiper-container">
       <div class="swiper-wrapper">
@@ -16,7 +14,9 @@
                   data-sizes="auto"
                   alt="Logo Elle">
             </div>
-            <h3 class="resenias">Momiji Life, el nuevo lanzamiento de nuestra marca favorita de K-Beauty</h3>
+            <div class="textos-inner-container">  
+              <h3 class="resenias">Momiji Life, el nuevo lanzamiento de nuestra marca favorita de K-Beauty</h3>
+            </div>
           </div>
         </div>
 
@@ -30,7 +30,9 @@
                   data-sizes="auto"
                   alt="Logo Allure">
             </div>
-            <h3 class="resenias">These serum-soaked patches depute and moisturize that delicate under area for an at-home spa day</h3>
+            <div class="textos-inner-container"> 
+              <h3 class="resenias">These serum-soaked patches depute and moisturize that delicate under area for an at-home spa day</h3>
+            </div>
           </div>
         </div>
 
@@ -44,7 +46,9 @@
                   data-sizes="auto"
                   alt="Logo InStyle">
             </div>
-            <h3 class="resenias">La curaduría más top de productos de K-Beauty</h3>
+            <div class="textos-inner-container"> 
+              <h3 class="resenias">La curaduría más top de productos de K-Beauty</h3>
+            </div>
           </div>
         </div>
 
@@ -58,7 +62,9 @@
                   data-sizes="auto"
                   alt="Logo Glamour">
             </div>
-            <h3 class="resenias">Tú eres el nuevo estándar de belleza, sin importar el género</h3>
+            <div class="textos-inner-container"> 
+              <h3 class="resenias">Tú eres el nuevo estándar de belleza, sin importar el género</h3>
+            </div>
           </div>
         </div>
 
@@ -72,17 +78,15 @@
                   data-sizes="auto"
                   alt="Logo GQ">
             </div>
-            <h3 class="resenias">Pioneros en México en traer el ritual del cuidado de piel coreano</h3>
+            <div class="textos-inner-container"> 
+              <h3 class="resenias">Pioneros en México en traer el ritual del cuidado de piel coreano</h3>
+            </div>
           </div>
         </div>
 
         </div>
       </div>
-      <!-- Add Pagination -->
       <div class="swiper-pagination"></div>
-      <!-- Add Pagination -->
-      {% comment %} <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div> {% endcomment %}
     </div>
 
   </div>
@@ -93,48 +97,53 @@
 #reviews .swiper-container {
   width: 100%;
   height: auto;
-  padding: 60px 0 30px 0;
+  padding: 80px 15px 30px 15px;
 }
 #reviews .swiper-slide {
   text-align: center;
   font-size: 18px;
   background: #fff;
   display: flex;
-  flex-flow: row;
+  flex-flow: column;
   align-items: center;
 }
 #reviews .reseñas-inner-container {
   display: flex;
-  flex-flow: column;
-  text-align: center;
-  /*width: 40vw;*/
+  flex-flow: wrap;
   margin: auto;
 }
-@media (max-width: 767.98px) {
-  #reviews .reseñas-inner-container {
-    width: 80vw;
-  }
+#reviews .logosvg {
+  display: flex;
+  flex-flow: column;
+  text-align: center;
+  align-items: center;
+  margin: auto;
+}
+#reviews .textos-inner-container {
+  display: flex;
+  flex-flow: column;
+  text-align: center;
+  align-items: flex-start;
+  margin: auto;
 }
 #reviews .swiper-container .swiper-slide {
   height: auto;
-  /*line-height: 300px;*/
 }
 #reviews h3.resenias {
   font-size: 0.9em;
-  line-height: 1.1em;
-  padding: 0 0 2em;
-}
-#reviews .logosvg {
-  padding: 0 0 1em 0;
+  line-height: 1em;
+  padding: 1em 0 0 0;
 }
 .logosvg img {
   width: 80%;
 }
-#reviews .swiper-container-horizontal > .swiper-pagination-bullets {
-  text-align: center;
-  left: 0;
-  padding: 30px 0 0 0;
-  position: relative;
+#reviews .swiper-pagination {
+  position: inherit;
+  align-self: center;
+  padding-bottom: 60px;
+}
+#reviews .swiper-pagination-bullet {
+  margin: 0 1em;
 }
 </style>
 
@@ -143,9 +152,9 @@
     "name": "Press Reviews",
     "settings": [
       {
-        "id": "header",
-        "type": "text",
-        "label": "Press reviews"
+        "type": "header",
+        "content": "Press reviews",
+        "info": "Info"
       }
     ],
   "presets": [
