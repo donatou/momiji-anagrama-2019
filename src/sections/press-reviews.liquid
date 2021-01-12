@@ -1,16 +1,82 @@
 <div class="container" id="reviews">
-  <div class="row">
+  <div class="row"> 
+{% comment %} <div class="" id="reviews">
+  <div class=""> {% endcomment %}
 
     <div class="swiper-container">
       <div class="swiper-wrapper">
-      {% for block in section.blocks %}
+        
         <div class="swiper-slide">
           <div class="reseñas-inner-container">
-            <h3 class="reseñas">{{ block.settings.press_text }}</h3>
-            <h5 class="press h2">{{ block.settings.press_logotext }}</h5>
+            <div class="logosvg">
+              <img class="lazyload"
+                  src="{{ 'elle-1080.png' | asset_img_url: '1080x' }}"
+                  data-src="{{ 'elle-1080.png' | asset_img_url: '1080x' }}"
+                  data-widths="[540, 720, 900, 1080]"
+                  data-sizes="auto"
+                  alt="Logo Elle">
+            </div>
+            <h3 class="resenias">Momiji Life, el nuevo lanzamiento de nuestra marca favorita de K-Beauty</h3>
           </div>
         </div>
-      {% endfor %}
+
+        <div class="swiper-slide">
+          <div class="reseñas-inner-container">
+            <div class="logosvg">
+              <img class="lazyload"
+                  src="{{ 'allure-1080.png' | asset_img_url: '1080x' }}"
+                  data-src="{{ 'allure-1080.png' | asset_img_url: '1080x' }}"
+                  data-widths="[540, 720, 900, 1080]"
+                  data-sizes="auto"
+                  alt="Logo Allure">
+            </div>
+            <h3 class="resenias">These serum-soaked patches depute and moisturize that delicate under area for an at-home spa day</h3>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="reseñas-inner-container">
+            <div class="logosvg">
+              <img class="lazyload"
+                  src="{{ 'instyle-1080.png' | asset_img_url: '1080x' }}"
+                  data-src="{{ 'instyle-1080.png' | asset_img_url: '1080x' }}"
+                  data-widths="[540, 720, 900, 1080]"
+                  data-sizes="auto"
+                  alt="Logo InStyle">
+            </div>
+            <h3 class="resenias">La curaduría más top de productos de K-Beauty</h3>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="reseñas-inner-container">
+            <div class="logosvg">
+              <img class="lazyload"
+                  src="{{ 'glamour-1080.png' | asset_img_url: '1080x' }}"
+                  data-src="{{ 'glamour-1080.png' | asset_img_url: '1080x' }}"
+                  data-widths="[540, 720, 900, 1080]"
+                  data-sizes="auto"
+                  alt="Logo Glamour">
+            </div>
+            <h3 class="resenias">Tú eres el nuevo estándar de belleza, sin importar el género</h3>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="reseñas-inner-container">
+            <div class="logosvg">
+              <img class="lazyload"
+                  src="{{ 'gq-1080.png' | asset_img_url: '1080x' }}"
+                  data-src="{{ 'gq-1080.png' | asset_img_url: '1080x' }}"
+                  data-widths="[540, 720, 900, 1080]"
+                  data-sizes="auto"
+                  alt="Logo GQ">
+            </div>
+            <h3 class="resenias">Pioneros en México en traer el ritual del cuidado de piel coreano</h3>
+          </div>
+        </div>
+
+        </div>
       </div>
       <!-- Add Pagination -->
       <div class="swiper-pagination"></div>
@@ -22,47 +88,71 @@
   </div>
 </div>
 
+
+<style>
+#reviews .swiper-container {
+  width: 100%;
+  height: auto;
+  padding: 60px 0 30px 0;
+}
+#reviews .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+#reviews .reseñas-inner-container {
+  display: flex;
+  flex-flow: column;
+  text-align: center;
+  /*width: 40vw;*/
+  margin: auto;
+}
+@media (max-width: 767.98px) {
+  #reviews .reseñas-inner-container {
+    width: 80vw;
+  }
+}
+#reviews .swiper-container .swiper-slide {
+  height: auto;
+  /*line-height: 300px;*/
+}
+#reviews h3.resenias {
+  font-size: 0.9em;
+  line-height: 1.1em;
+  padding: 0 0 2em;
+}
+#reviews .logosvg {
+  padding: 0 0 1em 0;
+}
+.logosvg img {
+  width: 80%;
+}
+#reviews .swiper-container-horizontal > .swiper-pagination-bullets {
+  text-align: center;
+  left: 0;
+  padding: 30px 0 0 0;
+  position: relative;
+}
+</style>
+
 {% schema %}
-{
-  "name": "Reviews",
-  "settings": [
+  {
+    "name": "Press Reviews",
+    "settings": [
       {
-        "type": "header",
-        "content": "Reseñas de medios"
+        "id": "header",
+        "type": "text",
+        "label": "Press reviews"
       }
-  ],
-  "blocks": [
-    {
-      "type": "select",
-      "name": "Press Review",
-      "limit": 5,
-      "settings": [
-        {
-          "id": "press_logotext",
-          "type": "text",
-       	  "label": "Press Name"
-        },
-        {
-          "id": "press_text",
-          "type": "textarea",
-       	  "label": "Review"
-        }
-      ]
-    }
-  ],
+    ],
   "presets": [
     {
-      "name": "Reviews",
-      "category": "Reviews",
-      "blocks": [
-        { 
-          "type": "select"
-        },
-        {
-          "type": "select"
-        }
-      ]
+      "name": "Press reviews",
+      "category": "Contenido"
     }
   ]
-}
+  }
 {% endschema %}

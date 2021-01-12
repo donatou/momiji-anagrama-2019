@@ -5,12 +5,16 @@ $(document).ready(() => {
 // SWIPER RESEÑAS DE MEDIOS
   const reviewsSwiper = new Swiper('#reviews .swiper-container', {
     autoHeight: true, //enable auto height
-    slidesPerView: 1,
-    spaceBetween: 0,
+    slidesPerView: 5,
+    spaceBetween: 10,
     loop: true,
     autoplay: {
       delay: 4000,
       disableOnInteraction: true,
+    },
+    pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
     },
     breakpoints: {
       640: {
