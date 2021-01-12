@@ -399,6 +399,7 @@ $(document).ready(() => {
     },
   });
 
+
 });
 
 
@@ -560,7 +561,10 @@ var UpdateBar = function(){
 
 
 // banner display on mobile
-var distance = $('.shop-item').offset().top;
+var distance
+if($('.shop-item').length != 0){
+  distance = $('.shop-item').offset().top;
+}
 
 $(window).scroll(function() {
     if ( $(this).scrollTop() >= distance ) {

@@ -1,0 +1,62 @@
+/*
+ * Anagrama Styles 2021
+ * https://www.anagrama.com/
+ */
+
+ /* ===== [ IMPORTANT NOTE ] ======
+ * Please do not edit the compiled assets/anagrama.css file
+ * (Those changes are going to be overwritten when compiled again).
+ */
+
+ /* ===== [ HOW TO COMPILE ] ======
+ * Prerequisites: Sass
+ * 
+ * [RUN COMMAND INSIDE src/ FOLDER]
+ * The following command will compile scss assets to css
+ *** sass --watch styles/anagrama.scss:assets/anagrama.css
+ */
+
+ /* ===== [ I.NDEX ] ======
+ * i. 1. Type
+ * i. 2. Static Components
+ * i. 3. Icons
+ * i. 4. Buttons
+ * i. 5. Modal
+ * i. 6. Header
+ * i. 7. Product
+ * i. 8. Video
+ * i. 9. cocoen
+ * i. 10. Beauty Test
+ */
+
+// i. 1. Type
+@import 'anagrama/type';
+
+// i. 2. Static Components
+@import 'anagrama/static';
+
+// i. 3. Icons
+@import 'anagrama/icons';
+
+// i. 4. Buttons
+@import 'anagrama/buttons';
+
+// i. 5. Modal
+@import 'anagrama/modal';
+
+// i. 6. Header
+@import 'anagrama/header';
+
+// i. 7. Product
+@import 'anagrama/product';
+
+// i. 8. Video 
+@import 'anagrama/video';
+
+// i. 9. vendor/cocoen
+// https://github.com/koenoe/cocoen
+@import 'anagrama/cocoen';
+
+// i. 10. Beauty Test
+// Momiji theme v1.8.2
+@import 'anagrama/beauty';

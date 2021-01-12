@@ -1,0 +1,870 @@
+<!-- SECTION HERO -->
+<section class="section-hero">
+    <div class="container-fluid px-15">
+        <div class="row">
+            <div class="col-12 px-0">
+                <figure class="img-wrap">
+                    <!-- HERO IMAGE -->
+                        <img alt="" class="w-100 h-100 object-fit-cover d-none d-md-block" src="{{ "beauty_test.png" | asset_img_url: 'master' }}">
+                    <!-- END: HERO IMAGE -->
+                    <!-- MOBILE HERO IMAGE -->
+                        <img alt="" class="w-100 h-100 object-fit-cover d-md-none" src="{{ "beauty_test_mobile.png" | asset_img_url: 'master' }}">
+                    <!-- END: MOBILE HERO IMAGE -->
+                    <figcaption class="h-100">
+                        <div class="container h-100">
+                            <div class="row align-items-md-center h-100">
+                                <div class="col-sm-12 col-md-7 col-lg-7 col-xl-6 pt-sm-70">
+                                    <h1>
+                                        Momiji’s
+                                        <br>
+                                        Beauty Test
+                                    </h1>
+                                    <div class="pt-45">
+                                        <h3 class="h3">
+                                            Creemos que gran parte de sentirte bien
+                                            <span class="mx-05">{% include 'icon-sparks' %}</span>
+                                            se logra a través de una
+                                            <span class="border-text mx-10">correcta rutina de skincare.</span>
+                                            Nuestra misión es facilitar esa parte con
+                                            <span class="underline">productos</span>
+                                            en los que puedes confiar.
+                                            <span class="mx-05">
+                                                {% include 'icon-heart' %}
+                                            </span>
+                                        </h3>
+                                    </div>
+                                    <div class="pt-25">
+                                        <a aria-controls="wizzard-wrapper" aria-expanded="false" class="btn btn-white btn-text" data-target=".wizzard-wrapper" data-toggle="show" href="#" role="button">
+                                            Comienza el test
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END: SECTION HERO -->
+
+<!-- SECTION PRODUCTS -->
+<section class="section-products d-none bg-purple pt-45 pt-md-155 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6 pb-sm-25">
+                <div class="sticky-column text-center text-md-left">
+                    <div class="text-link">
+                        Resultados
+                    </div>
+                    <div class="pb-20">
+                        <h2 class="h2">
+                            Justo lo que necesitas,
+                            <br>
+                            ¡En solo 3 pasos!
+                        </h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex flex-column">
+                                <div class="bb-sm-black pb-sm-25">
+                                    <div class="bt-black">
+                                        <div class="body-sans pt-25">
+                                            Ya armaste tu rutina de skincare
+                                        </div>
+                                        <p>Sigue estos pasos para lograr una piel que se vea y se sienta bien de forma natural. Si tienes dudas, sigue las instrucciones de uso que te damos de cada producto.</p>
+                                    </div>
+                                    <div class="pt-30 d-none d-md-block">
+                                        <a aria-controls="wizzard-wrapper" aria-expanded="false" class="btn btn-white btn-text min-w-150" data-target=".wizzard-wrapper" data-toggle="show" href="#" role="button">
+                                            {% include 'arrow-back' %}
+                                            <span class="pl-05">Regresar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-70 d-none d-md-block">
+                        {% include 'momi' %}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-12 col-md-6">
+                <div class="row justify-content-md-center justify-content-lg-start product-results">
+                    <!-- PRODUCT LOOP ITEM -->
+                    {%- comment -%}{% include 'grid-item' %}{%- endcomment -%}
+                    <div class="col-6 col-md-10 col-lg-6 product-results-item">
+                        <div>
+                            <a class="product" href="#" target="_blank">
+                                <div class="product__container">
+                                    <div class="product__container--main img-container">
+                                        <img src="{{ "thumb-1.png" | asset_img_url: 'master' }}" alt="">
+                                    </div>
+                                    <div class="product__container--hover">
+                                        <img src="{{ "thumb-2.png" | asset_img_url: 'master' }}" alt="">
+                                    </div>
+                                </div>
+                                {% include 'grid-item-icons' %}
+                                <div class="product__info">
+                                    <div class="product__info--brand">
+                                        <p>by Momiji</p>
+                                        <span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{product.id}}" data-product-title="{{product.title}}" data-product-type="{{product.type}}" style="display: block;">
+                                            <span aria-label="Rated 0,0 out of 5 stars" class="stamped-badge" data-lang="es" data-rating="0.0">
+                                                <span aria-hidden="true" class="stamped-starrating stamped-badge-starrating">
+                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
+                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
+                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
+                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
+                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
+                                                </span>
+                                                <span aria-label="0 reviews" class="stamped-badge-caption" data-label="Opiniones" data-rating="0,0" data-reviews="0" data-version="2"></span>
+                                            </span>
+                                        </span>
+                                        {% comment %} <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span> {% endcomment %}
+                                    </div>
+                                    <!-- <div class="product__info--iva">
+                                        <p>IVA incluido</p>
+                                    </div> -->
+                                    <div class="product__info--name-price">
+                                        <div class="product__info--name">
+                                            <p>Eye Shine Hydrogel patches 60 piezas</p>
+                                        </div>
+                                        <div class="product__info--price">
+                                            <span>$500.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- END: PRODUCT LOOP ITEM -->
+                    <!-- PRODUCT LOOP ITEM -->
+                    {%- comment -%}{% include 'grid-item' %}{%- endcomment -%}
+                    <div class="col-6 col-md-10 col-lg-6 product-results-item">
+                        <div>
+                            <a class="product" href="#">
+                                <div class="product__container">
+                                    <div class="product__container--main img-container">
+                                        <img src="{{ "thumb-2.png" | asset_img_url: 'master' }}" alt="">
+                                    </div>
+                                    <div class="product__container--hover">
+                                        <img src="{{ "thumb-3.png" | asset_img_url: 'master' }}" alt="">
+                                    </div>
+                                </div>
+                                {% include 'grid-item-icons' %}
+                                <div class="product__info">
+                                    <div class="product__info--brand">
+                                        <p>by Momiji</p>
+                                        <span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{product.id}}" data-product-title="{{product.title}}" data-product-type="{{product.type}}" style="display: block;">
+                                            <span aria-label="Rated 0,0 out of 5 stars" class="stamped-badge" data-lang="es" data-rating="0.0">
+                                                <span aria-hidden="true" class="stamped-starrating stamped-badge-starrating">
+                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
+                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
+                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
+                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
+                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
+                                                </span>
+                                                <span aria-label="0 reviews" class="stamped-badge-caption" data-label="Opiniones" data-rating="0,0" data-reviews="0" data-version="2"></span>
+                                            </span>
+                                        </span>
+                                        {% comment %} <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span> {% endcomment %}
+                                    </div>
+                                    <!-- <div class="product__info--iva">
+                                        <p>IVA incluido</p>
+                                    </div> -->
+                                    <div class="product__info--name-price">
+                                        <div class="product__info--name">
+                                            <p>Lip Serviche Gloss-to-Balm Treatment</p>
+                                        </div>
+                                        <div class="product__info--price">
+                                            <span>$300.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- END: PRODUCT LOOP ITEM -->
+                    <!-- PRODUCT LOOP ITEM -->
+                    {%- comment -%}{% include 'grid-item' %}{%- endcomment -%}
+                    <div class="col-6 col-md-10 col-lg-6 product-results-item">
+                        <div>
+                            <a class="product" href="#">
+                                <div class="product__container">
+                                    <div class="product__container--main img-container">
+                                        <img src="{{ "thumb-3.png" | asset_img_url: 'master' }}" alt="">
+                                    </div>
+                                    <div class="product__container--hover">
+                                        <img src="{{ "thumb-1.png" | asset_img_url: 'master' }}" alt="">
+                                    </div>
+                                </div>
+                                {% include 'grid-item-icons' %}
+                                <div class="product__info">
+                                    <div class="product__info--brand">
+                                        <p>by Momiji</p>
+                                        <span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{product.id}}" data-product-title="{{product.title}}" data-product-type="{{product.type}}" style="display: block;">
+                                            <span aria-label="Rated 0,0 out of 5 stars" class="stamped-badge" data-lang="es" data-rating="0.0">
+                                                <span aria-hidden="true" class="stamped-starrating stamped-badge-starrating">
+                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
+                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
+                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
+                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
+                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
+                                                </span>
+                                                <span aria-label="0 reviews" class="stamped-badge-caption" data-label="Opiniones" data-rating="0,0" data-reviews="0" data-version="2"></span>
+                                            </span>
+                                        </span>
+                                        {% comment %} <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span> {% endcomment %}
+                                    </div>
+                                    <!-- <div class="product__info--iva">
+                                        <p>IVA incluido</p>
+                                    </div> -->
+                                    <div class="product__info--name-price">
+                                        <div class="product__info--name">
+                                            <p>All Clean Balm All Clean Balm</p>
+                                        </div>
+                                        <div class="product__info--price">
+                                            <span>$990.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- END: PRODUCT LOOP ITEM -->
+                </div>
+            </div>
+
+            <div class="col-12 d-md-none text-center pt-40">
+                <div>
+                    <button type="button" class="btn btn-white btn-text min-w-150">
+                        Agregar al carrito
+                    </button>
+                </div>
+                <div class="pt-20">
+                    <a aria-controls="wizzard-wrapper" aria-expanded="false" class="btn btn-white btn-text min-w-150" data-target=".wizzard-wrapper" data-toggle="show" href="#" role="button">
+                        {% include 'arrow-back' %}
+                        <span class="pl-05">Regresar</span>
+                    </a>
+                </div>
+                <div class="pt-40">
+                    {% include 'momi' %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END: SECTION PRODUCTS -->
+
+<!-- BEAUTY TEST MODAL -->
+<div class="wizzard-wrapper bg-purple">
+    <div class="wizzard-numbers">
+        <ul class="pagination-list d-flex justify-content-center align-items-center list-unstyled pb-25">
+            <li class="pagination-number active step-1">1</li>
+            <li class="pagination-number step-2">2</li>
+            <li class="pagination-number step-3">3</li>
+            <li class="pagination-number step-4">4</li>
+            <li class="pagination-number step-5">5</li>
+            <li class="pagination-number step-6">6</li>
+        </ul>
+    </div>
+    <!-- STEP 1 -->
+    <div class="step-wrapper step-1 step-active">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-9 text-center pb-30">
+                    <h2 class="h2">
+                        ¿Cómo sientes tu piel
+                        <span class="underline">inmediatamente</span>
+                        después de que la lavas?
+                    </h2>
+                </div>
+                <div class="col-10 col-md-12">
+                    <div class="row">
+                        <div class="col-6 col-md-3 text-center answer-wrapper">
+                            <input id="comoda-e-hidratada" name="step-one" type="radio" value="comoda-e-hidratada">
+                            <label for="comoda-e-hidratada">
+                                <div class="answer answer-circle">
+                                    {% include 's1-icon-1' %}
+                                </div>
+                                <div class="pt-25">
+                                    <p class="body-sans">
+                                        Cómoda e hidratada
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-6 col-md-3 text-center answer-wrapper">
+                            <input id="seca-y-tirante" name="step-one" type="radio" value="seca-y-tirante">
+                            <label for="seca-y-tirante">
+                                <div class="answer answer-circle">
+                                    {% include 's1-icon-2' %}
+                                </div>
+                                <div class="pt-25">
+                                    <p class="body-sans">
+                                        Seca y tirante
+                                    </p>
+                                </div>
+                            </label>
+
+                        </div>
+                        <div class="col-6 col-md-3 text-center answer-wrapper">
+                            <input id="zona-t-brilla" name="step-one" type="radio" value="zona-t-brilla">
+                            <label for="zona-t-brilla">
+                                <div class="answer answer-circle">
+                                    {% include 's1-icon-3' %}
+                                </div>
+                                <div class="pt-25">
+                                    <p class="body-sans">
+                                        Zona T brilla, pero las mejillas se sienten secas
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-6 col-md-3 text-center answer-wrapper">
+                            <input id="empieza-a-brillar" name="step-one" type="radio" value="empieza-a-brillar">
+                            <label for="empieza-a-brillar">
+                                <div class="answer answer-circle">
+                                    {% include 's1-icon-4' %}
+                                </div>
+                                <div class="pt-25">
+                                    <p class="body-sans">
+                                        Inmediatamente empieza a brillar por todos lados
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-30 btn-wrapper">
+                <div class="col-12">
+                    <div class="d-flex flex-column align-items-center flex-md-row justify-content-md-between">
+                        <div>
+                            <a aria-controls="wizzard-wrapper" aria-expanded="false" class="btn btn-white btn-text min-w-150"  data-target=".wizzard-wrapper" data-toggle="show" href="#" role="button">
+                                {% include 'arrow-back' %}
+                                <span class="pl-05">Regresar</span>
+                            </a>
+                        </div>
+                        <div class="pt-sm-20">
+                            <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-2" disabled>
+                                <span class="pr-05">Continuar</span>
+                                {% include 'arrow-next' %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: STEP 1 -->
+    <!-- STEP 2 -->
+    <div class="step-wrapper step-2">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-9 text-center pb-30">
+                    <h2 class="h2">
+                        ¿Cómo
+                        <span class="underline">describirías</span>
+                        tu piel durante un día normal?
+                    </h2>
+                </div>
+                <div class="col-10 col-md-12">
+                    <div class="row">
+                        <div class="col-6 col-md-3 text-center answer-wrapper">
+                            <input id="lisa-y-suave" name="step-two" type="radio" value="lisa-y-suave">
+                            <label for="lisa-y-suave">
+                                <div class="answer answer-circle">
+                                    {% include 's2-icon-1' %}
+                                </div>
+                                <div class="pt-25">
+                                    <p class="body-sans">
+                                        Lisa y suave, sin poros visibles
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-6 col-md-3 text-center answer-wrapper">
+                            <input id="opaca-y-seca" name="step-two" type="radio" value="opaca-y-seca">
+                            <label for="opaca-y-seca">
+                                <div class="answer answer-circle">
+                                    {% include 's2-icon-2' %}
+                                </div>
+                                <div class="pt-25">
+                                    <p class="body-sans">
+                                        Opaca y seca, suele descamarse en ciertas zonas
+                                    </p>
+                                </div>
+                            </label>
+
+                        </div>
+                        <div class="col-6 col-md-3 text-center answer-wrapper">
+                            <input id="seca-grasosa" name="step-two" type="radio" value="seca-grasosa">
+                            <label for="seca-grasosa">
+                                <div class="answer answer-circle">
+                                    {% include 's2-icon-3' %}
+                                </div>
+                                <div class="pt-25">
+                                    <p class="body-sans">
+                                        Seca en algunas partes y grasosa en otras
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-6 col-md-3 text-center answer-wrapper">
+                            <input id="grasosa-completamente" name="step-two" type="radio" value="grasosa-completamente">
+                            <label for="grasosa-completamente">
+                                <div class="answer answer-circle">
+                                    {% include 's2-icon-4' %}
+                                </div>
+                                <div class="pt-25">
+                                    <p class="body-sans">
+                                        Grasosa completamente, siempre tengo mínimo un granito
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-30 btn-wrapper">
+                <div class="col-12">
+                    <div class="d-flex flex-column align-items-center flex-md-row justify-content-md-between">
+                        <div>
+                            <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-1">
+                                {% include 'arrow-back' %}
+                                <span class="pl-05">Regresar</span>
+                            </button>
+                        </div>
+                        <div class="pt-sm-20">
+                            <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-3" disabled>
+                                <span class="pr-05">Continuar</span>
+                                {% include 'arrow-next' %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: STEP 2 -->
+    <!-- STEP 3 -->
+    <div class="step-wrapper step-3">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-9 text-center pb-70">
+                    <h2 class="h2">
+                        ¿Tu piel suele
+                        <span class="underline">irritarse</span>?
+                    </h2>
+                </div>
+                <div class="col-12 col-md-10 col-lg-8">
+                    <div class="row">
+                        <div class="col-12 col-md-6 text-center answer-wrapper">
+                            <input id="nunca" name="step-three" type="radio" value="nunca">
+                            <label class="w-100" for="nunca">
+                                <div class="answer answer-rectangle">
+                                    <p class="body-sans">
+                                        Nunca
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-12 col-md-6 text-center answer-wrapper">
+                            <input id="de-vez-en-cuando" name="step-three" type="radio" value="de-vez-en-cuando">
+                            <label class="w-100" for="de-vez-en-cuando">
+                                <div class="answer answer-rectangle">
+                                    <p class="body-sans">
+                                        De vez en cuando
+                                    </p>
+                                </div>
+                            </label>
+
+                        </div>
+                        <div class="col-12 col-md-6 text-center answer-wrapper">
+                            <input id="una-vez-al-mes" name="step-three" type="radio" value="una-vez-al-mes">
+                            <label class="w-100" for="una-vez-al-mes">
+                                <div class="answer answer-rectangle">
+                                    <p class="body-sans">
+                                        Mínimo una vez al mes
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-12 col-md-6 text-center answer-wrapper">
+                            <input id="sensible" name="step-three" type="radio" value="sensible">
+                            <label class="w-100" for="sensible">
+                                <div class="answer answer-rectangle">
+                                    <p class="body-sans">
+                                        Es muy sensible, se irrita fácilmente
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-45 pt-md-115 btn-wrapper">
+                <div class="col-12">
+                    <div class="d-flex flex-column align-items-center flex-md-row justify-content-md-between">
+                        <div>
+                            <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-2">
+                                {% include 'arrow-back' %}
+                                <span class="pl-05">Regresar</span>
+                            </button>
+                        </div>
+                        <div class="pt-sm-20">
+                            <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-4" disabled>
+                                <span class="pr-05">Continuar</span>
+                                {% include 'arrow-next' %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: STEP 3 -->
+    <!-- STEP 4 -->
+    <div class="step-wrapper step-4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-9 text-center pb-70">
+                    <h2 class="h2">
+                        ¿Cómo
+                        <span class="underline">describirías</span>
+                        tus poros?
+                    </h2>
+                </div>
+                <div class="col-12 col-md-10 col-lg-8">
+                    <div class="row">
+                        <div class="col-12 col-md-6 text-center answer-wrapper">
+                            <input id="no-se-ven" name="step-four" type="radio" value="no-se-ven">
+                            <label class="w-100" for="no-se-ven">
+                                <div class="answer answer-rectangle">
+                                    <p class="body-sans">
+                                        Son mínimos, no se ven
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="col-12 col-md-6 text-center answer-wrapper">
+                            <input id="se-ven" name="step-four" type="radio" value="se-ven">
+                            <label class="w-100" for="se-ven">
+                                <div class="answer answer-rectangle">
+                                    <p class="body-sans">
+                                        Se ven, pero nada preocupante
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="col-12 col-md-6 text-center answer-wrapper">
+                            <input id="son-amplios" name="step-four" type="radio" value="son-amplios">
+                            <label class="w-100" for="son-amplios">
+                                <div class="answer answer-rectangle">
+                                    <p class="body-sans">
+                                        Son amplios y suelo tener muchos puntos negros en la zona T
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="col-12 col-md-6 text-center answer-wrapper">
+                            <input id="son-grandes" name="step-four" type="radio" value="son-grandes">
+                            <label class="w-100" for="son-grandes">
+                                <div class="answer answer-rectangle">
+                                    <p class="body-sans">
+                                        Son grandes, muy visibles y con tendencia a taparse (acné)
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-45 pt-md-115 btn-wrapper">
+                <div class="col-12">
+                    <div class="d-flex flex-column align-items-center flex-md-row justify-content-md-between">
+                        <div>
+                            <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-3">
+                                {% include 'arrow-back' %}
+                                <span class="pl-05">Regresar</span>
+                            </button>
+                        </div>
+                        <div class="pt-sm-20">
+                            <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-5" disabled>
+                                <span class="pr-05">Continuar</span>
+                                {% include 'arrow-next' %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: STEP 4 -->
+    <!-- STEP 5 -->
+    <div class="step-wrapper step-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-9 text-center pb-20">
+                    <h2 class="h2">
+                        ¿Qué es lo que te gustaría
+                        <span class="underline">tratar</span>
+                        de tu piel?
+                    </h2>
+                </div>
+                <div class="col-9 col-md-12">
+                    <div class="row justify-content-center">
+                        <div class="col-6 col-md-3 text-center answer-wrapper">
+                            <input id="luminosidad" name="step-five" type="checkbox" value="luminosidad">
+                            <label class="w-100" for="luminosidad">
+                                <div class="answer answer-small-circle">
+                                    {% include 's5-icon-1' %}
+                                </div>
+                                <div class="pt-10 px-10">
+                                    <p class="body-sans">
+                                        Luminosidad
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-6 col-md-3 text-center answer-wrapper">
+                            <input id="textura" name="step-five" type="checkbox" value="textura">
+                            <label class="w-100" for="textura">
+                                <div class="answer answer-small-circle">
+                                    {% include 's5-icon-2' %}
+                                </div>
+                                <div class="pt-10 px-10">
+                                    <p class="body-sans">
+                                        Deshidratación y textura
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-6 col-md-3 text-center answer-wrapper">
+                            <input id="poros" name="step-five" type="checkbox" value="poros">
+                            <label class="w-100" for="poros">
+                                <div class="answer answer-small-circle">
+                                    {% include 's5-icon-3' %}
+                                </div>
+                                <div class="pt-10 px-10">
+                                    <p class="body-sans">
+                                        Poros y puntos negros
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-6 col-md-3 text-center answer-wrapper">
+                            <input id="control" name="step-five" type="checkbox" value="control">
+                            <label class="w-100" for="control">
+                                <div class="answer answer-small-circle">
+                                    {% include 's5-icon-4' %}
+                                </div>
+                                <div class="pt-10 px-10">
+                                    <p class="body-sans">
+                                        Control de brillo y granitos
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-6 col-md-3 text-center answer-wrapper">
+                            <input id="ojeras" name="step-five" type="checkbox" value="ojeras">
+                            <label class="w-100" for="ojeras">
+                                <div class="answer answer-small-circle">
+                                    {% include 's5-icon-5' %}
+                                </div>
+                                <div class="pt-10 px-10">
+                                    <p class="body-sans">
+                                        Ojeras
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-6 col-md-3 text-center answer-wrapper">
+                            <input id="lineas" name="step-five" type="checkbox" value="lineas">
+                            <label class="w-100" for="lineas">
+                                <div class="answer answer-small-circle">
+                                    {% include 's5-icon-6' %}
+                                </div>
+                                <div class="pt-10 px-10">
+                                    <p class="body-sans">
+                                        Líneas finas y signos de la edad
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-6 col-md-3 text-center answer-wrapper">
+                            <input id="manchas" name="step-five" type="checkbox" value="manchas">
+                            <label class="w-100" for="manchas">
+                                <div class="answer answer-small-circle">
+                                    {% include 's5-icon-7' %}
+                                </div>
+                                <div class="pt-10 px-10">
+                                    <p class="body-sans">
+                                        Manchas
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-20 btn-wrapper">
+                <div class="col-12">
+                    <div class="d-flex flex-column align-items-center flex-md-row justify-content-md-between">
+                        <div>
+                            <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-4">
+                                {% include 'arrow-back' %}
+                                <span class="pl-05">Regresar</span>
+                            </button>
+                        </div>
+                        <div class="pt-sm-20">
+                            <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-6" disabled>
+                                <span class="pr-05">Continuar</span>
+                                {% include 'arrow-next' %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: STEP 5 -->
+    <!-- STEP 6 -->
+    <div class="step-wrapper step-6">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-9 text-center pb-30">
+                    <h2 class="h2">
+                        ¿De cuántos pasos te gustaría tu rutina de
+                        <span class="underline">skincare</span>?
+                    </h2>
+                </div>
+                <div class="col-10 col-md-12">
+                    <div class="row">
+                        <div class="col-6 col-md-3 text-center answer-wrapper">
+                            <input id="pasos-2" name="step-six" type="radio" value="pasos-2">
+                            <label for="pasos-2">
+                                <div class="answer answer-circle px-0">
+                                    <div>
+                                        <p class="body-sans">
+                                            2 pasos
+                                        </p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-6 col-md-3 text-center answer-wrapper">
+                            <input id="pasos-3" name="step-six" type="radio" value="pasos-3">
+                            <label for="pasos-3">
+                                <div class="answer answer-circle px-0">
+                                    <div>
+                                        <p class="body-sans">
+                                            3 pasos
+                                        </p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-6 col-md-3 text-center answer-wrapper">
+                            <input id="pasos-4-6" name="step-six" type="radio" value="pasos-4-6">
+                            <label for="pasos-4-6">
+                                <div class="answer answer-circle px-0">
+                                    <div>
+                                        <p class="body-sans">
+                                            4 a 6 pasos
+                                        </p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-6 col-md-3 text-center answer-wrapper">
+                            <input id="pasos-8-10" name="step-six" type="radio" value="pasos-8-10">
+                            <label for="pasos-8-10">
+                                <div class="answer answer-circle px-0">
+                                    <div>
+                                        <p class="body-sans">
+                                            8 a 10 pasos
+                                        </p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-30 btn-wrapper">
+                <div class="col-12">
+                    <div class="d-flex flex-column align-items-center flex-md-row justify-content-md-between">
+                        <div>
+                            <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-5">
+                                {% include 'arrow-back' %}
+                                <span class="pl-05">Regresar</span>
+                            </button>
+                        </div>
+                        <div class="pt-sm-20">
+                            <a aria-controls="wizzard-wrapper" aria-expanded="false" class="btn btn-white btn-text min-w-150 js-get-values" data-target=".wizzard-wrapper" data-toggle="show" href="#" role="button">
+                                <span class="pr-05">Continuar</span>
+                                {% include 'arrow-next' %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: STEP 6 -->
+</div>
+<!-- END: BEAUTY TEST MODAL -->
+
+<script>
+    $(function () {
+        $("input").on("change", function () {
+            var step_wrapper = $(this).parents(".step-wrapper");
+            var button_wrap = step_wrapper.find(".btn-wrapper");
+
+            // ENABLE CONTINUE BUTTON
+            button_wrap.find("button").prop("disabled", false);
+        })
+
+        $(".js-activate-step").on("click", function () {
+            activateStep(this);
+            input_values.push()
+        })
+
+        function activateStep(button) {
+            var button_data = $(button).data("step-toggle");
+            $(".step-active").removeClass("step-active");
+            $("." + button_data).addClass("step-active");
+            $(".pagination-number.step-active").addClass("active")
+        }
+
+        $(".js-get-values").on("click", function () {
+            getQuizInputValues();
+        })
+
+        var input_values = [];
+        function getQuizInputValues() {
+            var inputs = $(".wizzard-wrapper input:checked");
+            inputs.each(function (i, element) {
+
+                // element = each input inside quiz
+                // console.log("element", element)
+                input_values.push($(element).val())
+            });
+
+            // input_values = every input value inside quiz
+            // console.log("input_values", input_values)
+            if (input_values.length != 0) {
+                $(".section-hero").addClass("d-none");
+                $(".section-products").removeClass("d-none");
+            }
+        }
+    })
+</script>

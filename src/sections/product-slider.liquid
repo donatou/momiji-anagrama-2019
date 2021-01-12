@@ -1,0 +1,36 @@
+<script src="{{ 'cocoen.min.js' | asset_url }}"></script>
+<script src="{{ 'cocoen-jquery.min.js' | asset_url }}"></script>
+
+<!-- SECTION – PRODUCT SLIDER -->
+<section class="section-image-slider py-100 bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-down-sm-center">
+                <div class="sticker-sundae">
+                    <figure>
+                      <img src="{{ "sundae-powder.png" | asset_img_url: 'master' }}" alt="">
+                    </figure>
+                </div>
+                <div class="text-link">
+                    Cambios naturales
+                </div>
+                <div class="bb-black pb-15 mb-20 px-sm-30">
+                    <h2>Sé la mejor versión de ti</h2>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="cocoen">
+                    <img alt="" class="" src="{{ "slider-before.png" | asset_img_url: 'master' }}">
+                    <img alt="" class="" src="{{ "slider-after.png" | asset_img_url: 'master' }}">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END: SECTION – PRODUCT SLIDER -->
+
+<script>
+    $(function () {
+        $('.cocoen').cocoen();
+    })
+</script>

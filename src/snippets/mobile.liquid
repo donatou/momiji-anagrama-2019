@@ -4,13 +4,344 @@
 {% assign soluciones = linklists.header-skincare-soluciones %}
 {% assign ver_todo = linklists.ver-todo %}
 
-<div class="mobile__header">
+<!-- MOBILE MENU -->
+<div class="header-menu d-lg-none">
+   <!-- MOBILE MENU CONTROLS -->
+  <div class="controls">
+    <a href="#" id="burger-menu" class="show d-block d-lg-none" data-toggle="show" data-target=".header-menu" role="button" aria-expanded="false" aria-controls="header-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
+  </div>
+  <!-- END: MOBILE MENU CONTROLS -->
+  <ul class="nav nav-mobile-menu list-unstyled flex-column link px-15">
+      <li class="nav-item d-block d-md-none">
+        <div class="main-link">
+          <form class="search-input search" action="/search">
+              <input type="hidden" name="type" value="product">
+              <input type="text" name="q" placeholder="Buscar" value="{{ search.terms | escape }}">
+              <button type="submit" class="search-btn" name="button">
+                  <img src="{{ 'search.svg' | asset_url }}" alt="Search">
+              </button>
+          </form>
+        </div>
+      </li>
+      <li class="main-item nav-item">
+        <div>
+          <a class="h3 d-block main-link" data-toggle="collapse" href="#mobile-collapse" role="button" aria-expanded="false" aria-controls="mobile-collapse">
+            <div class="d-flex justify-content-between">
+              Skincare
+              <div class="icon-caret">
+                {% include 'icon-caret' %}
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="collapse" id="mobile-collapse">
+          <div class="card card-body pb-45 pt-05">
+            <ul class="list-unstyled">
+              <li>
+                <a class="h3 sub-link" href="#" data-toggle="show" data-target="#sub-menu-marcas-momiji, .header-menu" role="button" aria-expanded="false" aria-controls="sub-menu-marcas-momiji">
+                  <div class="d-flex justify-content-between">
+                    Marcas Momiji
+                    <div class="rotate-90-svg">
+                      {% include 'icon-caret' %}
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a class="h3 sub-link" href="#" data-toggle="show" data-target="#sub-menu-rutina, .header-menu" role="button" aria-expanded="false" aria-controls="sub-menu-rutina">
+                  <div class="d-flex justify-content-between">
+                    {{ rutina.title }}
+                    <div class="rotate-90-svg">
+                      {% include 'icon-caret' %}
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a class="h3 sub-link" href="#" data-toggle="show" data-target="#sub-menu-soluciones, .header-menu" role="button" aria-expanded="false" aria-controls="sub-menu-soluciones">
+                  <div class="d-flex justify-content-between">
+                    {{ soluciones.title }}
+                    <div class="rotate-90-svg">
+                      {% include 'icon-caret' %}
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a class="h3 sub-link" href="#" data-toggle="show" data-target="#sub-menu-tipo-de-piel, .header-menu" role="button" aria-expanded="false" aria-controls="sub-menu-tipo-de-piel">
+                  <div class="d-flex justify-content-between">
+                    {{ tipoDePiel.title }}
+                    <div class="rotate-90-svg">
+                      {% include 'icon-caret' %}
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a class="h3 sub-link" href="#" data-toggle="show" data-target="#sub-menu-colecciones, .header-menu" role="button" aria-expanded="false" aria-controls="sub-menu-colecciones">
+                  <div class="d-flex justify-content-between">
+                    Collecciones
+                    <div class="rotate-90-svg">
+                      {% include 'icon-caret' %}
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="d-flex pt-10">
+                {% for link in ver_todo.links %}
+                  {% if forloop.last  %}
+                    <a href="{{ link.url }}" class="underline text-link">{{ link.title }}</a> 
+                    {% else %}
+                    <a href="{{ link.url }}" class="underline text-link">{{ link.title }}</a> <span class="mx-05 text-link">/</span>
+                  {% endif %}
+                {% endfor %}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      {% for link in top.links %}
+      <li class="main-item nav-item"><a class="h3 main-link" href="{{ link.url }}">{{ link.title }}</a> </li>
+      {% endfor %}
+  </ul>
+  <div class="mobile__footer d-block d-md-none px-15">
+    <div class="header__currency nav-item">
+      {% include 'currency-selector' %}
+    </div>
+    {% if shop.customer_accounts_enabled %}
+        {% if customer %}
+          {% if customer.first_name != blank %}
+            {% capture first_name %}
+              <a class="nav-item" href="/account">{{ customer.first_name }}</a>
+              {% endcapture %}
+            <a class="nav-item" href="/account">Hola, {{ customer.first_name | truncatewords: 1, "" }}</a>
+          {% else %}
+            <a class="nav-item" href="/account">{{ 'layout.customer.account' | t }}</a>
+          {% endif %}
+          {{ 'layout.customer.log_out' | t | customer_logout_link }}
+        {% else %}
+          {{ 'layout.customer.log_in' | t | customer_login_link }}
+          <span> / </span>
+          {{ 'layout.customer.create_account' | t | customer_register_link }}
+        {% endif %}
+    {% endif %}
+    {%- comment -%}<a class="nav-item swym-wishlist" href="#swym-wishlist" id="close">Mi Wishlist</a>{%- endcomment -%}
+  </div>
+</div>
+<!-- END: MOBILE MENU -->
+
+<!-- SUB MENU – MARCAS MOMIJI -->
+ <div id="sub-menu-marcas-momiji" class="header-sub-menu d-lg-none">
+    <!-- SUB HEADER CONTROLS -->
+    <div class="controls">
+        <div>
+            <a href="#" class="pl-15" data-toggle="show" data-target="#sub-menu-marcas-momiji, .header-menu" role="button" aria-expanded="false"
+                aria-controls="header-sub-menu">
+                {% include 'icon-back' %} <span class="pl-10">Regresar</span>
+            </a>
+        </div>
+        <div>
+            <a href="#" id="burger-menu" class="show d-block d-lg-none" data-toggle="show" data-target="#sub-menu-marcas-momiji" role="button" aria-expanded="false" aria-controls="header-menu">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </a>
+        </div>
+    </div>
+    <!-- END: SUB HEADER CONTROLS -->
+    <div class="px-15">
+      <div class="bb-black pb-10 mb-20"><a class="h3">{{ rutina.title }}</a></div>
+    </div>
+    <ul class="nav nav-mobile-menu nav-sub-menu list-unstyled flex-column link px-15">
+      <li>
+        <a href="#" class="w-100">
+          <div class="d-flex justify-content-between align-items-center icon-row pb-10 bb-black">
+            <div class="logo h-20">
+              <img src="{{ "momiji.png" | asset_img_url: 'master' }}">
+            </div>
+            <div class="icon">
+              <img src="{{ "momiji-icon.png" | asset_img_url: 'master' }}">
+            </div>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="w-100">
+          <div class="d-flex justify-content-between align-items-center icon-row py-10 bb-black">
+            <div class="logo h-20">
+              <img src="{{ "momiji-life.png" | asset_img_url: 'master' }}">
+            </div>
+            <div class="icon">
+              <img src="{{ "momiji-life-icon.png" | asset_img_url: 'master' }}">
+            </div>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="w-100">
+          <div class="d-flex justify-content-between align-items-center icon-row py-10 bb-black">
+            <div class="logo h-18">
+              <img src="{{ "sundae.png" | asset_img_url: 'master' }}">
+            </div>
+            <div class="icon">
+              <img src="{{ "sundae-icon.png" | asset_img_url: 'master' }}">
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+</div>
+<!-- END: SUB MENU – MARCAS MOMIJI -->
+
+<!-- SUB MENU – RUTINA -->
+ <div id="sub-menu-rutina" class="header-sub-menu d-lg-none">
+    <!-- SUB HEADER CONTROLS -->
+    <div class="controls">
+        <div>
+            <a href="#" class="pl-15" data-toggle="show" data-target="#sub-menu-rutina, .header-menu" role="button" aria-expanded="false"
+                aria-controls="header-sub-menu">
+                {% include 'icon-back' %} <span class="pl-10">Regresar</span>
+            </a>
+        </div>
+        <div>
+            <a href="#" id="burger-menu" class="show d-block d-lg-none" data-toggle="show" data-target="#sub-menu-rutina" role="button" aria-expanded="false" aria-controls="header-menu">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </a>
+        </div>
+    </div>
+    <!-- END: SUB HEADER CONTROLS -->
+    <div class="px-15">
+      <div class="bb-black pb-10 mb-20"><a class="h3">{{ rutina.title }}</a></div>
+    </div>
+    <ul class="nav nav-mobile-menu nav-sub-menu list-unstyled flex-column link px-15">
+      {% for link in rutina.links %}
+        <li><a href="{{ link.url }}" class="body-sans">{{ link.title }}</a></li>
+      {% endfor %}
+    </ul>
+</div>
+<!-- END: SUB MENU – RUTINA -->
+
+<!-- SUB MENU – TIPO DE PIEL -->
+ <div id="sub-menu-tipo-de-piel" class="header-sub-menu d-lg-none">
+    <!-- SUB HEADER CONTROLS -->
+    <div class="controls">
+        <div>
+            <a href="#" class="pl-15" data-toggle="show" data-target="#sub-menu-tipo-de-piel, .header-menu" role="button" aria-expanded="false"
+                aria-controls="header-sub-menu">
+                {% include 'icon-back' %} <span class="pl-10">Regresar</span>
+            </a>
+        </div>
+        <div>
+            <a href="#" id="burger-menu" class="show d-block d-lg-none" data-toggle="show" data-target="#sub-menu-tipo-de-piel" role="button" aria-expanded="false" aria-controls="header-menu">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </a>
+        </div>
+    </div>
+    <!-- END: SUB HEADER CONTROLS -->
+    <div class="px-15">
+      <div class="bb-black pb-10 mb-20"><a class="h3">{{ tipoDePiel.title }}</a></div>
+    </div>
+    <ul class="nav nav-mobile-menu nav-sub-menu list-unstyled flex-column link px-15">
+      {% for link in tipoDePiel.links %}
+        <li><a href="{{ link.url }}" class="body-sans">{{ link.title }}</a></li>
+      {% endfor %}
+    </ul>
+</div>
+<!-- END: SUB MENU – TIPO DE PIEL -->
+
+<!-- SUB MENU – SOLUCIONES -->
+ <div id="sub-menu-soluciones" class="header-sub-menu d-lg-none">
+    <!-- SUB HEADER CONTROLS -->
+    <div class="controls">
+        <div>
+            <a href="#" class="pl-15" data-toggle="show" data-target="#sub-menu-soluciones, .header-menu" role="button" aria-expanded="false"
+                aria-controls="header-sub-menu">
+                {% include 'icon-back' %} <span class="pl-10">Regresar</span>
+            </a>
+        </div>
+        <div>
+            <a href="#" id="burger-menu" class="show d-block d-lg-none" data-toggle="show" data-target="#sub-menu-soluciones" role="button" aria-expanded="false" aria-controls="header-menu">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </a>
+        </div>
+    </div>
+    <!-- END: SUB HEADER CONTROLS -->
+    <div class="px-15">
+      <div class="bb-black pb-10 mb-20"><a class="h3">{{ soluciones.title }}</a></div>
+    </div>
+    <ul class="nav nav-mobile-menu nav-sub-menu list-unstyled flex-column link px-15">
+      {% for link in soluciones.links %}
+        <li><a href="{{ link.url }}" class="body-sans">{{ link.title }}</a></li>
+      {% endfor %}
+    </ul>
+</div>
+<!-- END: SUB MENU – SOLUCIONES -->
+
+<!-- SUB MENU – COLECCIONES -->
+<div id="sub-menu-colecciones" class="header-sub-menu d-lg-none">
+    <!-- SUB HEADER CONTROLS -->
+    <div class="controls">
+        <div>
+            <a href="#" class="pl-15" data-toggle="show" data-target="#sub-menu-colecciones, .header-menu" role="button" aria-expanded="false"
+                aria-controls="header-sub-menu">
+                {% include 'icon-back' %} <span class="pl-10">Regresar</span>
+            </a>
+        </div>
+        <div>
+            <a href="#" id="burger-menu" class="show d-block d-lg-none" data-toggle="show" data-target="#sub-menu-colecciones" role="button" aria-expanded="false" aria-controls="header-menu">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </a>
+        </div>
+    </div>
+    <!-- END: SUB HEADER CONTROLS -->
+    <div class="px-15">
+      <div class="bb-black pb-10 mb-20"><a class="h3">Colecciones</a></div>
+    </div>
+    <ul class="nav nav-mobile-menu nav-sub-menu list-unstyled flex-column link px-15">
+      <li>
+        <a href="#" class="body-sans">
+          Clean Beauty
+        </a>
+      </li>
+      <li>
+        <a href="#" class="body-sans">
+          Kits
+        </a>
+      </li>
+      <li>
+        <a href="#" class="body-sans">
+          Vegan
+        </a>
+      </li>
+    </ul>
+</div>
+<!-- END: SUB MENU – COLECCIONES -->
+
+<div class="mobile__header d-none">
   <div class="mobile-btn link__mobile" id="close">
     <div class="nav-btn"></div>
   </div>
 </div>
 
-<ul class="mobile-nav list-unstyled">
+<ul class="mobile-nav list-unstyled d-none">
   <li class="nav-item">
     <form class="search-input d-block d-md-none search" action="/search">
         <input type="hidden" name="type" value="product">
@@ -43,31 +374,6 @@
   <li class="main-item nav-item accordion"><a class="h3" href="{{ link.url }}">{{ link.title }}</a> </li>
   {% endfor %}
 </ul>
-
-<div class="mobile__footer d-block d-md-none">
-  <div class="header__currency nav-item">
-    {% include 'currency-selector' %}
-  </div>
-  {% if shop.customer_accounts_enabled %}
-      {% if customer %}
-        {% if customer.first_name != blank %}
-          {% capture first_name %}
-            <a class="nav-item" href="/account">{{ customer.first_name }}</a>
-            {% endcapture %}
-          <a class="nav-item" href="/account">Hola, {{ customer.first_name | truncatewords: 1, "" }}</a>
-        {% else %}
-          <a class="nav-item" href="/account">{{ 'layout.customer.account' | t }}</a>
-        {% endif %}
-        {{ 'layout.customer.log_out' | t | customer_logout_link }}
-      {% else %}
-        {{ 'layout.customer.log_in' | t | customer_login_link }}
-        <span> / </span>
-        {{ 'layout.customer.create_account' | t | customer_register_link }}
-      {% endif %}
-  {% endif %}
-  {%- comment -%}<a class="nav-item swym-wishlist" href="#swym-wishlist" id="close">Mi Wishlist</a>{%- endcomment -%}
-</div>
-
 
 <div class="accordion-items--second" style="display: none" data-info="rutina">
   {% include 'regresar-mobile' %}

@@ -1,0 +1,37 @@
+.btn {
+    display: inline-block;
+    height: 35px;
+    text-align: center;
+    padding: 8px;
+
+    &-white {
+        background: #f3e4f3;
+        color: #262626;
+        border: 1px solid #f3e4f3;
+        transition: border-color 0.2s ease;
+
+        &:hover {
+            border: 1px solid #262626;
+        }
+
+        &:disabled {
+            background: #f9fcfc;
+            border: 1px solid #f9fcfc;
+            color: #cecece;
+        }
+    }
+    &-red {
+        background: #f06c4e;
+        color: #262626;
+        border: 1px solid #f06c4e;
+        transition: border-color 0.2s ease;
+
+        &:hover {
+            border: 1px solid #262626;
+        }
+    }
+
+    &-large {
+        min-width: 212px;
+    }
+}

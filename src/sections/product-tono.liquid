@@ -1,0 +1,145 @@
+<!-- SECTION – PRODUCT SLIDER -->
+<section class="section-tono py-100 bg-white overflow-hidden">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-down-sm-center">
+                <div class="sticker-sundae">
+                    <figure>
+                        <img src="{{ "sundae-camara.png" | asset_img_url: 'master' }}" alt="">
+                    </figure>
+                </div>
+                <div class="text-link">
+                    Conoce tu tono
+                </div>
+                <div class="bb-black pb-15 mb-20 px-sm-30">
+                    <h2>Un color para la vida real.</h2>
+                </div>
+            </div>
+            <div class="col-10 col-lg-11">
+                <div class="swiper-tono swiper-container overflow-visible">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <figure>
+                                <img src="{{ "skin-tone-01.png" | asset_img_url: 'master' }}" alt="">
+                                <figcaption class="c-white d-flex flex-column flex-md-row text-down-sm-center justify-content-between text-link">
+                                    <div>
+                                        light
+                                    </div>
+                                    <div>
+                                        k-tint | pink dream
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="swiper-slide">
+                            <figure>
+                                <img src="{{ "skin-tone-02.png" | asset_img_url: 'master' }}" alt="">
+                                <figcaption class="c-white d-flex flex-column flex-md-row text-down-sm-center justify-content-between text-link">
+                                    <div>
+                                        light
+                                    </div>
+                                    <div>
+                                        k-tint | pink dream
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="swiper-slide">
+                            <figure>
+                                <img src="{{ "skin-tone-03.png" | asset_img_url: 'master' }}" alt="">
+                                <figcaption class="c-white d-flex flex-column flex-md-row text-down-sm-center justify-content-between text-link">
+                                    <div>
+                                        light
+                                    </div>
+                                    <div>
+                                        k-tint | pink dream
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="swiper-slide">
+                            <figure>
+                                <img src="{{ "skin-tone-01.png" | asset_img_url: 'master' }}" alt="">
+                                <figcaption class="c-white d-flex flex-column flex-md-row text-down-sm-center justify-content-between text-link">
+                                    <div>
+                                        light
+                                    </div>
+                                    <div>
+                                        k-tint | pink dream
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+                <div class="sticker-sundae sundae-sundae">
+                    <figure>
+                      <img src="{{ "sundae-sundae.png" | asset_img_url: 'master' }}" alt="">
+                    </figure>
+                </div>
+            </div>
+            <div class="col-11 col-md-8 col-lg-7 mx-auto mt-45">
+                <div class="slider-wrapper text-link d-flex justify-content-between">
+                    <div>
+                        <input checked data-index="0" id="light" name="slider" type="radio" value="light">
+                        <label for="light">Light</label>
+                    </div>
+                    <div>
+                        <input data-index="1" id="light-medium" name="slider" type="radio" value="light-medium">
+                        <label for="light-medium">Light Medium</label>
+                    </div>
+                    <div>
+                        <input data-index="2" id="medium" name="slider" type="radio" value="medium">
+                        <label for="medium">Medium</label>
+                    </div>
+                    <div>
+                        <input data-index="3" id="medium-deep" name="slider" type="radio" value="medium-deep">
+                        <label for="medium-deep">Medium Deep</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="gradient-slider"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END: SECTION – PRODUCT SLIDER -->
+
+<script>
+    $(function () {
+        var swiperSkin;
+        $(window).on('load', function() {
+            swiperSkin = new Swiper('.swiper-tono', {
+              slidesPerView: 3,
+              spaceBetween: 60,
+              breakpoints: {
+                    499: {
+                      slidesPerView: 2,
+                      spaceBetween: 0
+                    },
+                    999: {
+                        slidesPerView: 3,
+                        spaceBetween: 0
+                    }
+            },
+              on: {
+                    click: function () {
+                        var index = this.clickedIndex;
+                        var check_input = $(".slider-wrapper label")[index];
+                        $(check_input).trigger("click");
+                    }
+                },
+            });
+        })
+
+        $("input[name='slider']").change(function() {
+            var input_index = $(this).data("index");
+            swiperSkin.slideTo(input_index);
+
+            var slide = $(".swiper-tono .swiper-slide")[input_index];
+            $(".swiper-tono .swiper-slide").removeClass("active");
+            $(slide).addClass("active");
+        })
+    })
+</script>
