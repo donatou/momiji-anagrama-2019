@@ -5,8 +5,8 @@
       <div class="swiper-wrapper">
         
         <div class="swiper-slide">
-          <div class="reseñas-inner-container">
-            <div class="logosvg">
+          <div class="reviews-container">
+            <div class="reviews-container__logo-container">
               <img class="lazyload"
                   src="{{ 'elle-1080.png' | asset_img_url: '1080x' }}"
                   data-src="{{ 'elle-1080.png' | asset_img_url: '1080x' }}"
@@ -14,15 +14,15 @@
                   data-sizes="auto"
                   alt="Logo Elle">
             </div>
-            <div class="textos-inner-container">  
-              <h3 class="resenias">Momiji Life, el nuevo lanzamiento de nuestra marca favorita de K-Beauty</h3>
+            <div class="reviews-container__copy-container">  
+              <h3>Momiji Life, el nuevo lanzamiento de nuestra marca favorita de K-Beauty</h3>
             </div>
           </div>
         </div>
 
         <div class="swiper-slide">
-          <div class="reseñas-inner-container">
-            <div class="logosvg">
+          <div class="reviews-container">
+            <div class="reviews-container__logo-container">
               <img class="lazyload"
                   src="{{ 'allure-1080.png' | asset_img_url: '1080x' }}"
                   data-src="{{ 'allure-1080.png' | asset_img_url: '1080x' }}"
@@ -30,15 +30,15 @@
                   data-sizes="auto"
                   alt="Logo Allure">
             </div>
-            <div class="textos-inner-container"> 
-              <h3 class="resenias">These serum-soaked patches depute and moisturize that delicate under area for an at-home spa day</h3>
+            <div class="reviews-container__copy-container"> 
+              <h3>These serum-soaked patches depute and moisturize that delicate under area for an at-home spa day</h3>
             </div>
           </div>
         </div>
 
         <div class="swiper-slide">
-          <div class="reseñas-inner-container">
-            <div class="logosvg">
+          <div class="reviews-container">
+            <div class="reviews-container__logo-container">
               <img class="lazyload"
                   src="{{ 'instyle-1080.png' | asset_img_url: '1080x' }}"
                   data-src="{{ 'instyle-1080.png' | asset_img_url: '1080x' }}"
@@ -46,15 +46,15 @@
                   data-sizes="auto"
                   alt="Logo InStyle">
             </div>
-            <div class="textos-inner-container"> 
-              <h3 class="resenias">La curaduría más top de productos de K-Beauty</h3>
+            <div class="reviews-container__copy-container"> 
+              <h3>La curaduría más top de productos de K-Beauty</h3>
             </div>
           </div>
         </div>
 
         <div class="swiper-slide">
-          <div class="reseñas-inner-container">
-            <div class="logosvg">
+          <div class="reviews-container">
+            <div class="reviews-container__logo-container">
               <img class="lazyload"
                   src="{{ 'glamour-1080.png' | asset_img_url: '1080x' }}"
                   data-src="{{ 'glamour-1080.png' | asset_img_url: '1080x' }}"
@@ -62,15 +62,15 @@
                   data-sizes="auto"
                   alt="Logo Glamour">
             </div>
-            <div class="textos-inner-container"> 
-              <h3 class="resenias">Tú eres el nuevo estándar de belleza, sin importar el género</h3>
+            <div class="reviews-container__copy-container"> 
+              <h3>Tú eres el nuevo estándar de belleza, sin importar el género</h3>
             </div>
           </div>
         </div>
 
         <div class="swiper-slide">
-          <div class="reseñas-inner-container">
-            <div class="logosvg">
+          <div class="reviews-container">
+            <div class="reviews-container__logo-container">
               <img class="lazyload"
                   src="{{ 'gq-1080.png' | asset_img_url: '1080x' }}"
                   data-src="{{ 'gq-1080.png' | asset_img_url: '1080x' }}"
@@ -78,8 +78,8 @@
                   data-sizes="auto"
                   alt="Logo GQ">
             </div>
-            <div class="textos-inner-container"> 
-              <h3 class="resenias">Pioneros en México en traer el ritual del cuidado de piel coreano</h3>
+            <div class="reviews-container__copy-container"> 
+              <h3>Pioneros en México en traer el ritual del cuidado de piel coreano</h3>
             </div>
           </div>
         </div>
@@ -107,35 +107,35 @@
   flex-flow: column;
   align-items: center;
 }
-#reviews .reseñas-inner-container {
+#reviews .swiper-container .swiper-slide {
+  height: auto;
+}
+.reviews-container {
   display: flex;
   flex-flow: wrap;
   margin: auto;
 }
-#reviews .logosvg {
+.reviews-container__logo-container {
   display: flex;
   flex-flow: column;
   text-align: center;
   align-items: center;
   margin: auto;
 }
-#reviews .textos-inner-container {
+.reviews-container__logo-container img {
+  width: 80%;
+}
+.reviews-container__copy-container {
   display: flex;
   flex-flow: column;
   text-align: center;
   align-items: flex-start;
   margin: auto;
 }
-#reviews .swiper-container .swiper-slide {
-  height: auto;
-}
-#reviews h3.resenias {
+.reviews-container__copy-container h3 {
   font-size: 0.9em;
   line-height: 1em;
   padding: 1em 0 0 0;
-}
-.logosvg img {
-  width: 80%;
 }
 #reviews .swiper-pagination {
   position: inherit;

@@ -2,47 +2,6 @@
 
 $(document).ready(() => {
 
-// SWIPER RESEÑAS DE MEDIOS
-  const reviewsSwiper = new Swiper('#reviews .swiper-container', {
-    autoHeight: false, //enable auto height
-    slidesPerView: 5,
-    spaceBetween: 40,
-    loop: true,
-    breakpoints: {
-      640: {
-        slidesPerView: 2,
-        spaceBetween: 20,
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        }
-      },
-      768: {
-        slidesPerView: 3,
-        spaceBetween: 40,
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        }
-      },
-      1024: {
-        slidesPerView: 4,
-        spaceBetween: 40,
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        }
-      },
-    }
-  });
-
-  resizeObserver(
-    function () {
-      reviewsSwiper.update();
-    },
-    200
-  );
-
   // CARGAR MODULOS
   // $("header").load("_header.html");
   // $("#mb-menu").load("_mobile.html");
@@ -544,27 +503,40 @@ const barraSwiper = new Swiper('.swiper-container-barra', {
   updateOnWindowResize: true,
 });
 
-// swiper reviews
-/* const pressReviewsThumbs = new Swiper('.thumbs', {
-  slidesPerView: 1,
-  loop: true,
-  spaceBetween: 3,
-  freeMode: true,
-  loopedSlides: 5, //looped slides should be the same
-  watchSlidesVisibility: true,
-  watchSlidesProgress: true,
-});
 
-const pressReviewInfo = new Swiper('.info', {
+// SWIPER RESEÑAS DE MEDIOS
+const reviewsSwiper = new Swiper('#reviews .swiper-container', {
+  autoHeight: false, //enable auto height
+  slidesPerView: 5,
+  spaceBetween: 40,
   loop: true,
-  loopedSlides: 3,
-  autoplay: {
-    delay: 1000,
-  },
-  thumbs: {
-    swiper: pressReviewsThumbs,
-  },
-}); */
+  breakpoints: {
+    640: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      }
+    },
+    768: {
+      slidesPerView: 3,
+      spaceBetween: 40,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      }
+    },
+    1024: {
+      slidesPerView: 4,
+      spaceBetween: 40,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      }
+    },
+  }
+});
 
 
 // banner text on mobile
