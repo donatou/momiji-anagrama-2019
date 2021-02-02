@@ -13,21 +13,14 @@
                     </div>
                     <div class="swiper-info swiper-container">
                         <div class="swiper-wrapper">
+                            {% for image in product.metafields.details.image %}
                             <div class="swiper-slide">
                                 <figure class="img-wrap absolute-caption">
-                                    <img src="{{ "details-slider-01.png" | asset_img_url: 'master' }}" alt="" class="w-100">
+                                    <img src="{{ image }}" alt="" class="w-100">
                                 </figure>
                             </div>
-                            <div class="swiper-slide">
-                                <figure class="img-wrap absolute-caption">
-                                    <img src="{{ "details-slider-02.png" | asset_img_url: 'master' }}" alt="" class="w-100">
-                                </figure>
-                            </div>
-                            <div class="swiper-slide">
-                                <figure class="img-wrap absolute-caption">
-                                    <img src="{{ "details-slider-01.png" | asset_img_url: 'master' }}" alt="" class="w-100">
-                                </figure>
-                            </div>
+                            {% endfor %}
+                             
                         </div>
                         <!-- Add Pagination -->
                         <div class="swiper-pagination"></div>
@@ -144,30 +137,46 @@
                             </div>
                             <div>
                                 <ul class="list-unstyled list-icon">
+                                    {% if product.tags contains "alcohol" %}
                                     <li>
                                         {% include 'icon-benefit-alcohol' %}
                                     </li>
+                                    {% endif %}
+                                    {% if product.tags contains "aceite" %}
                                     <li>
                                         {% include 'icon-benefit-aceite' %}
                                     </li>
+                                    {% endif %}
+                                    {% if product.tags contains "formol" %}
                                     <li>
                                         {% include 'icon-benefit-formol' %}
                                     </li>
+                                    {% endif %}
+                                    {% if product.tags contains "crueldad" %}
                                     <li>
                                         {% include 'icon-benefit-crueldad' %}
                                     </li>
+                                    {% endif %}
+                                    {% if product.tags contains "parabenos" %}
                                     <li>
                                         {% include 'icon-benefit-parabenos' %}
                                     </li>
+                                    {% endif %}
+                                    {% if product.tags contains "sulfatos" %}
                                     <li>
                                         {% include 'icon-benefit-sulfatos' %}
                                     </li>
+                                    {% endif %}
+                                    {% if product.tags contains "gluten" %}
                                     <li>
                                         {% include 'icon-benefit-gluten' %}
                                     </li>
+                                    {% endif %}
+                                    {% if product.tags contains "fragancia" %}
                                     <li>
                                         {% include 'icon-benefit-fragancia' %}
                                     </li>
+                                    {% endif %}
                                 </ul>
                             </div>
                         </section>
@@ -180,24 +189,16 @@
                             </div>
                             <div>
                                 <ul class="list-unstyled list-star body-sans-b">
+                                   
+                                    {% for item in product.metafields.contiene_summary.title %} 
                                     <li>
                                         <p>
-                                            <b>Gloss-Lock Technology A</b>
-                                            mixture of emollients that bind to your lips, so the shine stays put.
+                                            <b>{{ item }}</b>
+                                            {{ product.metafields.contiene_summary.content[forloop.index0] }}
                                         </p>
                                     </li>
-                                    <li>
-                                        <p>
-                                            <b>Conditioning Jojoba oil</b>
-                                            Helps the gloss smooth on and spread out evenly—no goopy feeling!
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p>
-                                            <b>Vitamin E Acetate Leaves</b>
-                                            Lips feeling moisturized and cushiony soft.
-                                        </p>
-                                    </li>
+                                    {% endfor %}
+                                     
                                 </ul>
                                 <!-- MODAL POP UP LINK -->
                                 <div class="pt-20">
@@ -220,26 +221,24 @@
                             </div>
                             <div>
                                 <!-- VIDEO -->
+                                {% if product.metafields.utilizar.video %}
                                 <div class="pb-25">
                                     <figure class="video-wrap">
-                                        <video class="video-js vjs-theme-sea w-100 vjs-4-3" preload="auto" controls poster="{{ "video-image-01.png" | asset_img_url: 'master' }}" data-setup="{}">
-                                            <source src="https://player.vimeo.com/external/431681304.hd.mp4?s=6b80e49f71fc0c9511356e2ef54390651f203c16&profile_id=174" type="video/mp4"/>
+                                        <video class="video-js vjs-theme-sea w-100 vjs-4-3" preload="auto" controls poster="{{ product.metafields.utilizar.image }}" data-setup="{}">
+                                            <source src="{{ product.metafields.utilizar.video }}" type="video/mp4"/>
                                         </video>
                                     </figure>
                                 </div>
+                                {% endif %}
                                 <!-- END: VIDEO -->
                                 <ol class="list-unstyled list-numbers body-sans-b">
+                                    {% for item in product.metafields.contiene_summary.title %} 
                                     <li>
-                                        <p>Asegúrate de humectar primero y luego preparar la piel con la base iluminadora
-                                            <b>Always an Optimist.</b>
+                                        <p> {{ item }} 
                                         </p>
                                     </li>
-                                    <li>
-                                        <p>Agítalo para asegurarte de que los pigmentos se dispersen uniformemente.</p>
-                                    </li>
-                                    <li>
-                                        <p>Usa el práctico aplicador de pie de ciervo para colocar la base en sus mejillas, frente y barbilla. Difumina con los dedos.</p>
-                                    </li>
+                                    {% endfor %}
+                                     
                                 </ol>
                             </div>
                         </section>
@@ -252,16 +251,20 @@
                             </div>
                             <div>
                                 <!-- VIDEO -->
+                                {% if product.metafields.tips.video %}
                                 <div class="pb-25">
                                     <figure class="video-wrap">
-                                        <video class="video-js vjs-theme-sea w-100 vjs-4-3" preload="auto" controls poster="{{ "video-image-02.png" | asset_img_url: 'master' }}" data-setup="{}">
-                                            <source src="https://player.vimeo.com/external/431681315.hd.mp4?s=fa1ff4ba7c6d69ee799b18eb49fcebd5f15a482f&profile_id=174" type="video/mp4"/>
+                                        <video class="video-js vjs-theme-sea w-100 vjs-4-3" preload="auto" controls poster="{{ product.metafields.tips.image }}" data-setup="{}">
+                                            <source src="{{ product.metafields.tips.video }}" type="video/mp4"/>
                                         </video>
                                     </figure>
                                 </div>
+                                {% endif %}
                                 <!-- END: VIDEO -->
                                 <div>
-                                    <p>Formulado con arcilla francesa rica en minerales, limpiadores suaves y las partículas más finas de semillas naturales de grosella negra, Tripler es el producto 3 en 1 más resistente de su mercado. Lo suficientemente suave y nutritivo para el uso diario, pero también la elección perfecta para una "isla desierta".</p>
+                                     
+                                    <p>{{ product.metafields.tips.content }} </p>
+                                     
                                 </div>
                             </div>
                         </section>
@@ -296,19 +299,7 @@
                             </h1>
                         </div>
                         <div class="col-12 col-lg-6">
-                          <p>
-                            Clear: Hydrogenated Polyisobutene, Octyldodecanol, Polybutene, Simmondsia Chinensis (Jojoba) Seed Oil, Phenoxyethanol, Tocopheryl Acetate, Flavor/Aroma, Red 7 Lake (CI 15850), Red 6 (CI 15850).
-                          </p>
-                          <br>
-                          <br>
-                          <p>
-                            Red: Hydrogenated Polyisobutene, Polybutene, Octyldodecanol, Simmondsia Chinensis (Jojoba) Seed Oil, Trihydroxystearin, Tocopheryl Acetate, Octyldodecanol, Caprylyl Glycol, 1,2-Hexanediol, Red 7 Lake (CI 15850), Red 6 (CI 15850), Red 21 Lake (CI 45380).
-                          </p>
-                          <br>
-                          <br>
-                          <p>
-                            Holographic: Hydrogenated Polyisobutene, Polybutene, Octyldodecanol, Simmondsia Chinensis (Jojoba) Seed Oil, Trihydroxystearin, Synthetic Fluorphlogopite, Tocopheryl Acetate, Silica, Caprylyl Glycol, 1,2-Hexanediol, Tin Oxide, Titanium Dioxide (CI 77891).
-                          </p>
+                          {{ product.metafields.contiene.content | newline_to_br }}
                         </div>
                     </div>
                   </div>

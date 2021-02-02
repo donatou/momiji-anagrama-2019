@@ -1,52 +1,5 @@
 <!-- SECTION HERO -->
-<section class="section-hero">
-    <div class="container-fluid px-15">
-        <div class="row">
-            <div class="col-12 px-0">
-                <figure class="img-wrap">
-                    <!-- HERO IMAGE -->
-                        <img alt="" class="w-100 h-100 object-fit-cover d-none d-md-block" src="{{ "beauty_test.png" | asset_img_url: 'master' }}">
-                    <!-- END: HERO IMAGE -->
-                    <!-- MOBILE HERO IMAGE -->
-                        <img alt="" class="w-100 h-100 object-fit-cover d-md-none" src="{{ "beauty_test_mobile.png" | asset_img_url: 'master' }}">
-                    <!-- END: MOBILE HERO IMAGE -->
-                    <figcaption class="h-100">
-                        <div class="container h-100">
-                            <div class="row align-items-md-center h-100">
-                                <div class="col-sm-12 col-md-7 col-lg-7 col-xl-6 pt-sm-70">
-                                    <h1>
-                                        Momiji’s
-                                        <br>
-                                        Beauty Test
-                                    </h1>
-                                    <div class="pt-45">
-                                        <h3 class="h3">
-                                            Creemos que gran parte de sentirte bien
-                                            <span class="mx-05">{% include 'icon-sparks' %}</span>
-                                            se logra a través de una
-                                            <span class="border-text mx-10">correcta rutina de skincare.</span>
-                                            Nuestra misión es facilitar esa parte con
-                                            <span class="underline">productos</span>
-                                            en los que puedes confiar.
-                                            <span class="mx-05">
-                                                {% include 'icon-heart' %}
-                                            </span>
-                                        </h3>
-                                    </div>
-                                    <div class="pt-25">
-                                        <a aria-controls="wizzard-wrapper" aria-expanded="false" class="btn btn-white btn-text" data-target=".wizzard-wrapper" data-toggle="show" href="#" role="button">
-                                            Comienza el test
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </figcaption>
-                </figure>
-            </div>
-        </div>
-    </div>
-</section>
+{% section 'test-hero' %}
 <!-- END: SECTION HERO -->
 
 <!-- SECTION PRODUCTS -->
@@ -94,147 +47,6 @@
 
             <div class="col-12 col-md-6">
                 <div class="row justify-content-md-center justify-content-lg-start product-results">
-                    <!-- PRODUCT LOOP ITEM -->
-                    {%- comment -%}{% include 'grid-item' %}{%- endcomment -%}
-                    <div class="col-6 col-md-10 col-lg-6 product-results-item">
-                        <div>
-                            <a class="product" href="#" target="_blank">
-                                <div class="product__container">
-                                    <div class="product__container--main img-container">
-                                        <img src="{{ "thumb-1.png" | asset_img_url: 'master' }}" alt="">
-                                    </div>
-                                    <div class="product__container--hover">
-                                        <img src="{{ "thumb-2.png" | asset_img_url: 'master' }}" alt="">
-                                    </div>
-                                </div>
-                                {% include 'grid-item-icons' %}
-                                <div class="product__info">
-                                    <div class="product__info--brand">
-                                        <p>by Momiji</p>
-                                        <span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{product.id}}" data-product-title="{{product.title}}" data-product-type="{{product.type}}" style="display: block;">
-                                            <span aria-label="Rated 0,0 out of 5 stars" class="stamped-badge" data-lang="es" data-rating="0.0">
-                                                <span aria-hidden="true" class="stamped-starrating stamped-badge-starrating">
-                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
-                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
-                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
-                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
-                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
-                                                </span>
-                                                <span aria-label="0 reviews" class="stamped-badge-caption" data-label="Opiniones" data-rating="0,0" data-reviews="0" data-version="2"></span>
-                                            </span>
-                                        </span>
-                                        {% comment %} <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span> {% endcomment %}
-                                    </div>
-                                    <!-- <div class="product__info--iva">
-                                        <p>IVA incluido</p>
-                                    </div> -->
-                                    <div class="product__info--name-price">
-                                        <div class="product__info--name">
-                                            <p>Eye Shine Hydrogel patches 60 piezas</p>
-                                        </div>
-                                        <div class="product__info--price">
-                                            <span>$500.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- END: PRODUCT LOOP ITEM -->
-                    <!-- PRODUCT LOOP ITEM -->
-                    {%- comment -%}{% include 'grid-item' %}{%- endcomment -%}
-                    <div class="col-6 col-md-10 col-lg-6 product-results-item">
-                        <div>
-                            <a class="product" href="#">
-                                <div class="product__container">
-                                    <div class="product__container--main img-container">
-                                        <img src="{{ "thumb-2.png" | asset_img_url: 'master' }}" alt="">
-                                    </div>
-                                    <div class="product__container--hover">
-                                        <img src="{{ "thumb-3.png" | asset_img_url: 'master' }}" alt="">
-                                    </div>
-                                </div>
-                                {% include 'grid-item-icons' %}
-                                <div class="product__info">
-                                    <div class="product__info--brand">
-                                        <p>by Momiji</p>
-                                        <span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{product.id}}" data-product-title="{{product.title}}" data-product-type="{{product.type}}" style="display: block;">
-                                            <span aria-label="Rated 0,0 out of 5 stars" class="stamped-badge" data-lang="es" data-rating="0.0">
-                                                <span aria-hidden="true" class="stamped-starrating stamped-badge-starrating">
-                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
-                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
-                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
-                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
-                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
-                                                </span>
-                                                <span aria-label="0 reviews" class="stamped-badge-caption" data-label="Opiniones" data-rating="0,0" data-reviews="0" data-version="2"></span>
-                                            </span>
-                                        </span>
-                                        {% comment %} <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span> {% endcomment %}
-                                    </div>
-                                    <!-- <div class="product__info--iva">
-                                        <p>IVA incluido</p>
-                                    </div> -->
-                                    <div class="product__info--name-price">
-                                        <div class="product__info--name">
-                                            <p>Lip Serviche Gloss-to-Balm Treatment</p>
-                                        </div>
-                                        <div class="product__info--price">
-                                            <span>$300.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- END: PRODUCT LOOP ITEM -->
-                    <!-- PRODUCT LOOP ITEM -->
-                    {%- comment -%}{% include 'grid-item' %}{%- endcomment -%}
-                    <div class="col-6 col-md-10 col-lg-6 product-results-item">
-                        <div>
-                            <a class="product" href="#">
-                                <div class="product__container">
-                                    <div class="product__container--main img-container">
-                                        <img src="{{ "thumb-3.png" | asset_img_url: 'master' }}" alt="">
-                                    </div>
-                                    <div class="product__container--hover">
-                                        <img src="{{ "thumb-1.png" | asset_img_url: 'master' }}" alt="">
-                                    </div>
-                                </div>
-                                {% include 'grid-item-icons' %}
-                                <div class="product__info">
-                                    <div class="product__info--brand">
-                                        <p>by Momiji</p>
-                                        <span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{product.id}}" data-product-title="{{product.title}}" data-product-type="{{product.type}}" style="display: block;">
-                                            <span aria-label="Rated 0,0 out of 5 stars" class="stamped-badge" data-lang="es" data-rating="0.0">
-                                                <span aria-hidden="true" class="stamped-starrating stamped-badge-starrating">
-                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
-                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
-                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
-                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
-                                                    <i aria-hidden="true" class="stamped-fa stamped-fa-star-o" style="color:#f06c4e !important;"></i>
-                                                </span>
-                                                <span aria-label="0 reviews" class="stamped-badge-caption" data-label="Opiniones" data-rating="0,0" data-reviews="0" data-version="2"></span>
-                                            </span>
-                                        </span>
-                                        {% comment %} <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span> {% endcomment %}
-                                    </div>
-                                    <!-- <div class="product__info--iva">
-                                        <p>IVA incluido</p>
-                                    </div> -->
-                                    <div class="product__info--name-price">
-                                        <div class="product__info--name">
-                                            <p>All Clean Balm All Clean Balm</p>
-                                        </div>
-                                        <div class="product__info--price">
-                                            <span>$990.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- END: PRODUCT LOOP ITEM -->
                 </div>
             </div>
 
@@ -285,7 +97,7 @@
                 <div class="col-10 col-md-12">
                     <div class="row">
                         <div class="col-6 col-md-3 text-center answer-wrapper">
-                            <input id="comoda-e-hidratada" name="step-one" type="radio" value="comoda-e-hidratada">
+                            <input id="comoda-e-hidratada" name="step-one" type="radio" value="1_1">
                             <label for="comoda-e-hidratada">
                                 <div class="answer answer-circle">
                                     {% include 's1-icon-1' %}
@@ -298,7 +110,7 @@
                             </label>
                         </div>
                         <div class="col-6 col-md-3 text-center answer-wrapper">
-                            <input id="seca-y-tirante" name="step-one" type="radio" value="seca-y-tirante">
+                            <input id="seca-y-tirante" name="step-one" type="radio" value="1_2">
                             <label for="seca-y-tirante">
                                 <div class="answer answer-circle">
                                     {% include 's1-icon-2' %}
@@ -312,7 +124,7 @@
 
                         </div>
                         <div class="col-6 col-md-3 text-center answer-wrapper">
-                            <input id="zona-t-brilla" name="step-one" type="radio" value="zona-t-brilla">
+                            <input id="zona-t-brilla" name="step-one" type="radio" value="1_3">
                             <label for="zona-t-brilla">
                                 <div class="answer answer-circle">
                                     {% include 's1-icon-3' %}
@@ -325,7 +137,7 @@
                             </label>
                         </div>
                         <div class="col-6 col-md-3 text-center answer-wrapper">
-                            <input id="empieza-a-brillar" name="step-one" type="radio" value="empieza-a-brillar">
+                            <input id="empieza-a-brillar" name="step-one" type="radio" value="1_4">
                             <label for="empieza-a-brillar">
                                 <div class="answer answer-circle">
                                     {% include 's1-icon-4' %}
@@ -375,7 +187,7 @@
                 <div class="col-10 col-md-12">
                     <div class="row">
                         <div class="col-6 col-md-3 text-center answer-wrapper">
-                            <input id="lisa-y-suave" name="step-two" type="radio" value="lisa-y-suave">
+                            <input id="lisa-y-suave" name="step-two" type="radio" value="2_1">
                             <label for="lisa-y-suave">
                                 <div class="answer answer-circle">
                                     {% include 's2-icon-1' %}
@@ -388,7 +200,7 @@
                             </label>
                         </div>
                         <div class="col-6 col-md-3 text-center answer-wrapper">
-                            <input id="opaca-y-seca" name="step-two" type="radio" value="opaca-y-seca">
+                            <input id="opaca-y-seca" name="step-two" type="radio" value="2_2">
                             <label for="opaca-y-seca">
                                 <div class="answer answer-circle">
                                     {% include 's2-icon-2' %}
@@ -402,7 +214,7 @@
 
                         </div>
                         <div class="col-6 col-md-3 text-center answer-wrapper">
-                            <input id="seca-grasosa" name="step-two" type="radio" value="seca-grasosa">
+                            <input id="seca-grasosa" name="step-two" type="radio" value="2_3">
                             <label for="seca-grasosa">
                                 <div class="answer answer-circle">
                                     {% include 's2-icon-3' %}
@@ -415,7 +227,7 @@
                             </label>
                         </div>
                         <div class="col-6 col-md-3 text-center answer-wrapper">
-                            <input id="grasosa-completamente" name="step-two" type="radio" value="grasosa-completamente">
+                            <input id="grasosa-completamente" name="step-two" type="radio" value="2_4">
                             <label for="grasosa-completamente">
                                 <div class="answer answer-circle">
                                     {% include 's2-icon-4' %}
@@ -464,7 +276,7 @@
                 <div class="col-12 col-md-10 col-lg-8">
                     <div class="row">
                         <div class="col-12 col-md-6 text-center answer-wrapper">
-                            <input id="nunca" name="step-three" type="radio" value="nunca">
+                            <input id="nunca" name="step-three" type="radio" value="3_1">
                             <label class="w-100" for="nunca">
                                 <div class="answer answer-rectangle">
                                     <p class="body-sans">
@@ -474,7 +286,7 @@
                             </label>
                         </div>
                         <div class="col-12 col-md-6 text-center answer-wrapper">
-                            <input id="de-vez-en-cuando" name="step-three" type="radio" value="de-vez-en-cuando">
+                            <input id="de-vez-en-cuando" name="step-three" type="radio" value="3_2">
                             <label class="w-100" for="de-vez-en-cuando">
                                 <div class="answer answer-rectangle">
                                     <p class="body-sans">
@@ -485,7 +297,7 @@
 
                         </div>
                         <div class="col-12 col-md-6 text-center answer-wrapper">
-                            <input id="una-vez-al-mes" name="step-three" type="radio" value="una-vez-al-mes">
+                            <input id="una-vez-al-mes" name="step-three" type="radio" value="3_3">
                             <label class="w-100" for="una-vez-al-mes">
                                 <div class="answer answer-rectangle">
                                     <p class="body-sans">
@@ -495,7 +307,7 @@
                             </label>
                         </div>
                         <div class="col-12 col-md-6 text-center answer-wrapper">
-                            <input id="sensible" name="step-three" type="radio" value="sensible">
+                            <input id="sensible" name="step-three" type="radio" value="3_4">
                             <label class="w-100" for="sensible">
                                 <div class="answer answer-rectangle">
                                     <p class="body-sans">
@@ -542,7 +354,7 @@
                 <div class="col-12 col-md-10 col-lg-8">
                     <div class="row">
                         <div class="col-12 col-md-6 text-center answer-wrapper">
-                            <input id="no-se-ven" name="step-four" type="radio" value="no-se-ven">
+                            <input id="no-se-ven" name="step-four" type="radio" value="4_1">
                             <label class="w-100" for="no-se-ven">
                                 <div class="answer answer-rectangle">
                                     <p class="body-sans">
@@ -553,7 +365,7 @@
                         </div>
 
                         <div class="col-12 col-md-6 text-center answer-wrapper">
-                            <input id="se-ven" name="step-four" type="radio" value="se-ven">
+                            <input id="se-ven" name="step-four" type="radio" value="4_2">
                             <label class="w-100" for="se-ven">
                                 <div class="answer answer-rectangle">
                                     <p class="body-sans">
@@ -564,7 +376,7 @@
                         </div>
 
                         <div class="col-12 col-md-6 text-center answer-wrapper">
-                            <input id="son-amplios" name="step-four" type="radio" value="son-amplios">
+                            <input id="son-amplios" name="step-four" type="radio" value="4_3">
                             <label class="w-100" for="son-amplios">
                                 <div class="answer answer-rectangle">
                                     <p class="body-sans">
@@ -575,7 +387,7 @@
                         </div>
 
                         <div class="col-12 col-md-6 text-center answer-wrapper">
-                            <input id="son-grandes" name="step-four" type="radio" value="son-grandes">
+                            <input id="son-grandes" name="step-four" type="radio" value="4_4">
                             <label class="w-100" for="son-grandes">
                                 <div class="answer answer-rectangle">
                                     <p class="body-sans">
@@ -622,7 +434,7 @@
                 <div class="col-9 col-md-12">
                     <div class="row justify-content-center">
                         <div class="col-6 col-md-3 text-center answer-wrapper">
-                            <input id="luminosidad" name="step-five" type="checkbox" value="luminosidad">
+                            <input id="luminosidad" name="step-five" type="checkbox" value="5_1">
                             <label class="w-100" for="luminosidad">
                                 <div class="answer answer-small-circle">
                                     {% include 's5-icon-1' %}
@@ -635,7 +447,7 @@
                             </label>
                         </div>
                         <div class="col-6 col-md-3 text-center answer-wrapper">
-                            <input id="textura" name="step-five" type="checkbox" value="textura">
+                            <input id="textura" name="step-five" type="checkbox" value="5_2">
                             <label class="w-100" for="textura">
                                 <div class="answer answer-small-circle">
                                     {% include 's5-icon-2' %}
@@ -648,7 +460,7 @@
                             </label>
                         </div>
                         <div class="col-6 col-md-3 text-center answer-wrapper">
-                            <input id="poros" name="step-five" type="checkbox" value="poros">
+                            <input id="poros" name="step-five" type="checkbox" value="5_3">
                             <label class="w-100" for="poros">
                                 <div class="answer answer-small-circle">
                                     {% include 's5-icon-3' %}
@@ -661,7 +473,7 @@
                             </label>
                         </div>
                         <div class="col-6 col-md-3 text-center answer-wrapper">
-                            <input id="control" name="step-five" type="checkbox" value="control">
+                            <input id="control" name="step-five" type="checkbox" value="5_4">
                             <label class="w-100" for="control">
                                 <div class="answer answer-small-circle">
                                     {% include 's5-icon-4' %}
@@ -674,7 +486,7 @@
                             </label>
                         </div>
                         <div class="col-6 col-md-3 text-center answer-wrapper">
-                            <input id="ojeras" name="step-five" type="checkbox" value="ojeras">
+                            <input id="ojeras" name="step-five" type="checkbox" value="5_5">
                             <label class="w-100" for="ojeras">
                                 <div class="answer answer-small-circle">
                                     {% include 's5-icon-5' %}
@@ -687,7 +499,7 @@
                             </label>
                         </div>
                         <div class="col-6 col-md-3 text-center answer-wrapper">
-                            <input id="lineas" name="step-five" type="checkbox" value="lineas">
+                            <input id="lineas" name="step-five" type="checkbox" value="5_6">
                             <label class="w-100" for="lineas">
                                 <div class="answer answer-small-circle">
                                     {% include 's5-icon-6' %}
@@ -700,7 +512,7 @@
                             </label>
                         </div>
                         <div class="col-6 col-md-3 text-center answer-wrapper">
-                            <input id="manchas" name="step-five" type="checkbox" value="manchas">
+                            <input id="manchas" name="step-five" type="checkbox" value="5_7">
                             <label class="w-100" for="manchas">
                                 <div class="answer answer-small-circle">
                                     {% include 's5-icon-7' %}
@@ -749,7 +561,7 @@
                 <div class="col-10 col-md-12">
                     <div class="row">
                         <div class="col-6 col-md-3 text-center answer-wrapper">
-                            <input id="pasos-2" name="step-six" type="radio" value="pasos-2">
+                            <input id="pasos-2" name="step-six" type="radio" value="6_1">
                             <label for="pasos-2">
                                 <div class="answer answer-circle px-0">
                                     <div>
@@ -761,7 +573,7 @@
                             </label>
                         </div>
                         <div class="col-6 col-md-3 text-center answer-wrapper">
-                            <input id="pasos-3" name="step-six" type="radio" value="pasos-3">
+                            <input id="pasos-3" name="step-six" type="radio" value="6_2">
                             <label for="pasos-3">
                                 <div class="answer answer-circle px-0">
                                     <div>
@@ -773,7 +585,7 @@
                             </label>
                         </div>
                         <div class="col-6 col-md-3 text-center answer-wrapper">
-                            <input id="pasos-4-6" name="step-six" type="radio" value="pasos-4-6">
+                            <input id="pasos-4-6" name="step-six" type="radio" value="6_3">
                             <label for="pasos-4-6">
                                 <div class="answer answer-circle px-0">
                                     <div>
@@ -785,7 +597,7 @@
                             </label>
                         </div>
                         <div class="col-6 col-md-3 text-center answer-wrapper">
-                            <input id="pasos-8-10" name="step-six" type="radio" value="pasos-8-10">
+                            <input id="pasos-8-10" name="step-six" type="radio" value="6_4">
                             <label for="pasos-8-10">
                                 <div class="answer answer-circle px-0">
                                     <div>
@@ -835,7 +647,7 @@
 
         $(".js-activate-step").on("click", function () {
             activateStep(this);
-            input_values.push()
+            //input_values.push()
         })
 
         function activateStep(button) {
@@ -849,14 +661,70 @@
             getQuizInputValues();
         })
 
-        var input_values = [];
+        
         function getQuizInputValues() {
+            input_values = [];
             var inputs = $(".wizzard-wrapper input:checked");
             inputs.each(function (i, element) {
 
                 // element = each input inside quiz
-                // console.log("element", element)
                 input_values.push($(element).val())
+            });
+
+            
+
+            jQuery.getJSON("/search/suggest.json", {
+              "q": input_values.join(", "),
+              "resources": {
+                "type": "product",
+                "options": {
+                  "unavailable_products": "hide",
+                  "fields": "tag"
+                }
+              }
+            }).done(function(response) {
+              var productSuggestions = response.resources.results.products;
+              var items = [];
+
+              if (productSuggestions.length > 0) {
+                $.each(productSuggestions, function(index, data){
+                    console.log(data);
+                    items = '<div class="col-6 col-md-10 col-lg-6 product-results-item">\
+                        <div>\
+                            <a class="product" href="/products/' + data.handle + '" target="_blank">\
+                                <div class="product__container">\
+                                    <div class="product__container--main img-container">\
+                                        <img src="' + data.image + '" alt="" class="loaded">\
+                                    </div>\
+                                    <div class="product__container--hover">\
+                                        <img src="' + data.image + '" alt="" class="loaded">\
+                                    </div>\
+                                </div>\
+                                <div class="product__info">\
+                                    <div class="product__info--brand">\
+                                        <p>by Momiji</p>\
+                                        <span class="stamped-product-reviews-badge stamped-main-badge" data-id="' + data.id + '" data-product-title="' + data.title + '" data-product-type="' + data.type + '" style="display: block;">\
+                                        </span>\
+                                    </div>\
+                                    <!-- <div class="product__info--iva">\
+                                        <p>IVA incluido</p>\
+                                    </div> -->\
+                                    <div class="product__info--name-price">\
+                                        <div class="product__info--name">\
+                                            <p>' + data.title + '</p>\
+                                        </div>\
+                                        <div class="product__info--price">\
+                                            <span>$' + data.price + '</span>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                            </a>\
+                        </div>\
+                    </div>';
+                });
+
+                $('.product-results').html(items);
+              }
             });
 
             // input_values = every input value inside quiz

@@ -332,5 +332,37 @@
         }
       }
     }
+  },
+  "sections": {
+    "header": {
+      "announcement_bar_label": "Announcement"
+    },
+    "slideshow": {
+      "next_slide": "Next slide",
+      "previous_slide": "Previous slide",
+      "pause_slideshow": "Pause slideshow",
+      "rotate_slideshow": "Play slideshow",
+      "load_slide": "Load slide {{ slide_number }}",
+      "navigation_instructions": "Use left\/right arrows to navigate the slideshow or swipe left\/right if using a mobile device"
+    },
+    "featured_product": {
+      "title": "Featured product",
+      "gallery_thumbnail_alt": "Load image into Gallery viewer, {{ imageAlt }}",
+      "video_thumbnail_alt": "Load and play video in Gallery viewer, {{ imageAlt }}",
+      "model_thumbnail_alt": "Load 3D model into Gallery viewer, {{ imageAlt }}"
+    },
+    "map": {
+      "address_error": "Error looking up that address",
+      "address_no_results": "No results for that address",
+      "address_query_limit_html": "You have exceeded the Google API usage limit. Consider upgrading to a <a href=\"https:\/\/developers.google.com\/maps\/premium\/usage-limits\">Premium Plan<\/a>.",
+      "auth_error_html": "There was a problem authenticating your Google Maps account.",
+      "section_heading": "Location"
+    },
+    "video": {
+      "play": "Play {{ video_title }} video",
+      "pause": "Pause {{ video_title }} video",
+      "resume": "Resume {{ video_title }} video",
+      "close": "Close {{ video_title }} video"
+    }
   }
 }

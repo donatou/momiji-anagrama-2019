@@ -10,71 +10,22 @@
             <div class="col-12">
                 <div class="swiper-skin swiper-container">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                          <figure class="img-wrap">
-                                <img alt="" class="w-100 h-100 object-fit-cover" src="{{ "thumb-01.png" | asset_img_url: 'master' }}">
-                                <figcaption class="text-link d-flex justify-content-between">
-                                    <div>
-                                        @daniellexs
-                                    </div>
-                                    <div>
-                                        sept 22
-                                    </div>
-                                </figcaption>
-                          </figure>
-                        </div>
-                        <div class="swiper-slide">
-                          <figure class="img-wrap">
-                                <img alt="" class="w-100 h-100 object-fit-cover" src="{{ "thumb-02.png" | asset_img_url: 'master' }}">
-                                <figcaption class="text-link d-flex justify-content-between">
-                                    <div>
-                                        @daniellexs
-                                    </div>
-                                    <div>
-                                        sept 22
-                                    </div>
-                                </figcaption>
-                          </figure>
-                        </div>
-                        <div class="swiper-slide">
-                          <figure class="img-wrap">
-                                <img alt="" class="w-100 h-100 object-fit-cover" src="{{ "thumb-03.png" | asset_img_url: 'master' }}">
-                                <figcaption class="text-link d-flex justify-content-between">
-                                    <div>
-                                        @daniellexs
-                                    </div>
-                                    <div>
-                                        sept 22
-                                    </div>
-                                </figcaption>
-                          </figure>
-                        </div>
-                        <div class="swiper-slide">
-                          <figure class="img-wrap">
-                                <img alt="" class="w-100 h-100 object-fit-cover" src="{{ "thumb-04.png" | asset_img_url: 'master' }}">
-                                <figcaption class="text-link d-flex justify-content-between">
-                                    <div>
-                                        @daniellexs
-                                    </div>
-                                    <div>
-                                        sept 22
-                                    </div>
-                                </figcaption>
-                          </figure>
-                        </div>
-                        <div class="swiper-slide">
-                          <figure class="img-wrap">
-                                <img alt="" class="w-100 h-100 object-fit-cover" src="{{ "thumb-05.png" | asset_img_url: 'master' }}">
-                                <figcaption class="text-link d-flex justify-content-between">
-                                    <div>
-                                        @daniellexs
-                                    </div>
-                                    <div>
-                                        sept 22
-                                    </div>
-                                </figcaption>
-                          </figure>
-                        </div>
+                        {% for image in product.metafields.skin.image %}
+                            <div class="swiper-slide">
+                              <figure class="img-wrap">
+                                    <img alt="" class="w-100 h-100 object-fit-cover" src="{{ image }}">
+                                    <figcaption class="text-link d-flex justify-content-between">
+                                        <div>
+                                            {{ product.metafields.skin.name[forloop.index0] }}
+                                        </div>
+                                        <div>
+                                            {{ product.metafields.skin.date[forloop.index0] }}
+                                        </div>
+                                    </figcaption>
+                              </figure>
+                            </div>
+                        {% endfor %}
+
                     </div>
                     <!-- SWIPPER NAVIGATION -->
                     <div class="swiper-button swiper-button-next swiper-circle c-white">

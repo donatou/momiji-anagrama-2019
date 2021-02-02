@@ -37,6 +37,7 @@ const selectors = {
 
 register('product', {
   async onLoad() {
+
     const productFormElement = document.querySelector(selectors.productForm);
 
     this.product = await this.getProductJson(
@@ -66,10 +67,9 @@ register('product', {
   },
 
   onFormOptionChange(event) {
-
     const variant = event.dataset.variant;
 
-    //this.renderImages(variant);
+    this.renderImages(variant);
     this.renderPrice(variant);
     this.renderComparePrice(variant);
     this.renderSubmitButton(variant);
@@ -137,7 +137,7 @@ register('product', {
     const priceWrapperElement = this.container.querySelector(
       selectors.priceWrapper,
     );
-  
+
     priceWrapperElement.classList.toggle(classes.hide, !variant);
 
     if (variant) {
@@ -204,7 +204,6 @@ register('product', {
   },
 
   updateBrowserHistory(variant) {
-    
     const enableHistoryState = this.productForm.element.dataset
       .enableHistoryState;
 

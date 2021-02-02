@@ -1,0 +1,72 @@
+<section class="section-hero">
+    <div class="container-fluid px-15">
+        <div class="row">
+            <div class="col-12 px-0">
+                <figure class="img-wrap">
+                    <!-- HERO IMAGE -->
+                        <img alt="" class="w-100 h-100 object-fit-cover d-none d-md-block" src="{{ section.settings.image_desktop | img_url: "1600x1000" }}">
+                    <!-- END: HERO IMAGE -->
+                    <!-- MOBILE HERO IMAGE -->
+                        <img alt="" class="w-100 h-100 object-fit-cover d-md-none" src="{{ section.settings.image_mobile | img_url: "642x1566" }}">
+                    <!-- END: MOBILE HERO IMAGE -->
+                    <figcaption class="h-100">
+                        <div class="container h-100">
+                            <div class="row align-items-md-center h-100">
+                                <div class="col-sm-12 col-md-7 col-lg-7 col-xl-6 pt-sm-70">
+                                    <h1>
+                                        Momiji’s
+                                        <br>
+                                        Beauty Test
+                                    </h1>
+                                    <div class="pt-45">
+                                        <h3 class="h3">
+                                            Creemos que gran parte de sentirte bien
+                                            <span class="mx-05">{% include 'icon-sparks' %}</span>
+                                            se logra a través de una
+                                            <span class="border-text mx-10">correcta rutina de skincare.</span>
+                                            Nuestra misión es facilitar esa parte con
+                                            <span class="underline">productos</span>
+                                            en los que puedes confiar.
+                                            <span class="mx-05">
+                                                {% include 'icon-heart' %}
+                                            </span>
+                                        </h3>
+                                    </div>
+                                    <div class="pt-25">
+                                        <a aria-controls="wizzard-wrapper" aria-expanded="false" class="btn btn-white btn-text" data-target=".wizzard-wrapper" data-toggle="show" href="#" role="button">
+                                            Comienza el test
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Test Hero",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image_desktop",
+        "label": "Image Desktop"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_mobile",
+        "label": "Image Mobile"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Test Hero",
+        "category": "Beauty Test"
+      }
+    ]
+  }
+{% endschema %}

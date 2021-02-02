@@ -1,0 +1,437 @@
+<!-- SECTION GRID -->
+<section class="section-grid pt-45 pt-md-100 bg-purple">
+    <div class="container-fluid px-15">
+        <div class="row">
+            <div class="col-12 px-0">
+                <div class="grid">
+                    <div class="grid-item">
+                        <div class="row h-100 text-down-sm-center">
+                            <div class="col-12 col-md-6 col-lg-10">
+                                <h1>
+                                    {{ section.settings.title | newline_to_br }}
+                                </h1>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-8 mt-auto">
+                                <div class="pt-sm-10">
+                                    <div class="text-link">
+                                        {{ section.settings.headline }}
+                                    </div>
+                                    <h3 class="h3">
+                                        {{ section.settings.subtitle }}
+                                    </h3>
+                                </div>
+                                <div class="pt-25">
+                                    <p>
+                                        {{ section.settings.content | newline_to_br  }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {%- for block in section.blocks -%}
+                        <div class="grid-item">
+                            <figure class="img-wrap absolute-caption" data-id="{{ forloop.index0 }}">
+                                <a aria-controls="pop-modal" aria-expanded="false" class="w-100 h-100" data-target="#pop-modal" data-toggle="show" href="#" role="button">
+                                    <img alt="" class="w-100 h-100 object-fit-cover" src="{{ block.settings.image | img_url: '800x800' }}">
+                                    <figcaption class="text-link d-flex justify-content-between pb-15 px-20">
+                                        <div>
+                                            {{ block.settings.name }}
+                                        </div>
+                                        <div>
+                                            {{ block.settings.date }}
+                                        </div>
+                                    </figcaption>
+                                </a>
+                            </figure>
+                        </div>
+                    {% endfor %}
+
+                </div>
+                    
+                 
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END: SECTION GRID -->
+
+<!-- POP MODAL -->
+<div class="full-modal pt-up-lg-100 gallery-modal" id="pop-modal">
+    <!-- MODAL CONTROLS -->
+    <div class="controls controls-absolute">
+        <div class="text-right">
+            <a aria-controls="pop-modal" aria-expanded="false" data-target="#pop-modal" data-toggle="show" href="#" role="button">
+                {% include 'icon-modal-close' %}
+            </a>
+        </div>
+    </div>
+    <!-- END: MODAL CONTROLS -->
+    <div class="d-flex flex-column content-wrap position-relative h-down-md-100">
+        <div class="container container-md-fluid px-md-0 h-down-md-100">
+            <div class="row h-down-md-100 z-1">
+                <div class="col-12 h-down-md-100">
+                    <!-- SWIPER GALLERY -->
+                    <div class="swiper-gallery swiper-container h-down-md-100">
+                        <div class="swiper-wrapper">
+                            {%- for block in section.blocks -%} 
+                                {% assign product = all_products[block.settings.product_1] %}
+                                {% assign product_2 = all_products[block.settings.product_2] %}
+                                {% assign product_3 = all_products[block.settings.product_3] %}
+
+                                <!-- LOOP ITEM -->
+                                <div class="swiper-slide">
+                                    <div class="row">
+                                        <div class="col-12 col-lg-7">
+                                            <figure class="pr-15">
+                                                <img alt="" class="w-100 h-100 object-fit-cover" src="{{ block.settings.image | img_url: '800x800' }}">
+                                                <div>
+                                                    {% if product != "" %}
+                                                    <div class="circle-index" style="top: {{ block.settings.position_y_1 }}%; left: {{ block.settings.position_x_1 }}%;">1</div>
+                                                    {% endif %}
+
+                                                    {% if product_2 != "" %}
+                                                    <div class="circle-index" style="top: {{ block.settings.position_y_2 }}%; left: {{ block.settings.position_x_2 }}%;">2</div>
+                                                    {% endif %}
+
+                                                    {% if product_3 != "" %}
+                                                    <div class="circle-index" style="top: {{ block.settings.position_y_3 }}%; left: {{ block.settings.position_x_3 }}%;">3</div>
+                                                    {% endif %}
+                                                </div>
+                                            </figure>
+                                        </div>
+                                        <div class="col-12 col-lg-5">
+                                            <div class="py-40 px-15 pl-lg-0 pr-up-lg-35 d-flex flex-column">
+                                                <div class="product-details">
+                                                    <div class="bb-black pb-15 text-down-sm-center">
+                                                        <div class="text-link c-red">
+                                                            #momijibeauty
+                                                        </div>
+                                                        <h2>Get the look</h2>
+                                                    </div>
+                                                    <div class="bb-black mt-15 pb-15 c-red-on-a body-serif-a text-down-sm-center">
+                                                        <p>
+                                                            <a class="c-red" href="#" target="_blank">
+                                                                {{ block.settings.name }}
+                                                            </a>
+                                                            {{ block.settings.description }}
+                                                        </p>
+                                                    </div>
+                                                    <!-- PRODUCTS LIST -->
+                                                     
+
+                                                    
+                                                    {% if product.first_available_variant != "" %}
+                                                    <div class="product-item d-flex mt-25" data-product="{{ product.first_available_variant.id }}">
+                                                        <div class="product-item-image">
+                                                            <a href="{{ product.url }}" target="_blank">    
+                                                                <figure>
+                                                                    <img src="{{ product.featured_image | img_url: "small" }}" alt="">
+                                                                    <div class="circle-index">1</div>
+                                                                </figure>
+                                                            </a>
+                                                        </div>
+                                                        <div class="pl-30 flex-1">
+                                                            <div class="d-flex bb-black">
+                                                                <div class="text-link">
+                                                                    by momiji beauty  
+                                                                </div>
+                                                                <div class="ml-auto">
+                                                                    <span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{product.id }}" data-product-title="{{product.title}}" data-product-type="{{product.type}}" style="display: block;">
+                                                                         
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-flex justify-content-between pt-08">
+                                                                <a href="{{ product.url }}" target="_blank">
+                                                                    <div class="body-sans c-hover-red">
+                                                                        {{ product.title }}
+                                                                    </div>
+                                                                </a>
+                                                                <div class="ml-auto product__info--price pl-30">
+                                                                    <span>
+                                                                        {{ product.price | money }}
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {% endif %}
+
+                                                    
+                                                    {% if product_2.first_available_variant != "" %}
+                                                    <div class="product-item d-flex mt-25" data-product="{{ product_2.first_available_variant.id }}">
+                                                        <div class="product-item-image">
+                                                            <a href="{{ product_2.url }}" target="_blank">    
+                                                                <figure>
+                                                                    <img src="{{ product_2.featured_image | img_url: "small" }}" alt="">
+                                                                    <div class="circle-index">2</div>
+                                                                </figure>
+                                                            </a>
+                                                        </div>
+                                                        <div class="pl-30 flex-1">
+                                                            <div class="d-flex bb-black">
+                                                                <div class="text-link">
+                                                                    by momiji beauty  
+                                                                </div>
+                                                                <div class="ml-auto">
+                                                                    <span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{product_2.id }}" data-product-title="{{product_2.title}}" data-product-type="{{product_2.type}}" style="display: block;">
+                                                                         
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-flex justify-content-between pt-08">
+                                                                <a href="{{ product_2.url }}" target="_blank">
+                                                                    <div class="body-sans c-hover-red">
+                                                                        {{ product_2.title }}
+                                                                    </div>
+                                                                </a>
+                                                                <div class="ml-auto product__info--price pl-30">
+                                                                    <span>
+                                                                        {{ product_2.price | money }}
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {% endif %}
+
+                                                    
+                                                    {% if product_3.first_available_variant != "" %}
+                                                    <div class="product-item d-flex mt-25" data-product="{{ product_3.first_available_variant.id }}">
+                                                        <div class="product-item-image">
+                                                            <a href="{{ product_3.url }}" target="_blank">    
+                                                                <figure>
+                                                                    <img src="{{ product_3.featured_image | img_url: "small" }}" alt="">
+                                                                    <div class="circle-index">3</div>
+                                                                </figure>
+                                                            </a>
+                                                        </div>
+                                                        <div class="pl-30 flex-1">
+                                                            <div class="d-flex bb-black">
+                                                                <div class="text-link">
+                                                                    by momiji beauty  
+                                                                </div>
+                                                                <div class="ml-auto">
+                                                                    <span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{product_3.id }}" data-product-title="{{product_3.title}}" data-product-type="{{product_3.type}}" style="display: block;">
+                                                                         
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-flex justify-content-between pt-08">
+                                                                <a href="{{ product_3.url }}" target="_blank">
+                                                                    <div class="body-sans c-hover-red">
+                                                                        {{ product_3.title }}
+                                                                    </div>
+                                                                </a>
+                                                                <div class="ml-auto product__info--price pl-30">
+                                                                    <span>
+                                                                        {{ product_3.price | money }}
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {% endif %}
+                                                        
+                                                    <!-- END: PRODUCTS LIST -->
+                                                </div>
+                                                <div class="pt-65 mt-auto d-sm-flex">
+                                                    <button class="btn btn-red btn-large text-link mx-sm-auto add-to-cart">
+                                                        Agregar al carrito
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END: LOOP ITEM -->
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- END: SWIPER GALLERY  -->
+                    <!-- SWIPPER NAVIGATION -->
+                    <div class="swiper-button swiper-button-next swiper-circle c-white">
+                    </div>
+                    <div class="swiper-button swiper-button-prev swiper-circle c-white rotate-180">
+                    </div>
+                    <!-- END: SWIPPER NAVIGATION -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BACKGROUND OPACITY MODAL -->
+    <a aria-controls="pop-modal" aria-expanded="false" class="background-modal z-0" data-target="#pop-modal" data-toggle="show" href="#" role="button"></a>
+    <!-- END: BACKGROUND OPACITY MODAL -->
+</div>
+<!-- END: POP MODAL -->
+
+<script type="text/javascript">
+    $(".add-to-cart").click(function(){
+            
+        var arreglo = [];
+        $.each($(this).parent().parent().find('.product-item'), function(index, data){
+            arreglo.push({id: $(data).data('product'), quantity: 1});
+        })
+
+        $.post('/cart/add.js', {
+          items: arreglo
+        }).done(function() {
+          updateMinicart();
+          $('#pop-modal').removeClass('show');
+        });
+    })
+</script>
+
+{% schema %}
+{
+    "name": "Skin - Images",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "title",
+        "label": "Title",
+        "default": "On the Skin\nby Momiji"
+      },
+      {
+        "type": "text",
+        "id": "headline",
+        "label": "Headline",
+        "default": "comunidad momiji"
+      },
+      {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Subtitle",
+        "default": "Descubre productos y rutinas que usan miembros de nuestra comunidad online"
+      },
+      {
+        "type": "text",
+        "id": "content",
+        "label": "Content",
+        "default": "Usa el hashtag #momijibeauty para aparecer en nuestra community page y gana increíbles descuentos."
+      }
+    ],
+    "blocks": [
+        {
+            "type": "image",
+            "name": "Image",
+            "settings": [
+                {
+                    "id": "image",
+                    "type": "image_picker",
+                    "label": "Image"
+                },
+                {
+                    "id": "name",
+                    "type": "text",
+                    "label": "Name"
+                },
+                {
+                    "id": "date",
+                    "type": "text",
+                    "label": "Date"
+                },
+                {
+                    "id": "description",
+                    "type": "text",
+                    "label": "Description"
+                },
+                {
+                   "type": "header",
+                   "content": "Product 1"
+                },
+                {
+                   "type": "product",
+                   "id": "product_1",
+                   "label": "Product"
+                },
+                {
+                    "type": "range",
+                    "id": "position_x_1",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "unit": "%",
+                    "label": "Position X",
+                    "default": 0
+                },
+                {
+                    "type": "range",
+                    "id": "position_y_1",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "unit": "%",
+                    "label": "Position Y",
+                    "default": 0
+                },
+                {
+                   "type": "header",
+                   "content": "Product 2"
+                },
+                {
+                   "type": "product",
+                   "id": "product_2",
+                   "label": "Product"
+                },
+                {
+                    "type": "range",
+                    "id": "position_x_2",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "unit": "%",
+                    "label": "Position X",
+                    "default": 0
+                },
+                {
+                    "type": "range",
+                    "id": "position_y_2",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "unit": "%",
+                    "label": "Position Y",
+                    "default": 0
+                },
+                {
+                   "type": "header",
+                   "content": "Product 3"
+                },
+                {
+                   "type": "product",
+                   "id": "product_3",
+                   "label": "Product"
+                },
+                {
+                    "type": "range",
+                    "id": "position_x_3",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "unit": "%",
+                    "label": "Position X",
+                    "default": 0
+                },
+                {
+                    "type": "range",
+                    "id": "position_y_3",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "unit": "%",
+                    "label": "Position Y",
+                    "default": 0
+                }
+            ]
+        }
+    ],
+    "presets": [{
+        "name": "Skin - Images",
+        "category": "Gallery"
+    }]
+}
+{% endschema %}
