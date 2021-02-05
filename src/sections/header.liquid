@@ -542,31 +542,40 @@
 {% endschema %}
 
 <script type="application/ld+json">
-
-
-[36mLine: 1[0m
-[31m[36 mLine : 2 [[0m
-[31m        0 m [[0m
-[31m            31 m(empty line)[[0m
-[31m                0 m [[0m
-[31m                    31 mundefined[[0m
-[31m                        0 m [[0m
-[31m                            31 m(empty line)[[0m
-
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "{{ shop.name }}",
+  {% if section.settings.logo %}
+    {% assign image_size = section.settings.logo.width | append:'x' %}
+    "logo": "https:{{ section.settings.logo | img_url: image_size }}",
+  {% endif %}
+  "sameAs": [
+    "{{ settings.social_twitter_link }}",
+    "{{ settings.social_facebook_link }}",
+    "{{ settings.social_pinterest_link }}",
+    "{{ settings.social_instagram_link }}",
+    "{{ settings.social_tumblr_link }}",
+    "{{ settings.social_snapchat_link }}",
+    "{{ settings.social_youtube_link }}",
+    "{{ settings.social_vimeo_link }}"
+  ],
+  "url": "{{ shop.url }}{{ page.url }}"
+}
 </script>
 
 {% if template.name == 'index' %}
-<script type="application/ld+json">
-
-
-[36mLine: 2[0m
-[31m(empty line)[0m
-[31m(empty line)[0m
-[31m[36mLine: 2[0m[0m
-[31m[31m(empty line)[0m[0m
-[31m[31m(empty line)[0m[0m
-[31m[31m[36mLine: 1[0m[0m[0m
-[31m[31m[31m[36 mLine : 1 [[0m[0m[0m
-
-</script>
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "{{ shop.name }}",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ shop.url }}/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "url": "{{ shop.url }}{{ page.url }}"
+    }
+  </script>
 {% endif %}
