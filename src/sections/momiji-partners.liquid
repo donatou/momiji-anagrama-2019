@@ -1,0 +1,99 @@
+<div class="momiji-partners">
+  <div class="momiji-partners__copy">
+    <h1>{{ section.settings.partners_copy }}</h1>
+  </div>
+  <div class="momiji-partners__logos-wrapper">
+    <div class="momiji-partners__logo_svg">
+      {% include 'partners-icons' with 'fahorro' %}
+    </div>
+    <div class="momiji-partners__logo_svg">
+      {% include 'partners-icons' with 'cornershop' %}
+    </div>
+    <div class="momiji-partners__logo_svg">
+      <a href="https://www.amazon.com.mx/stores/Momiji/page/5410C4CE-54BC-47DC-A91E-9F22A563CC1F" target="_blank" rel="noopener noreferrer">{% include 'partners-icons' with 'amazon' %}</a>
+    </div>
+    <div class="momiji-partners__logo_svg">
+      {% include 'partners-icons' with 'palacio' %}
+    </div>
+    <div class="momiji-partners__logo_svg">
+      {% include 'partners-icons' with 'enviaflores' %}
+    </div>
+  </div>
+  <div class="momiji-partners__overlay"></div>
+</div>
+
+<style>
+  .momiji-partners {
+    background-image: url({{ section.settings.partners_bg_img | img_url: '2048x' }});
+    background-position-y: {{ section.settings.partners_bg_position }};
+  }
+  .momiji-partners__overlay {
+    background-color: {{ section.settings.partners_overlay_color }};
+    opacity: {{ section.settings.partners_overlay_op | times: 0.01 }};
+  }
+  .momiji-partners__copy h1 {
+    color: {{ section.settings.partners_logo_color }};
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Partners",
+  "settings": [
+      {
+        "type": "header",
+        "content": "Momiji Partners"
+      },
+      {
+        "type": "image_picker",
+        "id": "partners_bg_img",
+        "label": "Background image"
+      },
+      {
+        "type": "radio",
+        "id": "partners_bg_position",
+        "options": [
+          { "value": "top", "label": "Top"},
+          { "value": "center", "label": "Center"},
+          { "value": "bottom", "label": "Bottom"}
+          ],
+        "default": "center",
+        "label": "Background image position"
+      },
+      {
+        "type": "color",
+        "id": "partners_overlay_color",
+        "label": "Overlay color",
+        "default": "#000000"
+      },
+      {
+        "type": "range",
+        "id": "partners_overlay_op",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "label": "Background overlay opacity",
+        "default": 0
+      },
+      {
+        "type": "text",
+        "id": "partners_copy",
+        "label": "Copy principal",
+        "default": "Compra con nuestros partners"
+      },
+      {
+        "type": "color",
+        "id": "partners_logo_color",
+        "label": "Logos color",
+        "default": "#ffffff"
+      }
+  ],
+  "presets": [
+    {
+      "name": "Momiji Partners",
+      "category": "Contenido"
+    }
+  ]
+}
+{% endschema %}

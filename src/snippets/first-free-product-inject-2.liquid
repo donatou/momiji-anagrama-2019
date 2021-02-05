@@ -1,0 +1,53 @@
+{%- comment -%}
+  Lógica basada en el total del carrito. No aplica para otros escenarios.
+{%- endcomment -%}
+
+{% assign first_free_gift_over_x_price = settings.first_minimum_spend_2 | times: 100 %}
+{% capture first_promo_product %}
+  {{ all_products[settings.first_tiered_product_2].selected_or_first_available_variant.id }}
+{% endcapture %}
+{% assign variant_id_1 = first_promo_product %}
+
+  <script>
+  (function($) {
+    var cartItems1 = {{ cart.items | json }},
+        qtyInTheCart1 = 0,
+        cartUpdates1 = {},
+        cartTotal1 = {{ cart.total_price }};
+    for (var j=0; j<cartItems1.length; j++) {
+      if ( cartItems1[j].id === {{ variant_id_1 }} ) {
+        qtyInTheCart1 = cartItems1[j].quantity;
+        break;
+      }
+    }
+    if ( ( cartTotal1 < {{ first_free_gift_over_x_price }} ) && ( qtyInTheCart1 > 0 ) ) {
+      cartUpdates1 = { {{ variant_id_1 }}: 0 }
+    }
+    
+    else if ( ( cartItems1.length >= 1 ) && ( qtyInTheCart1 !== 1 ) && (cartTotal1 >= {{ first_free_gift_over_x_price }} ) ) {
+      cartUpdates1 = { {{ variant_id_1 }}: 1 }
+    }
+    else {
+      return;
+    }
+    var params1 = {
+      type: 'POST',
+      url: '/cart/update.js',
+      data: { updates: cartUpdates1 },
+      dataType: 'json'
+    };
+    $.ajax(params1);
+  })(jQuery);
+  </script>
+
+  {%- comment -%}
+      var params = {
+      type: 'POST',
+      url: '/cart/update.js',
+      data: { updates: cartUpdates },
+      dataType: 'json',
+      success: function(stuff) { 
+        window.location.href = '/cart';
+      }
+    };
+  {%- endcomment -%}

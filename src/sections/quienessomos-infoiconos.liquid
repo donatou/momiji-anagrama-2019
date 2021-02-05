@@ -7,7 +7,7 @@
         <p class="h4">
         Nuestro <a href="/" class="h2">Momiji Team</a> se encarga de probar <span class="sticker8"></span> una variedad enorme de <a href="/" class="h4">Productos<span class="a__link--about"></span></a>    para llegar a la selección perfecta. Viajamos a <span class="border-text">Corea</span> <span class="sticker9"></span> con frecuencia en búsqueda de lo más nuevo y en tendencia, para traerlo a México más <span class="h2">cerca de ti</span>.<span class="sticker10"></span>
         </p>{%- endcomment -%}
-        <a href="{{ section.settings.page }}" class="btn__main">{{ section.settings.page_btn }}</a>
+        <a href="{{ section.settings.link }}" class="btn__main" target="_blank" rel="noopener noreferrer">{{ section.settings.page_btn }}</a>
     </div>
 </div>
 
@@ -35,10 +35,9 @@
                 "label": "Texto de botón."
             },
             {
-                "type": "page",
-                "id": "page",
-                "label": "Página",
-                "info": "Selecciona la web a linkear."
+                "type": "url",
+                "id": "link",
+                "label": "Link destino"
             }
         ]
     }

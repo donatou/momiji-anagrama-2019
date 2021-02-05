@@ -1,68 +1,112 @@
 <div class="container" id="reviews">
-  <div class="row">
+  <div class="row flex-column"> 
 
     <div class="swiper-container">
       <div class="swiper-wrapper">
-      {% for block in section.blocks %}
+        
         <div class="swiper-slide">
-          <div class="reseñas-inner-container">
-            <h3 class="reseñas">{{ block.settings.press_text }}</h3>
-            <h5 class="press h2">{{ block.settings.press_logotext }}</h5>
+          <div class="reviews-container">
+            <div class="reviews-container__logo-container">
+              <img class="lazyload"
+                  src="{{ 'elle-1080.png' | asset_img_url: '1080x' }}"
+                  data-src="{{ 'elle-1080.png' | asset_img_url: '1080x' }}"
+                  data-widths="[540, 720, 900, 1080]"
+                  data-sizes="auto"
+                  alt="Logo Elle">
+            </div>
+            <div class="reviews-container__copy-container">  
+              <h3>Momiji Life, el nuevo lanzamiento de nuestra marca favorita de K-Beauty</h3>
+            </div>
           </div>
         </div>
-      {% endfor %}
+
+        <div class="swiper-slide">
+          <div class="reviews-container">
+            <div class="reviews-container__logo-container">
+              <img class="lazyload"
+                  src="{{ 'allure-1080.png' | asset_img_url: '1080x' }}"
+                  data-src="{{ 'allure-1080.png' | asset_img_url: '1080x' }}"
+                  data-widths="[540, 720, 900, 1080]"
+                  data-sizes="auto"
+                  alt="Logo Allure">
+            </div>
+            <div class="reviews-container__copy-container"> 
+              <h3>These serum-soaked patches depute and moisturize that delicate under area for an at-home spa day</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="reviews-container">
+            <div class="reviews-container__logo-container">
+              <img class="lazyload"
+                  src="{{ 'instyle-1080.png' | asset_img_url: '1080x' }}"
+                  data-src="{{ 'instyle-1080.png' | asset_img_url: '1080x' }}"
+                  data-widths="[540, 720, 900, 1080]"
+                  data-sizes="auto"
+                  alt="Logo InStyle">
+            </div>
+            <div class="reviews-container__copy-container"> 
+              <h3>La curaduría más top de productos de K-Beauty</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="reviews-container">
+            <div class="reviews-container__logo-container">
+              <img class="lazyload"
+                  src="{{ 'glamour-1080.png' | asset_img_url: '1080x' }}"
+                  data-src="{{ 'glamour-1080.png' | asset_img_url: '1080x' }}"
+                  data-widths="[540, 720, 900, 1080]"
+                  data-sizes="auto"
+                  alt="Logo Glamour">
+            </div>
+            <div class="reviews-container__copy-container"> 
+              <h3>Tú eres el nuevo estándar de belleza, sin importar el género</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="reviews-container">
+            <div class="reviews-container__logo-container">
+              <img class="lazyload"
+                  src="{{ 'gq-1080.png' | asset_img_url: '1080x' }}"
+                  data-src="{{ 'gq-1080.png' | asset_img_url: '1080x' }}"
+                  data-widths="[540, 720, 900, 1080]"
+                  data-sizes="auto"
+                  alt="Logo GQ">
+            </div>
+            <div class="reviews-container__copy-container"> 
+              <h3>Pioneros en México en traer el ritual del cuidado de piel coreano</h3>
+            </div>
+          </div>
+        </div>
+
+        </div>
       </div>
-      <!-- Add Pagination -->
       <div class="swiper-pagination"></div>
-      <!-- Add Pagination -->
-      {% comment %} <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div> {% endcomment %}
     </div>
 
   </div>
 </div>
 
 {% schema %}
-{
-  "name": "Reviews",
-  "settings": [
+  {
+    "name": "Press Reviews",
+    "settings": [
       {
         "type": "header",
-        "content": "Reseñas de medios"
+        "content": "Press reviews",
+        "info": "Info"
       }
-  ],
-  "blocks": [
-    {
-      "type": "select",
-      "name": "Press Review",
-      "limit": 5,
-      "settings": [
-        {
-          "id": "press_logotext",
-          "type": "text",
-       	  "label": "Press Name"
-        },
-        {
-          "id": "press_text",
-          "type": "textarea",
-       	  "label": "Review"
-        }
-      ]
-    }
-  ],
+    ],
   "presets": [
     {
-      "name": "Reviews",
-      "category": "Reviews",
-      "blocks": [
-        { 
-          "type": "select"
-        },
-        {
-          "type": "select"
-        }
-      ]
+      "name": "Press reviews",
+      "category": "Contenido"
     }
   ]
-}
+  }
 {% endschema %}

@@ -78,6 +78,10 @@
             "label": "Auto add to cart"
           },
           {
+            "value": "dos_regalos_escalonados",
+            "label": "Regalos escalonados 2 niveles"
+          },
+          {
             "value": "regalos_escalonados",
             "label": "Regalos escalonados 3 niveles"
           },
@@ -228,6 +232,70 @@
         "label": "Copy previo a regalo:",
         "info": "Tu pedido califica para",
         "placeholder": "Tu pedido califica para"
+      },
+      {
+        "type": "header",
+        "content": "Regalos escalonados 2 niveles"
+      },
+      {
+        "type": "text",
+        "id": "agrega_string_2",
+        "label": "Agrega / Adquiere / Compra",
+        "placeholder": "Agrega"
+      },
+      {
+        "type": "text",
+        "id": "more_string_2",
+        "label": "Texto entre recompensas",
+        "placeholder": "más y obtén gratis"
+      },
+      {
+        "type": "text",
+        "id": "won_string_2",
+        "label": "Ganaste",
+        "placeholder": "Ganaste"
+      },
+      {
+        "type": "product",
+        "id": "first_tiered_product_2",
+        "label": "Primer producto de regalo."
+      },
+      {
+        "type": "text",
+        "id": "first_minimum_spend_2",
+        "label": "Cantidad a gastar para nivel 1",
+        "info": "Subtotal mínimo para nivel 1",
+        "placeholder": "301"
+      },
+      {
+        "type": "text",
+        "id": "first_copy_regalo_2",
+        "label": "Premio 1:",
+        "placeholder": "un XXX"
+      },
+      {
+        "type": "product",
+        "id": "second_tiered_product_2",
+        "label": "Segundo producto de regalo."
+      },
+      {
+        "type": "text",
+        "id": "second_minimum_spend_2",
+        "label": "Cantidad a gastar para nivel 2",
+        "info": "Subtotal mínimo para nivel 2",
+        "placeholder": "801"
+      },
+      {
+        "type": "text",
+        "id": "second_copy_regalo_2",
+        "label": "Premio 2:",
+        "placeholder": "una YYY"
+      },
+      {
+        "type": "text",
+        "id": "final_copy_regalo_2",
+        "label": "Copy final:",
+        "placeholder": "dos minis"
       },
       {
         "type": "header",

@@ -1,0 +1,39 @@
+<main class="page-sundae">
+    {% section 'sundae-main' %}
+
+    {% section 'sundae-with-love' %}
+
+    {% section 'sundae-products' %}
+
+    {% section 'sundae-marquee' %}
+
+    {% section 'sundae-instagram' %}
+</main>
+
+{% comment %} <script src="https://code.jquery.com/jquery-1.9.1.js"></script> {% endcomment %}
+<script src="{{ 'marquee.js' | asset_url }}"></script>
+<script src="{{ 'noframework.waypoints.min.js' | asset_url }}" ></script>
+<script src="{{ 'anagrama.animate.js' | asset_url }}" ></script>
+<script src="{{ 'velocity.min.js' | asset_url }}" ></script>
+<script src="{{ 'velocity.ui.min.js' | asset_url }}" ></script>
+<script>
+    $('.marquee').marquee('destroy');
+    var marquees = $('.marquee').marquee({
+      duplicated: true,
+      gap: 30,
+      duration: 70000,
+      delayBeforeStart: 0,
+      startVisible: true,
+      pauseOnHover: true,
+      // allowCss3Support: false
+    })
+
+  $(document).on('click', '.desc-rotate', function() {
+    $('.product').removeClass('active');
+    $(this).parent().parent().addClass('active');
+  });
+
+  $(document).on('click', '.product .close', function() {
+    $('.product').removeClass('active');
+  });
+  </script>
