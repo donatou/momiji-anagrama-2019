@@ -1,0 +1,118 @@
+<section class="sundae-products">
+  <div class="container">
+    <div class="row pb-125 pb-md-190 pb-lg-220">
+      <div class="col-md-9 col-lg-7 col-xl-6 mx-auto text-center desc-icons animate-on-scroll">
+        <h2>{{ section.settings.title }}</h2>
+      </div>
+    </div>
+
+    <div class="row stagger-on-scroll">
+      {% for block in section.blocks %}
+        {%- assign product = all_products[block.settings.feature_product] -%}
+        <!-- PRODUCT  -->
+        <div class="col-sm-6 col-md-6 mb-30 stagger-child">
+          <div class="thumb-product product">
+            <div class="position-relative">
+              <a href="{{ product.url }}">
+                <div class="thumb-img product__container--main col-10 mx-auto">
+                  <img src="{{ block.settings.image  | img_url: '580x556' }}" alt="{{ product.title }}">
+                  <div class="thumb-img--hover product__container--hover">
+                    <img src="{{ block.settings.hover_image  | img_url: '580x556' }}" alt="">
+                  </div>
+                </div>
+              </a>
+              <div class="desc-rotate d-block d-lg-none">
+                <p class="link link-u">Descripción</p>
+              </div>
+            </div>
+            <div class="thumb-title text-center">
+              <a href="{{ product.url }}" class="h2 d-block">{{ product.title }}</a>
+              <div class="tag-b">{{ product.price | money_with_currency }}</div>
+            </div>
+            <div class="thumb-desc desc-icons text-lg-center">
+              <div class="close d-block d-lg-none"><svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 11"><path d="M6.921 5.672l3.75-3.75-1.25-1.25-3.75 3.75-3.75-3.75-1.25 1.25 3.75 3.75-3.75 3.75 1.25 1.25 3.75-3.75 3.75 3.75 1.25-1.25-3.75-3.75z" fill="#090909"/></svg></div>
+              <div class="desc-title d-block d-lg-none">
+                <h4 class="h2">Descripción</h4>
+              </div>
+              
+              <p>{{ block.settings.content }}</p>
+            </div>
+
+            <div class="thumb-actions ctn-center d-block d-md-flex">
+              {% if product.available %}
+                <button class="btn btn-sundae link add-to-cart" data-id="{{ product.first_available_variant.id }}">Agregar a bolsa</button>
+              {% else %}
+                <button disabled class="btn btn-sundae link">Agotado</button>
+              {% endif %}
+              <a href="{{ product.url }}" class="link ml-md-20 link-detail">ver DETALLE</a>
+            </div>
+          </div>
+        </div>
+
+        <script type="text/javascript">
+          $(function(){
+            $(".sundae-products .add-to-cart").click(function(){
+              var id = $(this).data("id");
+              $.ajax({
+                type: 'POST', 
+                url: '/cart/add.js',
+                dataType: 'json', 
+                async: !1,
+                data: "quantity=1&id=" + id,
+                success: function (data){
+                  updateMinicart();
+                  return true
+                },
+                error: function (jqXHR, textStatus, errorThrown) { console.log(textStatus); }
+              });
+            })
+          })
+        </script>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Products",
+    "settings": [
+      {
+          "type": "html",
+          "id": "title",
+          "label": "Title",
+          "default": "Meet your new makeup allies. Easy <span class='icon-sundae-star'></span> and (most important) fun.",
+          "info": "List of icons: icon-sundae-heart, icon-sundae-star, icon-sundae-lip"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "product",
+        "name": "Product",
+        "settings": [
+          {
+              "type": "image_picker",
+              "id": "image",
+              "label": "Image"
+          },
+          {
+              "type": "image_picker",
+              "id": "hover_image",
+              "label": "Image"
+          },
+          {
+             "type": "product",
+             "id": "feature_product",
+             "label": "Feature product"
+          },
+          {
+              "type": "html",
+              "id": "content",
+              "label": "Content",
+              "info": "List of icons: icon-sundae-heart, icon-sundae-star, icon-sundae-lip"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

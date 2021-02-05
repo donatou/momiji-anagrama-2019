@@ -1,0 +1,71 @@
+<section>
+  <div class="container pt-45 pt-md-150 stagger-on-scroll">
+    <div class="row">
+      <div class="col-12">
+        <div class="d-md-flex align-items-baseline title text-center text-md-left stagger-child">
+          <h1 class="h3">{{ section.settings.title }}</h1><div class="tag-b mt-5 mt-md-0 ml-md-1 d-inline-block">안녕하세요</div> 
+        </div>
+        <img class="stagger-child" src="{{ 'sundae.svg' | asset_url }}" alt="sundae">
+      </div>
+      <div class="col-md-10 col-lg-7 text-center mx-auto mt-20 desc-icons stagger-child">
+        <h2 class="h3">{{ section.settings.subtitle }}</h2>
+      </div>
+    </div>
+
+    <!-- //imagen -->
+    <div class="row">
+      <div class="col-10 col-md-11 col-lg-9 mx-auto position-relative mt-30 mb-30 mb-md-20">
+        <div class="img-container stagger-child">
+          <img class="w-100" src="{{ section.settings.image | img_url: '825x' }}" alt="Persona">
+        </div>
+
+        <div class="graphics">
+          <img class="img-h icon-hover" src="{{ 'sundae-sticker-01.png' | asset_url }}" alt="heart">
+          <img class="img-h icon-hover" src="{{ 'Sundae-Powder.png' | asset_url }}" alt="powder">
+        </div>
+      </div>
+    </div>
+
+    <!-- //descripción  -->
+    <div class="row">
+      <div class="col-12 d-block d-md-flex ctn-center flex-wrap text-center text-md-left animate-on-scroll">
+        <div class="tag-b tag-rotate mr-md-40 mr-lg-30 d-inline-block mb-10 mb-md-0">안녕하세요</div>
+        <div class="desc-icons text-left">
+          {{ section.settings.content | replace: "<p>", '<p class="h3 text-indent">' }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Main",
+    "settings": [
+      {
+          "type": "richtext",
+          "id": "title",
+          "label": "Title",
+          "default": "<p></p>"
+      },
+      {
+          "type": "html",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Make-up your Beauty, by<strong>MOMIJI</strong>. 4<strong>Products</strong>: A lip tint <span class='icon-sundae-lip'></span>, a lip cream puff <span class='icon-sundae-cream'></span>, an eyebrow pencil <span class='icon-sundae-pencil'></span>and a brush <span class='icon-sundae-brush'></span>.",
+          "info": "List of icons: icon-sundae-heart, icon-sundae-star, icon-sundae-lip"
+      },
+      {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+      },
+      {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p></p>"
+      }
+    ]
+  }
+{% endschema %}
