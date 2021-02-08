@@ -1,0 +1,135 @@
+{% if section.settings.show_section %}
+    <!-- SECTION – PRODUCT SLIDER -->
+    <section class="section-tono py-100 bg-white overflow-hidden">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-down-sm-center">
+                    <div class="sticker-sundae">
+                        <figure>
+                            <img src="{{ "sundae-camara.png" | asset_img_url: 'master' }}" alt="">
+                        </figure>
+                    </div>
+                    <div class="text-link">
+                        {{ section.settings.headline }}  
+                    </div>
+                    <div class="bb-black pb-15 mb-20 px-sm-30">
+                        <h2>{{ section.settings.title }}</h2>
+                    </div>
+                </div>
+                <div class="col-10 col-lg-11">
+                    <div class="swiper-tono swiper-container overflow-visible">
+                        <div class="swiper-wrapper">
+                            {% for image in product.metafields.tone.image %} 
+                                <div class="swiper-slide">
+                                    <figure>
+                                        <img src="{{ image }}" alt="">
+                                        <figcaption class="c-white d-flex flex-column flex-md-row text-down-sm-center justify-content-between text-link">
+                                            <div>
+                                                {{ product.metafields.tone.footer[forloop.index0] }}
+                                            </div>
+                                            <div>
+                                                k-tint | pink dream
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                    <div class="sticker-sundae sundae-sundae">
+                        <figure>
+                          <img src="{{ "sundae-sundae.png" | asset_img_url: 'master' }}" alt="">
+                        </figure>
+                    </div>
+                </div>
+                <div class="col-11 col-md-8 col-lg-7 mx-auto mt-45">
+                    <div class="slider-wrapper text-link d-flex justify-content-between">
+                        {% for footer in product.metafields.tone.footer %} 
+                        <div>
+                            <input {% if forloop.first %} checked {% endif %} data-index="{{ forloop.index0 }}" id="{{ footer | handleize }}" name="slider" type="radio" value="{{ footer | handleize }}">
+                            <label for="{{ footer | handleize }}">{{ footer }}</label>
+                        </div>
+                        {% endfor %}
+                        
+                         
+                    </div>
+                    <div>
+                        <div class="gradient-slider"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END: SECTION – PRODUCT SLIDER -->
+
+    <script>
+        $(function () {
+            var swiperSkin;
+            $(window).on('load', function() {
+                swiperSkin = new Swiper('.swiper-tono', {
+                  slidesPerView: 3,
+                  spaceBetween: 60,
+                  breakpoints: {
+                        499: {
+                          slidesPerView: 2,
+                          spaceBetween: 0
+                        },
+                        999: {
+                            slidesPerView: 3,
+                            spaceBetween: 0
+                        }
+                },
+                  on: {
+                        click: function () {
+                            var index = this.clickedIndex;
+                            var check_input = $(".slider-wrapper label")[index];
+                            $(check_input).trigger("click");
+                        }
+                    },
+                });
+            })
+
+            $("input[name='slider']").change(function() {
+                var input_index = $(this).data("index");
+                swiperSkin.slideTo(input_index);
+
+                var slide = $(".swiper-tono .swiper-slide")[input_index];
+                $(".swiper-tono .swiper-slide").removeClass("active");
+                $(slide).addClass("active");
+            })
+        })
+    </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Product Tone",
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Conoce tu tono"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Un color para la vida real."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show section",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Tone",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

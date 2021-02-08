@@ -1,0 +1,29 @@
+{% section 'skin-images' %}
+
+
+<script>
+    $(function () {
+        // SWIPER
+        var swiper_gallery = new Swiper('.swiper-gallery', {
+            slidesPerView: 1,
+            mode: 'horizontal',
+            speed: 400,
+            spaceBetween: 30,
+            loop: false,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            keyboard: {
+            enabled: true,
+            onlyInViewport: false
+            }
+        });
+
+        $(".grid-item").click(function(){
+            var figure = $(this).children( "figure" );
+            var figure_id = figure.data("id");
+            swiper_gallery.slideTo(figure_id, 0);
+        })
+    })
+</script>

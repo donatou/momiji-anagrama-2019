@@ -1,0 +1,341 @@
+{% include 'benefits-logic' %}
+{% include 'pasoderutina-logic' %}
+
+<section class="section-product-info main__product--info bg-purple pt-100">
+    <div class="container-fluid">
+        <div class="row justify-content-center flex-lg-row-reverse">
+            <div class="col-12 col-md-10 col-lg-6 pb-30 pb-lg-0">
+                <div class="sticky-column">
+                    <div class="sticker-sundae d-none d-lg-block">
+                      <figure>
+                        <img src="{{ "sundae-gloss.png" | asset_img_url: 'master' }}" alt="">
+                      </figure>
+                    </div>
+                    <div class="swiper-info swiper-container">
+                        <div class="swiper-wrapper">
+                            {% for image in product.metafields.details.image %}
+                            <div class="swiper-slide">
+                                <figure class="img-wrap absolute-caption">
+                                    <img src="{{ image }}" alt="" class="w-100">
+                                </figure>
+                            </div>
+                            {% endfor %}
+                             
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-10 col-lg-6">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-11">
+                        <div class="pb-20 text-down-sm-center">
+                            <div class="text-link">
+                                sobre el producto
+                            </div>
+                            <div class="product__title">
+                                <h2>Los detalles.</h2>
+                            </div>
+                        </div>
+
+                        <!-- SECTION: QUE HACE -->
+                        {% if infoAdicional %}
+                            <section class="pb-100">
+                                <!-- ADITIONAL INFO  -->
+                                <div class="by-black pt-05 pb-10 mb-30">
+                                    <a class="accordion h3 active">Más info</a>
+                                </div>
+                                <div class="">
+                                    {% if product.metafields.infoadicional.texto != blank %}
+                                        <p>{{ product.metafields['infoadicional']['texto'] }}</p>
+                                    {% else %}
+                                        <p>{{ product.metafields['beneficios']['texto'] }}</p>
+                                    {% endif %}
+                                </div>
+                            </section>
+                            <!-- END: ADITIONAL INFO  -->
+                        {% else %}
+                            <section class="pb-100">
+                                <!-- BENEFITS SECTION -->
+                                <div class="by-black pt-05 pb-10 mb-25">
+                                    <div class="h3">Qué hace por ti.</div>
+                                </div>
+                                <div class="">
+                                    {% if hidrata %}
+                                        <div class="benefits--icon">
+                                            <p class="icon">♤</p>
+                                            <b>Hidrata</b>
+                                        </div>
+                                    {% endif %}
+                                    {% if spf %}
+                                        <div class="benefits--icon">
+                                            <p class="icon">☼</p>
+                                            <b>SPF</b>
+                                        </div>
+                                    {% endif %}
+                                    {% if ilumina %}
+                                        <div class="benefits--icon">
+                                            <p class="icon">★</p>
+                                            <b>Ilumina</b>
+                                        </div>
+                                    {% endif %}
+                                    {% if repara %}
+                                        <div class="benefits--icon">
+                                            <p class="icon">▢</p>
+                                            <b>Repara</b>
+                                        </div>
+                                    {% endif %}
+                                    {% if limpia %}
+                                        <div class="benefits--icon">
+                                            <p class="icon">✧</p>
+                                            <b>Limpia</b>
+                                        </div>
+                                    {% endif %}
+                                    {% if calma %}
+                                        <div class="benefits--icon">
+                                            <p class="icon">♥</p>
+                                            <b>Calma</b>
+                                        </div>
+                                    {% endif %}
+                                    {% if tonifica %}
+                                        <div class="benefits--icon">
+                                            <p class="icon">☯</p>
+                                            <b>Tonifica</b>
+                                        </div>
+                                    {% endif %}
+                                    {% if empareja %}
+                                        <div class="benefits--icon">
+                                            <p class="icon">▥</p>
+                                            <b>Empareja Tono</b>
+                                        </div>
+                                    {% endif %}
+                                    {% if anti-age %}
+                                        <div class="benefits--icon">
+                                            <p class="icon">ᛟ</p>
+                                            <b>Anti-age</b>
+                                        </div>
+                                    {% endif %}
+                                    {% if exfolia %}
+                                        <div class="benefits--icon">
+                                            <p class="icon">✦</p>
+                                            <b>Exfolia</b>
+                                        </div>
+                                    {% endif %}
+                                    <p>{{ product.metafields['beneficios']['texto'] }}</p>
+                                </div>
+                                <!-- END: BENEFITS SECTION -->
+                            </section>
+                        {% endif %}
+                        <!-- END: SECTION: QUE HACE -->
+                                    
+                        <!-- SECTION: CON TODO LO BUENO -->
+                        <section class="pb-100">
+                            <div class="by-black pt-05 pb-10 mb-25">
+                                <div class="h3">Con todo lo bueno.</div>
+                            </div>
+                            <div>
+                                <ul class="list-unstyled list-icon">
+                                    {% if product.tags contains "alcohol" %}
+                                    <li>
+                                        {% include 'icon-benefit-alcohol' %}
+                                    </li>
+                                    {% endif %}
+                                    {% if product.tags contains "aceite" %}
+                                    <li>
+                                        {% include 'icon-benefit-aceite' %}
+                                    </li>
+                                    {% endif %}
+                                    {% if product.tags contains "formol" %}
+                                    <li>
+                                        {% include 'icon-benefit-formol' %}
+                                    </li>
+                                    {% endif %}
+                                    {% if product.tags contains "crueldad" %}
+                                    <li>
+                                        {% include 'icon-benefit-crueldad' %}
+                                    </li>
+                                    {% endif %}
+                                    {% if product.tags contains "parabenos" %}
+                                    <li>
+                                        {% include 'icon-benefit-parabenos' %}
+                                    </li>
+                                    {% endif %}
+                                    {% if product.tags contains "sulfatos" %}
+                                    <li>
+                                        {% include 'icon-benefit-sulfatos' %}
+                                    </li>
+                                    {% endif %}
+                                    {% if product.tags contains "gluten" %}
+                                    <li>
+                                        {% include 'icon-benefit-gluten' %}
+                                    </li>
+                                    {% endif %}
+                                    {% if product.tags contains "fragancia" %}
+                                    <li>
+                                        {% include 'icon-benefit-fragancia' %}
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </section>
+                        <!-- END: SECTION: CON TODO LO BUENO -->
+                                    
+                        <!-- SECTION: QUE CONTIENE -->
+                        <section class="pb-100">
+                            <div class="by-black pt-05 pb-10 mb-25">
+                                <div class="h3">¿Qué contiene?</div>
+                            </div>
+                            <div>
+                                <ul class="list-unstyled list-star body-sans-b">
+                                   
+                                    {% for item in product.metafields.contiene_summary.title %} 
+                                    <li>
+                                        <p>
+                                            <b>{{ item }}</b>
+                                            {{ product.metafields.contiene_summary.content[forloop.index0] }}
+                                        </p>
+                                    </li>
+                                    {% endfor %}
+                                     
+                                </ul>
+                                <!-- MODAL POP UP LINK -->
+                                <div class="pt-20">
+                                    <a aria-controls="info-modal" aria-expanded="false" data-target="#info-modal" data-toggle="show" href="#" role="button">
+                                        <div class="c-red text-link">
+                                            Lista completa de ingredientes
+                                            {% include 'icon-plus-circle' %}
+                                        </div>
+                                    </a>
+                                </div>
+                                <!-- END: MODAL POP UP LINK -->
+                            </div>
+                        </section>
+                        <!-- END: SECTION:  QUE CONTIENE -->
+                                    
+                        <!-- SECTION: COMO UTILIZAR -->
+                        <section class="pb-100">
+                            <div class="by-black pt-05 pb-10 mb-25">
+                                <div class="h3">Cómo utilizar.</div>
+                            </div>
+                            <div>
+                                <!-- VIDEO -->
+                                {% if product.metafields.utilizar.video %}
+                                <div class="pb-25">
+                                    <figure class="video-wrap">
+                                        <video class="video-js vjs-theme-sea w-100 vjs-4-3" preload="auto" controls poster="{{ product.metafields.utilizar.image }}" data-setup="{}">
+                                            <source src="{{ product.metafields.utilizar.video }}" type="video/mp4"/>
+                                        </video>
+                                    </figure>
+                                </div>
+                                {% endif %}
+                                <!-- END: VIDEO -->
+                                <ol class="list-unstyled list-numbers body-sans-b">
+                                    {% for item in product.metafields.contiene_summary.title %} 
+                                    <li>
+                                        <p> {{ item }} 
+                                        </p>
+                                    </li>
+                                    {% endfor %}
+                                     
+                                </ol>
+                            </div>
+                        </section>
+                        <!-- END: SECTION:  COMO UTILIZAR -->  
+                                    
+                        <!-- SECTION: COMO UTILIZAR -->
+                        <section class="pb-100">
+                            <div class="by-black pt-05 pb-10 mb-25">
+                                <div class="h3">Tips.</div>
+                            </div>
+                            <div>
+                                <!-- VIDEO -->
+                                {% if product.metafields.tips.video %}
+                                <div class="pb-25">
+                                    <figure class="video-wrap">
+                                        <video class="video-js vjs-theme-sea w-100 vjs-4-3" preload="auto" controls poster="{{ product.metafields.tips.image }}" data-setup="{}">
+                                            <source src="{{ product.metafields.tips.video }}" type="video/mp4"/>
+                                        </video>
+                                    </figure>
+                                </div>
+                                {% endif %}
+                                <!-- END: VIDEO -->
+                                <div>
+                                     
+                                    <p>{{ product.metafields.tips.content }} </p>
+                                     
+                                </div>
+                            </div>
+                        </section>
+                        <!-- END: SECTION:  COMO UTILIZAR -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INFO MODAL -->
+<div class="full-modal pt-up-lg-100 info-modal" id="info-modal">
+    <div class="d-flex flex-column content-wrap position-relative h-down-md-100">
+        <div class="container container-md-fluid px-md-0 h-down-md-100">
+            <div class="row justify-content-center h-down-md-100">
+                <div class="col-12 col-md-10 col-lg-8 py-40 h-down-md-100 bg-red z-1">
+                  <!-- MODAL CONTROLS -->
+                    <div class="controls controls-absolute">
+                      <div class="text-right">
+                          <a aria-controls="info-modal" aria-expanded="false" data-target="#info-modal" data-toggle="show" href="#" role="button">
+                              {% include 'icon-modal-close' %}
+                          </a>
+                      </div>
+                  </div>
+                  <!-- END: MODAL CONTROLS -->
+                  <div class="px-30 mobile-scroll">
+                    <div class="row">
+                        <div class="col-12 pb-130">
+                            <h1>
+                                Ingredientes
+                            </h1>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                          {{ product.metafields.contiene.content | newline_to_br }}
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BACKGROUND OPACITY MODAL -->
+    <a aria-controls="info-modal" aria-expanded="false" class="background-modal z-0" data-target="#info-modal" data-toggle="show" href="#" role="button"></a>
+    <!-- END: BACKGROUND OPACITY MODAL -->
+</div>
+<!-- END: INFO MODAL -->
+
+{% schema %}
+
+{}
+
+{% endschema %}
+
+<!-- VIDEO JS -->
+<script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
+<!-- END: VIDEO JS -->
+
+<script>
+    $(function () {
+        var swiper = new Swiper(".swiper-info", {
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                renderBullet: function (index, className) {
+                    return "<span class=\"" + className + "\">" + (
+                        index + 1
+                    ) + "</span>";
+                }
+            }
+        });
+    })
+</script>

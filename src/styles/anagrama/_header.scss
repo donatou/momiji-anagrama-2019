@@ -1,0 +1,230 @@
+header {
+    .header__nav {
+        nav {
+            width: 100%;
+        }
+    }
+
+    .header__nav--level-2 {
+        background-color: white;
+        margin-top: 14px;
+        padding-bottom: 30px;
+    }
+
+    .icon-row {
+        .logo {
+            img {
+                height: 20px;
+            }
+        }
+        .icon {
+            img {
+                height: 42px;
+            }
+        }
+    }
+
+    .header__nav--menu {
+        .text-link {
+            font-family: "GT Momiji Medium", sans-serif;
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 1.25px;
+            line-height: 20px;
+        }
+    }
+
+    .nav-image-list {
+        li {
+            padding-left: 30px;
+            position: relative;
+            overflow: hidden;
+
+            &:first-child {
+                padding-left: 0;
+            }
+
+            .image-tag {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+
+                &-ribbon {
+                    top: -15px;
+                    right: -15px;
+                }
+            }
+        }
+    }
+
+    .header__nav--logo {
+        position: relative;
+    }
+}
+
+#burger-menu,
+.burger-sub-menu {
+    position: relative;
+    width: 21px;
+    height: 14px;
+    z-index: 99;
+    cursor: pointer;
+    margin-bottom: 6px;
+    margin-right: 20px;
+
+    @media (max-width: 767.98px) {
+        left: 0px;
+    }
+
+    span {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #0b0b0b;
+        transition: background-color 0.25s, transform 0.25s;
+        -webkit-transition: background-color 0.25s, -webkit-transform 0.25s;
+
+        &:nth-of-type(1) {
+            top: 0%;
+        }
+
+        &:nth-of-type(4) {
+            top: 100%;
+        }
+
+        &:nth-of-type(2),
+        &:nth-of-type(3) {
+            top: 50%;
+        }
+    }
+
+    &.show {
+        span {
+            background-color: #0b0b0b;
+
+            &:nth-of-type(1),
+            &:nth-of-type(4) {
+                transform: scaleX(0);
+                -webkit-transform: scaleX(0);
+            }
+
+            &:nth-of-type(2) {
+                transform: rotate(-45deg);
+                -webkit-transform: scaleX(-45deg);
+            }
+            &:nth-of-type(3) {
+                transform: rotate(45deg);
+                -webkit-transform: scaleX(45deg);
+            }
+        }
+    }
+}
+
+.header-menu {
+    pointer-events: none;
+    width: 448px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: -200%;
+    padding-top: 80px;
+    background: white;
+    transition: left 0.4s ease;
+    z-index: 9999999;
+
+    .controls {
+        position: absolute;
+        right: 0px;
+        top: 20px;
+    }
+
+    @media (max-width: 767.98px) {
+        width: 100%;
+    }
+
+    &.show {
+        pointer-events: all;
+        left: 0%;
+    }
+
+    [aria-expanded="true"] {
+        .icon-caret {
+            svg {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    .nav-mobile-menu {
+        .nav-item {
+            .main-link {
+                border-bottom: 1px solid currentColor;
+                padding-bottom: 5px;
+                margin-bottom: 25px;
+                display: block;
+            }
+
+            .sub-link {
+                border-bottom: 1px solid rgba($color: #0a0a0a, $alpha: 0.1);
+                padding-bottom: 5px;
+                margin-bottom: 15px;
+                display: block;
+            }
+        }
+        .search-input::before {
+            content: none;
+            display: none;
+        }
+    }
+}
+
+.header-sub-menu {
+    position: fixed;
+    width: 448px;
+    height: 100%;
+    top: 0;
+    left: -200%;
+    padding-top: 80px;
+    background: white;
+    z-index: 9999999;
+    transition: left 0.4s ease;
+
+    @media (max-width: 767.98px) {
+        width: 100%;
+    }
+
+    .controls {
+        position: absolute;
+        right: 0px;
+        top: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    &.show {
+        pointer-events: all;
+        left: 0%;
+    }
+
+    .nav-sub-menu {
+        li {
+            padding-bottom: 10px;
+        }
+    }
+
+    .icon-row {
+        .logo {
+            img {
+                height: 20px;
+            }
+        }
+        .icon {
+            img {
+                height: 42px;
+            }
+        }
+    }
+}

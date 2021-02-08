@@ -6,194 +6,472 @@
 {% assign ultimoelemento = section.settings.last_item_menu_color %}
 
 <header data-section-type="header">
-<div class="header">
-  <div class="header__sitebanner d-md-flex"{% if section.settings.white == true %} style="background: #fff;"{% endif %}>
-    <div class="header__currency align-items-center d-none d-md-flex">
-      {% include 'currency-selector' %}
-    </div>
-    {% include 'barra-anuncios' %}
-    
-    <div class="header__cuenta d-none d-md-block">
-      {% include 'header-account' %}
-    </div>
-  </div>
-
-  <div class="header__nav d-flex justify-content-between">
-    <nav class="d-flex align-items-baseline">
-
-      <div class="mobile-btn d-lg-none">
-        <div class="nav-btn"></div>
+  <div class="header">
+    <div class="header__sitebanner d-md-flex"{% if section.settings.white == true %} style="background: #fff;"{% endif %}>
+      <div class="header__currency align-items-center d-none d-md-flex">
+        {% include 'currency-selector' %}
       </div>
-
-      <div class="header__nav--logo">
-        <a href="/"><img src="{{ 'momiji-logo-rgb.svg' | asset_url }}" alt="{{ shop.name }}" itemprop="logo"></a>
-      </div>
-      <ul class="header__nav--menu list-unstyled">
-        <li class="nav-item nav-item--cat"><a>Skincare</a>
-          <div class="header__nav--level-2">
-              <div class="container">
-                <div class="row">
-                  <div class="offset-lg-1 col-lg-3">
-                    <div class="menu-drawer">
-                      <p class="h3">{{ rutina.title }}</p>
-                      <ul class="sub-nav list-unstyled">
-                        {% for link in rutina.links %}
-                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                        {% endfor %}
-                      </ul>
-                    </div>
-
-                    <div class="menu-drawer">
-                      <p class="h3">{{ tipoDePiel.title }}</p>
-                      <ul class="sub-nav list-unstyled">
-                        {% for link in tipoDePiel.links %}
-                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                        {% endfor %}
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-3">
-                    <div class="menu-drawer">
-                      <p class="h3">{{ soluciones.title }}</p>
-                      <ul class="sub-nav list-unstyled">
-                        {% for link in soluciones.links %}
-                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                        {% endfor %}
-                      </ul>
-                    </div>
-
-                    {% for link in ver_todo.links %}
-                      <a href="{{ link.url }}" class="a__all mt-30">{{ link.title }}&nbsp;&nbsp;&nbsp;</a>
-                    {% endfor %}
-                    {% comment %} <a href="/pages/marcas" class="a__all mt-30">ver marcas</a>
-                    <span> / </span>
-                    <a href="collections/todos-los-productos" class="a__all mt-30">ver todos</a> {% endcomment %}
-                  </div>
-
-                  <div class="col-lg-4 br">
-                    <div class="row">
-                      <div class="col-md-8 mx-auto">
-                        {% include 'producto-menu' %}
-                      </div>
-                    </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-        </li>
-        {% for link in top.links %}
-        <li class="nav-item"><a href="{{ link.url }}">{{ link.title }}</a></li>
-        {% endfor %}
-      </ul>
-    </nav>
-
-    <div class="header__nav--icons d-flex">
-      <div class="header__icons--search d-none d-md-block">
-        <a data-modal="search"><img src="{{ 'search.svg' | asset_url }}" alt="Search"></a>
-      </div>
-      {%- comment -%}<div class="header__icons--love d-none d-md-block">
-        <a href="#swym-wishlist" class="swym-wishlist"><img src="{{ 'wishlist-header.svg' | asset_url }}" alt="Wishlist"></a>
-      </div>{%- endcomment -%}
-      <div class="header__icons--shop">
-        <a href="/cart" class="cart-summary"><img src="{{ 'cart.svg' | asset_url }}" alt="Cart"><span class="cart-quantity">{{ cart.item_count }}</span></a>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-{%- comment -%} HEADER FIXED {%- endcomment -%}
-{%- comment -%} HEADER FIXED {%- endcomment -%}
-{%- comment -%} HEADER FIXED {%- endcomment -%}
-<div class="header-fixed">
-
-  <div class="header__nav d-flex justify-content-between">
-    <nav class="d-flex align-items-baseline">
-
-      <div class="mobile-btn d-lg-none">
-        <div class="nav-btn"></div>
-      </div>
-      <div class="header__nav--logo">
-        <a href="/"><img src="{{ 'momiji-logo-rgb.svg' | asset_url }}" alt="{{ shop.name }}"></a>
-      </div>
-      <ul class="header__nav--menu list-unstyled">
-        <li class="nav-item nav-item--cat"><a>Skincare</a>
-          <div class="header__nav--level-2">
-              <div class="container">
-                <div class="row">
-                  <div class="offset-lg-1 col-lg-3">
-                    <div class="menu-drawer">
-                      <p class="h3">{{ rutina.title }}</p>
-                      <ul class="sub-nav list-unstyled">
-                        {% for link in rutina.links %}
-                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                        {% endfor %}
-                      </ul>
-                    </div>
-
-                    <div class="menu-drawer">
-                      <p class="h3">{{ tipoDePiel.title }}</p>
-                      <ul class="sub-nav list-unstyled">
-                        {% for link in tipoDePiel.links %}
-                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                        {% endfor %}
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-3">
-                    <div class="menu-drawer">
-                      <p class="h3">{{ soluciones.title }}</p>
-                      <ul class="sub-nav list-unstyled">
-                        {% for link in soluciones.links %}
-                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                        {% endfor %}
-                      </ul>
-                    </div>        
-
-                    {% for link in ver_todo.links %}
-                      <a href="{{ link.url }}" class="a__all mt-30">{{ link.title }}&nbsp;&nbsp;&nbsp;</a>
-                    {% endfor %}
-                    {% comment %} <a href="/pages/marcas" class="a__all mt-30">ver marcas</a>
-                    <span> / </span>
-                    <a href="collections/todos-los-productos" class="a__all mt-30">ver todos</a> {% endcomment %}
-                  </div>
-
-                  <div class="col-lg-4 br">
-                    <div class="row">
-                      <div class="col-md-8 mx-auto">
-                        {% include 'producto-menu' %}
-                      </div>
-                    </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-        </li>
-        {% for link in top.links %}
-        <li class="nav-item"><a href="{{ link.url }}">{{ link.title }}</a></li>
-        {% endfor %}
-      </ul>
-    </nav>
-
-    <div class="header__nav--icons d-flex">
-      <div class="header__cuenta d-none d-lg-block">
+      {% include 'barra-anuncios' %}
+      
+      <div class="header__cuenta d-none d-md-block">
         {% include 'header-account' %}
       </div>
-      <div class="header__icons--search d-none d-md-block">
-        <a data-modal="search"><img src="{{ 'search.svg' | asset_url }}" alt="Search"></a>
-      </div>
-      {%- comment -%}<div class="header__icons--love d-none d-md-block">
-        <a href="#swym-wishlist" class="swym-wishlist"><img src="{{ 'wishlist-header.svg' | asset_url }}" alt="Wishlist"></a>
-      </div>{%- endcomment -%}
-      <div class="header__icons--shop">
-        <a href="/cart" class="cart-summary"><img src="{{ 'cart.svg' | asset_url }}" alt="Cart"><span class="cart-quantity">{{ cart.item_count }}</span></a>
+    </div>
+
+    <div class="header__nav d-flex justify-content-between">
+      <!-- position-relative -->
+      <nav class="d-flex align-items-center">
+        <div class="mobile-btn d-none d-lg-none">
+          <div class="nav-btn"></div>
+        </div>
+        <a href="#" id="burger-menu" class="d-block d-lg-none" data-toggle="show" data-target=".header-menu" role="button" aria-expanded="false" aria-controls="header-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </a>
+        <div class="header__nav--logo">
+          <a href="/"><img src="{{ 'momiji-logo-rgb.svg' | asset_url }}" alt="{{ shop.name }}" itemprop="logo"></a>
+        </div>
+        <ul class="header__nav--menu list-unstyled">
+          <li class="nav-item nav-item--cat"><a>Skincare</a>
+            <div class="header__nav--level-2">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-lg-3">
+                      <div class="menu-drawer">
+                        <p class="h3">Marcas Momiji</p>
+                        <ul class="sub-nav list-unstyled body-header">
+                          <li>
+                            <a href="{{ link.url }}" class="w-100">
+                              <div class="d-flex justify-content-between align-items-center icon-row pb-10 bb-black">
+                                <div class="logo h-20">
+                                  <img src="{{ "momiji.png" | asset_img_url: 'master' }}">
+                                </div>
+                                <div class="icon">
+                                  <img src="{{ "momiji-icon.png" | asset_img_url: 'master' }}">
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="{{ link.url }}" class="w-100">
+                              <div class="d-flex justify-content-between align-items-center icon-row py-10 bb-black">
+                                <div class="logo h-20">
+                                  <img src="{{ "momiji-life.png" | asset_img_url: 'master' }}">
+                                </div>
+                                <div class="icon">
+                                  <img src="{{ "momiji-life-icon.png" | asset_img_url: 'master' }}">
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="{{ link.url }}" class="w-100">
+                              <div class="d-flex justify-content-between align-items-center icon-row py-10 bb-black">
+                                <div class="logo h-18">
+                                  <img src="{{ "sundae.png" | asset_img_url: 'master' }}">
+                                </div>
+                                <div class="icon">
+                                  <img src="{{ "sundae-icon.png" | asset_img_url: 'master' }}">
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                      <div class="menu-drawer">
+                        <p class="h3">{{ rutina.title }}</p>
+                        <ul class="sub-nav list-unstyled body-header">
+                          {% for link in rutina.links %}
+                          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                      <div class="menu-drawer">
+                        <p class="h3">{{ soluciones.title }}</p>
+                        <ul class="sub-nav list-unstyled body-header">
+                          {% for link in soluciones.links %}
+                          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                      <div class="menu-drawer">
+                        <p class="h3">{{ tipoDePiel.title }}</p>
+                        <ul class="sub-nav list-unstyled body-header">
+                          {% for link in tipoDePiel.links %}
+                          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+
+                      <div class="menu-drawer">
+                        <p class="h3">Collecciones</p>
+                        <ul class="sub-nav list-unstyled body-header">
+                          <li>
+                            <a href="#">
+                              Clean Beauty
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              Kits
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              Vegan
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="menu-drawer">
+                        <div class="h3 d-flex align-items-center justify-content-between">
+                          Start Here
+                          <div class="ml-auto">
+                            <a href="#" class="text-link underline">
+                              Toma nuestro beauty test
+                            </a>
+                          </div>
+                        </div>
+                        <ul class="list-unstyled d-flex justify-content-between align-items-center nav-image-list pt-05">
+                          <li>
+                            <a href="#">
+                              <figure>
+                                <img src="{{ "best-seller.png" | asset_img_url: 'master' }}">
+                                <div class="image-tag image-tag-ribbon">
+                                  {% include 'tag-best-seller' %}
+                                </div>
+                              </figure>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <figure>
+                                <img src="{{ "sale.png" | asset_img_url: 'master' }}">
+                                <div class="image-tag image-tag-ribbon">
+                                  {% include 'tag-sale' %}
+                                </div>
+                              </figure>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <figure>
+                                <img src="{{ "momijis-pick.png" | asset_img_url: 'master' }}">
+                                <div class="image-tag">
+                                  {% include 'tag-momijis-pick' %}
+                                </div>
+                              </figure>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <figure>
+                                <img src="{{ "new.png" | asset_img_url: 'master' }}">
+                                <div class="image-tag image-tag-ribbon">
+                                  {% include 'tag-new' %}
+                                </div>
+                              </figure>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <figure>
+                                <img src="{{ "gift.png" | asset_img_url: 'master' }}">
+                                <div class="image-tag image-tag-ribbon">
+                                  {% include 'tag-gift' %}
+                                </div>
+                              </figure>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="text-center pt-20">
+                        {% for link in ver_todo.links %}
+                          {% if forloop.last  %}
+                            <a href="{{ link.url }}" class="underline text-link">{{ link.title }}</a> 
+                            {% else %}
+                            <a href="{{ link.url }}" class="underline text-link">{{ link.title }}</a> <span class="mx-05 text-link">/</span>
+                          {% endif %}
+                        {% endfor %}
+                        <!-- <a href="#" class="text-link underline">Ver Marcas</a> / <a href="#" class="text-link underline">Ver todos los productos</a> -->
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          {% for link in top.links %}
+          <li class="nav-item"><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+          <!-- <li class="nav-item">
+            <a class="">On The Skin</a>
+          </li>
+          <li class="nav-item">
+            <a>Momiji's Beauty Test</a>
+          </li> -->
+        </ul>
+      </nav>
+
+      <div class="header__nav--icons d-flex">
+        <div class="header__icons--search d-none d-md-block">
+          <a data-modal="search"><img src="{{ 'search.svg' | asset_url }}" alt="Search"></a>
+        </div>
+        {%- comment -%}<div class="header__icons--love d-none d-md-block">
+          <a href="#swym-wishlist" class="swym-wishlist"><img src="{{ 'wishlist-header.svg' | asset_url }}" alt="Wishlist"></a>
+        </div>{%- endcomment -%}
+        <div class="header__icons--shop">
+          <a href="/cart" class="cart-summary"><img src="{{ 'cart.svg' | asset_url }}" alt="Cart"><span class="cart-quantity">{{ cart.item_count }}</span></a>
+        </div>
       </div>
     </div>
+
   </div>
 
-</div>
+  {%- comment -%} HEADER FIXED {%- endcomment -%}
+  {%- comment -%} HEADER FIXED {%- endcomment -%}
+  {%- comment -%} HEADER FIXED {%- endcomment -%}
+  <div class="header-fixed">
+
+    <div class="header__nav d-flex justify-content-between">
+      <nav class="d-flex align-items-center">
+        <div class="mobile-btn d-none d-lg-none">
+          <div class="nav-btn"></div>
+        </div>
+        <a href="#" id="burger-menu" class="d-block d-lg-none" data-toggle="show" data-target=".header-menu" role="button" aria-expanded="false" aria-controls="header-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </a>
+        
+        <div class="header__nav--logo">
+          <a href="/"><img src="{{ 'momiji-logo-rgb.svg' | asset_url }}" alt="{{ shop.name }}"></a>
+        </div>
+        <ul class="header__nav--menu list-unstyled">
+          <li class="nav-item nav-item--cat"><a>Skincare</a>
+            <div class="header__nav--level-2">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-lg-3">
+                      <div class="menu-drawer">
+                        <p class="h3">Marcas Momiji</p>
+                        <ul class="sub-nav list-unstyled body-header">
+                          <li>
+                            <a href="#" class="w-100">
+                              <div class="d-flex justify-content-between align-items-center icon-row pb-10 bb-black">
+                                <div class="logo h-20">
+                                  <img src="{{ "momiji.png" | asset_img_url: 'master' }}">
+                                </div>
+                                <div class="icon">
+                                  <img src="{{ "momiji-icon.png" | asset_img_url: 'master' }}">
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="w-100">
+                              <div class="d-flex justify-content-between align-items-center icon-row py-10 bb-black">
+                                <div class="logo h-20">
+                                  <img src="{{ "momiji-life.png" | asset_img_url: 'master' }}">
+                                </div>
+                                <div class="icon">
+                                  <img src="{{ "momiji-life-icon.png" | asset_img_url: 'master' }}">
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="w-100">
+                              <div class="d-flex justify-content-between align-items-center icon-row py-10 bb-black">
+                                <div class="logo h-18">
+                                  <img src="{{ "sundae.png" | asset_img_url: 'master' }}">
+                                </div>
+                                <div class="icon">
+                                  <img src="{{ "sundae-icon.png" | asset_img_url: 'master' }}">
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                      <div class="menu-drawer">
+                        <p class="h3">{{ rutina.title }}</p>
+                        <ul class="sub-nav list-unstyled body-header">
+                          {% for link in rutina.links %}
+                          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                      <div class="menu-drawer">
+                        <p class="h3">{{ soluciones.title }}</p>
+                        <ul class="sub-nav list-unstyled body-header">
+                          {% for link in soluciones.links %}
+                          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                      <div class="menu-drawer">
+                        <p class="h3">{{ tipoDePiel.title }}</p>
+                        <ul class="sub-nav list-unstyled body-header">
+                          {% for link in tipoDePiel.links %}
+                          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+
+                      <div class="menu-drawer">
+                        <p class="h3">Colecciones</p>
+                        <ul class="sub-nav list-unstyled body-header">
+                          <li>
+                            <a href="#">
+                              Clean Beauty
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              Kits
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              Vegan
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="menu-drawer">
+                        <div class="h3 d-flex align-items-center justify-content-between">
+                          Start Here
+                          <div class="ml-auto">
+                            <a href="#" class="text-link underline">
+                              Toma nuestro beauty test
+                            </a>
+                          </div>
+                        </div>
+                        <ul class="list-unstyled d-flex justify-content-between align-items-center nav-image-list pt-05">
+                          <li>
+                            <a href="#">
+                              <figure>
+                                <img src="{{ "best-seller.png" | asset_img_url: 'master' }}">
+                                <div class="image-tag image-tag-ribbon">
+                                  {% include 'tag-best-seller' %}
+                                </div>
+                              </figure>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <figure>
+                                <img src="{{ "sale.png" | asset_img_url: 'master' }}">
+                                <div class="image-tag image-tag-ribbon">
+                                  {% include 'tag-sale' %}
+                                </div>
+                              </figure>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <figure>
+                                <img src="{{ "momijis-pick.png" | asset_img_url: 'master' }}">
+                                <div class="image-tag">
+                                  {% include 'tag-momijis-pick' %}
+                                </div>
+                              </figure>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <figure>
+                                <img src="{{ "new.png" | asset_img_url: 'master' }}">
+                                <div class="image-tag image-tag-ribbon">
+                                  {% include 'tag-new' %}
+                                </div>
+                              </figure>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <figure>
+                                <img src="{{ "gift.png" | asset_img_url: 'master' }}">
+                                <div class="image-tag image-tag-ribbon">
+                                  {% include 'tag-gift' %}
+                                </div>
+                              </figure>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="text-center pt-20">
+                        {% for link in ver_todo.links %}
+                          {% if forloop.last  %}
+                            <a href="{{ link.url }}" class="underline text-link">{{ link.title }}</a> 
+                            {% else %}
+                            <a href="{{ link.url }}" class="underline text-link">{{ link.title }}</a> <span class="mx-05 text-link">/</span>
+                          {% endif %}
+                        {% endfor %}
+                        <!-- <a href="#" class="text-link underline">Ver Marcas</a> / <a href="#" class="text-link underline">Ver todos los productos</a> -->
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          {% for link in top.links %}
+          <li class="nav-item"><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+          <!-- <li class="nav-item">
+            <a class="">On The Skin</a>
+          </li>
+          <li class="nav-item">
+            <a>Momiji's Beauty Test</a>
+          </li> -->
+        </ul>
+      </nav>
+
+      <div class="header__nav--icons d-flex">
+        <div class="header__cuenta d-none d-lg-none">
+          {% include 'header-account' %}
+        </div>
+        <div class="header__icons--search d-none d-md-block">
+          <a data-modal="search"><img src="{{ 'search.svg' | asset_url }}" alt="Search"></a>
+        </div>
+        {%- comment -%}<div class="header__icons--love d-none d-md-block">
+          <a href="#swym-wishlist" class="swym-wishlist"><img src="{{ 'wishlist-header.svg' | asset_url }}" alt="Wishlist"></a>
+        </div>{%- endcomment -%}
+        <div class="header__icons--shop">
+          <a href="/cart" class="cart-summary"><img src="{{ 'cart.svg' | asset_url }}" alt="Cart"><span class="cart-quantity">{{ cart.item_count }}</span></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </header>
 
 {% if ultimoelemento == true %}
@@ -205,70 +483,62 @@
 {% endif %}
 
 {% schema %}
-  {
+
+{
     "name": "Header",
     "settings": [
-      {
-        "type": "header",
-        "content": "Barra de anuncios"
-      },
-      {
-        "type": "text",
-        "id": "barra_anuncios1",
-        "label": "Texto promocional 1:",
-        "default": "Escribe aquí la promoción o anuncio."
-      },
-      {
-        "type": "url",
-        "id": "barra_anuncios1_link",
-        "label": "Link 1:"
-      },
-      {
-        "type": "text",
-        "id": "barra_anuncios2",
-        "label": "Texto promocional 2:",
-        "default": "Escribe aquí la promoción o anuncio."
-      },
-      {
-        "type": "url",
-        "id": "barra_anuncios2_link",
-        "label": "Link 2:"
-      },
-      {
-        "type": "checkbox",
-        "id": "white",
-        "label": "Fondo blanco",
-        "default": false,
-        "info": "Hacer blanco el fondo de la barra de anuncios"
-      },
-      {
-        "type": "header",
-        "content": "Menú"
-      },
-      {
-        "type": "checkbox",
-        "id": "last_item_menu_color",
-        "default": false,
-        "label": "¿Último elemento de color?"
-      },
-      {
-        "type": "color",
-        "id": "last_item_color",
-        "label": "Color del último elemento",
-        "default": "#0e0e0e"
-      },
-      {
-        "type": "header",
-        "content": "Header"
-      },
-      {
-        "type": "product",
-        "id": "producto_menu",
-        "label": "Producto de menú",
-        "info": "Selecciona el producto que estará en el menú"
-      }
+        {
+            "type": "header",
+            "content": "Barra de anuncios"
+        }, {
+            "type": "text",
+            "id": "barra_anuncios1",
+            "label": "Texto promocional 1:",
+            "default": "Escribe aquí la promoción o anuncio."
+        }, {
+            "type": "url",
+            "id": "barra_anuncios1_link",
+            "label": "Link 1:"
+        }, {
+            "type": "text",
+            "id": "barra_anuncios2",
+            "label": "Texto promocional 2:",
+            "default": "Escribe aquí la promoción o anuncio."
+        }, {
+            "type": "url",
+            "id": "barra_anuncios2_link",
+            "label": "Link 2:"
+        }, {
+            "type": "checkbox",
+            "id": "white",
+            "label": "Fondo blanco",
+            "default": false,
+            "info": "Hacer blanco el fondo de la barra de anuncios"
+        }, {
+            "type": "header",
+            "content": "Menú"
+        }, {
+            "type": "checkbox",
+            "id": "last_item_menu_color",
+            "default": false,
+            "label": "¿Último elemento de color?"
+        }, {
+            "type": "color",
+            "id": "last_item_color",
+            "label": "Color del último elemento",
+            "default": "#0e0e0e"
+        }, {
+            "type": "header",
+            "content": "Header"
+        }, {
+            "type": "product",
+            "id": "producto_menu",
+            "label": "Producto de menú",
+            "info": "Selecciona el producto que estará en el menú"
+        }
     ]
-  }
+}
+
 {% endschema %}
 
 <script type="application/ld+json">

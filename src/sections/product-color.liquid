@@ -1,0 +1,339 @@
+<section itemscope itemtype="http://schema.org/Product" class="section__principal" data-section-id="{{ section.id }}" data-section-type="product">
+
+{%- assign unico = product.has_only_default_variant -%}
+{%- assign inventario_actual = variant.inventory_quantity -%}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
+
+  <meta itemprop="name" content="{{ product.title }}{% unless product.has_only_default_variant %} - {{ current_variant.title }}{% endunless %}">
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+  <meta itemprop="image" content="{{ product.featured_image.src | img_url: '1024x1024' }}">
+  <div class="container">
+    <div class="row">
+    
+      <!-- PRODUCT SLIDER -->
+      <!-- TODO: Arreglar los slides pequeños de preview. -->
+      <div class="col-md-6 col-lg-7">
+        <div class="row">
+          <div class="col-12 breadcrumb">
+            {% include 'breadcrumbs' %}
+          </div>
+          <div class="col-12 product__slider">
+            <div class="row row-mobile">
+              {% for variant in product.variants %}
+              <div data-variant-id="{{ variant.id }}" class="swiper-container gallery-thumbs gallery-thumbs{{forloop.index0}} col-md-12 col-lg-2 order-2 order-lg-1" style="{% if forloop.index0 > 0 %} display: none; {% endif %}">
+                <div class="swiper-wrapper ">
+
+                  {% for image in variant.metafields.gallery.image %}
+                    <div class="swiper-slide img-container">
+                      <img src="{{ image }}" class="w-100" alt="">
+                    </div>
+                  {% endfor %}
+                
+                </div>
+              </div>
+              {% endfor %}
+
+              {% for variant in product.variants %}
+              <div data-variant-id="{{ variant.id }}" class="swiper-container gallery-top gallery-top{{forloop.index0}} col-md-12 col-lg-10 order-1 order-lg-2" style="{% if forloop.index0 > 0 %} display: none; {% endif %}">
+                <div class="swiper-wrapper">
+                
+                
+                  {% for image in variant.metafields.gallery.image %}
+                    <div class="swiper-slide img-container" style="background-image:url({{ image }}); background-size: cover;">{%- comment -%}<button class="btn__wishlist product_{{product.id}}" data-swaction="addToWishlist" data-product-id="{{product.id | json}}"></button>{%- endcomment -%}</div>
+                  {% endfor %}
+                
+                {% include 'grid-item-icons' %}
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END: PRODUCT SLIDER -->
+
+      
+      {% include 'tag-logic' %}
+
+      
+      <!-- PRODUCT DETAILS -->
+      <div class="col-md-6 col-lg-5 section__container
+        {% if soon %} product soon
+        {% elsif new %} product new
+        {% else %} product
+        {% endif %}
+        ">
+        {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true', data-section-id: section.id %}
+        <!-- VENDOR -->
+        <h1 class="text-link">by {{ product.vendor }}</h1>
+        <!-- END:VENDOR -->
+        
+        <!-- TITLE -->
+        <h2>{{ product.title }}</h2>
+        <!-- END: TITLE -->
+        
+        <!-- DETAILS -->
+        <div class="d-flex justify-content-between pt-05 pb-20 bb-black mb-20" data-price-wrapper>
+          <h3>{{ product.metafields['producto']['presentacion'] }}</h3>
+          {% if unico %}
+            <div>
+              <p class="h3 unico" data-product-price>
+                {% if product.compare_at_price_max > product.price and product.compare_at_price_max != 0 %}
+                  <del>{{ product.compare_at_price_max | money }}</del><br />
+                  <span>{{ product.price | money }}</span>
+                {% else product.compare_at_price_max == blank %}
+                  {{ product.price | money }}
+                {% endif %}
+              </p>
+            </div>
+          {% else current_variant %}
+            <div>
+              <p class="h3 variantes" data-product-price>
+                {% if current_variant.price < current_variant.compare_at_price %}
+                  <del>{{ current_variant.compare_at_price | money }}</del> {{ current_variant.price | money }}
+                {% else current_variant.compare_at_price == blank %}
+                  {{ current_variant.price | money }}
+                {% endif %}
+              </p>
+            </div>
+            {% comment %} <p class="h3 variantes">
+              * Desde {{ product.price | money }}
+            </p> {% endcomment %}
+          {% endif %}
+        </div>
+        <!-- END: DETAILS -->
+
+        <!-- SECTION REVIEWS -->
+        <span class="stamped-product-reviews-badge stamped-main-badge pb-10" data-id="{{product.id}}" data-product-title="{{product.title}}" data-product-type="{{product.type}}" style="display: block;"></span>
+        <!-- END: SECTION REVIEWS -->
+        
+        {%- comment -%}
+        El botón de Back to Stock se configura directo de la app, en THEME INTEGRATION: Custom Script.
+        {%- endcomment -%}
+        {%- comment -%}<button class="btn__main btn__main--big" id="BIS_trigger" {% if product.available %} style="display: none;" {% endif %}>Notificarme cuando esté disponible</button>{%- endcomment -%}
+
+	      <div class="mb-20 pb-20 bb-black">
+          <b>Descripción.</b>
+          <p>{{ product.description }}</p>
+
+          {% if product.metafields.recomendado.nombre_1 != blank %}
+            <div class="recomendado mb-30 mt-30">
+              <b>Recomendado por</b>
+              <div class="tag"><a href="{{ product.metafields['recomendado']['link_1'] }}" target="_blank">{{ product.metafields['recomendado']['nombre_1'] }}</a></div>
+              {% if product.metafields.recomendado.nombre_2 != blank %}   
+              <div class="tag"><a href="{{ product.metafields['recomendado']['link_2'] }}" target="_blank">{{ product.metafields['recomendado']['nombre_2'] }}</a></div>
+              {% endif %}
+              {% if product.metafields.recomendado.nombre_3 != blank %}   
+              <div class="tag"><a href="{{ product.metafields['recomendado']['link_3'] }}" target="_blank">{{ product.metafields['recomendado']['nombre_3'] }}</a></div>
+              {% endif %}
+              {% if product.metafields.recomendado.nombre_4 != blank %}   
+              <div class="tag"><a href="{{ product.metafields['recomendado']['link_4'] }}" target="_blank">{{ product.metafields['recomendado']['nombre_4'] }}</a></div>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+
+
+        {% unless product.has_only_default_variant %}
+        <!-- COLOR SWATCHES -->
+        {% for option in product.options_with_values %}
+          {% assign option_index = forloop.index0 %}
+
+          <div class="color-swatches pb-30">
+            <div class="swatch-name-list body-sans-b">
+              <!-- ACTIVE SWATCH NAME / (.CHANGE() JS) -->
+              <div class="swatch-name">
+                <p><b>{{ option.name }} |</b> {{ product.variants.first.options[option_index] }}</p>
+              </div>
+              <!-- END: ACTIVE SWATCH NAME -->
+            </div>
+            <div class="pt-10">
+              <ul class="swatch-list list-unstyled cursor-default">
+                {% for variant in product.variants %}
+                  {% assign value = variant.options[option_index] %}
+
+                  <li>
+                    <label class="mb-0">
+                      <input class="single-option-selector-{{ section.id }}" type="radio" name="option-{{ option_index }}" data-variant="{{ variant.id }}" value="{{ value | handleize }}" data-index="{{ forloop.index0 }}" data-name="<p><b>{{ option.name }} |</b> {{ value | escape }}</p>" {% if option.selected_value == value %} checked {% endif %}>
+                      <span class="swatch" style="background-color:#E5777B"></span>
+                    </label>
+                  </li>
+                {% endfor %}
+              </ul> 
+            </div>
+          </div>
+        {% endfor %}
+        <!-- END: COLOR SWATCHES -->
+        {% endunless %}
+
+        <!-- PRODUCT FORM -->
+        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+          {% assign variant = product.selected_or_first_available_variant %}
+          <meta itemprop="priceCurrency" content="{{ cart.currency.iso_code }}">
+          <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+           
+          {% if product.has_only_default_variant %}
+            <input name="id" value="{{ variant.id }}" type="hidden">
+          {% else %}
+            <select name="id" id="Option1" class="product-single__variants d-none">
+              {% for variant in product.variants %}
+                {% if variant.available %}
+                  <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }}</option>
+                {% else %}
+                  <option disabled="disabled">
+                    {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                  </option>
+                {% endif %}
+              {% endfor %}
+            </select>
+            {% endif %}
+          {% if unico %}
+            {% comment %} <div class="product-single__quantity{% unless section.settings.product_quantity_enable %} is-hidden{% endunless %}">
+              <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
+              <input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
+            </div> {% endcomment %}
+            <div class="input-quantity">
+              <span class="input-number-decrement">–</span><!--
+              --><input class="input-number" type="text" value="1" min="1" max="" name="quantity"><!--
+              --><span class="input-number-increment">+</span>
+            </div>
+          {% endif %}
+            <button 
+              type="submit" 
+              name="add" 
+              id="AddToCart" 
+              class="btn__main btn__main--big btn__main--addtocart btn__main--addtocart--big"
+              data-submit-button
+              {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+              <span id="AddToCartText">
+              {% if current_variant.available %}
+                {{ 'products.product.add_to_cart' | t }}
+              {% else %}
+                {{ 'products.product.sold_out' | t }}
+              {% endif %}
+              </span>
+            </button>
+            {% comment %} {% if section.settings.enable_payment_button %}
+              {{ form | payment_button }}
+            {% endif %} {% endcomment %}
+           
+        </div>
+        <!-- END: PRODUCT FORM -->
+
+        <div class="clearfix"></div>
+        {% endform %}
+      </div>
+      <!-- END: PRODUCT DETAILS -->
+
+    </div>
+  </div>
+
+</section>
+
+<script type="text/javascript">
+$(function () {
+  // FUNCTION TO CHANGE SWATCH NAME LABEL WHEN INPUT CHANGE
+  $(".swatch-list input").change(function(){
+    var input = $(this);
+    var input_data = input.data("name");
+    $(".swatch-name").empty().html(input_data);
+  });
+})
+</script>
+
+<script type="text/javascript">
+  $(function(){
+    var section_id = $("form[data-product-form]").data("section-id");
+    
+    product = JSON.parse(
+     $('#ProductJson-' + section_id).html()
+    );
+    
+
+    $(".swatch-list input").change(function(){
+      var index = $(this).data("index");
+      var variant_id = $(this).data("variant");
+
+      galleryThumbs.destroy(false, false);
+      galleryTop.destroy(false, false);
+      $(".gallery-thumbs").hide();
+      $(".gallery-top").hide();
+
+      $(".gallery-thumbs" + index).show();
+      $(".gallery-top" + index).show();
+  
+      galleryThumbs = new Swiper('.gallery-thumbs' + index, {
+        direction: 'vertical',
+        spaceBetween: 10,
+        slidesPerView: 5,
+        freeMode: true,
+        watchSlidesVisibility: true,
+        watchSlidesProgress: true,
+        breakpoints: {
+          991: {
+            direction: 'horizontal',
+          },
+        },
+      });
+
+      galleryTop = new Swiper('.gallery-top' + index, {
+        direction: 'vertical',
+        spaceBetween: 10,
+        breakpoints: {
+          991: {
+            spaceBetween: 0,
+            direction: 'horizontal',
+          },
+        },
+        thumbs: {
+          swiper: galleryThumbs,
+        },
+      });
+
+      $('img').each(function() {
+        if ($(this).isInViewport()) {
+          $(this).addClass('loaded');
+        }  
+      });
+
+      $("#Option1").val(product.variants[index].id).change();
+      $("[data-product-price]").text("$ " + (product.variants[index].price/100).toFixed(2));
+    });
+  });
+</script>
+
+{% unless product == empty %}
+  <script type="application/json" id="ProductJson-{{ section.id }}">
+    {{ product | json }}
+  </script>
+ 
+  <script type="application/json" id="ModelJson-{{ section.id }}">
+    {{ product.media | where: 'media_type', 'model' | json }}
+  </script>
+{% endunless %}
+
+{% comment %} <script type="text/javascript">
+ 
+  $(function(){
+    $('#opciones li').on('click', function() {
+
+      var id = $(this).text();
+
+      var sortBySelect = document.querySelector("#Option1");
+      sortBySelect.value = id;
+      sortBySelect.dispatchEvent(new Event("change"));
+    })
+  })
+
+  $(document).ready(function(){
+      $("#opciones li:first-child").addClass("active");
+
+      $('#opciones li').click(function(){
+        $('.opciones-item').removeClass('active');
+        $(this).addClass('active');
+        $('#opciones').toggleClass('active');
+      });
+  });
+</script> {% endcomment %}
+

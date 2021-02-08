@@ -357,7 +357,7 @@ $(window).on('load', () => {
 // //DETALLE DE PRODUCTO
 $(document).ready(() => {
 
-  const galleryThumbs = new Swiper('.gallery-thumbs', {
+  galleryThumbs = new Swiper('.gallery-thumbs0', {
     direction: 'vertical',
     spaceBetween: 10,
     slidesPerView: 5,
@@ -371,7 +371,7 @@ $(document).ready(() => {
     },
   });
 
-  const galleryTop = new Swiper('.gallery-top', {
+  galleryTop = new Swiper('.gallery-top0', {
     direction: 'vertical',
     spaceBetween: 10,
     breakpoints: {
@@ -384,6 +384,7 @@ $(document).ready(() => {
       swiper: galleryThumbs,
     },
   });
+
 
 });
 
@@ -559,7 +560,10 @@ var UpdateBar = function(){
 
 
 // banner display on mobile
-var distance = $('.shop-item').offset().top;
+var distance
+if($('.shop-item').length != 0){
+  distance = $('.shop-item').offset().top;
+}
 
 $(window).scroll(function() {
     if ( $(this).scrollTop() >= distance ) {

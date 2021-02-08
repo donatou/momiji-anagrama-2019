@@ -1,6 +1,6 @@
 {% include 'tag-logic' %}
 
-<a  href="{{ product.url | within: collection }}"
+<a href="{{ product.url | within: collection }}"
     class=  "{% if soon %}product soon
             {% elsif new %}product new
             {% else %}product

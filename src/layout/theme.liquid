@@ -10,15 +10,33 @@
     <link rel="preload" href="{{ 'jquery.min.js' | asset_url }}" as="script">
     {%- comment -%}<link rel="preload" href="{{ 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' }}" as="script">{%- endcomment -%}
     {%- comment -%}<script src="{{ 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' }}"></script>{%- endcomment -%}
+
     <script src="{{ 'jquery.min.js' | asset_url }}"></script>
     <link rel="preload" href="{{ 'momiji.scss.css?v=84' | asset_url }}" as="style">
     {{ 'momiji.scss.css?v=84' | asset_url | stylesheet_tag }}
+    {{ 'anagrama.css?v=84' | asset_url | stylesheet_tag }}
     {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
     {% include 'social-meta-tags' %}
     {% include 'style-tags', layout: 'theme' %}
+
     {% include 'script-tags', layout: 'theme' %}
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js" integrity="sha256-zUQGihTEkA4nkrgfbbAM1f3pxvnWiznBND+TuJoUv3M=" crossorigin="anonymous"></script>	
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css" integrity="sha256-3h45mwconzsKjTUULjY+EoEkoRhXcOIU4l5YAw2tSOU=" crossorigin="anonymous" />
+    
+    <!-- ANAGRAMA VIDEO JS -->
+     <!-- Video.js base CSS -->
+     <link href="https://unpkg.com/video.js@7/dist/video-js.min.css" rel="stylesheet"/>
+     <!-- City -->
+     <link href="https://unpkg.com/@videojs/themes@1/dist/sea/index.css" rel="stylesheet">
+    <!-- END: ANAGRAMA VIDEO JS -->
+    
+    <!-- ANAGRAMA BOOTSTRAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+    <!-- END: ANAGRAMA BOOTSTRAP -->
 
     {%- if settings.favicon != blank -%}
       <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
@@ -118,7 +136,8 @@
        {% include 'newsletter-modal' %}
     </div>
 
-    <div id="mb-menu" class="mobile-menu">
+    <!-- class: mobile-menu is-open-->
+    <div id="mb-menu">
       {% include 'mobile' %}
     </div>
 
@@ -135,8 +154,9 @@
     {% comment %} <script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer></script> {% endcomment %}
     <script src="{{ 'swiper4.min.js'| asset_url }}" defer></script>
     <script src="{{ 'parallax.js' | asset_url }}" defer></script> 
-    {% comment %} <script src="{{ 'app.js' | asset_url }}" defer></script>  {% endcomment %}
-    <script src="{{ 'app.min.js' | asset_url }}" defer></script> 
+    <script src="{{ 'app.js' | asset_url }}" defer></script> 
+    <script src="{{ 'anagrama.js' | asset_url }}" defer></script> 
+    {% comment %} <script src="{{ 'app.js' | asset_url }}" defer></script> {% endcomment %} 
     <script src="{{ 'micromodal.js' | asset_url }}" defer></script>  
     <script src="{{ 'jquery.selectric.js' | asset_url }}" defer></script>  
         {% comment %} {% include 'back-in-stock-helper' %} {% endcomment %}

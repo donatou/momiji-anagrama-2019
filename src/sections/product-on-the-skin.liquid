@@ -1,0 +1,62 @@
+<!-- SECTION – ON THE SKIN -->
+<section class="py-100 bg-purple">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="bb-black pb-15 mb-20">
+                    <h2>On the skin.</h2>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="swiper-skin swiper-container">
+                    <div class="swiper-wrapper">
+                        {% for image in product.metafields.skin.image %}
+                            <div class="swiper-slide">
+                              <figure class="img-wrap">
+                                    <img alt="" class="w-100 h-100 object-fit-cover" src="{{ image }}">
+                                    <figcaption class="text-link d-flex justify-content-between">
+                                        <div>
+                                            {{ product.metafields.skin.name[forloop.index0] }}
+                                        </div>
+                                        <div>
+                                            {{ product.metafields.skin.date[forloop.index0] }}
+                                        </div>
+                                    </figcaption>
+                              </figure>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                    <!-- SWIPPER NAVIGATION -->
+                    <div class="swiper-button swiper-button-next swiper-circle c-white">
+                    </div>
+                    <div class="swiper-button swiper-button-prev swiper-circle c-white rotate-180">
+                    </div>
+                    <!-- END: SWIPPER NAVIGATION -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END: SECTION – ON THE SKIN -->
+
+<script>
+    $(function () {
+        var swiper = new Swiper('.swiper-skin', {
+            slidesPerView: 4,
+            spaceBetween: 30,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                499: {
+                    slidesPerView: 2
+                },
+                999: {
+                    slidesPerView: 3
+                }
+            }
+    });
+})
+</script>
