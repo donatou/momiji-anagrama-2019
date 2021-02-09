@@ -50,7 +50,7 @@
         let now = new Date().getTime(),
             distance = countDown - now;
 
-          //document.querySelector('.days').innerText = Math.floor(distance / (day)),
+          document.querySelector('.days').innerText = Math.floor(distance / (day)),
           document.querySelector('.hours').innerText = Math.floor((distance % (day)) / (hour)),
           document.querySelector('.minutes').innerText = Math.floor((distance % (hour)) / (minute)),
           document.querySelector('.seconds').innerText = Math.floor((distance % (minute)) / second);
