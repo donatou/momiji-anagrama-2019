@@ -24,6 +24,13 @@
                     <img alt="image 2" class="" src="{{ product.metafields.cambios.image_2 }}">
                 </div>
             </div>
+            {% if product.metafields.cambios.footnote != blank %}
+                <div class="col-12">
+                    <div class="c-link-red-a pt-10">
+                        {{product.metafields.cambios.footnote}}
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </div>
 </section>

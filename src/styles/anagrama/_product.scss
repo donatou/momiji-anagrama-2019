@@ -121,22 +121,26 @@
             width: auto;
             left: 50%;
             transform: translateX(-50%);
+            .swiper-pagination-bullet {
+                line-height: 18px;
+            }
         }
     }
 
     .sticky-column {
         @media (min-width: 992px) {
             position: sticky;
-            top: 100px;
-            padding-bottom: 100px;
+            top: 60px;
+            // padding-bottom: 100px;
         }
     }
 
     .sticker-sundae {
+        user-select: none;
         position: absolute;
         top: 60%;
         left: -100px;
-        z-index: 2;
+        z-index: 9;
         img {
             width: 257px;
             height: 258px;
@@ -147,10 +151,11 @@
 
 .section-image-slider {
     .sticker-sundae {
+        user-select: none;
         position: absolute;
         top: -100px;
         right: 0px;
-        z-index: 2;
+        z-index: 9;
         @media (max-width: 991.98px) {
             top: 30px;
         }
@@ -168,10 +173,11 @@
 
 .section-tono {
     .sticker-sundae {
+        user-select: none;
         position: absolute;
         top: -100px;
         right: 0px;
-        z-index: 2;
+        z-index: 9;
         @media (max-width: 991.98px) {
             top: 65px;
         }
@@ -308,6 +314,52 @@
             &.active {
                 z-index: 9;
             }
+        }
+    }
+}
+
+.product__slider {
+    .slider-thumbs {
+        @media (max-width: 991.98px) {
+            height: 65px !important;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 767.98px) {
+            padding-right: 0px;
+            padding-left: 0px;
+        }
+        
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+        }
+
+        .swiper-slide-thumb-active {
+            img {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 991.98px) {
+            .swiper-slide {
+                height: 65px;
+            }
+        }
+    }
+    .slider-top {
+        @media (max-width: 767.98px) {
+            padding-right: 0px;
+            padding-left: 0px;
+        }
+        
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            opacity: 1;
         }
     }
 }
