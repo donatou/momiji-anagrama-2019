@@ -136,6 +136,9 @@ ul.list-unstyled {
 .bg-purple {
   background-color: #faf2fa; }
 
+.bg-lighter {
+  background-color: #F9FCFC; }
+
 .z-0 {
   z-index: 0; }
 
@@ -457,6 +460,9 @@ ul.list-unstyled {
       border: 1px solid #262626; }
   .btn-large {
     min-width: 212px; }
+
+#AddToCart.bg-light {
+  background-color: #F3E4F3; }
 
 .full-modal {
   position: fixed;
