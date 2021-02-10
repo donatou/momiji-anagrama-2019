@@ -384,8 +384,6 @@ $(document).ready(() => {
       swiper: galleryThumbs,
     },
   });
-
-
 });
 
 

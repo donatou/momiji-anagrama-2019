@@ -21,7 +21,7 @@
           <div class="col-12 product__slider">
             <div class="row row-mobile">
               {% for variant in product.variants %}
-              <div data-variant-id="{{ variant.id }}" class="swiper-container gallery-thumbs gallery-thumbs{{forloop.index0}} col-md-12 col-lg-2 order-2 order-lg-1" style="{% if forloop.index0 > 0 %} display: none; {% endif %}">
+              <div data-variant-id="{{ variant.id }}" class="swiper-container h-up-lg-100 slider-thumbs slider-thumbs{{forloop.index0}} col-md-12 col-lg-2 order-2 order-lg-1" style="{% if forloop.index0 > 0 %} display: none; {% endif %}">
                 <div class="swiper-wrapper ">
 
                   {% for image in variant.metafields.gallery.image %}
@@ -35,14 +35,14 @@
               {% endfor %}
 
               {% for variant in product.variants %}
-              <div data-variant-id="{{ variant.id }}" class="swiper-container gallery-top gallery-top{{forloop.index0}} col-md-12 col-lg-10 order-1 order-lg-2" style="{% if forloop.index0 > 0 %} display: none; {% endif %}">
+              <div data-variant-id="{{ variant.id }}" class="swiper-container h-100 slider-top slider-top{{forloop.index0}} col-md-12 col-lg-10 order-1 order-lg-2" style="{% if forloop.index0 > 0 %} display: none; {% endif %}">
                 <div class="swiper-wrapper">
-                
-                
                   {% for image in variant.metafields.gallery.image %}
-                    <div class="swiper-slide img-container" style="background-image:url({{ image }}); background-size: cover;">{%- comment -%}<button class="btn__wishlist product_{{product.id}}" data-swaction="addToWishlist" data-product-id="{{product.id | json}}"></button>{%- endcomment -%}</div>
+                    <div class="swiper-slide img-container" >
+                      <img src="{{ image }}" alt="">
+                      <!-- style="background-image:url(); background-size: cover;" -->
+                    </div>
                   {% endfor %}
-                
                 {% include 'grid-item-icons' %}
                 </div>
               </div>
@@ -75,7 +75,11 @@
         
         <!-- DETAILS -->
         <div class="d-flex justify-content-between pt-05 pb-20 bb-black mb-20" data-price-wrapper>
-          <h3>{{ product.metafields['producto']['presentacion'] }}</h3>
+          {% assign presentacion = product.metafields['producto']['presentacion'] %}
+          {% if presentacion != blank %}
+            <h3>{{ product.metafields['producto']['presentacion'] }}</h3>
+          {% endif %}
+
           {% if unico %}
             <div>
               <p class="h3 unico" data-product-price>
@@ -116,24 +120,7 @@
 	      <div class="mb-20 pb-20 bb-black">
           <b>Descripción.</b>
           <p>{{ product.description }}</p>
-
-          {% if product.metafields.recomendado.nombre_1 != blank %}
-            <div class="recomendado mb-30 mt-30">
-              <b>Recomendado por</b>
-              <div class="tag"><a href="{{ product.metafields['recomendado']['link_1'] }}" target="_blank">{{ product.metafields['recomendado']['nombre_1'] }}</a></div>
-              {% if product.metafields.recomendado.nombre_2 != blank %}   
-              <div class="tag"><a href="{{ product.metafields['recomendado']['link_2'] }}" target="_blank">{{ product.metafields['recomendado']['nombre_2'] }}</a></div>
-              {% endif %}
-              {% if product.metafields.recomendado.nombre_3 != blank %}   
-              <div class="tag"><a href="{{ product.metafields['recomendado']['link_3'] }}" target="_blank">{{ product.metafields['recomendado']['nombre_3'] }}</a></div>
-              {% endif %}
-              {% if product.metafields.recomendado.nombre_4 != blank %}   
-              <div class="tag"><a href="{{ product.metafields['recomendado']['link_4'] }}" target="_blank">{{ product.metafields['recomendado']['nombre_4'] }}</a></div>
-              {% endif %}
-            </div>
-          {% endif %}
         </div>
-
 
         {% unless product.has_only_default_variant %}
         <!-- COLOR SWATCHES -->
@@ -203,7 +190,7 @@
               type="submit" 
               name="add" 
               id="AddToCart" 
-              class="btn__main btn__main--big btn__main--addtocart btn__main--addtocart--big"
+              class="btn__main bg-light btn__main--big btn__main--addtocart btn__main--addtocart--big"
               data-submit-button
               {% unless current_variant.available %}disabled="disabled"{% endunless %}>
               <span id="AddToCartText">
@@ -244,12 +231,42 @@ $(function () {
 
 <script type="text/javascript">
   $(function(){
+
+    var galleryThumbs = new Swiper('.slider-thumbs0', {
+    direction: 'vertical',
+    spaceBetween: 10,
+    slidesPerView: 7,
+    freeMode: true,
+    watchSlidesVisibility: true,
+    watchSlidesProgress: true,
+    breakpoints: {
+      991: {
+        direction: 'horizontal',
+        slidesPerView: 6
+      },
+    },
+  });
+
+  var galleryTop = new Swiper('.slider-top0', {
+    direction: 'vertical',
+    spaceBetween: 10,
+    breakpoints: {
+      991: {
+        spaceBetween: 15,
+        direction: 'horizontal',
+      },
+    },
+    thumbs: {
+      swiper: galleryThumbs,
+    },
+  })
+
+
     var section_id = $("form[data-product-form]").data("section-id");
     
     product = JSON.parse(
      $('#ProductJson-' + section_id).html()
     );
-    
 
     $(".swatch-list input").change(function(){
       var index = $(this).data("index");
@@ -257,32 +274,33 @@ $(function () {
 
       galleryThumbs.destroy(false, false);
       galleryTop.destroy(false, false);
-      $(".gallery-thumbs").hide();
-      $(".gallery-top").hide();
+      $(".slider-thumbs").hide();
+      $(".slider-top").hide();
 
-      $(".gallery-thumbs" + index).show();
-      $(".gallery-top" + index).show();
+      $(".slider-thumbs" + index).show();
+      $(".slider-top" + index).show();
   
-      galleryThumbs = new Swiper('.gallery-thumbs' + index, {
+      galleryThumbs = new Swiper('.slider-thumbs' + index, {
         direction: 'vertical',
         spaceBetween: 10,
-        slidesPerView: 5,
+        slidesPerView: 7,
         freeMode: true,
         watchSlidesVisibility: true,
         watchSlidesProgress: true,
         breakpoints: {
           991: {
             direction: 'horizontal',
+            slidesPerView: 6
           },
         },
       });
 
-      galleryTop = new Swiper('.gallery-top' + index, {
+      galleryTop = new Swiper('.slider-top' + index, {
         direction: 'vertical',
         spaceBetween: 10,
         breakpoints: {
           991: {
-            spaceBetween: 0,
+            spaceBetween: 15,
             direction: 'horizontal',
           },
         },
@@ -317,7 +335,6 @@ $(function () {
  
   $(function(){
     $('#opciones li').on('click', function() {
-
       var id = $(this).text();
 
       var sortBySelect = document.querySelector("#Option1");

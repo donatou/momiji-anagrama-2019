@@ -1,6 +1,6 @@
 {% if section.settings.show_section %}
     <!-- SECTION – PRODUCT SLIDER -->
-    <section class="section-tono py-100 bg-white overflow-hidden">
+    <section class="section-tono py-100 bg-lighter overflow-hidden{% if product.metafields.tone.image == blank %} d-none{% endif %}">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-down-sm-center">
@@ -20,19 +20,21 @@
                     <div class="swiper-tono swiper-container overflow-visible">
                         <div class="swiper-wrapper">
                             {% for image in product.metafields.tone.image %} 
-                                <div class="swiper-slide">
-                                    <figure>
-                                        <img src="{{ image }}" alt="">
-                                        <figcaption class="c-white d-flex flex-column flex-md-row text-down-sm-center justify-content-between text-link">
-                                            <div>
-                                                {{ product.metafields.tone.footer[forloop.index0] }}
-                                            </div>
-                                            <div>
-                                                k-tint | pink dream
-                                            </div>
-                                        </figcaption>
-                                    </figure>
-                                </div>
+                                {% unless image == blank %}
+                                    <div class="swiper-slide">
+                                        <figure>
+                                            <img src="{{ image }}" alt="">
+                                            <figcaption class="c-white d-flex flex-column flex-md-row text-down-sm-center justify-content-between text-link">
+                                                <div>
+                                                    {{ product.metafields.tone.footer[forloop.index0] }}
+                                                </div>
+                                                <div>
+                                                    {{ product.metafields.tone.footer-color[forloop.index0] }}
+                                                </div>
+                                            </figcaption>
+                                        </figure>
+                                    </div>
+                                {% endunless %}
                             {% endfor %}
 
                         </div>
@@ -46,13 +48,13 @@
                 <div class="col-11 col-md-8 col-lg-7 mx-auto mt-45">
                     <div class="slider-wrapper text-link d-flex justify-content-between">
                         {% for footer in product.metafields.tone.footer %} 
-                        <div>
-                            <input {% if forloop.first %} checked {% endif %} data-index="{{ forloop.index0 }}" id="{{ footer | handleize }}" name="slider" type="radio" value="{{ footer | handleize }}">
-                            <label for="{{ footer | handleize }}">{{ footer }}</label>
-                        </div>
+                            {% unless footer == blank %} 
+                                <div>
+                                    <input {% if forloop.first %} checked {% endif %} data-index="{{ forloop.index0 }}" id="{{ footer | handleize }}" name="slider" type="radio" value="{{ footer | handleize }}">
+                                    <label for="{{ footer | handleize }}">{{ footer }}</label>
+                                </div>
+                            {% endunless %}
                         {% endfor %}
-                        
-                         
                     </div>
                     <div>
                         <div class="gradient-slider"></div>

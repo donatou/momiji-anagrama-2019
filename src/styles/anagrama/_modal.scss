@@ -10,7 +10,16 @@
     z-index: 11000000;
     transition: opacity 0.4s ease;
     pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+
+    @media (min-width: 992px) {
+        min-height: 100%;
+        overflow: auto;
+    }
+    
     &.show {
         pointer-events: all;
         top: 0%;
@@ -45,7 +54,7 @@
     }
 
     .background-modal{
-        position: absolute;
+        position: fixed;
         height: 100%;
         width: 100%;
         left: 0;
