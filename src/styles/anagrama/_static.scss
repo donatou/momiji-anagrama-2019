@@ -10,6 +10,12 @@
     height: 100%;
 }
 
+.h-up-lg-100 {
+    @media (min-width: 992px) {
+        height: 100%;
+    }
+}
+
 .h-down-md-100 {
     @media (max-width: 991.98px) {
         height: 100%;

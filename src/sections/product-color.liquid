@@ -21,7 +21,7 @@
           <div class="col-12 product__slider">
             <div class="row row-mobile">
               {% for variant in product.variants %}
-              <div data-variant-id="{{ variant.id }}" class="swiper-container h-100 slider-thumbs slider-thumbs{{forloop.index0}} col-md-12 col-lg-2 order-2 order-lg-1" style="{% if forloop.index0 > 0 %} display: none; {% endif %}">
+              <div data-variant-id="{{ variant.id }}" class="swiper-container h-up-lg-100 slider-thumbs slider-thumbs{{forloop.index0}} col-md-12 col-lg-2 order-2 order-lg-1" style="{% if forloop.index0 > 0 %} display: none; {% endif %}">
                 <div class="swiper-wrapper ">
 
                   {% for image in variant.metafields.gallery.image %}
@@ -242,6 +242,7 @@ $(function () {
     breakpoints: {
       991: {
         direction: 'horizontal',
+        slidesPerView: 6
       },
     },
   });
@@ -251,7 +252,7 @@ $(function () {
     spaceBetween: 10,
     breakpoints: {
       991: {
-        spaceBetween: 0,
+        spaceBetween: 15,
         direction: 'horizontal',
       },
     },
@@ -289,6 +290,7 @@ $(function () {
         breakpoints: {
           991: {
             direction: 'horizontal',
+            slidesPerView: 6
           },
         },
       });
@@ -298,7 +300,7 @@ $(function () {
         spaceBetween: 10,
         breakpoints: {
           991: {
-            spaceBetween: 0,
+            spaceBetween: 15,
             direction: 'horizontal',
           },
         },
