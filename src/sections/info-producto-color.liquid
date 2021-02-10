@@ -1,10 +1,10 @@
 {% include 'benefits-logic' %}
 {% include 'pasoderutina-logic' %}
 
-<section class="section-product-info main__product--info bg-purple pt-100">
-    <div class="container-fluid">
+<section class="section-product-info main__product--info bg-purple pt-80 pt-lg-0">
+    <div class="container-fluid px-15">
         <div class="row justify-content-center flex-lg-row-reverse">
-            <div class="col-12 col-md-10 col-lg-6 pb-30 pb-lg-0">
+            <div class="col-12 col-md-10 col-lg-6 pb-30 pb-lg-0 pr-lg-0 z-1">
                 <div class="sticky-column">
                     <div class="sticker-sundae d-none d-lg-block">
                       <figure>
@@ -29,7 +29,7 @@
             </div>
 
             <div class="col-12 col-md-10 col-lg-6">
-                <div class="row justify-content-center">
+                <div class="row justify-content-center pt-up-lg-100">
                     <div class="col-12 col-lg-11">
                         <div class="pb-20 text-down-sm-center">
                             <div class="text-link">
@@ -42,7 +42,7 @@
 
                         <!-- SECTION: QUE HACE -->
                         {% if infoAdicional %}
-                            <section class="pb-100">
+                            <section class="pb-30">
                                 <!-- ADITIONAL INFO  -->
                                 <div class="by-black pt-05 pb-10 mb-30">
                                     <a class="accordion h3 active">Más info</a>
@@ -57,7 +57,7 @@
                             </section>
                             <!-- END: ADITIONAL INFO  -->
                         {% else %}
-                            <section class="pb-100">
+                            <section class="pb-60">
                                 <!-- BENEFITS SECTION -->
                                 <div class="by-black pt-05 pb-10 mb-25">
                                     <div class="h3">Qué hace por ti.</div>
@@ -131,7 +131,7 @@
                         <!-- END: SECTION: QUE HACE -->
                                     
                         <!-- SECTION: CON TODO LO BUENO -->
-                        <section class="pb-100">
+                        <section class="pb-60">
                             <div class="by-black pt-05 pb-10 mb-25">
                                 <div class="h3">Con todo lo bueno.</div>
                             </div>
@@ -183,7 +183,7 @@
                         <!-- END: SECTION: CON TODO LO BUENO -->
                                     
                         <!-- SECTION: QUE CONTIENE -->
-                        <section class="pb-100">
+                        <section class="pb-60">
                             <div class="by-black pt-05 pb-10 mb-25">
                                 <div class="h3">¿Qué contiene?</div>
                             </div>
@@ -201,73 +201,88 @@
                                      
                                 </ul>
                                 <!-- MODAL POP UP LINK -->
-                                <div class="pt-20">
-                                    <a aria-controls="info-modal" aria-expanded="false" data-target="#info-modal" data-toggle="show" href="#" role="button">
-                                        <div class="c-red text-link">
-                                            Lista completa de ingredientes
-                                            {% include 'icon-plus-circle' %}
-                                        </div>
-                                    </a>
-                                </div>
+                                {% if product.metafields.contiene.content != blank %}
+                                    <div class="pt-20">
+                                        <a aria-controls="info-modal" aria-expanded="false" data-target="#info-modal" data-toggle="show" href="#" role="button">
+                                            <div class="c-red text-link">
+                                                Lista completa de ingredientes
+                                                {% include 'icon-plus-circle' %}
+                                            </div>
+                                        </a>
+                                    </div>
+                                {% endif %}
                                 <!-- END: MODAL POP UP LINK -->
                             </div>
                         </section>
                         <!-- END: SECTION:  QUE CONTIENE -->
                                     
                         <!-- SECTION: COMO UTILIZAR -->
-                        <section class="pb-100">
-                            <div class="by-black pt-05 pb-10 mb-25">
-                                <div class="h3">Cómo utilizar.</div>
-                            </div>
-                            <div>
-                                <!-- VIDEO -->
-                                {% if product.metafields.utilizar.video %}
-                                <div class="pb-25">
-                                    <figure class="video-wrap">
-                                        <video class="video-js vjs-theme-sea w-100 vjs-4-3" preload="auto" controls poster="{{ product.metafields.utilizar.image }}" data-setup="{}">
-                                            <source src="{{ product.metafields.utilizar.video }}" type="video/mp4"/>
-                                        </video>
-                                    </figure>
+                        {% unless product.metafields.utilizar.item.size == 0 %}
+                            <section class="pb-60">
+                                <div class="by-black pt-05 pb-10 mb-25">
+                                    <div class="h3">Cómo utilizar.</div>
                                 </div>
-                                {% endif %}
-                                <!-- END: VIDEO -->
-                                <ol class="list-unstyled list-numbers body-sans-b">
-                                    {% for item in product.metafields.contiene_summary.title %} 
-                                    <li>
-                                        <p> {{ item }} 
-                                        </p>
-                                    </li>
-                                    {% endfor %}
-                                     
-                                </ol>
-                            </div>
-                        </section>
+                                <div>
+                                    <!-- VIDEO -->
+                                    {% if product.metafields.utilizar.video %}
+                                    <div class="pb-25">
+                                        <figure class="video-wrap">
+                                            <video class="video-js vjs-theme-sea w-100 vjs-4-3" preload="auto" controls poster="{{ product.metafields.utilizar.image }}" data-setup="{}">
+                                                <source src="{{ product.metafields.utilizar.video }}" type="video/mp4"/>
+                                            </video>
+                                        </figure>
+                                    </div>
+                                    {% elsif product.metafields.utilizar.image %}
+                                        <div class="pb-25">
+                                            <figure class="img-wrap">
+                                                <img src="{{ product.metafields.utilizar.image  }}" alt="">
+                                            </figure>
+                                        </div>
+                                    {% endif %}
+                                    <!-- END: VIDEO -->
+                                    <ol class="list-unstyled list-numbers body-sans-b">
+                                        {% for item in product.metafields.utilizar.item %}
+                                        <li>
+                                            <p> {{ item }} 
+                                            </p>
+                                        </li>
+                                        {% endfor %}
+                                    </ol>
+                                </div>
+                            </section>
+                        {% endunless %}
                         <!-- END: SECTION:  COMO UTILIZAR -->  
                                     
                         <!-- SECTION: COMO UTILIZAR -->
-                        <section class="pb-100">
-                            <div class="by-black pt-05 pb-10 mb-25">
-                                <div class="h3">Tips.</div>
-                            </div>
-                            <div>
-                                <!-- VIDEO -->
-                                {% if product.metafields.tips.video %}
-                                <div class="pb-25">
-                                    <figure class="video-wrap">
-                                        <video class="video-js vjs-theme-sea w-100 vjs-4-3" preload="auto" controls poster="{{ product.metafields.tips.image }}" data-setup="{}">
-                                            <source src="{{ product.metafields.tips.video }}" type="video/mp4"/>
-                                        </video>
-                                    </figure>
+                        {% unless product.metafields.tips.content == blank %}
+                            <section class="pb-100">
+                                <div class="by-black pt-05 pb-10 mb-25">
+                                    <div class="h3">Tips.</div>
                                 </div>
-                                {% endif %}
-                                <!-- END: VIDEO -->
                                 <div>
-                                     
-                                    <p>{{ product.metafields.tips.content }} </p>
-                                     
+                                    <!-- VIDEO -->
+                                    {% if product.metafields.tips.video %}
+                                    <div class="pb-25">
+                                        <figure class="video-wrap">
+                                            <video class="video-js vjs-theme-sea w-100 vjs-4-3" preload="auto" controls poster="{{ product.metafields.tips.image }}" data-setup="{}">
+                                                <source src="{{ product.metafields.tips.video }}" type="video/mp4"/>
+                                            </video>
+                                        </figure>
+                                    </div>
+                                    {% elsif product.metafields.tips.image %}
+                                    <div class="pb-25">
+                                        <figure class="img-wrap">
+                                            <img src="{{ product.metafields.tips.image }}" alt="">
+                                        </figure>
+                                    </div>
+                                    {% endif %}
+                                    <!-- END: VIDEO -->
+                                    <div>
+                                        <p>{{ product.metafields.tips.content }} </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </section>
+                            </section>
+                        {% endunless %}
                         <!-- END: SECTION:  COMO UTILIZAR -->
                     </div>
                 </div>
@@ -277,7 +292,7 @@
 </section>
 
 <!-- INFO MODAL -->
-<div class="full-modal pt-up-lg-100 info-modal" id="info-modal">
+<div class="full-modal info-modal" id="info-modal">
     <div class="d-flex flex-column content-wrap position-relative h-down-md-100">
         <div class="container container-md-fluid px-md-0 h-down-md-100">
             <div class="row justify-content-center h-down-md-100">
@@ -327,6 +342,9 @@
 <script>
     $(function () {
         var swiper = new Swiper(".swiper-info", {
+            autoplay: {
+                delay: 3500,
+            },
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,
