@@ -6,7 +6,8 @@
 }
 
 .body-sans,
-.body-sans-b b {
+.body-sans-b b,
+.body-sans-b strong {
     font-family: "GT Momiji Medium";
     font-size: 14px;
     font-weight: 500;
@@ -55,4 +56,10 @@ a.body-header {
     font-size: 10px;
     letter-spacing: 1.25px;
     line-height: 20px;
+}
+
+.c-link-red-a {
+    a {
+        color: #f06c4e;
+    }
 }
