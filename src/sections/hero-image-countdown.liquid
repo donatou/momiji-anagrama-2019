@@ -1,5 +1,9 @@
 <div class="hero-image__marco marco--bg-color">
     <a href="{{ section.settings.hero-banner-url }}" class="hero-image__wrapper">
+    <div class="hero-image__logo-countdown">
+      <img class="sundae-logo" src="{{ 'sundae-momiji.svg' | asset_url }}" alt="sundae">
+      <p class="page-sundae">{{ section.settings.countdown_code }}</p>
+    </div>
       <picture>
         <!-- MOBILE-->
         <source 
@@ -32,12 +36,94 @@
 .marco--bg-color {
   background-color: {{ section.settings.marco-color }};
 }
+.hero-image__logo-countdown {
+  position:absolute;
+  width:90vw;
+  padding:5% 0 0 5%;
+}
+.sundae-logo {
+  width:40%;
+  padding-bottom:20px;
+}
+.page-sundae {
+  font-family: 'gt_flexa_betaregular';
+  color: #F5E1A4;
+  font-size:7.6em;
+  line-height: 1em;
+}
+@media (max-width:991.98px) {
+	.hero-image__logo-countdown {
+    padding:5% 5% 0 5%;
+	}
+  .sundae-logo {
+    width:100%;
+    padding-bottom:20px;
+  }
+  .page-sundae{
+    font-size:6em;
+  }
+}
 </style>
+
+{% if section.settings.countdown %}
+  <script>
+  const second = 1000,
+        minute = second * 60,
+        hour = minute * 60,
+        day = hour * 24;
+
+  let countDown = new Date('{{ section.settings.countdown_txt }}').getTime(),
+      x = setInterval(function() {    
+
+        let now = new Date().getTime(),
+            distance = countDown - now;
+
+          document.querySelector('.days').innerText = Math.floor(distance / (day)),
+          document.querySelector('.hours').innerText = Math.floor((distance % (day)) / (hour)),
+          document.querySelector('.minutes').innerText = Math.floor((distance % (hour)) / (minute)),
+          document.querySelector('.seconds').innerText = Math.floor((distance % (minute)) / second);
+
+        if (distance < 1) {
+          clearInterval(x);
+            function replaceCopy() {
+            const before = document.querySelector('.before');
+            before.remove();
+            const after = document.querySelector('.after').style.display="inherit";
+            }
+            replaceCopy();
+          }
+        }, second);
+  </script>
+{% endif %}
 
 {% schema %}
   {
     "name": "Hero Image w/Countdown",
     "settings": [
+      {
+        "type": "header",
+        "content": "Countdown"
+      },
+      {
+        "id": "countdown",
+        "type": "checkbox",
+        "label": "Habilitar countdown",
+        "info": "Usar en countdown code: <span class=\"days\"></span> : <span class=\"hours\"></span> : <span class=\"minutes\"></span> : <span class=\"seconds\"></span>"
+      },
+      {
+        "type": "text",
+        "id": "countdown_txt",
+        "label": "Fecha y hora",
+        "placeholder": "May 18, 2020 08:00:00",
+        "info": "El formato es en inglés: Sep 14, 2021 14:09:00"
+      },
+      {
+        "type": "html",
+        "id": "countdown_code",
+        "label": "Countdown Code",
+        "placeholder": "Aqui va el codigo de countdown.",
+        "default": "Aqui va el codigo de countdown."
+      },
       {
         "type": "header",
         "content": "Imágenes para desktop"
