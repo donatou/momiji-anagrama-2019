@@ -1,36 +1,32 @@
 <div class="hero-image__marco marco--bg-color">
-    <a href="{{ section.settings.hero-banner-url }}" class="hero-image__wrapper">
+  <div class="hero-image__wrapper">
     <div class="hero-image__logo-countdown">
-      <img class="sundae-logo" src="{{ 'sundae-momiji.svg' | asset_url }}" alt="sundae">
-      <p class="page-sundae">{{ section.settings.countdown_code }}</p>
+      <img class="sundae-logo" src="{{ 'sundae-momiji-yellow.svg' | asset_url }}" alt="Sundae by Momiji">
+      <p class="page-sundae before">{{ section.settings.countdown_code }}</p>
+      <p class="page-sundae after" style="display:none">refresh now</p>
     </div>
-      <picture>
-        <!-- MOBILE-->
-        <source 
-          srcset="{{ section.settings.hero-mobile-image-1x | img_url: '883x' }},
-                  {{ section.settings.hero-mobile-image-2x | img_url: '1766x' }} 2x,
-                  {{ section.settings.hero-mobile-image-3x | img_url: '2648x' }} 3x,
-                  {{ section.settings.hero-mobile-image-4x | img_url: '3530x' }} 4x
-                  "
-          media="(max-width: 991.98px)">
-        <!-- MOBILE-->
-        <!-- DESKTOP-->
-        <source
-          srcset="{{ section.settings.hero-desktop-image-1x | img_url: '1832x' }},
-                  {{ section.settings.hero-desktop-image-2x | img_url: '3664x' }} 2x,
-                  {{ section.settings.hero-desktop-image-3x-4x | img_url: '4470x' }} 3x,
-                  {{ section.settings.hero-desktop-image-3x-4x | img_url: '4470x' }} 4x
-                  "
-          media="(max-width: 4470px)">
-        <!-- DESKTOP-->
-        <img src="{{ section.settings.hero-desktop-image-3x | img_url: '2048x' }}" alt="logo">
-      </picture>
-    </a>
+    <picture>
+      {%- comment -%}MOBILE{%- endcomment -%}
+      <source 
+        srcset="{{ section.settings.hero-mobile-image-1x | img_url: '883x' }},
+                {{ section.settings.hero-mobile-image-2x | img_url: '1766x' }} 2x,
+                {{ section.settings.hero-mobile-image-3x | img_url: '2648x' }} 3x,
+                {{ section.settings.hero-mobile-image-4x | img_url: '3530x' }} 4x
+                "
+        media="(max-width: 991.98px)">
+      {%- comment -%}DESKTOP{%- endcomment -%}
+      <source
+        srcset="{{ section.settings.hero-desktop-image-1x | img_url: '1832x' }},
+                {{ section.settings.hero-desktop-image-2x | img_url: '3664x' }} 2x,
+                {{ section.settings.hero-desktop-image-3x-4x | img_url: '4470x' }} 3x,
+                {{ section.settings.hero-desktop-image-3x-4x | img_url: '4470x' }} 4x
+                "
+        media="(max-width: 4470px)">
+      <!-- DESKTOP-->
+      <img src="{{ section.settings.hero-desktop-image-3x | img_url: '2048x' }}" alt="logo">
+    </picture>
+  </div>
 </div>
-
-{%- comment -%}  
-    SE PUEDE CONSIDERAR A FUTURO USAR EN EL BANNER UN DISEÑO EN VECTORES, EN SVG. ESCALABLE FOREVER.
-{%- endcomment -%}
 
 <style>
 .marco--bg-color {
@@ -48,7 +44,7 @@
 .page-sundae {
   font-family: 'gt_flexa_betaregular';
   color: #F5E1A4;
-  font-size:7.6em;
+  font-size:5.6em;
   line-height: 1em;
 }
 @media (max-width:991.98px) {
@@ -60,7 +56,7 @@
     padding-bottom:20px;
   }
   .page-sundae{
-    font-size:6em;
+    font-size:4.5em;
   }
 }
 </style>
@@ -179,11 +175,6 @@
         "id": "marco-color",
         "label": "Section color",
         "default": "#ffffff"
-      },
-      {
-        "type": "url",
-        "id": "hero-banner-url",
-        "label": "URL destino"
       }
     ],
     "presets": [
