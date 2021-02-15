@@ -143,9 +143,42 @@
 
     {% section 'header' %}
 
+{% if template == 'index' %}
+  <main class="page-sundae" role="main" id="MainContent" style="opacity: 1;">
+      {{ content_for_layout }}
+  </main>
+  <script src="{{ 'marquee.js' | asset_url }}"></script>
+  <script src="{{ 'noframework.waypoints.min.js' | asset_url }}" ></script>
+  <script src="{{ 'anagrama.animate.js' | asset_url }}" ></script>
+  <script src="{{ 'velocity.min.js' | asset_url }}" ></script>
+  <script src="{{ 'velocity.ui.min.js' | asset_url }}" ></script>
+  <script>
+      $('.marquee').marquee('destroy');
+      var marquees = $('.marquee').marquee({
+        duplicated: true,
+        gap: 30,
+        duration: 70000,
+        delayBeforeStart: 0,
+        startVisible: true,
+        pauseOnHover: true,
+        // allowCss3Support: false
+      })
+
+    $(document).on('click', '.desc-rotate', function() {
+      $('.product').removeClass('active');
+      $(this).parent().parent().addClass('active');
+    });
+
+    $(document).on('click', '.product .close', function() {
+      $('.product').removeClass('active');
+    });
+  </script>
+{% else %}
     <main class="home" role="main" id="MainContent" style="opacity: 1;">
       {{ content_for_layout }}
     </main>
+{% endif %}
+
 
     {% section 'footer' %}
     {% comment %} <script src="{{ 'theme.js' | asset_url }}" defer></script>   {% endcomment %}
