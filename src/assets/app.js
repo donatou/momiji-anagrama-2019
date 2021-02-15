@@ -389,17 +389,21 @@ $(document).ready(() => {
 
 // +++ IMAGE REVEAL
 // VIEWPORT CHECK +++
-$(window).on('load resize scroll', () => {
-  $.fn.isInViewport = function() {
-    const elementTop = $(this).offset().top;
-    const elementBottom = elementTop + $(this).outerHeight();
 
-    const viewportTop = $(window).scrollTop();
-    const viewportBottom = viewportTop + $(window).height();
 
-    return elementBottom > viewportTop && elementTop < viewportBottom;
-  };
 
+$.fn.isInViewport = function() {
+  const elementTop = $(this).offset().top;
+  const elementBottom = elementTop + $(this).outerHeight();
+
+  const viewportTop = $(window).scrollTop();
+  const viewportBottom = viewportTop + $(window).height();
+
+  return elementBottom > viewportTop && elementTop < viewportBottom;
+};
+
+
+$(window).on('load resize scroll', (event) => {
   $('img').each(function() {
     if ($(this).isInViewport()) {
       $(this).addClass('loaded');
