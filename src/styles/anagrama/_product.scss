@@ -38,6 +38,11 @@
         margin: 0 0px 0 0;
         border-radius: 50%;
         transition: box-shadow 0.1s ease;
+
+        &.disabled{
+            opacity: 0.4;
+            cursor: default;
+        }
     }
 }
 

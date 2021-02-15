@@ -121,12 +121,10 @@
           <b>Descripción.</b>
           <p>{{ product.description }}</p>
         </div>
-
         {% unless product.has_only_default_variant %}
         <!-- COLOR SWATCHES -->
         {% for option in product.options_with_values %}
           {% assign option_index = forloop.index0 %}
-
           <div class="color-swatches pb-30">
             <div class="swatch-name-list body-sans-b">
               <!-- ACTIVE SWATCH NAME / (.CHANGE() JS) -->
@@ -139,11 +137,10 @@
               <ul class="swatch-list list-unstyled cursor-default">
                 {% for variant in product.variants %}
                   {% assign value = variant.options[option_index] %}
-
                   <li>
                     <label class="mb-0">
-                      <input class="single-option-selector-{{ section.id }}" type="radio" name="option-{{ option_index }}" data-variant="{{ variant.id }}" value="{{ value | handleize }}" data-index="{{ forloop.index0 }}" data-name="<p><b>{{ option.name }} |</b> {{ value | escape }}</p>" {% if option.selected_value == value %} checked {% endif %}>
-                      <span class="swatch" style="background-color:#E5777B"></span>
+                      <input class="single-option-selector-{{ section.id }}" {% unless variant.available %}disabled{% endunless %} type="radio" name="option-{{ option_index }}" data-variant="{{ variant.id }}" value="{{ value | handleize }}" data-index="{{ forloop.index0 }}" data-name="<p><b>{{ option.name }} |</b> {{ value | escape }}</p>" {% if option.selected_value == value %} checked {% endif %}>
+                      <span class="swatch {% unless variant.available %}disabled{% endunless %}" style="background-color:{{variant.metafields.swatch.color}}"></span>
                     </label>
                   </li>
                 {% endfor %}
@@ -190,7 +187,7 @@
               type="submit" 
               name="add" 
               id="AddToCart" 
-              class="btn__main bg-light btn__main--big btn__main--addtocart btn__main--addtocart--big"
+              class="btn__main btn__main--big btn__main--addtocart btn__main--addtocart--big"
               data-submit-button
               {% unless current_variant.available %}disabled="disabled"{% endunless %}>
               <span id="AddToCartText">
@@ -230,57 +227,17 @@ $(function () {
 </script>
 
 <script type="text/javascript">
-  $(function(){
+$.fn.isInViewport = function() {
+  const elementTop = $(this).offset().top;
+  const elementBottom = elementTop + $(this).outerHeight();
 
-    var galleryThumbs = new Swiper('.slider-thumbs0', {
-    direction: 'vertical',
-    spaceBetween: 10,
-    slidesPerView: 7,
-    freeMode: true,
-    watchSlidesVisibility: true,
-    watchSlidesProgress: true,
-    breakpoints: {
-      991: {
-        direction: 'horizontal',
-        slidesPerView: 6
-      },
-    },
-  });
+  const viewportTop = $(window).scrollTop();
+  const viewportBottom = viewportTop + $(window).height();
 
-  var galleryTop = new Swiper('.slider-top0', {
-    direction: 'vertical',
-    spaceBetween: 10,
-    breakpoints: {
-      991: {
-        spaceBetween: 15,
-        direction: 'horizontal',
-      },
-    },
-    thumbs: {
-      swiper: galleryThumbs,
-    },
-  })
-
-
-    var section_id = $("form[data-product-form]").data("section-id");
-    
-    product = JSON.parse(
-     $('#ProductJson-' + section_id).html()
-    );
-
-    $(".swatch-list input").change(function(){
-      var index = $(this).data("index");
-      var variant_id = $(this).data("variant");
-
-      galleryThumbs.destroy(false, false);
-      galleryTop.destroy(false, false);
-      $(".slider-thumbs").hide();
-      $(".slider-top").hide();
-
-      $(".slider-thumbs" + index).show();
-      $(".slider-top" + index).show();
-  
-      galleryThumbs = new Swiper('.slider-thumbs' + index, {
+  return elementBottom > viewportTop && elementTop < viewportBottom;
+};
+  $(function () {
+      var galleryThumbs = new Swiper('.slider-thumbs0', {
         direction: 'vertical',
         spaceBetween: 10,
         slidesPerView: 7,
@@ -295,7 +252,7 @@ $(function () {
         },
       });
 
-      galleryTop = new Swiper('.slider-top' + index, {
+      var galleryTop = new Swiper('.slider-top0', {
         direction: 'vertical',
         spaceBetween: 10,
         breakpoints: {
@@ -307,18 +264,76 @@ $(function () {
         thumbs: {
           swiper: galleryThumbs,
         },
+      })
+
+      var section_id = $("form[data-product-form]").data("section-id");
+
+      product = JSON.parse(
+        $('#ProductJson-' + section_id).html()
+      );
+
+      $(".swatch-list input").change(function () {
+        var index = $(this).data("index");
+        var variant_id = $(this).data("variant");
+
+        galleryThumbs.destroy(false, false);
+        galleryTop.destroy(false, false);
+        $(".slider-thumbs").hide();
+        $(".slider-top").hide();
+
+        $(".slider-thumbs" + index).show();
+        $(".slider-top" + index).show();
+
+        galleryThumbs = new Swiper('.slider-thumbs' + index, {
+          direction: 'vertical',
+          spaceBetween: 10,
+          slidesPerView: 7,
+          freeMode: true,
+          watchSlidesVisibility: true,
+          watchSlidesProgress: true,
+          breakpoints: {
+            991: {
+              direction: 'horizontal',
+              slidesPerView: 6
+            },
+          },
+        });
+
+        galleryTop = new Swiper('.slider-top' + index, {
+          direction: 'vertical',
+          spaceBetween: 10,
+          breakpoints: {
+            991: {
+              spaceBetween: 15,
+              direction: 'horizontal',
+            },
+          },
+          thumbs: {
+            swiper: galleryThumbs,
+          },
+        });
+
+        $('img').each(function () {
+          if ($(this).isInViewport()) {
+            $(this).addClass('loaded');
+          }
+        });
+
+        $("#Option1").val(product.variants[index].id).change();
+        $("[data-product-price]").text("$ " + (product.variants[index].price / 100).toFixed(2));
       });
 
-      $('img').each(function() {
-        if ($(this).isInViewport()) {
-          $(this).addClass('loaded');
-        }  
-      });
-
-      $("#Option1").val(product.variants[index].id).change();
-      $("[data-product-price]").text("$ " + (product.variants[index].price/100).toFixed(2));
+      setTimeout(() => {
+        // console.log("trigger", $(".swatch-list input"))
+        var swatches = $(".swatch").not(".disabled");
+        console.log("swatches",swatches)
+        debugger;
+        if(swatches.length != 0){
+          console.log("trgiger");
+          $(swatches).first().prev("input").trigger("change");
+        }
+      }, 4000);
     });
-  });
 </script>
 
 {% unless product == empty %}
