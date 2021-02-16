@@ -1,3 +1,4 @@
+{% if section.settings.slider %}
 <script src="{{ 'cocoen.min.js' | asset_url }}"></script>
 <script src="{{ 'cocoen-jquery.min.js' | asset_url }}"></script>
 
@@ -41,3 +42,19 @@
         $('.cocoen').cocoen();
     })
 </script>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Products",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "slider",
+        "label": "Slider toggle",
+        "default": false,
+        "info": "Check to show Before & After section"
+      }
+    ]
+  }
+{% endschema %}

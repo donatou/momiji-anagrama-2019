@@ -113,7 +113,9 @@
 
     {% include 'loyaltylion' %}
 
-    {% include 'reamaze' %}
+    {% if settings.reamaze %}
+      {% include 'reamaze' %}
+    {% endif %}
 
   </head>
 
