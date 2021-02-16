@@ -6,7 +6,7 @@
       </div>
     </div>
 
-    <div class="row stagger-on-scroll">
+    <div class="row stagger-on-scroll {% if section.settings.duos %}pb-125 pb-md-190 pb-lg-220{% endif %}">
       {% for block in section.blocks %}
         {%- assign product = all_products[block.settings.feature_product] -%}
         <!-- PRODUCT  -->
@@ -70,6 +70,16 @@
         </script>
       {% endfor %}
     </div>
+
+    {% if section.settings.duos %}
+      <div class="row pb-125 pb-md-190 pb-lg-220">
+        <div class="col-md-9 col-lg-7 col-xl-6 mx-auto text-center desc-icons animate-on-scroll">
+          <h2>{{ section.settings.duos_title }}</h2>
+          <a href="/collections/{{ section.settings.duos_collection }}" class="link pt-20 link-detail">{{ section.settings.duos_cta_txt }}</a>
+        </div>
+      </div>
+    {% endif %}
+
   </div>
 </section>
 
@@ -83,6 +93,29 @@
           "label": "Title",
           "default": "Meet your new makeup allies. Easy <span class='icon-sundae-star'></span> and (most important) fun.",
           "info": "List of icons: icon-sundae-heart, icon-sundae-star, icon-sundae-lip"
+      },
+      {
+        "type": "checkbox",
+        "id": "duos",
+        "label": "Duos toggle",
+        "default": true,
+        "info": "Check to show duos text & links"
+      },
+      {
+        "type": "html",
+        "id": "duos_title",
+        "label": "Duos text",
+        "default": "Lorem ipsum"
+      },
+      {
+        "type": "text",
+        "id": "duos_cta_txt",
+        "label": "Duos CTA text"
+      },
+      {
+        "type": "collection",
+        "id": "duos_collection",
+        "label": "Pick a collection"
       }
     ],
     "blocks": [
