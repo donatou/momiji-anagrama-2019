@@ -43,7 +43,7 @@
                         <p class="h3">Marcas Momiji</p>
                         <ul class="sub-nav list-unstyled body-header">
                           <li>
-                            <a href="{{ link.url }}" class="w-100">
+                            <a href="/collections/momiji" class="w-100">
                               <div class="d-flex justify-content-between align-items-center icon-row pb-10 bb-black">
                                 <div class="logo h-20">
                                   <img src="{{ "momiji.png" | asset_img_url: 'master' }}">
@@ -55,7 +55,7 @@
                             </a>
                           </li>
                           <li>
-                            <a href="{{ link.url }}" class="w-100">
+                            <a href="/pages/momiji-life" class="w-100">
                               <div class="d-flex justify-content-between align-items-center icon-row py-10 bb-black">
                                 <div class="logo h-20">
                                   <img src="{{ "momiji-life.png" | asset_img_url: 'master' }}">
@@ -67,7 +67,7 @@
                             </a>
                           </li>
                           <li>
-                            <a href="{{ link.url }}" class="w-100">
+                            <a href="/collections/sundae" class="w-100">
                               <div class="d-flex justify-content-between align-items-center icon-row py-10 bb-black">
                                 <div class="logo h-18">
                                   <img src="{{ "sundae.png" | asset_img_url: 'master' }}">
@@ -118,20 +118,20 @@
                         <p class="h3">Collecciones</p>
                         <ul class="sub-nav list-unstyled body-header">
                           <li>
-                            <a href="#">
+                            <a href="/collections/clean-beauty">
                               Clean Beauty
                             </a>
                           </li>
                           <li>
-                            <a href="#">
+                            <a href="/collections/kits">
                               Kits
                             </a>
                           </li>
-                          <li>
-                            <a href="#">
+                          {% comment %} <li>
+                            <a href="/collections/vegan">
                               Vegan
                             </a>
-                          </li>
+                          </li> {% endcomment %}
                         </ul>
                       </div>
                     </div>
@@ -140,47 +140,20 @@
                       <div class="menu-drawer">
                         <div class="h3 d-flex align-items-center justify-content-between">
                           Start Here
-                          <div class="ml-auto">
+                          {% comment %} <div class="ml-auto">
                             <a href="#" class="text-link underline">
                               Toma nuestro beauty test
                             </a>
-                          </div>
+                          </div> {% endcomment %}
                         </div>
                         <ul class="list-unstyled d-flex justify-content-between align-items-center nav-image-list pt-05">
                           <li>
-                            <a href="#">
+                            <a href="/products/k-tint-pilot">
                               <figure>
-                                <img src="{{ "best-seller.png" | asset_img_url: 'master' }}">
-                                <div class="image-tag image-tag-ribbon">
+                                <img src="{{ "Sundae_Ktint_Pilot.jpg" | asset_img_url: 'master' }}" alt="K-Tint - Pilot">
+                                {% comment %} <div class="image-tag image-tag-ribbon">
                                   {% include 'tag-best-seller' %}
-                                </div>
-                              </figure>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <figure>
-                                <img src="{{ "sale.png" | asset_img_url: 'master' }}">
-                                <div class="image-tag image-tag-ribbon">
-                                  {% include 'tag-sale' %}
-                                </div>
-                              </figure>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <figure>
-                                <img src="{{ "momijis-pick.png" | asset_img_url: 'master' }}">
-                                <div class="image-tag">
-                                  {% include 'tag-momijis-pick' %}
-                                </div>
-                              </figure>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <figure>
-                                <img src="{{ "new.png" | asset_img_url: 'master' }}">
+                                </div> {% endcomment %}
                                 <div class="image-tag image-tag-ribbon">
                                   {% include 'tag-new' %}
                                 </div>
@@ -188,11 +161,50 @@
                             </a>
                           </li>
                           <li>
-                            <a href="#">
+                            <a href="/products/k-tint-finale">
                               <figure>
-                                <img src="{{ "gift.png" | asset_img_url: 'master' }}">
+                                <img src="{{ "Sundae_Ktint_Finale.jpg" | asset_img_url: 'master' }}" alt="K-Tint - Finale">
+                                {% comment %} <div class="image-tag image-tag-ribbon">
+                                  {% include 'tag-sale' %}
+                                </div> {% endcomment %}
                                 <div class="image-tag image-tag-ribbon">
+                                  {% include 'tag-new' %}
+                                </div>
+                              </figure>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="/products/k-tint-k-drama">
+                              <figure>
+                                <img src="{{ "Sundae_Ktint_K-Drama.jpg" | asset_img_url: 'master' }}" alt="K-Tint - K-Drama">
+                                {% comment %} <div class="image-tag">
+                                  {% include 'tag-momijis-pick' %}
+                                </div> {% endcomment %}
+                                <div class="image-tag image-tag-ribbon">
+                                  {% include 'tag-new' %}
+                                </div>
+                              </figure>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="/products/k-tint-duo-spoiler-alert">
+                              <figure>
+                                <img src="{{ "sundae_duo_spoiler_alert.jpg" | asset_img_url: 'master' }}" alt="K-Tint - Spoiler Alert Duo">
+                                <div class="image-tag image-tag-ribbon">
+                                  {% include 'tag-new' %}
+                                </div>
+                              </figure>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="/products/sundae-cleansing-pads">
+                              <figure>
+                                <img src="{{ "Sundae-Pads.jpg" | asset_img_url: 'master' }}" alt="Sundae Pads">
+                                {% comment %} <div class="image-tag image-tag-ribbon">
                                   {% include 'tag-gift' %}
+                                </div> {% endcomment %}
+                                <div class="image-tag image-tag-ribbon">
+                                  {% include 'tag-new' %}
                                 </div>
                               </figure>
                             </a>
@@ -218,12 +230,12 @@
           {% for link in top.links %}
           <li class="nav-item"><a href="{{ link.url }}">{{ link.title }}</a></li>
           {% endfor %}
-          <!-- <li class="nav-item">
+          {% comment %} <li class="nav-item">
             <a class="">On The Skin</a>
           </li>
           <li class="nav-item">
             <a>Momiji's Beauty Test</a>
-          </li> -->
+          </li> {% endcomment %}
         </ul>
       </nav>
 
@@ -272,7 +284,7 @@
                         <p class="h3">Marcas Momiji</p>
                         <ul class="sub-nav list-unstyled body-header">
                           <li>
-                            <a href="#" class="w-100">
+                            <a href="/collections/momiji" class="w-100">
                               <div class="d-flex justify-content-between align-items-center icon-row pb-10 bb-black">
                                 <div class="logo h-20">
                                   <img src="{{ "momiji.png" | asset_img_url: 'master' }}">
@@ -284,7 +296,7 @@
                             </a>
                           </li>
                           <li>
-                            <a href="#" class="w-100">
+                            <a href="/pages/momiji-life" class="w-100">
                               <div class="d-flex justify-content-between align-items-center icon-row py-10 bb-black">
                                 <div class="logo h-20">
                                   <img src="{{ "momiji-life.png" | asset_img_url: 'master' }}">
@@ -296,7 +308,7 @@
                             </a>
                           </li>
                           <li>
-                            <a href="#" class="w-100">
+                            <a href="/collections/sundae" class="w-100">
                               <div class="d-flex justify-content-between align-items-center icon-row py-10 bb-black">
                                 <div class="logo h-18">
                                   <img src="{{ "sundae.png" | asset_img_url: 'master' }}">
@@ -347,20 +359,20 @@
                         <p class="h3">Colecciones</p>
                         <ul class="sub-nav list-unstyled body-header">
                           <li>
-                            <a href="#">
+                            <a href="/collections/clean-beauty">
                               Clean Beauty
                             </a>
                           </li>
                           <li>
-                            <a href="#">
+                            <a href="/collections/kits">
                               Kits
                             </a>
                           </li>
-                          <li>
-                            <a href="#">
+                          {% comment %} <li>
+                            <a href="/collections/vegan">
                               Vegan
                             </a>
-                          </li>
+                          </li> {% endcomment %}
                         </ul>
                       </div>
                     </div>
@@ -369,47 +381,20 @@
                       <div class="menu-drawer">
                         <div class="h3 d-flex align-items-center justify-content-between">
                           Start Here
-                          <div class="ml-auto">
+                          {% comment %} <div class="ml-auto">
                             <a href="#" class="text-link underline">
                               Toma nuestro beauty test
                             </a>
-                          </div>
+                          </div> {% endcomment %}
                         </div>
                         <ul class="list-unstyled d-flex justify-content-between align-items-center nav-image-list pt-05">
                           <li>
-                            <a href="#">
+                            <a href="/products/k-tint-pilot">
                               <figure>
-                                <img src="{{ "best-seller.png" | asset_img_url: 'master' }}">
-                                <div class="image-tag image-tag-ribbon">
+                                <img src="{{ "Sundae_Ktint_Pilot.jpg" | asset_img_url: 'master' }}" alt="K-Tint - Pilot">
+                                {% comment %} <div class="image-tag image-tag-ribbon">
                                   {% include 'tag-best-seller' %}
-                                </div>
-                              </figure>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <figure>
-                                <img src="{{ "sale.png" | asset_img_url: 'master' }}">
-                                <div class="image-tag image-tag-ribbon">
-                                  {% include 'tag-sale' %}
-                                </div>
-                              </figure>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <figure>
-                                <img src="{{ "momijis-pick.png" | asset_img_url: 'master' }}">
-                                <div class="image-tag">
-                                  {% include 'tag-momijis-pick' %}
-                                </div>
-                              </figure>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <figure>
-                                <img src="{{ "new.png" | asset_img_url: 'master' }}">
+                                </div> {% endcomment %}
                                 <div class="image-tag image-tag-ribbon">
                                   {% include 'tag-new' %}
                                 </div>
@@ -417,11 +402,50 @@
                             </a>
                           </li>
                           <li>
-                            <a href="#">
+                            <a href="/products/k-tint-finale">
                               <figure>
-                                <img src="{{ "gift.png" | asset_img_url: 'master' }}">
+                                <img src="{{ "Sundae_Ktint_Finale.jpg" | asset_img_url: 'master' }}" alt="K-Tint - Finale">
+                                {% comment %} <div class="image-tag image-tag-ribbon">
+                                  {% include 'tag-sale' %}
+                                </div> {% endcomment %}
                                 <div class="image-tag image-tag-ribbon">
+                                  {% include 'tag-new' %}
+                                </div>
+                              </figure>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="/products/k-tint-k-drama">
+                              <figure>
+                                <img src="{{ "Sundae_Ktint_K-Drama.jpg" | asset_img_url: 'master' }}" alt="K-Tint - K-Drama">
+                                {% comment %} <div class="image-tag">
+                                  {% include 'tag-momijis-pick' %}
+                                </div> {% endcomment %}
+                                <div class="image-tag image-tag-ribbon">
+                                  {% include 'tag-new' %}
+                                </div>
+                              </figure>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="/products/k-tint-duo-spoiler-alert">
+                              <figure>
+                                <img src="{{ "sundae_duo_spoiler_alert.jpg" | asset_img_url: 'master' }}" alt="K-Tint - Spoiler Alert Duo">
+                                <div class="image-tag image-tag-ribbon">
+                                  {% include 'tag-new' %}
+                                </div>
+                              </figure>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="/products/sundae-cleansing-pads">
+                              <figure>
+                                <img src="{{ "Sundae-Pads.jpg" | asset_img_url: 'master' }}" alt="Sundae Pads">
+                                {% comment %} <div class="image-tag image-tag-ribbon">
                                   {% include 'tag-gift' %}
+                                </div> {% endcomment %}
+                                <div class="image-tag image-tag-ribbon">
+                                  {% include 'tag-new' %}
                                 </div>
                               </figure>
                             </a>
@@ -446,12 +470,12 @@
           {% for link in top.links %}
           <li class="nav-item"><a href="{{ link.url }}">{{ link.title }}</a></li>
           {% endfor %}
-          <!-- <li class="nav-item">
+          {% comment %} <li class="nav-item">
             <a class="">On The Skin</a>
           </li>
           <li class="nav-item">
             <a>Momiji's Beauty Test</a>
-          </li> -->
+          </li> {% endcomment %}
         </ul>
       </nav>
 
@@ -527,14 +551,6 @@
             "id": "last_item_color",
             "label": "Color del último elemento",
             "default": "#0e0e0e"
-        }, {
-            "type": "header",
-            "content": "Header"
-        }, {
-            "type": "product",
-            "id": "producto_menu",
-            "label": "Producto de menú",
-            "info": "Selecciona el producto que estará en el menú"
         }
     ]
 }
