@@ -1,0 +1,48 @@
+{%- comment -%}
+
+URL	String		
+productName	String	Nombre del producto	"Snail Repair Intensive Essence"
+productPrice	Number	Costo del producto	$399.00
+productSKU	String	Identificador unico de producto alfanumerico	"MA494FA0CW5HPLMX"
+pageCategory	String	Identifica la seeccion o categoria del sitio	"Skin Care" / "Maquillaje" / "CheckOut"
+productBrand	String	Valor de marca	"Mizon" / "Sundae"
+quantity	Number	Cantidad de productos	1
+currency	String	Moneda	MXN
+cartSubtotal	Number	Subtotal	$399.00
+totalPurchase	Number	Total	$399.00
+orderID	String	Valor unico por cada venta	Pedido #1019
+paymentMethod	String	Metodo de pago seleccionado	OXXO
+
+Hacer snippet o bloque condicional de código dependiendo de la página.
+
+1. páginas generales e index
+    incluye solo URL y pageCategory (aquí se incluyen algunas del checkouy)
+
+2. Products
+    url, productname, productprice, sku, pagecategoiriu, brand
+
+3. Add to cart
+    url, productname, productprice, sku, pagecategoiriu, brand y quantiy
+
+4. Cart
+    url, productname, productprice, sku, pagecategoiriu, brand, qty, currency, subtotal, total
+
+5. Payment
+    incluye url, pagecategory y payment method
+
+6. thankyou
+    incluye todas las variables
+
+{%- endcomment -%}
+
+{{ canonical_url }}
+{{ product.title }}
+{{ line_item.price }} or {{ product.price }}
+{{ line_item.sku }} or {{ variant.sku }}
+{{ collection.title }} o {{ handle }} pageCategory, creo que dbe ser handle
+{{ line_item.vendor }} y {{ product.vendor }}
+{{ line_item.quantity }}
+{{ cart.currency }}
+{{ cart.original_total_price }} es el subtotal
+{{ cart.total_price }} total pagado
+{{ order.name }} payment method
