@@ -93,6 +93,7 @@
     {{ content_for_header | replace: "<body onload='document._boomrl();'>", "<bodx onload='document._boomrl();'>" }}
     <meta name="google-site-verification" content="Lrt_wQm8pILk0eIq6gdG_1W73P2QGcpV8lnvb4oxdpk" >
     
+    {% include 'gtm-datalayer-test' %}
     {% include 'gtm-head' %}
 
     <!-- Global site tag (gtag.js) - Google Ads: 928988635 -->
@@ -115,7 +116,7 @@
 
   <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
 
-  {% include 'gtm-body' %}
+    {% include 'gtm-body' %}
 
     {% include 'miniCartDonato' %}
     <div class="loader-component"></div>
@@ -174,7 +175,6 @@
     </main>
 {% endif %}
 
-
     {% section 'footer' %}
     {% comment %} <script src="{{ 'theme.js' | asset_url }}" defer></script>   {% endcomment %}
     {% comment %} {{ 'api.jquery.js' | shopify_asset_url | script_tag }} {% endcomment %}
@@ -192,8 +192,8 @@
     {% if template == 'article' %}
         <script id="dsq-count-scr" src="//momijitalks.disqus.com/count.js" defer></script>
     {% endif %}
-    <script src="{{ 'minicart.min.js'| asset_url }}" defer></script>
-    {% comment %} <script src="{{ 'minicart.js'| asset_url }}"></script> {% endcomment %}
+    {% comment %} <script src="{{ 'minicart.min.js'| asset_url }}" defer></script> {% endcomment %}
+    <script src="{{ 'minicart.js'| asset_url }}" defer></script>
     <script id="kpay-advertising-script" src="https://cdn.kueskipay.com/widgets.js?authorization=ac1b792f-3d63-4ba9-a7c7-3352049449ad&integration=shopify&version=v1.0"></script>
     <script type="">new KueskipayAdvertising().init()</script>
     <script type="text/javascript" async src="https://cdn.reamaze.com/assets/reamaze.js"></script>
