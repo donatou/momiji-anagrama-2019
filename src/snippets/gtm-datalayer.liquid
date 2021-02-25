@@ -1,49 +1,157 @@
 {%- comment -%}
-
-URL	String		
-productName	String	Nombre del producto	"Snail Repair Intensive Essence"
-productPrice	Number	Costo del producto	$399.00
-productSKU	String	Identificador unico de producto alfanumerico	"MA494FA0CW5HPLMX"
-pageCategory	String	Identifica la seeccion o categoria del sitio	"Skin Care" / "Maquillaje" / "CheckOut"
-productBrand	String	Valor de marca	"Mizon" / "Sundae"
-quantity	Number	Cantidad de productos	1
-currency	String	Moneda	MXN
-cartSubtotal	Number	Subtotal	$399.00
-totalPurchase	Number	Total	$399.00
-orderID	String	Valor unico por cada venta	Pedido #1019
-paymentMethod	String	Metodo de pago seleccionado	OXXO
-
-Hacer snippet o bloque condicional de código dependiendo de la página.
-
-1. páginas generales e index
-    incluye solo URL y pageCategory (aquí se incluyen algunas del checkouy)
-
-2. Products
-    url, productname, productprice, sku, pagecategoiriu, brand
-
-3. Add to cart
-    url, productname, productprice, sku, pagecategoiriu, brand y quantiy
-
-4. Cart
-    url, productname, productprice, sku, pagecategoiriu, brand, qty, currency, subtotal, total
-
-5. Payment
-    incluye url, pagecategory y payment method
-
-6. thankyou
-    incluye todas las variables
-
+if (Shopify.Checkout.step == 'contact_information'){
+	...
+}
 {%- endcomment -%}
+{%- comment -%}
+	Cómo armar un url de checkout, falta el checkout_id o checkoutToken
+	'{{ shop.secure_url }}\/10992810\/checkouts\/{{}}\/contact_information'
+	Shopify.ClientAttributesCollection.checkoutToken es el token del checkout
+{%- endcomment -%}
+{% if template == 'index' %}
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	window.dataLayer.push({
+		'URL': "{{ canonical_url }}"
+	});
+	//console.log('DL template index');
+	//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+	</script>
+{% endif %}
 
-{{ canonical_url }}
-{{ product.title }}
-{{ line_item.price }} or {{ product.price }}
-{{ line_item.sku }} or {{ variant.sku }}
-{{ collection.title }} o {{ handle }} pageCategory, creo que dbe ser handle
-{{ line_item.vendor }} y {{ product.vendor }}
-{{ line_item.quantity }}
-{{ cart.currency }}
-{{ cart.original_total_price }} es el subtotal
-{{ cart.total_price }} total pagado
-{{ order.name }} payment method
-{{ transaction.gateway }}
+{% if page.url contains 'pages' %}
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	window.dataLayer.push({
+		'pageCategory': '{{ handle }}',
+		'URL': '{{ canonical_url }}'
+	});
+	//console.log('DL pages');
+	//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+	</script>
+{% endif %}
+
+{% if template == 'collection' %}
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	window.dataLayer.push({
+		'pageCategory': '{{ collection.title }}',
+		'URL': '{{ canonical_url }}'
+	});
+	//console.log(dataLayer);
+	//console.log('DL collections');
+	</script>
+{% endif %}
+
+{% if product.url contains 'products' %}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	window.dataLayer.push({
+		'pageCategory': '{{ collection.title }}',
+		'productBrand': '{{ product.vendor }}',
+		'productName': '{{ product.title }}',
+		'productPrice': {{ product.price | times: 0.01 }},
+		'productSKU': '{{ current_variant.sku }}',
+		'URL': '{{ canonical_url }}'
+	});
+	//console.log('DL products');
+	//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+	</script>
+{% endif %}
+
+{% if template == 'cart' %}
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		window.dataLayer.push({
+			'cartSubtotal': {{ cart.original_total_price | times: 0.01 }},
+			'currency': '{{ shop.currency }}',
+			'pageCategory': '{{ template.name }}',
+			'products': [
+						{% for item in cart.items %}
+						{
+							'productName': '{{item.title}}',
+							'productPrice': {{item.line_price | times: 0.01}},
+							'productSKU': '{{item.variant.sku}}',
+							'pageCategory': '{{item.product.type}}',
+							'productBrand': '{{item.vendor}}'
+						},
+						{% endfor %}
+					],
+			'quantity': {{ cart.item_count }},
+			'totalPurchase': {{ cart.total_price | times: 0.01 }},
+			'URL': '{{ canonical_url }}'
+		});
+		//console.log('DL cart');
+		//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+	</script>
+{% endif %}
+
+{% if checkout %}
+	{% if content_for_layout contains 'data-step="contact_information"' %}
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			window.dataLayer.push({
+				'pageCategory': 'contact_information',
+				'URL': 
+			});
+			//console.log('contact_information step');
+			//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+		</script> 
+	{% elsif content_for_layout contains 'data-step="shipping_method"' %}
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			window.dataLayer.push({
+				'pageCategory': 'shipping_method',
+				'URL': 'shipping_method'
+			});
+			//console.log('shipping_method step');
+			//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+		</script>
+	{% elsif content_for_layout contains 'data-step="payment_method"' %}
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			window.dataLayer.push({
+				'pageCategory': 'payment_method',
+				'paymentMethod': '{{ transaction.gateway }}',
+				'URL': 'payment_method'
+			});
+			//console.log('payment_method step');
+			//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+		</script>
+	{% elsif content_for_layout contains 'data-step="thank_you"' or content_for_layout contains 'data-step="thank-you"' %}
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			window.dataLayer.push({
+				'cartSubtotal': {{ order.line_items_subtotal_price | times: 0.01  }},
+				'currency': '{{ checkout.currency }}',
+				'orderID': '{{ order.name }}',
+				'pageCategory': 'thank_you',
+				'pageURL': 'thank_you',
+				'paymentMethod': [
+					{% for transaction in order.transactions %}
+						{
+							'paymentMethod': '{{ transaction.gateway }}'
+						},
+					{% endfor %}
+					],
+				'products': [
+							{% for line_item in order.line_items %}
+							{
+								'pageCategory': '{{line_item.product.type}}',
+								'productBrand': '{{line_item.vendor}}',
+								'productName': '{{line_item.title}}',
+								'productPrice': {{line_item.line_price | times: 0.01}},
+								'productSKU': '{{line_item.variant.sku}}'
+							},
+							{% endfor %}
+							],
+				'quantity': {{ order.line_items | size }},
+				'totalPurchase': {{ order.total_price | times: 0.01  }},
+				'url': 'thank_you'
+			});
+			//console.log('thank_you step');
+			//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+		</script>
+	{% endif %}
+{% endif %}
