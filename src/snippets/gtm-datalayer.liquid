@@ -8,6 +8,7 @@ if (Shopify.Checkout.step == 'contact_information'){
 	'{{ shop.secure_url }}\/10992810\/checkouts\/{{}}\/contact_information'
 	Shopify.ClientAttributesCollection.checkoutToken es el token del checkout
 {%- endcomment -%}
+
 {% if template == 'index' %}
 	<script>
 	window.dataLayer = window.dataLayer || [];
@@ -48,7 +49,7 @@ if (Shopify.Checkout.step == 'contact_information'){
 	<script>
 	window.dataLayer = window.dataLayer || [];
 	window.dataLayer.push({
-		'pageCategory': '{{ collection.title }}',
+		'pageCategory': '{{ product.type }}',
 		'productBrand': '{{ product.vendor }}',
 		'productName': '{{ product.title }}',
 		'productPrice': {{ product.price | times: 0.01 }},
@@ -155,3 +156,26 @@ if (Shopify.Checkout.step == 'contact_information'){
 		</script>
 	{% endif %}
 {% endif %}
+
+<script>
+
+window.addEventListener('DOMContentLoaded', (event) => {
+	//const addToCartButtons = document.querySelectorAll('#AddToCart');
+	const addToCartButtons = document.querySelectorAll('button.add-to-cart');
+	function dlAddToCart() {
+		console.log('datalayerrrr');
+	}
+	addToCartButtons.forEach(function(addToCartButton) {
+		console.log('button click');
+		addToCartButton.addEventListener('click', dlAddToCart);
+	});
+});
+
+// #AddToCart (regular product page & sundae product page)
+// .button-add 
+// .btn__agregar (eye shine landing)
+// .btn__midabi (momiji life landing)
+// .lion-redeem-reward-modal__button--confirm (loyalty lion confirm dialog)
+// add-to-cart (current sundae landing)
+
+</script>
