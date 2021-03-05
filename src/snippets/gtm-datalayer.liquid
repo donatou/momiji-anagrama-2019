@@ -51,17 +51,37 @@ if (Shopify.Checkout.step == 'contact_information'){
 {% if product.url contains 'products' %}
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 	<script>
-	window.dataLayer = window.dataLayer || [];
-	window.dataLayer.push({
-		'pageCategory': '{{ product.type }}',
-		'productBrand': '{{ product.vendor }}',
-		'productName': '{{ product.title }}',
-		'productPrice': {{ product.price | times: 0.01 }},
-		'productSKU': '{{ current_variant.sku }}',
-		'URL': `${currentURL}`
-	});
-	//console.log('DL products');
-	//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+        function dlAddToCart() {
+			var pageCategory = $(this).data("producttype");
+			var productBrand = $(this).data("productbrand");
+			var productName = $(this).data("producttitle");
+			var productPrice = $(this).data("productprice");
+			var productSKU = $(this).data("productsku");
+			var inputVal = document.querySelector(".input-number").value;
+			window.dataLayer = window.dataLayer || [];
+			window.dataLayer.push({
+				'event': 'AddToCart',
+				'pageCategory': `${pageCategory}`,
+				'productBrand': `${productBrand}`,
+				'productName': `${productName}`,
+				'productPrice': Number(productPrice),
+				'productSKU': `${productSKU}`,
+				'productQuantity': Number(inputVal),
+				'URL': `${currentURL}`
+			});
+			console.log('AddToCart event');
+			console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+        }
+	</script>
+	<script>
+		window.addEventListener('DOMContentLoaded', (event) => {
+        const currentURL = window.location.href;
+        const addToCartButtons = document.querySelectorAll('button.add-to-cart, #AddToCart, button.btn__agregar, button.btn__midabi, .button-add, .lion-redeem-reward-modal__button--confirm');
+                    addToCartButtons.forEach(function(addToCartButton) {
+          console.log('button click');
+          addToCartButton.addEventListener('click', dlAddToCart);
+        });
+      });
 	</script>
 {% endif %}
 
