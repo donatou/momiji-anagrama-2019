@@ -9,11 +9,15 @@ if (Shopify.Checkout.step == 'contact_information'){
 	Shopify.ClientAttributesCollection.checkoutToken es el token del checkout
 {%- endcomment -%}
 
+<script>
+	const currentURL = window.location.href;
+</script>
+
 {% if template == 'index' %}
 	<script>
 	window.dataLayer = window.dataLayer || [];
 	window.dataLayer.push({
-		'URL': "{{ canonical_url }}"
+		'URL': `${currentURL}`
 	});
 	//console.log('DL template index');
 	//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
@@ -25,7 +29,7 @@ if (Shopify.Checkout.step == 'contact_information'){
 	window.dataLayer = window.dataLayer || [];
 	window.dataLayer.push({
 		'pageCategory': '{{ handle }}',
-		'URL': '{{ canonical_url }}'
+		'URL': `${currentURL}`
 	});
 	//console.log('DL pages');
 	//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
@@ -37,7 +41,7 @@ if (Shopify.Checkout.step == 'contact_information'){
 	window.dataLayer = window.dataLayer || [];
 	window.dataLayer.push({
 		'pageCategory': '{{ collection.title }}',
-		'URL': '{{ canonical_url }}'
+		'URL': `${currentURL}`
 	});
 	//console.log(dataLayer);
 	//console.log('DL collections');
@@ -54,7 +58,7 @@ if (Shopify.Checkout.step == 'contact_information'){
 		'productName': '{{ product.title }}',
 		'productPrice': {{ product.price | times: 0.01 }},
 		'productSKU': '{{ current_variant.sku }}',
-		'URL': '{{ canonical_url }}'
+		'URL': `${currentURL}`
 	});
 	//console.log('DL products');
 	//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
@@ -81,7 +85,7 @@ if (Shopify.Checkout.step == 'contact_information'){
 					],
 			'quantity': {{ cart.item_count }},
 			'totalPurchase': {{ cart.total_price | times: 0.01 }},
-			'URL': '{{ canonical_url }}'
+			'URL': `${currentURL}`
 		});
 		//console.log('DL cart');
 		//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
@@ -94,7 +98,7 @@ if (Shopify.Checkout.step == 'contact_information'){
 			window.dataLayer = window.dataLayer || [];
 			window.dataLayer.push({
 				'pageCategory': 'contact_information',
-				'URL': 
+				'URL': `${currentURL}`
 			});
 			//console.log('contact_information step');
 			//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
@@ -104,7 +108,7 @@ if (Shopify.Checkout.step == 'contact_information'){
 			window.dataLayer = window.dataLayer || [];
 			window.dataLayer.push({
 				'pageCategory': 'shipping_method',
-				'URL': 'shipping_method'
+				'URL': `${currentURL}`
 			});
 			//console.log('shipping_method step');
 			//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
@@ -115,7 +119,7 @@ if (Shopify.Checkout.step == 'contact_information'){
 			window.dataLayer.push({
 				'pageCategory': 'payment_method',
 				'paymentMethod': '{{ transaction.gateway }}',
-				'URL': 'payment_method'
+				'URL': `${currentURL}`
 			});
 			//console.log('payment_method step');
 			//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
@@ -149,7 +153,7 @@ if (Shopify.Checkout.step == 'contact_information'){
 							],
 				'quantity': {{ order.line_items | size }},
 				'totalPurchase': {{ order.total_price | times: 0.01  }},
-				'url': 'thank_you'
+				'url': `${currentURL}`
 			});
 			//console.log('thank_you step');
 			//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
@@ -157,25 +161,30 @@ if (Shopify.Checkout.step == 'contact_information'){
 	{% endif %}
 {% endif %}
 
-<script>
 
-window.addEventListener('DOMContentLoaded', (event) => {
-	//const addToCartButtons = document.querySelectorAll('#AddToCart');
-	const addToCartButtons = document.querySelectorAll('button.add-to-cart');
-	function dlAddToCart() {
-		console.log('datalayerrrr');
-	}
-	addToCartButtons.forEach(function(addToCartButton) {
-		console.log('button click');
-		addToCartButton.addEventListener('click', dlAddToCart);
+{% comment %} {%- assign current_variant = product.selected_or_first_available_variant -%} {% endcomment %}
+{% comment %} <script>
+	window.addEventListener('DOMContentLoaded', (event) => {
+		const currentURL = window.location.href;
+		const addToCartButtons = document.querySelectorAll('button.add-to-cart, #AddToCart, button.btn__agregar, button.btn__midabi, .button-add, .lion-redeem-reward-modal__button--confirm');
+		function dlAddToCart() {
+			window.dataLayer = window.dataLayer || [];
+			window.dataLayer.push({
+				'event': 'AddToCart',
+				'pageCategory': '{{product.type}}',
+				'productBrand': '{{product.vendor}}',
+				'productName': '{{product.title}}',
+				'productPrice': {{product.price | times: 0.01}},
+				'productSKU': '{{product.sku}}',
+				'quantity': '{{product.item_count}}',
+				'URL': `${currentURL}`
+			});
+			console.log('AddToCart event');
+			//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+		}
+		addToCartButtons.forEach(function(addToCartButton) {
+			console.log('button click');
+			addToCartButton.addEventListener('click', dlAddToCart);
+		});
 	});
-});
-
-// #AddToCart (regular product page & sundae product page)
-// .button-add 
-// .btn__agregar (eye shine landing)
-// .btn__midabi (momiji life landing)
-// .lion-redeem-reward-modal__button--confirm (loyalty lion confirm dialog)
-// add-to-cart (current sundae landing)
-
-</script>
+</script> {% endcomment %}

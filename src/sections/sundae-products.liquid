@@ -9,6 +9,7 @@
     <div class="row stagger-on-scroll pb-125 pb-md-190 pb-lg-220">
       {% for block in section.blocks %}
         {%- assign product = all_products[block.settings.feature_product] -%}
+
         <!-- PRODUCT  -->
         <div class="col-sm-6 col-md-6 mb-30 stagger-child">
           <div class="thumb-product product">
@@ -40,7 +41,15 @@
 
             <div class="thumb-actions ctn-center d-block d-md-flex">
               {% if product.available %}
-                <button class="btn btn-sundae link add-to-cart" data-id="{{ product.first_available_variant.id }}">Agregar a bolsa</button>
+              {% assign price_int = product.first_available_variant.price | times: 0.01 %}
+                <button class="btn btn-sundae link add-to-cart"
+                data-id="{{ product.first_available_variant.id }}"
+                data-producttype="{{ product.type }}"
+                data-productbrand="{{ product.vendor }}"
+                data-producttitle="{{ product.title }}"
+                data-productprice="{{ price_int }}"
+                data-productsku="{{ product.first_available_variant.sku }}"
+                >Agregar a bolsa</button>
               {% else %}
                 <button disabled class="btn btn-sundae link">Agotado</button>
               {% endif %}
@@ -50,6 +59,29 @@
         </div>
       {% endfor %}
     </div>
+
+    <script>
+        function dlAddToCart() {
+          var pageCategory = $(this).data("producttype");
+          var productBrand = $(this).data("productbrand");
+          var productName = $(this).data("producttitle");
+          var productPrice = $(this).data("productprice");
+          var productSKU = $(this).data("productsku");
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            'event': 'AddToCart',
+            'pageCategory': `${pageCategory}`,
+            'productBrand': `${productBrand}`,
+            'productName': `${productName}`,
+            'productPrice': Number(productPrice),
+            'productSKU': `${productSKU}`,
+            'quantity': 1,
+            'URL': `${currentURL}`
+          });
+          console.log('AddToCart event');
+          console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+        }
+    </script>
 
     <script type="text/javascript">
       $(function(){
@@ -70,6 +102,17 @@
         })
       })
     </script>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', (event) => {
+        const currentURL = window.location.href;
+        const addToCartButtons = document.querySelectorAll('button.add-to-cart, #AddToCart, button.btn__agregar, button.btn__midabi, .button-add, .lion-redeem-reward-modal__button--confirm');
+                    addToCartButtons.forEach(function(addToCartButton) {
+          console.log('button click');
+          addToCartButton.addEventListener('click', dlAddToCart);
+        });
+      });
+    </script>  
 
   </div>
 </section>
