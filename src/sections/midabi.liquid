@@ -28,6 +28,7 @@
   {% for block in section.blocks %}
     {%- assign product = all_products[block.settings.product] -%}
     {%- assign current_variant = product.selected_or_first_available_variant -%}
+    {% assign price_int = product.first_available_variant.price | times: 0.01 %}
     <section class="section_swipe shop-item" data-section="{{ block.settings.titulo }}" {{ block.shopify_attributes }}>
       <div class="container-fluid p-0">
         <div class="row m-0">
@@ -55,7 +56,15 @@
                 <form action="/cart/add" data-productid="{{ current_variant.id }}" method="post" class="product-form mt-4" id="AddToCartForm">
                   <input type="hidden" name="id" value="{{ current_variant.id }}">
                   <input type="hidden" name="quantity" value="1">
-                  <button class="btn__midabi" type="submit" {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+                  <button class="btn__midabi"
+                          type="submit"
+                          data-producttype="{{ product.type }}"
+                          data-productbrand="{{ product.vendor }}"
+                          data-producttitle="{{ product.title }}"
+                          data-productprice="{{ price_int }}"
+                          data-productsku="{{ product.first_available_variant.sku }}"
+                          {% unless current_variant.available %}disabled="disabled"
+                          {% endunless %}>
                   {% if current_variant.available %}
                     {{ product.price | money_without_trailing_zeros }} — {{ 'products.product.add_to_cart' | t }}
                   {% else %}
@@ -83,7 +92,15 @@ CAMBIARLO EN DESKTOP Y MÓVILES
                 <form action="/cart/add" data-productid="{{ current_variant.id }}" method="post" class="product-form mt-4" id="AddToCartForm">
                   <input type="hidden" name="id" value="{{ current_variant.id }}">
                   <input type="hidden" name="quantity" value="1">
-                  <button class="btn__midabi" type="submit" {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+                  <button class="btn__midabi"
+                          type="submit"
+                          data-producttype="{{ product.type }}"
+                          data-productbrand="{{ product.vendor }}"
+                          data-producttitle="{{ product.title }}"
+                          data-productprice="{{ price_int }}"
+                          data-productsku="{{ product.first_available_variant.sku }}"
+                          {% unless current_variant.available %}disabled="disabled"
+                          {% endunless %}>
                     {% if current_variant.available %}
                       {{ product.price | money_without_trailing_zeros }} — agregar
                     {% else %}
@@ -239,6 +256,40 @@ CAMBIARLO EN DESKTOP Y MÓVILES
   circleType2.radius(300);
   circleType2.dir(-1);
 </script>
+
+<script>
+    function dlAddToCart() {
+      var pageCategory = $(this).data("producttype");
+      var productBrand = $(this).data("productbrand");
+      var productName = $(this).data("producttitle");
+      var productPrice = $(this).data("productprice");
+      var productSKU = $(this).data("productsku");
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'AddToCart',
+        'pageCategory': `${pageCategory}`,
+        'productBrand': `${productBrand}`,
+        'productName': `${productName}`,
+        'productPrice': Number(productPrice),
+        'productSKU': `${productSKU}`,
+        'quantity': 1,
+        'URL': `${currentURL}`
+      });
+      console.log('AddToCart event');
+      console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+    }
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const currentURL = window.location.href;
+    const addToCartButtons = document.querySelectorAll('button.add-to-cart, #AddToCart, button.btn__agregar, button.btn__midabi, .button-add, .lion-redeem-reward-modal__button--confirm');
+                addToCartButtons.forEach(function(addToCartButton) {
+      console.log('button click');
+      addToCartButton.addEventListener('click', dlAddToCart);
+    });
+  });
+</script>  
 
 {% schema %}
   {
