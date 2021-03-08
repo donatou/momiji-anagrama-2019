@@ -5,7 +5,7 @@
         <div class="d-md-flex align-items-baseline title text-center text-md-left stagger-child">
           <h1 class="h3">{{ section.settings.title }}</h1><div class="tag-b mt-5 mt-md-0 ml-md-1 d-inline-block">안녕하세요</div> 
         </div>
-        <img class="stagger-child" src="{{ 'sundae.svg' | asset_url }}" alt="sundae">
+        <img class="stagger-child" src="{{ 'sundae-momiji.svg' | asset_url }}" alt="sundae">
       </div>
       <div class="col-md-10 col-lg-7 text-center mx-auto mt-20 desc-icons stagger-child">
         <h2 class="h3">{{ section.settings.subtitle }}</h2>
@@ -20,8 +20,8 @@
         </div>
 
         <div class="graphics">
-          <img class="img-h icon-hover" src="{{ 'sundae-sticker-01.png' | asset_url }}" alt="heart">
-          <img class="img-h icon-hover" src="{{ 'Sundae-Powder.png' | asset_url }}" alt="powder">
+          <img class="img-h icon-hover" src="{{ 'sundae-sundae.png' | asset_url }}" alt="sundae sticker">
+          <img class="img-h icon-hover" src="{{ 'sundae-sticker-02.png' | asset_url }}" alt="chilaquiles sticker">
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
     <!-- //descripción  -->
     <div class="row">
       <div class="col-12 d-block d-md-flex ctn-center flex-wrap text-center text-md-left animate-on-scroll">
-        <div class="tag-b tag-rotate mr-md-40 mr-lg-30 d-inline-block mb-10 mb-md-0">안녕하세요</div>
+        {% comment %} <div class="tag-b tag-rotate mr-md-40 mr-lg-30 d-inline-block mb-10 mb-md-0">안녕하세요</div> {% endcomment %}
         <div class="desc-icons text-left">
           {{ section.settings.content | replace: "<p>", '<p class="h3 text-indent">' }}
         </div>
@@ -66,6 +66,12 @@
           "label": "Content",
           "default": "<p></p>"
       }
-    ]
+    ],
+  "presets": [
+    {
+      "name": "Sundae Main",
+      "category": "Sundae"
+    }
+  ]
   }
 {% endschema %}

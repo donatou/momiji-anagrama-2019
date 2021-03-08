@@ -26,7 +26,7 @@
           <h2>{{ section.settings.title }}</h2>
           <div class="movable-desc">
             <p>{{ section.settings.content }}</p>
-            <a class="btn btn-sundae link mt-30" href="{{ section.settings.url }}" target="_blank">Visitar instagram</a>
+            <a class="btn btn-sundae link mt-30" href="{{ section.settings.url }}" target="_blank">{{ section.settings.cta_txt }}</a>
           </div>
           <div class="movable-icon"><img src="{{ 'sundae-icon-filter.svg' | asset_url }}" alt=""></div>
         </div>
@@ -76,6 +76,13 @@
         "id": "url",
         "label": "URL",
         "default": "https://www.instagram.com/momijibeauty"
+    },
+    {
+      "type": "text",
+      "id": "cta_txt",
+      "label": "CTA Text",
+      "default": "Try it on!",
+      "placeholder": "Try it on!"
     },
     {
       "type":      "header",
@@ -138,6 +145,12 @@
         "id": "image_4_link",
         "label": "Link"
     }
-  ]
+  ],
+    "presets": [
+      {
+        "name": "Sundae Instagram",
+        "category": "Sundae"
+      }
+    ]
 }
 {% endschema %}

@@ -12,12 +12,19 @@
 
     {{ checkout_stylesheets }}
     {{ checkout_scripts }}
+
+    {% include 'gtm-datalayer' %}
+    {% include 'gtm-head' %}
     {% include "loyaltylion" %}
+
   <script>lion.configure({ checkout: true })</script>
   {%- comment -%}Address Validator{%- endcomment -%}
   <script async src="https://d3ox8tdk614ykk.cloudfront.net/pobox_checker.js"></script>
+  
 </head>
   <body>
+    {% include 'gtm-body' %}
+
     {{ skip_to_content_link }}
 
     <div class="banner" data-header>

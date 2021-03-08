@@ -93,12 +93,8 @@
     {{ content_for_header | replace: "<body onload='document._boomrl();'>", "<bodx onload='document._boomrl();'>" }}
     <meta name="google-site-verification" content="Lrt_wQm8pILk0eIq6gdG_1W73P2QGcpV8lnvb4oxdpk" >
     
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MHC94V2');</script>
-    <!-- End Google Tag Manager -->
+    {% include 'gtm-datalayer' %}
+    {% include 'gtm-head' %}
 
     <!-- Global site tag (gtag.js) - Google Ads: 928988635 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-928988635"></script>
@@ -112,15 +108,15 @@
 
     {% include 'loyaltylion' %}
 
-    {% include 'reamaze' %}
+    {% if settings.reamaze %}
+      {% include 'reamaze' %}
+    {% endif %}
 
   </head>
 
   <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
 
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MHC94V2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    {% include 'gtm-body' %}
 
     {% include 'miniCartDonato' %}
     <div class="loader-component"></div>
@@ -143,9 +139,41 @@
 
     {% section 'header' %}
 
+{% if template == 'index' %}
+  <main class="page-sundae" role="main" id="MainContent" style="opacity: 1;">
+      {{ content_for_layout }}
+  </main>
+  <script src="{{ 'marquee.js' | asset_url }}"></script>
+  <script src="{{ 'noframework.waypoints.min.js' | asset_url }}" ></script>
+  <script src="{{ 'anagrama.animate.js' | asset_url }}" ></script>
+  <script src="{{ 'velocity.min.js' | asset_url }}" ></script>
+  <script src="{{ 'velocity.ui.min.js' | asset_url }}" ></script>
+  <script>
+      $('.marquee').marquee('destroy');
+      var marquees = $('.marquee').marquee({
+        duplicated: true,
+        gap: 30,
+        duration: 70000,
+        delayBeforeStart: 0,
+        startVisible: true,
+        pauseOnHover: true,
+        // allowCss3Support: false
+      })
+
+    $(document).on('click', '.desc-rotate', function() {
+      $('.product').removeClass('active');
+      $(this).parent().parent().addClass('active');
+    });
+
+    $(document).on('click', '.product .close', function() {
+      $('.product').removeClass('active');
+    });
+  </script>
+{% else %}
     <main class="home" role="main" id="MainContent" style="opacity: 1;">
       {{ content_for_layout }}
     </main>
+{% endif %}
 
     {% section 'footer' %}
     {% comment %} <script src="{{ 'theme.js' | asset_url }}" defer></script>   {% endcomment %}
@@ -164,8 +192,8 @@
     {% if template == 'article' %}
         <script id="dsq-count-scr" src="//momijitalks.disqus.com/count.js" defer></script>
     {% endif %}
-    <script src="{{ 'minicart.min.js'| asset_url }}" defer></script>
-    {% comment %} <script src="{{ 'minicart.js'| asset_url }}"></script> {% endcomment %}
+    {% comment %} <script src="{{ 'minicart.min.js'| asset_url }}" defer></script> {% endcomment %}
+    <script src="{{ 'minicart.js'| asset_url }}" defer></script>
     <script id="kpay-advertising-script" src="https://cdn.kueskipay.com/widgets.js?authorization=ac1b792f-3d63-4ba9-a7c7-3352049449ad&integration=shopify&version=v1.0"></script>
     <script type="">new KueskipayAdvertising().init()</script>
     <script type="text/javascript" async src="https://cdn.reamaze.com/assets/reamaze.js"></script>

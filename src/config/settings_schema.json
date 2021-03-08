@@ -544,5 +544,17 @@
         "info": "Will be scaled down to 320 x 320px"
       }
     ]
+  },
+  {
+    "name": "Chat de soporte",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "reamaze",
+        "label": "Chat en vivo",
+        "default": false,
+        "info": "Marca la casilla para activar el chat en vivo de Reamaze. Look & feel se configura directo en la app."
+      }
+    ]
   }
 ]

@@ -1,0 +1,70 @@
+<script>
+window.dataLayer = window.dataLayer || [];
+
+function transactionComplete() {
+	var totalDiscount = 0;
+
+	{% for discount in order.discounts %}
+		totalDiscount += {{ discount.savings | times: 0.01 }};
+	{% endfor %}
+	return dataLayer.push({
+			event : 'transactionComplete',
+			checkout : function(){
+				return {
+					'transactionId': '{{order.order_number}}',
+					'transactionTotal': {{total_price | times: 0.01}},
+					'transactionRevenue': {{subtotal_price | times: 0.01}},
+					'transactionCurrency': window.ShopifyAnalytics.meta.currency || "USD",
+					'transactionShipping': {{shipping_price | times: 0.01}},
+					'transactionTax': {{tax_price | times: 0.01}},
+					'transactionDiscount': totalDiscount,
+					'transactionProducts': [
+					{% for line_item in line_items %}
+						{
+						'id': '{{line_item.product_id}}',
+						'sku': '{{line_item.sku}}',
+						'name': '{{line_item.title}}',
+						'category': '{{line_item.type}}',
+						'price': {{line_item.line_price | times: 0.01}},
+						'quantity': {{line_item.quantity}}
+						},
+					{% endfor %}]
+				}
+	}});
+};
+
+function orderStatus() {
+	return dataLayer.push({
+			event : 'orderStatus',
+			customer : function(){
+				return {
+					id: '{{customer.id}}',
+					name: "{{ customer.name }}",
+			    firstName: "{{ customer.first_name }}",
+			    lastName: "{{ customer.last_name }}",
+			    email: "{{ customer.email }}",
+			    phone: "{{ customer.default_address.phone }}",
+			    address: {  // uses the default address
+			        street: "{{ customer.default_address.street }}",
+			        city: "{{ customer.default_address.city }}",
+			        state: "{{ customer.default_address.province }}",
+			        stateCode: "{{ billing_address.province_code }}",
+			        postalCode: "{{ customer.default_address.zip }}",
+			        country: "{{ customer.default_address.country }}",
+			        countryCode: "{{ customer.default_address.country_code }}"
+			    },
+			    totalSpent: "{{ customer.total_spent }}",
+			    allOrdersCount: "{{ customer.orders_count }}",
+			    allOrderIds: [{% for order in customer.orders %}"{{ order.id }}",{% endfor %}],
+			    tags: [{% for tag in customer.tags %} "{{ tag }}", {% endfor %}]
+				}
+	}});
+}
+
+{% if first_time_accessed %}
+	transactionComplete();
+	orderStatus();
+{% else %}
+	orderStatus();
+{% endif %}
+</script>

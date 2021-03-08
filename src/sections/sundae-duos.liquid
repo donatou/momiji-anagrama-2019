@@ -1,0 +1,116 @@
+<section class="sundae-products">
+  <div class="container">
+    <div class="row pb-125 pb-md-190 pb-lg-220">
+      <div class="col-md-9 col-lg-7 col-xl-6 mx-auto text-center desc-icons animate-on-scroll">
+        <h2>{{ section.settings.duos_title }}</h2>
+      </div>
+    </div>
+
+      {% comment %} <div class="row pb-125 pb-md-190 pb-lg-220">
+        <div class="col-md-9 col-lg-7 col-xl-6 mx-auto text-center desc-icons animate-on-scroll">
+          <h2>{{ section.settings.duos_title }}</h2>
+          <a href="/collections/{{ section.settings.duos_collection }}" class="link pt-20 link-detail">{{ section.settings.duos_cta_txt }}</a>
+        </div>
+      </div> {% endcomment %}
+
+    <div class="row stagger-on-scroll {% if section.settings.duos %}pb-125 pb-md-190 pb-lg-220{% endif %} justify-content-center">
+        <!-- Collection  -->
+        <div class="col-sm-6 col-md-6 mb-30 stagger-child">
+          <div class="thumb-product product">
+            <div class="position-relative">
+              <a href="/collections/{{ section.settings.collection }}">
+                <div class="thumb-img product__container--main col-10 mx-auto">
+                  <img src="{{ section.settings.image  | img_url: '580x556' }}" alt="K-tint duo">
+                  <div class="thumb-img--hover product__container--hover">
+                    <img src="{{ section.settings.hover_image  | img_url: '580x556' }}" alt="K-Tint duo">
+                  </div>
+                </div>
+              </a>
+              <div class="desc-rotate d-block d-lg-none">
+                <p class="link link-u">Descripción</p>
+              </div>
+            </div>
+            <div class="thumb-title text-center">
+              <a href="/collections/{{ section.settings.collection }}" class="h2 d-block">{{ section.settings.collection_title }}</a>
+              <div class="tag-b">{{ section.settings.price_txt }}</div>
+            </div>
+            <div class="thumb-desc desc-icons text-lg-center">
+              <div class="close d-block d-lg-none"><svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 11"><path d="M6.921 5.672l3.75-3.75-1.25-1.25-3.75 3.75-3.75-3.75-1.25 1.25 3.75 3.75-3.75 3.75 1.25 1.25 3.75-3.75 3.75 3.75 1.25-1.25-3.75-3.75z" fill="#090909"/></svg></div>
+              <div class="desc-title d-block d-lg-none">
+                <h4 class="h2">Descripción</h4>
+              </div>
+              
+              <p>{{ section.settings.content }}</p>
+            </div>
+
+            <div class="thumb-actions ctn-center d-block d-md-flex">
+              {% comment %} {% if product.available %}
+                <button class="btn btn-sundae link add-to-cart" data-id="{{ product.first_available_variant.id }}">Agregar a bolsa</button>
+              {% else %}
+                <button disabled class="btn btn-sundae link">Agotado</button>
+              {% endif %} {% endcomment %}
+              <a href="/collections/{{ section.settings.collection }}" class="link ml-md-20 link-detail">{{ section.settings.duos_cta_txt }}</a>
+            </div>
+          </div>
+        </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Products",
+    "settings": [
+      {
+        "type": "html",
+        "id": "duos_title",
+        "label": "Duos text",
+        "default": "Meet your new makeup allies. Easy <span class='icon-sundae-star'></span> and (most important) fun.",
+          "info": "List of icons: icon-sundae-heart, icon-sundae-star, icon-sundae-lip"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Pick a collection"
+      },
+      {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Main image"
+      },
+      {
+          "type": "image_picker",
+          "id": "hover_image",
+          "label": "Hover image"
+      },
+      {
+        "type": "text",
+        "id": "collection_title",
+        "label": "Nombre de la colección"
+      },
+      {
+        "type": "text",
+        "id": "price_txt",
+        "label": "Precio"
+      },
+      {
+          "type": "html",
+          "id": "content",
+          "label": "Content",
+          "info": "List of icons: icon-sundae-heart, icon-sundae-star, icon-sundae-lip"
+      },
+      {
+        "type": "text",
+        "id": "duos_cta_txt",
+        "label": "Duos CTA text"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Sundae Duos",
+        "category": "Sundae"
+      }
+    ]
+  }
+{% endschema %}
