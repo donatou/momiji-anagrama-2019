@@ -2,74 +2,7 @@
 {% section 'test-hero' %}
 <!-- END: SECTION HERO -->
 
-<!-- SECTION PRODUCTS -->
-<section class="section-products d-none bg-purple pt-45 pt-md-155 pb-70">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-6 pb-sm-25">
-                <div class="sticky-column text-center text-md-left">
-                    <div class="text-link">
-                        Resultados
-                    </div>
-                    <div class="pb-20">
-                        <h2 class="h2">
-                            Justo lo que necesitas,
-                            <br>
-                            ¡En solo 3 pasos!
-                        </h2>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="d-flex flex-column">
-                                <div class="bb-sm-black pb-sm-25">
-                                    <div class="bt-black">
-                                        <div class="body-sans pt-25">
-                                            Ya armaste tu rutina de skincare
-                                        </div>
-                                        <p>Sigue estos pasos para lograr una piel que se vea y se sienta bien de forma natural. Si tienes dudas, sigue las instrucciones de uso que te damos de cada producto.</p>
-                                    </div>
-                                    <div class="pt-30 d-none d-md-block">
-                                        <a aria-controls="wizzard-wrapper" aria-expanded="false" class="btn btn-white btn-text min-w-150" data-target=".wizzard-wrapper" data-toggle="show" href="#" role="button">
-                                            {% include 'arrow-back' %}
-                                            <span class="pl-05">Regresar</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pt-70 d-none d-md-block">
-                        {% include 'momi' %}
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-12 col-md-6">
-                <div class="row justify-content-md-center justify-content-lg-start product-results">
-                </div>
-            </div>
-
-            <div class="col-12 d-md-none text-center pt-40">
-                <div>
-                    <button type="button" class="btn btn-white btn-text min-w-150">
-                        Agregar al carrito
-                    </button>
-                </div>
-                <div class="pt-20">
-                    <a aria-controls="wizzard-wrapper" aria-expanded="false" class="btn btn-white btn-text min-w-150" data-target=".wizzard-wrapper" data-toggle="show" href="#" role="button">
-                        {% include 'arrow-back' %}
-                        <span class="pl-05">Regresar</span>
-                    </a>
-                </div>
-                <div class="pt-40">
-                    {% include 'momi' %}
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- END: SECTION PRODUCTS -->
+{% section 'test-results' %}
 
 <!-- BEAUTY TEST MODAL -->
 <div class="wizzard-wrapper bg-purple">
@@ -90,7 +23,7 @@
                 <div class="col-12 col-md-9 text-center pb-30">
                     <h2 class="h2">
                         ¿Cómo sientes tu piel
-                        <span class="underline">inmediatamente</span>
+                        <span class="text-underline-after">inmediatamente</span>
                         después de que la lavas?
                     </h2>
                 </div>
@@ -152,20 +85,22 @@
                     </div>
                 </div>
             </div>
-            <div class="row pt-30 btn-wrapper">
-                <div class="col-12">
-                    <div class="d-flex flex-column align-items-center flex-md-row justify-content-md-between">
-                        <div>
-                            <a aria-controls="wizzard-wrapper" aria-expanded="false" class="btn btn-white btn-text min-w-150"  data-target=".wizzard-wrapper" data-toggle="show" href="#" role="button">
-                                {% include 'arrow-back' %}
-                                <span class="pl-05">Regresar</span>
-                            </a>
-                        </div>
-                        <div class="pt-sm-20">
-                            <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-2" disabled>
-                                <span class="pr-05">Continuar</span>
-                                {% include 'arrow-next' %}
-                            </button>
+            <div class="container btn-wrapper">
+                <div class="row pt-30">
+                    <div class="col-12">
+                        <div class="d-flex flex-column align-items-center flex-md-row justify-content-md-between">
+                            <div>
+                                <a aria-controls="wizzard-wrapper" aria-expanded="false" class="js-no-scroll-disable btn btn-white btn-text min-w-150 js-reset-hero"  data-target=".wizzard-wrapper" data-toggle="show" href="#" role="button">
+                                    {% include 'arrow-back' %}
+                                    <span class="pl-05">Regresar</span>
+                                </a>
+                            </div>
+                            <div class="pt-sm-20">
+                                <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-2" disabled>
+                                    <span class="pr-05">Continuar</span>
+                                    {% include 'arrow-next' %}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -180,7 +115,7 @@
                 <div class="col-12 col-md-9 text-center pb-30">
                     <h2 class="h2">
                         ¿Cómo
-                        <span class="underline">describirías</span>
+                        <span class="text-underline-after">describirías</span>
                         tu piel durante un día normal?
                     </h2>
                 </div>
@@ -242,20 +177,22 @@
                     </div>
                 </div>
             </div>
-            <div class="row pt-30 btn-wrapper">
-                <div class="col-12">
-                    <div class="d-flex flex-column align-items-center flex-md-row justify-content-md-between">
-                        <div>
-                            <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-1">
-                                {% include 'arrow-back' %}
-                                <span class="pl-05">Regresar</span>
-                            </button>
-                        </div>
-                        <div class="pt-sm-20">
-                            <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-3" disabled>
-                                <span class="pr-05">Continuar</span>
-                                {% include 'arrow-next' %}
-                            </button>
+            <div class="container btn-wrapper">
+                <div class="row pt-30">
+                    <div class="col-12">
+                        <div class="d-flex flex-column align-items-center flex-md-row justify-content-md-between">
+                            <div>
+                                <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-1">
+                                    {% include 'arrow-back' %}
+                                    <span class="pl-05">Regresar</span>
+                                </button>
+                            </div>
+                            <div class="pt-sm-20">
+                                <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-3" disabled>
+                                    <span class="pr-05">Continuar</span>
+                                    {% include 'arrow-next' %}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -267,10 +204,10 @@
     <div class="step-wrapper step-3">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-12 col-md-9 text-center pb-70">
+                <div class="col-12 col-md-9 text-center pb-90">
                     <h2 class="h2">
                         ¿Tu piel suele
-                        <span class="underline">irritarse</span>?
+                        <span class="text-underline-after">irritarse</span>?
                     </h2>
                 </div>
                 <div class="col-12 col-md-10 col-lg-8">
@@ -319,20 +256,22 @@
                     </div>
                 </div>
             </div>
-            <div class="row pt-45 pt-md-115 btn-wrapper">
-                <div class="col-12">
-                    <div class="d-flex flex-column align-items-center flex-md-row justify-content-md-between">
-                        <div>
-                            <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-2">
-                                {% include 'arrow-back' %}
-                                <span class="pl-05">Regresar</span>
-                            </button>
-                        </div>
-                        <div class="pt-sm-20">
-                            <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-4" disabled>
-                                <span class="pr-05">Continuar</span>
-                                {% include 'arrow-next' %}
-                            </button>
+            <div class="container btn-wrapper">
+                <div class="row pt-70 pt-md-115">
+                    <div class="col-12">
+                        <div class="d-flex flex-column align-items-center flex-md-row justify-content-md-between">
+                            <div>
+                                <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-2">
+                                    {% include 'arrow-back' %}
+                                    <span class="pl-05">Regresar</span>
+                                </button>
+                            </div>
+                            <div class="pt-sm-20">
+                                <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-4" disabled>
+                                    <span class="pr-05">Continuar</span>
+                                    {% include 'arrow-next' %}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -344,10 +283,10 @@
     <div class="step-wrapper step-4">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-12 col-md-9 text-center pb-70">
+                <div class="col-12 col-md-9 text-center pb-90">
                     <h2 class="h2">
                         ¿Cómo
-                        <span class="underline">describirías</span>
+                        <span class="text-underline-after">describirías</span>
                         tus poros?
                     </h2>
                 </div>
@@ -399,20 +338,22 @@
                     </div>
                 </div>
             </div>
-            <div class="row pt-45 pt-md-115 btn-wrapper">
-                <div class="col-12">
-                    <div class="d-flex flex-column align-items-center flex-md-row justify-content-md-between">
-                        <div>
-                            <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-3">
-                                {% include 'arrow-back' %}
-                                <span class="pl-05">Regresar</span>
-                            </button>
-                        </div>
-                        <div class="pt-sm-20">
-                            <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-5" disabled>
-                                <span class="pr-05">Continuar</span>
-                                {% include 'arrow-next' %}
-                            </button>
+            <div class="container btn-wrapper">
+                <div class="row pt-70 pt-md-115">
+                    <div class="col-12">
+                        <div class="d-flex flex-column align-items-center flex-md-row justify-content-md-between">
+                            <div>
+                                <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-3">
+                                    {% include 'arrow-back' %}
+                                    <span class="pl-05">Regresar</span>
+                                </button>
+                            </div>
+                            <div class="pt-sm-20">
+                                <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-5" disabled>
+                                    <span class="pr-05">Continuar</span>
+                                    {% include 'arrow-next' %}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -427,7 +368,7 @@
                 <div class="col-12 col-md-9 text-center pb-20">
                     <h2 class="h2">
                         ¿Qué es lo que te gustaría
-                        <span class="underline">tratar</span>
+                        <span class="text-underline-after">tratar</span>
                         de tu piel?
                     </h2>
                 </div>
@@ -527,20 +468,22 @@
                     </div>
                 </div>
             </div>
-            <div class="row pt-20 btn-wrapper">
-                <div class="col-12">
-                    <div class="d-flex flex-column align-items-center flex-md-row justify-content-md-between">
-                        <div>
-                            <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-4">
-                                {% include 'arrow-back' %}
-                                <span class="pl-05">Regresar</span>
-                            </button>
-                        </div>
-                        <div class="pt-sm-20">
-                            <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-6" disabled>
-                                <span class="pr-05">Continuar</span>
-                                {% include 'arrow-next' %}
-                            </button>
+            <div class="container btn-wrapper">
+                <div class="row pt-20">
+                    <div class="col-12">
+                        <div class="d-flex flex-column align-items-center flex-md-row justify-content-md-between">
+                            <div>
+                                <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-4">
+                                    {% include 'arrow-back' %}
+                                    <span class="pl-05">Regresar</span>
+                                </button>
+                            </div>
+                            <div class="pt-sm-20">
+                                <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-6" disabled>
+                                    <span class="pr-05">Continuar</span>
+                                    {% include 'arrow-next' %}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -555,7 +498,7 @@
                 <div class="col-12 col-md-9 text-center pb-30">
                     <h2 class="h2">
                         ¿De cuántos pasos te gustaría tu rutina de
-                        <span class="underline">skincare</span>?
+                        <span class="text-underline-after">skincare</span>?
                     </h2>
                 </div>
                 <div class="col-10 col-md-12">
@@ -611,20 +554,22 @@
                     </div>
                 </div>
             </div>
-            <div class="row pt-30 btn-wrapper">
-                <div class="col-12">
-                    <div class="d-flex flex-column align-items-center flex-md-row justify-content-md-between">
-                        <div>
-                            <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-5">
-                                {% include 'arrow-back' %}
-                                <span class="pl-05">Regresar</span>
-                            </button>
-                        </div>
-                        <div class="pt-sm-20">
-                            <a aria-controls="wizzard-wrapper" aria-expanded="false" class="btn btn-white btn-text min-w-150 js-get-values" data-target=".wizzard-wrapper" data-toggle="show" href="#" role="button">
-                                <span class="pr-05">Continuar</span>
-                                {% include 'arrow-next' %}
-                            </a>
+            <div class="container btn-wrapper">
+                <div class="row pt-30">
+                    <div class="col-12">
+                        <div class="d-flex flex-column align-items-center flex-md-row justify-content-md-between">
+                            <div>
+                                <button class="btn btn-white btn-text min-w-150 js-activate-step" data-step-toggle="step-5">
+                                    {% include 'arrow-back' %}
+                                    <span class="pl-05">Regresar</span>
+                                </button>
+                            </div>
+                            <div class="pt-sm-20">
+                                <a aria-controls="wizzard-wrapper" aria-expanded="false" class="js-no-scroll-disable btn btn-white btn-text min-w-150 js-get-values" data-target=".wizzard-wrapper" data-toggle="show" href="#" role="button">
+                                    <span class="pr-05">Continuar</span>
+                                    {% include 'arrow-next' %}
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -635,8 +580,55 @@
 </div>
 <!-- END: BEAUTY TEST MODAL -->
 
+{% if request.design_mode %}
+<script>
+    document.addEventListener("shopify:section:deselect", function (event) {
+        var section = event.detail.sectionId;
+        $(".wizzard-wrapper").removeClass("show");
+        $(".section-hero").removeClass("d-none");
+        $(".section-products").addClass("d-none");
+    });
+
+    document.addEventListener("shopify:section:select", function (event) {
+        var section = event.detail.sectionId;
+        if (section === "test-hero") {
+            $(".wizzard-wrapper").removeClass("show");
+            $(".section-hero").removeClass("d-none");
+            $(".section-products").addClass("d-none");
+        }
+        if (section === "test-results") {
+            console.log("section", section);
+            $(".wizzard-wrapper").removeClass("show");
+            $(".section-hero").addClass("d-none");
+            $(".section-products").removeClass("d-none");
+        }
+    });
+</script>
+{% endif %}
+
 <script>
     $(function () {
+
+        $(".btn-wrapper .btn").click(function() {
+            $(".wizzard-wrapper").animate({ scrollTop: 0 }, "slow");
+        });
+
+        $(".js-no-scroll-enable").click(function(){
+            //activate header fixed
+            $("header").addClass("fixed");
+            
+            //toggle overflow on body
+            $("body").addClass("no-scroll");
+        });
+
+        $(".js-no-scroll-disable").click(function(){
+            //activate header fixed
+            $("header").removeClass("fixed");
+            
+            //toggle overflow on body
+            $("body").removeClass("no-scroll");
+        });
+
         $("input").on("change", function () {
             var step_wrapper = $(this).parents(".step-wrapper");
             var button_wrap = step_wrapper.find(".btn-wrapper");
@@ -647,7 +639,6 @@
 
         $(".js-activate-step").on("click", function () {
             activateStep(this);
-            //input_values.push()
         })
 
         function activateStep(button) {
@@ -660,8 +651,12 @@
         $(".js-get-values").on("click", function () {
             getQuizInputValues();
         })
-
         
+        $(".js-reset-hero").on("click", function () {
+            $(".section-hero").removeClass("d-none");
+            $(".section-products").addClass("d-none");
+        })
+
         function getQuizInputValues() {
             input_values = [];
             var inputs = $(".wizzard-wrapper input:checked");
@@ -670,8 +665,6 @@
                 // element = each input inside quiz
                 input_values.push($(element).val())
             });
-
-            
 
             jQuery.getJSON("/search/suggest.json", {
               "q": input_values.join(", "),
@@ -683,12 +676,14 @@
                 }
               }
             }).done(function(response) {
+              console.log(response)
               var productSuggestions = response.resources.results.products;
               var items = [];
 
               if (productSuggestions.length > 0) {
                 $.each(productSuggestions, function(index, data){
-                    console.log(data);
+                    // console.log(data);
+                    $('.product-results').empty()
                     items = '<div class="col-6 col-md-10 col-lg-6 product-results-item">\
                         <div>\
                             <a class="product" href="/products/' + data.handle + '" target="_blank">\
@@ -724,6 +719,12 @@
                 });
 
                 $('.product-results').html(items);
+                $(".normal-state").removeClass("d-none");
+                $(".empty-state").addClass("d-none");
+              } else {
+                $('.product-results').empty();
+                $(".normal-state").addClass("d-none");
+                $(".empty-state").removeClass("d-none");
               }
             });
 
