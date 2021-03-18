@@ -115,7 +115,6 @@
               --><input class="input-number" type="text" value="1" min="1" max="" name="quantity"><!--
               --><span class="input-number-increment">+</span>
             </div>
-            {% assign qty = quantity | times: 1 %}
           {% endif %}
             <button 
               type="submit" 
@@ -128,7 +127,6 @@
               data-producttitle="{{ product.title }}"
               data-productprice="{{ price_int }}"
               data-productsku="{{ product.first_available_variant.sku }}"
-              data-productquantity="{{ qty }}"
               data-submit-button
               {% unless current_variant.available %}disabled="disabled"{% endunless %}>
               <span id="AddToCartText">

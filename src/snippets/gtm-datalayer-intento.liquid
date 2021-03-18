@@ -9,14 +9,45 @@ if (Shopify.Checkout.step == 'contact_information'){
 	Shopify.ClientAttributesCollection.checkoutToken es el token del checkout
 {%- endcomment -%}
 
+
+
+
+
+<script>
+	window.addEventListener('DOMContentLoaded', (event) => {
+		const currentURL = window.location.href;
+		const addToCartUpsale = document.querySelectorAll('.btn__upsale');
+		function dlAddToCartUpsale() {
+			window.dataLayer = window.dataLayer || [];
+			window.dataLayer.push({
+				'event': 'AddToCart UPSALE',
+				'pageCategory': '{{product.type}}',
+				'productBrand': '{{product.vendor}}',
+				'productName': '{{product.title}}',
+				'productPrice': {{product.price | times: 0.01}},
+				'productSKU': '{{product.sku}}',
+				'quantity': '{{product.item_count}}',
+				'URL': `${currentURL}`
+			});
+			console.log('AddToCart UPSALE event');
+			console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+		}
+		addToCartUpsale.forEach(function(addToCartButtonUpsale) {
+			console.log('cart drawer buttons');
+			console.log(addToCartUpsale);
+			addToCartButtonUpsale.addEventListener('click', dlAddToCartUpsale);
+		});
+	});
+</script>
+
 {% if template == 'index' %}
 	<script>
 	window.dataLayer = window.dataLayer || [];
 	window.dataLayer.push({
-		'URL': "{{ canonical_url }}"
+		'URL': `${currentURL}`
 	});
-	//console.log('DL template index');
-	//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+	console.log('DL template index');
+	console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
 	</script>
 {% endif %}
 
@@ -25,10 +56,10 @@ if (Shopify.Checkout.step == 'contact_information'){
 	window.dataLayer = window.dataLayer || [];
 	window.dataLayer.push({
 		'pageCategory': '{{ handle }}',
-		'URL': '{{ canonical_url }}'
+		'URL': `${currentURL}`
 	});
-	//console.log('DL pages');
-	//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+	console.log('DL pages');
+	console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
 	</script>
 {% endif %}
 
@@ -37,27 +68,47 @@ if (Shopify.Checkout.step == 'contact_information'){
 	window.dataLayer = window.dataLayer || [];
 	window.dataLayer.push({
 		'pageCategory': '{{ collection.title }}',
-		'URL': '{{ canonical_url }}'
+		'URL': `${currentURL}`
 	});
-	//console.log(dataLayer);
-	//console.log('DL collections');
+	console.log(dataLayer);
+	console.log('DL collections');
 	</script>
 {% endif %}
 
 {% if product.url contains 'products' %}
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 	<script>
-	window.dataLayer = window.dataLayer || [];
-	window.dataLayer.push({
-		'pageCategory': '{{ product.type }}',
-		'productBrand': '{{ product.vendor }}',
-		'productName': '{{ product.title }}',
-		'productPrice': {{ product.price | times: 0.01 }},
-		'productSKU': '{{ current_variant.sku }}',
-		'URL': '{{ canonical_url }}'
-	});
-	//console.log('DL products');
-	//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+        function dlAddToCart() {
+			var pageCategory = $(this).data("producttype");
+			var productBrand = $(this).data("productbrand");
+			var productName = $(this).data("producttitle");
+			var productPrice = $(this).data("productprice");
+			var productSKU = $(this).data("productsku");
+			var inputVal = document.querySelector(".input-number").value;
+			window.dataLayer = window.dataLayer || [];
+			window.dataLayer.push({
+				'event': 'AddToCart',
+				'pageCategory': `${pageCategory}`,
+				'productBrand': `${productBrand}`,
+				'productName': `${productName}`,
+				'productPrice': Number(productPrice),
+				'productSKU': `${productSKU}`,
+				'productQuantity': Number(inputVal),
+				'URL': `${currentURL}`
+			});
+			console.log('AddToCart event');
+			console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+        }
+	</script>
+	<script>
+		window.addEventListener('DOMContentLoaded', (event) => {
+        const currentURL = window.location.href;
+        const addToCartButtons = document.querySelectorAll('#AddToCart, button.btn__agregar, button.btn__midabi, .button-add, .lion-redeem-reward-modal__button--confirm');
+        addToCartButtons.forEach(function(addToCartButton) {
+          console.log('add to cart buttons');
+          addToCartButton.addEventListener('click', dlAddToCart);
+        });
+      });
 	</script>
 {% endif %}
 
@@ -81,10 +132,10 @@ if (Shopify.Checkout.step == 'contact_information'){
 					],
 			'quantity': {{ cart.item_count }},
 			'totalPurchase': {{ cart.total_price | times: 0.01 }},
-			'URL': '{{ canonical_url }}'
+			'URL': `${currentURL}`
 		});
-		//console.log('DL cart');
-		//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+		console.log('DL cart');
+		console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
 	</script>
 {% endif %}
 
@@ -94,20 +145,20 @@ if (Shopify.Checkout.step == 'contact_information'){
 			window.dataLayer = window.dataLayer || [];
 			window.dataLayer.push({
 				'pageCategory': 'contact_information',
-				'URL': 
+				'URL': `${currentURL}`
 			});
-			//console.log('contact_information step');
-			//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+			console.log('contact_information step');
+			console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
 		</script> 
 	{% elsif content_for_layout contains 'data-step="shipping_method"' %}
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			window.dataLayer.push({
 				'pageCategory': 'shipping_method',
-				'URL': 'shipping_method'
+				'URL': `${currentURL}`
 			});
-			//console.log('shipping_method step');
-			//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+			console.log('shipping_method step');
+			console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
 		</script>
 	{% elsif content_for_layout contains 'data-step="payment_method"' %}
 		<script>
@@ -115,10 +166,10 @@ if (Shopify.Checkout.step == 'contact_information'){
 			window.dataLayer.push({
 				'pageCategory': 'payment_method',
 				'paymentMethod': '{{ transaction.gateway }}',
-				'URL': 'payment_method'
+				'URL': `${currentURL}`
 			});
-			//console.log('payment_method step');
-			//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+			console.log('payment_method step');
+			console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
 		</script>
 	{% elsif content_for_layout contains 'data-step="thank_you"' or content_for_layout contains 'data-step="thank-you"' %}
 		<script>
@@ -149,33 +200,10 @@ if (Shopify.Checkout.step == 'contact_information'){
 							],
 				'quantity': {{ order.line_items | size }},
 				'totalPurchase': {{ order.total_price | times: 0.01  }},
-				'url': 'thank_you'
+				'url': `${currentURL}`
 			});
-			//console.log('thank_you step');
-			//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+			console.log('thank_you step');
+			console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
 		</script>
 	{% endif %}
 {% endif %}
-
-<script>
-
-window.addEventListener('DOMContentLoaded', (event) => {
-	//const addToCartButtons = document.querySelectorAll('#AddToCart');
-	const addToCartButtons = document.querySelectorAll('button.add-to-cart');
-	function dlAddToCart() {
-		console.log('datalayerrrr');
-	}
-	addToCartButtons.forEach(function(addToCartButton) {
-		console.log('button click');
-		addToCartButton.addEventListener('click', dlAddToCart);
-	});
-});
-
-// #AddToCart (regular product page & sundae product page)
-// .button-add 
-// .btn__agregar (eye shine landing)
-// .btn__midabi (momiji life landing)
-// .lion-redeem-reward-modal__button--confirm (loyalty lion confirm dialog)
-// add-to-cart (current sundae landing)
-
-</script>

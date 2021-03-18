@@ -32,7 +32,17 @@
               <p class="agregarPor">{{ settings.csTxt }} {{prod.selected_or_first_available_variant.price | money }}</p> {% endcomment %}
             </div>
             <div class="button-add">
-              <button type="button" data-variant="{{prod.selected_or_first_available_variant.id}}" {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+              <button type="button"
+                      class="add-to-cart btn__upsale"
+                      data-variant="{{prod.selected_or_first_available_variant.id}}"
+                      data-producttype="{{ prod.type }}"
+                      data-productbrand="{{ prod.vendor }}"
+                      data-producttitle="{{ prod.title }}"
+                      data-productprice="{{ prod.first_available_variant.price | times: 0.01 }}"
+                      data-productsku="{{ prod.first_available_variant.sku }}"
+                      {% unless current_variant.available %}
+                      disabled="disabled"
+                      {% endunless %}>
                 {% if current_variant.available and product_free != true %}
                   {{ settings.csTxt }} {{ prod.selected_or_first_available_variant.price | money }}
                 {% else %}

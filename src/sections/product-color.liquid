@@ -4,6 +4,7 @@
 {%- assign inventario_actual = variant.inventory_quantity -%}
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
+{% assign price_int = product.first_available_variant.price | times: 0.01 %}
 
   <meta itemprop="name" content="{{ product.title }}{% unless product.has_only_default_variant %} - {{ current_variant.title }}{% endunless %}">
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
@@ -186,6 +187,12 @@
               name="add" 
               id="AddToCart" 
               class="btn__main btn__main--big btn__main--addtocart btn__main--addtocart--big"
+              data-producttype="{{ product.type }}"
+              data-productbrand="{{ product.vendor }}"
+              data-producttitle="{{ product.title }}"
+              data-productprice="{{ price_int }}"
+              data-productsku="{{ product.first_available_variant.sku }}"
+              data-productquantity="{{ qty }}"
               data-submit-button
               {% unless current_variant.available %}disabled="disabled"{% endunless %}>
               <span id="AddToCartText">
