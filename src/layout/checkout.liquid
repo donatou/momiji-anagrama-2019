@@ -90,7 +90,36 @@ $(document).on('page:load page:change', () => {
 });
 </script> {% endcomment %}
 
+<script>
+$(document).on('page:load page:change', () => {
+  var total = document.querySelector('.payment-due__price');
+  var money = total.getAttribute('data-checkout-payment-due-target');
+  console.log(Number(money * 0.01));
 
+  var num = money * 0.01;
+  console.log(+num.toFixed(2));
+
+  var number = num;
+  console.log(new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(number));
+
+var lineitemtotal = document.querySelector('.order-summary__emphasis').innerText;
+
+console.log(lineitemtotal.replace(".", ","));
+// revisar esto: https://www.youtube.com/watch?v=ZYPqPoijCAQ
+
+// capturar el innerText y luego quitarle los puntos, comas y signo de $ final, y luego convertirlo todo en NumberFormat con el formato correcto.
+
+//let reg = /\d+\.*\d*/g;
+let reg = /\d+(\.\d+)?/g;
+
+let result = lineitemtotal.match(reg);
+
+for (let val of result) {
+  console.log(Number(val));
+}
+
+});
+</script>
 
 <style>
 @font-face {
