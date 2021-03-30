@@ -1,0 +1,23 @@
+<script>
+// Measure adding a product to a shopping cart by using an 'add' actionFieldObject
+// and a list of productFieldObjects.
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+  'event': 'addToCart',
+  'ecommerce': {
+    'currencyCode': 'MXN',
+    'add': {                                // 'add' actionFieldObject measures.
+      'products': [{                        //  adding a product to a shopping cart.
+        'name': 'Test product',
+        'id': '12345',
+        'price': '15.25',
+        'brand': 'Momiji',
+        'category': 'Apparel',
+        'variant': 'Gray',
+        'quantity': 1
+       }]
+    }
+  }
+});
+console.log("Hola");
+</script>
