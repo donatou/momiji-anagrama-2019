@@ -60,28 +60,7 @@
       {% endfor %}
     </div>
 
-    <script>
-        function dlAddToCart() {
-          var pageCategory = $(this).data("producttype");
-          var productBrand = $(this).data("productbrand");
-          var productName = $(this).data("producttitle");
-          var productPrice = $(this).data("productprice");
-          var productSKU = $(this).data("productsku");
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({
-            'event': 'AddToCart',
-            'pageCategory': `${pageCategory}`,
-            'productBrand': `${productBrand}`,
-            'productName': `${productName}`,
-            'productPrice': Number(productPrice),
-            'productSKU': `${productSKU}`,
-            'quantity': 1,
-            'URL': `${currentURL}`
-          });
-          console.log('AddToCart event');
-          console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
-        }
-    </script>
+    {% include 'gtm-addtocart' %}
 
     <script type="text/javascript">
       $(function(){
@@ -102,17 +81,6 @@
         })
       })
     </script>
-
-    <script>
-      window.addEventListener('DOMContentLoaded', (event) => {
-        const currentURL = window.location.href;
-        const addToCartButtons = document.querySelectorAll('button.add-to-cart, #AddToCart, button.btn__agregar, button.btn__midabi, .button-add, .lion-redeem-reward-modal__button--confirm');
-                    addToCartButtons.forEach(function(addToCartButton) {
-          console.log('button click');
-          addToCartButton.addEventListener('click', dlAddToCart);
-        });
-      });
-    </script>  
 
   </div>
 </section>

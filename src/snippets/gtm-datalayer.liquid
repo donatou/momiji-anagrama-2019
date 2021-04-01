@@ -9,7 +9,16 @@ if (Shopify.Checkout.step == 'contact_information'){
 	Shopify.ClientAttributesCollection.checkoutToken es el token del checkout
 {%- endcomment -%}
 
-{% if template == 'index' %}
+
+{%- comment -%}
+Abril 2021
+https://flintanalytics.com/installing-enhanced-ecommerce-using-google-tag-manager-and-the-data-layer/
+Y aquí los ejemplos: https://enhancedecommerce.appspot.com/checkout
+{%- endcomment -%}
+
+
+
+{% comment %} {% if template == 'index' %}
 	<script>
 	window.dataLayer = window.dataLayer || [];
 	window.dataLayer.push({
@@ -18,9 +27,9 @@ if (Shopify.Checkout.step == 'contact_information'){
 	//console.log('DL template index');
 	//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
 	</script>
-{% endif %}
+{% endif %} {% endcomment %}
 
-{% if page.url contains 'pages' %}
+{% comment %} {% if page.url contains 'pages' %}
 	<script>
 	window.dataLayer = window.dataLayer || [];
 	window.dataLayer.push({
@@ -30,9 +39,9 @@ if (Shopify.Checkout.step == 'contact_information'){
 	//console.log('DL pages');
 	//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
 	</script>
-{% endif %}
+{% endif %} {% endcomment %}
 
-{% if template == 'collection' %}
+{% comment %} {% if template == 'collection' %}
 	<script>
 	window.dataLayer = window.dataLayer || [];
 	window.dataLayer.push({
@@ -42,9 +51,9 @@ if (Shopify.Checkout.step == 'contact_information'){
 	//console.log(dataLayer);
 	//console.log('DL collections');
 	</script>
-{% endif %}
+{% endif %} {% endcomment %}
 
-{% if product.url contains 'products' %}
+{% comment %} {% if product.url contains 'products' %}
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 	<script>
 	window.dataLayer = window.dataLayer || [];
@@ -59,9 +68,9 @@ if (Shopify.Checkout.step == 'contact_information'){
 	//console.log('DL products');
 	//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
 	</script>
-{% endif %}
+{% endif %} {% endcomment %}
 
-{% if template == 'cart' %}
+{% comment %} {% if template == 'cart' %}
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		window.dataLayer.push({
@@ -86,7 +95,7 @@ if (Shopify.Checkout.step == 'contact_information'){
 		//console.log('DL cart');
 		//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
 	</script>
-{% endif %}
+{% endif %} {% endcomment %}
 
 {% if checkout %}
 	{% if content_for_layout contains 'data-step="contact_information"' %}
@@ -157,7 +166,7 @@ if (Shopify.Checkout.step == 'contact_information'){
 	{% endif %}
 {% endif %}
 
-<script>
+{% comment %} <script>
 
 window.addEventListener('DOMContentLoaded', (event) => {
 	//const addToCartButtons = document.querySelectorAll('#AddToCart');
@@ -178,4 +187,4 @@ window.addEventListener('DOMContentLoaded', (event) => {
 // .lion-redeem-reward-modal__button--confirm (loyalty lion confirm dialog)
 // add-to-cart (current sundae landing)
 
-</script>
+</script> {% endcomment %}

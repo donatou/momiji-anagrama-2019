@@ -120,7 +120,7 @@
               type="submit" 
               name="add" 
               id="AddToCart" 
-              class="btn__main btn__main--big btn__main--addtocart btn__main--addtocart--big"
+              class="btn__main btn__main--big btn__main--addtocart btn__main--addtocart--big add-to-cart"
               data-id="{{ product.first_available_variant.id }}"
               data-producttype="{{ product.type }}"
               data-productbrand="{{ product.vendor }}"
@@ -175,6 +175,8 @@
   </div>
 
 </section>
+
+{% include 'gtm-addtocart' %}
  
 {% comment %} <script type="text/javascript">
  
