@@ -96,7 +96,7 @@
             <select name="id" id="ProductSelect-{{ section.id }}" class="product-single__variants">
               {% for variant in product.variants %}
                 {% if variant.available %}
-                  <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }}</option>
+                  <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}" data-productvariant="{{ variant.id }}">{{ variant.title }}</option>
                 {% else %}
                   <option disabled="disabled">
                     {{ variant.title }} - {{ 'products.product.sold_out' | t }}
@@ -126,7 +126,6 @@
               data-productbrand="{{ product.vendor }}"
               data-producttitle="{{ product.title }}"
               data-productprice="{{ price_int }}"
-              data-productqty="{{ price_int }}"
               data-productsku="{{ product.first_available_variant.sku }}"
               data-productvariant="{{ variant.id }}"
               data-productvarianttitle="{{ variant.title }}"

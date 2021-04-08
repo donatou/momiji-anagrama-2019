@@ -49,8 +49,14 @@ window.dataLayer.push({
         var productSKU = $(this).data("productsku");
         var productVariant = $(this).data("productvariant");
         var productVariantTitle = $(this).data("productvarianttitle");
-        var productQty = document.querySelector('#input-qty').value;
+        if(document.getElementById("input-qty")) {
+            var productQty = document.querySelector('#input-qty').value;
+          } else {
+            var productQty = 1;
+          };
+
         console.log('variable productQTY lista');
+
 
         console.log("variables capturadas");
         console.log(productName);
