@@ -126,7 +126,10 @@
               data-productbrand="{{ product.vendor }}"
               data-producttitle="{{ product.title }}"
               data-productprice="{{ price_int }}"
+              data-productqty="{{ price_int }}"
               data-productsku="{{ product.first_available_variant.sku }}"
+              data-productvariant="{{ variant.id }}"
+              data-productvarianttitle="{{ variant.title }}"
               data-submit-button
               {% unless current_variant.available %}disabled="disabled"{% endunless %}>
               <span id="AddToCartText">

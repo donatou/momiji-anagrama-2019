@@ -46,7 +46,10 @@ window.dataLayer.push({
         var productBrand = $(this).data("productbrand");
         var productName = $(this).data("producttitle");
         var productPrice = $(this).data("productprice");
+        var productQty = $(this).data("productqty");
         var productSKU = $(this).data("productsku");
+        var productVariant = $(this).data("productvariant");
+        var productVariantTitle = $(this).data("productvarianttitle");
 
         console.log("variables capturadas");
         console.log(productName);
@@ -57,15 +60,15 @@ window.dataLayer.push({
         'ecommerce': {
             'items': [{
                 'item_name': `${productName}`, // Name or ID is required.
-                'item_id': '67890',
-                'price': '33.75',
+                'item_id': `${productVariant}`,
+                'price': `${productPrice}`,
                 'item_brand': `${productBrand}`,
                 'item_category': `${pageCategory}`,
-                'item_variant': 'Black',
+                'item_variant': `${productVariantTitle}`,
                 'item_list_name': 'Search Results',
                 'item_list_id': 'SR123',
                 'index': 1,
-                'quantity': '2'
+                'quantity': `${productQty}`
             }]
         }
         });
@@ -75,12 +78,12 @@ window.dataLayer.push({
     };
 
     window.addEventListener('DOMContentLoaded', (event) => {
-    const currentURL = window.location.href;
-    const addToCartButtons = document.querySelectorAll('button.add-to-cart');
-                addToCartButtons.forEach(function(addToCartButton) {
-        console.log('button de add to cart');
-        addToCartButton.addEventListener('click', dlAddToCart);
-    });
+      const currentURL = window.location.href;
+      const addToCartButtons = document.querySelectorAll('button.add-to-cart');
+                  addToCartButtons.forEach(function(addToCartButton) {
+          console.log('button de add to cart');
+          addToCartButton.addEventListener('click', dlAddToCart);
+      });
     });
 </script>
 
