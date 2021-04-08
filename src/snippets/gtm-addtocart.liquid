@@ -46,10 +46,11 @@ window.dataLayer.push({
         var productBrand = $(this).data("productbrand");
         var productName = $(this).data("producttitle");
         var productPrice = $(this).data("productprice");
-        var productQty = $(this).data("productqty");
         var productSKU = $(this).data("productsku");
         var productVariant = $(this).data("productvariant");
         var productVariantTitle = $(this).data("productvarianttitle");
+        var productQty = document.querySelector('#input-qty').value;
+        console.log('variable productQTY lista');
 
         console.log("variables capturadas");
         console.log(productName);
@@ -59,15 +60,12 @@ window.dataLayer.push({
         'event': 'add_to_cart',
         'ecommerce': {
             'items': [{
-                'item_name': `${productName}`, // Name or ID is required.
+                'item_name': `${productName}`,
                 'item_id': `${productVariant}`,
                 'price': `${productPrice}`,
                 'item_brand': `${productBrand}`,
                 'item_category': `${pageCategory}`,
                 'item_variant': `${productVariantTitle}`,
-                'item_list_name': 'Search Results',
-                'item_list_id': 'SR123',
-                'index': 1,
                 'quantity': `${productQty}`
             }]
         }
@@ -80,7 +78,7 @@ window.dataLayer.push({
     window.addEventListener('DOMContentLoaded', (event) => {
       const currentURL = window.location.href;
       const addToCartButtons = document.querySelectorAll('button.add-to-cart');
-                  addToCartButtons.forEach(function(addToCartButton) {
+        addToCartButtons.forEach(function(addToCartButton) {
           console.log('button de add to cart');
           addToCartButton.addEventListener('click', dlAddToCart);
       });
