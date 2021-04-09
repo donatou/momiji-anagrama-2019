@@ -162,7 +162,7 @@
             <select name="id" id="Option1" class="product-single__variants d-none">
               {% for variant in product.variants %}
                 {% if variant.available %}
-                  <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }}</option>
+                  <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}" data-productvariant="{{ variant.id }}">{{ variant.title }}</option>
                 {% else %}
                   <option disabled="disabled">
                     {{ variant.title }} - {{ 'products.product.sold_out' | t }}
@@ -178,7 +178,7 @@
             </div> {% endcomment %}
             <div class="input-quantity">
               <span class="input-number-decrement">–</span><!--
-              --><input class="input-number" type="text" value="1" min="1" max="" name="quantity"><!--
+              --><input class="input-number" id="input-qty" type="text" value="1" min="1" max="" name="quantity"><!--
               --><span class="input-number-increment">+</span>
             </div>
           {% endif %}
@@ -186,13 +186,14 @@
               type="submit" 
               name="add" 
               id="AddToCart" 
-              class="btn__main btn__main--big btn__main--addtocart btn__main--addtocart--big"
+              class="btn__main btn__main--big btn__main--addtocart btn__main--addtocart--big add-to-cart"
               data-producttype="{{ product.type }}"
               data-productbrand="{{ product.vendor }}"
               data-producttitle="{{ product.title }}"
               data-productprice="{{ price_int }}"
               data-productsku="{{ product.first_available_variant.sku }}"
-              data-productquantity="{{ qty }}"
+              data-productvariant="{{ variant.id }}"
+              data-productvarianttitle="{{ variant.title }}"
               data-submit-button
               {% unless current_variant.available %}disabled="disabled"{% endunless %}>
               <span id="AddToCartText">
@@ -219,6 +220,8 @@
   </div>
 
 </section>
+
+{% include 'gtm-addtocart' %}
 
 <script type="text/javascript">
 $(function () {

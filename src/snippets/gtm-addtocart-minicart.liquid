@@ -75,12 +75,12 @@ window.dataLayer.push({
     };
 
     window.addEventListener('DOMContentLoaded', (event) => {
-    const currentURLupsale = window.location.href;
+    //const currentURLupsale = window.location.href;
     const addToCartButtonsUpsale = document.querySelectorAll('button.add-to-cart-upsale');
-                addToCartButtonsUpsale.forEach(function(addToCartButton) {
+      addToCartButtonsUpsale.forEach(function(addToCartButton) {
         console.log('button de upsale');
         addToCartButton.addEventListener('click', dlAddToCartUpsale);
-    });
+      });
     });
 </script>
 

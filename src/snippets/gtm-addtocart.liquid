@@ -54,8 +54,8 @@ window.dataLayer.push({
           } else {
             var productQty = 1;
           };
-
         console.log('variable productQTY lista');
+        const currentURL = window.location.href;
 
 
         console.log("variables capturadas");
@@ -66,13 +66,15 @@ window.dataLayer.push({
         'event': 'add_to_cart',
         'ecommerce': {
             'items': [{
-                'item_name': `${productName}`,
-                'item_id': `${productVariant}`,
-                'price': `${productPrice}`,
-                'item_brand': `${productBrand}`,
-                'item_category': `${pageCategory}`,
-                'item_variant': `${productVariantTitle}`,
-                'quantity': `${productQty}`
+                'pageCategory': `${pageCategory}`,
+                'productBrand': `${productBrand}`,
+                'productID': `${productVariant}`,
+                'productName': `${productName}`,
+                'productPrice': `${productPrice}`,
+                'productSKU': `${productSKU}`,
+                'productVariant': `${productVariantTitle}`,
+                'quantity': `${productQty}`,
+                'URL': `${currentURL}`
             }]
         }
         });
@@ -82,7 +84,7 @@ window.dataLayer.push({
     };
 
     window.addEventListener('DOMContentLoaded', (event) => {
-      const currentURL = window.location.href;
+      //const currentURL = window.location.href;
       const addToCartButtons = document.querySelectorAll('button.add-to-cart');
         addToCartButtons.forEach(function(addToCartButton) {
           console.log('button de add to cart');
