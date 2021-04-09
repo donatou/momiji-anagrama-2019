@@ -49,6 +49,8 @@
                 data-producttitle="{{ product.title }}"
                 data-productprice="{{ price_int }}"
                 data-productsku="{{ product.first_available_variant.sku }}"
+                data-productvariant="{{ product.first_available_variant.id }}"
+                data-productvarianttitle="{{ product.first_available_variant.title }}"
                 >Agregar a bolsa</button>
               {% else %}
                 <button disabled class="btn btn-sundae link">Agotado</button>

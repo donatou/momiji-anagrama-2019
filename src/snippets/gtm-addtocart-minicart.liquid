@@ -1,76 +1,34 @@
-{%- comment -%}
-<script>
-window.dataLayer = window.dataLayer || [];
-window.dataLayer.push({
-  'event': 'add_to_cart',
-  'ecommerce': {
-    'items': [{
-      'item_name': `${productName}`, // Name or ID is required.
-      'item_id': '67890',
-      'price': '33.75',
-      'item_brand': 'Google',
-      'item_category': 'Apparel',
-      'item_category2': 'Mens',
-      'item_category3': 'Shirts',
-      'item_category4': 'Tshirts',
-      'item_variant': 'Black',
-      'item_list_name': 'Search Results',
-      'item_list_id': 'SR123',
-      'index': 1,
-      'quantity': '2'
-    }]
-  }
-});
-</script>
-
-
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-            'event': 'add_to_cart',
-            'pageCategory': `${pageCategory}`
-            //'productBrand': `${productBrand}`,
-            //'productName': `${productName}`,
-            //'productPrice': Number(productPrice),
-            //'productSKU': `${productSKU}`,
-            //'quantity': 1,
-            //'URL': `${currentURL}`
-        });
-
-
-{%- endcomment -%}
-
 <script>
     function dlAddToCartUpsale() {
-        console.log("función upsale corre");
-        var pageCategory = $(this).data("producttype-upsale");
-        var productBrand = $(this).data("productbrand-upsale");
-        var productName = $(this).data("producttitle-upsale");
-        var productPrice = $(this).data("productprice-upsale");
-        var productSKU = $(this).data("productsku-upsale");
+      console.log('función de add to cart upsale corre');
+      var pageCategoryUpsale = $(this).data("producttype-upsale");
+      var productBrandUpsale = $(this).data("productbrand-upsale");
+      var productNameUpsale = $(this).data("producttitle-upsale");
+      var productPriceUpsale = $(this).data("productprice-upsale");
+      var productSKUUpsale = $(this).data("productsku-upsale");
 
-        console.log("variables upsale capturadas");
-        console.log(productName);
+      console.log("variables upsale capturadas");
+      console.log(productName);
 
         window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-        'event': 'add_to_cart',
-        'ecommerce': {
-            'items': [{
-                'item_name': `${productName}`, // Name or ID is required.
-                'item_id': '67890',
-                'price': '33.75',
-                'item_brand': `${productBrand}`,
-                'item_category': `${pageCategory}`,
-                'item_variant': 'Black',
-                'item_list_name': 'Search Results',
-                'item_list_id': 'SR123',
-                'index': 1,
-                'quantity': '2'
-            }]
-        }
+          window.dataLayer.push({
+          'event': 'add_to_cart',
+          'ecommerce': {
+              'items': [{
+                  //'item_name': `${productName}`, // Name or ID is required.
+                  'item_id': '67890',
+                  'price': '33.75',
+                  //'item_brand': `${productBrandUpsale}`,
+                  //'item_category': `${pageCategoryUpsale}`,
+                  'item_variant': 'Black',
+                  'item_list_name': 'Search Results',
+                  'item_list_id': 'SR123',
+                  'index': 1,
+                  'quantity': '2'
+              }]
+          }
         });
 
-        console.log('AddToCart upsale event');
         console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
     };
 
@@ -83,14 +41,3 @@ window.dataLayer.push({
       });
     });
 </script>
-
-        {% comment %} <script>
-      window.addEventListener('DOMContentLoaded', (event) => {
-        const currentURL = window.location.href;
-        const addToCartButtons = document.querySelectorAll('button.add-to-cart, #AddToCart, button.btn__agregar, button.btn__midabi, .button-add, .lion-redeem-reward-modal__button--confirm');
-                    addToCartButtons.forEach(function(addToCartButton) {
-          console.log('button click');
-          addToCartButton.addEventListener('click', dlAddToCart);
-        });
-      });
-    </script>   {% endcomment %}

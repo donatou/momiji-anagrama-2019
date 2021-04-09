@@ -22,7 +22,7 @@
           <div class="col-12 product__slider">
             <div class="row row-mobile">
               {% for variant in product.variants %}
-              <div data-variant-id="{{ variant.id }}" class="swiper-container h-up-lg-100 slider-thumbs slider-thumbs{{forloop.index0}} col-md-12 col-lg-2 order-2 order-lg-1" style="{% if forloop.index0 > 0 %} display: none; {% endif %}">
+              <div data-variant-id="{{ variant.id }}" data-productvariant="{{ variant.id }}" class="swiper-container h-up-lg-100 slider-thumbs slider-thumbs{{forloop.index0}} col-md-12 col-lg-2 order-2 order-lg-1" style="{% if forloop.index0 > 0 %} display: none; {% endif %}">
                 <div class="swiper-wrapper ">
 
                   {% for image in variant.metafields.gallery.image %}
@@ -36,7 +36,7 @@
               {% endfor %}
 
               {% for variant in product.variants %}
-              <div data-variant-id="{{ variant.id }}" class="swiper-container h-100 slider-top slider-top{{forloop.index0}} col-md-12 col-lg-10 order-1 order-lg-2" style="{% if forloop.index0 > 0 %} display: none; {% endif %}">
+              <div data-variant-id="{{ variant.id }}" data-productvariant="{{ variant.id }}" class="swiper-container h-100 slider-top slider-top{{forloop.index0}} col-md-12 col-lg-10 order-1 order-lg-2" style="{% if forloop.index0 > 0 %} display: none; {% endif %}">
                 <div class="swiper-wrapper">
                   {% for image in variant.metafields.gallery.image %}
                     <div class="swiper-slide img-container" >
@@ -138,7 +138,7 @@
                   {% assign value = variant.options[option_index] %}
                   <li>
                     <label class="mb-0">
-                      <input class="single-option-selector-{{ section.id }}" {% unless variant.available %}disabled{% endunless %} type="radio" name="option-{{ option_index }}" data-variant="{{ variant.id }}" value="{{ value | handleize }}" data-index="{{ forloop.index0 }}" data-name="<p><b>{{ option.name }} |</b> {{ value | escape }}</p>" {% if option.selected_value == value %} checked {% endif %}>
+                      <input class="single-option-selector-{{ section.id }}" {% unless variant.available %}disabled{% endunless %} type="radio" name="option-{{ option_index }}" data-variant="{{ variant.id }}" data-productvariant="{{ variant.id }}" value="{{ value | handleize }}" data-index="{{ forloop.index0 }}" data-name="<p><b>{{ option.name }} |</b> {{ value | escape }}</p>" {% if option.selected_value == value %} checked {% endif %}>
                       <span class="swatch {% unless variant.available %}disabled{% endunless %}" style="background-color:{{variant.metafields.swatch.color}}"></span>
                     </label>
                   </li>
@@ -157,7 +157,7 @@
           <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
         
           {% if product.has_only_default_variant %}
-            <input name="id" value="{{ variant.id }}" type="hidden">
+            <input name="id" value="{{ variant.id }}" data-productvariant="{{ variant.id }}" type="hidden">
           {% else %}
             <select name="id" id="Option1" class="product-single__variants d-none">
               {% for variant in product.variants %}

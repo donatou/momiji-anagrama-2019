@@ -56,13 +56,15 @@
                 <form action="/cart/add" data-productid="{{ current_variant.id }}" method="post" class="product-form mt-4" id="AddToCartForm">
                   <input type="hidden" name="id" value="{{ current_variant.id }}">
                   <input type="hidden" name="quantity" value="1">
-                  <button class="btn__midabi"
+                  <button class="btn__midabi add-to-cart"
                           type="submit"
                           data-producttype="{{ product.type }}"
                           data-productbrand="{{ product.vendor }}"
                           data-producttitle="{{ product.title }}"
                           data-productprice="{{ price_int }}"
                           data-productsku="{{ product.first_available_variant.sku }}"
+                          data-productvariant="{{ product.first_available_variant.id }}"
+                          data-productvarianttitle="{{ product.first_available_variant.title }}"
                           {% unless current_variant.available %}disabled="disabled"
                           {% endunless %}>
                   {% if current_variant.available %}
@@ -99,6 +101,8 @@ CAMBIARLO EN DESKTOP Y MÓVILES
                           data-producttitle="{{ product.title }}"
                           data-productprice="{{ price_int }}"
                           data-productsku="{{ product.first_available_variant.sku }}"
+                          data-productvariant="{{ product.first_available_variant.id }}"
+                          data-productvarianttitle="{{ product.first_available_variant.title }}"
                           {% unless current_variant.available %}disabled="disabled"
                           {% endunless %}>
                     {% if current_variant.available %}
@@ -240,6 +244,8 @@ CAMBIARLO EN DESKTOP Y MÓVILES
   </section>
 </main>
 
+{% include 'gtm-addtocart' %}
+
 {% comment %} <script src="https://code.jquery.com/jquery-1.9.1.js"></script> {% endcomment %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
 {% comment %} <script src="{{ 'bootstrap.min.js' | asset_url }}" ></script> {% endcomment %}
@@ -256,40 +262,6 @@ CAMBIARLO EN DESKTOP Y MÓVILES
   circleType2.radius(300);
   circleType2.dir(-1);
 </script>
-
-<script>
-    function dlAddToCart() {
-      var pageCategory = $(this).data("producttype");
-      var productBrand = $(this).data("productbrand");
-      var productName = $(this).data("producttitle");
-      var productPrice = $(this).data("productprice");
-      var productSKU = $(this).data("productsku");
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        'event': 'AddToCart',
-        'pageCategory': `${pageCategory}`,
-        'productBrand': `${productBrand}`,
-        'productName': `${productName}`,
-        'productPrice': Number(productPrice),
-        'productSKU': `${productSKU}`,
-        'quantity': 1,
-        'URL': `${currentURL}`
-      });
-      console.log('AddToCart event');
-      console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
-    }
-</script>
-
-<script>
-  window.addEventListener('DOMContentLoaded', (event) => {
-    const currentURL = window.location.href;
-    const addToCartButtons = document.querySelectorAll('button.add-to-cart, #AddToCart, button.btn__agregar, button.btn__midabi, .button-add, .lion-redeem-reward-modal__button--confirm');
-                addToCartButtons.forEach(function(addToCartButton) {
-      console.log('button click');
-      addToCartButton.addEventListener('click', dlAddToCart);
-    });
-  });
-</script>  
 
 {% schema %}
   {
