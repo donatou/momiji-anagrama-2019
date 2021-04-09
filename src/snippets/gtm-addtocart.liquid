@@ -1,47 +1,6 @@
-{%- comment -%}
-<script>
-window.dataLayer = window.dataLayer || [];
-window.dataLayer.push({
-  'event': 'add_to_cart',
-  'ecommerce': {
-    'items': [{
-      'item_name': `${productName}`, // Name or ID is required.
-      'item_id': '67890',
-      'price': '33.75',
-      'item_brand': 'Google',
-      'item_category': 'Apparel',
-      'item_category2': 'Mens',
-      'item_category3': 'Shirts',
-      'item_category4': 'Tshirts',
-      'item_variant': 'Black',
-      'item_list_name': 'Search Results',
-      'item_list_id': 'SR123',
-      'index': 1,
-      'quantity': '2'
-    }]
-  }
-});
-</script>
-
-
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-            'event': 'add_to_cart',
-            'pageCategory': `${pageCategory}`
-            //'productBrand': `${productBrand}`,
-            //'productName': `${productName}`,
-            //'productPrice': Number(productPrice),
-            //'productSKU': `${productSKU}`,
-            //'quantity': 1,
-            //'URL': `${currentURL}`
-        });
-
-
-{%- endcomment -%}
-
 <script>
     function dlAddToCart() {
-        console.log("función corre");
+        //console.log("función corre");
         var pageCategory = $(this).data("producttype");
         var productBrand = $(this).data("productbrand");
         var productName = $(this).data("producttitle");
@@ -54,12 +13,12 @@ window.dataLayer.push({
           } else {
             var productQty = 1;
           };
-        console.log('variable productQTY lista');
+        //console.log('variable productQTY lista');
         const currentURL = window.location.href;
 
 
-        console.log("variables capturadas");
-        console.log(productName);
+        //console.log("variables capturadas");
+        //console.log(productName);
 
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
@@ -79,27 +38,33 @@ window.dataLayer.push({
         }
         });
 
-        console.log('AddToCart event');
-        console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+        //console.log('AddToCart event');
+        //console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
     };
 
     window.addEventListener('DOMContentLoaded', (event) => {
       //const currentURL = window.location.href;
       const addToCartButtons = document.querySelectorAll('button.add-to-cart');
         addToCartButtons.forEach(function(addToCartButton) {
-          console.log('button de add to cart');
+          //console.log('button de add to cart');
           addToCartButton.addEventListener('click', dlAddToCart);
       });
     });
 </script>
 
-        {% comment %} <script>
-      window.addEventListener('DOMContentLoaded', (event) => {
-        const currentURL = window.location.href;
-        const addToCartButtons = document.querySelectorAll('button.add-to-cart, #AddToCart, button.btn__agregar, button.btn__midabi, .button-add, .lion-redeem-reward-modal__button--confirm');
-                    addToCartButtons.forEach(function(addToCartButton) {
-          console.log('button click');
-          addToCartButton.addEventListener('click', dlAddToCart);
-        });
-      });
-    </script>   {% endcomment %}
+{% comment %}
+
+A futuro agregar el datalayer con un event handler en los botones de la seccion de add to cart de momiji points.
+Por ahi estan los nombres de las clases.
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const currentURL = window.location.href;
+    const addToCartButtons = document.querySelectorAll('button.add-to-cart, #AddToCart, button.btn__agregar, button.btn__midabi, .button-add, .lion-redeem-reward-modal__button--confirm');
+                addToCartButtons.forEach(function(addToCartButton) {
+      console.log('button click');
+      addToCartButton.addEventListener('click', dlAddToCart);
+    });
+  });
+</script>
+{% endcomment %}
