@@ -6,8 +6,8 @@
 		window.dataLayer.push({
 			'URL': `${currentURL}`
 		});
-		console.log('DL template index');
-		console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+		//console.log('DL template index');
+		//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
 	</script>
 {% endif %}
 
@@ -20,8 +20,8 @@
 			'pageCategory': '{{ handle }}',
 			'URL': `${currentURL}`
 		});
-		console.log('DL pages');
-		console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+		//console.log('DL pages');
+		//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
 	</script>
 {% endif %}
 
@@ -34,8 +34,8 @@
 			'pageCategory': '{{ collection.title }}',
 			'URL': `${currentURL}`
 		});
-		console.log(dataLayer);
-		console.log('DL collections');
+		//console.log(dataLayer);
+		//console.log('DL collections');
 	</script>
 {% endif %}
 
@@ -60,37 +60,41 @@
 				}]
 			}
 		});
-		console.log('DL products');
-		console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+		//console.log('DL products');
+		//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
 	</script>
 {% endif %}
 
-{% comment %} {% if template == 'cart' %}
+{% if template == 'cart' %}
 	<script>
+		const currentURL = window.location.href;
 		window.dataLayer = window.dataLayer || [];
 		window.dataLayer.push({
-			'cartSubtotal': {{ cart.original_total_price | times: 0.01 }},
+			'cartSubtotal': '{{ cart.original_total_price | times: 0.01 }}',
 			'currency': '{{ shop.currency }}',
-			'pageCategory': '{{ template.name }}',
-			'products': [
+			'items': [
 						{% for item in cart.items %}
 						{
-							'productName': '{{item.title}}',
-							'productPrice': {{item.line_price | times: 0.01}},
-							'productSKU': '{{item.variant.sku}}',
 							'pageCategory': '{{item.product.type}}',
-							'productBrand': '{{item.vendor}}'
+							'productBrand': '{{item.vendor}}',
+							'productID': '{{item.variant.id}}',
+							'productName': '{{item.title}}',
+							'productPrice': '{{item.line_price | times: 0.01}}',
+							'productSKU': '{{item.variant.sku}}',
+							'productVariant': '{{item.variant.title}}',
+							'quantity': '{{item.quantity | times: 1}}'
 						},
 						{% endfor %}
 					],
-			'quantity': {{ cart.item_count }},
-			'totalPurchase': {{ cart.total_price | times: 0.01 }},
+			'pageCategory': '{{ template.name }}',
+			'quantity': '{{ cart.item_count }}',
+			'totalPurchase': '{{ cart.total_price | times: 0.01 }}',
 			'URL': `${currentURL}`
 		});
 		//console.log('DL cart');
 		//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
 	</script>
-{% endif %} {% endcomment %}
+{% endif %}
 
 {% if checkout %}
 	{% if content_for_layout contains 'data-step="contact_information"' %}
@@ -160,12 +164,12 @@
 						{% endfor %}
 						],
 					'quantity': '{{ order.line_items | size }}',
-					'totalPurchase': '{{ order.total_price | times: 0.01  }}',
+					'totalPurchase': '{{ order.total_price | times: 0.01 }}',
 					'URL': `${currentURL}`
 				}
 			});
-			console.log('thank_you step');
-			console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+			//console.log('thank_you step');
+			//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
 		</script>
 	{% endif %}
 {% endif %}
