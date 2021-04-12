@@ -1,74 +1,69 @@
-{%- comment -%}
-if (Shopify.Checkout.step == 'contact_information'){
-	...
-}
-{%- endcomment -%}
-{%- comment -%}
-	Cómo armar un url de checkout, falta el checkout_id o checkoutToken
-	'{{ shop.secure_url }}\/10992810\/checkouts\/{{}}\/contact_information'
-	Shopify.ClientAttributesCollection.checkoutToken es el token del checkout
-{%- endcomment -%}
-
-
-{%- comment -%}
-Abril 2021
-https://flintanalytics.com/installing-enhanced-ecommerce-using-google-tag-manager-and-the-data-layer/
-Y aquí los ejemplos: https://enhancedecommerce.appspot.com/checkout
-{%- endcomment -%}
-
-
-
-{% comment %} {% if template == 'index' %}
+{% if template == 'index' %}
 	<script>
-	window.dataLayer = window.dataLayer || [];
-	window.dataLayer.push({
-		'URL': "{{ canonical_url }}"
-	});
-	//console.log('DL template index');
-	//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+		const currentURL = window.location.href;
+		
+		window.dataLayer = window.dataLayer || [];
+		window.dataLayer.push({
+			'URL': `${currentURL}`
+		});
+		console.log('DL template index');
+		console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
 	</script>
-{% endif %} {% endcomment %}
+{% endif %}
 
-{% comment %} {% if page.url contains 'pages' %}
+{% if page.url contains 'pages' %}
 	<script>
-	window.dataLayer = window.dataLayer || [];
-	window.dataLayer.push({
-		'pageCategory': '{{ handle }}',
-		'URL': '{{ canonical_url }}'
-	});
-	//console.log('DL pages');
-	//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
-	</script>
-{% endif %} {% endcomment %}
+		const currentURL = window.location.href;
 
-{% comment %} {% if template == 'collection' %}
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	window.dataLayer.push({
-		'pageCategory': '{{ collection.title }}',
-		'URL': '{{ canonical_url }}'
-	});
-	//console.log(dataLayer);
-	//console.log('DL collections');
+		window.dataLayer = window.dataLayer || [];
+		window.dataLayer.push({
+			'pageCategory': '{{ handle }}',
+			'URL': `${currentURL}`
+		});
+		console.log('DL pages');
+		console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
 	</script>
-{% endif %} {% endcomment %}
+{% endif %}
 
-{% comment %} {% if product.url contains 'products' %}
-{%- assign current_variant = product.selected_or_first_available_variant -%}
+{% if template == 'collection' %}
 	<script>
-	window.dataLayer = window.dataLayer || [];
-	window.dataLayer.push({
-		'pageCategory': '{{ product.type }}',
-		'productBrand': '{{ product.vendor }}',
-		'productName': '{{ product.title }}',
-		'productPrice': {{ product.price | times: 0.01 }},
-		'productSKU': '{{ current_variant.sku }}',
-		'URL': '{{ canonical_url }}'
-	});
-	//console.log('DL products');
-	//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+		const currentURL = window.location.href;
+
+		window.dataLayer = window.dataLayer || [];
+		window.dataLayer.push({
+			'pageCategory': '{{ collection.title }}',
+			'URL': `${currentURL}`
+		});
+		console.log(dataLayer);
+		console.log('DL collections');
 	</script>
-{% endif %} {% endcomment %}
+{% endif %}
+
+{% if product.url contains 'products' %}
+	{%- assign current_variant = product.selected_or_first_available_variant -%}
+	<script>
+		const currentURL = window.location.href;
+
+		window.dataLayer = window.dataLayer || [];
+		window.dataLayer.push({
+			'event': 'view_item',
+			'ecommerce': {
+				'items': [{
+					'pageCategory': '{{ product.type }}',
+					'productBrand': '{{ product.vendor }}',
+					'productID': '{{ current_variant.id }}',
+					'productName': '{{ product.title }}',
+					'productPrice': '{{ current_variant.price | times: 0.01 }}',
+					'productSKU': '{{ current_variant.sku }}',
+					'productVariant': '{{ current_variant.title }}',
+					'URL': `${currentURL}`
+				}]
+			}
+		});
+		console.log('DL products');
+		console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+	</script>
+{% endif %}
 
 {% comment %} {% if template == 'cart' %}
 	<script>
@@ -90,7 +85,7 @@ Y aquí los ejemplos: https://enhancedecommerce.appspot.com/checkout
 					],
 			'quantity': {{ cart.item_count }},
 			'totalPurchase': {{ cart.total_price | times: 0.01 }},
-			'URL': '{{ canonical_url }}'
+			'URL': `${currentURL}`
 		});
 		//console.log('DL cart');
 		//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
@@ -175,8 +170,9 @@ Y aquí los ejemplos: https://enhancedecommerce.appspot.com/checkout
 	{% endif %}
 {% endif %}
 
-{% comment %} <script>
+{% comment %}
 
+<script>
 window.addEventListener('DOMContentLoaded', (event) => {
 	//const addToCartButtons = document.querySelectorAll('#AddToCart');
 	const addToCartButtons = document.querySelectorAll('button.add-to-cart');
@@ -195,5 +191,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
 // .btn__midabi (momiji life landing)
 // .lion-redeem-reward-modal__button--confirm (loyalty lion confirm dialog)
 // add-to-cart (current sundae landing)
+</script> 
 
-</script> {% endcomment %}
+
+if (Shopify.Checkout.step == 'contact_information'){
+	...
+}
+
+	Cómo armar un url de checkout, falta el checkout_id o checkoutToken
+	'{{ shop.secure_url }}\/10992810\/checkouts\/{{}}\/contact_information'
+	Shopify.ClientAttributesCollection.checkoutToken es el token del checkout
+
+Abril 2021
+https://flintanalytics.com/installing-enhanced-ecommerce-using-google-tag-manager-and-the-data-layer/
+Y aquí los ejemplos: https://enhancedecommerce.appspot.com/checkout
+
+{%- endcomment -%}
