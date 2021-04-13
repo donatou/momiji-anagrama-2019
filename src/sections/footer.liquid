@@ -52,7 +52,8 @@
         
 
       <div class="col-md-5 bl">
-        {% include 'newsletter', subscribe_source: 'footer' %}
+        {% comment %} {% include 'newsletter', subscribe_source: 'footer' %} {% endcomment %}
+        {% include 'newsletter-footer' %}
         <div class="col-12 col-lg-10 mx-auto footer__quiz">
           {%- comment -%} QUIZ AUN NO ACTIVO
           <img src="{{ 'quiz.svg' | asset_url }}" alt="Take Quiz">
