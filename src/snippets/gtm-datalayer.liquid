@@ -49,14 +49,24 @@
 			'event': 'view_item',
 			'ecommerce': {
 				'items': [{
-					'pageCategory': '{{ product.type }}',
-					'productBrand': '{{ product.vendor }}',
-					'productID': '{{ current_variant.id }}',
-					'productName': '{{ product.title }}',
-					'productPrice': '{{ current_variant.price | times: 0.01 }}',
-					'productSKU': '{{ current_variant.sku }}',
-					'productVariant': '{{ current_variant.title }}',
-					'URL': `${currentURL}`
+					//'pageCategory': '{{ product.type }}',
+					//'productBrand': '{{ product.vendor }}',
+					//'productID': '{{ current_variant.id }}',
+					//'productName': '{{ product.title }}',
+					//'productPrice': '{{ current_variant.price | times: 0.01 }}',
+					//'productSKU': '{{ current_variant.sku }}',
+					//'productVariant': '{{ current_variant.title }}',
+					//'URL': `${currentURL}`
+					'item_name': '{{ product.title }}', // Name or ID is required.
+					'item_id': '{{ current_variant.id }}',
+					'price': '{{ current_variant.price | times: 0.01 }}',
+					'item_brand': '{{ product.vendor }}',
+					'item_category': '{{ product.type }}',
+					'item_variant': '{{ current_variant.title }}',
+					'item_list_name': `${currentURL}`,  // If associated with a list selection.
+					'item_list_id': '',  // If associated with a list selection.
+					'index': 1,  // If associated with a list selection.
+					'quantity': '1'
 				}]
 			}
 		});
