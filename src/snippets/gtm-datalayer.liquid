@@ -80,29 +80,33 @@
 		const currentURL = window.location.href;
 		window.dataLayer = window.dataLayer || [];
 		window.dataLayer.push({
-			'cartSubtotal': '{{ cart.original_total_price | times: 0.01 }}',
-			'currency': '{{ shop.currency }}',
-			'items': [
-						{% for item in cart.items %}
-						{
-							'pageCategory': '{{item.product.type}}',
-							'productBrand': '{{item.vendor}}',
-							'productID': '{{item.variant.id}}',
-							'productName': '{{item.title}}',
-							'productPrice': '{{item.line_price | times: 0.01}}',
-							'productSKU': '{{item.variant.sku}}',
-							'productVariant': '{{item.variant.title}}',
-							'quantity': '{{item.quantity | times: 1}}'
-						},
-						{% endfor %}
-					],
-			'pageCategory': '{{ template.name }}',
-			'quantity': '{{ cart.item_count }}',
-			'totalPurchase': '{{ cart.total_price | times: 0.01 }}',
-			'URL': `${currentURL}`
+			'event': 'view_item',
+			'ecommerce': {
+				'items': [
+							{% for item in cart.items %}
+							{
+								'item_name': '{{item.title}}',
+								'item_id': '{{item.variant.id}}',
+								'price': '{{item.line_price | times: 0.01}}',
+								'item_brand': '{{item.vendor}}',
+								'item_category': '{{item.product.type}}',
+								'item_variant': '{{item.variant.title}}',
+								'item_list_name': '',
+								'item_list_id': '',
+								'index': {{ forloop.index }},
+								'quantity': '{{item.quantity | times: 1}}'
+							},
+							{% endfor %}
+						],
+				'affiliation': '{{ template.name }}',
+				'value': '{{ cart.total_price | times: 0.01 }}',
+				'currency': '{{ shop.currency }}',
+				'quantity': '{{ cart.item_count }}',
+				'URL': `${currentURL}`
+			}
 		});
-		//console.log('DL cart');
-		//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+		console.log('DL cart');
+		console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
 	</script>
 {% endif %}
 
