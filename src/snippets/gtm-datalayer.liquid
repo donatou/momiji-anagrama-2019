@@ -148,34 +148,32 @@
 			window.dataLayer.push({
 				'event': 'purchase',
 				'ecommerce': {
-					'cartSubtotal': '{{ order.line_items_subtotal_price | times: 0.01  }}',
+					'transaction_id': '{{ order.name }}',
+					'affiliation': 'Online Store',
+					'value': '{{ order.total_price | times: 0.01 }}',
+					'tax': '{{ order.tax_price | times: 0.01  }}',
+					'shipping': '{{ order.shipping_price | times: 0.01  }}',
 					'currency': '{{ checkout.currency }}',
+					{% if order.discount_applications != blank %}
+						{% for discount_application in order.discount_applications %}
+							'coupon':'{{ discount_application.title }}',
+						{% endfor %}
+					{% else %}
+						'coupon': 'no coupon',				
+					{% endif %}
 					'items': [
 								{% for line_item in order.line_items %}
 								{
-									'pageCategory': '{{line_item.product.type}}',
-									'productBrand': '{{line_item.vendor}}',
-									'productID': '{{line_item.variant.id}}',
-									'productName': '{{line_item.title}}',
-									'productPrice': '{{line_item.line_price | times: 0.01}}',
-									'productSKU': '{{line_item.variant.sku}}',
-									'productVariant': '{{line_item.variant.title}}',
-									'productQty': '{{line_item.quantity}}'
+									'item_name': '{{line_item.title}}',
+									'item_id': '{{line_item.variant.id}}',
+									'price': '{{line_item.line_price | times: 0.01}}',
+									'item_brand': '{{line_item.vendor}}',
+									'item_category': '{{line_item.product.type}}',
+									'item_variant': '{{line_item.variant.title}}',
+									'quantity': '{{line_item.quantity}}'
 								},
 								{% endfor %}
-								],
-					'orderID': '{{ order.name }}',
-					'pageCategory': 'thank_you',
-					'paymentMethod': [
-						{% for transaction in order.transactions %}
-							{
-								'paymentMethod': '{{ transaction.gateway }}'
-							},
-						{% endfor %}
-						],
-					'quantity': '{{ order.line_items | size }}',
-					'totalPurchase': '{{ order.total_price | times: 0.01 }}',
-					'URL': `${currentURL}`
+								]
 				}
 			});
 			//console.log('thank_you step');
