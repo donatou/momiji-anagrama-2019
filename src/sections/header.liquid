@@ -10,12 +10,12 @@
   <div class="header">
     <div class="header__sitebanner d-md-flex"{% if section.settings.white == true %} style="background: #fff;"{% endif %}>
       <div class="header__currency align-items-center d-none d-md-flex">
-        {% include 'currency-selector' %}
+        <!-- {% render 'currency-selector' %} -->
       </div>
-      {% include 'barra-anuncios' %}
+      {% render 'barra-anuncios' %}
       
       <div class="header__cuenta d-none d-md-block">
-        {% include 'header-account' %}
+        {% render 'header-account' %}
       </div>
     </div>
 
