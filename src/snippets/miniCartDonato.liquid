@@ -114,7 +114,7 @@
           {%- endcomment -%}
             {%- when 'incluye_regalo' -%}
 
-              {%- include 'cart-free-product-inject' -%}
+              {%- render 'cart-free-product-inject' -%}
 
               {%- assign cart_total_promo = cart.total_price -%}
               {%- assign shipping_value_left_promo = free_gift_over_x_price | minus: cart_total_promo -%}
@@ -168,8 +168,8 @@
           {%- endcomment -%}
             {%- when 'dos_regalos_escalonados' -%}
 
-              {%- include 'first-free-product-inject-2' -%}
-              {%- include 'second-free-product-inject-2' -%}
+              {%- render 'first-free-product-inject-2' -%}
+              {%- render 'second-free-product-inject-2' -%}
 
               {%- comment -%} Variables de gasto minimo {%- endcomment -%}
               {%- comment -%}
@@ -206,9 +206,9 @@
           {%- endcomment -%}
             {%- when 'regalos_escalonados' -%}
 
-              {%- include 'first-free-product-inject' -%}
-              {%- include 'second-free-product-inject' -%}
-              {%- include 'third-free-product-inject' -%}
+              {%- render 'first-free-product-inject' -%}
+              {%- render 'second-free-product-inject' -%}
+              {%- render 'third-free-product-inject' -%}
 
               {%- comment -%} Variables de gasto minimo {%- endcomment -%}
               {%- comment -%}
@@ -331,8 +331,8 @@
           </div><!-- /.minicart-nosubtotal -->
 
           <div class="cart__footer">
-            {%- include 'cart_recommend' -%}
-            {%- include 'regalo_carrito' -%}
+            {%- render 'cart_recommend' -%}
+            {%- render 'regalo_carrito' -%}
             <div class="cf checkout-subtotal-container">
               <div class="checkout-subtotal-container__left">
                 <h4 class="subtotalMinicart">{{ 'cart.general.subtotal' | t }}</h4>
@@ -358,7 +358,7 @@
             {% comment %} <a class="refresh-btn">{{ 'cart.general.update' | t }}</a> {% endcomment %}
 
             {%- comment -%} No se puede incluir porque al usar un script para bloquear códigos de descuento, éste snippet lo muestra como "Estás ahorrando X cantidad con la promoción de BLOQUEO DE SCRIPTS" {%- endcomment -%}
-            {%- comment -%} {%- include 'estas-ahorrando' -%} {%- endcomment -%}
+            {%- comment -%} {%- render 'estas-ahorrando' -%} {%- endcomment -%}
 
             <div class="cf">
               <div class="checkout-col">
