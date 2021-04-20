@@ -50,9 +50,17 @@
                 </div>
             </div>
 
+            <div class="col-12 d-xs-none text-center pt-40">
+                <div>
+                    <button type="button" class="btn btn-white btn-text min-w-150 add-to-cart">
+                        Agregar al carrito
+                    </button>
+                </div>
+            </div>
+
             <div class="col-12 d-md-none text-center pt-40">
                 <div>
-                    <button type="button" class="btn btn-white btn-text min-w-150">
+                    <button type="button" class="btn btn-white btn-text min-w-150 add-to-cart">
                         Agregar al carrito
                     </button>
                 </div>
@@ -637,6 +645,29 @@
 
 <script>
     $(function () {
+        $(".add-to-cart").on("click", function () {
+            
+            var arreglo = [];
+            $.each($(".product-results-item"), function(index, data){
+                
+                jQuery.getJSON('/products/' + $(data).data("handle") + '.js', function(product) {
+
+                  arreglo.push({id: product.variants[0].id, quantity: 1});
+                }).done(function() {
+
+                    $.post('/cart/add.js', {
+                      items: arreglo
+                    }).done(function() {
+                      updateMinicart();
+                      $('#pop-modal').removeClass('show');
+                    });
+
+                });
+ 
+            })
+ 
+        })
+
         $("input").on("change", function () {
             var step_wrapper = $(this).parents(".step-wrapper");
             var button_wrap = step_wrapper.find(".btn-wrapper");
@@ -688,8 +719,8 @@
 
               if (productSuggestions.length > 0) {
                 $.each(productSuggestions, function(index, data){
-                    console.log(data);
-                    items = '<div class="col-6 col-md-10 col-lg-6 product-results-item">\
+                
+                    items = '<div class="col-6 col-md-10 col-lg-6 product-results-item" data-handle="' + data.handle + '">\
                         <div>\
                             <a class="product" href="/products/' + data.handle + '" target="_blank">\
                                 <div class="product__container">\
