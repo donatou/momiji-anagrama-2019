@@ -1,29 +1,106 @@
 {% section 'skin-images' %}
 
+{% if request.design_mode %}
+<script>
+    document.addEventListener("shopify:block:deselect", function (event) {
+        // var block = event;
+        $("#pop-modal").removeClass("show");
+    });
+
+    document.addEventListener("shopify:block:select", function (event) {
+        var block = event;
+        if(typeof ($(block.target).data("id")) == "number"){
+            $("#pop-modal").addClass("show");
+
+            var swiper_gallery = new Swiper('.swiper-gallery', {
+                slidesPerView: 1,
+                mode: 'horizontal',
+                speed: 400,
+                spaceBetween: 30,
+                loop: false,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                keyboard: {
+                enabled: true,
+                onlyInViewport: false
+                }
+            });
+
+            var figure_id = $(block.target).data("id");
+            swiper_gallery.slideTo(figure_id, 0);
+        }
+    });
+</script>
+{% endif %}
 
 <script>
     $(function () {
-        // SWIPER
-        var swiper_gallery = new Swiper('.swiper-gallery', {
-            slidesPerView: 1,
-            mode: 'horizontal',
-            speed: 400,
-            spaceBetween: 30,
-            loop: false,
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            keyboard: {
-            enabled: true,
-            onlyInViewport: false
+
+        function getResponsive() {
+            var windowWidth = window.innerWidth;
+            var size;
+            if (windowWidth > 768) {
+                size = "lg"
             }
+            else if (windowWidth <= 768 && windowWidth > 426) {
+                size = "md"
+            }
+            else if (windowWidth <= 426) {
+                size = "sm"
+            }
+            return size
+        }
+        // var r = getResponsive();
+        
+        var swiper_gallery;
+        $(window).on('load', function () {
+            swiper_gallery = new Swiper('.swiper-gallery', {
+                slidesPerView: 1,
+                mode: 'horizontal',
+                speed: 400,
+                spaceBetween: 30,
+                loop: false,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                keyboard: {
+                enabled: true,
+                onlyInViewport: false
+                }
+            });
         });
 
         $(".grid-item").click(function(){
             var figure = $(this).children( "figure" );
             var figure_id = figure.data("id");
+
+            var r = getResponsive();
+            if(r == "sm" || r == "md") {
+                var container = $(".gallery-modal").find(".container-md-fluid");
+                var windowWidth = window.innerWidth;
+                $(container).width(windowWidth);
+            } else {
+                var container = $(".gallery-modal").find(".container-md-fluid");
+                $(container).width("");
+            }
+
+            swiper_gallery.update()
             swiper_gallery.slideTo(figure_id, 0);
+            lockBodyScroll()
         })
+
+        function lockBodyScroll(){
+            $("body").css("overflow", "hidden");
+        }
+        function unlockBodyScroll(){
+            $("body").css("overflow", "");
+        }
+
+        $('.js-close-modal').click(function() {
+            unlockBodyScroll();
+        });
     })
 </script>

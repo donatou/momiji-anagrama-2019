@@ -1,0 +1,149 @@
+<!-- SECTION PRODUCTS -->
+<section class="section-products d-none bg-purple pt-45 pt-md-155 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6 pb-sm-25">
+                <div class="sticky-column text-center text-md-left">
+                    <div class="text-link">
+                        Resultados
+                    </div>
+                    <div class="pb-20">
+                        <h2 class="h2 normal-state">
+                            {{ section.settings.text_title | newline_to_br}}
+                            <!-- Justo lo que necesitas,
+                            <br>
+                            ¡En solo 3 pasos! -->
+                        </h2>
+                        <h2 class="h2 empty-state d-none">
+                            <!-- No encontramos resultados -->
+                            {{ section.settings.text_title_empty_state | newline_to_br}}
+                        </h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex flex-column">
+                                <div class="bb-sm-black pb-sm-25">
+                                    <div class="bt-black">
+                                        <div class="normal-state">
+                                            <div class="body-sans pt-25">
+                                                <!-- Ya armaste tu rutina de skincare -->
+                                                {{ section.settings.text_subtitle | newline_to_br}}
+                                            </div>
+                                            <p>
+                                                {{ section.settings.text_content | newline_to_br}}
+                                            </p>
+                                            <!-- Sigue estos pasos para lograr una piel que se vea y se sienta bien de forma natural. Si tienes dudas, sigue las instrucciones de uso que te damos de cada producto. -->
+                                        </div>
+                                        <div class="empty-state d-none">
+                                            <div class="body-sans pt-25">
+                                                <!-- Ya armaste tu rutina de skincare -->
+                                                {{ section.settings.text_subtitle_empty_state | newline_to_br}}
+                                            </div>
+                                            <p>
+                                                {{ section.settings.text_content_empty_state | newline_to_br}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="pt-30 d-none d-md-block">
+                                        <a aria-controls="wizzard-wrapper" aria-expanded="false" class="js-no-scroll-enable btn btn-white btn-text min-w-150" data-target=".wizzard-wrapper" data-toggle="show" href="#" role="button">
+                                            {% include 'arrow-back' %}
+                                            <span class="pl-05">Regresar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-70 d-none d-md-block">
+                        {% include 'momi' %}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-12 col-md-6">
+                <div class="row justify-content-md-center justify-content-lg-start product-results">
+                </div>
+            </div>
+
+            <div class="col-12 d-xs-none text-center pt-40">
+                <div>
+                    <button type="button" class="btn btn-white btn-text min-w-150 add-to-cart">
+                        Agregar al carrito
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="col-12 d-md-none text-center pt-40">
+                <div>
+                    <button type="button" class="btn btn-white btn-text min-w-150 add-to-cart">
+                        Agregar al carrito
+                    </button>
+                </div>
+                <div class="pt-20">
+                    <a aria-controls="wizzard-wrapper" aria-expanded="false" class="js-no-scroll-enable btn btn-white btn-text min-w-150" data-target=".wizzard-wrapper" data-toggle="show" href="#" role="button">
+                        {% include 'arrow-back' %}
+                        <span class="pl-05">Regresar</span>
+                    </a>
+                </div>
+                <div class="pt-40">
+                    {% include 'momi' %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END: SECTION PRODUCTS -->
+
+{% schema %}
+  {
+    "name": "Test Results",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Test results content"
+        },
+        {
+            "type": "textarea",
+            "id": "text_title",
+            "label": "Result's Headline"
+        },
+        {
+            "type": "textarea",
+            "id": "text_subtitle",
+            "label": "Result's Subtitle"
+        },
+        {
+            "type": "textarea",
+            "id": "text_content",
+            "label": "Result's Text Content"
+        },
+        {
+            "type": "header",
+            "content": "Text content for empty state results."
+        },
+        {
+            "type": "textarea",
+            "id": "text_title_empty_state",
+            "label": "Result's Headline"
+        },
+        {
+            "type": "textarea",
+            "id": "text_subtitle_empty_state",
+            "label": "Result's Subtitle"
+        },
+        {
+            "type": "textarea",
+            "id": "text_content_empty_state",
+            "label": "Result's Text Content"
+        }
+    ],
+    "presets": [
+      {
+        "name": "Test Results",
+        "category": "Beauty Test"
+      }
+    ]
+  }
+{% endschema %}
