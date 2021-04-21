@@ -1,5 +1,5 @@
-{% include 'benefits-logic' %}
-{% include 'pasoderutina-logic' %}
+{% render 'benefits-logic' %}
+{% render 'pasoderutina-logic' %}
 
 <section class="section-product-info main__product--info bg-purple pt-80 pt-lg-0">
     <div class="container-fluid px-15">
@@ -139,44 +139,49 @@
                                 <ul class="list-unstyled list-icon">
                                     {% if product.tags contains "alcohol" %}
                                     <li>
-                                        {% include 'icon-benefit-alcohol' %}
+                                        {% render 'icon-benefit-alcohol' %}
                                     </li>
                                     {% endif %}
                                     {% if product.tags contains "aceite" %}
                                     <li>
-                                        {% include 'icon-benefit-aceite' %}
+                                        {% render 'icon-benefit-aceite' %}
                                     </li>
                                     {% endif %}
                                     {% if product.tags contains "formol" %}
                                     <li>
-                                        {% include 'icon-benefit-formol' %}
+                                        {% render 'icon-benefit-formol' %}
                                     </li>
                                     {% endif %}
                                     {% if product.tags contains "crueldad" %}
                                     <li>
-                                        {% include 'icon-benefit-crueldad' %}
+                                        {% render 'icon-benefit-crueldad' %}
                                     </li>
                                     {% endif %}
                                     {% if product.tags contains "parabenos" %}
                                     <li>
-                                        {% include 'icon-benefit-parabenos' %}
+                                        {% render 'icon-benefit-parabenos' %}
                                     </li>
                                     {% endif %}
                                     {% if product.tags contains "sulfatos" %}
                                     <li>
-                                        {% include 'icon-benefit-sulfatos' %}
+                                        {% render 'icon-benefit-sulfatos' %}
                                     </li>
                                     {% endif %}
                                     {% if product.tags contains "gluten" %}
                                     <li>
-                                        {% include 'icon-benefit-gluten' %}
+                                        {% render 'icon-benefit-gluten' %}
                                     </li>
                                     {% endif %}
                                     {% if product.tags contains "fragancia" %}
                                     <li>
-                                        {% include 'icon-benefit-fragancia' %}
+                                        {% render 'icon-benefit-fragancia' %}
                                     </li>
                                     {% endif %}
+                                    {% if product.tags contains "vegano" %}
+                                    <li>
+                                        {% render 'icon-benefit-vegano' %}
+                                    </li>
+                                    {% endif %}                                                                  
                                 </ul>
                             </div>
                         </section>
@@ -206,7 +211,7 @@
                                         <a aria-controls="info-modal" aria-expanded="false" data-target="#info-modal" data-toggle="show" href="#" role="button">
                                             <div class="c-red text-link">
                                                 Lista completa de ingredientes
-                                                {% include 'icon-plus-circle' %}
+                                                {% render 'icon-plus-circle' %}
                                             </div>
                                         </a>
                                     </div>
@@ -301,7 +306,7 @@
                     <div class="controls controls-absolute">
                       <div class="text-right">
                           <a aria-controls="info-modal" aria-expanded="false" data-target="#info-modal" data-toggle="show" href="#" role="button">
-                              {% include 'icon-modal-close' %}
+                              {% render 'icon-modal-close' %}
                           </a>
                       </div>
                   </div>
