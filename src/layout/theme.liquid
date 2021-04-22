@@ -141,7 +141,7 @@
 
     {% section 'header' %}
 
-{% if template == 'sundae' %}
+{% if template == 'sundae' or settings.sundae_landing %}
   <main class="page-sundae" role="main" id="MainContent" style="opacity: 1;">
       {{ content_for_layout }}
   </main>

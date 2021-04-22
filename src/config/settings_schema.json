@@ -556,5 +556,17 @@
         "info": "Marca la casilla para activar el chat en vivo de Reamaze. Look & feel se configura directo en la app."
       }
     ]
-  }
+  },
+  {
+    "name": "Landing Sundae",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "sundae_landing",
+        "label": "Activar",
+        "default": false,
+        "info": "Marca la casilla para activar scripts específicas para landing Sundae en index."
+      }
+    ]
+  }  
 ]
