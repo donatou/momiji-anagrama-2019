@@ -112,18 +112,21 @@
       });
       return data;
     };
+    try {
+      let envioList = Array.from(
+        document.querySelectorAll('.content-box__emphasis')
+      );
+      envioList = envioList.map((element) => {
+        return element.innerText;
+      });
 
-    let envioList = Array.from(
-      document.querySelectorAll('.content-box__emphasis')
-    );
-    envioList = envioList.map((element) => {
-      return element.innerText;
-    });
-
-    envioList = conversion(envioList);
-    for (let a = 0; a < envioList.length; a++) {
-      document.querySelectorAll('.content-box__emphasis')[a].textContent =
-        envioList[a];
+      envioList = conversion(envioList);
+      for (let a = 0; a < envioList.length; a++) {
+        document.querySelectorAll('.content-box__emphasis')[a].textContent =
+          envioList[a];
+      }
+    } catch (error) {
+      console.log(error);
     }
 
     let priceList = Array.from(
@@ -140,52 +143,21 @@
 
     //----------------------------------------------------------------------------------------------
 
-    const conversionSencilla = (parametro) => {
-      let otherData = '';
+    function all() {
+      let subTotal_Envio_Total = Array.from(
+        document.querySelectorAll('.total-line__price')
+      );
+      subTotal_Envio_Total = subTotal_Envio_Total.map((element) => {
+        return element.innerText;
+      });
 
-      let regex = /[\d\.]{1,}?\,/g;
-
-      let number = parametro.match(regex).join('');
-      number = number.replace(',', '');
-      number = number.replace('.', '');
-
-      otherData = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-      }).format(number);
-      return otherData;
-    };
-
-    let subTotal = document.querySelector(
-      'span[data-checkout-subtotal-price-target]'
-    ).innerText;
-
-    subTotal = conversionSencilla(subTotal);
-
-    document.querySelector(
-      'span[data-checkout-subtotal-price-target]'
-    ).outerText = subTotal;
-
-    // function envioLoad() {
-    // let envio = document.querySelector(
-    //   'span[data-checkout-total-shipping-target]'
-    // ).outerText;
-    // console.log(envio);
-    // envio = conversionSencilla(envio);
-
-    // console.log(envio);
-
-    // document.querySelector(
-    //   'span[data-checkout-total-shipping-target]'
-    // ).outerText = envio;
-    // }
-    // window.onload = envioLoad;
-
-    //   let total = document.querySelector('.total-line__price.payment-due')
-    //     .innerText;
-
-    //   total = conversionSencilla(total);
-    //   document.querySelector('.total-line__price.payment-due').innerText = total;
+      subTotal_Envio_Total = conversion(subTotal_Envio_Total);
+      for (let i = 0; i < subTotal_Envio_Total.length; i++) {
+        document.querySelectorAll('.total-line__price')[i].textContent =
+          subTotal_Envio_Total[i];
+      }
+    }
+    window.onload = all;
   });
 </script>
 
