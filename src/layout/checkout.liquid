@@ -93,57 +93,99 @@
 
 <script>
   $(document).on('page:load page:change', () => {
-    function formatMX() {
-      const envioList = document.querySelectorAll('.content-box__emphasis ');
-
-      const priceList = document.querySelectorAll('.product .product__price');
-
-      const subTotal = document.querySelector(
-        'span[data-checkout-subtotal-price-target]'
-      ).innerText;
-
-      const envio = document.querySelector(
-        'span[data-checkout-total-shipping-target]'
-      ).innerText;
-
-      const total = document.querySelector('.total-line__price.payment-due')
-        .innerText;
-
+    const conversion = (parametro) => {
       let data = [];
-      let newData = [];
 
-      envioList.forEach((element) => {
-        data.push(element.innerText);
-      });
-      priceList.forEach((element) => {
-        data.push(element.innerText);
-      });
-
-      data.push(subTotal);
-      data.push(envio);
-      data.push(total);
-
-      console.log(data);
-
-      const conversion = data.forEach((element) => {
+      parametro.forEach((element) => {
         let regex = /[\d\.]{1,}?\,/g;
 
         let number = element.match(regex).join('');
         number = number.replace(',', '');
         number = number.replace('.', '');
-        // console.log(number);
 
-        let data = new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
-        }).format(number);
-
-        // newData.push(data);
-        console.log(data);
+        data.push(
+          new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          }).format(number)
+        );
       });
+      return data;
+    };
+
+    let envioList = Array.from(
+      document.querySelectorAll('.content-box__emphasis')
+    );
+    envioList = envioList.map((element) => {
+      return element.innerText;
+    });
+
+    envioList = conversion(envioList);
+    for (let a = 0; a < envioList.length; a++) {
+      document.querySelectorAll('.content-box__emphasis')[a].textContent =
+        envioList[a];
     }
-    window.onload = formatMX;
-    // formatMX();
+
+    let priceList = Array.from(
+      document.querySelectorAll('.product .product__price')
+    );
+    priceList = priceList.map((element) => {
+      return element.innerText;
+    });
+    priceList = conversion(priceList);
+    for (let i = 0; i < priceList.length; i++) {
+      document.querySelectorAll('.product .product__price')[i].textContent =
+        priceList[i];
+    }
+
+    //----------------------------------------------------------------------------------------------
+
+    const conversionSencilla = (parametro) => {
+      let otherData = '';
+
+      let regex = /[\d\.]{1,}?\,/g;
+
+      let number = parametro.match(regex).join('');
+      number = number.replace(',', '');
+      number = number.replace('.', '');
+
+      otherData = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(number);
+      return otherData;
+    };
+
+    let subTotal = document.querySelector(
+      'span[data-checkout-subtotal-price-target]'
+    ).innerText;
+
+    subTotal = conversionSencilla(subTotal);
+
+    document.querySelector(
+      'span[data-checkout-subtotal-price-target]'
+    ).outerText = subTotal;
+
+    // function envioLoad() {
+    // let envio = document.querySelector(
+    //   'span[data-checkout-total-shipping-target]'
+    // ).outerText;
+    // console.log(envio);
+    // envio = conversionSencilla(envio);
+
+    // console.log(envio);
+
+    // document.querySelector(
+    //   'span[data-checkout-total-shipping-target]'
+    // ).outerText = envio;
+    // }
+    // window.onload = envioLoad;
+
+    //   let total = document.querySelector('.total-line__price.payment-due')
+    //     .innerText;
+
+    //   total = conversionSencilla(total);
+    //   document.querySelector('.total-line__price.payment-due').innerText = total;
   });
 </script>
 
