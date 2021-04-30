@@ -531,6 +531,11 @@
         "type": "text",
         "id": "social_youtube_link",
         "label": "Youtube link"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok_link",
+        "label": "Youtube link"
       }
     ]
   },
