@@ -112,6 +112,9 @@
       });
       return data;
     };
+
+    //----------------------------------------------------------------------------------------------
+
     try {
       let envioList = Array.from(
         document.querySelectorAll('.content-box__emphasis')
@@ -129,6 +132,8 @@
       console.log(error);
     }
 
+    //------------------------------------------------------------------------------------
+
     let priceList = Array.from(
       document.querySelectorAll('.product .product__price')
     );
@@ -144,19 +149,40 @@
     //----------------------------------------------------------------------------------------------
 
     function all() {
-      let subTotal_Envio_Total = Array.from(
-        document.querySelectorAll('.total-line__price')
-      );
-      subTotal_Envio_Total = subTotal_Envio_Total.map((element) => {
-        return element.innerText;
-      });
+      let pagos = [];
 
-      subTotal_Envio_Total = conversion(subTotal_Envio_Total);
-      for (let i = 0; i < subTotal_Envio_Total.length; i++) {
-        document.querySelectorAll('.total-line__price')[i].textContent =
-          subTotal_Envio_Total[i];
+      let subTotal = document.querySelector(
+        'span[data-checkout-subtotal-price-target]'
+      );
+      // subTotal.className += ' subtotal';
+      pagos.push(subTotal.innerText);
+
+      let envio = document.querySelector(
+        'span[data-checkout-total-shipping-target]'
+      );
+      // envio.className += ' envios';
+
+      if (envio.innerText === 'Gratis') {
+        envio = '0,00';
+        pagos.push(envio);
+      } else {
+        console.log(envio);
+        pagos.push(envio.innerText);
       }
+
+      let total = document.querySelector('.total-line__price.payment-due');
+      // let total = document.querySelector(
+      //   'span[data-checkout-payment-due-target]'
+      // );
+      pagos.push(total.innerText);
+
+      pagos = conversion(pagos);
+      console.log(pagos);
+      subTotal.textContent = pagos[0];
+      envio.textContent = pagos[1];
+      total.textContent = pagos[2];
     }
+
     window.onload = all;
   });
 </script>
