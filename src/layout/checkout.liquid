@@ -93,16 +93,21 @@
 
 <script>
   $(document).on('page:load page:change', () => {
-    const conversion = (parametro) => {
+    //Convierte el formato de precio
+    const conversion = (parameter) => {
       let data = [];
 
-      parametro.forEach((element) => {
+      parameter.forEach((element) => {
+        //Captura todo el grupo de numeros que al final tienen una coma(,) Ejemplo: 5.240,00
+        //Solo retorna 5.240,
         let regex = /[\d\.]{1,}?\,/g;
 
         let number = element.match(regex).join('');
+        //ELiminamos las comas y los puntos para que el NumberFormat le de el formato adecuado
         number = number.replace(',', '');
         number = number.replace('.', '');
 
+        //Formato de precios americano
         data.push(
           new Intl.NumberFormat('en-US', {
             style: 'currency',
@@ -113,8 +118,7 @@
       return data;
     };
 
-    //----------------------------------------------------------------------------------------------
-
+    //Capturanos los precios de cada opcion de envio y cambiamos su formato
     try {
       let envioList = Array.from(
         document.querySelectorAll('.content-box__emphasis')
@@ -122,7 +126,7 @@
       envioList = envioList.map((element) => {
         return element.innerText;
       });
-
+      //Ejecutamos la funcion conversion y devolvemos el nuevo valor con un textContent
       envioList = conversion(envioList);
       for (let a = 0; a < envioList.length; a++) {
         document.querySelectorAll('.content-box__emphasis')[a].textContent =
@@ -132,79 +136,83 @@
       console.log(error);
     }
 
-    //------------------------------------------------------------------------------------
-
+    //Capturanos los precios de los productos que se van a comprar y cambiamos su formato
     let priceList = Array.from(
       document.querySelectorAll('.product .product__price')
     );
     priceList = priceList.map((element) => {
       return element.innerText;
     });
+
     priceList = conversion(priceList);
+
     for (let i = 0; i < priceList.length; i++) {
       document.querySelectorAll('.product .product__price')[i].textContent =
         priceList[i];
     }
 
-    //----------------------------------------------------------------------------------------------
-
-    function all() {
-      let pagos = [];
+    //Captuta el valor del sub-total, precio de envio, total. Guardamos todo en payments, y ejecutamos conversion(payments)
+    function totalTable() {
+      let payments = [];
 
       let subTotal = document.querySelector(
         '.total-line__price .order-summary__emphasis.skeleton-while-loading'
       );
-      pagos.push(subTotal.innerText);
+      payments.push(subTotal.innerText);
 
       let total = document.querySelector(
         '.payment-due__price.skeleton-while-loading--lg'
       );
-      pagos.push(total.innerText);
+      payments.push(total.innerText);
 
       let envio = document.querySelector(
         'span[data-checkout-total-shipping-target]'
       );
-
+      //Si el envio es gratis usamos outerText debido a un bug que ejecuta conversion() dos veces(solo si el envio es gratis)
       if (envio.innerText === 'Gratis') {
         envio = '0,00';
-        pagos.push(envio);
-        pagos = conversion(pagos);
+        payments.push(envio);
+        payments = conversion(payments);
 
-        subTotal.outerText = pagos[0];
-        total.outerText = pagos[1];
-        envio.outerText = pagos[2];
+        //Regresamos el nuevo formato de precio de acuero a la posición de cada querySelector
+        subTotal.outerText = payments[0];
+        total.outerText = payments[1];
+        envio.outerText = payments[2];
       } else {
-        pagos.push(envio.innerText);
-        pagos = conversion(pagos);
+        payments.push(envio.innerText);
+        payments = conversion(payments);
 
-        subTotal.innerText = pagos[0];
-        total.innerText = pagos[1];
-        envio.innerText = pagos[2];
+        subTotal.textContent = payments[0];
+        total.textContent = payments[1];
+        envio.textContent = payments[2];
       }
     }
 
-    //---------------------------------------------------------------------------------------------------------------
+    //Con MutationObserver sabremos si el estado de un elemento ah sido añadido o eliminado
     const observer = new MutationObserver((mutationList) => {
       mutationList.forEach((mutation) => {
+        //Si nos encontramos en la opcion de pago, volvera a ejecutar totalTable() cada vez que el valor de precioEnvio y total cambie,
+        //para que no vuleva al formato de precio anterior, y se mantenga el nuevo.
         if (
           mutation.addedNodes.length &&
           mutation.target.innerText == 'Gratis'
         ) {
-          console.log('Añadido', mutation.addedNodes[0]);
+          // console.log('Añadido', mutation.addedNodes[0]);
         } else {
-          all();
+          totalTable();
         }
 
         if (
           mutation.removedNodes.length &&
           mutation.target.innerText == 'Gratis'
         ) {
-          console.log('Eliminado', mutation.removedNodes[0]);
+          // console.log('Eliminado', mutation.removedNodes[0]);
         } else {
-          all();
+          totalTable();
         }
       });
     });
+
     const precioEnvio = document.querySelector(
       'span[data-checkout-total-shipping-target]'
     );
@@ -212,15 +220,17 @@
       'span[data-checkout-payment-due-target]'
     );
 
+    //Son los atributos que va necesitar MutationObserver para saber si cambio el valor del elemento
     const observerOptions = {
       attributes: true,
-      childList: true,
     };
 
-    //---------------------------------------------------------------------------------------------------------------
+    //Mandamo llamar a la funcion observer y esperamos a que toda la pagina cargue para ejecutar totalTable.
+    //Ya que el valor de precioEnvio tarda en mostrarse
     observer.observe(precioEnvio, observerOptions);
     observer.observe(total, observerOptions);
-    window.onload = all;
+
+    window.onload = totalTable;
   });
 </script>
 
