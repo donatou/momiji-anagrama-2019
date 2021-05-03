@@ -152,37 +152,75 @@
       let pagos = [];
 
       let subTotal = document.querySelector(
-        'span[data-checkout-subtotal-price-target]'
+        '.total-line__price .order-summary__emphasis.skeleton-while-loading'
       );
-      // subTotal.className += ' subtotal';
       pagos.push(subTotal.innerText);
 
       let envio = document.querySelector(
         'span[data-checkout-total-shipping-target]'
       );
-      // envio.className += ' envios';
+      // console.log(envio.value);
 
       if (envio.innerText === 'Gratis') {
         envio = '0,00';
+        // console.log(envio);
         pagos.push(envio);
       } else {
-        console.log(envio);
         pagos.push(envio.innerText);
       }
 
-      let total = document.querySelector('.total-line__price.payment-due');
+      let total = document.querySelector(
+        '.payment-due__price.skeleton-while-loading--lg'
+      );
+      pagos.push(total.innerText);
+
+      //---------------------------------------------------------------------------------------------------------------------------------------------------
       // let total = document.querySelector(
       //   'span[data-checkout-payment-due-target]'
       // );
-      pagos.push(total.innerText);
+      // pagos.push(total.innerText);
+      //---------------------------------------------------------------------------------------------------------------------------------------------------
 
       pagos = conversion(pagos);
       console.log(pagos);
-      subTotal.textContent = pagos[0];
-      envio.textContent = pagos[1];
-      total.textContent = pagos[2];
+
+      // subTotal.outerText = pagos[0];
+      // envio.outerText = pagos[1];
+      // total.outerText = pagos[2];
+      subTotal.innerText = pagos[0];
+      envio.innerText = pagos[1];
+      total.innerText = pagos[2];
     }
 
+    //---------------------------------------------------------------------------------------------------------------
+    const observer = new MutationObserver((mutationList) => {
+      mutationList.forEach((mutation) => {
+        if (mutation.addedNodes.length) {
+          console.log('Añadido', mutation.addedNodes[0]);
+          // all();
+        }
+        if (mutation.removedNodes.length) {
+          console.log('Eliminado', mutation.removedNodes[0]);
+          // all();
+        }
+        console.log(mutation.type);
+      });
+    });
+    const precioEnvio = document.querySelector(
+      'span[data-checkout-total-shipping-target]'
+    );
+    const total = document.querySelector(
+      'span[data-checkout-payment-due-target]'
+    );
+
+    const observerOptions = {
+      attributes: true,
+      childList: true,
+    };
+
+    //---------------------------------------------------------------------------------------------------------------
+    observer.observe(precioEnvio, observerOptions);
+    observer.observe(total, observerOptions);
     window.onload = all;
   });
 </script>
