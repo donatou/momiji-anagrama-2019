@@ -156,54 +156,53 @@
       );
       pagos.push(subTotal.innerText);
 
-      let envio = document.querySelector(
-        'span[data-checkout-total-shipping-target]'
-      );
-      // console.log(envio.value);
-
-      if (envio.innerText === 'Gratis') {
-        envio = '0,00';
-        // console.log(envio);
-        pagos.push(envio);
-      } else {
-        pagos.push(envio.innerText);
-      }
-
       let total = document.querySelector(
         '.payment-due__price.skeleton-while-loading--lg'
       );
       pagos.push(total.innerText);
 
-      //---------------------------------------------------------------------------------------------------------------------------------------------------
-      // let total = document.querySelector(
-      //   'span[data-checkout-payment-due-target]'
-      // );
-      // pagos.push(total.innerText);
-      //---------------------------------------------------------------------------------------------------------------------------------------------------
+      let envio = document.querySelector(
+        'span[data-checkout-total-shipping-target]'
+      );
 
-      pagos = conversion(pagos);
-      console.log(pagos);
+      if (envio.innerText === 'Gratis') {
+        envio = '0,00';
+        pagos.push(envio);
+        pagos = conversion(pagos);
 
-      // subTotal.outerText = pagos[0];
-      // envio.outerText = pagos[1];
-      // total.outerText = pagos[2];
-      subTotal.innerText = pagos[0];
-      envio.innerText = pagos[1];
-      total.innerText = pagos[2];
+        subTotal.outerText = pagos[0];
+        total.outerText = pagos[1];
+        envio.outerText = pagos[2];
+      } else {
+        pagos.push(envio.innerText);
+        pagos = conversion(pagos);
+
+        subTotal.innerText = pagos[0];
+        total.innerText = pagos[1];
+        envio.innerText = pagos[2];
+      }
     }
 
     //---------------------------------------------------------------------------------------------------------------
     const observer = new MutationObserver((mutationList) => {
       mutationList.forEach((mutation) => {
-        if (mutation.addedNodes.length) {
+        if (
+          mutation.addedNodes.length &&
+          mutation.target.innerText == 'Gratis'
+        ) {
           console.log('Añadido', mutation.addedNodes[0]);
-          // all();
+        } else {
+          all();
         }
-        if (mutation.removedNodes.length) {
+
+        if (
+          mutation.removedNodes.length &&
+          mutation.target.innerText == 'Gratis'
+        ) {
           console.log('Eliminado', mutation.removedNodes[0]);
-          // all();
+        } else {
+          all();
         }
-        console.log(mutation.type);
       });
     });
     const precioEnvio = document.querySelector(
