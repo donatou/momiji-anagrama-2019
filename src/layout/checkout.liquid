@@ -124,7 +124,7 @@
         document.querySelectorAll('.content-box__emphasis')
       );
       envioList = envioList.map((element) => {
-        return element.innerText;
+        return element.textContent;
       });
       //Ejecutamos la funcion conversion y devolvemos el nuevo valor con un textContent
       envioList = conversion(envioList);
@@ -141,7 +141,7 @@
       document.querySelectorAll('.product .product__price')
     );
     priceList = priceList.map((element) => {
-      return element.innerText;
+      return element.textContent;
     });
 
     priceList = conversion(priceList);
@@ -155,36 +155,46 @@
     function totalTable() {
       let payments = [];
 
+      let totalMobile = document.querySelector(
+        'span[data-checkout-payment-due-target]'
+      );
+      payments.push(totalMobile.textContent);
+
       let subTotal = document.querySelector(
         '.total-line__price .order-summary__emphasis.skeleton-while-loading'
       );
-      payments.push(subTotal.innerText);
+      payments.push(subTotal.textContent);
 
       let total = document.querySelector(
         '.payment-due__price.skeleton-while-loading--lg'
       );
-      payments.push(total.innerText);
+      payments.push(total.textContent);
 
       let envio = document.querySelector(
         'span[data-checkout-total-shipping-target]'
       );
+
       //Si el envio es gratis usamos outerText debido a un bug que ejecuta conversion() dos veces(solo si el envio es gratis)
-      if (envio.innerText === 'Gratis') {
+      if (envio.dataset.checkoutTotalShippingTarget <= 0) {
+        // console.log('estamos en gratis');
         envio = '0,00';
         payments.push(envio);
         payments = conversion(payments);
 
         //Regresamos el nuevo formato de precio de acuero a la posición de cada querySelector
-        subTotal.outerText = payments[0];
-        total.outerText = payments[1];
-        envio.outerText = payments[2];
+        totalMobile.outerText = payments[0];
+        subTotal.outerText = payments[1];
+        total.outerText = payments[2];
       } else {
-        payments.push(envio.innerText);
+        // console.log('estamos en pago');
+
+        payments.push(envio.textContent);
         payments = conversion(payments);
 
-        subTotal.textContent = payments[0];
-        total.textContent = payments[1];
-        envio.textContent = payments[2];
+        totalMobile.textContent = payments[0];
+        subTotal.textContent = payments[1];
+        total.textContent = payments[2];
+        envio.textContent = payments[3];
       }
     }
 
