@@ -182,9 +182,9 @@
         payments = conversion(payments);
 
         //Regresamos el nuevo formato de precio de acuero a la posición de cada querySelector
-        totalMobile.outerText = payments[0];
-        subTotal.outerText = payments[1];
-        total.outerText = payments[2];
+        totalMobile.textContent = payments[0];
+        subTotal.textContent = payments[1];
+        total.textContent = payments[2];
       } else {
         // console.log('estamos en pago');
 
@@ -203,23 +203,53 @@
       mutationList.forEach((mutation) => {
         //Si nos encontramos en la opcion de pago, volvera a ejecutar totalTable() cada vez que el valor de precioEnvio y total cambie,
         //para que no vuleva al formato de precio anterior, y se mantenga el nuevo.
-        if (
-          mutation.addedNodes.length &&
-          mutation.target.innerText == 'Gratis'
-        ) {
-          // console.log('Añadido', mutation.addedNodes[0]);
-        } else {
+        // if (
+        //   // mutation.addedNodes.length &&
+        //   mutation.target.textContent == 'Gratis'
+        // ) {
+        //   console.log('Es true');
+        //   console.log('Añadido', mutation.addedNodes[0]);
+        //   console.log(mutation.target.textContent);
+        // } else {
+        //   console.log('SE EJECUTO el primer if');
+        //   console.log(mutation.target.textContent);
+        //   console.log(mutation);
+        //   totalTable();
+        // }
+
+        //-------------------------------------------------------------------------------------------------------------------------------------------------------
+        if (mutation.target.textContent !== 'Gratis') {
           totalTable();
+          // console.log('Es true');
+          // console.log('Añadido', mutation.addedNodes[0]);
+          console.log(mutation.target.textContent);
+        } else if (mutation.target.textContent == 'Gratis') {
+          console.log('Añadido', mutation.addedNodes[0]);
+
+          // console.log('SE EJECUTO el primer if');
+          console.log(mutation.target.textContent);
+          // console.log(mutation);
+        } else {
+          console.log(mutation.target.textContent);
+          return console.log(error);
         }
 
-        if (
-          mutation.removedNodes.length &&
-          mutation.target.innerText == 'Gratis'
-        ) {
-          // console.log('Eliminado', mutation.removedNodes[0]);
-        } else {
-          totalTable();
-        }
+        //-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        // if (
+        //   // mutation.removedNodes.length &&
+        //   mutation.target.textContent == 'Gratis'
+        // ) {
+        //   console.log('Es false');
+        //   console.log('Eliminado', mutation.removedNodes[0]);
+        //   console.log(mutation.target.textContent);
+        // } else {
+        //   console.log('SE EJECUTO el segundo if');
+        //   console.log(mutation.target.textContent);
+        //   console.log(mutation);
+
+        //   totalTable();
+        // }
       });
     });
 
@@ -229,16 +259,25 @@
     const total = document.querySelector(
       'span[data-checkout-payment-due-target]'
     );
+    // const butonCupon = document.querySelector('.field__input-btn.btn');
+    // const deleteCupon = document.querySelectorAll('.tag__button');
+    // const cupon = document.querySelector(
+    //   'span[data-checkout-discount-amount-target]'
+    // );
 
     //Son los atributos que va necesitar MutationObserver para saber si cambio el valor del elemento
     const observerOptions = {
       attributes: true,
+      childList: true,
     };
 
     //Mandamo llamar a la funcion observer y esperamos a que toda la pagina cargue para ejecutar totalTable.
     //Ya que el valor de precioEnvio tarda en mostrarse
-    observer.observe(precioEnvio, observerOptions);
     observer.observe(total, observerOptions);
+    observer.observe(precioEnvio, observerOptions);
+    // observer.observe(cupon, observerOptions);
+    // observer.observe(butonCupon, observerOptions);
+    // observer.observe(deleteCupon, observerOptions);
 
     window.onload = totalTable;
   });
