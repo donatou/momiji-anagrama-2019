@@ -698,7 +698,6 @@
                 }
               }
             }).done(function(response) {
-              console.log(response)
               var productSuggestions = response.resources.results.products;
               var items = [];
 
@@ -706,7 +705,7 @@
                 $.each(productSuggestions, function(index, data){
                     // console.log(data);
                     $('.product-results').empty();
-                    items = '<div class="col-6 col-md-10 col-lg-6 product-results-item" data-handle="' + data.handle + '">\
+                    items += '<div class="col-6 col-md-10 col-lg-6 product-results-item" data-handle="' + data.handle + '">\
                         <div>\
                             <a class="product" href="/products/' + data.handle + '" target="_blank">\
                                 <div class="product__container">\
