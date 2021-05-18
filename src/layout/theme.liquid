@@ -141,7 +141,10 @@
 
     {% section 'header' %}
 
-{% if template == 'index' or page.handle contains sundae %}
+{% if page.handle contains sundae %}
+{%- comment -%}
+    Usar el sig condicional cuando se habilite sundae de nuevo en index: "if template == 'index' or page.handle contains sundae"
+{%- endcomment -%}
   <main class="page-sundae" role="main" id="MainContent" style="opacity: 1;">
       {{ content_for_layout }}
   </main>

@@ -1,0 +1,42 @@
+<main class="legal bg-purple">
+  <section class="section__principal">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7 offset-md-3 col-lg-8 offset-lg-4 privacidad--title mb-60">
+          <h2>{{ page.title }}</h2>
+        </div>
+        <aside class="col-md-3 col-lg-4">
+          <ul class="list-unstyled nav-scroll">
+            {% for link in linklists[section.settings.menu_lateral].links %}
+            <li class="text-link">
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </aside>
+        <div class="col-md-9 col-lg-8 legal__item legal__privacidad">
+          {{ page.content }}
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+{% schema %}
+    {
+        "name": "Menú Lateral TyC",
+        "settings": [
+            {
+                "type": "link_list",
+                "id": "menu_lateral",
+                "label": "Menú lateral para Términos y Condiciones"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Menú Lateral TyC",
+                "category": "Fixed Sections"
+            }
+        ]
+    }
+{% endschema %}
