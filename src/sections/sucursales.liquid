@@ -92,12 +92,18 @@ general: alto de la sección
                     <h4>{{ block.settings.title_suc }}</h4>
                     <div class="container--between">
 						<p>
-							{% if block.settings.title_suc contains "Monterrey" %}
-								{{shop.metafields.sucursal.monterrey}}
-							{% elsif block.settings.title_suc contains "Palacio" %}
-								{{shop.metafields.sucursal.cdmx-palacio}}
-							{% elsif block.settings.title_suc contains "Station" %}
-								{{shop.metafields.sucursal.cdmx-momijistation}}
+							{% if block.settings.sucursal_id == "1" %}
+								{{shop.metafields.sucursal.uno}}
+							{% elsif block.settings.sucursal_id == "2" %}
+								{{shop.metafields.sucursal.dos}}
+							{% elsif block.settings.sucursal_id contains "3" %}
+								{{shop.metafields.sucursal.tres}}
+							{% elsif block.settings.sucursal_id contains "4" %}
+								{{shop.metafields.sucursal.cuatro}}
+							{% elsif block.settings.sucursal_id contains "5" %}
+								{{shop.metafields.sucursal.cinco}}
+							{% elsif block.settings.sucursal_id contains "6" %}
+								{{shop.metafields.sucursal.seis}}
 							{% endif %}
 						</p>
                         <p>{{ block.settings.desc_suc }}</p>
@@ -200,6 +206,13 @@ general: alto de la sección
 					"type":"checkbox",
 					"label":"Es pop-up?",
 					"default":false
+				},
+				{
+					"id":"sucursal_id",
+					"type":"text",
+					"label":"ID de sucursal",
+					"placeholder":"1",
+					"info":"El ID se usa para identificar el horario de la sucursal en shop metafields."
 				},
 				{
 					"id":"image",
