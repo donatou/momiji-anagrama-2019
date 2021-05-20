@@ -94,106 +94,85 @@
 <script>
   $(document).on('page:load page:change', () => {
     //Convierte el formato de precio
-    const conversion = (parameter) => {
-      let data = [];
-
-      parameter.forEach((element) => {
-        //Captura todo el grupo de numeros que al final tienen una coma(,) Ejemplo: 5.240,00
-        //Solo retorna 5.240, $0,000.00
+    const conversion = (priceList) => {
+      let oldValue = priceList;
+      let data = oldValue.map( (element) => {
+        
+        //Captura todo el grupo de numeros que al final tienen una coma(,) Ejemplo: 5.240,00 - Solo retorna 5.240, 
         let regex = /[\d\.]{1,}?\,/g;
-
-        let number = element?.match(regex).join('');
-        console.log(typeof number)
+        let number = element.match(regex).join('');
+        
         //ELiminamos las comas y los puntos para que el NumberFormat le de el formato adecuado
-        number = number.replace(',', '');
-        number = number.replace('.', '');
+        number = number.replace(/[,.]/g,'');
 
-        //Formato de precios americano
-        data.push(
-          new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          }).format(number)
-        );
+        const options2 = { style: 'currency', currency: 'USD' };
+        const numberFormat2 = new Intl.NumberFormat('en-US', options2);
+
+
+        number = numberFormat2.format(number)
+        return number;
       });
-      return data;
-    };
-
+      return data
+    };  
+    
     //Capturanos los precios de cada opcion de envio y cambiamos su formato
     try {
-      let envioList = Array.from(
-        document.querySelectorAll('.content-box__emphasis')
-      );
+      let envioList = Array.from(document.querySelectorAll('.content-box__emphasis'));
+      
       envioList = envioList.map((element) => {
         return element.textContent;
       });
+      
       //Ejecutamos la funcion conversion y devolvemos el nuevo valor con un textContent
       envioList = conversion(envioList);
+
       for (let a = 0; a < envioList.length; a++) {
-        document.querySelectorAll('.content-box__emphasis')[a].textContent =
-          envioList[a];
+        document.querySelectorAll('.content-box__emphasis')[a].textContent = envioList[a];
       }
     } catch (error) {
       console.log(error);
     }
 
     //Capturanos los precios de los productos que se van a comprar y cambiamos su formato
-    let priceList = Array.from(
-      document.querySelectorAll('.product .product__price')
-    );
-    priceList = priceList.map((element) => {
+    let productPrices = Array.from(document.querySelectorAll('.product .product__price'));
+    productPrices = productPrices.map((element) => {
       return element.textContent;
     });
 
-    priceList = conversion(priceList);
+    productPrices = conversion(productPrices);
 
-    for (let i = 0; i < priceList.length; i++) {
-      document.querySelectorAll('.product .product__price')[i].textContent =
-        priceList[i];
+    for (let i = 0; i < productPrices.length; i++) {
+      document.querySelectorAll('.product .product__price')[i].textContent = productPrices[i];
     }
 
     //Captuta el valor del sub-total, precio de envio, total. Guardamos todo en payments, y ejecutamos conversion(payments)
+    //Usamos textContent ya que en mobiel es el unico atributo que identifica.
     function totalTable() {
       let payments = [];
 
-      let totalMobile = document.querySelector(
-        'span[data-checkout-payment-due-target]'
-      );
+      let totalMobile = document.querySelector('span[data-checkout-payment-due-target]');
       payments.push(totalMobile.textContent);
 
-      let subTotal = document.querySelector(
-        '.total-line__price .order-summary__emphasis.skeleton-while-loading'
-      );
+      let subTotal = document.querySelector('.total-line__price .order-summary__emphasis.skeleton-while-loading');
       payments.push(subTotal.textContent);
 
-      let total = document.querySelector(
-        '.payment-due__price.skeleton-while-loading--lg'
-      );
+      let total = document.querySelector('.payment-due__price.skeleton-while-loading--lg');
       payments.push(total.textContent);
 
-      let envio = document.querySelector(
-        'span[data-checkout-total-shipping-target]'
-      );
-      // console.log(envio.textContent)
-      //Si el envio es gratis usamos outerText debido a un bug que ejecuta conversion() dos veces(solo si el envio es gratis)
-      if (envio.dataset.checkoutTotalShippingTarget <= 0) {
-        console.log('estamos en gratis');
-        envio = '0,00';
-        // console.log(envio)
-        payments.push(envio);
+      let envio = document.querySelector('span[data-checkout-total-shipping-target]');
+      
+      
+      //Si el checkoutTotalShippingTarget es igual a '0' Solo devolvemos los valores de totalMobile, subTotal y total con un textContent.
+      if (envio.dataset.checkoutTotalShippingTarget == '0') {
         payments = conversion(payments);
-        console.log(payments)
         
         //Regresamos el nuevo formato de precio de acuero a la posición de cada querySelector
         totalMobile.textContent = payments[0];
         subTotal.textContent = payments[1];
         total.textContent = payments[2];
-        // envio.textContent = payments[3];
-        // console.log('esto es envio ' + envio)
-        
-      } else {
-        console.log('estamos en pago');
 
+      } else {
+      //Ya que el valor de envio es un numero, ahora si lo convertirmos y lo devolvemos con un textConten.
         payments.push(envio.textContent);
         payments = conversion(payments);
         
@@ -204,98 +183,38 @@
       }
     }
 
-    const noPagasEnvio = () => {
-      observer.observe(precioEnvio, observerOptions);
-      // observer.observe(total, observerOptions);
-      console.log('ESTA ES UNA SUPER FUNCION')
-    }
-
-    const pagasEnvio = () => {
-      observer.observe(precioEnvio, observerOptions);
-      observer.observe(total, observerOptions);
-      totalTable();
-    }
-
-    //Con MutationObserver sabremos si el estado de un elemento ah sido añadido o eliminado
+    //Con MutationObserver sabremos si el valor de los precios ah cambiado 
     let observer = new MutationObserver((mutationList) => {
       mutationList.forEach((mutation) => {
-        //Si nos encontramos en la opcion de pago, volvera a ejecutar totalTable() cada vez que el valor de precioEnvio y total cambie,
-        //para que no vuleva al formato de precio anterior, y se mantenga el nuevo.
-        // if (
-        //   // mutation.addedNodes.length &&
-        //   mutation.target.textContent == 'Gratis'
-        // ) {
-        //   console.log('Es true');
-        //   console.log('Añadido', mutation.addedNodes[0]);
-        //   console.log(mutation.target.textContent);
-        // } else {
-        //   console.log('SE EJECUTO el primer if');
-        //   console.log(mutation.target.textContent);
-        //   console.log(mutation);
-        //   totalTable();
-        // }
-
-        //-------------------------------------------------------------------------------------------------------------------------------------------------------
-        // if (mutation.target.textContent != 'Gratis') {
-          
-        //   totalTable()
-        //   console.log('Estamos en primero ' + mutation.target.textContent);
-
-        // } else 
-        if (mutation.target.textContent == 'Gratis') {
-          noPagasEnvio()
-          console.log('Estamos en segundo ' + mutation.target.textContent);
-        } else {
-          pagasEnvio()
-          console.log('Estamos en primero ' + mutation.target.textContent);
-        }
-
-        //-------------------------------------------------------------------------------------------------------------------------------------------------------
-
-        // if (
-        //   // mutation.removedNodes.length &&
-        //   mutation.target.textContent == 'Gratis'
-        // ) {
-        //   console.log('Es false');
-        //   console.log('Eliminado', mutation.removedNodes[0]);
-        //   console.log(mutation.target.textContent);
-        // } else {
-        //   console.log('SE EJECUTO el segundo if');
-        //   console.log(mutation.target.textContent);
-        //   console.log(mutation);
-
-        //   totalTable();
-        // }
+        //Al ejecutar totalTable mandtendremos actualizados los valores de totalMobile, subTotal y total.
+          totalTable();
       });
-    });
+    }); 
 
-    let precioEnvio = document.querySelector(
-      'span[data-checkout-total-shipping-target]'
-    );
-    let total = document.querySelector(
-      'span[data-checkout-payment-due-target]'
-    );
-    // const butonCupon = document.querySelector('.field__input-btn.btn');
-    // const deleteCupon = document.querySelectorAll('.tag__button');
-    // const cupon = document.querySelector(
-    //   'span[data-checkout-discount-amount-target]'
-    // );
+    let total = document.querySelector('span[data-checkout-payment-due-target]');
 
-    //Son los atributos que va necesitar MutationObserver para saber si cambio el valor del elemento
+    //Son los atributos que va necesitar MutationObserver para saber si cambio el valor de los precios
     const observerOptions = {
       attributes: true,
-      childList: true,
       characterData: true,
-      subtree: true
     };
 
     //Mandamo llamar a la funcion observer y esperamos a que toda la pagina cargue para ejecutar totalTable.
     //Ya que el valor de precioEnvio tarda en mostrarse
-    // observer.observe(precioEnvio, observerOptions);
     observer.observe(total, observerOptions);
 
-
-    window.onload = totalTable;
+    
+    // let information = document.querySelector('.section--shipping-address')
+    let envios = document.querySelector('.section--shipping-method')
+    // let pago = document.querySelector('.section--payment-method')
+    
+    //Con esta condición mantenemos el formato actualizado ya que si usamos windows.onload = totalTable
+    //El precio se reduce a una sola cifra en la vista de envios.
+    if (envios) {
+      console.log('¡Momiji te ama!')
+    } else {
+      totalTable();
+    }
   });
 </script>
 
