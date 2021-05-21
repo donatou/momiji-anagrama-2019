@@ -1,27 +1,43 @@
 <!DOCTYPE html>
-<html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
+<html
+  lang="{{ locale }}"
+  dir="{{ direction }}"
+  class="{{ checkout_html_classes }}"
+>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0">
-    <meta name="referrer" content="origin">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0"
+    />
+    <meta name="referrer" content="origin" />
 
     <title>{{ page_title }}</title>
 
-    {{ content_for_header }}
+    {{
+      content_for_header
+    }}
 
-    {{ checkout_stylesheets }}
-    {{ checkout_scripts }}
+    {{
+      checkout_stylesheets
+    }}
+    {{
+      checkout_scripts
+    }}
 
-    {% include 'gtm-datalayer' %}
-    {% include 'gtm-head' %}
-    {% include "loyaltylion" %}
+    {% include 'gtm-datalayer' %} {% include 'gtm-head' %} {% include
+    "loyaltylion" %}
 
-  <script>lion.configure({ checkout: true })</script>
-  {%- comment -%}Address Validator{%- endcomment -%}
-  <script async src="https://d3ox8tdk614ykk.cloudfront.net/pobox_checker.js"></script>
-  
-</head>
+    <script>
+      lion.configure({ checkout: true });
+    </script>
+    {%- comment -%}Address Validator{%- endcomment -%}
+    <script
+      async
+      src="https://d3ox8tdk614ykk.cloudfront.net/pobox_checker.js"
+    ></script>
+  </head>
   <body>
     {% include 'gtm-body' %}
 
@@ -55,14 +71,14 @@
             {{ content_for_logo }}
           </div>
           <div class="sidebar__content">
-            {% if settings.cart_notes_enable == true %}
-              {% if checkout.note %}
-              <div class="checkout__note">
-                <a href="/cart" class="h2">Clic aquí para editar mensaje en carrito.</a>
-                <p>{{ checkout.note }}</p>
-              </div>
-              {% endif %}
-            {% endif %}
+            {% if settings.cart_notes_enable == true %} {% if checkout.note %}
+            <div class="checkout__note">
+              <a href="/cart" class="h2"
+                >Clic aquí para editar mensaje en carrito.</a
+              >
+              <p>{{ checkout.note }}</p>
+            </div>
+            {% endif %} {% endif %}
             {{ content_for_order_summary }}
           </div>
         </div>
@@ -73,105 +89,222 @@
   </body>
 </html>
 
+{%- comment -%} Se quitó Mercado Pago el 28 de mayo de 2020. {%- endcomment -%}
 
-{%- comment -%}
-  Se quitó Mercado Pago el 28 de mayo de 2020.
-{%- endcomment -%}
-{% comment %} <script>
-$(document).on('page:load page:change', () => {
-  function replaceMP() {
-    const mpImage = document.querySelector('img[alt="Mercado Pago"]');
-    const mpLabel = document.querySelector('label[for="checkout_payment_gateway_38941884521"]');
-    mpImage.remove();
-    const myLabel = 'Pago con tarjeta de crédito y débito con MercadoPago';
-    mpLabel.innerHTML = myLabel;
-  }
-  replaceMP();
-});
-</script> {% endcomment %}
+<script>
+  $(document).on('page:load page:change', () => {
+    //Convierte el formato de precio
+    const conversion = (priceList) => {
+      let oldValue = priceList;
+      let data = oldValue.map( (element) => {
+        
+        //Captura todo el grupo de numeros que al final tienen una coma(,) Ejemplo: 5.240,00 - Solo retorna 5.240, 
+        let regex = /[\d\.]{1,}?\,/g;
+        let number = element.match(regex).join('');
+        
+        //ELiminamos las comas y los puntos para que el NumberFormat le de el formato adecuado
+        number = number.replace(/[,.]/g,'');
+
+        const options2 = { style: 'currency', currency: 'USD' };
+        const numberFormat2 = new Intl.NumberFormat('en-US', options2);
 
 
+        number = numberFormat2.format(number)
+        return number;
+      });
+      return data
+    };  
+    
+    //Capturanos los precios de cada opcion de envio y cambiamos su formato
+    try {
+      let envioList = Array.from(document.querySelectorAll('.content-box__emphasis'));
+      
+      envioList = envioList.map((element) => {
+        return element.textContent;
+      });
+      
+      //Ejecutamos la funcion conversion y devolvemos el nuevo valor con un textContent
+      envioList = conversion(envioList);
+
+      for (let a = 0; a < envioList.length; a++) {
+        document.querySelectorAll('.content-box__emphasis')[a].textContent = envioList[a];
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    //Capturanos los precios de los productos que se van a comprar y cambiamos su formato
+    let productPrices = Array.from(document.querySelectorAll('.product .product__price'));
+    productPrices = productPrices.map((element) => {
+      return element.textContent;
+    });
+
+    productPrices = conversion(productPrices);
+
+    for (let i = 0; i < productPrices.length; i++) {
+      document.querySelectorAll('.product .product__price')[i].textContent = productPrices[i];
+    }
+
+    //Captuta el valor del sub-total, precio de envio, total. Guardamos todo en payments, y ejecutamos conversion(payments)
+    //Usamos textContent ya que en mobiel es el unico atributo que identifica.
+    function totalTable() {
+      let payments = [];
+
+      let totalMobile = document.querySelector('span[data-checkout-payment-due-target]');
+      payments.push(totalMobile.textContent);
+
+      let subTotal = document.querySelector('.total-line__price .order-summary__emphasis.skeleton-while-loading');
+      payments.push(subTotal.textContent);
+
+      let total = document.querySelector('.payment-due__price.skeleton-while-loading--lg');
+      payments.push(total.textContent);
+
+      let envio = document.querySelector('span[data-checkout-total-shipping-target]');
+      
+      
+      //Si el checkoutTotalShippingTarget es igual a '0' Solo devolvemos los valores de totalMobile, subTotal y total con un textContent.
+      if (envio.dataset.checkoutTotalShippingTarget == '0') {
+        payments = conversion(payments);
+        
+        //Regresamos el nuevo formato de precio de acuero a la posición de cada querySelector
+        totalMobile.textContent = payments[0];
+        subTotal.textContent = payments[1];
+        total.textContent = payments[2];
+
+      } else {
+      //Ya que el valor de envio es un numero, ahora si lo convertirmos y lo devolvemos con un textConten.
+        payments.push(envio.textContent);
+        payments = conversion(payments);
+        
+        totalMobile.textContent = payments[0];
+        subTotal.textContent = payments[1];
+        total.textContent = payments[2];
+        envio.textContent = payments[3];
+      }
+    }
+
+    //Con MutationObserver sabremos si el valor de los precios ah cambiado 
+    let observer = new MutationObserver((mutationList) => {
+      mutationList.forEach((mutation) => {
+        //Al ejecutar totalTable mandtendremos actualizados los valores de totalMobile, subTotal y total.
+          totalTable();
+      });
+    }); 
+
+    let total = document.querySelector('span[data-checkout-payment-due-target]');
+
+    //Son los atributos que va necesitar MutationObserver para saber si cambio el valor de los precios
+    const observerOptions = {
+      attributes: true,
+      characterData: true,
+    };
+
+    //Mandamo llamar a la funcion observer y esperamos a que toda la pagina cargue para ejecutar totalTable.
+    //Ya que el valor de precioEnvio tarda en mostrarse
+    observer.observe(total, observerOptions);
+
+    
+    // let information = document.querySelector('.section--shipping-address')
+    let envios = document.querySelector('.section--shipping-method')
+    // let pago = document.querySelector('.section--payment-method')
+    
+    //Con esta condición mantenemos el formato actualizado ya que si usamos windows.onload = totalTable
+    //El precio se reduce a una sola cifra en la vista de envios.
+    if (envios) {
+      console.log('¡Momiji te ama!')
+    } else {
+      totalTable();
+    }
+  });
+</script>
 
 <style>
-@font-face {
-  font-family: 'GT Momiji Medium';
-  font-display: swap;
-  font-weight: 500;
-  font-style: normal;
-  src: url('{{ "GT-Momiji-Medium.eot" | asset_url }}');
-  src: url('{{ "GT-Momiji-Medium.woff" | asset_url }}') format('woff'), url('{{ "GT-Momiji-Medium.woff2" | asset_url }}') format('woff2');
+  @font-face {
+    font-family: 'GT Momiji Medium';
+    font-display: swap;
+    font-weight: 500;
+    font-style: normal;
+    src: url('{{ "GT-Momiji-Medium.eot" | asset_url }}');
+    src: url('{{ "GT-Momiji-Medium.woff" | asset_url }}') format('woff'),
+      url('{{ "GT-Momiji-Medium.woff2" | asset_url }}') format('woff2');
   }
-@font-face {
-  font-family: 'GT Momiji Regular';
-  font-display: swap;
-  font-weight: 400;
-  font-style: normal;
-  src: url('{{ "GT-Momiji-Regular.eot" | asset_url }}');
-  src: url('{{ "GT-Momiji-Regular.woff" | asset_url }}') format('woff'), url('{{ "GT-Momiji-Regular.woff2" | asset_url }}') format('woff2');
+  @font-face {
+    font-family: 'GT Momiji Regular';
+    font-display: swap;
+    font-weight: 400;
+    font-style: normal;
+    src: url('{{ "GT-Momiji-Regular.eot" | asset_url }}');
+    src: url('{{ "GT-Momiji-Regular.woff" | asset_url }}') format('woff'),
+      url('{{ "GT-Momiji-Regular.woff2" | asset_url }}') format('woff2');
   }
-@font-face {
-  font-family: 'GT Walsheim';
-  font-display: swap;
-  src: url('{{ "GTWalsheim.woff2" | asset_url }}') format('woff2'), url('{{ "GTWalsheim.woff" | asset_url }}') format('woff');
-  font-weight: normal;
-  font-style: normal;
+  @font-face {
+    font-family: 'GT Walsheim';
+    font-display: swap;
+    src: url('{{ "GTWalsheim.woff2" | asset_url }}') format('woff2'),
+      url('{{ "GTWalsheim.woff" | asset_url }}') format('woff');
+    font-weight: normal;
+    font-style: normal;
   }
-@font-face {
-  font-family: 'GT Super Display';
-  font-display: swap;
-  src: url('{{ "GTSuperDisplay-Regular.woff2" | asset_url }}') format('woff2'), url('{{ "GTSuperDisplay-Regular.woff" | asset_url }}') format('woff');
-  font-weight: normal;
-  font-style: normal;
+  @font-face {
+    font-family: 'GT Super Display';
+    font-display: swap;
+    src: url('{{ "GTSuperDisplay-Regular.woff2" | asset_url }}') format('woff2'),
+      url('{{ "GTSuperDisplay-Regular.woff" | asset_url }}') format('woff');
+    font-weight: normal;
+    font-style: normal;
   }
-h2 {
-  font-family: 'GT Super Display';
-  color: #0A0A0A;
+  h2 {
+    font-family: 'GT Super Display';
+    color: #0a0a0a;
   }
-body {
-  font-family: 'GT Momiji Regular';
-  color: #0A0A0A;
+  body {
+    font-family: 'GT Momiji Regular';
+    color: #0a0a0a;
   }
-.breadcrumb__item, .sidebar .icon-svg--color-adaptive-light {
-  color: #0a0a0a;
-}
-.breadcrumb__item--current {
-  font-weight: 400;
-  color: #f06c4e;
+  .breadcrumb__item,
+  .sidebar .icon-svg--color-adaptive-light {
+    color: #0a0a0a;
   }
-.field__input {
-  border: 1px solid #0a0a0a;
-  border-radius: 0px;
+  .breadcrumb__item--current {
+    font-weight: 400;
+    color: #f06c4e;
   }
-.field__input::placeholder {
-  color: #767676;
+  .field__input {
+    border: 1px solid #0a0a0a;
+    border-radius: 0px;
   }
-.field__input:focus, .field__input-wrapper--flag-focus .field__input {
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  border-color: #0a0a0a;
-}
-.btn, .sp-modal-toggle {
-  border-radius: 0;
-  font-weight: normal;
-  padding: 1em 1.5em;
-}
-.content-box {
-  border-radius: 0px;
-  color: #0a0a0a;
-}
-.product-thumbnail::after {
-  border-radius: 0px;
-}
-.tag {
-  border-radius: 0px;
-  background-color: #FFF685;
-  color: #fff;
-}
-.checkout__note {
-  margin: 20px 0;
-}
-.checkout__note p {
-  font-family: 'GT Walsheim';
-  color: #0a0a0a;
-}
+  .field__input::placeholder {
+    color: #767676;
+  }
+  .field__input:focus,
+  .field__input-wrapper--flag-focus .field__input {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-color: #0a0a0a;
+  }
+  .btn,
+  .sp-modal-toggle {
+    border-radius: 0;
+    font-weight: normal;
+    padding: 1em 1.5em;
+  }
+  .content-box {
+    border-radius: 0px;
+    color: #0a0a0a;
+  }
+  .product-thumbnail::after {
+    border-radius: 0px;
+  }
+  .tag {
+    border-radius: 0px;
+    background-color: #fff685;
+    color: #fff;
+  }
+  .checkout__note {
+    margin: 20px 0;
+  }
+  .checkout__note p {
+    font-family: 'GT Walsheim';
+    color: #0a0a0a;
+  }
 </style>
