@@ -3,6 +3,8 @@
 {%- endcomment -%}
 
 {% assign free_gift_over_x_price = settings.minimum_spend | times: 100 %}
+{%- comment -%} Tiene que ser times: 100 porque el valor se va a comparar con "cart.total_price" que viene sin decimales, o sea, x 100
+{%- endcomment -%}
 {% capture promo_product %}
   {{ all_products[settings.free_product].selected_or_first_available_variant.id }}
 {% endcapture %}
@@ -24,7 +26,6 @@
     if ( ( cartItems.length === 1 ) && ( qtyInTheCart > 0 ) ) {
       cartUpdates = { {{ variant_id }}: 0 }
     }
-    
     else if ( ( cartItems.length >= 1 ) && ( qtyInTheCart !== 1 ) && (cartTotal >= {{ free_gift_over_x_price }} ) ) {
       cartUpdates = { {{ variant_id }}: 1 }
     }

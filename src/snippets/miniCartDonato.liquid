@@ -116,29 +116,40 @@
 
               {%- render 'cart-free-product-inject' -%}
 
-              {%- assign cart_total_promo = cart.total_price -%}
-              {%- assign shipping_value_left_promo = free_gift_over_x_price | minus: cart_total_promo -%}
-              {%- if all_products[settings.free_product].selected_or_first_available_variant.inventory_management == "shopify" and all_products[settings.free_product].selected_or_first_available_variant.inventory_policy != "continue" -%}
+              {%- assign cart_total_promo = cart.total_price | times: 0.01 -%}
+              {%- comment -%}{%- assign shipping_value_left_promo = free_gift_over_x_price | minus: cart_total_promo -%}{%- endcomment -%}
+              {%- assign test_minimum_spend = settings.minimum_spend | times: 1 -%}
+              {%- assign shipping_value_left_promo = test_minimum_spend | minus: cart_total_promo | times: 100 -%}
+
+              <!-- {%- if all_products[settings.free_product].selected_or_first_available_variant.inventory_management == "shopify" and all_products[settings.free_product].selected_or_first_available_variant.inventory_policy != "continue" -%}
                 {% assign llevainventario = true %}
-              {%- endif -%}
+              {%- endif -%} -->
+
               {%- assign falta_x = shipping_value_left_promo | money -%}
               {%- assign promo_x = settings.copy_regalo -%}
+
               {%- capture promo_no_aplica -%}
                 Agrega {{ falta_x }} más para recibir {{ promo_x }}
               {%- endcapture -%}
+
               {%- assign mememe = settings.textop -%}
+
               {%- capture promo_aplica -%}
                 {{ mememe }} {{ promo_x }}
               {%- endcapture -%}
+
               {%- assign producto_agotado = settings.producto_agotado -%}
               {%- assign display_stock = settings.show_inventory -%}
               {%- assign alerta_stock = settings.alerta_stock | times: 1 -%}
+
               {%- capture stock_qty -%}
                 ¡Quedan {{ promo_product_inventory }} piezas!
               {%- endcapture -%}
+
               {%- capture stock_qty_one -%}
                 ¡Queda solo una pieza!
               {%- endcapture -%}
+
               {% capture stock_alert_copy %}
                 {%- if llevainventario -%}
                   {%- if promo_product_inventory <= alerta_stock and promo_product_inventory != 1 and promo_product_inventory != 0 -%}
@@ -152,14 +163,22 @@
                 {%- endif -%}
               {% endcapture %}
 
-                <p class="cartfreeshipping">
-                  {%- if shipping_value_left_promo > 0 -%}
+                {%- comment -%}<p class="cartfreeshipping">
+                  {%- if cart_total_promo < free_gift_over_x_price -%}
                     <span class="{%- if strikethrough -%} compare--at {%- endif -%}">{{ promo_no_aplica }}<br></span>
-                    <span>{{ stock_alert_copy }}</span>
+                    <!-- <span>{{ stock_alert_copy }}</span> -->
                   {%- else -%}
                     <span class="{%- if strikethrough -%} compare--at {%- endif -%}">{{ promo_aplica }}<br></span>
-                    <span>{{ stock_alert_copy }}</span>
+                    <!-- <span>{{ stock_alert_copy }}</span> -->
                   {%- endif -%}
+                </p>{%- endcomment -%}
+
+                <p class="cartfreeshipping">
+                  {% if cart_total_promo < test_minimum_spend %}
+                    {{ promo_no_aplica }}
+                  {% else %}
+                    {{ promo_aplica }}
+                  {% endif %}
                 </p>
 
 
