@@ -1,0 +1,80 @@
+
+<div class="aquiva">
+    {% for block in section.blocks %}
+    <div class="">
+        <div class="img-container background-promo-hotsale">
+            <img src="{{ block.settings.promos_img_1 | img_url: '800x' }}" alt="" class="">
+        </div>
+        <div class="">
+            {{ block.settings.promos_copy }}
+            <p>{{ section.settings.promos_background_color }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% schema %}
+
+{
+    "name": "Barra Anuncios especiales",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Barra de anuncios especiales"
+        },
+        {
+            "type": "color",
+            "id": "promos_background_color",
+            "label": "Color de fondo",
+            "default": "#000000",
+            "info": "color de fondo"
+        }
+
+    ],
+	"blocks":[
+		{
+			"type":"select",
+			"name":"Promo",
+			"settings":[
+                {
+                    "id":"promos_img_1",
+                    "type":"image_picker",
+                    "label":"imagen previa al copy",
+                    "info":"Tamaño XXX"
+                },
+                {
+                    "type": "html",
+                    "id": "promos_copy",
+                    "label": "Copy",
+                    "info": "Puede ser heading, párrafo o link"
+                },
+                {
+                    "id":"promos_img_2",
+                    "type":"image_picker",
+                    "label":"imagen posterior al copy",
+                    "info":"Tamaño XXX"
+                }
+			]
+		}
+	],
+	"presets":[
+		{
+			"name":"Barra promos especiales",
+			"category":"Banners de anuncios",
+			"blocks":[
+				{
+					"type":"select"
+				},
+				{
+					"type":"select"
+				},
+				{
+					"type":"select"
+				}
+			]
+		}
+	]
+}
+
+{% endschema %}

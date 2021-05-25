@@ -541,6 +541,22 @@ const reviewsSwiper = new Swiper('#reviews .swiper-container', {
   }
 });
 
+// swiper barra de promos especiales (desde hotsale 2021 está habilitada)
+const promosEspecialesSwiper = new Swiper('.aquiva', {
+  loop: true,
+  fadeEffect: {
+    crossFade: true,
+  },
+  speed: 350,
+  autoplay: {
+    delay: 5000,
+  },
+  slidersPerView: 1,
+  effect: 'fade',
+  setWrapperSize: true,
+  updateOnWindowResize: true,
+});
+
 
 // banner text on mobile
 
