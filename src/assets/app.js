@@ -14,7 +14,7 @@ $(document).ready(() => {
   let i,
     acc = document.getElementsByClassName('accordion');
   for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener('click', function() {
+    acc[i].addEventListener('click', function () {
       this.classList.toggle('active');
       const t = this.nextElementSibling;
       $(t).toggleClass('active');
@@ -32,7 +32,7 @@ $(document).ready(() => {
   // });
 
   // MODAL GLOSARIO
-  $('.legal ul.columns li').click(function() {
+  $('.legal ul.columns li').click(function () {
     const buttonId = Number($(this).attr('id'));
     $('.modal').hide();
     $(`.modal[data-info=${buttonId}]`).fadeIn();
@@ -43,7 +43,7 @@ $(document).ready(() => {
   });
 
   // MODALES
-  $('body').on('click', 'a[data-modal]', function() {
+  $('body').on('click', 'a[data-modal]', function () {
     const name = $(this).data('modal');
     MicroModal.show(`modal-${name}`, {
       awaitCloseAnimation: true,
@@ -65,11 +65,11 @@ $(document).ready(() => {
     $('body').css('overflow', 'auto');
   });
 
-  $('body').on('click', '.mobile-menu li.accordion', function() {
+  $('body').on('click', '.mobile-menu li.accordion', function () {
     $(this).toggleClass('open');
   });
 
-  $('body').on('click', 'li.accordion-item', function() {
+  $('body').on('click', 'li.accordion-item', function () {
     const buttonId = ($(this).attr('data-id'));
     $('.accordion-items--second').hide();
     $(`.accordion-items--second[data-info=${buttonId}]`).fadeIn();
@@ -84,7 +84,7 @@ $(document).ready(() => {
   if ($(window).width() >= 0) {
     let lastScrollTop = 0;
 
-    $(window).on('scroll', function() {
+    $(window).on('scroll', function () {
 
       scrollPosition = $(this).scrollTop();
 
@@ -107,12 +107,12 @@ $(document).ready(() => {
   }
 
   // HEADER SUBMENUS
-  $('body').on('mouseover', '.header__nav--menu li.nav-item--cat', function() {
+  $('body').on('mouseover', '.header__nav--menu li.nav-item--cat', function () {
     $(this).addClass('active');
     $('header').addClass('active');
   });
 
-  $('body').on('mouseout', '.header__nav--menu li', function() {
+  $('body').on('mouseout', '.header__nav--menu li', function () {
     $(this).removeClass('active');
     $('header').removeClass('active');
   });
@@ -121,14 +121,14 @@ $(document).ready(() => {
   // SVG HOME
   if ($(window).width() >= 991) {
 
-    $('body').on('mouseover', 'svg g#ilustracion-nueva g:not(#Stroke-48, #Stroke-50)', function() {
+    $('body').on('mouseover', 'svg g#ilustracion-nueva g:not(#Stroke-48, #Stroke-50)', function () {
       $(this).addClass('active');
       const hoverProduct = ($(this).attr('id'));
       console.log(hoverProduct);
       $(`.img__info[data-info=${hoverProduct}]`).show();
     });
 
-    $('body').on('mouseout', 'svg g#ilustracion-nueva g:not(#Stroke-48, #Stroke-50)', function() {
+    $('body').on('mouseout', 'svg g#ilustracion-nueva g:not(#Stroke-48, #Stroke-50)', function () {
       $(this).removeClass('active');
       const hoverProduct = ($(this).attr('id'));
       $(`.img__info[data-info=${hoverProduct}]`).hide();
@@ -136,7 +136,7 @@ $(document).ready(() => {
 
   } else {
 
-    $('svg g#ilustracion-nueva g:not(#Stroke-48, #Stroke-50)').click(function() {
+    $('svg g#ilustracion-nueva g:not(#Stroke-48, #Stroke-50)').click(function () {
       $('svg g#ilustracion-nueva g:not(#Stroke-48, #Stroke-50)').removeClass('active');
       $(this).toggleClass('active');
       const hoverProduct = ($(this).attr('id'));
@@ -149,7 +149,7 @@ $(document).ready(() => {
 
   // SKIN TYPE INFO
   if ($(window).width() <= 991) {
-    $('.skin--type .btn__more').click(function() {
+    $('.skin--type .btn__more').click(function () {
       $('.skin--type').removeClass('active');
       $(this).closest('.skin--type').toggleClass('active');
     });
@@ -157,16 +157,16 @@ $(document).ready(() => {
 
   // SUCURSAL INFO
   if ($(window).width() <= 991) {
-    $('.sucursal .btn__more').click(function() {
+    $('.sucursal .btn__more').click(function () {
       $('.sucursal').removeClass('active');
       $(this).closest('.sucursal').toggleClass('active');
     });
   }
 
   // CART CANTIDAD
-  (function() {
+  (function () {
 
-    window.inputNumber = function(el) {
+    window.inputNumber = function (el) {
 
       const min = el.attr('min') || false;
       const max = el.attr('max') || false;
@@ -176,7 +176,7 @@ $(document).ready(() => {
       els.dec = el.prev();
       els.inc = el.next();
 
-      el.each(function() {
+      el.each(function () {
         init($(this));
       });
 
@@ -213,7 +213,7 @@ $(document).ready(() => {
     $('.filter__modal.filtr').fadeIn();
   });
 
-  $('body').on('click', '.filter__modal .filters .filters__item', function() {
+  $('body').on('click', '.filter__modal .filters .filters__item', function () {
     const filterCategory = ($(this).attr('data-info'));
     $(`.filter__modal .modulo--sub[data-id=${filterCategory}]`).fadeIn();
   });
@@ -226,7 +226,7 @@ $(document).ready(() => {
     $('.filter__modal').fadeOut();
   });
 
-  $('body').on('click', '.filter__modal .modulo--sub .subfilters .subfilters__item', function() {
+  $('body').on('click', '.filter__modal .modulo--sub .subfilters .subfilters__item', function () {
     if ($(this).hasClass('selected')) {
       $(this).removeClass('selected');
     } else {
@@ -234,7 +234,7 @@ $(document).ready(() => {
     }
   });
 
-  $('body').on('click', '.filter__modal .modulo--sub .deseleccionar', function() {
+  $('body').on('click', '.filter__modal .modulo--sub .deseleccionar', function () {
     const filterSelected = $(this).closest('.modulo--sub').attr('data-id');
     console.log(filterSelected);
     $('.filter__modal .subfilters .subfilters__item').removeClass('selected');
@@ -247,7 +247,7 @@ $(document).ready(() => {
   });
 
   // VALIDACIÓN
-  $('form input').blur(function() {
+  $('form input').blur(function () {
     const e = this.nextElementSibling;
     if (!$(this).val()) {
       $(this).addClass('error').val('')
@@ -255,7 +255,7 @@ $(document).ready(() => {
       $(e).addClass('active');
     }
   });
-  $('form input').focus(function() {
+  $('form input').focus(function () {
     const e = this.nextElementSibling;
     if (!$(this).is('error')) {
       $(this).removeClass('error').css('border-color', 'black');
@@ -290,13 +290,13 @@ $(document).ready(() => {
 });
 
 // PRODUCTS
-(function() {
+(function () {
 
 
   const breakpoint = window.matchMedia('(max-width:767px)');
   let swiper;
 
-  const breakpointChecker = function() {
+  const breakpointChecker = function () {
 
     if (breakpoint.matches === true) {
       if (swiper !== undefined) { swiper.destroy(true, true); }
@@ -306,7 +306,7 @@ $(document).ready(() => {
     }
   };
 
-  const enableSwiper = function() {
+  const enableSwiper = function () {
 
     const swiper = new Swiper('.products__slider .swiper-container', {
       loop: true,
@@ -392,7 +392,7 @@ $(document).ready(() => {
 
 
 
-$.fn.isInViewport = function() {
+$.fn.isInViewport = function () {
   const elementTop = $(this).offset().top;
   const elementBottom = elementTop + $(this).outerHeight();
 
@@ -404,7 +404,7 @@ $.fn.isInViewport = function() {
 
 
 $(window).on('load resize scroll', (event) => {
-  $('img').each(function() {
+  $('img').each(function () {
     if ($(this).isInViewport()) {
       $(this).addClass('loaded');
     } else {
@@ -419,7 +419,7 @@ $(window).on('load', () => {
   const height = $(window).height();
   let intervalId = null;
   let i = 1;
-  const varName = function() {
+  const varName = function () {
     if (i <= 200) {
       const random1 = Math.floor(Math.random() * height) + 1;
       const random2 = Math.floor(Math.random() * 100) + 1;
@@ -456,7 +456,7 @@ if (sortBy) {
 }
 
 $sorter.on('change', (e) => {
-  const {value} = e.currentTarget;
+  const { value } = e.currentTarget;
 
   window.location = `?sort_by=${value}`;
 });
@@ -468,7 +468,7 @@ new simpleParallax(image, {
   overflow: true,
 });
 
-$('#load-ingredients').click(function() {
+$('#load-ingredients').click(function () {
   $(this).toggleClass('active');
   $('.ingredientes__item:nth-child(n+4)').fadeToggle();
   $(this).text((i, text) => {
@@ -493,15 +493,19 @@ Draggable.create(child4, {
 // swiper announcement bar news
 const barraSwiper = new Swiper('.swiper-container-barra', {
   loop: true,
-  fadeEffect: {
-    crossFade: true,
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
   },
-  speed: 350,
+  // fadeEffect: {
+  //   crossFade: true,
+  // },
+  speed: 2000,
   autoplay: {
     delay: 5000,
   },
   slidersPerView: 1,
-  effect: 'fade',
+  // effect: 'fade',
   setWrapperSize: true,
   updateOnWindowResize: true,
 });
@@ -542,25 +546,25 @@ const reviewsSwiper = new Swiper('#reviews .swiper-container', {
 });
 
 // swiper barra de promos especiales (desde hotsale 2021 está habilitada)
-const promosEspecialesSwiper = new Swiper('.aquiva', {
-  loop: true,
-  fadeEffect: {
-    crossFade: true,
-  },
-  speed: 350,
-  autoplay: {
-    delay: 5000,
-  },
-  slidersPerView: 1,
-  effect: 'fade',
-  setWrapperSize: true,
-  updateOnWindowResize: true,
-});
+// const promosEspecialesSwiper = new Swiper('.aquiva', {
+//   loop: true,
+//   fadeEffect: {
+//     crossFade: true,
+//   },
+//   speed: 350,
+//   autoplay: {
+//     delay: 5000,
+//   },
+//   slidersPerView: 1,
+//   effect: 'fade',
+//   setWrapperSize: true,
+//   updateOnWindowResize: true,
+// });
 
 
 // banner text on mobile
 
-var UpdateBar = function(){
+var UpdateBar = function () {
   if ($(window).width() <= 767) {
     var pos = $('.dsh-MobileBar').offset();
     $('.shop-item').each(function () {
@@ -568,7 +572,7 @@ var UpdateBar = function(){
         var projectDescription = $(this).data('section');
         $("header").hide();
         $('.dsh-MobileBar').text(projectDescription);
-        return; 
+        return;
       } else {
         $("header").fadeIn();
       }
@@ -579,20 +583,20 @@ var UpdateBar = function(){
 
 // banner display on mobile
 var distance
-if($('.shop-item').length != 0){
+if ($('.shop-item').length != 0) {
   distance = $('.shop-item').offset().top;
 }
 
-$(window).scroll(function() {
-    if ( $(this).scrollTop() >= distance ) {
-      $('.dsh-MobileBar').fadeIn();
-    } else {
-      $('.dsh-MobileBar').hide();
-    }
+$(window).scroll(function () {
+  if ($(this).scrollTop() >= distance) {
+    $('.dsh-MobileBar').fadeIn();
+  } else {
+    $('.dsh-MobileBar').hide();
+  }
 });
 
 
 $(window)
-    .ready(UpdateBar)
-    .resize(UpdateBar)
-    .scroll(UpdateBar)
+  .ready(UpdateBar)
+  .resize(UpdateBar)
+  .scroll(UpdateBar)
