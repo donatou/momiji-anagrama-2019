@@ -8,6 +8,9 @@
 {% capture promo_product %}
   {{ all_products[settings.free_product].selected_or_first_available_variant.id }}
 {% endcapture %}
+{% capture costo_regalo %}
+  {{ all_products[settings.free_product].selected_or_first_available_variant.price }}
+{% endcapture %}
 {% assign promo_product_inventory = all_products[settings.free_product].selected_or_first_available_variant.inventory_quantity | times: 1 %}
 {% assign variant_id = promo_product %}
 
@@ -16,7 +19,9 @@
     var cartItems = {{ cart.items | json }},
         qtyInTheCart = 0,
         cartUpdates = {},
-        cartTotal = {{ cart.total_price }};
+        cartTotal = {{ cart.total_price }},
+        cartTotalDiscount = {{ cart.total_discount }},
+        cartItemsSubtotal = {{ cart.items_subtotal_price }};
     for (var i=0; i<cartItems.length; i++) {
       if ( cartItems[i].id === {{ variant_id }} ) {
         qtyInTheCart = cartItems[i].quantity;
