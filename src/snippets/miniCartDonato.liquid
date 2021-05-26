@@ -115,6 +115,7 @@
             {%- when 'incluye_regalo' -%}
 
               {%- render 'cart-free-product-inject' -%}
+              <!-- {% render 'cart-free-product-v2' %} -->
 
               {%- assign cart_total_promo = cart.total_price | times: 0.01 -%}
               {%- comment -%}{%- assign shipping_value_left_promo = free_gift_over_x_price | minus: cart_total_promo -%}{%- endcomment -%}

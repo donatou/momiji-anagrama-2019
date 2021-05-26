@@ -25,9 +25,15 @@
     }
     if ( ( cartItems.length === 1 ) && ( qtyInTheCart > 0 ) ) {
       cartUpdates = { {{ variant_id }}: 0 }
+      console.log('variant id qty 0');
     }
     else if ( ( cartItems.length >= 1 ) && ( qtyInTheCart !== 1 ) && (cartTotal >= {{ free_gift_over_x_price }} ) ) {
       cartUpdates = { {{ variant_id }}: 1 }
+      console.log('variant id qty 1');
+    }
+    else if ( (cartTotal < {{ free_gift_over_x_price }} ) ) {
+      cartUpdates = { {{ variant_id }}: 0 }
+      console.log('variant id qty 0, cart < free_gift_over_price');
     }
     else {
       return;

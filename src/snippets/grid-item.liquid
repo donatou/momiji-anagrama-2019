@@ -23,6 +23,13 @@
         </div>
         <div class="product__info--iva">
             <p>IVA incluido</p>
+
+            {% if product.variants.size > 1 %}
+                Hasta {{ product.compare_at_price_min | minus: product.price | times: 100.0 | divided_by: product.compare_at_price_min | money_without_currency | times: 100 | replace: '.0', '' | append: "% OFF"}}
+            {% else %}
+              {{ product.compare_at_price_min | minus: product.price | times: 100.0 | divided_by: product.compare_at_price_min | money_without_currency | times: 100 | replace: '.0', ''| append: "% OFF"}}
+            {% endif %}
+
         </div>
         <div class="product__info--name-price">
             <div class="product__info--name">
