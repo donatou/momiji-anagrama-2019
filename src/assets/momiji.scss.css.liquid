@@ -6992,14 +6992,24 @@ html, footer .footer__item li a, .a__more, .modal__resena .resena__container .st
   display: grid;
   grid-template-columns: 60% 40%;}
 
-.product__info--iva {
+.product__info--extra {
   border-bottom: none;
   padding-bottom: 0px;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: justify;
-      justify-content: flex-end;
-  text-align: right;
+      justify-content: space-between;
+  /* text-align: right; */
+}
+.product__info--iva {
+  margin: 4px 0;
+}
+
+.product__info--discount {
+  background-color: #F06C4E;
+  /* margin: 0px; */
+  padding: 0 4px;
+  margin: 4px 0;
 }
 
 header .header__nav--menu a.product {
