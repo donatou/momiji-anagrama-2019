@@ -21,8 +21,13 @@
             <span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{product.id}}" data-product-title="{{product.title}}" data-product-type="{{product.type}}" style="display: block;"></span>
             {% comment %} <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span> {% endcomment %}
         </div>
-        <div class="product__info--iva">
-            <p>IVA incluido</p>
+        <div class="product__info--extra">
+            <p class="product__info--iva">Incluye IVA</p>
+            {% if product.variants.size > 1 and product.compare_at_price_max > product.price %}
+                <p class="product__info--discount">Hasta {{ product.compare_at_price_min | minus: product.price | times: 100.0 | divided_by: product.compare_at_price_min | money_without_currency | times: 100 | replace: '.0', '' | append: "% OFF"}}</p>
+            {% elsif product.compare_at_price_max > product.price %}
+                <p class="product__info--discount">{{ product.compare_at_price_min | minus: product.price | times: 100.0 | divided_by: product.compare_at_price_min | money_without_currency | times: 100 | replace: '.0', ''| append: "% OFF"}}</p>
+            {% endif %}
         </div>
         <div class="product__info--name-price">
             <div class="product__info--name">
