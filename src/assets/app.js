@@ -500,7 +500,7 @@ const barraSwiper = new Swiper('.swiper-container-barra', {
   // fadeEffect: {
   //   crossFade: true,
   // },
-  speed: 2000,
+  speed: 500,
   autoplay: {
     delay: 5000,
   },
