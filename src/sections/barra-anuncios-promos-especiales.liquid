@@ -50,6 +50,64 @@
 {% endstyle %}
 {% endcomment %}
 
+{%- comment -%}
+    Este es el schema original de header antes de los cambios de hotsale 2021
+{
+    "name": "Header",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Barra de anuncios"
+        },
+        {
+            "type": "text",
+            "id": "barra_anuncios1",
+            "label": "Texto promocional 1:",
+            "default": "Escribe aquí la promoción o anuncio."
+        },
+        {
+            "type": "url",
+            "id": "barra_anuncios1_link",
+            "label": "Link 1:"
+        },
+        {
+            "type": "text",
+            "id": "barra_anuncios2",
+            "label": "Texto promocional 2:",
+            "default": "Escribe aquí la promoción o anuncio."
+        },
+        {
+            "type": "url",
+            "id": "barra_anuncios2_link",
+            "label": "Link 2:"
+        },
+        {
+            "type": "checkbox",
+            "id": "white",
+            "label": "Fondo blanco",
+            "default": false,
+            "info": "Hacer blanco el fondo de la barra de anuncios"
+        },
+        {
+            "type": "header",
+            "content": "Menú"
+        },
+        {
+            "type": "checkbox",
+            "id": "last_item_menu_color",
+            "default": false,
+            "label": "¿Último elemento de color?"
+        },
+        {
+            "type": "color",
+            "id": "last_item_color",
+            "label": "Color del último elemento",
+            "default": "#0e0e0e"
+        }
+    ]
+}
+{%- endcomment -%}
+
 {% schema %}
 
 {

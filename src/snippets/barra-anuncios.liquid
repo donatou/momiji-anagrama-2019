@@ -1,26 +1,20 @@
 <div class="swiper-container-barra">
     <div class="swiper-wrapper header__banner col-12">
-        {% if section.settings.barra_anuncios1_link == blank %}
-        <p class="swiper-slide swiper-slide-paragraph">{{ section.settings.barra_anuncios1 }}</p>
-        {% else %}
-        <p class="swiper-slide swiper-slide-paragraph"><a href="{{ section.settings.barra_anuncios1_link }}">{{
-                section.settings.barra_anuncios1 }}</a></p>
-        {% endif %}
-        {% if section.settings.barra_anuncios2 == blank %}
-        {% else %}
-        {% if section.settings.barra_anuncios2_link == blank %}
-        <p class="swiper-slide swiper-slide-paragraph">{{ section.settings.barra_anuncios2 }}</p>
-        {% else %}
-        <p class="swiper-slide swiper-slide-paragraph"><a href="{{ section.settings.barra_anuncios2_link }}">{{
-                section.settings.barra_anuncios2 }}</a></p>
-        {% endif %}
-        {% endif %}
+        {% for block in section.blocks %}
+        <!-- Slide -->
+            <p class="swiper-slide swiper-slide-paragraph">
+                <a href="{{ block.settings.barra_anuncios_url }}">{{ block.settings.barra_anuncios_copy }}</a>
+            </p>
+        {% endfor %}
     </div>
     <div class="swiper-button-prev-barra swiper-button-prev"></div>
     <div class="swiper-button-next-barra swiper-button-next"></div>
 </div>
 
 
+{%- comment -%}
+    A futuro será necesario cambiar el color del SVG de esta sección
+{%- endcomment -%}
 {% style %}
 .swiper-container-barra {
 width: 100%;
@@ -33,7 +27,7 @@ list-style: none;
 padding: 1px;
 z-index: 1;
 text-align: center;
-background-color: #f06c4e;
+background-color: {{ section.settings.barra_anuncios_bg_color }};
 }
 .swiper-slide-paragraph a{
     font-family: "GT Super Text Book", serif;
@@ -44,6 +38,7 @@ background-color: #f06c4e;
     text-align: center;
     text-transform: none;
     letter-spacing: inherit;
+    color: {{ section.settings.barra_anuncios_font_color }};
 }
 @media (max-width: 991.98px) {
     .swiper-slide-paragraph a {
@@ -61,5 +56,13 @@ background-color: #f06c4e;
         font-size: 11px;
     } 
 }
-
+.swiper-button-next-barra,
+.swiper-button-prev-barra {
+    background-image: url({{ 'arrow.svg' | asset_url }});
+    background-size: 18px auto;
+    height: 45px !important;
+    width: 50px;
+    right: 0;
+    background-color: {{ section.settings.barra_anuncios_bg_color }} !important;
+}
 {% endstyle %}
