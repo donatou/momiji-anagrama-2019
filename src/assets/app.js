@@ -93,12 +93,14 @@ $(document).ready(() => {
         if (scrollPosition <= $('header').height() + 50) {
           $('header').removeClass('fixed');
           $('#modal-search').removeClass('fixed');
+          $('#modal-user').removeClass('fixed');
         }
       } else {
         // Do something on scroll down
         if (scrollPosition > $('header').height() + 50) {
           $('header').addClass('fixed');
           $('#modal-search').addClass('fixed');
+          $('#modal-user').addClass('fixed');
         }
 
       }
