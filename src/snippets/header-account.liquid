@@ -2,6 +2,6 @@
 {% if customer %}
     <a href="/account">{{ "layout.customer.logged_in_as_html" | t | truncatewords: 1, " " }}{{ customer.first_name | truncatewords: 1, "" }}</a>
 {% else %}
-    {{ 'layout.customer.log_in' | t | customer_login_link }}{{ 'layout.customer.create_account' | t | customer_register_link }}
+    {{ 'layout.customer.log_in' | t | customer_login_link }}<br />{{ 'layout.customer.create_account' | t | customer_register_link }}
 {% endif %}
 </p>
