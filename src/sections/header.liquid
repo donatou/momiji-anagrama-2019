@@ -510,51 +510,58 @@
 {% schema %}
 
 {
-    "name": "Header",
-    "settings": [
+  "name": "Header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Barra de anuncios"
+    },
+    {
+      "type": "color",
+      "id": "barra_anuncios_bg_color",
+      "label": "Color de fondo",
+      "default": "#000",
+      "info": "color de fondo"
+    },
+    {
+      "type": "color",
+      "id": "barra_anuncios_font_color",
+      "label": "Color de texto",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks":[
+    {
+      "type":"select",
+      "name":"Promo",
+      "settings":[
         {
-            "type": "header",
-            "content": "Barra de anuncios"
-        }, {
-            "type": "text",
-            "id": "barra_anuncios1",
-            "label": "Texto promocional 1:",
-            "default": "Escribe aquí la promoción o anuncio."
-        }, {
-            "type": "url",
-            "id": "barra_anuncios1_link",
-            "label": "Link 1:"
-        }, {
-            "type": "text",
-            "id": "barra_anuncios2",
-            "label": "Texto promocional 2:",
-            "default": "Escribe aquí la promoción o anuncio."
-        }, {
-            "type": "url",
-            "id": "barra_anuncios2_link",
-            "label": "Link 2:"
-        }, {
-            "type": "checkbox",
-            "id": "white",
-            "label": "Fondo blanco",
-            "default": false,
-            "info": "Hacer blanco el fondo de la barra de anuncios"
-        }, {
-            "type": "header",
-            "content": "Menú"
-        }, {
-            "type": "checkbox",
-            "id": "last_item_menu_color",
-            "default": false,
-            "label": "¿Último elemento de color?"
-        }, {
-            "type": "color",
-            "id": "last_item_color",
-            "label": "Color del último elemento",
-            "default": "#0e0e0e"
+          "type": "textarea",
+          "id": "barra_anuncios_copy",
+          "label": "Copy",
+          "info": "Puede ser heading, párrafo o link"
+        },
+        {
+          "type": "url",
+          "id": "barra_anuncios_url",
+          "label": "Url destino"
         }
-    ]
+      ]
+    }
+  ],
+  "presets":[
+    {
+      "name":"Barra promos especiales",
+      "category":"Banners de anuncios",
+      "blocks":[
+        {
+          "type":"select"
+        }
+      ]
+    }
+  ]
 }
+
 
 {% endschema %}
 
