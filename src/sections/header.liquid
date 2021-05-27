@@ -14,9 +14,9 @@
       </div>
       {% render 'barra-anuncios' %}
       
-      <div class="header__cuenta d-none d-md-block">
+      <!-- <div class="header__cuenta d-none d-md-block">
         {% render 'header-account' %}
-      </div>
+      </div> -->
     </div>
 
     <div class="header__nav d-flex justify-content-between">
@@ -245,7 +245,7 @@
           <a data-modal="search"><img src="{{ 'search.svg' | asset_url }}" alt="Search"></a>
         </div>
         <div class="header__icons--love d-none d-md-block">
-          <a data-modal="search"><img src="{{ 'ico_usuario_min.svg' | asset_url }}" alt="Acceso a usuarios"></a>
+          <a data-modal="user"><img src="{{ 'ico_usuario_min.svg' | asset_url }}" alt="Acceso a usuarios"></a>
         </div>
         <div class="header__icons--shop">
           <a href="/cart" class="cart-summary"><img src="{{ 'cart.svg' | asset_url }}" alt="Cart"><span class="cart-quantity">{{ cart.item_count }}</span></a>
@@ -490,6 +490,9 @@
         {%- comment -%}<div class="header__icons--love d-none d-md-block">
           <a href="#swym-wishlist" class="swym-wishlist"><img src="{{ 'wishlist-header.svg' | asset_url }}" alt="Wishlist"></a>
         </div>{%- endcomment -%}
+        <div class="header__icons--love d-none d-md-block">
+          <a data-modal="user"><img src="{{ 'ico_usuario_min.svg' | asset_url }}" alt="Acceso a usuarios"></a>
+        </div>
         <div class="header__icons--shop">
           <a href="/cart" class="cart-summary"><img src="{{ 'cart.svg' | asset_url }}" alt="Cart"><span class="cart-quantity">{{ cart.item_count }}</span></a>
         </div>

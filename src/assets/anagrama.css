@@ -595,9 +595,6 @@ header .nav-image-list li {
 header .header__nav--logo {
   position: relative; }
 
-.header__cuenta {
-  display: none !important;
-}
 
 #burger-menu,
 .burger-sub-menu {
