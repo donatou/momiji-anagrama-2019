@@ -119,8 +119,8 @@
           {% if customer.first_name != blank %}
             {% capture first_name %}
               <a class="nav-item" href="/account">{{ customer.first_name }}</a>
-              {% endcapture %}
-            <a class="nav-item" href="/account">Hola, {{ customer.first_name | truncatewords: 1, "" }}</a>
+            {% endcapture %}
+            <a class="nav-item" href="/account">Hola, {{ customer.first_name | truncatewords: 1, "" }}</a><br><br>
           {% else %}
             <a class="nav-item" href="/account">{{ 'layout.customer.account' | t }}</a>
           {% endif %}
