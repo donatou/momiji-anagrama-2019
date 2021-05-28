@@ -359,7 +359,7 @@ $(window).on('load', () => {
 // //DETALLE DE PRODUCTO
 $(document).ready(() => {
 
-  galleryThumbs = new Swiper('.gallery-thumbs0', {
+  galleryThumbs = new Swiper('.gallery-thumbs', {
     direction: 'vertical',
     spaceBetween: 10,
     slidesPerView: 5,
@@ -373,7 +373,7 @@ $(document).ready(() => {
     },
   });
 
-  galleryTop = new Swiper('.gallery-top0', {
+  galleryTop = new Swiper('.gallery-top', {
     direction: 'vertical',
     spaceBetween: 10,
     breakpoints: {
