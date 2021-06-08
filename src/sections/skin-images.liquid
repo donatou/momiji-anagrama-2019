@@ -433,9 +433,16 @@
 	$(".add-to-cart").click(function () {
 
 		var arreglo = [];
+
 		$.each($(this).parent().parent().find('.product-item'), function (index, data) {
-			arreglo.push({ id: $(data).data('product'), quantity: 1 });
+			if(arreglo.length < 1){
+				arreglo.push({ id: $(data).data('product'), quantity:  1});
+				console.log(arreglo)
+			} else {
+				console.log('Momiji te ama')
+			}
 		})
+		
 		$.post('/cart/add.js', {
 			items: arreglo
 		}).done(function () {
