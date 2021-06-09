@@ -129,6 +129,8 @@
     {%- comment -%}<a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a> {%- endcomment -%}
 
     {% render 'search-modal' %}
+    {% render 'user-modal' %}
+
     
     <div id="modal-resena" aria-hidden="true">
     </div>
@@ -143,6 +145,7 @@
     </div>
 
     {% section 'header' %}
+    
 
 {% if page.handle contains sundae %}
 {%- comment -%}
@@ -190,9 +193,9 @@
     {% comment %} <script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer></script> {% endcomment %}
     <script src="{{ 'swiper4.min.js'| asset_url }}" defer></script>
     <script src="{{ 'parallax.js' | asset_url }}" defer></script> 
-    <!-- <script src="{{ 'app.js' | asset_url }}" defer></script>  -->
     <script src="{{ 'anagrama.js' | asset_url }}" defer></script> 
-    <script src="{{ 'app.min.js' | asset_url }}" defer></script> 
+    {%- comment -%}<script src="{{ 'app.js' | asset_url }}" defer></script>{%- endcomment -%}
+    <script src="{{ 'app.min.js' | asset_url }}" defer></script>
     <script src="{{ 'micromodal.js' | asset_url }}" defer></script>  
     <script src="{{ 'jquery.selectric.js' | asset_url }}" defer></script>  
         {% comment %} {% render 'back-in-stock-helper' %} {% endcomment %}

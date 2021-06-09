@@ -14,9 +14,9 @@
       </div>
       {% render 'barra-anuncios' %}
       
-      <div class="header__cuenta d-none d-md-block">
+      <!-- <div class="header__cuenta d-none d-md-block">
         {% render 'header-account' %}
-      </div>
+      </div> -->
     </div>
 
     <div class="header__nav d-flex justify-content-between">
@@ -244,15 +244,16 @@
         <div class="header__icons--search d-none d-md-block">
           <a data-modal="search"><img src="{{ 'search.svg' | asset_url }}" alt="Search"></a>
         </div>
-        {%- comment -%}<div class="header__icons--love d-none d-md-block">
-          <a href="#swym-wishlist" class="swym-wishlist"><img src="{{ 'wishlist-header.svg' | asset_url }}" alt="Wishlist"></a>
-        </div>{%- endcomment -%}
+        <div class="header__icons--love d-none d-md-block">
+          <a data-modal="user"><img src="{{ 'ico_usuario_min.svg' | asset_url }}" alt="Acceso a usuarios"></a>
+
+        </div>
         <div class="header__icons--shop">
           <a href="/cart" class="cart-summary"><img src="{{ 'cart.svg' | asset_url }}" alt="Cart"><span class="cart-quantity">{{ cart.item_count }}</span></a>
         </div>
       </div>
+      
     </div>
-
   </div>
 
   {%- comment -%} HEADER FIXED {%- endcomment -%}
@@ -490,6 +491,9 @@
         {%- comment -%}<div class="header__icons--love d-none d-md-block">
           <a href="#swym-wishlist" class="swym-wishlist"><img src="{{ 'wishlist-header.svg' | asset_url }}" alt="Wishlist"></a>
         </div>{%- endcomment -%}
+        <div class="header__icons--love d-none d-md-block">
+          <a data-modal="user"><img src="{{ 'ico_usuario_min.svg' | asset_url }}" alt="Acceso a usuarios"></a>
+        </div>
         <div class="header__icons--shop">
           <a href="/cart" class="cart-summary"><img src="{{ 'cart.svg' | asset_url }}" alt="Cart"><span class="cart-quantity">{{ cart.item_count }}</span></a>
         </div>
@@ -510,51 +514,58 @@
 {% schema %}
 
 {
-    "name": "Header",
-    "settings": [
+  "name": "Header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Barra de anuncios"
+    },
+    {
+      "type": "color",
+      "id": "barra_anuncios_bg_color",
+      "label": "Color de fondo",
+      "default": "#000",
+      "info": "color de fondo"
+    },
+    {
+      "type": "color",
+      "id": "barra_anuncios_font_color",
+      "label": "Color de texto",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks":[
+    {
+      "type":"select",
+      "name":"Promo",
+      "settings":[
         {
-            "type": "header",
-            "content": "Barra de anuncios"
-        }, {
-            "type": "text",
-            "id": "barra_anuncios1",
-            "label": "Texto promocional 1:",
-            "default": "Escribe aquí la promoción o anuncio."
-        }, {
-            "type": "url",
-            "id": "barra_anuncios1_link",
-            "label": "Link 1:"
-        }, {
-            "type": "text",
-            "id": "barra_anuncios2",
-            "label": "Texto promocional 2:",
-            "default": "Escribe aquí la promoción o anuncio."
-        }, {
-            "type": "url",
-            "id": "barra_anuncios2_link",
-            "label": "Link 2:"
-        }, {
-            "type": "checkbox",
-            "id": "white",
-            "label": "Fondo blanco",
-            "default": false,
-            "info": "Hacer blanco el fondo de la barra de anuncios"
-        }, {
-            "type": "header",
-            "content": "Menú"
-        }, {
-            "type": "checkbox",
-            "id": "last_item_menu_color",
-            "default": false,
-            "label": "¿Último elemento de color?"
-        }, {
-            "type": "color",
-            "id": "last_item_color",
-            "label": "Color del último elemento",
-            "default": "#0e0e0e"
+          "type": "textarea",
+          "id": "barra_anuncios_copy",
+          "label": "Copy",
+          "info": "Puede ser heading, párrafo o link"
+        },
+        {
+          "type": "url",
+          "id": "barra_anuncios_url",
+          "label": "Url destino"
         }
-    ]
+      ]
+    }
+  ],
+  "presets":[
+    {
+      "name":"Barra promos especiales",
+      "category":"Banners de anuncios",
+      "blocks":[
+        {
+          "type":"select"
+        }
+      ]
+    }
+  ]
 }
+
 
 {% endschema %}
 

@@ -1,0 +1,174 @@
+{% comment %}
+<div class="aquiva">
+    {% for block in section.blocks %}
+    <div class="">
+        <div class="img-container background-promo-hotsale">
+            <img src="{{ block.settings.promos_img_1 | img_url: '800x' }}" alt="" class="">
+        </div>
+        <div class="">
+            {{ block.settings.promos_copy }}
+            <p>{{ section.settings.promos_background_color }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- <div class="swiper-container">
+    <div class="swiper-wrapper">
+            <div class="swiper-slide">
+            <a class="swiper-slide-link" href="https://www.momijibeauty.com/collections/hot-sale-2021">
+                <img class="swiper-slide-banner" src="{{ blocks.settings.promos_img_1 | img_url: '800x' }}" alt="HotSale">
+            </a>
+        </div>
+    </div>
+</div> -->
+
+<!-- <div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <a class="swiper-slide-link" href="https://www.momijibeauty.com/collections/hot-sale-2021">
+                <img class="swiper-slide-image" src="{{ blocks.settings.promos_img_1 | img_url: '800x' }}">
+                <p>{{ block.settings.promos_copy }}</p>
+            </a>
+        </div>
+    </div>
+</div> -->
+{% style %}
+.swiper-container-barra {
+    width: 100%;
+    height:100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;   
+    padding: 1px; 
+    z-index: 1;
+    text-align: center;
+    background-color: #f06c4e;
+}
+{% endstyle %}
+{% endcomment %}
+
+{%- comment -%}
+    Este es el schema original de header antes de los cambios de hotsale 2021
+{
+    "name": "Header",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Barra de anuncios"
+        },
+        {
+            "type": "text",
+            "id": "barra_anuncios1",
+            "label": "Texto promocional 1:",
+            "default": "Escribe aquí la promoción o anuncio."
+        },
+        {
+            "type": "url",
+            "id": "barra_anuncios1_link",
+            "label": "Link 1:"
+        },
+        {
+            "type": "text",
+            "id": "barra_anuncios2",
+            "label": "Texto promocional 2:",
+            "default": "Escribe aquí la promoción o anuncio."
+        },
+        {
+            "type": "url",
+            "id": "barra_anuncios2_link",
+            "label": "Link 2:"
+        },
+        {
+            "type": "checkbox",
+            "id": "white",
+            "label": "Fondo blanco",
+            "default": false,
+            "info": "Hacer blanco el fondo de la barra de anuncios"
+        },
+        {
+            "type": "header",
+            "content": "Menú"
+        },
+        {
+            "type": "checkbox",
+            "id": "last_item_menu_color",
+            "default": false,
+            "label": "¿Último elemento de color?"
+        },
+        {
+            "type": "color",
+            "id": "last_item_color",
+            "label": "Color del último elemento",
+            "default": "#0e0e0e"
+        }
+    ]
+}
+{%- endcomment -%}
+
+{% schema %}
+
+{
+    "name": "Barra Anuncios especiales",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Barra de anuncios especiales"
+        },
+        {
+            "type": "color",
+            "id": "promos_background_color",
+            "label": "Color de fondo",
+            "default": "#000000",
+            "info": "color de fondo"
+        }
+
+    ],
+	"blocks":[
+		{
+			"type":"select",
+			"name":"Promo",
+			"settings":[
+                {
+                    "id":"promos_img_1",
+                    "type":"image_picker",
+                    "label":"imagen previa al copy",
+                    "info":"Tamaño XXX"
+                },
+                {
+                    "type": "html",
+                    "id": "promos_copy",
+                    "label": "Copy",
+                    "info": "Puede ser heading, párrafo o link"
+                },
+                {
+                    "id":"promos_img_2",
+                    "type":"image_picker",
+                    "label":"imagen posterior al copy",
+                    "info":"Tamaño XXX"
+                }
+			]
+		}
+	],
+	"presets":[
+		{
+			"name":"Barra promos especiales",
+			"category":"Banners de anuncios",
+			"blocks":[
+				{
+					"type":"select"
+				},
+				{
+					"type":"select"
+				},
+				{
+					"type":"select"
+				}
+			]
+		}
+	]
+}
+
+{% endschema %}
