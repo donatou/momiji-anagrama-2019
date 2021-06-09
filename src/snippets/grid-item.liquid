@@ -8,10 +8,10 @@
             " >
     <div class="product__container">
         <div class="product__container--main img-container">
-            <img src="{{ product | img_url: '496x' }}" alt="{{ product.title | escape }}">
+            <img data-src="{{ product | img_url: '496x' }}" alt="{{ product.title | escape }}" class="lazyload ">
         </div>
         <div class="product__container--hover">
-            <img src="{{ product.images.last | img_url: '496x' }}" alt="{{ product.title | escape }}">
+            <img data-src="{{ product.images.last | img_url: '496x' }}" alt="{{ product.title | escape }}" class="lazyload ">
         </div> 
     </div>
     {% include 'grid-item-icons' %}

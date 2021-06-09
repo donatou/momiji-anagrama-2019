@@ -36,7 +36,7 @@
                         <div class="grid-item">
                             <figure class="img-wrap absolute-caption" data-id="{{ forloop.index0 }}" data-block-id="{{ block.id }}" {{ block.shopify_attributes }}>
                                 <a aria-controls="pop-modal" aria-expanded="false" class="w-100 h-100" data-target="#pop-modal" data-toggle="show" href="#" role="button">
-                                    <img alt="" class="w-100 h-100 object-fit-cover" src="{{ block.settings.image | img_url: '800x800' }}">
+                                    <img alt="Product" class="w-100 h-100 object-fit-cover lazyload" data-src="{{ block.settings.image | img_url: '800x800' }}">
                                     <figcaption class="text-link d-flex justify-content-between pb-15 px-20">
                                         <div>
                                             {{ block.settings.name }}
@@ -88,7 +88,7 @@
                                     <div class="row">
                                         <div class="col-12 col-lg-7">
                                             <figure class="pr-15">
-                                                <img alt="" class="w-100 h-100 object-fit-cover" src="{{ block.settings.image | img_url: '800x800' }}">
+                                                <img alt="Prodcut" class="w-100 h-100 object-fit-cover lazyload" data-src="{{ block.settings.image | img_url: '800x800' }}">
                                                 <div>
                                                     {% if product != empty %}
                                                     <div class="circle-index" style="top: {{ block.settings.position_y_1 }}%; left: {{ block.settings.position_x_1 }}%;">1</div>
@@ -129,7 +129,7 @@
                                                             <div class="product-item-image">
                                                                 <a href="{{ product.url }}" target="_blank">    
                                                                     <figure>
-                                                                        <img src="{{ product.featured_image | img_url: "small" }}" alt="">
+                                                                        <img data-src="{{ product.featured_image | img_url: "small" }}" alt="Producto" class="lazyload">
                                                                         <div class="circle-index">1</div>
                                                                     </figure>
                                                                 </a>
@@ -167,7 +167,7 @@
                                                             <div class="product-item-image">
                                                                 <a href="{{ product_2.url }}" target="_blank">    
                                                                     <figure>
-                                                                        <img src="{{ product_2.featured_image | img_url: "small" }}" alt="">
+                                                                        <img data-src="{{ product_2.featured_image | img_url: "small" }}" alt="Producto" class="lazyload">
                                                                         <div class="circle-index">2</div>
                                                                     </figure>
                                                                 </a>
@@ -205,7 +205,7 @@
                                                             <div class="product-item-image">
                                                                 <a href="{{ product_3.url }}" target="_blank">    
                                                                     <figure>
-                                                                        <img src="{{ product_3.featured_image | img_url: "small" }}" alt="">
+                                                                        <img data-src="{{ product_3.featured_image | img_url: "small" }}" alt="Producto" class="lazyload">
                                                                         <div class="circle-index">3</div>
                                                                     </figure>
                                                                 </a>
@@ -245,7 +245,7 @@
                                                                     <div class="product-item-image">
                                                                         <a href="{{ product.url }}" class="w-100" target="_blank">    
                                                                             <figure>
-                                                                                <img src="{{ product.featured_image | img_url: "master" }}" alt="">
+                                                                                <img data-src="{{ product.featured_image | img_url: "master" }}" alt="Producto" class="lazyload">
                                                                                 <div class="circle-index">1</div>
                                                                             </figure>
                                                                         </a>
@@ -285,7 +285,7 @@
                                                                     <div class="product-item-image">
                                                                         <a href="{{ product_2.url }}" class="w-100" target="_blank">    
                                                                             <figure>
-                                                                                <img src="{{ product_2.featured_image | img_url: "master" }}" alt="">
+                                                                                <img data-src="{{ product_2.featured_image | img_url: "master" }}" alt="Producto" class="lazyload">
                                                                                 <div class="circle-index">1</div>
                                                                             </figure>
                                                                         </a>
@@ -325,7 +325,7 @@
                                                                     <div class="product-item-image">
                                                                         <a href="{{ product_3.url }}" class="w-100" target="_blank">    
                                                                             <figure>
-                                                                                <img src="{{ product_3.featured_image | img_url: "master" }}" alt="">
+                                                                                <img data-src="{{ product_3.featured_image | img_url: "master" }}" alt="Producto" class="lazyload">
                                                                                 <div class="circle-index">1</div>
                                                                             </figure>
                                                                         </a>
