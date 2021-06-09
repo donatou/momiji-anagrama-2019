@@ -1,7 +1,7 @@
 <div class="hero-image__marco marco--bg-color">
   <div class="hero-image__wrapper">
     <div class="hero-image__logo-countdown">
-      <img class="sundae-logo" src="{{ 'sundae-momiji-yellow.svg' | asset_url }}" alt="Sundae by Momiji">
+      <img class="sundae-logo lazyload" data-src="{{ 'sundae-momiji-yellow.svg' | asset_url }}" alt="Sundae by Momiji">
       <p class="page-sundae before">{{ section.settings.countdown_code }}</p>
       <p class="page-sundae after" style="display:none">refresh now</p>
     </div>
@@ -23,7 +23,7 @@
                 "
         media="(max-width: 4470px)">
       <!-- DESKTOP-->
-      <img src="{{ section.settings.hero-desktop-image-3x | img_url: '2048x' }}" alt="logo">
+      <img data-src="{{ section.settings.hero-desktop-image-3x | img_url: '2048x' }}" alt="logo" class="lazyload">
     </picture>
   </div>
 </div>

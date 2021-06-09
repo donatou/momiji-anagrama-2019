@@ -32,7 +32,7 @@
           <span></span>
         </a>
         <div class="header__nav--logo">
-          <a href="/"><img src="{{ 'momiji-logo-rgb.svg' | asset_url }}" alt="{{ shop.name }}" itemprop="logo"></a>
+          <a href="/"><img data-src="{{ 'momiji-logo-rgb.svg' | asset_url }}" alt="{{ shop.name }}" itemprop="logo" class="lazyload"></a>
         </div>
         <ul class="header__nav--menu list-unstyled">
           <li class="nav-item nav-item--cat"><a>Skincare</a>
@@ -47,10 +47,10 @@
                             <a href="/collections/momiji" class="w-100">
                               <div class="d-flex justify-content-between align-items-center icon-row pb-10 bb-black">
                                 <div class="logo h-20">
-                                  <img src="{{ "momiji.png" | asset_img_url: 'master' }}">
+                                  <img data-src="{{ "momiji.png" | asset_img_url: 'master' }}" class="lazyload">
                                 </div>
                                 <div class="icon">
-                                  <img src="{{ "momiji-icon.png" | asset_img_url: 'master' }}">
+                                  <img data-src="{{ "momiji-icon.png" | asset_img_url: 'master' }}" class="lazyload">
                                 </div>
                               </div>
                             </a>
@@ -59,10 +59,10 @@
                             <a href="/pages/momiji-life" class="w-100">
                               <div class="d-flex justify-content-between align-items-center icon-row py-10 bb-black">
                                 <div class="logo h-20">
-                                  <img src="{{ "momiji-life.png" | asset_img_url: 'master' }}">
+                                  <img data-src="{{ "momiji-life.png" | asset_img_url: 'master' }}" class="lazyload">
                                 </div>
                                 <div class="icon">
-                                  <img src="{{ "momiji-life-icon.png" | asset_img_url: 'master' }}">
+                                  <img data-src="{{ "momiji-life-icon.png" | asset_img_url: 'master' }}" class="lazyload">
                                 </div>
                               </div>
                             </a>
@@ -71,10 +71,10 @@
                             <a href="/collections/sundae" class="w-100">
                               <div class="d-flex justify-content-between align-items-center icon-row py-10 bb-black">
                                 <div class="logo h-18">
-                                  <img src="{{ "sundae.png" | asset_img_url: 'master' }}">
+                                  <img data-src="{{ "sundae.png" | asset_img_url: 'master' }}" class="lazyload">
                                 </div>
                                 <div class="icon">
-                                  <img src="{{ "sundae-icon.png" | asset_img_url: 'master' }}">
+                                  <img data-src="{{ "sundae-icon.png" | asset_img_url: 'master' }}" class="lazyload">
                                 </div>
                               </div>
                             </a>
@@ -151,7 +151,7 @@
                           <li>
                             <a href="/products/personality-pen-taupe">
                               <figure>
-                                <img src="{{ "Sundae_PPen_Taupe.jpg" | asset_img_url: 'master' }}" alt="Personality Pen Taupe">
+                                <img data-src="{{ "Sundae_PPen_Taupe.jpg" | asset_img_url: 'master' }}" alt="Personality Pen Taupe" class="lazyload">
                                 {% comment %} <div class="image-tag image-tag-ribbon">
                                   {% render 'tag-best-seller' %}
                                 </div> {% endcomment %}
@@ -164,7 +164,7 @@
                           <li>
                             <a href="/products/personality-pen-dark-brown">
                               <figure>
-                                <img src="{{ "Sundae_PPen_DarkBrown.jpg" | asset_img_url: 'master' }}" alt="Personality Pen Dark Brown">
+                                <img data-src="{{ "Sundae_PPen_DarkBrown.jpg" | asset_img_url: 'master' }}" alt="Personality Pen Dark Brown" class="lazyload">
                                 {% comment %} <div class="image-tag image-tag-ribbon">
                                   {% render 'tag-sale' %}
                                 </div> {% endcomment %}
@@ -177,7 +177,7 @@
                           <li>
                             <a href="/products/k-tint-anime">
                               <figure>
-                                <img src="{{ "Sundae_Ktint_Anime.jpg" | asset_img_url: 'master' }}" alt="K-Tint - Anime">
+                                <img data-src="{{ "Sundae_Ktint_Anime.jpg" | asset_img_url: 'master' }}" alt="K-Tint - Anime" class="lazyload">
                                 {% comment %} <div class="image-tag">
                                   {% render 'tag-momijis-pick' %}
                                 </div> {% endcomment %}
@@ -190,7 +190,7 @@
                           <li>
                             <a href="/products/k-tint-duo-spoiler-alert">
                               <figure>
-                                <img src="{{ "sundae_duo_spoiler_alert.jpg" | asset_img_url: 'master' }}" alt="K-Tint - Spoiler Alert Duo">
+                                <img data-src="{{ "sundae_duo_spoiler_alert.jpg" | asset_img_url: 'master' }}" alt="K-Tint - Spoiler Alert Duo" class="lazyload">
                                 <div class="image-tag image-tag-ribbon">
                                   {% render 'tag-new' %}
                                 </div>
@@ -200,7 +200,7 @@
                           <li>
                             <a href="/products/eye-shine-hydrogel-patches-60-piezas">
                               <figure>
-                                <img src="{{ "eyeshine.jpeg" | asset_img_url: 'master' }}" alt="Eye shine">
+                                <img data-src="{{ "eyeshine.jpeg" | asset_img_url: 'master' }}" alt="Eye shine" class="lazyload">
                                 {% comment %} <div class="image-tag image-tag-ribbon">
                                   {% render 'tag-gift' %}
                                 </div> {% endcomment %}
@@ -242,14 +242,14 @@
 
       <div class="header__nav--icons d-flex">
         <div class="header__icons--search d-none d-md-block">
-          <a data-modal="search"><img src="{{ 'search.svg' | asset_url }}" alt="Search"></a>
+          <a data-modal="search"><img data-src="{{ 'search.svg' | asset_url }}" alt="Search" class="lazyload"></a>
         </div>
         <div class="header__icons--love d-none d-md-block">
-          <a data-modal="user"><img src="{{ 'ico_usuario_min.svg' | asset_url }}" alt="Acceso a usuarios"></a>
+          <a data-modal="user"><img data-src="{{ 'ico_usuario_min.svg' | asset_url }}" alt="Acceso a usuarios" class="lazyload"></a>
 
         </div>
         <div class="header__icons--shop">
-          <a href="/cart" class="cart-summary"><img src="{{ 'cart.svg' | asset_url }}" alt="Cart"><span class="cart-quantity">{{ cart.item_count }}</span></a>
+          <a href="/cart" class="cart-summary"><img data-src="{{ 'cart.svg' | asset_url }}" alt="Cart" class="lazyload"><span class="cart-quantity">{{ cart.item_count }}</span></a>
         </div>
       </div>
       
@@ -274,7 +274,7 @@
         </a>
         
         <div class="header__nav--logo">
-          <a href="/"><img src="{{ 'momiji-logo-rgb.svg' | asset_url }}" alt="{{ shop.name }}"></a>
+          <a href="/"><img data-src="{{ 'momiji-logo-rgb.svg' | asset_url }}" alt="{{ shop.name }}" class="lazyload"></a>
         </div>
         <ul class="header__nav--menu list-unstyled">
           <li class="nav-item nav-item--cat"><a>Skincare</a>
@@ -289,10 +289,10 @@
                             <a href="/collections/momiji" class="w-100">
                               <div class="d-flex justify-content-between align-items-center icon-row pb-10 bb-black">
                                 <div class="logo h-20">
-                                  <img src="{{ "momiji.png" | asset_img_url: 'master' }}">
+                                  <img data-src="{{ "momiji.png" | asset_img_url: 'master' }}" class="lazyload">
                                 </div>
                                 <div class="icon">
-                                  <img src="{{ "momiji-icon.png" | asset_img_url: 'master' }}">
+                                  <img data-src="{{ "momiji-icon.png" | asset_img_url: 'master' }}" class="lazyload">
                                 </div>
                               </div>
                             </a>
@@ -301,10 +301,10 @@
                             <a href="/pages/momiji-life" class="w-100">
                               <div class="d-flex justify-content-between align-items-center icon-row py-10 bb-black">
                                 <div class="logo h-20">
-                                  <img src="{{ "momiji-life.png" | asset_img_url: 'master' }}">
+                                  <img data-src="{{ "momiji-life.png" | asset_img_url: 'master' }}" class="lazyload">
                                 </div>
                                 <div class="icon">
-                                  <img src="{{ "momiji-life-icon.png" | asset_img_url: 'master' }}">
+                                  <img data-src="{{ "momiji-life-icon.png" | asset_img_url: 'master' }}" class="lazyload">
                                 </div>
                               </div>
                             </a>
@@ -313,10 +313,10 @@
                             <a href="/collections/sundae" class="w-100">
                               <div class="d-flex justify-content-between align-items-center icon-row py-10 bb-black">
                                 <div class="logo h-18">
-                                  <img src="{{ "sundae.png" | asset_img_url: 'master' }}">
+                                  <img data-src="{{ "sundae.png" | asset_img_url: 'master' }}" class="lazyload">
                                 </div>
                                 <div class="icon">
-                                  <img src="{{ "sundae-icon.png" | asset_img_url: 'master' }}">
+                                  <img data-src="{{ "sundae-icon.png" | asset_img_url: 'master' }}" class="lazyload">
                                 </div>
                               </div>
                             </a>
@@ -393,7 +393,7 @@
                           <li>
                             <a href="/products/personality-pen-taupe">
                               <figure>
-                                <img src="{{ "Sundae_PPen_Taupe.jpg" | asset_img_url: 'master' }}" alt="Personality Pen Taupe">
+                                <img data-src="{{ "Sundae_PPen_Taupe.jpg" | asset_img_url: 'master' }}" alt="Personality Pen Taupe" class="lazyload">
                                 {% comment %} <div class="image-tag image-tag-ribbon">
                                   {% render 'tag-best-seller' %}
                                 </div> {% endcomment %}
@@ -406,7 +406,7 @@
                           <li>
                             <a href="/products/personality-pen-dark-brown">
                               <figure>
-                                <img src="{{ "Sundae_PPen_DarkBrown.jpg" | asset_img_url: 'master' }}" alt="Personality Pen Dark Brown">
+                                <img data-src="{{ "Sundae_PPen_DarkBrown.jpg" | asset_img_url: 'master' }}" alt="Personality Pen Dark Brown" class="lazyload">
                                 {% comment %} <div class="image-tag image-tag-ribbon">
                                   {% render 'tag-sale' %}
                                 </div> {% endcomment %}
@@ -419,7 +419,7 @@
                           <li>
                             <a href="/products/k-tint-anime">
                               <figure>
-                                <img src="{{ "Sundae_Ktint_Anime.jpg" | asset_img_url: 'master' }}" alt="K-Tint - Anime">
+                                <img data-src="{{ "Sundae_Ktint_Anime.jpg" | asset_img_url: 'master' }}" alt="K-Tint - Anime" class="lazyload">
                                 {% comment %} <div class="image-tag">
                                   {% render 'tag-momijis-pick' %}
                                 </div> {% endcomment %}
@@ -432,7 +432,7 @@
                           <li>
                             <a href="/products/k-tint-duo-spoiler-alert">
                               <figure>
-                                <img src="{{ "sundae_duo_spoiler_alert.jpg" | asset_img_url: 'master' }}" alt="K-Tint - Spoiler Alert Duo">
+                                <img data-src="{{ "sundae_duo_spoiler_alert.jpg" | asset_img_url: 'master' }}" alt="K-Tint - Spoiler Alert Duo" class="lazyload">
                                 <div class="image-tag image-tag-ribbon">
                                   {% render 'tag-new' %}
                                 </div>
@@ -442,7 +442,7 @@
                           <li>
                             <a href="/products/eye-shine-hydrogel-patches-60-piezas">
                               <figure>
-                                <img src="{{ "eyeshine.jpeg" | asset_img_url: 'master' }}" alt="Eye Shine">
+                                <img data-src="{{ "eyeshine.jpeg" | asset_img_url: 'master' }}" alt="Eye Shine" class="lazyload">
                                 {% comment %} <div class="image-tag image-tag-ribbon">
                                   {% render 'tag-gift' %}
                                 </div> {% endcomment %}
