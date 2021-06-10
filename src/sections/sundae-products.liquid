@@ -16,9 +16,9 @@
             <div class="position-relative">
               <a href="{{ product.url }}">
                 <div class="thumb-img product__container--main col-10 mx-auto">
-                  <img src="{{ block.settings.image  | img_url: '580x556' }}" alt="{{ product.title }}">
+                  <img data-src="{{ block.settings.image  | img_url: '580x556' }}" alt="{{ product.title }}" class="lazyload">
                   <div class="thumb-img--hover product__container--hover">
-                    <img src="{{ block.settings.hover_image  | img_url: '580x556' }}" alt="">
+                    <img data-src="{{ block.settings.hover_image  | img_url: '580x556' }}" alt="" class="lazyload">
                   </div>
                 </div>
               </a>

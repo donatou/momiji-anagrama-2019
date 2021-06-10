@@ -6,7 +6,7 @@
                 <div class="col-12 text-down-sm-center">
                     <div class="sticker-sundae">
                         <figure>
-                            <img src="{{ "sundae-camara.png" | asset_img_url: 'master' }}" alt="">
+                            <img data-src="{{ "sundae-camara.png" | asset_img_url: 'master' }}" alt="" class="lazyload">
                         </figure>
                     </div>
                     <div class="text-link">
@@ -23,7 +23,7 @@
                                 {% unless image == blank %}
                                     <div class="swiper-slide">
                                         <figure>
-                                            <img src="{{ image }}" alt="">
+                                            <img data-src="{{ image }}" alt="" class="lazyload">
                                             <figcaption class="c-white d-flex flex-column flex-md-row text-down-sm-center justify-content-between text-link">
                                                 <div>
                                                     {{ product.metafields.tone.footer[forloop.index0] }}
@@ -41,7 +41,7 @@
                     </div>
                     <div class="sticker-sundae sundae-sundae">
                         <figure>
-                          <img src="{{ "sundae-sundae.png" | asset_img_url: 'master' }}" alt="">
+                          <img data-src="{{ "sundae-sundae.png" | asset_img_url: 'master' }}" alt="" class="lazyload">
                         </figure>
                     </div>
                 </div>

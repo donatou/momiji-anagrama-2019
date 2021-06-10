@@ -8,21 +8,21 @@
       <div class="marquee animate-on-scroll">
         {% assign block_1 = section.blocks | where: "type", "block-1" %}
         {% for block in block_1 %}
-          <span class="h1">{% if block.settings.image %}<img src="{{ block.settings.image  | img_url: '132x132' }}" alt="Icono {{ block.settings.title }}">{% endif %}{{ block.settings.title }}</span>
+          <span class="h1">{% if block.settings.image %}<img data-src="{{ block.settings.image  | img_url: '132x132' }}" alt="Icono {{ block.settings.title }}" class="lazyload">{% endif %}{{ block.settings.title }}</span>
         {% endfor %}
       </div>
 
       <div class="marquee animate-on-scroll" data-direction="right">
         {% assign block_2 = section.blocks | where: "type", "block-2" %}
         {% for block in block_2 %}
-          <span class="h1">{% if block.settings.image %}<img src="{{ block.settings.image  | img_url: '132x132' }}" alt="Icono {{ block.settings.title }}">{% endif %}{{ block.settings.title }}</span>
+          <span class="h1">{% if block.settings.image %}<img data-src="{{ block.settings.image  | img_url: '132x132' }}" alt="Icono {{ block.settings.title }}" class="lazyload">{% endif %}{{ block.settings.title }}</span>
         {% endfor %}
       </div>
 
       <div class="marquee animate-on-scroll">
         {% assign block_3 = section.blocks | where: "type", "block-3" %}
         {% for block in block_3 %}
-          <span class="h1">{% if block.settings.image %}<img src="{{ block.settings.image  | img_url: '132x132' }}" alt="Icono {{ block.settings.title }}">{% endif %}{{ block.settings.title }}</span>
+          <span class="h1">{% if block.settings.image %}<img data-src="{{ block.settings.image  | img_url: '132x132' }}" alt="Icono {{ block.settings.title }}" class="lazyload">{% endif %}{{ block.settings.title }}</span>
         {% endfor %}
       </div>
 

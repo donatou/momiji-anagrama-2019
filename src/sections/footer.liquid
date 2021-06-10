@@ -5,7 +5,7 @@
   <div class="container section__spacers">
     <div class="row row-mobile">
       <div class="col-12 footer__logo">
-        <a href="{{ shop.url }}"><img src="{{ 'momiji-logo-rgb.svg' | asset_url }}" alt="Momiji"></a>
+        <a href="{{ shop.url }}"><img data-src="{{ 'momiji-logo-rgb.svg' | asset_url }}" alt="Momiji" class="lazyload"></a>
         <div class="footer__redes">
           <b>{{ section.settings.texto_redes }}</b>
           <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noreferrer" alt="facebook"><i class="ico--fb"></i></a>

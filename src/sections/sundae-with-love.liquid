@@ -13,19 +13,19 @@
           <div class="movable-desc">
             <p>{{ section.settings.block_1_content }}</p>
           </div>
-          <div class="movable-icon"><img src="{{ 'sundae-icon-benefits-enhance.svg' | asset_url }}" alt=""></div>
+          <div class="movable-icon lazyload"><img data-src="{{ 'sundae-icon-benefits-enhance.svg' | asset_url }}" alt=""></div>
         </div>
 
         {% if section.settings.block_1_image %}
           <!-- icon 1  -->
           <div class="movable bg-sticky icon-ramen offset-md-7 offset-lg-8">
-            <img class="icon-hover" src="{{ section.settings.block_1_image  | img_url: '416x' }}" alt="{{ section.settings.block_1_title }}">
+            <img class="icon-hover lazyload" data-src="{{ section.settings.block_1_image  | img_url: '416x' }}" alt="{{ section.settings.block_1_title }}">
           </div>
         {% endif %}
 
         {% if section.settings.block_2_image%}
           <!-- card img  -->
-          <div class="col-md-6 col-lg-5 movable bg-img offset-md-6" style="background: url('{{ section.settings.block_2_image  | img_url: '542x618' }}');background-repeat: no-repeat;background-size: cover;">
+          <div class="col-md-6 col-lg-5 movable bg-img offset-md-6 lazyload" style="background: url('{{ section.settings.block_2_image  | img_url: '542x618' }}');background-repeat: no-repeat;background-size: cover;">
           </div>
         {% endif %}
         <!-- card 2  -->
@@ -35,7 +35,7 @@
           <div class="movable-desc">
             <p>{{ section.settings.block_2_content }}</p>
           </div>
-          <div class="movable-icon"><img src="{{ 'sundae-icon-benefits-practicidad.svg' | asset_url }}" alt="{{ section.settings.block_2_title }}"></div>
+          <div class="movable-icon lazyload"><img data-src="{{ 'sundae-icon-benefits-practicidad.svg' | asset_url }}" alt="{{ section.settings.block_2_title }}"></div>
         </div>
 
         <!-- card 3  -->
@@ -45,13 +45,13 @@
           <div class="movable-desc">
             <p>{{ section.settings.block_3_content }}</p>
           </div>
-          <div class="movable-icon"><img src="{{ 'sundae-icon-benefits-expresion.svg' | asset_url }}" alt="icon heart"></div>
+          <div class="movable-icon lazyload"><img data-src="{{ 'sundae-icon-benefits-expresion.svg' | asset_url }}" alt="icon heart"></div>
         </div>
 
         {% if section.settings.block_3_image %}
         <!-- icon 2  -->
         <div class="movable bg-sticky icon-lipstick offset-md-1">
-          <img class="icon-hover" src="{{ section.settings.block_3_image  | img_url: '394x476' }}" alt="lipstick">
+          <img class="icon-hover lazyload" data-src="{{ section.settings.block_3_image  | img_url: '394x476' }}" alt="lipstick">
         </div>
         {% endif %}
       </div>

@@ -4,10 +4,10 @@
             <div class="col-12 px-0">
                 <figure class="img-wrap">
                     <!-- HERO IMAGE -->
-                        <img alt="" class="w-100 h-100 object-fit-cover d-none d-md-block" src="{{ section.settings.image_desktop | img_url: "master" }}">
+                        <img alt="" class="w-100 h-100 object-fit-cover d-none d-md-block lazyload" data-src="{{ section.settings.image_desktop | img_url: "master" }}">
                     <!-- END: HERO IMAGE -->
                     <!-- MOBILE HERO IMAGE -->
-                        <img alt="" class="w-100 h-100 object-fit-cover d-md-none" src="{{ section.settings.image_mobile | img_url: "642x1566" }}">
+                        <img alt="" class="w-100 h-100 object-fit-cover d-md-none lazyload" data-src="{{ section.settings.image_mobile | img_url: "642x1566" }}">
                     <!-- END: MOBILE HERO IMAGE -->
                     <figcaption class="h-100">
                         <div class="container h-100">

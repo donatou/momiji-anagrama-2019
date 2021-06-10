@@ -41,7 +41,7 @@
 
             <figure class="shop-product animate-on-scroll">
               <a href="/products/{{ block.settings.product }}">
-                <img src="{{ block.settings.product_image | img_url: '426x' }}" alt="{{ block.settings.titulo }}">
+                <img data-src="{{ block.settings.product_image | img_url: '426x' }}" alt="{{ block.settings.titulo }}" class="lazyload">
               </a>
               <span class="tag-oval d-block d-lg-none">Nuevo</span>
             </figure>
@@ -120,7 +120,7 @@ CAMBIARLO EN DESKTOP Y MÓVILES
           </div>
           <figure class="col-12 col-md-6 p-0">
             <div class="img-container">
-              <img src="{{ block.settings.model_image | img_url: '1200x' }}" alt="{{ section.settings.titulo }}">
+              <img data-src="{{ block.settings.model_image | img_url: '1200x' }}" alt="{{ section.settings.titulo }}" class="lazyload">
             </div>
           </figure>
         </div>
@@ -150,7 +150,7 @@ CAMBIARLO EN DESKTOP Y MÓVILES
         <div class="col-md-6 benefits-items section__spacers">
           <div class="benefit-item animate-on-scroll">
             <div class="img-container">
-              <img src="{{ section.settings.benefits_img_1 | img_url: '750x' }}" alt="{{ section.settings.benefits_title_1 }}">
+              <img data-src="{{ section.settings.benefits_img_1 | img_url: '750x' }}" alt="{{ section.settings.benefits_title_1 }}" class="lazyload">
             </div>
             <div class="item-content animate-on-scroll">
               <h4 class="bodytitle-midabi">{{ section.settings.benefits_title_1 }}</h4>
@@ -160,7 +160,7 @@ CAMBIARLO EN DESKTOP Y MÓVILES
 
           <div class="benefit-item animate-on-scroll">
             <div class="img-container">
-              <img src="{{ section.settings.benefits_img_2 | img_url: '750x' }}" alt="{{ section.settings.benefits_title_2 }}">
+              <img data-src="{{ section.settings.benefits_img_2 | img_url: '750x' }}" alt="{{ section.settings.benefits_title_2 }}"class="lazyload">
             </div>
             <div class="item-content animate-on-scroll">
               <h4 class="bodytitle-midabi">{{ section.settings.benefits_title_2 }}</h4>
@@ -170,7 +170,7 @@ CAMBIARLO EN DESKTOP Y MÓVILES
 
           <div class="benefit-item animate-on-scroll">
             <div class="img-container">
-              <img src="{{ section.settings.benefits_img_3 | img_url: '750x' }}" alt="{{ section.settings.benefits_title_3 }}">
+              <img data-src="{{ section.settings.benefits_img_3 | img_url: '750x' }}" alt="{{ section.settings.benefits_title_3 }}" class="lazyload">
             </div>
             <div class="item-content animate-on-scroll">
               <h4 class="bodytitle-midabi">{{ section.settings.benefits_title_3 }}</h4>
@@ -202,21 +202,21 @@ CAMBIARLO EN DESKTOP Y MÓVILES
       <div class="row mt-70 order-2 order-md-1">
         <figure class="col-md-6 col-lg-5">
           <div class="img-container ">
-            <img src="{{ section.settings.last_img_1 | img_url: '427x' }}" alt="{{ section.settings.last_caption_1 }}">
+            <img data-src="{{ section.settings.last_img_1 | img_url: '427x' }}" alt="{{ section.settings.last_caption_1 }}" class="lazyload">
           </div>
           <figcaption><i class="icon icon-heart"></i>{{ section.settings.last_caption_1 }}</figcaption>
         </figure>
 
         <figure class="col-md-6 col-lg-5">
           <div class="img-container">
-            <img src="{{ section.settings.last_img_2 | img_url: '427x' }}" alt="{{ section.settings.last_caption_2 }}">
+            <img data-src="{{ section.settings.last_img_2 | img_url: '427x' }}" alt="{{ section.settings.last_caption_2 }}" class="lazyload">
           </div>
           <figcaption><i class="icon icon-heart"></i>{{ section.settings.last_caption_2 }}</figcaption>
         </figure>
 
         <figure class="col-md-6 col-lg-5">
           <div class="img-container">
-            <img src="{{ section.settings.last_img_3 | img_url: '427x' }}" alt="{{ section.settings.last_caption_3 }}">
+            <img data-src="{{ section.settings.last_img_3 | img_url: '427x' }}" alt="{{ section.settings.last_caption_3 }}" class="lazyload">
           </div>
           <figcaption><i class="icon icon-heart"></i>{{ section.settings.last_caption_3 }}</figcaption>
         </figure>

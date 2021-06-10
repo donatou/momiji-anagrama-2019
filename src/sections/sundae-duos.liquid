@@ -20,9 +20,9 @@
             <div class="position-relative">
               <a href="/collections/{{ section.settings.collection }}">
                 <div class="thumb-img product__container--main col-10 mx-auto">
-                  <img src="{{ section.settings.image  | img_url: '580x556' }}" alt="K-tint duo">
+                  <img data-src="{{ section.settings.image  | img_url: '580x556' }}" alt="K-tint duo" class="lazyload">
                   <div class="thumb-img--hover product__container--hover">
-                    <img src="{{ section.settings.hover_image  | img_url: '580x556' }}" alt="K-Tint duo">
+                    <img data-src="{{ section.settings.hover_image  | img_url: '580x556' }}" alt="K-Tint duo" class="lazyload">
                   </div>
                 </div>
               </a>

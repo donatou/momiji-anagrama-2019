@@ -1,11 +1,11 @@
 <div class="row mb-90">
     <figure class="col-md-8">
         <div class="img-container">
-            <img src="{{ 'k-facials_optimized.jpg' | asset_url }}" alt="Momiji Monterrey">
+            <img data-src="{{ 'k-facials_optimized.jpg' | asset_url }}" alt="Momiji Monterrey" class="lazyload">
         </div>
     </figure>
     <div class="col-md-4 align-self-end">
-        <img src="{{ 'miffy.svg' | asset_url }}" alt="Miffy">
+        <img data-src="{{ 'miffy.svg' | asset_url }}" alt="Miffy" class="lazyload">
         <hr>
         <b>{{ section.settings.titulo }}</b>
         <p>{{ section.settings.texto }}</p>

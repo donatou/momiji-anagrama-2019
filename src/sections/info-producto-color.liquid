@@ -8,7 +8,7 @@
                 <div class="sticky-column">
                     <div class="sticker-sundae d-none d-lg-block">
                       <figure>
-                        <img src="{{ "sundae-gloss.png" | asset_img_url: 'master' }}" alt="">
+                        <img data-src="{{ "sundae-gloss.png" | asset_img_url: 'master' }}" alt="" class="lazyload">
                       </figure>
                     </div>
                     <div class="swiper-info swiper-container">
@@ -16,7 +16,7 @@
                             {% for image in product.metafields.details.image %}
                             <div class="swiper-slide">
                                 <figure class="img-wrap absolute-caption">
-                                    <img src="{{ image }}" alt="" class="w-100">
+                                    <img data-src="{{ image }}" alt="" class="w-100 lazyload">
                                 </figure>
                             </div>
                             {% endfor %}
@@ -240,7 +240,7 @@
                                     {% elsif product.metafields.utilizar.image %}
                                         <div class="pb-25">
                                             <figure class="img-wrap">
-                                                <img src="{{ product.metafields.utilizar.image  }}" alt="">
+                                                <img data-src="{{ product.metafields.utilizar.image  }}" alt="" class="lazyload">
                                             </figure>
                                         </div>
                                     {% endif %}
@@ -277,7 +277,7 @@
                                     {% elsif product.metafields.tips.image %}
                                     <div class="pb-25">
                                         <figure class="img-wrap">
-                                            <img src="{{ product.metafields.tips.image }}" alt="">
+                                            <img data-src="{{ product.metafields.tips.image }}" alt="" class="lazyload">
                                         </figure>
                                     </div>
                                     {% endif %}

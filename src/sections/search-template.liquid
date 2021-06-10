@@ -60,7 +60,7 @@
                 <figure>
                   {% if product.image %}
                     <div class="article-image product-thumbnail">
-                      <a href="{{ product.url }}"><img src="{{ product.image.src | img_url: 'x320' }}" alt="{{ product.title }}"></a>
+                      <a href="{{ product.url }}"><img data-src="{{ product.image.src | img_url: 'x320' }}" alt="{{ product.title }}" class="lazyload"></a>
                     </div>
                   {% endif %}
                   <figcaption>

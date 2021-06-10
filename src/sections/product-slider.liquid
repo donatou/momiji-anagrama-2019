@@ -9,7 +9,7 @@
             <div class="col-12 text-down-sm-center">
                 <div class="sticker-sundae">
                     <figure>
-                      <img src="{{ "sundae-powder.png" | asset_img_url: 'master' }}" alt="">
+                      <img data-src="{{ "sundae-powder.png" | asset_img_url: 'master' }}" alt="" class="lazyload">
                     </figure>
                 </div>
                 <div class="text-link">
@@ -21,8 +21,8 @@
             </div>
             <div class="col-12">
                 <div class="cocoen">
-                    <img alt="image 1" class="" src="{{ product.metafields.cambios.image_1 }}">
-                    <img alt="image 2" class="" src="{{ product.metafields.cambios.image_2 }}">
+                    <img alt="image 1" class="lazyload" data-src="{{ product.metafields.cambios.image_1 }}">
+                    <img alt="image 2" class="lazyload" data-src="{{ product.metafields.cambios.image_2 }}">
                 </div>
             </div>
             {% if product.metafields.cambios.footnote != blank %}

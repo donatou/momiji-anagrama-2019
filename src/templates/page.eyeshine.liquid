@@ -11,19 +11,19 @@
 
     <div class="row justify-content-md-center mt-50">
       <figure class="col-7 ml-auto ml-md-0 col-md-4 p-0">
-        <img class="thumbnail" src="{{ 'eyeshine-about-1.jpg' | asset_url }}" alt="">
+        <img class="thumbnail lazyload" data-src="{{ 'eyeshine-about-1.jpg' | asset_url }}" alt="eyeshine-about-1">
       </figure>
       <figure class="col-9 col-md-5 p-0">
-        <img class="thumbnail" src="{{ 'eyeshine-about-2.jpg' | asset_url }}" alt="">
+        <img class="thumbnail lazyload" data-src="{{ 'eyeshine-about-2.jpg' | asset_url }}" alt="eyeshine-about-2">
       </figure>
       <figure class="col-12 col-md-6">
-        <img class="thumbnail" src="{{ 'eyeshine-about-3.jpg' | asset_url }}" alt="">
+        <img class="thumbnail lazyload" data-src="{{ 'eyeshine-about-3.jpg' | asset_url }}" alt="eyeshine-about-3">
       </figure>
       <figure class="col-12 col-md-6">
-        <img class="thumbnail" src="{{ 'eyeshine-about-4.jpg' | asset_url }}" alt="">
+        <img class="thumbnail lazyload" data-src="{{ 'eyeshine-about-4.jpg' | asset_url }}" alt="eyeshine-about-4">
       </figure>
       <figure class="col-8 col-md-4 mx-auto">
-        <img class="thumbnail" src="{{ 'eyeshine-about-5.jpg' | asset_url }}" alt="">
+        <img class="thumbnail lazyload" data-src="{{ 'eyeshine-about-5.jpg' | asset_url }}" alt="eyeshine-about-5">
       </figure>
     </div>
     
@@ -36,7 +36,7 @@
       <div class="col-md-5 col-lg-6">
         <h3 class="text-link">Lo mejor para tu piel</h3>
         <h2 class="h1-title">Ingredientes.</h2>
-        <img class="mt-50" src="{{ 'eyeshine-ingredients.jpg' | asset_url }}" alt="Ingrediente">
+        <img class="mt-50 lazyload" data-src="{{ 'eyeshine-ingredients.jpg' | asset_url }}" alt="Ingrediente">
       </div>
       <div class="col-md-7 col-lg-6 mt-50">
         <div class="ingredientes__item row">
@@ -108,7 +108,7 @@
     <div class="row no-gutters">
         <div class="col-md-4 ventajas__item">
           <div class="img-container">
-            <img src="{{ 'eyeshine-ventajas-1.jpg' | asset_url }}" alt="Mejor Absorcion">
+            <img data-src="{{ 'eyeshine-ventajas-1.jpg' | asset_url }}" alt="Mejor Absorcion" class="lazyload">
           </div>
           <div class="text-container">
             <h3>Mejor absorción</h3>
@@ -118,7 +118,7 @@
 
         <div class="col-md-4 ventajas__item">
           <div class="img-container">
-            <img src="{{ 'eyeshine-ventajas-2.jpg' | asset_url }}" alt="Eficiente">
+            <img data-src="{{ 'eyeshine-ventajas-2.jpg' | asset_url }}" alt="Eficiente" class="lazyload">
           </div>
           <div class="text-container">
             <h3>Más eficiente</h3>
@@ -128,7 +128,7 @@
 
         <div class="col-md-4 ventajas__item">
           <div class="img-container">
-            <img src="{{ 'eyeshine-ventajas-3.jpg' | asset_url }}" alt="Oily Skin">
+            <img data-src="{{ 'eyeshine-ventajas-3.jpg' | asset_url }}" alt="Oily Skin" class="lazyload">
           </div>
           <div class="text-container">
             <h3>Hidratación al 100%</h3>
@@ -153,15 +153,15 @@
     </div>
   </div>
   <div class="content--stickers">
-    <img src="{{ 'eyeshine-Aceite.svg' | asset_url }}" alt="" class="sticker-item">
-    {%- comment -%}<img src="{{ 'eyeshine-Biodegradable.svg' | asset_url }}" alt="" class="sticker-item">{%- endcomment -%}
-    <img src="{{ 'eyeshine-Crueldad.svg' | asset_url }}" alt="" class="sticker-item">
-    <img src="{{ 'eyeshine-Formaldehido.svg' | asset_url }}" alt="" class="sticker-item">
-    <img src="{{ 'eyeshine-Fragancias.svg' | asset_url }}" alt="" class="sticker-item">
-    <img src="{{ 'eyeshine-Ingredientes-Naturales.svg' | asset_url }}" alt="" class="sticker-item">
-    <img src="{{ 'eyeshine-Parabenos.svg' | asset_url }}" alt="" class="sticker-item">
-    <img src="{{ 'eyeshine-Sulfatos.svg' | asset_url }}" alt="" class="sticker-item">
-    <img src="{{ 'eyeshine-Todo-tipo-de-piel.svg' | asset_url }}" alt="" class="sticker-item">
+    <img data-src="{{ 'eyeshine-Aceite.svg' | asset_url }}" alt="" class="sticker-item lazyload">
+    {%- comment -%}<img data-src="{{ 'eyeshine-Biodegradable.svg' | asset_url }}" alt="" class="sticker-item lazyload">{%- endcomment -%}
+    <img data-src="{{ 'eyeshine-Crueldad.svg' | asset_url }}" alt="" class="sticker-item lazyload">
+    <img data-src="{{ 'eyeshine-Formaldehido.svg' | asset_url }}" alt="" class="sticker-item lazyload">
+    <img data-src="{{ 'eyeshine-Fragancias.svg' | asset_url }}" alt="" class="sticker-item lazyload">
+    <img data-src="{{ 'eyeshine-Ingredientes-Naturales.svg' | asset_url }}" alt="" class="sticker-item lazyload">
+    <img data-src="{{ 'eyeshine-Parabenos.svg' | asset_url }}" alt="" class="sticker-item lazyload">
+    <img data-src="{{ 'eyeshine-Sulfatos.svg' | asset_url }}" alt="" class="sticker-item lazyload">
+    <img data-src="{{ 'eyeshine-Todo-tipo-de-piel.svg' | asset_url }}" alt="" class="sticker-item lazyload">
   </div>
 </section>
 
@@ -176,7 +176,7 @@
     <div class="row justify-content-between">
       <div class="col-md-4 col-lg-3 usar__item">
         <figure>
-          <img class="active-img" src="{{ 'eyeshine-step.png' | asset_url }}" alt="Step 1">
+          <img class="active-img lazyload" data-src="{{ 'eyeshine-step.png' | asset_url }}" alt="Step 1">
         </figure>
         <div class="text-container">
           <p class="text-sans">Paso 1</p>
@@ -186,7 +186,7 @@
 
       <div class="col-md-4 col-lg-3 usar__item">
         <figure>
-          <img class="active-img" src="{{ 'eyeshine-step-2.png' | asset_url }}" alt="Step 1">
+          <img class="active-img lazyload" data-src="{{ 'eyeshine-step-2.png' | asset_url }}" alt="Step 1">
         </figure>
         <div class="text-container">
           <p class="text-sans">Paso 2</p>
@@ -196,7 +196,7 @@
 
       <div class="col-md-4 col-lg-3 usar__item">
         <figure>
-          <img class="active-img" src="{{ 'eyeshine-step-3.png' | asset_url }}" alt="Step 1">
+          <img class="active-img lazyload" data-src="{{ 'eyeshine-step-3.png' | asset_url }}" alt="Step 1">
         </figure>
         <div class="text-container">
           <p class="text-sans">Paso 3</p>

@@ -4,7 +4,7 @@
 
 {% if section.settings.show_section == true %}
   <section class="eyeshine__hero">
-    <img srcset="{{ 'eyeshine-hero-mobile.jpg' | asset_url }} 500w, {{ 'eyeshine-hero-2.jpg' | asset_url }}" src="{{ 'eyeshine-hero-2.jpg' | asset_url }}" alt="Image"/>
+    <img srcset="{{ 'eyeshine-hero-mobile.jpg' | asset_url }} 500w, {{ 'eyeshine-hero-2.jpg' | asset_url }}" src="{{ 'eyeshine-hero-2.jpg' | asset_url }}" alt="Image" class="lazyload"/>
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12 col-md-7 col-lg-6 col-xl-5 sticker-eyeshine">

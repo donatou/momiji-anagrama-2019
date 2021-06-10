@@ -12,7 +12,7 @@
             </div>
 
             <figure class="shop-product animate-on-scroll">
-            <img src="{{ section.settings.product_image | img_url: '426x' }}" alt="{{ section.settings.titulo }}">
+            <img data-src="{{ section.settings.product_image | img_url: '426x' }}" alt="{{ section.settings.titulo }}" class="lazyload">
             <span class="tag-oval d-block d-lg-none">Nuevo</span>
             </figure>
 
@@ -37,7 +37,7 @@
         </div>
         <figure class="col-12 col-md-6 p-0">
             <div class="img-container">
-            <img src="{{ section.settings.model_image | img_url: '1200x' }}" alt="{{ section.settings.titulo }}">
+            <img data-src="{{ section.settings.model_image | img_url: '1200x' }}" alt="{{ section.settings.titulo }}" class="lazyload">
             </div>
         </figure>
         </div>

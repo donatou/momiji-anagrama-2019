@@ -14,7 +14,7 @@
                         {% for image in product.metafields.skin.image %}
                             <div class="swiper-slide">
                               <figure class="img-wrap">
-                                    <img alt="" class="w-100 h-100 object-fit-cover" src="{{ image }}">
+                                    <img alt="" class="w-100 h-100 object-fit-cover lazyload" data-src="{{ image }}">
                                     <figcaption class="text-link d-flex justify-content-between">
                                         <div>
                                             {{ product.metafields.skin.name[forloop.index0] }}
