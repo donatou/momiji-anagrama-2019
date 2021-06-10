@@ -8,6 +8,8 @@
     <link rel="canonical" href="{{ canonical_url }}">
 
     <link rel="preload" href="{{ 'jquery.min.js' | asset_url }}" as="script">
+    
+    {%- comment -%}Lazyload para las imagenes{%- endcomment -%}
     <script src="{{ 'ls.rias.min.js' | asset_url}}"></script>
     <script src="{{ 'lazysizes.min.js' | asset_url}}"></script>
 
