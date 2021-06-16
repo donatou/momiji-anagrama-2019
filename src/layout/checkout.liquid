@@ -29,7 +29,7 @@
     {% include 'gtm-datalayer' %} {% include 'gtm-head' %} {% include
     "loyaltylion" %}
 
-    <script>
+    <script async>
       lion.configure({ checkout: true });
     </script>
     {%- comment -%}Address Validator{%- endcomment -%}
@@ -87,7 +87,7 @@
     {{ tracking_code }}
     <script src="{{ 'jquery.min.js' | asset_url }}"></script>
 
-    <script type="text/javascript">
+    <script async type="text/javascript">
       var mouseflowCrossDomainSupport = true;
       window._mfq = window._mfq || [];
       (function() {
@@ -103,7 +103,7 @@
 
 {%- comment -%} Se quitó Mercado Pago el 28 de mayo de 2020. {%- endcomment -%}
 
-<script>
+<script async>
   $(document).on('page:load page:change', () => {
     //Convierte el formato de precio
     const conversion = (priceList) => {

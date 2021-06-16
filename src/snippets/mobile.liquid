@@ -24,7 +24,7 @@
               <input type="hidden" name="type" value="product">
               <input type="text" name="q" placeholder="Buscar" value="{{ search.terms | escape }}">
               <button type="submit" class="search-btn" name="button">
-                  <img src="{{ 'search.svg' | asset_url }}" alt="Search">
+                  <img data-src="{{ 'search.svg' | asset_url }}" alt="Search" class="lazyload">
               </button>
           </form>
         </div>
@@ -164,10 +164,10 @@
         <a href="/collections/momiji" class="w-100">
           <div class="d-flex justify-content-between align-items-center icon-row pb-10 bb-black">
             <div class="logo h-20">
-              <img src="{{ "momiji.png" | asset_img_url: 'master' }}">
+              <img data-src="{{ "momiji.png" | asset_img_url: 'master' }}" class="lazyload">
             </div>
             <div class="icon">
-              <img src="{{ "momiji-icon.png" | asset_img_url: 'master' }}">
+              <img data-src="{{ "momiji-icon.png" | asset_img_url: 'master' }}" class="lazyload">
             </div>
           </div>
         </a>
@@ -176,10 +176,10 @@
         <a href="/pages/momiji-life" class="w-100">
           <div class="d-flex justify-content-between align-items-center icon-row py-10 bb-black">
             <div class="logo h-20">
-              <img src="{{ "momiji-life.png" | asset_img_url: 'master' }}">
+              <img data-src="{{ "momiji-life.png" | asset_img_url: 'master' }}" class="lazyload">
             </div>
             <div class="icon">
-              <img src="{{ "momiji-life-icon.png" | asset_img_url: 'master' }}">
+              <img data-src="{{ "momiji-life-icon.png" | asset_img_url: 'master' }}" class="lazyload">
             </div>
           </div>
         </a>
@@ -188,10 +188,10 @@
         <a href="/collections/sundae" class="w-100">
           <div class="d-flex justify-content-between align-items-center icon-row py-10 bb-black">
             <div class="logo h-18">
-              <img src="{{ "sundae.png" | asset_img_url: 'master' }}">
+              <img data-src="{{ "sundae.png" | asset_img_url: 'master' }}" class="lazyload">
             </div>
             <div class="icon">
-              <img src="{{ "sundae-icon.png" | asset_img_url: 'master' }}">
+              <img data-src="{{ "sundae-icon.png" | asset_img_url: 'master' }}" class="lazyload">
             </div>
           </div>
         </a>
@@ -348,7 +348,7 @@
         <input type="hidden" name="type" value="product">
         <input type="text" name="q" placeholder="Buscar" value="{{ search.terms | escape }}">
         <button type="submit" class="search-btn" name="button">
-            <img src="{{ 'search.svg' | asset_url }}" alt="Search">
+            <img data-src="{{ 'search.svg' | asset_url }}" alt="Search" class="lazyload">
         </button>
     </form>
   </li>
