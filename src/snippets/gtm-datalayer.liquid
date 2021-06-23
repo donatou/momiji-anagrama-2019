@@ -177,11 +177,18 @@
 									'quantity': '{{line_item.quantity}}'
 								},
 								{% endfor %}
-								]
+							],
+							'payment_method': [
+								{% for transaction in checkout.transactions %}
+								{
+									'gateway': '{{transaction.gateway}}',
+								},
+								{% endfor %}
+							]
 				}
 			});
-			//console.log('thank_you step');
-			//console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
+			console.log('thank_you step');
+			console.log('dataLayer', JSON.stringify(dataLayer, null, 0));
 		</script>
 	{% endif %}
 {% endif %}
