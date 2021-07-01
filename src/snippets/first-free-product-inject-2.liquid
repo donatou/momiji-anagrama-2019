@@ -19,31 +19,18 @@
 
 
   <script>
-  
   (function($) {
-    var cartItems1 = {{ cart.items | json }},
-        qtyInTheCart1 = 0,
-        cartUpdates1 = {},
+    let cartUpdates1 = {},
         cartTotal1 = {{ cart.total_price }};
-    /*    
-    for (var j=0; j<cartItems1.length; j++) {
-      if ( cartItems1[j].id === {{ variant_id_1 }} ) {
-        qtyInTheCart1 = cartItems1[j].quantity;
-        console.log(qtyInTheCart1);
-        break;
-      }
-    }
-    */
-    if ( ( cartTotal1 < {{ first_free_gift_over_x_price }} ) ) {
-      console.log('No aplica')
+
+    if ( cartTotal1 < {{ first_free_gift_over_x_price }} ) {
     }
     
-    else if ( (cartTotal1 >= {{ first_free_gift_over_x_price }} ) ) {
+    else if (cartTotal1 >= {{ first_free_gift_over_x_price }} ) {
       cartUpdates1 = { {{ variant_id_1 }}: 1 }
-      console.log(cartUpdates1)
-      console.log('Si aplica')
     }
-    var params1 = {
+
+    let params1 = {
       type: 'POST',
       url: '/cart/update.js',
       data: { updates: cartUpdates1 },
@@ -53,40 +40,27 @@
   })(jQuery);
 
   (function($) {
-    var cartItems2 = {{ cart.items | json }},
-        qtyInTheCart2 = 0,
-        cartUpdates2 = {},
+    let cartUpdates2 = {},
         cartTotal2 = {{ cart.total_price }};
-    /*
-    for (var k=0; k<cartItems2.length; k++) {
-      if ( cartItems2[k].id === {{ variant_id_2 }} ) {
-        qtyInTheCart2 = cartItems2[k].quantity;
-        break;
-      }
-    }
-    */
 
-    if ( ( cartTotal2 < {{ second_free_gift_over_x_price }} ) ) {
-      console.log('No aplica')
+    if  ( cartTotal2 < {{ second_free_gift_over_x_price }} ) {
     }
     
-    else if ( ((cartTotal2 >= {{ second_free_gift_over_x_price }} ) ) ) {
+    else if (cartTotal2 >= {{ second_free_gift_over_x_price }} ) {
       cartUpdates2 = { {{ variant_id_2 }}: 1 }
-      console.log(cartUpdates2)
-      console.log('Si aplica')
     }
-    var params2 = {
+    let params2 = {
       type: 'POST',
       url: '/cart/update.js',
       data: { updates: cartUpdates2 },
-      dataType: 'json'
+      dataType: 'json',
     };
     $.ajax(params2);
   })(jQuery);
   </script>
 
   {%- comment -%}
-      var params = {
+      let params = {
       type: 'POST',
       url: '/cart/update.js',
       data: { updates: cartUpdates },

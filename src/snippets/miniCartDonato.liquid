@@ -1,423 +1,454 @@
 <div id="mm_cartoverlay" class="mm_cartoverlay minicart-summ" style="right: -110vw;">
-{%- comment -%}<div id="mm_cartoverlay" class="mm_cartoverlay minicart-summ" style="right: -400px;">{%- endcomment -%}
-  <div class="cartoverlay" id="cart-content">
-    <div id="cart_temp_late" class="shopify-section">
-      <div data-section-type="cart-template" data-ajax-update="true">
+  {%- comment -%}<div id="mm_cartoverlay" class="mm_cartoverlay minicart-summ" style="right: -400px;">{%- endcomment -%}
+    <div class="cartoverlay" id="cart-content">
+      <div id="cart_temp_late" class="shopify-section">
+        <div data-section-type="cart-template" data-ajax-update="true">
 
-        <div class="cart__header">
-          <span class='closecart_mm close-btn'></span>
-          <div class="majortitle">{{ 'cart.general.title' | t }}</div>
-        </div>
+          <div class="cart__header">
+            <span class='closecart_mm close-btn'></span>
+            <div class="majortitle">{{ 'cart.general.title' | t }}</div>
+          </div>
 
-        {%- assign shipping_value = settings.costo_enviogratis | times: 100 -%}
-        {%- assign shipping_value_x = settings.costo_envio_x | times: 100 -%}
-        {%- assign cart_total = cart.total_price -%}
-        {%- assign shipping_value_left = shipping_value | minus: cart_total -%}
-        {%- assign shipping_value_x_left = shipping_value_x | minus: cart_total -%}
+          {%- assign shipping_value = settings.costo_enviogratis | times: 100 -%}
+          {%- assign shipping_value_x = settings.costo_envio_x | times: 100 -%}
+          {%- assign cart_total = cart.total_price -%}
+          {%- assign shipping_value_left = shipping_value | minus: cart_total -%}
+          {%- assign shipping_value_x_left = shipping_value_x | minus: cart_total -%}
 
-        {%- if cart.item_count != 0 -%}
-        <form action="/cart" method="post" id="cartform" style="display:{%- if cart.item_count == 0 -%}none{%- else -%}block{%- endif -%};">
-          <div class="minicart-nosubtotal"><!-- /.minicart-nosubtotal -->
+          {%- if cart.item_count != 0 -%}
+          <form action="/cart" method="post" id="cartform"
+            style="display:{%- if cart.item_count == 0 -%}none{%- else -%}block{%- endif -%};">
+            <div class="minicart-nosubtotal">
+              <!-- /.minicart-nosubtotal -->
 
-          {%- assign promo_vigente = settings.promo_vigente -%}
-          {%- case promo_vigente -%}
+              {%- assign promo_vigente = settings.promo_vigente -%}
+              {%- case promo_vigente -%}
 
-          {%- comment -%}
-          Envío gratis al agregar un producto (o varios) X en carrito.
-          {%- endcomment -%}
-            {%- when 'agrega_producto' -%}
+              {%- comment -%}
+              Envío gratis al agregar un producto (o varios) X en carrito.
+              {%- endcomment -%}
+              {%- when 'agrega_producto' -%}
               {%- if settings.x_product == blank and settings.x_product_tag == blank -%}
-                <p class="cartfreeshipping">SELECCIONAR PRODUCTO DE PROMOCIÓN, TAG REQUERIDO O CAMBIAR DE TIPO DE PROMOCIÓN</p>
+              <p class="cartfreeshipping">SELECCIONAR PRODUCTO DE PROMOCIÓN, TAG REQUERIDO O CAMBIAR DE TIPO DE
+                PROMOCIÓN</p>
               {%- elsif settings.x_product != blank -%}
               {%- capture settings_product -%}
-                {{ all_products[settings.x_product].id }}
+              {{ all_products[settings.x_product].id }}
               {%- endcapture -%}
               {%- assign prod_id = settings_product | times: 1 -%}
-                {%- for item in cart.items -%}
-                  {%- if item.product.id == prod_id -%}
-                    {%- assign prod_select = true -%}
+              {%- for item in cart.items -%}
+              {%- if item.product.id == prod_id -%}
+              {%- assign prod_select = true -%}
+              {%- endif -%}
+              {%- endfor -%}
+              <p class="cartfreeshipping">
+                {%- if prod_select or shipping_value_left <= 0 -%} ¡Tu orden califica para envío gratis! {%- else -%}
+                  ¡Agrega un <a href="{{ all_products[settings.x_product].url }}" rel="noopener noreferrer"> {{
+                  all_products[settings.x_product].title }} </a> para que tu envío sea gratis!
                   {%- endif -%}
-                {%- endfor -%}
-                  <p class="cartfreeshipping">
-                {%- if prod_select or shipping_value_left <= 0 -%}
-                  ¡Tu orden califica para envío gratis!
-                {%- else -%}
-                  ¡Agrega un <a href="{{ all_products[settings.x_product].url }}" rel="noopener noreferrer"> {{ all_products[settings.x_product].title }} </a> para que tu envío sea gratis!
-                {%- endif -%}
-                  </p>
+              </p>
               {%- else settings.x_product_tag != blank -%}
-                {%- assign tag = settings.x_product_tag -%}
-                {%- assign promo = settings.promo_txt -%}
-                {%- for item in cart.items -%}
-                  {%- if item.product.tags contains tag -%}
-                    {%- assign selected_product = true -%}
-                  {%- endif -%}
-                {%- endfor -%}
-                  <p class="cartfreeshipping">
-                {%- if selected_product or shipping_value_left <= 0 -%}
-                  ¡Tu orden califica para envío gratis!
-                {%- else -%}
-                    {%- capture bundle -%}
-                    Agrega {{ promo }} para que tu envío sea gratis.
-                    {%- endcapture -%}
-                    {{ bundle }}
-                {%- endif -%}
-                  </p>
+              {%- assign tag = settings.x_product_tag -%}
+              {%- assign promo = settings.promo_txt -%}
+              {%- for item in cart.items -%}
+              {%- if item.product.tags contains tag -%}
+              {%- assign selected_product = true -%}
               {%- endif -%}
+              {%- endfor -%}
+              <p class="cartfreeshipping">
+                {%- if selected_product or shipping_value_left <= 0 -%} ¡Tu orden califica para envío gratis! {%- else
+                  -%} {%- capture bundle -%} Agrega {{ promo }} para que tu envío sea gratis. {%- endcapture -%} {{
+                  bundle }} {%- endif -%} </p>
+                  {%- endif -%}
 
 
-          {%- comment -%}
-          Producto de regalo manual en almacén, usando tags.
-          {%- endcomment -%}
-            {%- when 'regalo_con_tags' -%}
-              {%- assign promo_before_msg = settings.almacen_promo_before -%}
-              {%- assign promo_after_msg = settings.almacen_promo_after -%}
+                  {%- comment -%}
+                  Producto de regalo manual en almacén, usando tags.
+                  {%- endcomment -%}
+                  {%- when 'regalo_con_tags' -%}
+                  {%- assign promo_before_msg = settings.almacen_promo_before -%}
+                  {%- assign promo_after_msg = settings.almacen_promo_after -%}
 
-              {%- if settings.almacen_product_tag == blank -%}
-                <p class="cartfreeshipping">LLENAR TAG REQUERIDO</p>
-              {%- elsif settings.almacen_product != blank -%}
-              {%- capture settings_product -%}
-                {{ all_products[settings.almacen_product].id }}
-              {%- endcapture -%}
-              {%- assign prod_id = settings_product | times: 1 -%}
-                {%- for item in cart.items -%}
+                  {%- if settings.almacen_product_tag == blank -%}
+                  <p class="cartfreeshipping">LLENAR TAG REQUERIDO</p>
+                  {%- elsif settings.almacen_product != blank -%}
+                  {%- capture settings_product -%}
+                  {{ all_products[settings.almacen_product].id }}
+                  {%- endcapture -%}
+                  {%- assign prod_id = settings_product | times: 1 -%}
+                  {%- for item in cart.items -%}
                   {%- if item.product.id == prod_id -%}
-                    {%- assign prod_select = true -%}
+                  {%- assign prod_select = true -%}
                   {%- endif -%}
-                {%- endfor -%}
+                  {%- endfor -%}
                   <p class="cartfreeshipping">
-                {%- if prod_select -%}
-                  {{ promo_after_msg }}
-                {%- else -%}
-                  {{ promo_before_msg }}
-                {%- endif -%}
+                    {%- if prod_select -%}
+                    {{ promo_after_msg }}
+                    {%- else -%}
+                    {{ promo_before_msg }}
+                    {%- endif -%}
                   </p>
-              {%- else settings.almacen_product_tag != blank -%}
-                {%- assign tag = settings.almacen_product_tag -%}
-                {%- for item in cart.items -%}
+                  {%- else settings.almacen_product_tag != blank -%}
+                  {%- assign tag = settings.almacen_product_tag -%}
+                  {%- for item in cart.items -%}
                   {%- if item.product.tags contains tag -%}
-                    {%- assign selected_product = true -%}
+                  {%- assign selected_product = true -%}
                   {%- endif -%}
-                {%- endfor -%}
+                  {%- endfor -%}
                   <p class="cartfreeshipping">
-                {%- if selected_product -%}
-                  {{ promo_after_msg }}
-                {%- else -%}
-                  {{ promo_before_msg }}
-                {%- endif -%}
+                    {%- if selected_product -%}
+                    {{ promo_after_msg }}
+                    {%- else -%}
+                    {{ promo_before_msg }}
+                    {%- endif -%}
                   </p>
-              {%- endif -%}
-
-
-          {%- comment -%}
-          Producto (ya sea en stock o escondido) de regalo, en compras arriba de X.
-          {%- endcomment -%}
-            {%- when 'incluye_regalo' -%}
-
-              {%- render 'cart-free-product-inject' -%}
-              {%- comment -%}{% render 'cart-free-product-v2' %}{%- endcomment -%}
-
-              {%- assign cart_total_promo = cart.total_price | times: 0.01 -%}
-              {%- comment -%}{%- assign shipping_value_left_promo = free_gift_over_x_price | minus: cart_total_promo -%}{%- endcomment -%}
-              {%- assign test_minimum_spend = settings.minimum_spend | times: 1 -%}
-              {%- assign shipping_value_left_promo = test_minimum_spend | minus: cart_total_promo | times: 100 | abs -%}
-              {%- comment -%}{%- if all_products[settings.free_product].selected_or_first_available_variant.inventory_management == "shopify" and all_products[settings.free_product].selected_or_first_available_variant.inventory_policy != "continue" -%}
-                {% assign llevainventario = true %}
-              {%- endif -%}{%- endcomment -%}
-              {%- assign falta_x = shipping_value_left_promo | money -%}
-              {%- assign promo_x = settings.copy_regalo -%}
-              {%- capture promo_no_aplica -%}
-                Agrega {{ falta_x }} más para recibir {{ promo_x }}
-              {%- endcapture -%}
-              {%- assign mememe = settings.textop -%}
-              {%- capture promo_aplica -%}
-                {{ mememe }} {{ promo_x }}
-              {%- endcapture -%}
-              {%- assign producto_agotado = settings.producto_agotado -%}
-              {%- assign display_stock = settings.show_inventory -%}
-              {%- assign alerta_stock = settings.alerta_stock | times: 1 -%}
-              {%- capture stock_qty -%}
-                ¡Quedan {{ promo_product_inventory }} piezas!
-              {%- endcapture -%}
-              {%- capture stock_qty_one -%}
-                ¡Queda solo una pieza!
-              {%- endcapture -%}
-              {% capture stock_alert_copy %}
-                {%- if llevainventario -%}
-                  {%- if promo_product_inventory <= alerta_stock and promo_product_inventory != 1 and promo_product_inventory != 0 -%}
-                    {{ stock_qty }}
-                  {%- elsif promo_product_inventory == 1 -%}
-                    {{ stock_qty_one }}
-                  {%- elsif promo_product_inventory == 0 -%}
-                    {%- assign strikethrough = true -%}
-                    {{ producto_agotado }}
                   {%- endif -%}
-                {%- endif -%}
-              {% endcapture %}
-              {% capture costo_regalo %}
-                {{ all_products[settings.free_product].selected_or_first_available_variant.price }}
-              {% endcapture %}
-              {% capture cart_total_discount %}
-                {{ cart.total_discount }}
-              {% endcapture %}
-              {% capture cart_items_subtotal %}
-                {{ cart.items_subtotal_price }}
-              {% endcapture %}
-              {% assign subtotal_menos_promo = cart_items_subtotal | times: 1 | minus: costo_regalo | times: 0.01 %}
 
-                {%- comment -%}<p class="cartfreeshipping">
-                  {%- if cart_total_promo < free_gift_over_x_price -%}
-                    <span class="{%- if strikethrough -%} compare--at {%- endif -%}">{{ promo_no_aplica }}<br></span>
-                    <!-- <span>{{ stock_alert_copy }}</span> -->
-                  {%- else -%}
-                    <span class="{%- if strikethrough -%} compare--at {%- endif -%}">{{ promo_aplica }}<br></span>
-                    <!-- <span>{{ stock_alert_copy }}</span> -->
-                  {%- endif -%}
-                </p>{%- endcomment -%}
 
-                {%- comment -%}<h3>total discount: {{ cart_total_discount | times: 0.01 }}<br>
-                  items subtotal: {{ cart_items_subtotal | times: 0.01 }}<br>
+                  {%- comment -%}
+                  Producto (ya sea en stock o escondido) de regalo, en compras arriba de X.
+                  {%- endcomment -%}
+                  {%- when 'incluye_regalo' -%}
+
+                  {%- render 'cart-free-product-inject' -%}
+                  {%- comment -%}{% render 'cart-free-product-v2' %}{%- endcomment -%}
+
+                  {%- assign cart_total_promo = cart.total_price | times: 0.01 -%}
+                  {%- comment -%}{%- assign shipping_value_left_promo = free_gift_over_x_price | minus: cart_total_promo
+                  -%}{%- endcomment -%}
+                  {%- assign test_minimum_spend = settings.minimum_spend | times: 1 -%}
+                  {%- assign shipping_value_left_promo = test_minimum_spend | minus: cart_total_promo | times: 100 | abs
+                  -%}
+                  {%- comment -%}{%- if
+                  all_products[settings.free_product].selected_or_first_available_variant.inventory_management ==
+                  "shopify" and all_products[settings.free_product].selected_or_first_available_variant.inventory_policy
+                  != "continue" -%}
+                  {% assign llevainventario = true %}
+                  {%- endif -%}{%- endcomment -%}
+                  {%- assign falta_x = shipping_value_left_promo | money -%}
+                  {%- assign promo_x = settings.copy_regalo -%}
+                  {%- capture promo_no_aplica -%}
+                  Agrega {{ falta_x }} más para recibir {{ promo_x }}
+                  {%- endcapture -%}
+                  {%- assign mememe = settings.textop -%}
+                  {%- capture promo_aplica -%}
+                  {{ mememe }} {{ promo_x }}
+                  {%- endcapture -%}
+                  {%- assign producto_agotado = settings.producto_agotado -%}
+                  {%- assign display_stock = settings.show_inventory -%}
+                  {%- assign alerta_stock = settings.alerta_stock | times: 1 -%}
+                  {%- capture stock_qty -%}
+                  ¡Quedan {{ promo_product_inventory }} piezas!
+                  {%- endcapture -%}
+                  {%- capture stock_qty_one -%}
+                  ¡Queda solo una pieza!
+                  {%- endcapture -%}
+                  {% capture stock_alert_copy %}
+                  {%- if llevainventario -%}
+                  {%- if promo_product_inventory <= alerta_stock and promo_product_inventory !=1 and
+                    promo_product_inventory !=0 -%} {{ stock_qty }} {%- elsif promo_product_inventory==1 -%} {{
+                    stock_qty_one }} {%- elsif promo_product_inventory==0 -%} {%- assign strikethrough=true -%} {{
+                    producto_agotado }} {%- endif -%} {%- endif -%} {% endcapture %} {% capture costo_regalo %} {{
+                    all_products[settings.free_product].selected_or_first_available_variant.price }} {% endcapture %}
+                    {%capture cart_total_discount %} {{ cart.total_discount }} {% endcapture %} {% capture
+                    cart_items_subtotal %} {{ cart.items_subtotal_price }} {% endcapture %} {% assign
+                    subtotal_menos_promo=cart_items_subtotal | times: 1 | minus: costo_regalo | times: 0.01 %}
+                    {%-comment -%}<p class="cartfreeshipping">
+                    {%- if cart_total_promo < free_gift_over_x_price -%} <span
+                      class="{%- if strikethrough -%} compare--at {%- endif -%}">{{ promo_no_aplica }}<br></span>
+                      <!-- <span>{{ stock_alert_copy }}</span> -->
+                      {%- else -%}
+                      <span class="{%- if strikethrough -%} compare--at {%- endif -%}">{{ promo_aplica }}<br></span>
+                      <!-- <span>{{ stock_alert_copy }}</span> -->
+                      {%- endif -%}
+              </p>{%- endcomment -%}
+
+              {%- comment -%}<h3>total discount: {{ cart_total_discount | times: 0.01 }}<br>
+                items subtotal: {{ cart_items_subtotal | times: 0.01 }}<br>
                 items subtotal minus promo product: {{ cart_items_subtotal | minus: costo_regalo }}<br>
-                </h3>{%- endcomment -%}
+              </h3>{%- endcomment -%}
 
-                <p class="cartfreeshipping">
-                  {% if cart_total_promo < test_minimum_spend %}
-                    {{ promo_no_aplica }}
-                  {% else %}
-                    {{ promo_aplica }}
-                  {% endif %}
-                </p>
+              <p class="cartfreeshipping">
+                {% if cart_total_promo < test_minimum_spend %} {{ promo_no_aplica }} {% else %} {{ promo_aplica }} {%
+                  endif %} </p>
 
 
-          {%- comment -%}
-          Producto de regalo por nivel de gasto, hasta 3 niveles.
-          {%- endcomment -%}
-            {%- when 'dos_regalos_escalonados' -%}
+                  {%- comment -%}
+                  Producto de regalo por nivel de gasto, hasta 3 niveles.
+                  {%- endcomment -%}
+                  {%- when 'dos_regalos_escalonados' -%}
 
-              {%- render 'first-free-product-inject-2' -%}
-              {% comment %}{%- render 'second-free-product-inject-2' -%}{% endcomment %}
+                  {%- render 'first-free-product-inject-2' -%}
 
-              {%- comment -%} Variables de gasto minimo {%- endcomment -%}
-              {%- comment -%}
-                Gasto minimo 1: first_free_gift_over_x_price
-                Gasto minimo 2: second_free_gift_over_x_price
-              {%- endcomment -%}
+                  {%- comment -%} Variables de gasto minimo {%- endcomment -%}
+                  {%- comment -%}
+                  Gasto minimo 1: first_free_gift_over_x_price
+                  Gasto minimo 2: second_free_gift_over_x_price
+                  {%- endcomment -%}
 
-              {%- comment -%} Variables de cantidades faltantes {%- endcomment -%}
-              {%- assign cart_subtotal = cart.total_price -%}
-              {%- assign first_shipping_left = first_free_gift_over_x_price | minus: cart_subtotal -%}
-              {%- assign second_shipping_left = second_free_gift_over_x_price | minus: cart_subtotal -%}
+                  {%- assign cart_total_promo = cart.total_price | times: 0.01 -%}
+                  {%- assign test_minimum_spend_1 = settings.first_minimum_spend_1 | times: 1 -%}
+                  {%- assign test_minimum_spend_2 = settings.second_minimum_spend_2 | times: 1 -%}
+                  {%- assign shipping_value_first_gift = test_minimum_spend_1 | minus: cart_total_promo | times: 100
+                  |abs -%}
+                  {%- assign shipping_value_second_gift = test_minimum_spend_2 | minus: cart_total_promo | times: 100
+                  |abs -%}
 
-              {%- comment -%} Variables string para textos de theme settings {%- endcomment -%}
-              {%- capture add -%}{{ settings.agrega_string_2 }}{%- endcapture -%}
-              {%- capture more -%}{{ settings.more_string_2 }}{%- endcapture -%}
-              {%- capture won -%}{{ settings.won_string_2 }}{%- endcapture -%}
-              {%- capture first_price -%}{{ settings.first_copy_regalo_2 }}{%- endcapture -%}
-              {%- capture second_price -%}{{ settings.second_copy_regalo_2 }}{%- endcapture -%}
-              {%- capture final_price -%}{{ settings.final_copy_regalo_2 }}{%- endcapture -%}
+                  {%- assign falta_x_promo_1 = shipping_value_first_gift | money -%}
+                  {%- assign promo_x_promo_1 = settings.first_regalo_text_2 -%}
+                  {%- capture promo_1_no_aplica -%}
+                  Agrega {{ falta_x_promo_1 }} más para recibir {{ promo_x_promo_1 }}
+                  {%- endcapture -%}
 
-                <p class="cartfreeshipping">
-                {%- if cart_subtotal < first_free_gift_over_x_price -%}
-                  <span>{{add}} {{ first_shipping_left | money_with_currency }} {{more}} {{first_price}}.</span>
-                {%- elsif first_free_gift_over_x_price <= cart_subtotal and cart_subtotal < second_free_gift_over_x_price -%}
-                  <span class="font-weight-bold">{{won}} {{first_price}}.</span> <span>{{add}}{{ second_shipping_left | money_with_currency }} {{more}} {{second_price}}.</span>
-                {%- else second_free_gift_over_x_price <= cart_subtotal -%}
-                  <span class="font-weight-bold">{{won}} {{final_price}}.</span>
-                {%- endif -%}
-                </p>
+                  {%- assign falta_x_regalo_2 = shipping_value_second_gift | money -%}
+                  {%- assign promo_x_regal_2 = settings.second_regalo_text_2 -%}
+                  {%- capture promo_2_no_aplica -%}
+                  Agrega {{ falta_x_promo_2 }} más para recibir {{ promo_x_promo_2 }}
+                  {%- endcapture -%}
 
+                  {%- assign text_congratulations = settings.first_regalo_text_1 -%}
+                  {%- capture promo_1_aplica -%}
+                  {{ text_congratulations }} {{ promo_x }}
+                  {%- endcapture -%}
 
-          {%- comment -%}
-          Producto de regalo por nivel de gasto, hasta 3 niveles.
-          {%- endcomment -%}
-            {%- when 'tres_regalos_escalonados' -%}
+                  {%- assign text_congratulations_2 = settings.second_regalo_text_1 -%}
+                  {%- capture promo_2_aplica -%}
+                  {{ text_congratulations }} {{ promo_x_regal_1 }} {{ promo_x_regal_2 }}
+                  {%- endcapture -%}
 
-              {%- render 'first-free-product-inject' -%}
-              {%- render 'second-free-product-inject' -%}
-              {%- render 'third-free-product-inject' -%}
-
-              {%- comment -%} Variables de gasto minimo {%- endcomment -%}
-              {%- comment -%}
-                Gasto minimo 1: first_free_gift_over_x_price
-                Gasto minimo 2: second_free_gift_over_x_price
-                Gasto minimo 3: third_free_gift_over_x_price
-              {%- endcomment -%}
-
-              {%- comment -%} Variables de cantidades faltantes {%- endcomment -%}
-              {%- assign cart_subtotal = cart.total_price -%}
-              {%- assign first_shipping_left = first_free_gift_over_x_price | minus: cart_subtotal -%}
-              {%- assign second_shipping_left = second_free_gift_over_x_price | minus: cart_subtotal -%}
-              {%- assign third_shipping_left = third_free_gift_over_x_price | minus: cart_subtotal -%}
-
-              {%- comment -%} Variables string para textos de theme settings {%- endcomment -%}
-              {%- capture add -%}{{ settings.agrega_string }}{%- endcapture -%}
-              {%- capture more -%}{{ settings.more_string }}{%- endcapture -%}
-              {%- capture won -%}{{ settings.won_string }}{%- endcapture -%}
-              {%- capture first_price -%}{{ settings.first_copy_regalo }}{%- endcapture -%}
-              {%- capture second_price -%}{{ settings.second_copy_regalo }}{%- endcapture -%}
-              {%- capture third_price -%}{{ settings.third_copy_regalo }}{%- endcapture -%}
-
-                <p class="cartfreeshipping">
-                {%- if cart_subtotal < first_free_gift_over_x_price -%}
-                  <span>{{add}} {{ first_shipping_left | money_with_currency }} {{more}} {{first_price}}.</span>
-                {%- elsif first_free_gift_over_x_price <= cart_subtotal and cart_subtotal < second_free_gift_over_x_price -%}
-                  <span class="font-weight-bold">{{won}} {{first_price}}.</span> <span>{{add}}{{ second_shipping_left | money_with_currency }} {{more}} {{second_price}}.</span>
-                {%- elsif second_free_gift_over_x_price <= cart_subtotal and cart_subtotal < third_free_gift_over_x_price -%}
-                  <span class="font-weight-bold">{{won}} {{first_price}} y {{second_price}}.</span> <span>{{add}}{{ third_shipping_left | money_with_currency }} {{more}} {{third_price}}.</span>
-                {%- else cart_subtotal >= third_free_gift_over_x_price -%}
-                  <span class="font-weight-bold">{{won}} {{first_price}}, {{second_price}} y {{third_price}}.</span>
-                {%- endif -%}
-                </p>
+                  <p class="cartfreeshipping">
+                    {% if cart_total_promo < test_minimum_spend_1 %} 
+                      {{ promo1_no_aplica }}
+                    {% elsif cart_total_promo > test_minimum_spend_1%}
+                      {{promo_1_aplica}} {{promo_2_no_aplica}}
+                    {% elsif cart_total_promo > test_minimum_spend_1 && cart_total_promo > test_minimum_spend_2 %} 
+                    {{promo_1_aplica}} {{promo_2_aplica}}  
+                    {% endif%} 
+                  </p>
 
 
-          {%- comment -%}
-          Mensaje custom.
-          {%- endcomment -%}
-            {%- when 'mensaje_custom' -%}
-            {%- assign mensaje = settings.mensaje -%}
-                <p class="cartfreeshipping">
-                {%- capture mensaje_custom -%}
-                  {{ mensaje }}
-                {%- endcapture -%}
-                  {{ mensaje_custom }}
-                </p>
+                      {%- comment -%} Variables de cantidades faltantes{%- endcomment -%}
+                      {%- comment -%}
+                      {%- assign cart_subtotal = cart.total_price -%}
+                      {%- assign first_shipping_left = first_free_gift_over_x_price | minus: cart_subtotal -%}
+                      {%- assign second_shipping_left = second_free_gift_over_x_price | minus: cart_subtotal -%}
+                      {%- endcomment -%}
+                      {%- comment -%} Variables string para textos de theme settings {%- endcomment -%}
+                      {%- comment -%}
+                      {%- capture add -%}{{ settings.agrega_string_2 }}{%- endcapture -%}
+                      {%- capture more -%}{{ settings.more_string_2 }}{%- endcapture -%}
+                      {%- capture won -%}{{ settings.won_string_2 }}{%- endcapture -%}
+                      {%- capture first_price -%}{{ settings.first_copy_regalo_2 }}{%- endcapture -%}
+                      {%- capture second_price -%}{{ settings.second_copy_regalo_2 }}{%- endcapture -%}
+                      {%- capture final_price -%}{{ settings.final_copy_regalo_2 }}{%- endcapture -%}
+                      <p class="cartfreeshipping">
+                        {%- if cart_subtotal < first_free_gift_over_x_price -%} <span>{{add}} {{ first_shipping_left |
+                          money_with_currency }} {{more}} {{first_price}}.</span>
+                          {%- elsif first_free_gift_over_x_price <= cart_subtotal and cart_subtotal <
+                            second_free_gift_over_x_price -%} <span class="font-weight-bold">{{won}}
+                            {{first_price}}.</span> <span>{{add}}{{ second_shipping_left | money_with_currency }}
+                              {{more}} {{second_price}}.</span>
+                            {%- else second_free_gift_over_x_price <= cart_subtotal -%} <span class="font-weight-bold">
+                              {{won}} {{final_price}}.</span>
+                              {%- endif -%}
+                      </p>
+                      {%- endcomment -%}
+
+                      {%- comment -%}
+                      Producto de regalo por nivel de gasto, hasta 3 niveles.
+                      {%- endcomment -%}
+                      {%- when 'tres_regalos_escalonados' -%}
+
+                      {%- render 'first-free-product-inject' -%}
+                      {%- render 'second-free-product-inject' -%}
+                      {%- render 'third-free-product-inject' -%}
+
+                      {%- comment -%} Variables de gasto minimo {%- endcomment -%}
+                      {%- comment -%}
+                      Gasto minimo 1: first_free_gift_over_x_price
+                      Gasto minimo 2: second_free_gift_over_x_price
+                      Gasto minimo 3: third_free_gift_over_x_price
+                      {%- endcomment -%}
+
+                      {%- comment -%} Variables de cantidades faltantes {%- endcomment -%}
+                      {%- assign cart_subtotal = cart.total_price -%}
+                      {%- assign first_shipping_left = first_free_gift_over_x_price | minus: cart_subtotal -%}
+                      {%- assign second_shipping_left = second_free_gift_over_x_price | minus: cart_subtotal -%}
+                      {%- assign third_shipping_left = third_free_gift_over_x_price | minus: cart_subtotal -%}
+
+                      {%- comment -%} Variables string para textos de theme settings {%- endcomment -%}
+                      {%- capture add -%}{{ settings.agrega_string }}{%- endcapture -%}
+                      {%- capture more -%}{{ settings.more_string }}{%- endcapture -%}
+                      {%- capture won -%}{{ settings.won_string }}{%- endcapture -%}
+                      {%- capture first_price -%}{{ settings.first_copy_regalo }}{%- endcapture -%}
+                      {%- capture second_price -%}{{ settings.second_copy_regalo }}{%- endcapture -%}
+                      {%- capture third_price -%}{{ settings.third_copy_regalo }}{%- endcapture -%}
+
+                      <p class="cartfreeshipping">
+                        {%- if cart_subtotal < first_free_gift_over_x_price -%} <span>{{add}} {{ first_shipping_left |
+                          money_with_currency }} {{more}} {{first_price}}.</span>
+                          {%- elsif first_free_gift_over_x_price <= cart_subtotal and cart_subtotal <
+                            second_free_gift_over_x_price -%} <span class="font-weight-bold">{{won}}
+                            {{first_price}}.</span> <span>{{add}}{{ second_shipping_left | money_with_currency }}
+                              {{more}} {{second_price}}.</span>
+                            {%- elsif second_free_gift_over_x_price <= cart_subtotal and cart_subtotal <
+                              third_free_gift_over_x_price -%} <span class="font-weight-bold">{{won}} {{first_price}} y
+                              {{second_price}}.</span> <span>{{add}}{{ third_shipping_left | money_with_currency }}
+                                {{more}} {{third_price}}.</span>
+                              {%- else cart_subtotal >= third_free_gift_over_x_price -%}
+                              <span class="font-weight-bold">{{won}} {{first_price}}, {{second_price}} y
+                                {{third_price}}.</span>
+                              {%- endif -%}
+                      </p>
 
 
-          {%- comment -%}
-          Envío gratis en compras arriba de X.
-          {%- endcomment -%}
-            {%- when 'envio_gasto' -%}
-                <p class="cartfreeshipping">
-                  {%- if shipping_value_left > 0 -%}
-                  ¡Agrega {{ shipping_value_left | money }} para que tu envío sea gratis!
-                  {%- else -%}
-                  Tu orden califica para envío gratis.
-                  {%- endif -%}
-                </p>
+                      {%- comment -%}
+                      Mensaje custom.
+                      {%- endcomment -%}
+                      {%- when 'mensaje_custom' -%}
+                      {%- assign mensaje = settings.mensaje -%}
+                      <p class="cartfreeshipping">
+                        {%- capture mensaje_custom -%}
+                        {{ mensaje }}
+                        {%- endcapture -%}
+                        {{ mensaje_custom }}
+                      </p>
 
 
-          {%- comment -%}
-          Envío en XX en compras arriba de X.
-          {%- endcomment -%}
-            {%- when 'envio_gasto_x' -%}
-                <p class="cartfreeshipping">
-                  {%- if cart_total < shipping_value_x -%}
-                    Agrega {{ shipping_value_x_left | money }} para que tu envío cueste {{ settings.envio_x | times: 100 | money }} MXN.
-                  {%- elsif cart_total >= shipping_value_x and cart_total < shipping_value -%}
-                    ¡Tu orden califica para envío en {{ settings.envio_x | times: 100 | money }} MXN!<br />Agrega {{ shipping_value_left | money }} más para que tu envío sea gratis.
-                  {%- else -%}
-                    ¡Tu orden califica para envío gratis!
-                  {%- endif -%}
-                </p>
-
-          {%- endcase -%}
-
-            <div class="cart__body">
-              <ul class="item-list divider">
-                {%- for item in cart.items -%}
-                <li class="item cf product-2-cruiser-65l">
-                  <div class="imagedesc">
-                    <div class="image">
-                      <a href="{{ item.url }}">
-                        <img src="{{item.image | img_url:'x73'}}">
-                      </a>
-                    </div>
-                    <a class="remove_mm" data-variant_id="{{item.id}}">
-                      {{ 'cart.general.remove' | t }}
-                    </a>
-                  </div>
-                  <div class="quantity-container">
-                    <div class="desc">
-                      <div>
-                        <a class="name" href="{{ item.url }}">{{ item.product.title }}</a>
-                        {%- if item.product.variants.size > 1 -%}
-                        <div class="variant">{{ item.variant.title }}</div>
+                      {%- comment -%}
+                      Envío gratis en compras arriba de X.
+                      {%- endcomment -%}
+                      {%- when 'envio_gasto' -%}
+                      <p class="cartfreeshipping">
+                        {%- if shipping_value_left > 0 -%}
+                        ¡Agrega {{ shipping_value_left | money }} para que tu envío sea gratis!
+                        {%- else -%}
+                        Tu orden califica para envío gratis.
                         {%- endif -%}
+                      </p>
+
+
+                      {%- comment -%}
+                      Envío en XX en compras arriba de X.
+                      {%- endcomment -%}
+                      {%- when 'envio_gasto_x' -%}
+                      <p class="cartfreeshipping">
+                        {%- if cart_total < shipping_value_x -%} Agrega {{ shipping_value_x_left | money }} para que tu
+                          envío cueste {{ settings.envio_x | times: 100 | money }} MXN. {%- elsif cart_total>=
+                          shipping_value_x and cart_total
+                          < shipping_value -%} ¡Tu orden califica para envío en {{ settings.envio_x | times: 100 | money
+                            }} MXN!<br />Agrega {{ shipping_value_left | money }} más para que tu envío sea gratis.
+                          {%- else -%}
+                          ¡Tu orden califica para envío gratis!
+                          {%- endif -%}
+                      </p>
+
+                      {%- endcase -%}
+
+                      <div class="cart__body">
+                        <ul class="item-list divider">
+                          {%- for item in cart.items -%}
+                          <li class="item cf product-2-cruiser-65l">
+                            <div class="imagedesc">
+                              <div class="image">
+                                <a href="{{ item.url }}">
+                                  <img src="{{item.image | img_url:'x73'}}">
+                                </a>
+                              </div>
+                              <a class="remove_mm" data-variant_id="{{item.id}}">
+                                {{ 'cart.general.remove' | t }}
+                              </a>
+                            </div>
+                            <div class="quantity-container">
+                              <div class="desc">
+                                <div>
+                                  <a class="name" href="{{ item.url }}">{{ item.product.title }}</a>
+                                  {%- if item.product.variants.size > 1 -%}
+                                  <div class="variant">{{ item.variant.title }}</div>
+                                  {%- endif -%}
+                                </div>
+
+                              </div>
+                              <div class="d-flex pt-2 align-items-center">
+                                <div data-variant="{{ item.id }}" class="quantity buttoned-input mt-0">
+                                  <a class="notabutton quantity-down" href="#"> - </a>
+                                  <input class="select-on-focus" type="text" size="2" id="updates_1" name="updates[]"
+                                    value="{{item.quantity}}" data-line="1" aria-label="Quantity">
+                                  <a class="notabutton quantity-up " href="#"> + </a>
+                                </div>
+                                {%- comment -%}No se puede agregar precio compare at por ser carrito ajax. Requiere un
+                                tempate de json diferente.{%- endcomment -%}
+                                <div class="line-total" data-line="1">
+                                  <span class="theme-money">{{ item.line_price | money }}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </li><!-- /.item -->
+                          {%- endfor -%}
+                        </ul>
                       </div>
 
-                    </div>
-                    <div class="d-flex pt-2 align-items-center">
-                      <div data-variant="{{ item.id }}"
-                          class="quantity buttoned-input mt-0">
-                        <a class="notabutton quantity-down" href="#"> - </a>
-                        <input class="select-on-focus" type="text" size="2" id="updates_1" name="updates[]" value="{{item.quantity}}" data-line="1" aria-label="Quantity">
-                        <a class="notabutton quantity-up " href="#"> + </a>
-                      </div>
-                        {%- comment -%}No se puede agregar precio compare at por ser carrito ajax. Requiere un tempate de json diferente.{%- endcomment -%}
-                      <div class="line-total" data-line="1">
-                        <span class="theme-money">{{ item.line_price | money }}</span>
-                      </div>
-                    </div>
-                  </div>
-                </li><!-- /.item -->
-                {%- endfor -%}
-              </ul>
-            </div>
+            </div><!-- /.minicart-nosubtotal -->
 
-          </div><!-- /.minicart-nosubtotal -->
-
-          <div class="cart__footer">
-            {%- render 'cart_recommend' -%}
-            {%- render 'regalo_carrito' -%}
-            <div class="cf checkout-subtotal-container">
-              <div class="checkout-subtotal-container__left">
-                <h4 class="subtotalMinicart">{{ 'cart.general.subtotal' | t }}</h4>
-              </div>
-              <div class="checkout-subtotal-container__right">
-                <h4 class="subtotal h1-style"><span class="theme-money">{{ cart.total_price | money }}</span></h4>
-              </div>
-            </div>
-            
-            <kueskipay-widget
-              data-kpay-widget-type="cart"
-              data-kpay-widget-font-family="GT-Walsheim"
-              data-kpay-widget-font-size="14"
-              data-kpay-widget-text-align="center"
-              data-kpay-widget-offer-color="#0a0a0a"
-              data-kpay-widget-link-color="#F06C4E"
-              data-kpay-widget-installments-color="#0a0a0a"
-              data-kpay-widget-link-emphasis="400"
-              data-kpay-widget-logo-color="black"
-              data-kpay-widget-amount="{{ cart.total_price }}">
-            </kueskipay-widget>
-
-            {% comment %} <a class="refresh-btn">{{ 'cart.general.update' | t }}</a> {% endcomment %}
-
-            {%- comment -%} No se puede incluir porque al usar un script para bloquear códigos de descuento, éste snippet lo muestra como "Estás ahorrando X cantidad con la promoción de BLOQUEO DE SCRIPTS" {%- endcomment -%}
-            {%- comment -%} {%- render 'estas-ahorrando' -%} {%- endcomment -%}
-
-            <div class="cf">
-              <div class="checkout-col">
-                <div class="btn__main btn--red checkout-buttons">
-                  <input type="submit" class="button button--large text-link" id="update-cart" name="checkout" value="Pagar">
+            <div class="cart__footer">
+              {%- render 'cart_recommend' -%}
+              {%- render 'regalo_carrito' -%}
+              <div class="cf checkout-subtotal-container">
+                <div class="checkout-subtotal-container__left">
+                  <h4 class="subtotalMinicart">{{ 'cart.general.subtotal' | t }}</h4>
+                </div>
+                <div class="checkout-subtotal-container__right">
+                  <h4 class="subtotal h1-style"><span class="theme-money">{{ cart.total_price | money }}</span></h4>
                 </div>
               </div>
 
-              {%- if settings.tyc_text != blank -%}
-                <a onclick="reveal('terminos_condiciones');" class="tyc">{{ settings.tyc_title }}</a> 
-                <b class="hidden_tyc cartfreeshipping" id="terminos_condiciones">{{ settings.tyc_text }}</b>
-              {%- endif -%}
+              <kueskipay-widget data-kpay-widget-type="cart" data-kpay-widget-font-family="GT-Walsheim"
+                data-kpay-widget-font-size="14" data-kpay-widget-text-align="center"
+                data-kpay-widget-offer-color="#0a0a0a" data-kpay-widget-link-color="#F06C4E"
+                data-kpay-widget-installments-color="#0a0a0a" data-kpay-widget-link-emphasis="400"
+                data-kpay-widget-logo-color="black" data-kpay-widget-amount="{{ cart.total_price }}">
+              </kueskipay-widget>
 
+              {% comment %} <a class="refresh-btn">{{ 'cart.general.update' | t }}</a> {% endcomment %}
+
+              {%- comment -%} No se puede incluir porque al usar un script para bloquear códigos de descuento, éste
+              snippet lo muestra como "Estás ahorrando X cantidad con la promoción de BLOQUEO DE SCRIPTS" {%- endcomment
+              -%}
+              {%- comment -%} {%- render 'estas-ahorrando' -%} {%- endcomment -%}
+
+              <div class="cf">
+                <div class="checkout-col">
+                  <div class="btn__main btn--red checkout-buttons">
+                    <input type="submit" class="button button--large text-link" id="update-cart" name="checkout"
+                      value="Pagar">
+                  </div>
+                </div>
+
+                {%- if settings.tyc_text != blank -%}
+                <a onclick="reveal('terminos_condiciones');" class="tyc">{{ settings.tyc_title }}</a>
+                <b class="hidden_tyc cartfreeshipping" id="terminos_condiciones">{{ settings.tyc_text }}</b>
+                {%- endif -%}
+
+              </div>
             </div>
+
+          </form>
+          {%- else -%}
+          <div class="col-md-12 carTempty">
+            <h2>{{ 'cart.general.title' | t }}</h2>
+            <h5>{{ 'cart.general.empty' | t }} </h5>
+            <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
           </div>
 
-        </form>
-        {%- else -%}
-        <div class="col-md-12 carTempty">
-          <h2>{{ 'cart.general.title' | t }}</h2>
-          <h5>{{ 'cart.general.empty' | t }} </h5>
-          <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
+          {%- endif -%}
         </div>
-        
-        {%- endif -%}
       </div>
     </div>
   </div>
-</div>
 
-<script>
-// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-let vh = window.innerHeight * 0.01;
-// Then we set the value in the --vh custom property to the root of the document
-document.documentElement.style.setProperty('--vh', `${vh}px`);
-</script>
+  <script>
+    // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+    let vh = window.innerHeight * 0.01;
+    // Then we set the value in the --vh custom property to the root of the document
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  </script>
