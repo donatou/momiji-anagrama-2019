@@ -195,7 +195,7 @@
             {%- when 'dos_regalos_escalonados' -%}
 
               {%- render 'first-free-product-inject-2' -%}
-              {%- render 'second-free-product-inject-2' -%}
+              {% comment %}{%- render 'second-free-product-inject-2' -%}{% endcomment %}
 
               {%- comment -%} Variables de gasto minimo {%- endcomment -%}
               {%- comment -%}
@@ -230,7 +230,7 @@
           {%- comment -%}
           Producto de regalo por nivel de gasto, hasta 3 niveles.
           {%- endcomment -%}
-            {%- when 'regalos_escalonados' -%}
+            {%- when 'tres_regalos_escalonados' -%}
 
               {%- render 'first-free-product-inject' -%}
               {%- render 'second-free-product-inject' -%}

@@ -3,32 +3,45 @@
 {%- endcomment -%}
 
 {% assign first_free_gift_over_x_price = settings.first_minimum_spend_2 | times: 100 %}
+{% assign second_free_gift_over_x_price = settings.second_minimum_spend_2 | times: 100 %}
+
 {% capture first_promo_product %}
   {{ all_products[settings.first_tiered_product_2].selected_or_first_available_variant.id }}
 {% endcapture %}
+
+{% capture second_promo_product %}
+  {{ all_products[settings.second_tiered_product_2].selected_or_first_available_variant.id }}
+{% endcapture %}
+
+
 {% assign variant_id_1 = first_promo_product %}
+{% assign variant_id_2 = second_promo_product %}
+
 
   <script>
+  
   (function($) {
     var cartItems1 = {{ cart.items | json }},
         qtyInTheCart1 = 0,
         cartUpdates1 = {},
         cartTotal1 = {{ cart.total_price }};
+    /*    
     for (var j=0; j<cartItems1.length; j++) {
       if ( cartItems1[j].id === {{ variant_id_1 }} ) {
         qtyInTheCart1 = cartItems1[j].quantity;
+        console.log(qtyInTheCart1);
         break;
       }
     }
-    if ( ( cartTotal1 < {{ first_free_gift_over_x_price }} ) && ( qtyInTheCart1 > 0 ) ) {
-      cartUpdates1 = { {{ variant_id_1 }}: 0 }
+    */
+    if ( ( cartTotal1 < {{ first_free_gift_over_x_price }} ) ) {
+      console.log('No aplica')
     }
     
-    else if ( ( cartItems1.length >= 1 ) && ( qtyInTheCart1 !== 1 ) && (cartTotal1 >= {{ first_free_gift_over_x_price }} ) ) {
+    else if ( (cartTotal1 >= {{ first_free_gift_over_x_price }} ) ) {
       cartUpdates1 = { {{ variant_id_1 }}: 1 }
-    }
-    else {
-      return;
+      console.log(cartUpdates1)
+      console.log('Si aplica')
     }
     var params1 = {
       type: 'POST',
@@ -37,6 +50,38 @@
       dataType: 'json'
     };
     $.ajax(params1);
+  })(jQuery);
+
+  (function($) {
+    var cartItems2 = {{ cart.items | json }},
+        qtyInTheCart2 = 0,
+        cartUpdates2 = {},
+        cartTotal2 = {{ cart.total_price }};
+    /*
+    for (var k=0; k<cartItems2.length; k++) {
+      if ( cartItems2[k].id === {{ variant_id_2 }} ) {
+        qtyInTheCart2 = cartItems2[k].quantity;
+        break;
+      }
+    }
+    */
+
+    if ( ( cartTotal2 < {{ second_free_gift_over_x_price }} ) ) {
+      console.log('No aplica')
+    }
+    
+    else if ( ((cartTotal2 >= {{ second_free_gift_over_x_price }} ) ) ) {
+      cartUpdates2 = { {{ variant_id_2 }}: 1 }
+      console.log(cartUpdates2)
+      console.log('Si aplica')
+    }
+    var params2 = {
+      type: 'POST',
+      url: '/cart/update.js',
+      data: { updates: cartUpdates2 },
+      dataType: 'json'
+    };
+    $.ajax(params2);
   })(jQuery);
   </script>
 

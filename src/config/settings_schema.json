@@ -82,7 +82,7 @@
             "label": "Regalos escalonados 2 niveles"
           },
           {
-            "value": "regalos_escalonados",
+            "value": "tres_regalos_escalonados",
             "label": "Regalos escalonados 3 niveles"
           },
           {
@@ -573,5 +573,5 @@
         "info": "Marca la casilla para activar scripts específicas para landing Sundae en index."
       }
     ]
-  }  
+  }
 ]
