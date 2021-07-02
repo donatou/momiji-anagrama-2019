@@ -187,42 +187,44 @@
                   {%- endcomment -%}
 
                   {%- assign cart_total_promo = cart.total_price | times: 0.01 -%}
+                  
                   {%- assign test_minimum_spend_1 = settings.first_minimum_spend_1 | times: 1 -%}
                   {%- assign test_minimum_spend_2 = settings.second_minimum_spend_2 | times: 1 -%}
-                  {%- assign shipping_value_first_gift = test_minimum_spend_1 | minus: cart_total_promo | times: 100
-                  |abs -%}
-                  {%- assign shipping_value_second_gift = test_minimum_spend_2 | minus: cart_total_promo | times: 100
-                  |abs -%}
-
-                  {%- assign falta_x_promo_1 = shipping_value_first_gift | money -%}
-                  {%- assign promo_x_promo_1 = settings.first_regalo_text_2 -%}
+                  
+                  {%- assign shipping_value_first_gift = test_minimum_spend_1 | minus: cart_total_promo | times: 100 |abs -%}
+                  {%- assign shipping_value_second_gift = test_minimum_spend_2 | minus: cart_total_promo | times: 100 |abs -%}
+                  
+                  {% comment %}Primer producto de regalo{% endcomment %}
+                  {%- assign remaining_money_1 = shipping_value_first_gift | money -%}
+                  {%- assign promo_1 = settings.first_regalo_text_2 -%}
                   {%- capture promo_1_no_aplica -%}
-                  Agrega {{ falta_x_promo_1 }} más para recibir {{ promo_x_promo_1 }}
-                  {%- endcapture -%}
-
-                  {%- assign falta_x_regalo_2 = shipping_value_second_gift | money -%}
-                  {%- assign promo_x_regal_2 = settings.second_regalo_text_2 -%}
-                  {%- capture promo_2_no_aplica -%}
-                  Agrega {{ falta_x_promo_2 }} más para recibir {{ promo_x_promo_2 }}
+                  Agrega {{ remaining_money_1 }} más para recibir {{ promo_1 }}
                   {%- endcapture -%}
 
                   {%- assign text_congratulations = settings.first_regalo_text_1 -%}
                   {%- capture promo_1_aplica -%}
-                  {{ text_congratulations }} {{ promo_x }}
+                  {{ text_congratulations }} {{ promo_1 }}
+                  {%- endcapture -%}
+                  
+                  {% comment %}Segundo producto de regalo{% endcomment %}
+                  {%- assign remaining_money_2 = shipping_value_second_gift | money -%}
+                  {%- assign promo_2 = settings.second_regalo_text_2 -%}
+                  {%- capture promo_2_no_aplica -%}
+                  Agrega {{ remaining_money_2 }} más para recibir {{ promo_2 }}
                   {%- endcapture -%}
 
                   {%- assign text_congratulations_2 = settings.second_regalo_text_1 -%}
                   {%- capture promo_2_aplica -%}
-                  {{ text_congratulations }} {{ promo_x_regal_1 }} {{ promo_x_regal_2 }}
+                  {{ text_congratulations_2 }} {{ promo_2 }}
                   {%- endcapture -%}
 
                   <p class="cartfreeshipping">
                     {% if cart_total_promo < test_minimum_spend_1 %} 
-                      {{ promo1_no_aplica }}
-                    {% elsif cart_total_promo > test_minimum_spend_1%}
+                      {{ promo_1_no_aplica }}
+                    {% elsif cart_total_promo >= test_minimum_spend_1 and cart_total_promo < test_minimum_spend_2%}
                       {{promo_1_aplica}} {{promo_2_no_aplica}}
-                    {% elsif cart_total_promo > test_minimum_spend_1 && cart_total_promo > test_minimum_spend_2 %} 
-                    {{promo_1_aplica}} {{promo_2_aplica}}  
+                    {% elsif cart_total_promo >= test_minimum_spend_1 and cart_total_promo >= test_minimum_spend_2 %} 
+                    Tu pedido califica para {{promo_1}} y {{promo_2}}
                     {% endif%} 
                   </p>
 

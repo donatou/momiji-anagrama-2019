@@ -238,6 +238,12 @@
         "content": "Regalos escalonados 2 niveles"
       },
       {
+        "type": "checkbox",
+        "id": "more-pieces",
+        "label": "Los productos se pueden agregar individualmente al carrito",
+        "default": false
+      },
+      {
         "type": "product",
         "id": "first_tiered_product_2",
         "label": "Primer producto de regalo."

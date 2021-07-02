@@ -17,16 +17,31 @@
 {% assign variant_id_1 = first_promo_product %}
 {% assign variant_id_2 = second_promo_product %}
 
-
-  <script>
-  (function($) {
+{% comment %} 
     let cartUpdates1 = {},
         cartTotal1 = {{ cart.total_price }};
 
-    if ( cartTotal1 < {{ first_free_gift_over_x_price }} ) {
+    let cartUpdates2 = {},
+        cartTotal2 = {{ cart.total_price }};
+{% endcomment%}
+  <script>
+    
+  (function($) {
+    var cartItems1 = {{ cart.items | json }},
+        qtyInTheCart1 = 0,
+        cartUpdates1 = {},
+        cartTotal1 = {{ cart.total_price }};
+    for (var j=0; j<cartItems1.length; j++) {
+      if ( cartItems1[j].id === {{ variant_id_1 }} ) {
+        qtyInTheCart1 = cartItems1[j].quantity;
+        break;
+      }
+    }
+    if ( ( cartTotal1 < {{ first_free_gift_over_x_price }}) && ( qtyInTheCart1 > 0 ) ) {
+      cartUpdates1 = { {{ variant_id_1 }}: 0 }
     }
     
-    else if (cartTotal1 >= {{ first_free_gift_over_x_price }} ) {
+    else if ( ( cartItems1.length >= 1 ) && ( qtyInTheCart1 !== 1 ) && (cartTotal1 >= {{ first_free_gift_over_x_price }} ) ) {
       cartUpdates1 = { {{ variant_id_1 }}: 1 }
     }
 
@@ -40,13 +55,22 @@
   })(jQuery);
 
   (function($) {
-    let cartUpdates2 = {},
+    var cartItems2 = {{ cart.items | json }},
+        qtyInTheCart2 = 0,
+        cartUpdates2 = {},
         cartTotal2 = {{ cart.total_price }};
+    for (var i=0; i<cartItems2.length; i++) {
+      if ( cartItems2[i].id === {{ variant_id_2 }} ) {
+        qtyInTheCart2 = cartItems2[i].quantity;
+        break;
+      }
+    }
 
-    if  ( cartTotal2 < {{ second_free_gift_over_x_price }} ) {
+    if ( ( cartTotal2 < {{ second_free_gift_over_x_price }} )  && ( qtyInTheCart2 > 0 )){
+      cartUpdates2 = { {{ variant_id_2 }}: 0 }
     }
     
-    else if (cartTotal2 >= {{ second_free_gift_over_x_price }} ) {
+    else if ( ( cartItems2.length >= 1 ) && ( qtyInTheCart2 !== 1 ) && (cartTotal2 >= {{ second_free_gift_over_x_price }} ) ){
       cartUpdates2 = { {{ variant_id_2 }}: 1 }
     }
     let params2 = {
