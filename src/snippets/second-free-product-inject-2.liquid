@@ -22,12 +22,10 @@
     }
     if ( ( cartTotal2 < {{ second_free_gift_over_x_price }} ) ) {
       cartUpdates2 = { {{ variant_id_2 }}: 0 }
-      console.log('No aplica')
     }
     
-    else if ( (cartTotal2 >= {{ second_free_gift_over_x_price }} ) ) {
+    else if ( ( cartItems2.length >= 1 ) && ( qtyInTheCart2 !== 1 ) && (cartTotal2 >= {{ second_free_gift_over_x_price }} ) ) {
       cartUpdates2 = { {{ variant_id_2 }}: 1 }
-      console.log('Si aplica')
     }
     else {
       return;

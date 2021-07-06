@@ -179,11 +179,15 @@
                   {%- when 'dos_regalos_escalonados' -%}
 
                   {%- render 'first-free-product-inject-2' -%}
-
-                  {%- comment -%} Variables de gasto minimo {%- endcomment -%}
                   {%- comment -%}
-                  Gasto minimo 1: first_free_gift_over_x_price
-                  Gasto minimo 2: second_free_gift_over_x_price
+                  {%- endcomment -%}
+                  
+                  {%- comment -%}
+                  {%- render 'second-free-product-inject-2' -%}
+                  {%- endcomment -%}
+                  
+                  {%- comment -%}
+                  {%- render 'second-free-product-inject-2' -%}
                   {%- endcomment -%}
 
                   {%- assign cart_total_promo = cart.total_price | times: 0.01 -%}
