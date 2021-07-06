@@ -77,7 +77,7 @@
     }
     else if ( ( cartItems2.length >= 1 ) && ( qtyInTheCart2 !== 1 ) && (cartTotal2 >= {{ second_free_gift_over_x_price }} ) ){
       qtyInTheCart2 += 1
-      cartUpdates2 = { {{ variant_id_2 }}: qtyInTheCart2 + 1 }
+      cartUpdates2 = { {{ variant_id_2 }}: qtyInTheCart2 }
       console.log('aplica')
     }
     let params2 = {
