@@ -31,19 +31,25 @@
       }
     }
     if ( ( cartTotal1 < {{ first_free_gift_over_x_price }}) && ( qtyInTheCart1 >= 0 ) ) {
-      console.log('No se cumple la condicion')
-      cartUpdates1 = { {{ variant_id_1 }}: 0 }
+      //console.log('No se cumple la condicion')
+      null
+    }
+    
+    {% if settings.more-pieces == true %}
+      else if(qtyInTheCart1 > 1) {
+        //console.log('ya aplico regalo')
+        null
+      }
+    {% else %}
+      else if(qtyInTheCart1 > 1) {
+        cartUpdates1 = { {{ variant_id_1 }}: 1 }
+      }
+    {% endif %}
 
-    }
-    else if(qtyInTheCart1 > 1) {
-      console.log('ya aplico regalo')
-      qtyInTheCart1 = 0
-      cartUpdates1 = { {{ variant_id_1 }}: qtyInTheCart1 }
-    }
     else if ( ( cartItems1.length >= 1 ) && ( qtyInTheCart1 !== 1 ) && (cartTotal1 >= {{ first_free_gift_over_x_price }} ) ) {
       qtyInTheCart1 += 1
       cartUpdates1 = { {{ variant_id_1 }}: qtyInTheCart1 }
-      console.log('aplica')
+      //console.log('aplica')
     }
     let params1 = {
       type: 'POST',
@@ -67,18 +73,23 @@
     }
 
     if ( ( cartTotal2 < {{ second_free_gift_over_x_price }} )  && ( qtyInTheCart2 >= 0 )){
-      console.log('No se cumple la condicion')
-      cartUpdates2 = { {{ variant_id_2 }}: 0 }
+      //console.log('No se cumple la condicion')
+      null
     }
+    {% if settings.more-pieces == true %}
+      else if(qtyInTheCart2 > 1) {
+        //console.log('ya aplico regalo')
+        null
+      }
+    {% else %}
     else if(qtyInTheCart2 > 1) {
-      console.log('ya aplico regalo')
-      qtyInTheCart2 = 0
-      cartUpdates2 = { {{ variant_id_2 }}: qtyInTheCart2 }
+      cartUpdates2 = { {{ variant_id_2 }}: 1 }
     }
+    {% endif %}
     else if ( ( cartItems2.length >= 1 ) && ( qtyInTheCart2 !== 1 ) && (cartTotal2 >= {{ second_free_gift_over_x_price }} ) ){
       qtyInTheCart2 += 1
       cartUpdates2 = { {{ variant_id_2 }}: qtyInTheCart2 }
-      console.log('aplica')
+      //console.log('aplica')
     }
     let params2 = {
       type: 'POST',
